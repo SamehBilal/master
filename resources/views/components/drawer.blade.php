@@ -7,7 +7,7 @@
             <!-- Sidebar Content -->
 
             <div class="d-flex align-items-center navbar-height">
-                <form action="index.html"
+                <form action="{{ route('dashboard') }}"
                       class="search-form search-form--black mx-16pt pr-0 pl-16pt">
                     <input type="text"
                            class="form-control pl-0"
@@ -17,11 +17,9 @@
                 </form>
             </div>
 
-            <a href="index.html"
+            <a href="{{ route('dashboard') }}"
                class="sidebar-brand ">
-{{--
-                <img class="sidebar-brand-icon" src="{{ asset('backend/images/illustration/student/128/white.svg') }}" alt="Luma">
---}}
+                {{--<img class="sidebar-brand-icon" src="{{ asset('backend/images/illustration/student/128/white.svg') }}" alt="Luma">--}}
 
                 <span class="avatar avatar-xl sidebar-brand-icon h-auto">
 
@@ -34,32 +32,45 @@
                 <span>Luma</span>
             </a>
 
+            <div class="sidebar-heading">Application</div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-menu-item {{ set_active(['dashboard'])}}">
+                    <a class="sidebar-menu-button"
+                       href="{{ route('dashboard') }}">
+                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">dashboard</span>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="sidebar-menu-item {{ set_active(['orders*'])}}">
+                    <a class="sidebar-menu-button"
+                       href="{{ route('orders.index') }}">
+                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">shopping_cart</span>
+                        Orders
+                    </a>
+                </li>
+                <li class="sidebar-menu-item {{ set_active(['pickups*'])}}">
+                    <a class="sidebar-menu-button"
+                       href="{{ route('pickups.index') }}">
+                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">map</span>
+                        Pickups
+                    </a>
+                </li>
+            </ul>
+
             <div class="sidebar-heading">Users</div>
             <ul class="sidebar-menu">
-                <li class="sidebar-menu-item active">
+                <li class="sidebar-menu-item {{ set_active(['customers*'])}}">
                     <a class="sidebar-menu-button"
                        href="{{ route('customers.index') }}">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">group</span>
                         Customers
                     </a>
                 </li>
-                <li class="sidebar-menu-item ">
+                <li class="sidebar-menu-item {{ set_active(['users*'])}}">
                     <a class="sidebar-menu-button"
                        href="{{ route('users.index') }}">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">group</span>
                         All Users
-                    </a>
-                </li>
-            </ul>
-
-
-            <div class="sidebar-heading">Application</div>
-            <ul class="sidebar-menu">
-                <li class="sidebar-menu-item">
-                    <a class="sidebar-menu-button"
-                       href="{{ route('pickups.index') }}">
-                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">map</span>
-                        Pickups
                     </a>
                 </li>
             </ul>
@@ -648,280 +659,6 @@
                             <a class="sidebar-menu-button"
                                href="discussions-ask.html">
                                 <span class="sidebar-menu-text">Ask Question</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-
-            <div class="sidebar-heading">UI</div>
-            <ul class="sidebar-menu">
-                <li class="sidebar-menu-item">
-                    <a class="sidebar-menu-button"
-                       data-toggle="collapse"
-                       href="#components_menu">
-                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">tune</span>
-                        Components
-                        <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                    </a>
-                    <ul class="sidebar-submenu collapse sm-indent"
-                        id="components_menu">
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-buttons.html">
-                                <span class="sidebar-menu-text">Buttons</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-avatars.html">
-                                <span class="sidebar-menu-text">Avatars</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-forms.html">
-                                <span class="sidebar-menu-text">Forms</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-loaders.html">
-                                <span class="sidebar-menu-text">Loaders</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-tables.html">
-                                <span class="sidebar-menu-text">Tables</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-cards.html">
-                                <span class="sidebar-menu-text">Cards</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-icons.html">
-                                <span class="sidebar-menu-text">Icons</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-tabs.html">
-                                <span class="sidebar-menu-text">Tabs</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-alerts.html">
-                                <span class="sidebar-menu-text">Alerts</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-badges.html">
-                                <span class="sidebar-menu-text">Badges</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-progress.html">
-                                <span class="sidebar-menu-text">Progress</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-pagination.html">
-                                <span class="sidebar-menu-text">Pagination</span>
-                            </a>
-                        </li>
-                        <!-- <li class="sidebar-menu-item">
-<a class="sidebar-menu-button disabled" href="ui-typography.html">
-<span class="sidebar-menu-text">Typography</span>
-</a>
-</li>
-<li class="sidebar-menu-item">
-<a class="sidebar-menu-button disabled" href="ui-colors.html">
-<span class="sidebar-menu-text">Colors</span>
-</a>
-</li>
-<li class="sidebar-menu-item">
-<a class="sidebar-menu-button disabled" href="ui-breadcrumb.html">
-<span class="sidebar-menu-text">Breadcrumb</span>
-</a>
-</li>
-<li class="sidebar-menu-item">
-<a class="sidebar-menu-button disabled" href="ui-accordions.html">
-<span class="sidebar-menu-text">Accordions</span>
-</a>
-</li>
-<li class="sidebar-menu-item">
-<a class="sidebar-menu-button disabled" href="ui-modals.html">
-<span class="sidebar-menu-text">Modals</span>
-</a>
-</li>
-<li class="sidebar-menu-item">
-<a class="sidebar-menu-button disabled" href="ui-chips.html">
-<span class="sidebar-menu-text">Chips</span>
-</a>
-</li> -->
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button disabled"
-                               href="">
-                                <span class="sidebar-menu-text">Disabled</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-menu-item">
-                    <a class="sidebar-menu-button"
-                       data-toggle="collapse"
-                       href="#plugins_menu">
-                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">folder</span>
-                        Plugins
-                        <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                    </a>
-                    <ul class="sidebar-submenu collapse sm-indent"
-                        id="plugins_menu">
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-plugin-charts.html">
-                                <span class="sidebar-menu-text">Charts</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-plugin-flatpickr.html">
-                                <span class="sidebar-menu-text">Flatpickr</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-plugin-daterangepicker.html">
-                                <span class="sidebar-menu-text">Date Range Picker</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-plugin-dragula.html">
-                                <span class="sidebar-menu-text">Dragula</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-plugin-dropzone.html">
-                                <span class="sidebar-menu-text">Dropzone</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-plugin-range-sliders.html">
-                                <span class="sidebar-menu-text">Range Sliders</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-plugin-quill.html">
-                                <span class="sidebar-menu-text">Quill</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-plugin-select2.html">
-                                <span class="sidebar-menu-text">Select2</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-plugin-nestable.html">
-                                <span class="sidebar-menu-text">Nestable</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-plugin-fancytree.html">
-                                <span class="sidebar-menu-text">Fancy Tree</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-plugin-maps-vector.html">
-                                <span class="sidebar-menu-text">Vector Maps</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-plugin-sweet-alert.html">
-                                <span class="sidebar-menu-text">Sweet Alert</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="ui-plugin-toastr.html">
-                                <span class="sidebar-menu-text">Toastr</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button disabled"
-                               href="">
-                                <span class="sidebar-menu-text">Disabled</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-menu-item">
-                    <a class="sidebar-menu-button"
-                       data-toggle="collapse"
-                       href="#layouts_menu">
-                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">view_compact</span>
-                        Layouts
-                        <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                    </a>
-                    <ul class="sidebar-submenu collapse sm-indent"
-                        id="layouts_menu">
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="../Compact_App_Layout/ecommerce.html">
-                                <span class="sidebar-menu-text">Compact</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="../Mini_App_Layout/ecommerce.html">
-                                <span class="sidebar-menu-text">Mini</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="../Mini_Secondary_Layout/ecommerce.html">
-                                <span class="sidebar-menu-text">Mini + Secondary</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item ">
-                            <a class="sidebar-menu-button"
-                               href="../App_Layout/ecommerce.html">
-                                <span class="sidebar-menu-text">App</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="../Boxed_App_Layout/ecommerce.html">
-                                <span class="sidebar-menu-text">Boxed</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="../Sticky_App_Layout/ecommerce.html">
-                                <span class="sidebar-menu-text">Sticky</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item">
-                            <a class="sidebar-menu-button"
-                               href="../Fixed_Layout/ecommerce.html">
-                                <span class="sidebar-menu-text">Fixed</span>
                             </a>
                         </li>
                     </ul>

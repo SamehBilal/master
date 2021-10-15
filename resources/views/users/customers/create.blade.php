@@ -15,124 +15,125 @@
 
 @section('main_content')
     <div class="container page__container page-section">
-
-        <div class="row mb-32pt">
-            <div class="col-lg-4">
-                <div class="page-separator">
-                    <div class="page-separator__text">Basic Information</div>
-                </div>
-                <p class="card-subtitle text-70 mb-16pt mb-lg-0">
-                    Add your customer basic information.
-                </p>
-            </div>
-            <div class="col-lg-8 d-flex align-items-center">
-                <div class="flex"
-                     style="max-width: 100%">
-
-                    <div class="form-row">
-                        <div class="col-12 col-md-6 mb-3">
-                            <div class="form-group">
-                                <label class="form-label"
-                                       for="name">Your name:</label>
-                                <div class="input-group input-group-merge">
-                                    <input type="text"
-                                           class="form-control @error('name') is-invalid @enderror"
-                                           value="{{ old('name') }}"
-                                           required="required"
-                                           autocomplete="name"
-                                           name="name"
-                                           id="name"
-                                           placeholder="Enter your name .."
-                                           autofocus>
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <span class="material-icons">person</span>
-                                        </div>
-                                    </div>
-                                    @error('name')
-                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                    @enderror
-                                    <div class="valid-feedback">Looks good!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 mb-3">
-                            <div class="form-group">
-                                <label class="form-label"
-                                       for="email">Your email:</label>
-                                <div class="input-group input-group-merge">
-                                    <input type="email"
-                                           class="form-control @error('email') is-invalid @enderror"
-                                           value="{{ old('email') }}"
-                                           required="required"
-                                           autocomplete="email"
-                                           name="email"
-                                           id="email"
-                                           placeholder="Enter your email address .."
-                                           autofocus>
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <span class="material-icons">email</span>
-                                        </div>
-                                    </div>
-                                    @error('email')
-                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                    @enderror
-                                    <div class="valid-feedback">Looks good!</div>
-                                </div>
-                            </div>
-                        </div>
+        <div class="card">
+            <div class="row card-body mb-32pt">
+                <div class="col-lg-4 ">
+                    <div class="page-separator">
+                        <div class="page-separator__text">Basic Information</div>
                     </div>
-                    <div class="form-row">
-                        <div class="col-12 col-md-6 mb-3">
-                            <div class="form-group">
-                                <label class="form-label"
-                                       for="phone">Your phone:</label>
-                                <div class="input-group input-group-merge">
-                                    <input type="text"
-                                           class="form-control @error('phone') is-invalid @enderror"
-                                           value="{{ old('phone') }}"
-                                           required="required"
-                                           autocomplete="phone"
-                                           name="phone"
-                                           id="phone"
-                                           placeholder="EG phone: +(20)10 0000 0000)"
-                                           data-mask="+(20)10 0000 0000"
-                                           autofocus>
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <span class="material-icons">phone</span>
+                    <p class="card-subtitle text-70 mb-16pt mb-lg-0">
+                        Add your customer basic information.
+                    </p>
+                </div>
+                <div class="col-lg-8 d-flex align-items-center ">
+                    <div class="flex"
+                         style="max-width: 100%">
+
+                        <div class="form-row">
+                            <div class="col-12 col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="name">Your name:</label>
+                                    <div class="input-group input-group-merge">
+                                        <input type="text"
+                                               class="form-control @error('name') is-invalid @enderror"
+                                               value="{{ old('name') }}"
+                                               required="required"
+                                               autocomplete="name"
+                                               name="name"
+                                               id="name"
+                                               placeholder="Enter your name .."
+                                               autofocus>
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="material-icons">person</span>
+                                            </div>
                                         </div>
+                                        @error('name')
+                                            <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                        @enderror
+                                        <div class="valid-feedback">Looks good!</div>
                                     </div>
-                                    @error('phone')
-                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                    @enderror
-                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="email">Your email:</label>
+                                    <div class="input-group input-group-merge">
+                                        <input type="email"
+                                               class="form-control @error('email') is-invalid @enderror"
+                                               value="{{ old('email') }}"
+                                               required="required"
+                                               autocomplete="email"
+                                               name="email"
+                                               id="email"
+                                               placeholder="Enter your email address .."
+                                               autofocus>
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="material-icons">email</span>
+                                            </div>
+                                        </div>
+                                        @error('email')
+                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                        @enderror
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6 mb-3">
-                            <div class="form-group">
-                                <label class="form-label"
-                                       for="fax">Your fax:</label>
-                                <div class="input-group input-group-merge">
-                                    <input type="text"
-                                           class="form-control @error('fax') is-invalid @enderror"
-                                           value="{{ old('fax') }}"
-                                           autocomplete="fax"
-                                           name="fax"
-                                           id="fax"
-                                           placeholder="Enter your fax .."
-                                           >
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <span class="material-icons">description</span>
+                        <div class="form-row">
+                            <div class="col-12 col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="phone">Your phone:</label>
+                                    <div class="input-group input-group-merge">
+                                        <input type="text"
+                                               class="form-control @error('phone') is-invalid @enderror"
+                                               value="{{ old('phone') }}"
+                                               required="required"
+                                               autocomplete="phone"
+                                               name="phone"
+                                               id="phone"
+                                               placeholder="EG phone: +(20)10 0000 0000)"
+                                               data-mask="+(20)10 0000 0000"
+                                               autofocus>
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="material-icons">phone</span>
+                                            </div>
                                         </div>
+                                        @error('phone')
+                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                        @enderror
+                                        <div class="valid-feedback">Looks good!</div>
                                     </div>
-                                    @error('fax')
-                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                    @enderror
-                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="fax">Your fax:</label>
+                                    <div class="input-group input-group-merge">
+                                        <input type="text"
+                                               class="form-control @error('fax') is-invalid @enderror"
+                                               value="{{ old('fax') }}"
+                                               autocomplete="fax"
+                                               name="fax"
+                                               id="fax"
+                                               placeholder="Enter your fax .."
+                                               >
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="material-icons">description</span>
+                                            </div>
+                                        </div>
+                                        @error('fax')
+                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                        @enderror
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -140,8 +141,8 @@
                 </div>
             </div>
         </div>
-
-        <div class="row mb-32pt">
+        <div class="card">
+            <div class="row card-body mb-32pt">
             <div class="col-lg-4">
                 <div class="page-separator">
                     <div class="page-separator__text">Location Information</div>
@@ -319,8 +320,9 @@
                 </div>
             </div>
         </div>
-
-        <div class="row mb-32pt">
+        </div>
+        <div class="card">
+            <div class="row card-body mb-32pt">
             <div class="col-lg-4">
                 <div class="page-separator">
                     <div class="page-separator__text">Extra Settings</div>
@@ -417,11 +419,16 @@
                         </div>
                     </div>
 
-                    <button type="submit"
-                            class="btn btn-primary">Submit</button>
+
                 </div>
             </div>
         </div>
+        </div>
+
+        <button type="submit"
+                    class="btn pull-right btn-primary">Submit</button>
+
 
     </div>
+
 @endsection
