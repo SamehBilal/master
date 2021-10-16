@@ -8,15 +8,19 @@
             data-toggle="dropdown"
             data-caret="false">
         <i class="material-icons">notifications_none</i>
-        <span class="badge badge-notifications badge-accent">2</span>
+        @php $user = Auth::user(); @endphp
+        @if(count($user->unreadnotifications) > 0)
+            <span class="badge badge-notifications badge-accent">{{ $user->unreadnotifications->count() }}</span>
+        @endif
     </button>
     <div class="dropdown-menu dropdown-menu-right">
         <div data-perfect-scrollbar
              class="position-relative">
             <div class="dropdown-header"><strong>System notifications</strong></div>
             <div class="list-group list-group-flush mb-0">
-
-                <a href="javascript:void(0);"
+                @if(count($user->unreadnotifications) > 0)
+                    @foreach($user->unreadnotifications as $note)
+               {{-- <a href="javascript:void(0);"
                    class="list-group-item list-group-item-action unread">
                                             <span class="d-flex align-items-center mb-1">
                                                 <small class="text-black-50">3 minutes ago</small>
@@ -73,8 +77,23 @@
                                                     <span class="text-black-70">Your deploy was successful.</span>
                                                 </span>
                                             </span>
-                </a>
-
+                </a>--}}
+                    @endforeach
+                @else
+                    <a href="javascript:void(0);"
+                       class="list-group-item list-group-item-action unread">
+                        <span class="d-flex">
+                            <span class="avatar avatar-sm mr-2">
+                                <span class="avatar-title rounded-circle bg-light">
+                                    <img src="{{ asset('backend/images/icon/disable-alarm.png') }}" alt="Avatar" class="avatar-img rounded">
+                                </span>
+                            </span>
+                            <span class="flex d-flex flex-column">
+                                <span class="text-black-70">No New Notifications</span>
+                            </span>
+                        </span>
+                    </a>
+                @endif
             </div>
         </div>
     </div>

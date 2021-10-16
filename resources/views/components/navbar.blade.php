@@ -14,7 +14,7 @@
 
     <!-- Navbar Brand -->
 
-    <a href="index.html"
+    <a href="{{ route('dashboard') }}"
        class="navbar-brand mr-16pt d-lg-none">
 
                         <span class="avatar avatar-sm navbar-brand-icon mr-0 mr-lg-8pt">
@@ -25,10 +25,10 @@
 
                         </span>
 
-        <span class="d-none d-lg-block">Luma</span>
+        <span class="d-none d-lg-block">{{ config('app.name', 'Laravel') }}</span>
     </a>
 
-    <ul class="nav navbar-nav d-none d-sm-flex flex justify-content-start ml-8pt">
+    {{--<ul class="nav navbar-nav d-none d-sm-flex flex justify-content-start ml-8pt">
         <li class="nav-item">
             <a href="index.html"
                class="nav-link">Home</a>
@@ -137,7 +137,7 @@
                    class="dropdown-item">Ask Question</a>
             </div>
         </li>
-    </ul>
+    </ul>--}}
 
     <!-- // END Navbar Brand -->
 
@@ -145,12 +145,12 @@
 
                         <span class="avatar avatar-sm mr-12pt">
 
-                            <span class="avatar-title rounded navbar-avatar"><i class="material-icons">trending_up</i></span>
+                            <span class="avatar-title rounded navbar-avatar"><i class="material-icons">{{--trending_up--}}shopping_cart</i></span>
 
                         </span>
 
                         <small class="flex d-flex flex-column">
-                            <strong class="navbar-text-100">Earnings</strong>
+                            <strong class="navbar-text-100">Orders</strong>
                             <span class="navbar-text-50">&dollar;12.3k</span>
                         </small>
                     </span>
@@ -158,13 +158,13 @@
 
                         <span class="avatar avatar-sm mr-12pt">
 
-                            <span class="avatar-title rounded navbar-avatar"><i class="material-icons">receipt</i></span>
+                            <span class="avatar-title rounded navbar-avatar"><i class="material-icons">people</i></span>
 
                         </span>
 
                         <small class="flex d-flex flex-column">
-                            <strong class="navbar-text-100">Sales</strong>
-                            <span class="navbar-text-50">264</span>
+                            <strong class="navbar-text-100">Customers</strong>
+                            <span class="navbar-text-50">{{ \App\Models\Customer::count() }}</span>
                         </small>
                     </span>
 
@@ -172,7 +172,7 @@
 
     <!-- Switch Layout -->
 
-    <a href="#"
+    {{--<a href="#"
        class="navbar-toggler navbar-toggler-custom align-items-center justify-content-center d-none d-lg-flex"
        data-toggle="tooltip"
        data-title="Switch to Fullscreen mood"
@@ -181,7 +181,7 @@
        onclick="openFullscreen();"
        data-boundary="window">
         <span class="material-icons">fullscreen</span>
-    </a>
+    </a>--}}
 
     <!-- // END Switch Layout -->
 
@@ -190,7 +190,7 @@
     <div class="nav navbar-nav flex-nowrap d-flex mr-16pt">
 
         <!-- Messages dropdown -->
-        @include('components.messages')
+        {{--@include('components.messages')--}}
         <!-- // END Notifications dropdown -->
 
         <!-- Notifications dropdown -->
@@ -211,13 +211,13 @@
 
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-header"><strong>Account</strong></div>
+                <div class="dropdown-header"><strong>Profile</strong></div>
                 <a class="dropdown-item"
-                   href="edit-account.html">Edit Account</a>
-                <a class="dropdown-item"
+                   href="{{ route('profile') }}">Edit Profile</a>
+                {{--<a class="dropdown-item"
                    href="billing.html">Billing</a>
                 <a class="dropdown-item"
-                   href="billing-history.html">Payments</a>
+                   href="billing-history.html">Payments</a>--}}
                 <a class="dropdown-item"
                    href="{{ route('logout') }}" onclick="event.preventDefault();
                                                 $('#logout-form').submit();">{{ __('Log Out') }}</a>

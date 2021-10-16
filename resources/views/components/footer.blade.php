@@ -6,11 +6,11 @@
                  width="30"
                  alt="{{ config('app.name', 'Laravel') }}"> {{ config('app.name', 'Laravel') }}
         </p>
-        <p class="measure-lead-max text-50 small mr-8pt">Luma is a beautifully crafted user interface for modern Education Platforms, including Courses & Tutorials, Video Lessons, Student and Teacher Dashboard, Curriculum Management, Earnings and Reporting, ERP, HR, CMS, Tasks, Projects, eCommerce and more.</p>
+        <p class="measure-lead-max text-50 small mr-8pt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque rhoncus ligula id dui lacinia tincidunt. Curabitur at bibendum nibh, sed lacinia leo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         <p class="mb-8pt d-flex">
-            <a href=""
+            <a href="#"
                class="text-70 text-underline mr-8pt small">Terms</a>
-            <a href=""
+            <a href="#"
                class="text-70 text-underline small">Privacy policy</a>
         </p>
         <p class="text-50 small mt-n1 mb-0">Copyright {{ date("Y") }} &copy; All rights reserved.</p>

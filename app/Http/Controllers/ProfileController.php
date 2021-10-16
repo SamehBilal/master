@@ -13,15 +13,21 @@ class ProfileController extends Controller
         return view('users.profile',compact('user'));
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
+        $user = User::findOrFail($id);
+
         $this->validate($request, User::rules($update = true, $user->id));
+
+        if($request->password == ''){
+            $password = $user->password;
+        }
 
         $user->update([
             'name'                  => $request->name,
             'email'                 => $request->email,
             'username'              => $request->username,
-            'password'              => $request->password,
+            'password'              => $password,
             'gender'                => $request->gender,
             'religion'              => $request->religion,
             'date_of_birth'         => $request->date_of_birth,
@@ -32,10 +38,10 @@ class ProfileController extends Controller
         if(request()->hasFile('avatar'))
         {
             $image = time() . '_' . request()->file('avatar')->getClientOriginalName();
-            request()->file('avatar')->storeAs('/', "/user/{$image}", '');
-            $user->auth()->user()->update(['avatar' =>  $image]);
+            request()->file('avatar')->storeAs('/public', "/user/{$image}", '');
+            $user->update(['avatar' =>  $image]);
         }
 
-        return redirect()->route('profile.show',$user->id)->with('success','Data updated successfully');
+        return redirect()->route('profile')->with('success','Data updated successfully');
     }
 }

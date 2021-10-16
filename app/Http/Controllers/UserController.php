@@ -47,6 +47,7 @@ class UserController extends Controller
             'date_of_birth'         => $request->date_of_birth,
             'phone'                 => $request->phone,
             'other_phone'           => $request->other_phone,
+            'bio'                   => $request->bio,
         ]);
 
         if(request()->hasFile('avatar'))
@@ -102,6 +103,7 @@ class UserController extends Controller
             'date_of_birth'         => $request->date_of_birth,
             'phone'                 => $request->phone,
             'other_phone'           => $request->other_phone,
+            'bio'                   => $request->bio,
         ]);
 
         if(request()->hasFile('avatar'))

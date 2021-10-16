@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('coming-soon');
 });
 
 Route::get('/dashboard', function () {
@@ -23,18 +23,12 @@ Route::get('/dashboard', function () {
 
 /* Profile */
 Route::get('profile',[\App\Http\Controllers\ProfileController::class,'index'])->name('profile');
-Route::post('profile',[\App\Http\Controllers\ProfileController::class,'index'])->name('profile.edit');
+Route::post('profile/{id}',[\App\Http\Controllers\ProfileController::class,'update'])->name('profile.edit');
 
-/* Customers */
-Route::resource('customers',\App\Http\Controllers\CustomerController::class);
-
-/* Users */
-Route::resource('users',\App\Http\Controllers\UserController::class);
-
-/* Pickups */
-Route::resource('pickups',\App\Http\Controllers\PickupController::class);
-
-/* Orders */
-Route::resource('orders',\App\Http\Controllers\OrderController::class);
+Route::resource('customers',\App\Http\Controllers\CustomerController::class); //Customers
+Route::resource('users',\App\Http\Controllers\UserController::class); //Users
+Route::resource('pickups',\App\Http\Controllers\PickupController::class); //Pickups
+Route::resource('orders',\App\Http\Controllers\OrderController::class); //Orders
+Route::get('orders/create/multi',[\App\Http\Controllers\OrderController::class,'multi'])->name('orders.create.multi'); //Multi Orders
 
 require __DIR__.'/auth.php';

@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->nullable();
             $table->bigInteger('phone')->nullable();
             $table->bigInteger('other_phone')->nullable();
+            $table->longText('bio')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->index(['id']);
