@@ -9,420 +9,241 @@
         <a href="{{ route('orders.index') }}">Orders</a>
     </li>
     <li class="breadcrumb-item active">
-        Orders
+        create
     </li>
+@endsection
+
+@section('button-link')
+    {{ route('orders.index') }}
+@endsection
+
+@section('button-icon')
+    format_list_bulleted
+@endsection
+
+@section('button-title')
+    All Orders
 @endsection
 
 @section('main_content')
     <div class="container page__container page-section">
-        <div class="card">
-            <div class="row card-body mb-32pt">
-                <div class="col-lg-4 ">
-                    <div class="page-separator">
-                        <div class="page-separator__text">Basic Information</div>
-                    </div>
-                    <p class="card-subtitle text-70 mb-16pt mb-lg-0">
-                        Add your customer basic information.
-                    </p>
-                </div>
-                <div class="col-lg-8 d-flex align-items-center ">
-                    <div class="flex"
-                         style="max-width: 100%">
+        <div class="page-separator">
+            <div class="page-separator__text" style="line-height: 30px;">
+                <button type="button" class="btn btn-sm rounded-circle btn-dark">
+                    &nbsp;  1 &nbsp;
+                </button>
+                &nbsp;Order Information
+            </div>
+        </div>
+        <div class="row mb-32pt">
+            <div class="col-lg-12 d-flex align-items-center">
+                <div class="flex"
+                     style="max-width: 100%">
 
-                        <div class="form-row">
-                            <div class="col-12 col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                           for="name">Your name:</label>
-                                    <div class="input-group input-group-merge">
-                                        <input type="text"
-                                               class="form-control @error('name') is-invalid @enderror"
-                                               value="{{ old('name') }}"
-                                               required="required"
-                                               autocomplete="name"
-                                               name="name"
-                                               id="name"
-                                               placeholder="Enter your name .."
-                                               autofocus>
-                                        <div class="input-group-append">
-                                            <div class="input-group-text">
-                                                <span class="material-icons">person</span>
+                    <div class="card dashboard-area-tabs p-relative o-hidden mb-0">
+                        <div class="card-header p-0 nav">
+                            <div class="row no-gutters"
+                                 role="tablist">
+                                <div class="col-auto">
+                                    <a href="#deliver"
+                                       data-toggle="tab"
+                                       role="tab"
+                                       aria-selected="true"
+                                       class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start active">
+                                        <span class="h2 mb-0 mr-3">
+                                            <div class="avatar mr-8pt">
+
+                                            <img src="{{ asset('backend/images/icon/fast-delivery.png') }}"
+                                             alt="Avatar"
+                                             class="avatar-img rounded-circle">
+
                                             </div>
-                                        </div>
-                                        @error('name')
-                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                        @enderror
-                                        <div class="valid-feedback">Looks good!</div>
-                                    </div>
+                                        </span>
+                                        <span class="flex d-flex flex-column">
+                                                        <strong class="card-title">Deliver</strong>
+                                                        <small class="card-subtitle text-20">Deliver a package <br>to your customer.</small>
+                                                    </span>
+                                    </a>
                                 </div>
-                            </div>
-                            <div class="col-12 col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                           for="email">Your email:</label>
-                                    <div class="input-group input-group-merge">
-                                        <input type="email"
-                                               class="form-control @error('email') is-invalid @enderror"
-                                               value="{{ old('email') }}"
-                                               required="required"
-                                               autocomplete="email"
-                                               name="email"
-                                               id="email"
-                                               placeholder="Enter your email address .."
-                                               autofocus>
-                                        <div class="input-group-append">
-                                            <div class="input-group-text">
-                                                <span class="material-icons">email</span>
+                                <div class="col-auto border-left border-right">
+                                    <a href="#exchange"
+                                       data-toggle="tab"
+                                       role="tab"
+                                       aria-selected="false"
+                                       class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start">
+                                        <span class="h2 mb-0 mr-3">
+                                            <div class="avatar mr-8pt">
+
+                                            <img src="{{ asset('backend/images/icon/transfer.png') }}"
+                                                 alt="Avatar"
+                                                 class="avatar-img rounded-circle">
+
                                             </div>
-                                        </div>
-                                        @error('email')
-                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                        @enderror
-                                        <div class="valid-feedback">Looks good!</div>
-                                    </div>
+                                        </span>
+                                        <span class="flex d-flex flex-column">
+                                                        <strong class="card-title">Exchange</strong>
+                                                        <small class="card-subtitle text-20">Exchange packages <br>with your customer.</small>
+                                                    </span>
+                                    </a>
+                                </div>
+                                <div class="col-auto border-left border-right">
+                                    <a href="#return"
+                                       data-toggle="tab"
+                                       role="tab"
+                                       aria-selected="false"
+                                       class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start">
+                                        <span class="h2 mb-0 mr-3">
+                                            <div class="avatar mr-8pt">
+
+                                            <img src="{{ asset('backend/images/icon/return-on-investment.png') }}"
+                                                 alt="Avatar"
+                                                 class="avatar-img rounded-circle">
+
+                                            </div>
+                                        </span>
+                                        <span class="flex d-flex flex-column">
+                                                        <strong class="card-title">Return</strong>
+                                                        <small class="card-subtitle text-20">Pickup a package <br>from your customer.</small>
+                                                    </span>
+                                    </a>
+                                </div>
+                                <div class="col-auto border-left border-right">
+                                    <a href="#cash_collection"
+                                       data-toggle="tab"
+                                       role="tab"
+                                       aria-selected="false"
+                                       class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start">
+                                        <span class="h2 mb-0 mr-3">
+                                              <div class="avatar  mr-8pt">
+
+                                            <img src="{{ asset('backend/images/icon/money.png') }}"
+                                                 alt="Avatar"
+                                                 class="avatar-img rounded-circle">
+
+                                            </div>
+                                        </span>
+                                        <span class="flex d-flex flex-column">
+                                                        <strong class="card-title">Cash Collection</strong>
+                                                        <small class="card-subtitle text-20">Collect or refund <br>cash to your customer.</small>
+                                                    </span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="col-12 col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                           for="phone">Your phone:</label>
-                                    <div class="input-group input-group-merge">
-                                        <input type="text"
-                                               class="form-control @error('phone') is-invalid @enderror"
-                                               value="{{ old('phone') }}"
-                                               required="required"
-                                               autocomplete="phone"
-                                               name="phone"
-                                               id="phone"
-                                               placeholder="EG phone: +(20)10 0000 0000)"
-                                               data-mask="+(20)10 0000 0000"
-                                               autofocus>
-                                        <div class="input-group-append">
-                                            <div class="input-group-text">
-                                                <span class="material-icons">phone</span>
-                                            </div>
-                                        </div>
-                                        @error('phone')
-                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                        @enderror
-                                        <div class="valid-feedback">Looks good!</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                           for="fax">Your fax:</label>
-                                    <div class="input-group input-group-merge">
-                                        <input type="text"
-                                               class="form-control @error('fax') is-invalid @enderror"
-                                               value="{{ old('fax') }}"
-                                               autocomplete="fax"
-                                               name="fax"
-                                               id="fax"
-                                               placeholder="Enter your fax .."
-                                        >
-                                        <div class="input-group-append">
-                                            <div class="input-group-text">
-                                                <span class="material-icons">description</span>
-                                            </div>
-                                        </div>
-                                        @error('fax')
-                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                        @enderror
-                                        <div class="valid-feedback">Looks good!</div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="card-body tab-content">
+                            <div class="tab-pane text-70  fade show active" id="deliver" role="tabpanel" aria-labelledby="nav-home-tab">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam eaque error laborum ipsum consequatur nobis dicta totam facilis corporis, porro cupiditate inventore minus vero neque accusamus illo temporibus officiis natus.</div>
+                            <div class="tab-pane text-70  fade " id="exchange" role="tabpanel" aria-labelledby="nav-home-tab">consectetur adipisicing elit. Aperiam eaque error laborum ipsum consequatur nobis dicta totam facilis corporis, porro cupiditate inventore minus vero neque accusamus illo temporibus officiis natus.</div>
+                            <div class="tab-pane text-70  fade " id="return" role="tabpanel" aria-labelledby="nav-home-tab">consectetur adipisicing elit. Aperiam ecorporis, porro cupiditate inventore minus vero neque accusamus illo temporibus officiis natus.</div>
+                            <div class="tab-pane text-70  fade " id="cash_collection" role="tabpanel" aria-labelledby="nav-home-tab">conro cupiditate inventore minus vero neque accusamus illo temporibus officiis natus.</div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
-        <div class="card">
-            <div class="row card-body mb-32pt">
-                <div class="col-lg-4">
-                    <div class="page-separator">
-                        <div class="page-separator__text">Location Information</div>
-                    </div>
-                    <p class="card-subtitle text-70 mb-16pt mb-lg-0">
-                        Add your customer address information.
-                    </p>
-                </div>
-                <div class="col-lg-8 d-flex align-items-center">
-                    <div class="flex"
-                         style="max-width: 100%">
-
-                        <div class="form-row">
-                            <div class="col-12 col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                           for="country">Country:</label>
-                                    <div class="input-group input-group-merge">
-                                        <input type="text"
-                                               class="form-control @error('country') is-invalid @enderror"
-                                               value="{{ old('country') }}"
-                                               required="required"
-                                               autocomplete="country"
-                                               name="country"
-                                               id="country"
-                                               placeholder="Enter your country .."
-                                               autofocus>
-                                        <div class="input-group-append">
-                                            <div class="input-group-text">
-                                                <span class="material-icons">map</span>
-                                            </div>
-                                        </div>
-                                        @error('country')
-                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                        @enderror
-                                        <div class="valid-feedback">Looks good!</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                           for="city">City:</label>
-                                    <div class="input-group input-group-merge">
-                                        <input type="text"
-                                               class="form-control @error('city') is-invalid @enderror"
-                                               value="{{ old('city') }}"
-                                               required="required"
-                                               autocomplete="city"
-                                               name="city"
-                                               id="city"
-                                               placeholder="Enter your city .."
-                                               autofocus>
-                                        <div class="input-group-append">
-                                            <div class="input-group-text">
-                                                <span class="material-icons">emoji_transportation</span>
-                                            </div>
-                                        </div>
-                                        @error('city')
-                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                        @enderror
-                                        <div class="valid-feedback">Looks good!</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-12 col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                           for="street">Street:</label>
-                                    <div class="input-group input-group-merge">
-                                        <input type="text"
-                                               class="form-control @error('street') is-invalid @enderror"
-                                               value="{{ old('street') }}"
-                                               required="required"
-                                               autocomplete="street"
-                                               name="street"
-                                               id="street"
-                                               placeholder="Enter your street .."
-                                               autofocus>
-                                        <div class="input-group-append">
-                                            <div class="input-group-text">
-                                                <span class="material-icons">home_work</span>
-                                            </div>
-                                        </div>
-                                        @error('street')
-                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                        @enderror
-                                        <div class="valid-feedback">Looks good!</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                           for="building">Building:</label>
-                                    <div class="input-group input-group-merge">
-                                        <input type="text"
-                                               class="form-control @error('building') is-invalid @enderror"
-                                               value="{{ old('building') }}"
-                                               required="required"
-                                               autocomplete="building"
-                                               name="building"
-                                               id="building"
-                                               placeholder="Enter your building .."
-                                               autofocus>
-                                        <div class="input-group-append">
-                                            <div class="input-group-text">
-                                                <span class="material-icons">home</span>
-                                            </div>
-                                        </div>
-                                        @error('building')
-                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                        @enderror
-                                        <div class="valid-feedback">Looks good!</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-12 col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                           for="floor">Floor:</label>
-                                    <div class="input-group input-group-merge">
-                                        <input type="text"
-                                               class="form-control @error('floor') is-invalid @enderror"
-                                               value="{{ old('floor') }}"
-                                               required="required"
-                                               autocomplete="floor"
-                                               name="floor"
-                                               id="floor"
-                                               placeholder="Enter your floor .."
-                                               autofocus>
-                                        <div class="input-group-append">
-                                            <div class="input-group-text">
-                                                <span class="material-icons">local_convenience_store</span>
-                                            </div>
-                                        </div>
-                                        @error('floor')
-                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                        @enderror
-                                        <div class="valid-feedback">Looks good!</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                           for="apartment">Apartment:</label>
-                                    <div class="input-group input-group-merge">
-                                        <input type="text"
-                                               class="form-control @error('apartment') is-invalid @enderror"
-                                               value="{{ old('apartment') }}"
-                                               required="required"
-                                               autocomplete="apartment"
-                                               name="apartment"
-                                               id="apartment"
-                                               placeholder="Enter your apartment .."
-                                               autofocus>
-                                        <div class="input-group-append">
-                                            <div class="input-group-text">
-                                                <span class="material-icons">apartment</span>
-                                            </div>
-                                        </div>
-                                        @error('apartment')
-                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                        @enderror
-                                        <div class="valid-feedback">Looks good!</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="page-separator">
+            <div class="page-separator__text">Customer Information</div>
         </div>
         <div class="card">
-            <div class="row card-body mb-32pt">
-                <div class="col-lg-4">
-                    <div class="page-separator">
-                        <div class="page-separator__text">Extra Settings</div>
-                    </div>
-                    <p class="card-subtitle text-70 mb-16pt mb-lg-0">Replaces a standard checkbox input with a toggle button.</p>
-                </div>
-                <div class="col-lg-8 d-flex align-items-center">
-                    <div class="flex"
-                         style="max-width: 100%">
-
-                        <div class="form-group">
-                            <label class="form-label">Your photo:</label>
-                            <div class="media align-items-center">
-                                <a href="#"
-                                   class="media-left mr-16pt">
-                                    <img src="{{ asset('backend/images/people/110/guy-3.jpg') }}"
-                                         alt="people"
-                                         width="56"
-                                         class="rounded-circle profilePic" />
-                                </a>
-                                <div class="media-body">
-                                    <div class="custom-file">
-                                        <input type="file"
-                                               class="custom-file-input @error('file') is-invalid @enderror"
-                                               id="avatar"
-                                               name="avatar"
-                                               onchange="readURL(this);"
-                                        >
-                                        <label class="custom-file-label"
-                                               for="avatar">Choose file</label>
-                                        @error('file')
-                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                        @enderror
-                                        <div class="valid-feedback">Looks good!</div>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="card-body ">
+                <div class="row">
+                    <div class="col-lg-3 bg-light">
+                        <div class="page-separator">
+                            <div class="page-separator__text">Basic Details</div>
                         </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Profile name:</label>
-                            <div class="input-group input-group-merge">
+                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of the customer.</p>
+                    </div>
+                    <div class="col-lg-9 row p-2">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-label"
+                                       for="name">Name:</label>
                                 <input type="text"
-                                       class="form-control @error('profile_name') is-invalid @enderror"
-                                       value="{{ old('profile_name') ? old('profile_name'):'app.com/alexander' }}"
-                                       name="profile_name"
-                                       placeholder="Your profile name ...">
-                                <div class="input-group-append">
-                                    <div class="input-group-text">
-                                        <span class="material-icons">link</span>
-                                    </div>
-                                </div>
-                                @error('profile_name')
+                                       class="form-control @error('name') is-invalid @enderror"
+                                       value=""
+                                       id="name"
+                                       name="name"
+                                       required="required"
+                                       autocomplete="name"
+                                       placeholder="Your first name ..."
+                                       autofocus>
+                                @error('name')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                 @enderror
                                 <div class="valid-feedback">Looks good!</div>
                             </div>
-                            <small class="form-text text-muted">Your profile name will be used as part of your public profile URL address.</small>
                         </div>
-
-                        <div class="form-group">
-                            <label class="form-label">About you:</label>
-                            <textarea rows="3"
-                                      class="form-control @error('bio') is-invalid @enderror"
-                                      placeholder="About you ..."
-                                      name="bio">{{ old('bio') }}</textarea>
-                            @error('bio')
-                            <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                            @enderror
-                            <div class="valid-feedback">Looks good!</div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox"
-                                       class="custom-control-input"
-                                       checked
-                                       id="customCheck1">
-                                <label class="custom-control-label"
-                                       for="customCheck1">Display your real name on your profile</label>
-                                <small class="form-text text-muted">If unchecked, your profile name will be displayed instead of your full name.</small>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-label"
+                                       for="email">Email address:</label>
+                                <input type="email"
+                                       id="email"
+                                       class="form-control @error('email') is-invalid @enderror"
+                                       value=""
+                                       required="required"
+                                       name="email"
+                                       autocomplete="email"
+                                       placeholder="Your email address ...">
+                                @error('email')
+                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                @enderror
+                                <div class="valid-feedback">Looks good!</div>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox"
-                                       class="custom-control-input"
-                                       checked
-                                       id="customCheck2">
-                                <label class="custom-control-label"
-                                       for="customCheck2">Allow everyone to see your profile</label>
-                                <small class="form-text text-muted">If unchecked, your profile will be private and no one except you will be able to view it.</small>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-label"
+                                       for="phone">Phone:</label>
+                                <input type="text"
+                                       class="form-control @error('phone') is-invalid @enderror"
+                                       value=""
+                                       id="phone"
+                                       name="phone"
+                                       data-mask="00000000000"
+                                       placeholder="Your mobile phone ...">
+                                @error('phone')
+                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                @enderror
+                                <div class="valid-feedback">Looks good!</div>
                             </div>
                         </div>
-
-
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-label"
+                                       for="secondary_phone">Secondary Phone:</label>
+                                <input type="text"
+                                       class="form-control @error('secondary_phone') is-invalid @enderror"
+                                       value=""
+                                       id="secondary_phone"
+                                       name="secondary_phone"
+                                       data-mask="00000000000"
+                                       placeholder="Your secondary phone ...">
+                                @error('secondary_phone')
+                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                @enderror
+                                <div class="valid-feedback">Looks good!</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-label"
+                                       for="delivery_notes">Delivery Notes:</label> <small>(optional)</small>
+                                <textarea rows="3"
+                                          id="delivery_notes"
+                                          name="delivery_notes"
+                                          class="form-control @error('delivery_notes') is-invalid @enderror"
+                                          placeholder="Delivery Notes ..."></textarea>
+                                @error('delivery_notes')
+                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                @enderror
+                                <div class="valid-feedback">Looks good!</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
         <button type="submit"

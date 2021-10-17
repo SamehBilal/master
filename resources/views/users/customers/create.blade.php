@@ -31,7 +31,7 @@
             @csrf
             <div class="card">
                 <div class="row card-body mb-32pt">
-                    <div class="col-lg-4 ">
+                    <div class="col-lg-4 bg-light">
                         <div class="page-separator">
                             <div class="page-separator__text">Basic Information</div>
                         </div>
@@ -111,7 +111,7 @@
                                                    name="phone"
                                                    id="phone"
                                                    placeholder="EG phone: +(20)10 0000 0000)"
-                                                   data-mask="+(20)10 0000 0000"
+                                                   data-mask="01000000000"
                                                    autofocus>
                                             <div class="input-group-append">
                                                 <div class="input-group-text">
@@ -157,7 +157,7 @@
             </div>
             <div class="card">
                 <div class="row card-body mb-32pt">
-                <div class="col-lg-4">
+                <div class="col-lg-4 bg-light">
                     <div class="page-separator">
                         <div class="page-separator__text">Location Information</div>
                     </div>
@@ -337,7 +337,7 @@
             </div>
             <div class="card">
                 <div class="row card-body mb-32pt">
-                <div class="col-lg-4">
+                <div class="col-lg-4 bg-light">
                     <div class="page-separator">
                         <div class="page-separator__text">Extra Settings</div>
                     </div>
@@ -420,19 +420,6 @@
                                 <small class="form-text text-muted">If unchecked, your profile name will be displayed instead of your full name.</small>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox"
-                                       class="custom-control-input"
-                                       checked
-                                       id="customCheck2">
-                                <label class="custom-control-label"
-                                       for="customCheck2">Allow everyone to see your profile</label>
-                                <small class="form-text text-muted">If unchecked, your profile will be private and no one except you will be able to view it.</small>
-                            </div>
-                        </div>
-
 
                     </div>
                 </div>

@@ -36,7 +36,6 @@ class Customer extends Model
         $common = [
             'name'          => "nullable|max:40",
             'email'         => "nullable|email|regex:/(.+)@(.+)\.(.+)/i|unique:users,email,$id|unique:users,email,$id",
-            'password'      => 'nullable|confirmed',
             'phone'         => "nullable|numeric|digits_between:1,16",
             'other_phone'   => "nullable|numeric|digits_between:1,16",
             'gender'        => 'nullable',Rule::in(['male','female']),
@@ -51,7 +50,6 @@ class Customer extends Model
         return array_merge($common, [
             'name'          => "required|max:40",
             'email'         => 'nullable|email|regex:/(.+)@(.+)\.(.+)/i|max:255|unique:users',
-            'password'      => 'required|confirmed|min:8',
         ]);
     }
 }
