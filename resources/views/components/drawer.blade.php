@@ -75,7 +75,7 @@
                 </li>
                 <li class="sidebar-menu-item {{ set_active(['tickets*'])}}">
                     <a class="sidebar-menu-button"
-                       href="{{ route('pickups.index') }}">
+                       href="{{ route('tickets.index') }}">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">confirmation_number</span>
                         Support Tickets
                     </a>

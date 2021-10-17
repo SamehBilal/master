@@ -6,9 +6,7 @@
 
                 <ol class="breadcrumb p-0 m-0">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-
                     @yield('links')
-
                 </ol>
 
             </div>
@@ -16,10 +14,12 @@
         <div class="row"
              role="tablist">
             <div class="col-auto">
-                <a href="#"
-                   data-target="#library-drawer"
-                   data-toggle="sidebar"
-                   class="btn btn-outline-secondary">New @yield('title')</a>
+                <a href="@yield('button-link')"
+                       {{-- data-target="#library-drawer"
+                        data-toggle="sidebar"--}}
+                        class="btn btn-outline-secondary">
+                    <i class="material-icons icon--left">@yield('button-icon')</i> @yield('button-title')
+                </a>
             </div>
         </div>
     </div>

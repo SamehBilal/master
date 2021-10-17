@@ -10,6 +10,18 @@
     </li>
 @endsection
 
+@section('button-link')
+    {{ route('customers.create') }}
+@endsection
+
+@section('button-icon')
+    add
+@endsection
+
+@section('button-title')
+    New Customers
+@endsection
+
 @section('main_content')
     <div class="container page__container">
         <div class="page-section">

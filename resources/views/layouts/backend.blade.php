@@ -32,7 +32,7 @@
         <!-- // END Navbar -->
 
         <!-- // END Header -->
-
+    @yield('dsds')
         @include('components.before_content')
 
         <!-- BEFORE Page Content -->
