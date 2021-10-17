@@ -28,6 +28,11 @@ class OrderController extends Controller
         return view('orders.create');
     }
 
+    public function multi()
+    {
+        return view('orders.create-multi');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
