@@ -8,10 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Validation\Rule;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens,HasRoles, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -19,8 +20,11 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'full_name',
         'email',
+        'other_email',
         'password',
         'username',
         'provider',
@@ -31,6 +35,7 @@ class User extends Authenticatable
         'avatar',
         'phone',
         'other_phone',
+        'status',
         'bio',
     ];
 
@@ -63,12 +68,19 @@ class User extends Authenticatable
         return $this->belongsTo(address::class);
     }
 
+    public function getAvatarlinkAttribute()
+    {
+        return "/storage/users/{$this->id}/{$this->avatar}";
+    }
     public static function rules($update = false, $id = null)
     {
         $common = [
-            'name'          => "nullable|max:40",
+            'first_name'    => "nullable|min:3|max:20",
+            'last_name'     => "nullable|min:3|max:20",
+            'full_name'     => "nullable|max:40",
             'email'         => "nullable|email|regex:/(.+)@(.+)\.(.+)/i|unique:users,email,$id|unique:users,email,$id",
             'password'      => 'nullable|confirmed',
+            'other_email'   => "nullable|email|regex:/(.+)@(.+)\.(.+)/i|unique:users,email,$id|unique:users,other_email,$id",
             'phone'         => "nullable|numeric|digits_between:1,16",
             'other_phone'   => "nullable|numeric|digits_between:1,16",
             'gender'        => 'nullable',Rule::in(['male','female']),
@@ -82,10 +94,11 @@ class User extends Authenticatable
         }
 
         return array_merge($common, [
-            'name'          => "required|max:40",
+            'first_name'    => "required|min:3|max:20",
+            'last_name'     => "required|min:3|max:20",
+            'full_name'     => "required|max:40",
             'email'         => 'nullable|email|regex:/(.+)@(.+)\.(.+)/i|max:255|unique:users',
             'password'      => 'required|confirmed|min:8',
         ]);
     }
-
 }
