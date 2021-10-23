@@ -35,7 +35,7 @@ class UsersSeeder extends Seeder
         ]);
         $admin1->assignRole('admin');
 
-
+        User::factory()->count(18)->create();
         /*$staff_json = File::get("database/data/meisStaff.json");
         $staffData = json_decode($staff_json);
 

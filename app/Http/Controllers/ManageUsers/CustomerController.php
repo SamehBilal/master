@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\ManageUsers;
 
 use App\Http\Controllers\Helpers\UserHelperController;
+use App\Models\City;
+use App\Models\Contact;
+use App\Models\Country;
 use App\Models\Currency;
 use App\Models\Customer;
 use App\Models\User;
@@ -34,7 +37,9 @@ class CustomerController extends Controller
     {
         $categories = UserCategory::all();
         $currencies = Currency::all();
-        return view('users.customers.create',compact('currencies','categories'));
+        $cities = City::all();
+        $countries = Country::all();
+        return view('users.customers.create',compact('currencies','categories','countries','cities'));
     }
 
     /**
@@ -47,15 +52,23 @@ class CustomerController extends Controller
     {
         $request['password']              = '123456789';
         $request['password_confirmation'] = '123456789';
+        $request['payment']               = 'cash';
+
+        if($request->status == 'on')
+        {
+            $request['status']            = 'active';
+        }else{
+            $request['status']            = 'inactive';
+        }
 
         $this->validate($request, User::rules());
         $this->validate($request, Customer::rules());
 
-        $data = $request->all();
-
+        $data                   = $request->all();
         $data['password']       = Hash::make($data['password']);
         $data['other_email']    = null;
         $data['other_phone']    = null;
+        $data['religion']       = null;
         //create user
         try {
             \DB::transaction(function () use($data, $request) {
@@ -64,39 +77,37 @@ class CustomerController extends Controller
 
                 $customer = Customer::create([
                     'user_id'               => $user->id,
-                    'name'                  => $request->name,
-                    'email'                 => $request->email,
-                    'phone'                 => $request->phone,
-                    'other_phone'           => $request->other_phone,
                     'fax'                   => $request->fax,
-                    'note'                  => $request->note,
-                    'web_address'           => $request->web_address,
                     'status'                => $request->status,
-                    'payment'               => $request->payment,
-                    /*'user_category_id'      => $request->user_category_id,
+                    'user_category_id'      => $request->user_category_id,
                     'currency_id'           => $request->currency_id,
-                    'student_code'          => $data['student_code'],
-                    'student_national_id'   => $data['student_national_id'],
-                    'join_year'             => $data['join_year'],
-                    'citizenship'           => $data['citizenship'],
-                    'home_phone'            => $data['home_phone'],
-                    'f_email'               => $data['f_email'],
-                    'f_phone'               => $data['f_phone'],
-                    'f_academic_degree'     => $data['f_academic_degree'],
-                    'f_occupation'          => $data['f_occupation'],
-                    'f_national_id'         => $data['f_national_id'],
-                    'm_email'               => $data['m_email'],
-                    'm_phone'               => $data['m_phone'],
-                    'm_academic_degree'     => $data['m_academic_degree'],
-                    'm_occupation'          => $data['m_occupation'],
-                    'm_national_id'         => $data['m_national_id'],
-                    'stage_id'              => $data['stage_id'],
-                    'class_id'              => $data['class_id'],
-                    'bus_id'                => $data['bus_id'],
-                    'emergancy_number'      => $data['emergancy_number'],
-                    'father_id'             => $data['father_id'],
-                    'account_id'            => 1,*/
+                    'note'                  => $request->note,//
+                    'payment'               => $request->payment,
+                    /*'student_national_id'   => $data['student_national_id'],
+                    'citizenship'           => $data['citizenship'],*/
                 ]);
+
+                for($i=0;$i < count($request->contact_name);$i++){
+                    $customer->contact()->create([
+                        'contact_name'          => $request->contact_name[$i],
+                        'contact_job_title'     => $request->contact_job_title[$i],
+                        'contact_email'         => $request->contact_email[$i],
+                        'contact_phone'         => $request->contact_phone[$i],
+                    ]);
+                }
+
+                for($j=0;$j < count($request->street);$j++){
+                    $user->address()->create([
+                        'street'                => $request->street[$j],
+                        'building'              => $request->building[$j],
+                        'floor'                 => $request->floor[$j],
+                        'apartment'             => $request->apartment[$j],
+                        'country_id'            => $request->country_id[$j],
+                        'city_id'               => $request->city_id[$j],
+                        /*'zone_id'               => $request->zone_id[$j],*/
+                    ]);
+                }
+
                 /*if(request()->hasFile('document'))
                 {
                     $document = request()->file('document')->getClientOriginalName();
@@ -133,7 +144,9 @@ class CustomerController extends Controller
     {
         $categories = UserCategory::all();
         $currencies = Currency::all();
-        return view('users.customers.edit',compact('customer','categories','currencies'));
+        $cities = City::all();
+        $countries = Country::all();
+        return view('users.customers.edit',compact('customer','categories','currencies','cities','countries'));
     }
 
     /**
@@ -167,38 +180,38 @@ class CustomerController extends Controller
 
                 $customer = Customer::where('user_id',$id)->first();
                 $customer->update([
-                    /*'student_national_id'   => $data['student_national_id'],
-                    'join_year'             => $data['join_year'],
-                    'citizenship'           => $data['citizenship'],
-                    'home_phone'            => $data['home_phone'],
-                    'f_email'               => $data['f_email'],
-                    'f_phone'               => $data['f_phone'],
-                    'f_academic_degree'     => $data['f_academic_degree'],
-                    'f_occupation'          => $data['f_occupation'],
-                    'f_national_id'         => $data['f_national_id'],
-                    'm_email'               => $data['m_email'],
-                    'm_phone'               => $data['m_phone'],
-                    'm_academic_degree'     => $data['m_academic_degree'],
-                    'm_occupation'          => $data['m_occupation'],
-                    'm_national_id'         => $data['m_national_id'],
-                    'stage_id'              => $data['stage_id'],
-                    'class_id'              => $data['class_id'],
-                    'bus_id'                => $data['bus_id'],
-                    'emergancy_number'      => $data['emergancy_number'],
-                    'father_id'             => $data['father_id'],*/
-                    'name'                  => $request->name,
-                    'email'                 => $request->email,
-                    'phone'                 => $request->phone,
-                    'other_phone'           => $request->other_phone,
+                    'user_id'               => $user->id,
                     'fax'                   => $request->fax,
-                    'note'                  => $request->note,
-                    'web_address'           => $request->web_address,
                     'status'                => $request->status,
-                    'payment'               => $request->payment,
-                    'user_id'               => $request->user_id,
                     'user_category_id'      => $request->user_category_id,
                     'currency_id'           => $request->currency_id,
+                    'note'                  => $request->note,//
+                    'payment'               => $request->payment,
+                    /*'student_national_id'   => $data['student_national_id'],
+                    'citizenship'           => $data['citizenship'],*/
                 ]);
+
+                for($i=0;$i < $request->contact_name;$i++){
+                    $customer->contact()->update([
+                        'contact_name'          => $request->contact_name[$i],
+                        'contact_job_title'     => $request->contact_job_title[$i],
+                        'contact_email'         => $request->contact_email[$i],
+                        'contact_phone'         => $request->contact_phone[$i],
+                    ]);
+                }
+
+                for($j=0;$j < $request->street;$j++){
+                    $user->address()->update([
+                        'street'                => $request->street[$j],
+                        'building'              => $request->building[$j],
+                        'floor'                 => $request->floor[$j],
+                        'apartment'             => $request->apartment[$j],
+                        'country_id'            => $request->country_id[$j],
+                        'city_id'               => $request->city_id[$j],
+                        'zone_id'               => $request->zone_id[$j],
+                    ]);
+                }
+
                 /*if(request()->hasFile('document'))
                 {
                     if(!empty($student->document))

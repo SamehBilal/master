@@ -65,7 +65,7 @@ class User extends Authenticatable
 
     public function address()
     {
-        return $this->belongsTo(address::class);
+        return $this->hasMany(address::class);
     }
 
     public function getAvatarlinkAttribute()
@@ -83,7 +83,7 @@ class User extends Authenticatable
             'other_email'   => "nullable|email|regex:/(.+)@(.+)\.(.+)/i|unique:users,email,$id|unique:users,other_email,$id",
             'phone'         => "nullable|numeric|digits_between:1,16",
             'other_phone'   => "nullable|numeric|digits_between:1,16",
-            'gender'        => 'nullable',Rule::in(['male','female']),
+            'gender'        => 'nullable',Rule::in(['Male','Female']),
             'religion'      => 'nullable',Rule::in(['Islam','Christianity']),
             'date_of_birth' => "nullable|date_format:Y-m-d|before:today",
             'avatar'        => 'nullable|image|mimes:jpeg,jpg,png,gif|max:10000'

@@ -26,21 +26,16 @@ class Customer extends Model
         return $this->hasMany(Contact::class);
     }
 
-    public function User()
+    public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class  , "id" , "user_id");
     }
 
     public static function rules($update = false, $id = null)
     {
         $common = [
-            'name'          => "nullable|max:40",
-            'email'         => "nullable|email|regex:/(.+)@(.+)\.(.+)/i|unique:users,email,$id|unique:users,email,$id",
-            'phone'         => "nullable|numeric|digits_between:1,16",
-            'other_phone'   => "nullable|numeric|digits_between:1,16",
-            'gender'        => 'nullable',Rule::in(['male','female']),
-            'religion'      => 'nullable',Rule::in(['Islam','Christianity']),
-            'date_of_birth' => "nullable|date_format:Y-m-d|before:today",
+            'status'        => 'nullable',Rule::in(['active','inactive']),
+            'payment'       => 'nullable',Rule::in(['cash','visa']),
         ];
 
         if ($update) {
@@ -48,8 +43,7 @@ class Customer extends Model
         }
 
         return array_merge($common, [
-            'name'          => "required|max:40",
-            'email'         => 'nullable|email|regex:/(.+)@(.+)\.(.+)/i|max:255|unique:users',
+
         ]);
     }
 }

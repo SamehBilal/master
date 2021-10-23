@@ -127,16 +127,9 @@
                                    id="myInputTextField"
                                    placeholder="Search ...">
 
-                            <label class="sr-only"
-                                   for="inlineFormRole">Role</label>
-                            <select id="inlineFormRole"
-                                    class="custom-select mb-2 mr-sm-2 mb-sm-0">
-                                <option value="All Roles">All Roles</option>
-                            </select>
-
-                            <div class="col-lg d-flex flex-wrap align-items-center">
-                                <div class="ml-lg-auto dropdown">
-                                    <a href="#"
+                            <div class="col-lg d-flex flex-wrap buttons-datatable-add">
+                                <div class="ml-lg-auto dropdown select-datatable-add">
+                                   {{-- <a href="#"
                                        class="btn btn-link dropdown-toggle text-70"
                                        data-toggle="dropdown">All Topics</a>
                                     <div class="dropdown-menu dropdown-menu-right">
@@ -144,24 +137,15 @@
                                            class="dropdown-item active">All Topics</a>
                                         <a href=""
                                            class="dropdown-item">My Topics</a>
-                                    </div>
+                                    </div>--}}
                                 </div>
-                                <div class="dropdown mr-8pt">
-                                    <a href="#"
-                                       class="btn btn-link dropdown-toggle text-70"
-                                       data-toggle="dropdown">Newest</a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a href=""
-                                           class="dropdown-item active">Newest</a>
-                                        <a href=""
-                                           class="dropdown-item">Unanswered</a>
-                                    </div>
-                                </div>
-                                <a href="discussions-ask.html"
-                                   class="btn btn-accent">Ask a question</a>
+                               {{-- <a href="#"
+                                   class="btn ml-2 btn-accent">Ask a question</a>--}}
+                                {{--<a href="#"
+                                   class="btn ml-2 btn-success">Ask </a>--}}
                             </div>
 
-                            <div class="ml-auto mb-2 mb-sm-0 custom-control-inline mr-0">
+                           {{-- <div class="ml-auto mb-2 mb-sm-0 custom-control-inline mr-0">
                                 <label class="form-label mb-0"
                                        for="active">Active</label>
                                 <div class="custom-control custom-checkbox-toggle ml-8pt">
@@ -172,7 +156,7 @@
                                     <label class="custom-control-label"
                                            for="active">Active</label>
                                 </div>
-                            </div>
+                            </div>--}}
                         </form>
 
                     </div>
@@ -219,12 +203,12 @@
 
                                 <td class="pr-0">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox"
+                                       {{-- <input type="checkbox"
                                                class="custom-control-input "
                                                checked=""
                                                id="customCheck1_5">
                                         <label class="custom-control-label"
-                                               for="customCheck1_5"><span class="text-hide">Check</span></label>
+                                               for="customCheck1_5"><span class="text-hide">Check</span></label>--}}
                                     </div>
                                 </td>
 
@@ -245,13 +229,13 @@
 
                                             <div class="d-flex align-items-center">
                                                 <div class="flex d-flex flex-column">
-                                                    <p class="mb-0"><strong class="">{{ $customer->name }}</strong></p>
-                                                    <small class="">{{ $customer->email }}</small>
+                                                    <p class="mb-0"><strong class="">{{ $customer->user->full_name }}</strong></p>
+                                                    <small class="">{{ $customer->user->email }}</small>
                                                 </div>
-                                                <div class="d-flex align-items-center ml-24pt">
+                                                {{--<div class="d-flex align-items-center ml-24pt">
                                                     <i class="material-icons text-20 icon-16pt">message</i>
                                                     <small class="ml-4pt"><strong class="text-50">2</strong></small>
-                                                </div>
+                                                </div>--}}
                                             </div>
 
                                         </div>
@@ -280,7 +264,7 @@
                                 <td>
 
                                     <a href="#"
-                                       class="chip ">{{ $customer->phone }}</a>
+                                       class="chip ">{{ $customer->user->phone }}</a>
 
                                 </td>
 
@@ -299,7 +283,7 @@
 
                                 <td>
                                     <div class="d-flex flex-column">
-                                        <small class=""><strong>{{ date("F j, Y, g:i a", strtotime($customer->created_at)) }}</strong></small>
+                                        <small class=""><strong>{{--{{ date("F j, Y, g:i a", strtotime($customer->created_at)) }}--}}{{ date("F j, Y", strtotime($customer->created_at)) }}</strong></small>
                                         <small class="text-50">{{ $customer->created_at->diffForHumans() }}</small>
                                     </div>
                                 </td>

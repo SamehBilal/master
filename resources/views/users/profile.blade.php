@@ -39,26 +39,64 @@
                             <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of your profile.</p>
                         </div>
                         <div class="col-lg-9 row p-3">
-                            <div class="col-md-10 p-0">
+                            <div class="col-md-5 p-0">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="name">Name:</label>
+                                           for="first_name">First Name:</label>
                                     <input type="text"
-                                           class="form-control @error('name') is-invalid @enderror"
-                                           value="{{ $user->name }}"
-                                           id="name"
-                                           name="name"
+                                           class="form-control @error('first_name') is-invalid @enderror"
+                                           value="{{ $user->first_name }}"
+                                           id="first_name"
+                                           name="first_name"
                                            required="required"
-                                           autocomplete="name"
+                                           autocomplete="first_name"
                                            placeholder="Your first name ..."
                                            autofocus>
-                                    @error('name')
+                                    @error('first_name')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
                             </div>
-                            <div class="col-md-10 p-0">
+                            <div class="offset-md-1 col-md-5 p-0">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="last_name">Last Name:</label>
+                                    <input type="text"
+                                           class="form-control @error('last_name') is-invalid @enderror"
+                                           value="{{ $user->last_name }}"
+                                           id="last_name"
+                                           name="last_name"
+                                           required="required"
+                                           autocomplete="last_name"
+                                           placeholder="Your last name ..."
+                                           autofocus>
+                                    @error('last_name')
+                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                    @enderror
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                            <div class="col-md-11 p-0">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="full_name">Full Name:</label>
+                                    <input type="text"
+                                           class="form-control @error('full_name') is-invalid @enderror"
+                                           value="{{ $user->full_name }}"
+                                           id="full_name"
+                                           name="full_name"
+                                           required="required"
+                                           autocomplete="full_name"
+                                           placeholder="Your full name ..."
+                                           autofocus>
+                                    @error('full_name')
+                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                    @enderror
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                            <div class="col-md-11 p-0">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="email">Email address:</label>
@@ -94,7 +132,7 @@
                             <p class="card-subtitle text-70 mb-16pt mb-lg-0">Security details of your profile.</p>
                         </div>
                         <div class="col-lg-9 row p-3">
-                            <div class="col-md-10 p-0">
+                            <div class="col-md-11 p-0">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="password">New password:</label>
@@ -110,7 +148,7 @@
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
                             </div>
-                            <div class="col-md-10 p-0">
+                            <div class="col-md-11 p-0">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="password-confirm">Confirm password:</label>
@@ -143,7 +181,7 @@
                             <p class="card-subtitle text-70 mb-16pt mb-lg-0">Upload your photo and the remaining data.</p>
                         </div>
                         <div class="col-lg-9 row p-3">
-                            <div class="col-md-10 p-0">
+                            <div class="col-md-11 p-0">
                                 <div class="form-group">
                                     <label class="form-label">Your photo:</label>
                                     <div class="media align-items-center">
@@ -157,14 +195,14 @@
                                         <div class="media-body">
                                             <div class="custom-file">
                                                 <input type="file"
-                                                       class="custom-file-input @error('file') is-invalid @enderror"
+                                                       class="custom-file-input @error('avatar') is-invalid @enderror"
                                                        id="avatar"
                                                        name="avatar"
                                                        onchange="readURL(this);"
                                                 >
                                                 <label class="custom-file-label"
                                                        for="avatar">Choose file</label>
-                                                @error('file')
+                                                @error('avatar')
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
                                                 <div class="valid-feedback">Looks good!</div>
@@ -173,7 +211,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-10 p-0">
+                            <div class="col-md-11 p-0">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="username">Profile name:</label>
@@ -190,7 +228,7 @@
                                     <small class="form-text text-muted">Your profile name will be used as part of your public profile URL address.</small>
                                 </div>
                             </div>
-                            <div class="col-md-10 p-0">
+                            <div class="col-md-11 p-0">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="phone">Phone:</label>
@@ -207,7 +245,24 @@
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
                             </div>
-                            <div class="col-md-10 p-0">
+                            <div class="col-md-11 p-0">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="select05">Gender:</label>
+                                    <select id="select05"
+                                            data-toggle="select"
+                                            name="gender"
+                                            class="form-control form-control-sm @error('gender') is-invalid @enderror">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                    @error('gender')
+                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                    @enderror
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                            <div class="col-md-11 p-0">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="date_of_birth">Date of Birth:</label>
@@ -224,7 +279,7 @@
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
                             </div>
-                            <div class="col-md-10 p-0">
+                            <div class="col-md-11 p-0">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="bio">About you:</label>
@@ -239,7 +294,7 @@
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
                             </div>
-                            <div class="col-md-10 p-0">
+                            <div class="col-md-11 p-0">
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox"

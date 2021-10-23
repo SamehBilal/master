@@ -40,10 +40,10 @@ class ContactController extends Controller
         $this->validate($request, Contact::rules());
 
         $contact = Contact::create([
-            'name'                  => $request->name,
-            'job_title'             => $request->job_title,
-            'email'                 => $request->email,
-            'phone'                 => $request->phone,
+            'contact_name'                  => $request->contact_name,
+            'contact_job_title'             => $request->contact_job_title,
+            'contact_email'                 => $request->contact_email,
+            'contact_phone'                 => $request->contact_phone,
         ]);
 
         return redirect()->route('contacts.show',$contact->id)->with('success','Data created successfully');
@@ -83,10 +83,10 @@ class ContactController extends Controller
         $this->validate($request, Contact::rules($update = true, $contact->id));
 
         $contact->update([
-            'name'                  => $request->name,
-            'job_title'             => $request->job_title,
-            'email'                 => $request->email,
-            'phone'                 => $request->phone,
+            'contact_name'                  => $request->contact_name,
+            'contact_job_title'             => $request->contact_job_title,
+            'contact_email'                 => $request->contact_email,
+            'contact_phone'                 => $request->contact_phone,
         ]);
 
         return redirect()->route('contacts.index')->with('success','Data updated successfully');

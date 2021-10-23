@@ -86,17 +86,24 @@
                 <li class="sidebar-menu-item {{ set_active(['customers*'])}}">
                     <a class="sidebar-menu-button"
                        href="{{ route('customers.index') }}">
-                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">group</span>
+                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">person</span>
                         Customers
                     </a>
                 </li>
-                {{--<li class="sidebar-menu-item {{ set_active(['users*'])}}">
+                <li class="sidebar-menu-item {{ set_active(['user-categories*'])}}">
+                    <a class="sidebar-menu-button"
+                       href="{{ route('user-categories.index') }}">
+                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">badge</span>
+                        User Categories
+                    </a>
+                </li>
+                <li class="sidebar-menu-item {{ set_active(['users*'])}}">
                     <a class="sidebar-menu-button"
                        href="{{ route('users.index') }}">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">group</span>
                         All Users
                     </a>
-                </li>--}}
+                </li>
             </ul>
 
             <div class="sidebar-heading">Setup</div>
@@ -106,6 +113,20 @@
                        href="{{ route('profile') }}">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">account_circle</span>
                         Profile
+                    </a>
+                </li>
+                <li class="sidebar-menu-item {{ set_active(['currencies*'])}}">
+                    <a class="sidebar-menu-button"
+                       href="{{ route('currencies.index') }}">
+                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">monetization_on</span>
+                        Currencies
+                    </a>
+                </li>
+                <li class="sidebar-menu-item {{ set_active(['zones*'])}}">
+                    <a class="sidebar-menu-button"
+                       href="{{ route('zones.index') }}">
+                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">map</span>
+                        Locations
                     </a>
                 </li>
                 <li class="sidebar-menu-item {{ set_active(['settings*'])}}">

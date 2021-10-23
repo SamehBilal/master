@@ -36,7 +36,7 @@ $.extend( true, $.fn.dataTable.defaults, {
     "language": {
         "decimal": ",",
         "thousands": ".",
-        "lengthMenu": "Display _MENU_ records per page",
+        "lengthMenu": " _MENU_ ",
         "zeroRecords": "Nothing found - sorry",
         "info": "Showing page _PAGE_ of _PAGES_",
         "infoEmpty": "No records available",
@@ -82,12 +82,12 @@ $.extend( true, $.fn.dataTable.defaults, {
                 columns: ':visible'
             }
         },
-        {
+        /*{
             extend: 'colvis',
             collectionLayout: 'fixed two-column'
         },
         'selectAll',
-        'selectNone',
+        'selectNone',*/
         /*{
             "extend": 'selected',
             "text": 'Count selected rows',
@@ -133,6 +133,15 @@ $.extend( true, $.fn.dataTable.defaults, {
             'position':'absolute',
             'right':'0',
         });
+        $('.select-checkbox ').removeClass('').addClass('');
+        $('.buttons-copy').removeClass('btn-secondary').addClass('btn-primary');
+        $('.buttons-excel').removeClass('btn-secondary').addClass('btn-primary');
+        $('.buttons-csv').removeClass('btn-secondary').addClass('btn-primary');
+        $('.buttons-pdf').removeClass('btn-secondary').addClass('btn-primary');
+        $('.buttons-print').removeClass('btn-secondary').addClass('btn-primary');
+        $('.select-datatable-add').append($('#DataTables_Table_0_length'));
+        $('.buttons-datatable-add').append($('.dt-buttons'));
+        $('#DataTables_Table_0_length select').addClass('custom-select mb-2 mr-sm-2 mb-sm-0').removeClass('custom-select-sm');
     },
     /*"initComplete": function () {
             var api = this.api();

@@ -72,4 +72,10 @@
       href="{{ asset('backend/css/ion-rangeslider.css') }}"
       rel="stylesheet">
 
-
+<!-- Toastr -->
+<link type="text/css"
+      href="{{ asset('backend/vendor/toastr.min.css') }}"
+      rel="stylesheet">
+<link type="text/css"
+      href="{{ asset('backend/css/toastr.css') }}"
+      rel="stylesheet">

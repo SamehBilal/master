@@ -23,7 +23,7 @@
 @endsection
 
 @section('main_content')
-    <div class="container page__container">
+    <div class="container page__container" >
         <div class="page-section">
             <div class="card card-form d-flex flex-column flex-sm-row mb-lg-32pt">
                 <div class="card-form__body card-body-form-group flex">

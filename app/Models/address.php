@@ -28,7 +28,7 @@ class address extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public static function rules($update = false, $id = null)

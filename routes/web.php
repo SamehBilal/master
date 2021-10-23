@@ -32,6 +32,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('orders',\App\Http\Controllers\OrderController::class); //Orders
     Route::get('orders/create/multi',[\App\Http\Controllers\OrderController::class,'multi'])->name('orders.create.multi'); //Multi Orders
     Route::resource('tickets',\App\Http\Controllers\TicketController::class); //Tickets
+    Route::resource('currencies',\App\Http\Controllers\CurrencyController::class); //Currencies
+    Route::resource('user-categories',\App\Http\Controllers\UserCategoryController::class); //User Categories
+    Route::resource('zones',\App\Http\Controllers\ZoneController::class); //Zone Categories
 
     Route::group(['prefix' => 'dashboard', 'as' => 'dashboard' . '.'], function () {
         //

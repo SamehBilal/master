@@ -14,6 +14,6 @@ class UserCategorySeeder extends Seeder
      */
     public function run()
     {
-        factory(UserCategory::class, 5)->create();
+        UserCategory::factory()->count(5)->create();
     }
 }
