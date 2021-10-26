@@ -22,6 +22,29 @@
     New Customers
 @endsection
 
+@section('extra_styles')
+    <style>
+       /* table.dataTable tbody td.select-checkbox:before, table.dataTable tbody th.select-checkbox:before{
+            content: " "!important;
+            margin-top: -2px!important;
+            margin-left: -6px!important;
+            border: 1px solid red!important;
+            border-radius: 3px!important;
+        }
+        table.dataTable tr.selected td.select-checkbox:after, table.dataTable tr.selected th.select-checkbox:after{
+            content: "x"!important;
+            font-size: 20px!important;
+            margin-top: -19px!important;
+            margin-left: -6px!important;
+            text-align: center!important;
+            text-shadow: 1px 1px #b0bed9, -1px -1px #b0bed9, 1px -1px #b0bed9, -1px 1px #b0bed9!important;
+        }
+        table.dataTable tbody td.select-checkbox, table.dataTable tbody th.select-checkbox {
+            position: static !important;
+        }*/
+    </style>
+@endsection
+
 @section('main_content')
     <div class="container page__container">
         <div class="page-section">
@@ -168,7 +191,7 @@
                         <tr>
 
                             <th style="width: 18px;"
-                                class="pr-0">
+                                class="pr-0 select-checkbox">
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox"
                                            class="custom-control-input js-toggle-check-all"
@@ -202,8 +225,14 @@
                             <tr class="">
 
                                 <td class="pr-0">
+                                    {{--<div class="custom-control custom-checkbox">
+                                        <input type="checkbox" id="checkItem" class="checkItem " name="checkItem"  />
+                                        <label class=""
+                                               for="checkItem"><span class="text-hide">Check</span></label>
+                                    </div>--}}
+
                                     <div class="custom-control custom-checkbox">
-                                       {{-- <input type="checkbox"
+                                        {{--<input type="checkbox"
                                                class="custom-control-input "
                                                checked=""
                                                id="customCheck1_5">

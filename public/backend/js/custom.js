@@ -110,8 +110,11 @@ $.extend( true, $.fn.dataTable.defaults, {
             "searchable": false,
             "orderable": false,
             "visible": true,
-            "className": 'select-checkbox',
-            "targets":   0
+            "className": 'select-checkbox ',
+            "targets":   0,
+            /*checkboxes: {
+                selectRow: true
+            }*/
         },
         {
             "searchable": false,
@@ -204,13 +207,32 @@ $.fn.dataTable.ext.search.push(
     }
 );
 
+
+
 $(document).ready(function() {
 
     var events = $('#events');
 
     /* Datatable */
     var table = $('.datatable-func').DataTable();
-
+    table.on("click", "th.select-checkbox .custom-control-input", function() {
+        if ($("th.select-checkbox").hasClass("selected")) {
+            table.rows().deselect();
+            $("th.select-checkbox").removeClass("selected");
+        } else {
+            table.rows().select();
+            $("th.select-checkbox").addClass("selected");
+        }
+    }).on("select deselect", function() {
+        ("Some selection or deselection going on")
+        if (table.rows({
+            selected: true
+        }).count() !== table.rows().count()) {
+            $("th.select-checkbox").removeClass("selected");
+        } else {
+            $("th.select-checkbox").addClass("selected");
+        }
+    });
     /* Select on click */
     $('.datatable-func tbody').on('click', 'tr', function () {
         var data = table.row( this ).data();
