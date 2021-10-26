@@ -254,23 +254,26 @@ $(document).ready(function() {
     } ).draw();
 
 
-    /*/!* Tabs *!/
-    $('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
-        $.fn.dataTable.tables( {visible: true, api: true} ).columns.adjust();
+    /* Tabs */
+    $('a[data-toggle="tab"]').on( 'shown.bs.tab', function () {
+        var value = $(this).attr('data-name');
+        if (value){
+            table.search( value ).draw();
+        }else {
+            table.search('').draw();
+        }
+
     } );
 
-    // Apply a search to the second table for the demo  https://datatables.net/examples/api/tabs_and_scrolling.html
-    table.DataTable().search( 'Daphnee Jaskolski' ).draw();*/
-
     // Event listener to the two range filtering inputs to redraw on input
-    $('#min, #max').keyup( function() {
+    /*$('#min, #max').keyup( function() {
         table.draw();
     } );
 
-    /* Search */
+    /!* Search *!/
     $('#myInputTextField').keyup(function(){
         table.search($(this).val()).draw() ;
-    })
+    })*/
 
 } );
 

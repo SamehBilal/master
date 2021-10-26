@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
             RolesAndPermissionsSeeder::class,
             UsersSeeder::class,
             CountrySeeder::class,
+            StateSeeder::class,
+            CitySeeder::class,
             UserCategorySeeder::class,
             CustomerSeeder::class,
         ]);

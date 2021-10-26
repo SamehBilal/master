@@ -16,10 +16,14 @@ class CreateCountriesTable extends Migration
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
             $table->string('code');
+            $table->string('name');
+            $table->string('nationality')->nullable();
+            $table->integer('phone_code');
+            /*
             $table->string('country_enName');
             $table->string('country_arName');
             $table->string('country_enNationality');
-            $table->string('country_arNationality');
+            $table->string('country_arNationality');*/
             $table->timestamps();
         });
     }

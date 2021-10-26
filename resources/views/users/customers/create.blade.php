@@ -284,7 +284,7 @@
                                             name="country_id[]">
                                         @foreach($countries as $country)
                                             <option value="{{ $country->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
-                                                {{ $country->country_enName }}
+                                                {{ $country->name }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -862,7 +862,7 @@
                 '                                            name="country_id[]">\n' +
                 '                                        @foreach($countries as $country)\n' +
                 '                                            <option value="{{ $country->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">\n' +
-                '                                                {{ $country->country_enName }}\n' +
+                '                                                {{ $country->country_name }}\n' +
                 '                                            </option>\n' +
                 '                                        @endforeach\n' +
                 '                                    </select>\n' +

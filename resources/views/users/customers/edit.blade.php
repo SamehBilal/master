@@ -288,7 +288,7 @@
                                                     name="country_id[]">
                                                 @foreach($countries as $country)
                                                     <option value="{{ $country->id }}" @if(old('country_id[]') ==  $country->id) selected @else {{ $address->country_id == $country->id  ? 'selected':'' }} @endif data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
-                                                        {{ $country->country_enName }}
+                                                        {{ $country->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -453,7 +453,7 @@
                                                     name="country_id[]">
                                                 @foreach($countries as $country)
                                                     <option value="{{ $country->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
-                                                        {{ $country->country_enName }}
+                                                        {{ $country->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -1157,7 +1157,7 @@
                 '                                            name="country_id[]">\n' +
                 '                                        @foreach($countries as $country)\n' +
                 '                                            <option value="{{ $country->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">\n' +
-                '                                                {{ $country->country_enName }}\n' +
+                '                                                {{ $country->name }}\n' +
                 '                                            </option>\n' +
                 '                                        @endforeach\n' +
                 '                                    </select>\n' +
