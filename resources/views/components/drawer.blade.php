@@ -52,6 +52,12 @@
                     </a>
                     <ul class="sidebar-submenu collapse {{ set_active(['orders*'],'show')}} sm-indent"
                         id="student_menu">
+                        <li class="sidebar-menu-item {{ set_active(['orders'])}}">
+                            <a class="sidebar-menu-button"
+                               href="{{ route('orders.index') }}">
+                                <span class="sidebar-menu-text">All orders</span>
+                            </a>
+                        </li>
                         <li class="sidebar-menu-item {{ set_active(['orders/create'])}}">
                             <a class="sidebar-menu-button"
                                href="{{ route('orders.create') }}">

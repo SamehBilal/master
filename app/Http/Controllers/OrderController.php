@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use App\Models\Order;
+use App\Models\Pickup;
+use App\Models\State;
 use App\Traits\Verified;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use PDF;
 
 class OrderController extends Controller
 {
@@ -17,7 +21,35 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::all();
+        $status = ['New','Awaiting your action','On hold','Canceled','Rescheduled','Out for delivery','Completed','Return to origin','Cannot be delivered'];
+        $types  = [
+            'Deliver' => [
+                'name'          => 'Deliver',
+                'image'         => 'fast-delivery.png',
+                'description'   => 'Deliver a package',
+                'color'         => 'danger',
+                ],
+            'Exchange' =>  [
+                'name'          => 'Exchange',
+                'image'         => 'transfer.png',
+                'description'   => 'Exchange a package',
+                'color'         => 'dark',
+                ],
+            'Return' => [
+                'name'          => 'Return',
+                'image'         => 'return-on-investment.png',
+                'description'   => 'Pickup from customer',
+                'color'         => 'warning',
+                ],
+            'Cash Collection' => [
+                'name'          => 'Cash Collection',
+                'image'         => 'money.png',
+                'description'   => 'Collect or refund',
+                'color'         => 'accent',
+                ],
+        ];
+        return view('orders.index',compact('orders','status','types'));
     }
 
     /**
@@ -27,7 +59,11 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('orders.create');
+        $pickups = Pickup::all();
+        $cities = State::where('country_id',64)->get();
+        //$states = State::where('country_id',64);
+        $countries = Country::all();
+        return view('orders.create',compact('pickups','cities','countries'));
     }
 
     public function multi()
@@ -57,6 +93,25 @@ class OrderController extends Controller
         $qr = QrCode::generate(route('orders.show',$order->id));
 
         return view('orders.show',compact('order','qr'));
+    }
+
+    public function airwaybell(Order $order)
+    {
+        $order = Order::findOrFail($order);
+        $qr = QrCode::generate(route('orders.show',$order->id));
+        $html = view('orders.pdf', compact('order','qr'))->render();
+        //return view('orders.pdf',compact('qr','order'));
+        //$html = view('orders.show', compact('order','qr'))->render();
+        //return @\PDF::loadHTML($data, 'utf-8')->stream(); // to debug + add the follosing headers in controller ( TOP LEVEL )
+        //$pdf = PDF::loadHTML($html);
+        //return $pdf->stream("filename.pdf", array("Attachment" => false));
+
+        $pdf = PDF::loadHTML($html)->stream();
+        //$pdf->stream("filename.pdf", array("Attachment" => false));
+        return $pdf->download('pdf_file.pdf');
+
+        // download PDF file with download method
+        //return $pdf->download('pdf_file.pdf');
     }
 
     /**

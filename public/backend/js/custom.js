@@ -262,18 +262,17 @@ $(document).ready(function() {
         }else {
             table.search('').draw();
         }
-
     } );
 
     // Event listener to the two range filtering inputs to redraw on input
     /*$('#min, #max').keyup( function() {
         table.draw();
-    } );
+    } );*/
 
-    /!* Search *!/
+    /* Search */
     $('#myInputTextField').keyup(function(){
         table.search($(this).val()).draw() ;
-    })*/
+    })
 
 } );
 

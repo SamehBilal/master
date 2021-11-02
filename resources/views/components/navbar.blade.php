@@ -151,7 +151,7 @@
 
                         <small class="flex d-flex flex-column">
                             <strong class="navbar-text-100">Orders</strong>
-                            <span class="navbar-text-50">40</span>
+                            <span class="navbar-text-50">{{ \App\Models\Order::count() }}</span>
                         </small>
                     </span>
     <span class="d-none d-md-flex align-items-center mr-16pt">

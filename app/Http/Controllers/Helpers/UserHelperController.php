@@ -3,10 +3,6 @@
 namespace App\Http\Controllers\Helpers;
 
 use App\Models\User;
-use App\Models\Staff;
-use App\Models\Student;
-use App\Models\Teacher;
-use App\Models\IsParent;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;

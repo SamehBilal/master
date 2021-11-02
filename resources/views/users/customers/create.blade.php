@@ -283,7 +283,7 @@
                                             class="form-control form-control-sm @error('country_id') is-invalid @enderror"
                                             name="country_id[]">
                                         @foreach($countries as $country)
-                                            <option value="{{ $country->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                            <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
                                                 {{ $country->name }}
                                             </option>
                                         @endforeach
@@ -861,8 +861,8 @@
                 '                                            class="form-control form-control-sm @error('country_id') is-invalid @enderror"\n' +
                 '                                            name="country_id[]">\n' +
                 '                                        @foreach($countries as $country)\n' +
-                '                                            <option value="{{ $country->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">\n' +
-                '                                                {{ $country->country_name }}\n' +
+                '                                            <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">\n' +
+                '                                               {{ $country->name }}\n' +
                 '                                            </option>\n' +
                 '                                        @endforeach\n' +
                 '                                    </select>\n' +

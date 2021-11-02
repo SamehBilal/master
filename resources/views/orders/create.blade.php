@@ -131,7 +131,146 @@
                             </div>
                         </div>
                         <div class="card-body tab-content">
-                            <div class="tab-pane text-70  fade show active" id="deliver" role="tabpanel" aria-labelledby="nav-home-tab">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam eaque error laborum ipsum consequatur nobis dicta totam facilis corporis, porro cupiditate inventore minus vero neque accusamus illo temporibus officiis natus.</div>
+                            <div class="tab-pane text-70  fade show active" id="deliver" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div class="row">
+                                    <div class="col-lg-3 bg-light">
+                                        <div class="page-separator">
+                                            <div class="page-separator__text">Basic Details</div>
+                                        </div>
+                                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of the customer.</p>
+                                    </div>
+                                    <div class="col-lg-9 row ">
+                                        <div class="page-separator col-lg-12">
+                                            <div class="page-separator__text" >
+                                                &nbsp; Customer Information
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-label"
+                                                       for="cash_on_delivery">Cash on Delivery:</label>
+                                                <input type="number"
+                                                       class="form-control @error('cash_on_delivery') is-invalid @enderror"
+                                                       value=""
+                                                       min="0"
+                                                       step="0.01"
+                                                       id="cash_on_delivery"
+                                                       name="cash_on_delivery"
+                                                       autocomplete="cash_on_delivery"
+                                                       placeholder="Cash on Delivery ..."
+                                                       autofocus>
+                                                @error('cash_on_delivery')
+                                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                                @enderror
+                                                <div class="valid-feedback">Looks good!</div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="page-separator col-lg-12">
+                                            <div class="page-separator__text" >
+                                                &nbsp; Package Details
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <div class="custom-controls-stacked">
+                                                    <div class="custom-control custom-radio">
+                                                        <input id="radioStacked1"
+                                                               name="radio-stacked"
+                                                               type="radio"
+                                                               class="custom-control-input"
+                                                               checked="">
+                                                        <label for="radioStacked1"
+                                                               class="custom-control-label">Parcel</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio">
+                                                        <input id="radioStacked2"
+                                                               name="radio-stacked"
+                                                               type="radio"
+                                                               class="custom-control-input">
+                                                        <label for="radioStacked2"
+                                                               class="custom-control-label">Document</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio">
+                                                        <input id="radioStacked3"
+                                                               name="radio-stacked"
+                                                               type="radio"
+                                                               class="custom-control-input">
+                                                        <label for="radioStacked3"
+                                                               class="custom-control-label">Bulky</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label class="form-label"
+                                                       for="package_description">Package Description:</label> <small class="badge badge-secondary">optional</small>
+                                                <textarea rows="3"
+                                                          id="package_description"
+                                                          name="package_description"
+                                                          class="form-control @error('package_description') is-invalid @enderror"
+                                                          placeholder="Product code - Color - Size">{{ old('package_description') }}</textarea>
+                                                @error('package_description')
+                                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                                @enderror
+                                                <div class="valid-feedback">Looks good!</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-label"
+                                                       for="no_of_items">Number of Items:</label>
+                                                <input type="number"
+                                                       class="form-control @error('no_of_items') is-invalid @enderror"
+                                                       value=""
+                                                       min="0"
+                                                       step="1"
+                                                       id="no_of_items"
+                                                       name="no_of_items"
+                                                       autocomplete="no_of_items"
+                                                       placeholder="Number of Items ..."
+                                                       autofocus>
+                                                @error('no_of_items')
+                                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                                @enderror
+                                                <div class="valid-feedback">Looks good!</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-label"
+                                                       for="no_of_items">Order Reference:</label>
+                                                <input type="text"
+                                                       class="form-control @error('order_reference') is-invalid @enderror"
+                                                       value=""
+                                                       id="order_reference"
+                                                       name="order_reference"
+                                                       autocomplete="order_reference"
+                                                       placeholder="B-123456"
+                                                       autofocus>
+                                                @error('order_reference')
+                                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                                @enderror
+                                                <div class="valid-feedback">Looks good!</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12  mb-3">
+                                            <div class="form-group">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox"
+                                                           class="custom-control-input"
+                                                           name="working_hours"
+                                                           id="customCheck1">
+                                                    <label class="custom-control-label"
+                                                           for="customCheck1">Allow customers to open packages ?</label>
+                                                    <small class="form-text text-muted">Allowing customers to open package allows them to refuse taking it. In this case Bosta will return it back to you. Return fees will be applied.</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="tab-pane text-70  fade " id="exchange" role="tabpanel" aria-labelledby="nav-home-tab">consectetur adipisicing elit. Aperiam eaque error laborum ipsum consequatur nobis dicta totam facilis corporis, porro cupiditate inventore minus vero neque accusamus illo temporibus officiis natus.</div>
                             <div class="tab-pane text-70  fade " id="return" role="tabpanel" aria-labelledby="nav-home-tab">consectetur adipisicing elit. Aperiam ecorporis, porro cupiditate inventore minus vero neque accusamus illo temporibus officiis natus.</div>
                             <div class="tab-pane text-70  fade " id="cash_collection" role="tabpanel" aria-labelledby="nav-home-tab">conro cupiditate inventore minus vero neque accusamus illo temporibus officiis natus.</div>
@@ -142,7 +281,12 @@
             </div>
         </div>
         <div class="page-separator">
-            <div class="page-separator__text">Customer Information</div>
+            <div class="page-separator__text" style="line-height: 30px;">
+                <button type="button" class="btn btn-sm rounded-circle btn-dark">
+                    &nbsp;  2 &nbsp;
+                </button>
+                &nbsp; Customer Information
+            </div>
         </div>
         <div class="card">
             <div class="card-body ">
@@ -153,7 +297,12 @@
                         </div>
                         <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of the customer.</p>
                     </div>
-                    <div class="col-lg-9 row p-2">
+                    <div class="col-lg-9 row ">
+                        <div class="page-separator col-lg-12">
+                            <div class="page-separator__text" >
+                                &nbsp; Customer Information
+                            </div>
+                        </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-label"
@@ -228,7 +377,7 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="delivery_notes">Delivery Notes:</label> <small>(optional)</small>
+                                       for="delivery_notes">Delivery Notes:</label> <small class="badge badge-secondary">optional</small>
                                 <textarea rows="3"
                                           id="delivery_notes"
                                           name="delivery_notes"
@@ -240,16 +389,245 @@
                                 <div class="valid-feedback">Looks good!</div>
                             </div>
                         </div>
+                        <div class="page-separator col-lg-12">
+                            <div class="page-separator__text" >
+                                &nbsp; Location Information
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 mb-3">
+                            <div class="form-group">
+                                <label class="form-label"
+                                       for="select05">Country</label>
+                                <select id="select05"
+                                        data-toggle="select"
+                                        class="form-control form-control-sm @error('country_id') is-invalid @enderror"
+                                        name="country_id">
+                                    @foreach($countries as $country)
+                                        <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                            {{ $country->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('country_id')
+                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                @enderror
+                                <div class="valid-feedback">Looks good!</div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 mb-3">
+                            <div class="form-group">
+                                <label class="form-label"
+                                       for="select01">City</label>
+                                <select id="select01"
+                                        data-toggle="select"
+                                        data-minimum-results-for-search="-1"
+                                        class="form-control form-control-sm @error('city_id') is-invalid @enderror"
+                                        name="city_id">
+                                    @foreach($cities as $city)
+                                        <option value="{{ $city->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                            {{ $city->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('city_id')
+                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                @enderror
+                                <div class="valid-feedback">Looks good!</div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-12 col-md-6 mb-3">
+                            <div class="form-group">
+                                <label class="form-label"
+                                       for="street">Street:</label>
+                                <div class="input-group input-group-merge">
+                                    <input type="text"
+                                           class="form-control @error('street') is-invalid @enderror"
+                                           value="{{ old('street') }}"
+                                           autocomplete="street"
+                                           name="street"
+                                           id="street"
+                                           placeholder="Enter your street .."
+                                           autofocus>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="material-icons">home_work</span>
+                                        </div>
+                                    </div>
+                                    @error('street')
+                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                    @enderror
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 mb-3">
+                            <div class="form-group">
+                                <label class="form-label"
+                                       for="building">Building:</label>
+                                <div class="input-group input-group-merge">
+                                    <input type="text"
+                                           class="form-control @error('building') is-invalid @enderror"
+                                           value="{{ old('building') }}"
+                                           autocomplete="building"
+                                           name="building"
+                                           id="building"
+                                           placeholder="Enter your building .."
+                                           autofocus>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="material-icons">home</span>
+                                        </div>
+                                    </div>
+                                    @error('building')
+                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                    @enderror
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-12 col-md-6 mb-3">
+                            <div class="form-group">
+                                <label class="form-label"
+                                       for="floor">Floor:</label>
+                                <div class="input-group input-group-merge">
+                                    <input type="text"
+                                           class="form-control @error('floor') is-invalid @enderror"
+                                           value="{{ old('floor') }}"
+                                           autocomplete="floor"
+                                           name="floor"
+                                           id="floor"
+                                           placeholder="Enter your floor .."
+                                           autofocus>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="material-icons">local_convenience_store</span>
+                                        </div>
+                                    </div>
+                                    @error('floor')
+                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                    @enderror
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 mb-3">
+                            <div class="form-group">
+                                <label class="form-label"
+                                       for="apartment">Apartment:</label>
+                                <div class="input-group input-group-merge">
+                                    <input type="text"
+                                           class="form-control @error('apartment') is-invalid @enderror"
+                                           value="{{ old('apartment') }}"
+                                           autocomplete="apartment"
+                                           name="apartment"
+                                           id="apartment"
+                                           placeholder="Enter your apartment .."
+                                           autofocus>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="material-icons">apartment</span>
+                                        </div>
+                                    </div>
+                                    @error('apartment')
+                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                    @enderror
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-12 mb-3">
+                            <div class="form-group">
+                                <label class="form-label"
+                                       for="landmarks">Landmarks:</label>
+                                <div class="input-group input-group-merge">
+                                    <input type="text"
+                                           class="form-control @error('landmarks') is-invalid @enderror"
+                                           value="{{ old('landmarks') }}"
+                                           autocomplete="landmarks"
+                                           name="landmarks"
+                                           id="landmarks"
+                                           placeholder="Enter your landmarks .."
+                                           autofocus>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text">
+                                            <span class="material-icons">apartment</span>
+                                        </div>
+                                    </div>
+                                    @error('landmarks')
+                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                    @enderror
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12  mb-3">
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox"
+                                           class="custom-control-input"
+                                           name="working_hours"
+                                           id="customCheck1">
+                                    <label class="custom-control-label"
+                                           for="customCheck1">This is a work address</label>
+                                    <small class="form-text text-muted">Mark it to deliver it within business days and working hours.</small>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
-
+        </div>
+        <div class="page-separator">
+            <div class="page-separator__text" style="line-height: 30px;">
+                <button type="button" class="btn btn-sm rounded-circle btn-dark">
+                    &nbsp;  3 &nbsp;
+                </button>
+                &nbsp; Request Pickup &nbsp; <small class="badge badge-secondary">Optional</small>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body ">
+                <div class="row">
+                    <div class="col-lg-3 bg-light">
+                        <div class="page-separator">
+                            <div class="page-separator__text">Request Pickup</div>
+                        </div>
+                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">You can skip requesting a pickup now but make sure to request a pickup when you have packages ready to be shipped.</p>
+                    </div>
+                    <div class="col-lg-9 row p-2">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-label"
+                                       for="select06">Scheduled Pickups:</label>
+                                <select id="select06"
+                                        data-toggle="select"
+                                        name="pickup_id"
+                                        class="form-control form-control-sm @error('pickup_id') is-invalid @enderror">
+                                    @foreach($pickups as $pickup)
+                                        <option value="{{ $pickup->id }}" {{ old('pickup_id') == $pickup->id ? 'selected':'' }}>{{ $pickup->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('pickup_id')
+                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                @enderror
+                                <div class="valid-feedback">Looks good!</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <a href="#" class="text-dark">+ Create new Pickup</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <button type="submit"
                 class="btn pull-right btn-primary">Submit</button>
 
-
     </div>
-
 @endsection

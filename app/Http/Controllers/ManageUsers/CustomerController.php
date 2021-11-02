@@ -8,6 +8,7 @@ use App\Models\Contact;
 use App\Models\Country;
 use App\Models\Currency;
 use App\Models\Customer;
+use App\Models\State;
 use App\Models\User;
 use App\Models\UserCategory;
 use Illuminate\Http\Request;
@@ -37,7 +38,8 @@ class CustomerController extends Controller
     {
         $categories = UserCategory::all();
         $currencies = Currency::all();
-        $cities = City::all();
+        $cities = State::where('country_id',64)->get();
+        //$states = State::where('country_id',64);
         $countries = Country::all();
         return view('users.customers.create',compact('currencies','categories','countries','cities'));
     }
@@ -144,7 +146,8 @@ class CustomerController extends Controller
     {
         $categories = UserCategory::all();
         $currencies = Currency::all();
-        $cities = City::all();
+        $cities = State::where('country_id',64)->get();
+        //$cities = City::all();
         $countries = Country::all();
         return view('users.customers.edit',compact('customer','categories','currencies','cities','countries'));
     }

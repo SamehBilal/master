@@ -20,7 +20,7 @@ class CreateLocationsTable extends Migration
             $table->string('building',20)->nullable();
             $table->string('floor',5)->nullable();
             $table->string('apartment',5)->nullable();
-            $table->string('landmarks',5)->nullable();
+            $table->string('landmarks')->nullable();
             $table->unsignedBigInteger('country_id')->nullable();
             $table->unsignedBigInteger('state_id')->nullable();
             $table->unsignedBigInteger('city_id')->nullable();

@@ -79,3 +79,7 @@
 <link type="text/css"
       href="{{ asset('backend/css/toastr.css') }}"
       rel="stylesheet">
+<!-- Custom -->
+<link type="text/css"
+      href="{{ asset('backend/css/custom.css') }}"
+      rel="stylesheet">

@@ -19,7 +19,7 @@
 @endsection
 
 @section('button-title')
-    New Customers
+    New Customer
 @endsection
 
 @section('extra_styles')
@@ -126,7 +126,11 @@
                                class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start active">
                                 {{--<span class="h2 mb-0 mr-3">{{ $category->id }}</span>--}}
                                 <div class="avatar avatar-sm mr-8pt">
-                                    <span class="avatar-title rounded bg-warning text-black-100">100</span>
+                                    <span class="avatar-title rounded bg-transparent text-black-100">
+                                         <img src="{{ asset('backend/images/icon/all.png') }}"
+                                              alt="Avatar"
+                                              class="avatar-img ">
+                                    </span>
                                 </div>
                                 <span class="flex d-flex flex-column">
                                         <strong>All Customers</strong>
@@ -145,7 +149,7 @@
                                    class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start {{--{{ $category->id == 1 ? 'active':'' }}--}}">
                                     {{--<span class="h2 mb-0 mr-3">{{ $category->id }}</span>--}}
                                     <div class="avatar avatar-sm mr-8pt">
-                                        <span class="avatar-title rounded bg-warning text-black-100">{{  substr($category->name, 0, 1)  }}</span>
+                                        <span class="avatar-title rounded bg-warning text-black-100">{{  initials($category->name)  }}</span>
                                     </div>
                                     <span class="flex d-flex flex-column">
                                         <strong>{{ $category->name }}</strong>
@@ -292,7 +296,7 @@
                                         <div class="media flex-nowrap align-items-center"
                                              style="white-space: nowrap;">
                                             <div class="avatar avatar-sm mr-8pt">
-                                                <span class="avatar-title rounded bg-warning text-black-100">{{ $customer->UserCategory ? substr($customer->UserCategory->name, 0, 1):''  }}</span>
+                                                <span class="avatar-title rounded bg-warning text-black-100">{{ $customer->UserCategory ? initials($customer->UserCategory->name):''  }}</span>
                                             </div>
                                             <div class="media-body">
                                                 <div class="d-flex flex-column">
