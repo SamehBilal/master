@@ -47,8 +47,7 @@
             </div>
         </div>
 
-
-        <!-- Javascripts -->
+        <!-- Javascript -->
         <script src="{{ asset('errors/assets/plugins/jquery/jquery-3.1.0.min.js') }}"></script>
         <script src="{{ asset('errors/assets/plugins/bootstrap/popper.min.js') }}"></script>
         <script src="{{ asset('errors/assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
