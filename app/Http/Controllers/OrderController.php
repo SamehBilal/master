@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
+use App\Models\Location;
 use App\Models\Order;
 use App\Models\Pickup;
 use App\Models\State;
@@ -63,7 +64,8 @@ class OrderController extends Controller
         $cities = State::where('country_id',64)->get();
         //$states = State::where('country_id',64);
         $countries = Country::all();
-        return view('orders.create',compact('pickups','cities','countries'));
+        $locations = Location::all();
+        return view('orders.create',compact('pickups','cities','countries','locations'));
     }
 
     public function multi()

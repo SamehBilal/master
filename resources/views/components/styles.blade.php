@@ -79,6 +79,12 @@
 <link type="text/css"
       href="{{ asset('backend/css/toastr.css') }}"
       rel="stylesheet">
+
+<!-- Dropzone -->
+<link type="text/css"
+      href="{{ asset('backend/css/dropzone.css') }}"
+      rel="stylesheet">
+
 <!-- Custom -->
 <link type="text/css"
       href="{{ asset('backend/css/custom.css') }}"

@@ -74,6 +74,13 @@
 <script src="{{ asset('backend/vendor/ion.rangeSlider.min.js') }}"></script>
 <script src="{{ asset('backend/js/ion-rangeslider.js') }}"></script>
 
+<!-- Dropzone -->
+<script src="{{ asset('backend/vendor/dropzone.min.js') }}"></script>
+<script src="{{ asset('backend/js/dropzone.js') }}"></script>
+
+<!-- Highlight.js -->
+<script src="{{ asset('backend/js/hljs.js') }}"></script>
+
 <!-- custom -->
 <script src="{{ asset('backend/js/custom.js') }}"></script>
 

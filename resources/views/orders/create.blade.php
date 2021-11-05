@@ -145,7 +145,33 @@
                                                 &nbsp; Customer Information
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <label class="form-radio form-icon btn btn-success active">
+                                            <input type="radio" name="color" value="success" required> Green
+                                        </label>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <div class="custom-controls-stacked">
+                                                    <div class="custom-control custom-radio">
+                                                        <input id="with_cash_collection"
+                                                               name="with_cash_collection"
+                                                               type="radio"
+                                                               class="custom-control-input"
+                                                               checked="">
+                                                        <label for="with_cash_collection"
+                                                               class="custom-control-label">With cash collection</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio">
+                                                        <input id="without_cash_collection"
+                                                               name="with_cash_collection"
+                                                               type="radio"
+                                                               class="custom-control-input">
+                                                        <label for="without_cash_collection"
+                                                               class="custom-control-label">Without cash collection</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label class="form-label"
                                                        for="cash_on_delivery">Cash on Delivery:</label>
@@ -163,6 +189,7 @@
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
                                                 <div class="valid-feedback">Looks good!</div>
+                                                <small>Your customer shall pay this amount to courier upon delivery.</small>
                                             </div>
                                         </div>
                                         <br>
@@ -204,6 +231,29 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
+                                                <div class="custom-controls-stacked">
+                                                    <div class="custom-control custom-radio">
+                                                        <input id="light_bulky"
+                                                               name="light_bulky"
+                                                               type="radio"
+                                                               class="custom-control-input"
+                                                               checked="">
+                                                        <label for="light_bulky"
+                                                               class="custom-control-label">Light Bulky</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio">
+                                                        <input id="heavy_bulky"
+                                                               name="light_bulky"
+                                                               type="radio"
+                                                               class="custom-control-input">
+                                                        <label for="heavy_bulky"
+                                                               class="custom-control-label">Heavy Bulky</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
                                                 <label class="form-label"
                                                        for="package_description">Package Description:</label> <small class="badge badge-secondary">optional</small>
                                                 <textarea rows="3"
@@ -235,6 +285,7 @@
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
                                                 <div class="valid-feedback">Looks good!</div>
+                                                <small>If your items don't fit in one flyer of any size, create multiple orders.</small>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -253,6 +304,7 @@
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
                                                 <div class="valid-feedback">Looks good!</div>
+                                                <small>Add a reference that you can later use to search for the order.</small>
                                             </div>
                                         </div>
                                         <div class="col-md-12  mb-3">
@@ -271,9 +323,433 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane text-70  fade " id="exchange" role="tabpanel" aria-labelledby="nav-home-tab">consectetur adipisicing elit. Aperiam eaque error laborum ipsum consequatur nobis dicta totam facilis corporis, porro cupiditate inventore minus vero neque accusamus illo temporibus officiis natus.</div>
-                            <div class="tab-pane text-70  fade " id="return" role="tabpanel" aria-labelledby="nav-home-tab">consectetur adipisicing elit. Aperiam ecorporis, porro cupiditate inventore minus vero neque accusamus illo temporibus officiis natus.</div>
-                            <div class="tab-pane text-70  fade " id="cash_collection" role="tabpanel" aria-labelledby="nav-home-tab">conro cupiditate inventore minus vero neque accusamus illo temporibus officiis natus.</div>
+                            <div class="tab-pane text-70  fade " id="exchange" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div class="row">
+                                    <div class="col-lg-3 bg-light">
+                                        <div class="page-separator">
+                                            <div class="page-separator__text">Basic Details</div>
+                                        </div>
+                                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of the customer.</p>
+                                    </div>
+                                    <div class="col-lg-9 row ">
+                                        <div class="page-separator col-lg-12">
+                                            <div class="page-separator__text" >
+                                                &nbsp; Customer Information
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <div class="custom-controls-stacked">
+                                                    <div class="custom-control custom-radio">
+                                                        <input id="with_cash_difference"
+                                                               name="with_cash_difference"
+                                                               type="radio"
+                                                               class="custom-control-input"
+                                                               checked="">
+                                                        <label for="with_cash_difference"
+                                                               class="custom-control-label">With cash difference</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio">
+                                                        <input id="without_cash_difference"
+                                                               name="with_cash_difference"
+                                                               type="radio"
+                                                               class="custom-control-input">
+                                                        <label for="without_cash_difference"
+                                                               class="custom-control-label">Without cash difference</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label"
+                                                       for="cash_on_delivery">Cash Exchange Amount:</label>
+                                                <input type="number"
+                                                       class="form-control @error('cash_on_delivery') is-invalid @enderror"
+                                                       value=""
+                                                       min="0"
+                                                       step="0.01"
+                                                       id="cash_on_delivery"
+                                                       name="cash_on_delivery"
+                                                       autocomplete="cash_on_delivery"
+                                                       placeholder="Cash on Delivery ..."
+                                                       autofocus>
+                                                @error('cash_on_delivery')
+                                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                                @enderror
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <small>Droplin courier shall pay this amount to your customer upon pickup.</small>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="page-separator col-lg-12">
+                                            <div class="page-separator__text" >
+                                                &nbsp; Delivery Package Details
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label"
+                                                       for="no_of_items">Number of Items:</label>
+                                                <input type="number"
+                                                       class="form-control @error('no_of_items') is-invalid @enderror"
+                                                       value="1"
+                                                       min="0"
+                                                       step="1"
+                                                       id="no_of_items"
+                                                       name="no_of_items"
+                                                       autocomplete="no_of_items"
+                                                       placeholder="Number of Items ..."
+                                                       autofocus>
+                                                @error('no_of_items')
+                                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                                @enderror
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <small>If your items don't fit in one flyer of any size, create multiple orders.</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label class="form-label"
+                                                       for="package_description">Package Description:</label> <small class="badge badge-secondary">optional</small>
+                                                <textarea rows="3"
+                                                          id="package_description"
+                                                          name="package_description"
+                                                          class="form-control @error('package_description') is-invalid @enderror"
+                                                          placeholder="Product code - Color - Size">{{ old('package_description') }}</textarea>
+                                                @error('package_description')
+                                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                                @enderror
+                                                <div class="valid-feedback">Looks good!</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label"
+                                                       for="no_of_items">Order Reference:</label>
+                                                <input type="text"
+                                                       class="form-control @error('order_reference') is-invalid @enderror"
+                                                       value=""
+                                                       id="order_reference"
+                                                       name="order_reference"
+                                                       autocomplete="order_reference"
+                                                       placeholder="B-123456"
+                                                       autofocus>
+                                                @error('order_reference')
+                                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                                @enderror
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <small>Add a reference that you can later use to search for the order.</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12  mb-3">
+                                            <div class="form-group">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox"
+                                                           class="custom-control-input"
+                                                           name="working_hours"
+                                                           id="customCheck1">
+                                                    <label class="custom-control-label"
+                                                           for="customCheck1">Allow customers to open packages ?</label>
+                                                    <small class="form-text text-muted">Allowing customers to open package allows them to refuse taking it. In this case Bosta will return it back to you. Return fees will be applied.</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="page-separator col-lg-12">
+                                            <div class="page-separator__text" >
+                                                &nbsp; Return Package Details
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label"
+                                                       for="no_of_items">Number of Items:</label>
+                                                <input type="number"
+                                                       class="form-control @error('no_of_items') is-invalid @enderror"
+                                                       value="1"
+                                                       min="0"
+                                                       step="1"
+                                                       id="no_of_items"
+                                                       name="no_of_items"
+                                                       autocomplete="no_of_items"
+                                                       placeholder="Number of Items ..."
+                                                       autofocus>
+                                                @error('no_of_items')
+                                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                                @enderror
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <small>If your items don't fit in one flyer of any size, create multiple orders.</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label class="form-label"
+                                                       for="package_description">Package Description:</label> <small class="badge badge-secondary">optional</small>
+                                                <textarea rows="3"
+                                                          id="package_description"
+                                                          name="package_description"
+                                                          class="form-control @error('package_description') is-invalid @enderror"
+                                                          placeholder="Product code - Color - Size">{{ old('package_description') }}</textarea>
+                                                @error('package_description')
+                                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                                @enderror
+                                                <div class="valid-feedback">Looks good!</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label"
+                                                       for="select06">Return Location:</label>
+                                                <select id="select06"
+                                                        data-toggle="select"
+                                                        name="return_location"
+                                                        class="form-control form-control-sm @error('return_location') is-invalid @enderror">
+                                                    @foreach($locations as $location)
+                                                        <option value="{{ $location->id }}" {{ old('return_location') == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('return_location')
+                                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                                @enderror
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <small>Select the location to which the package should be returned.</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <a href="#" class="text-dark">+ Create New Location</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane text-70  fade " id="return" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div class="row">
+                                    <div class="col-lg-3 bg-light">
+                                        <div class="page-separator">
+                                            <div class="page-separator__text">Basic Details</div>
+                                        </div>
+                                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of the customer.</p>
+                                    </div>
+                                    <div class="col-lg-9 row ">
+                                        <div class="page-separator col-lg-12">
+                                            <div class="page-separator__text" >
+                                                &nbsp; Customer Information
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label"
+                                                       for="cash_on_delivery">Refund Amount :</label>
+                                                <input type="number"
+                                                       class="form-control @error('cash_on_delivery') is-invalid @enderror"
+                                                       value=""
+                                                       min="0"
+                                                       step="0.01"
+                                                       id="cash_on_delivery"
+                                                       name="cash_on_delivery"
+                                                       autocomplete="cash_on_delivery"
+                                                       placeholder="Cash on Delivery ..."
+                                                       autofocus>
+                                                @error('cash_on_delivery')
+                                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                                @enderror
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <small>Droplin courier shall pay this amount to your customer upon pickup.</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <div class="custom-controls-stacked">
+                                                    <div class="custom-control custom-radio">
+                                                        <input id="with_refund"
+                                                               name="with_refund"
+                                                               type="radio"
+                                                               class="custom-control-input"
+                                                               checked="">
+                                                        <label for="with_refund"
+                                                               class="custom-control-label">With refund</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio">
+                                                        <input id="without_refund"
+                                                               name="with_refund"
+                                                               type="radio"
+                                                               class="custom-control-input">
+                                                        <label for="without_refund"
+                                                               class="custom-control-label">Without refund</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="page-separator col-lg-12">
+                                            <div class="page-separator__text" >
+                                                &nbsp; Return Package Details
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label"
+                                                       for="no_of_items">Number of Items:</label>
+                                                <input type="number"
+                                                       class="form-control @error('no_of_items') is-invalid @enderror"
+                                                       value="1"
+                                                       min="0"
+                                                       step="1"
+                                                       id="no_of_items"
+                                                       name="no_of_items"
+                                                       autocomplete="no_of_items"
+                                                       placeholder="Number of Items ..."
+                                                       autofocus>
+                                                @error('no_of_items')
+                                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                                @enderror
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <small>If your items don't fit in one flyer of any size, create multiple orders.</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label class="form-label"
+                                                       for="package_description">Package Description:</label> <small class="badge badge-secondary">optional</small>
+                                                <textarea rows="3"
+                                                          id="package_description"
+                                                          name="package_description"
+                                                          class="form-control @error('package_description') is-invalid @enderror"
+                                                          placeholder="Product code - Color - Size">{{ old('package_description') }}</textarea>
+                                                @error('package_description')
+                                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                                @enderror
+                                                <div class="valid-feedback">Looks good!</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label"
+                                                       for="no_of_items">Order Reference:</label>
+                                                <input type="text"
+                                                       class="form-control @error('order_reference') is-invalid @enderror"
+                                                       value=""
+                                                       id="order_reference"
+                                                       name="order_reference"
+                                                       autocomplete="order_reference"
+                                                       placeholder="B-123456"
+                                                       autofocus>
+                                                @error('order_reference')
+                                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                                @enderror
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <small>Add a reference that you can later use to search for the order.</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label"
+                                                       for="select06">Return Location:</label>
+                                                <select id="select06"
+                                                        data-toggle="select"
+                                                        name="return_location"
+                                                        class="form-control form-control-sm @error('return_location') is-invalid @enderror">
+                                                    @foreach($locations as $location)
+                                                        <option value="{{ $location->id }}" {{ old('return_location') == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('return_location')
+                                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                                @enderror
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <small>Select the location to which the package should be returned.</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <a href="#" class="text-dark">+ Create New Location</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane text-70  fade " id="cash_collection" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div class="row">
+                                    <div class="col-lg-3 bg-light">
+                                        <div class="page-separator">
+                                            <div class="page-separator__text">Basic Details</div>
+                                        </div>
+                                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of the customer.</p>
+                                    </div>
+                                    <div class="col-lg-9 row ">
+                                        <div class="page-separator col-lg-12">
+                                            <div class="page-separator__text" >
+                                                &nbsp; Customer Information
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label"
+                                                       for="cash_on_delivery">Cash to Collect :</label>
+                                                <input type="number"
+                                                       class="form-control @error('cash_on_delivery') is-invalid @enderror"
+                                                       value=""
+                                                       min="0"
+                                                       step="0.01"
+                                                       id="cash_on_delivery"
+                                                       name="cash_on_delivery"
+                                                       autocomplete="cash_on_delivery"
+                                                       placeholder="Cash on Delivery ..."
+                                                       autofocus>
+                                                @error('cash_on_delivery')
+                                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                                @enderror
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <small>Droplin courier shall receive this amount from your customer.</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <div class="custom-controls-stacked">
+                                                    <div class="custom-control custom-radio">
+                                                        <input id="collect_cash"
+                                                               name="collect_cash"
+                                                               type="radio"
+                                                               class="custom-control-input"
+                                                               checked="">
+                                                        <label for="collect_cash"
+                                                               class="custom-control-label">Collect cash from customer</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio">
+                                                        <input id="refund_cash"
+                                                               name="collect_cash"
+                                                               type="radio"
+                                                               class="custom-control-input">
+                                                        <label for="refund_cash"
+                                                               class="custom-control-label">Refund cash to customer</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="page-separator col-lg-12">
+                                            <div class="page-separator__text" >
+                                                &nbsp; Return Package Details
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label"
+                                                       for="no_of_items">Order Reference:</label>
+                                                <input type="text"
+                                                       class="form-control @error('order_reference') is-invalid @enderror"
+                                                       value=""
+                                                       id="order_reference"
+                                                       name="order_reference"
+                                                       autocomplete="order_reference"
+                                                       placeholder="B-123456"
+                                                       autofocus>
+                                                @error('order_reference')
+                                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                                @enderror
+                                                <div class="valid-feedback">Looks good!</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
