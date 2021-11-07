@@ -43,16 +43,15 @@
 
                         <div class="dropzone dropzone-multiple w-100 mb-24pt"
                              data-toggle="dropzone"
-                             data-dropzone-multiple
+                             {{--data-dropzone-multiple--}}
                              data-dropzone-url="http://"
-                             data-dropzone-files='["{{ asset('backend/images/256_daniel-gaffey-1060698-unsplash.jpg') }}", "{{ asset('backend/images/256_rsz_clem-onojeghuo-150467-unsplash.jpg') }}", "{{ asset('backend/images/256_rsz_florian-perennes-594195-unsplash.jpg') }}"]'>
+                             data-dropzone-files='["{{ asset('backend/images/256_daniel-gaffey-1060698-unsplash.jpg') }}"]'>
 
                             <div class="fallback">
                                 <div class="custom-file">
                                     <input type="file"
                                            class="custom-file-input"
-                                           id="customFileUploadMultiple"
-                                           multiple>
+                                           id="customFileUploadMultiple">
                                     <label class="custom-file-label"
                                            for="customFileUploadMultiple">Choose file</label>
                                 </div>

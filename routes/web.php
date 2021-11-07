@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('currencies',\App\Http\Controllers\CurrencyController::class); //Currencies
     Route::resource('user-categories',\App\Http\Controllers\UserCategoryController::class); //User Categories
     Route::resource('zones',\App\Http\Controllers\ZoneController::class); //Zone Categories
+    Route::resource('locations',\App\Http\Controllers\LocationController::class); //Location
 
     Route::group(['prefix' => 'dashboard', 'as' => 'dashboard' . '.'], function () {
         //

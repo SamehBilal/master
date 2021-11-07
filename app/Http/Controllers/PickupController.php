@@ -14,7 +14,9 @@ class PickupController extends Controller
      */
     public function index()
     {
-        //
+        $pickups = Pickup::all();
+        $status = ['New','Awaiting your action','On hold','Canceled','Rescheduled','Out for delivery','Completed','Return to origin','Cannot be delivered'];
+        return view('pickups.index',compact('pickups','status'));
     }
 
     /**

@@ -145,9 +145,6 @@
                                                 &nbsp; Customer Information
                                             </div>
                                         </div>
-                                        <label class="form-radio form-icon btn btn-success active">
-                                            <input type="radio" name="color" value="success" required> Green
-                                        </label>
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <div class="custom-controls-stacked">

@@ -30,69 +30,75 @@
                 <div class="page-separator__text">Filter</div>
             </div>
 
-            <div class="card card-form d-flex flex-column flex-sm-row mb-lg-32pt">
-                <div class="card-form__body card-body-form-group flex">
-                    <div class="row">
-                        <div class="col-sm-auto">
-                            <div class="form-group">
-                                <label for="filter_name">Tracking No.</label>
-                                <input id="filter_name"
-                                       type="text"
-                                       class="form-control"
-                                       placeholder="Search by name">
-                            </div>
-                        </div>
-                        <div class="col-sm-auto">
-                            <div class="form-group">
-                                <label for="filter_category">Status</label><br>
-                                <select id="filter_category"
-                                        class="custom-select"
-                                        style="width: 200px;">
-                                    <option value="">All Status</option>
-                                    @foreach($status as $item)
-                                        <option value="{{ $item }}">{{ $item }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        {{--<div class="col-sm-auto">
-                            <div class="form-group">
-                                <label for="filter_stock">In stock?</label>
-                                <div class="custom-control custom-checkbox mt-sm-2">
-                                    <input type="checkbox"
-                                           class="custom-control-input"
-                                           id="filter_stock"
-                                           checked="">
-                                    <label class="custom-control-label"
-                                           for="filter_stock">Yes</label>
+            <form action="{{ route('orders.index') }}" method="GET">
+                <div class="card card-form d-flex flex-column flex-sm-row mb-lg-32pt">
+                    <div class="card-form__body card-body-form-group flex">
+                        <div class="row">
+                            <div class="col-sm-auto">
+                                <div class="form-group">
+                                    <label for="filter_name">Tracking No.</label>
+                                    <input id="filter_name"
+                                           type="text"
+                                           name="tracking_no"
+                                           value="{{ isset($_GET['tracking_no']) &&  $_GET['tracking_no'] >= 0?$_GET['tracking_no']:old('tracking_no') }}"
+                                           class="form-control"
+                                           placeholder="Search by Tracking No.">
                                 </div>
                             </div>
-                        </div>--}}
-                        <div class="col-sm-auto">
-                            <div class="form-group"
-                                 style="width: 200px;">
-                                <label for="filter_date">Order date</label>
-                                <input id="filter_date"
-                                       type="text"
-                                       class="form-control"
-                                       placeholder="Select date ..."
-                                       value="13/03/2018 to 20/03/2018"
-                                       data-toggle="flatpickr"
-                                       data-flatpickr-mode="range"
-                                       data-flatpickr-alt-format="d/m/Y"
-                                       data-flatpickr-date-format="d/m/Y">
+                            <div class="col-sm-auto">
+                                <div class="form-group">
+                                    <label for="filter_category">Status</label><br>
+                                    <select id="filter_category"
+                                            class="custom-select"
+                                            name="status"
+                                            style="width: 200px;">
+                                        <option value="" {{ old('status') == '' ?'selected':'' }}>All Status</option>
+                                        @foreach($status as $item)
+                                            <option value="{{ $item }}">{{ $item }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="ml-auto col-sm-auto">
-                            <div class="form-group" style="width: 150px;">
-                                <label for="price_range">COD</label>
-                                <input id="price_range" type="text" data-toggle="ion-rangeslider" data-min="0" data-max="100" data-from="50" data-step="5" data-max-postfix="+" data-prefix="$">
+                           {{-- <div class="col-sm-auto">
+                                <div class="form-group">
+                                    <label for="filter_stock">In stock?</label>
+                                    <div class="custom-control custom-checkbox mt-sm-2">
+                                        <input type="checkbox"
+                                               class="custom-control-input"
+                                               id="filter_stock"
+                                               checked="">
+                                        <label class="custom-control-label"
+                                               for="filter_stock">Yes</label>
+                                    </div>
+                                </div>
+                            </div>--}}
+                            {{--<div class="col-sm-auto">
+                                <div class="form-group"
+                                     style="width: 200px;">
+                                    <label for="filter_date">Order date</label>
+                                    <input id="filter_date"
+                                           type="text"
+                                           name="date"
+                                           class="form-control"
+                                           placeholder="Select date ..."
+                                           value="@if(old('date')) {{ old('date') }} @else {{ isset($_GET['date']) &&  $_GET['date'] >= 0?$_GET['date']:'01-03-2021 to '.date('d-m-y') }} @endif"
+                                           data-toggle="flatpickr"
+                                           data-flatpickr-mode="range"
+                                           data-flatpickr-alt-format="d/m/Y"
+                                           data-flatpickr-date-format="d/m/Y">
+                                </div>
+                            </div>--}}
+                            <div class="ml-auto col-sm-auto">
+                                <div class="form-group" style="width: 150px;">
+                                    <label for="price_range">COD</label>
+                                    <input id="price_range" type="text" name="cash_on_delivery" data-toggle="ion-rangeslider" data-min="1" data-max="{{ $max_order + 1 }}" data-from="@if(old('cash_on_delivery')) {{ old('cash_on_delivery') }} @else {{ isset($_GET['cash_on_delivery']) &&  $_GET['cash_on_delivery'] >= 0?$_GET['cash_on_delivery']:$max_order/2 }} @endif" data-step="5" data-max-postfix=" EGP" {{--data-prefix="EGP"--}}>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <button class="btn bg-alt border-left border-top border-top-sm-0 rounded-0"><i class="material-icons text-primary icon-20pt">refresh</i></button>
                 </div>
-                <button class="btn bg-alt border-left border-top border-top-sm-0 rounded-0"><i class="material-icons text-primary icon-20pt">refresh</i></button>
-            </div>
+            </form>
 
             <div class="page-separator">
                 <div class="page-separator__text">Orders</div>
@@ -228,7 +234,7 @@
                                     <td></td>
 
                                     <td>
-                                        <a href="#"
+                                        <a href="{{ route('orders.show',$order->id) }}"
                                            class="chip text-underline">{{ $order->tracking_no }}</a>
                                     </td>
 
@@ -311,7 +317,7 @@
                         <tfoot>
                         <tr>
                             <th style="width: 18px;"
-                                class="pr-0">
+                                class="pr-0 select-checkbox">
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox"
                                            class="custom-control-input js-toggle-check-all"

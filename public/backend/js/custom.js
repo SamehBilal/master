@@ -219,9 +219,11 @@ $(document).ready(function() {
         if ($("th.select-checkbox").hasClass("selected")) {
             table.rows().deselect();
             $("th.select-checkbox").removeClass("selected");
+            $('.js-toggle-check-all').removeAttr('checked')
         } else {
             table.rows().select();
             $("th.select-checkbox").addClass("selected");
+            $('.js-toggle-check-all').attr('checked','checked')
         }
     }).on("select deselect", function() {
         ("Some selection or deselection going on")
@@ -229,8 +231,10 @@ $(document).ready(function() {
             selected: true
         }).count() !== table.rows().count()) {
             $("th.select-checkbox").removeClass("selected");
+            $('.js-toggle-check-all').removeAttr('checked')
         } else {
             $("th.select-checkbox").addClass("selected");
+            $('.js-toggle-check-all').removeAttr('checked')
         }
     });
     /* Select on click */

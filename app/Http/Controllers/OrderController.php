@@ -22,7 +22,30 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::orderBy('updated_at','desc');
+
+        if(request()->tracking_no)
+        {
+            $orders = $orders->where('tracking_no', request()->tracking_no);
+        }
+        if(request()->status)
+        {
+            $orders = $orders->where('status', request()->status);
+        }
+        if(request()->cash_on_delivery)
+        {
+            $orders = $orders->where('cash_on_delivery', '<=',request()->cash_on_delivery);
+        }
+        /*if(request()->date)
+        {
+            list($from, $to) = explode(' to ', request()->date);
+            $from = date('Y-m-d H:i:s',strtotime($from));
+            $to = date('Y-m-d H:i:s',strtotime($to));
+            $orders = $orders->whereBetween('updated_at', [$from, $to]);
+        }*/
+
+        $orders = $orders->get();
+        $max_order = Order::max('cash_on_delivery');
         $status = ['New','Awaiting your action','On hold','Canceled','Rescheduled','Out for delivery','Completed','Return to origin','Cannot be delivered'];
         $types  = [
             'Deliver' => [
@@ -50,7 +73,7 @@ class OrderController extends Controller
                 'color'         => 'accent',
                 ],
         ];
-        return view('orders.index',compact('orders','status','types'));
+        return view('orders.index',compact('orders','status','types','max_order'));
     }
 
     /**
@@ -99,10 +122,13 @@ class OrderController extends Controller
 
     public function airwaybell(Order $order)
     {
-        $order = Order::findOrFail($order);
+        //$order = Order::findOrFail($order);
         $qr = QrCode::generate(route('orders.show',$order->id));
-        $html = view('orders.pdf', compact('order','qr'))->render();
-        //return view('orders.pdf',compact('qr','order'));
+        //$pdf = PDF::loadView('orders.pdf', $order);
+        //return $pdf->download('invoice.pdf');
+        //PDF::loadHTML($html)->setPaper('a4')->setOrientation('landscape')->setOption('margin-bottom', 0)->save('myfile.pdf')
+        //$html = view('orders.pdf', compact('order','qr'))->render();
+        return view('orders.pdf',compact('qr','order'));
         //$html = view('orders.show', compact('order','qr'))->render();
         //return @\PDF::loadHTML($data, 'utf-8')->stream(); // to debug + add the follosing headers in controller ( TOP LEVEL )
         //$pdf = PDF::loadHTML($html);

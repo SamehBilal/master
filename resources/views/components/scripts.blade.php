@@ -41,6 +41,8 @@
 
 <!-- Chart.js Samples -->
 <script src="{{ asset('backend/js/page.ecommerce.js') }}"></script>
+<script src="{{ asset('backend/js/page.hr-dashboard.js') }}"></script>
+<script src="{{ asset('backend/js/page.employees.js') }}"></script>
 
 <!-- List.js -->
 <script src="{{ asset('backend/vendor/list.min.js') }}"></script>

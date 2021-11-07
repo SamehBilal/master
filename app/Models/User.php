@@ -68,6 +68,11 @@ class User extends Authenticatable
         return $this->hasMany(address::class);
     }
 
+    public function location()
+    {
+        return $this->hasMany(Location::class);
+    }
+
     public function getAvatarlinkAttribute()
     {
         return "/storage/users/{$this->id}/{$this->avatar}";
