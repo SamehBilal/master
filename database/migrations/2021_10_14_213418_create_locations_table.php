@@ -18,8 +18,8 @@ class CreateLocationsTable extends Migration
             $table->string('name');
             $table->string('street')->nullable();
             $table->string('building',20)->nullable();
-            $table->string('floor',5)->nullable();
-            $table->string('apartment',5)->nullable();
+            $table->string('floor',20)->nullable();
+            $table->string('apartment',20)->nullable();
             $table->string('landmarks')->nullable();
             $table->unsignedBigInteger('country_id')->nullable();
             $table->unsignedBigInteger('state_id')->nullable();

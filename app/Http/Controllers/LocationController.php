@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
+use App\Models\Country;
 use App\Models\Location;
+use App\Models\State;
+use App\Traits\AjaxSelect;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
 {
+    use AjaxSelect;
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,8 @@ class LocationController extends Controller
      */
     public function index()
     {
-        //
+        $locations = Location::all();
+        return view('setup.locations.index',compact('locations'));
     }
 
     /**
@@ -24,8 +30,11 @@ class LocationController extends Controller
      */
     public function create()
     {
-        //
-    }
+        $countries  = Country::all();
+        $states     = State::where('country_id',64)->get();
+        $cities     = City::all();
+        return view('setup.locations.create',compact('countries','states','cities'));   
+     }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +44,23 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, Location::rules());
+
+        $location = Location::create([
+            'name'                  => $request->name,
+            'street'                => $request->street,
+            'building'              => $request->building,
+            'floor'                 => $request->floor,
+            'apartment'             => $request->apartment,
+            'landmarks'             => $request->landmarks,
+            'country_id'            => $request->country_id,
+            'state_id'              => $request->state_id,
+            'city_id'               => $request->city_id,
+            'zone_id'               => $request->zone_id,
+            'user_id'               => $request->user_id,
+        ]);
+
+        return redirect()->route('locations.show',$location->id)->with('success','Data created successfully');
     }
 
     /**
@@ -46,7 +71,10 @@ class LocationController extends Controller
      */
     public function show(Location $location)
     {
-        //
+        $countries  = Country::all();
+        $states     = State::where('country_id',$location->country_id)->get();
+        $cities     = City::where('state_id',$location->state_id)->get();
+        return view('setup.locations.edit',compact('location','countries','states','cities'));
     }
 
     /**
@@ -57,7 +85,10 @@ class LocationController extends Controller
      */
     public function edit(Location $location)
     {
-        //
+        $countries  = Country::all();
+        $states     = State::all();
+        $cities     = City::all();
+        return view('setup.locations.edit',compact('location','countries','states','cities'));
     }
 
     /**
@@ -69,7 +100,23 @@ class LocationController extends Controller
      */
     public function update(Request $request, Location $location)
     {
-        //
+        $this->validate($request, Location::rules($update = true, $location->id));
+
+        $location->update([
+            'name'                  => $request->name,
+            'street'                => $request->street,
+            'building'              => $request->building,
+            'floor'                 => $request->floor,
+            'apartment'             => $request->apartment,
+            'landmarks'             => $request->landmarks,
+            'country_id'            => $request->country_id,
+            'state_id'              => $request->state_id,
+            'city_id'               => $request->city_id,
+            'zone_id'               => $request->zone_id,
+            'user_id'               => $request->user_id,
+        ]);
+
+        return redirect()->route('locations.index')->with('success','Data updated successfully');
     }
 
     /**
@@ -80,6 +127,7 @@ class LocationController extends Controller
      */
     public function destroy(Location $location)
     {
-        //
+        Location::destroy($location->id);
+        return redirect()->route('locations.index')->with('success','Data deleted successfully');
     }
 }

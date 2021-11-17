@@ -16,10 +16,10 @@ class CreateUserCategoriesTable extends Migration
         Schema::create('user_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->longText('description')->nullable();
             $table->string('model');
-            $table->string('icon')->nullable()->default('user_category.png');
+            $table->string('icon')->default('user_category.png');
             $table->set('status',['active','inactive'])->nullable();
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }

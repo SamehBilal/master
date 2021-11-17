@@ -37,6 +37,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('user-categories',\App\Http\Controllers\UserCategoryController::class); //User Categories
     Route::resource('zones',\App\Http\Controllers\ZoneController::class); //Zone Categories
     Route::resource('locations',\App\Http\Controllers\LocationController::class); //Location
+    Route::get('location-states',[\App\Http\Controllers\LocationController::class,'get_state'])->name('locations.states'); //Get States Ajax
+    Route::get('location-cities',[\App\Http\Controllers\LocationController::class,'get_city'])->name('locations.cities'); //Get Cities Ajax
+
 
     Route::group(['prefix' => 'dashboard', 'as' => 'dashboard' . '.'], function () {
         //

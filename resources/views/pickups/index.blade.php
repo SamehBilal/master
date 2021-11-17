@@ -170,15 +170,15 @@
                                     <div class="media flex-nowrap align-items-center" style="white-space: nowrap;">
                                         <div class="avatar avatar-sm mr-8pt">
 
-                                            <span class="avatar-title rounded-circle">{{ initials($pickup->customer->user->full_name) }}</span>
+                                            <span class="avatar-title rounded-circle">{{ $pickup->customer ? initials($pickup->customer->user->full_name):'' }}</span>
 
                                         </div>
                                         <div class="media-body">
 
                                             <div class="d-flex flex-column">
-                                                <p class="mb-0"><strong class="js-lists-values-name">{{ $pickup->customer->user->full_name }}</strong></p>
-                                                <small class="js-lists-values-email text-50">{{ $pickup->customer->status }}</small>
-                                                <span class="indicator-line rounded {{ $pickup->customer->status == 'active' ? 'bg-success':'bg-danger' }}"></span>
+                                                <p class="mb-0"><strong class="js-lists-values-name">{{ $pickup->customer ? $pickup->customer->user->full_name:'' }}</strong></p>
+                                                <small class="js-lists-values-email text-50">{{ $pickup->customer ? $pickup->customer->status:'' }}</small>
+                                                <span class="indicator-line rounded @if($pickup->customer) {{ $pickup->customer->status == 'active' ? 'bg-success':'bg-danger' }} @endif"></span>
                                             </div>
 
                                         </div>
@@ -191,7 +191,7 @@
                                          style="white-space: nowrap;">
                                         <div class="avatar avatar-sm mr-8pt">
                                                 <span class="avatar-title rounded bg-primary text-black-100">
-                                                     <img src="{{ asset('backend/images/icon/'.$types[$pickup->type]['image']) }}"
+                                                     <img src="{{ asset('backend/images/icon/') }}"
                                                           alt="Avatar"
                                                           class="avatar-img ">
                                                 </span>
@@ -199,7 +199,7 @@
                                         <div class="media-body">
                                             <div class="d-flex flex-column">
                                                 <small class=""><strong>{{ $pickup->type }}</strong></small>
-                                                <span class="indicator-line rounded bg-{{ $types[$pickup->type]['color'] }}"></span>
+                                                <span class="indicator-line rounded bg-"></span>
                                             </div>
                                         </div>
                                     </div>

@@ -14,7 +14,8 @@ class UserCategoryController extends Controller
      */
     public function index()
     {
-        return view('users.categories.index');
+        $categories = UserCategory::all();
+        return view('users.categories.index',compact('categories'));
     }
 
     /**
@@ -56,7 +57,7 @@ class UserCategoryController extends Controller
      */
     public function show(UserCategory $userCategory)
     {
-        return view('users.categories.show',compact('userCategory'));
+        return view('users.categories.edit',compact('userCategory'));
     }
 
     /**

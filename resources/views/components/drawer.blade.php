@@ -128,9 +128,9 @@
                         Currencies
                     </a>
                 </li>
-                <li class="sidebar-menu-item {{ set_active(['zones*'])}}">
+                <li class="sidebar-menu-item {{ set_active(['locations*'])}}">
                     <a class="sidebar-menu-button"
-                       href="{{ route('zones.index') }}">
+                       href="{{ route('locations.index') }}">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">map</span>
                         Locations
                     </a>

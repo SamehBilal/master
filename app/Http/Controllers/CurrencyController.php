@@ -14,7 +14,8 @@ class CurrencyController extends Controller
      */
     public function index()
     {
-        return view('setup.currencies.index');
+        $currencies = Currency::all();
+        return view('setup.currencies.index',compact('currencies'));
     }
 
     /**
@@ -53,7 +54,7 @@ class CurrencyController extends Controller
      */
     public function show(Currency $currency)
     {
-        return view('setup.currencies.show',compact('currency'));
+        return view('setup.currencies.edit',compact('currency'));
     }
 
     /**
