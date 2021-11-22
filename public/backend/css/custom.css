@@ -4,3 +4,7 @@
     letter-spacing: 1.65em;
     color: #000;
 }
+
+.hidden{
+    display: none;
+}

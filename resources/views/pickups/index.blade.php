@@ -47,6 +47,20 @@
                             </div>
                             <div class="col-sm-auto">
                                 <div class="form-group">
+                                    <label for="filter_category">Locations</label><br>
+                                    <select id="filter_category"
+                                            class="custom-select"
+                                            name="location"
+                                            style="width: 200px;">
+                                        <option value="" {{ old('location') == '' ?'selected':'' }}>Select Location</option>
+                                        @foreach($locations as $location)
+                                            <option value="{{ $location->id }}"  {{ isset($_GET['location']) &&  $_GET['location'] == $location->id ? 'selected':''}}>{{ $location->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-auto">
+                                <div class="form-group">
                                     <label for="filter_category">Status</label><br>
                                     <select id="filter_category"
                                             class="custom-select"
@@ -61,12 +75,14 @@
                             </div>
                              <div class="col-sm-auto">
                                  <div class="form-group">
-                                     <label for="filter_stock">In stock?</label>
+                                     <label for="filter_stock">One Time?</label>
                                      <div class="custom-control custom-checkbox mt-sm-2">
                                          <input type="checkbox"
                                                 class="custom-control-input"
                                                 id="filter_stock"
-                                                checked="">
+                                                name="type"
+                                                value="One Time"
+                                                {{ isset($_GET['type']) &&  $_GET['type'] == 'One Time'?'checked=""':'' }}>
                                          <label class="custom-control-label"
                                                 for="filter_stock">Yes</label>
                                      </div>

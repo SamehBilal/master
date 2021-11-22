@@ -299,3 +299,29 @@ function openFullscreen() {
         document.msExitFullscreen();
     }
 }
+
+
+/* Display */
+function display(module) {
+    var modules = module+'s';
+    $('.'+modules).css('display','block');
+    $('.'+module).css('display','none');
+    $('#'+module+'_id').val('');
+}
+
+/* Invert Display */
+function displayInvert(module) {
+    var modules = module+'s';
+    $('.'+modules).css('display','none');
+    $('.'+module).css('display','block');
+    $('#'+module+'_id').val('');
+}
+
+/* Daily vs Weekly */
+function handleClick1() {
+    $('.multiple-select').css('display','none');
+}
+
+function handleClick2() {
+    $('.multiple-select').css('display','block');
+}

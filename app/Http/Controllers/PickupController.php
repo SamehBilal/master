@@ -31,13 +31,18 @@ class PickupController extends Controller
         {
             $pickups = $pickups->where('status', request()->status);
         }
-        if(request()->cash_on_delivery)
+        if(request()->location)
         {
-            $pickups = $pickups->where('cash_on_delivery', '<=',request()->cash_on_delivery);
+            $pickups = $pickups->where('location_id', request()->location);
         }
-        $pickups = $pickups->get();
-        $status = ['Created','Out for pickup'];
-        return view('pickups.index',compact('pickups','status'));
+        if(request()->type)
+        {
+            $pickups = $pickups->where('type', request()->type);
+        }
+        $pickups    = $pickups->get();
+        $status     = ['Created','Out for pickup'];
+        $locations  = Location::all();
+        return view('pickups.index',compact('pickups','status','locations'));
     }
 
     /**
@@ -50,7 +55,7 @@ class PickupController extends Controller
         $locations  = Location::all();
         $contacts   = Contact::all();
         $countries  = Country::all();
-        $states     = State::all();
+        $states     = State::where('country_id',64)->get();
         $cities     = City::all();
         return view('pickups.create',compact('locations','contacts','countries','states','cities'));
     }
@@ -65,14 +70,39 @@ class PickupController extends Controller
     {
         $this->validate($request, Pickup::rules());
 
+        if($request->location_id == "")
+        {
+            $location = Location::create([
+                'name'                  => $request->name,
+                'street'                => $request->street,
+                'building'              => $request->building,
+                'floor'                 => $request->floor,
+                'apartment'             => $request->apartment,
+                'landmarks'             => $request->landmarks,
+                'country_id'            => $request->country_id,
+                'state_id'              => $request->state_id,
+                'city_id'               => $request->city_id,
+            ]);
+        }
+
+        if(!$request->contact_id == "")
+        {
+            $contact = Contact::create([
+                'contact_name'                  => $request->contact_name,
+                'contact_job_title'             => $request->contact_job_title,
+                'contact_email'                 => $request->contact_email,
+                'contact_phone'                 => $request->contact_phone,
+            ]);
+        }
+
         $pickup = Pickup::create([
             'pickup_id'             => $request->pickup_id,
             'type'                  => $request->type,
             'scheduled_date'        => $request->scheduled_date,
             'status'                => $request->status,
             'notes'                 => $request->notes,
-            'contact_id'            => $request->contact_id,
-            'location_id'           => $request->location_id,
+            'contact_id'            => ($request->contact_id == "") ? $contact:$request->contact_id,
+            'location_id'           => ($request->location_id = "") ? $location:$request->location_id,
         ]);
 
         return redirect()->route('pickups.show',$pickup->id)->with('success','Data created successfully');
@@ -100,7 +130,7 @@ class PickupController extends Controller
         $locations  = Location::all();
         $contacts   = Contact::all();
         $countries  = Country::all();
-        $states     = State::all();
+        $states     = State::where('country_id',64)->get();
         $cities     = City::all();
         return view('pickups.edit',compact('pickup','locations','contacts','countries','states','cities'));
     }
