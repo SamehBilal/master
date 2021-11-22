@@ -22,29 +22,6 @@
     New Location
 @endsection
 
-@section('extra_styles')
-    <style>
-        /* table.dataTable tbody td.select-checkbox:before, table.dataTable tbody th.select-checkbox:before{
-             content: " "!important;
-             margin-top: -2px!important;
-             margin-left: -6px!important;
-             border: 1px solid red!important;
-             border-radius: 3px!important;
-         }
-         table.dataTable tr.selected td.select-checkbox:after, table.dataTable tr.selected th.select-checkbox:after{
-             content: "x"!important;
-             font-size: 20px!important;
-             margin-top: -19px!important;
-             margin-left: -6px!important;
-             text-align: center!important;
-             text-shadow: 1px 1px #b0bed9, -1px -1px #b0bed9, 1px -1px #b0bed9, -1px 1px #b0bed9!important;
-         }
-         table.dataTable tbody td.select-checkbox, table.dataTable tbody th.select-checkbox {
-             position: static !important;
-         }*/
-    </style>
-@endsection
-
 @section('main_content')
     <div class="container page__container">
         <div class="page-section">
@@ -159,19 +136,13 @@
 
                                     <div class="media flex-nowrap align-items-center"
                                          style="white-space: nowrap;">
-                                        <div class="avatar avatar-sm mr-8pt">
-
-                                            <img src="{{ asset('backend/images/people/110/guy-3.jpg') }}"
-                                                 alt="Avatar"
-                                                 class="avatar-img rounded-circle">
-
-                                        </div>
+                                        
                                         <div class="media-body">
 
                                             <div class="d-flex align-items-center">
                                                 <div class="flex d-flex flex-column">
                                                     <p class="mb-0"><strong class="">{{ $location->name }}</strong></p>
-                                                    <small class="">{{ $location->name }}</small>
+                                                   
                                                 </div>
                                                 {{--<div class="d-flex align-items-center ml-24pt">
                                                     <i class="material-icons text-20 icon-16pt">message</i>
@@ -186,18 +157,16 @@
 
                                 <td>
 
-                                    <div class="media flex-nowrap align-items-center"
-                                         style="white-space: nowrap;">
-                                        <div class="avatar avatar-sm mr-8pt">
-                                            <span class="avatar-title rounded bg-warning text-black-100">{{ $location->UserCategory ? initials($location->UserCategory->name):''  }}</span>
+                                    <div class="rounded mr-12pt z-0 o-hidden">
+                                        <div class="overlay">
+                                            <img src="{{ asset('backend/images/icon/map.png') }}"
+                                                width="40"
+                                                height="40"
+                                                alt="Angular"
+                                                class="rounded">
+                                            <small class="ml-4pt"><strong class="">{{ $location->apartment.', '.$location->building.', '.$location->street}}</strong></small>
                                         </div>
-                                        <div class="media-body">
-                                            <div class="d-flex flex-column">
-                                                <small class=""><strong>{{ $location->UserCategory ? $location->UserCategory->name:'' }}</strong></small>
-                                                <small class=" text-50">{{ $location->UserCategory ? $location->UserCategory->status:'' }}</small>
-                                                <span class="indicator-line rounded {{ $location->UserCategory == 'active' ? 'bg-success':'bg-danger' }}"></span>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
 
                                 </td>

@@ -20,7 +20,7 @@ class Contact extends Model
     {
         $common = [
             'contact_name'          => "required|max:40",
-            'contact_email'         => "nullable|email|regex:/(.+)@(.+)\.(.+)/i,contact_email,$id",
+            'contact_email'         => "nullable|email|regex:/(.+)@(.+)\.(.+)/i|unique:contacts,contact_email,$id",
             'contact_phone'         => "nullable|numeric|digits_between:1,16",
         ];
 

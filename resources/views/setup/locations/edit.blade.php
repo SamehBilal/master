@@ -35,8 +35,9 @@
                 Location Information
             </div>
         </div>
-        <form method="POST" action="{{ route('locations.index') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('locations.update',$location->id) }}" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="card">
                 <div class="card-body ">
                     <div class="row">

@@ -17,14 +17,19 @@
 
         $words = explode(" ", $nameWithoutPrefix);
 
-        //this will give you the first word of the $words array , which is the first name
-        $firtsName = reset($words);
+        if($nameWithoutPrefix === reset($words))
+        {
+            echo substr(reset($words),0,1); // this will echo the first letter of your name
+        }else{
+            //this will give you the first word of the $words array , which is the first name
+            $firtsName = reset($words);
 
-        //this will give you the last word of the $words array , which is the last name
-        $lastName  = end($words);
+            //this will give you the last word of the $words array , which is the last name
+            $lastName  = end($words);
 
-        echo substr($firtsName,0,1); // this will echo the first letter of your first name
-        echo substr($lastName ,0,1); // this will echo the first letter of your last name
+            echo substr($firtsName,0,1); // this will echo the first letter of your first name
+            echo substr($lastName ,0,1); // this will echo the first letter of your last name
+        }
     }
 
     /* Random Color*/

@@ -15,7 +15,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('users.customers.contacts.index');
+        $contacts = Contact::all();
+        return view('users.customers.contacts.index',compact('contacts'));
     }
 
     /**
@@ -26,7 +27,7 @@ class ContactController extends Controller
     public function create()
     {
         $customers = Customer::all();
-        return view('users.customers.contacts.index',compact('customers'));
+        return view('users.customers.contacts.create',compact('customers'));
     }
 
     /**
@@ -57,7 +58,7 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        return view('users.customers.contacts.show',compact('contact'));
+        return view('users.customers.contacts.edit',compact('contact'));
     }
 
     /**

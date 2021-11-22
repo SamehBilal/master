@@ -13,9 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/',[\App\Http\Controllers\WebsiteRoutesController::class,'index'])->name('website.index');
+
+/* Route::get('/', function () {
     return view('coming-soon');
-});
+}); */
 
 Route::get('/dashboard', function () {
     return view('dashboard.admin');
@@ -39,6 +41,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('locations',\App\Http\Controllers\LocationController::class); //Location
     Route::get('location-states',[\App\Http\Controllers\LocationController::class,'get_state'])->name('locations.states'); //Get States Ajax
     Route::get('location-cities',[\App\Http\Controllers\LocationController::class,'get_city'])->name('locations.cities'); //Get Cities Ajax
+    Route::resource('contacts',\App\Http\Controllers\ContactController::class); //Contact
+    Route::get('import',[\App\Http\Controllers\ExcelController::class,'import'])->name('import'); //import
+    Route::get('export',[\App\Http\Controllers\ExcelController::class,'export'])->name('export'); //export
 
 
     Route::group(['prefix' => 'dashboard', 'as' => 'dashboard' . '.'], function () {

@@ -36,13 +36,13 @@
                         <div class="row">
                             <div class="col-sm-auto">
                                 <div class="form-group">
-                                    <label for="filter_name">Tracking No.</label>
-                                    <input id="filter_name"
+                                    <label for="pickup_id">Pickup ID</label>
+                                    <input id="pickup_id"
                                            type="text"
-                                           name="tracking_no"
-                                           value="{{ isset($_GET['tracking_no']) &&  $_GET['tracking_no'] >= 0?$_GET['tracking_no']:old('tracking_no') }}"
+                                           name="pickup_id"
+                                           value="{{ isset($_GET['pickup_id']) &&  $_GET['pickup_id'] >= 0?$_GET['pickup_id']:old('pickup_id') }}"
                                            class="form-control"
-                                           placeholder="Search by Tracking No.">
+                                           placeholder="Search by Pickup ID">
                                 </div>
                             </div>
                             <div class="col-sm-auto">
@@ -54,7 +54,7 @@
                                             style="width: 200px;">
                                         <option value="" {{ old('status') == '' ?'selected':'' }}>All Status</option>
                                         @foreach($status as $item)
-                                            <option value="{{ $item }}">{{ $item }}</option>
+                                            <option value="{{ $item }}"  {{ isset($_GET['status']) &&  $_GET['status'] == $item ? 'selected':''}}>{{ $item }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -143,47 +143,33 @@
                             <tr class="">
 
                                 <td class="pr-0">
-                                    {{--<div class="custom-control custom-checkbox">
-                                        <input type="checkbox" id="checkItem" class="checkItem " name="checkItem"  />
-                                        <label class=""
-                                               for="checkItem"><span class="text-hide">Check</span></label>
-                                    </div>--}}
-
-                                    <div class="custom-control custom-checkbox">
-                                        {{--<input type="checkbox"
-                                               class="custom-control-input "
-                                               checked=""
-                                               id="customCheck1_5">
-                                        <label class="custom-control-label"
-                                               for="customCheck1_5"><span class="text-hide">Check</span></label>--}}
-                                    </div>
+                                    <div class="custom-control custom-checkbox"></div>
                                 </td>
 
                                 <td></td>
 
                                 <td>
                                     <a href="{{ route('orders.show',$pickup->id) }}"
-                                       class="chip text-underline">{{ $pickup->tracking_no }}</a>
+                                       class="chip text-underline">{{ $pickup->pickup_id }}</a>
                                 </td>
 
                                 <td>
-                                    <div class="media flex-nowrap align-items-center" style="white-space: nowrap;">
+                                    <div class="media flex-nowrap align-items-center"
+                                    style="white-space: nowrap;">
                                         <div class="avatar avatar-sm mr-8pt">
-
-                                            <span class="avatar-title rounded-circle">{{ $pickup->customer ? initials($pickup->customer->user->full_name):'' }}</span>
-
+                                                <span class="avatar-title rounded bg-transparent text-black-100">
+                                                        <img src="{{ asset('backend/images/icon/map.png') }}"
+                                                            alt="Avatar"
+                                                            class="avatar-img ">
+                                                </span>
                                         </div>
                                         <div class="media-body">
-
                                             <div class="d-flex flex-column">
-                                                <p class="mb-0"><strong class="js-lists-values-name">{{ $pickup->customer ? $pickup->customer->user->full_name:'' }}</strong></p>
-                                                <small class="js-lists-values-email text-50">{{ $pickup->customer ? $pickup->customer->status:'' }}</small>
-                                                <span class="indicator-line rounded @if($pickup->customer) {{ $pickup->customer->status == 'active' ? 'bg-success':'bg-danger' }} @endif"></span>
+                                                <small class=""><strong>{{ $pickup->location ? $pickup->location->name:'' }}</strong></small>
+                                                <span class=" rounded ">{{ $pickup->location ? $pickup->location->apartment.$pickup->location->building.$pickup->location->street:'' }}</span>
                                             </div>
-
                                         </div>
                                     </div>
-
                                 </td>
 
                                 <td>
@@ -191,15 +177,15 @@
                                          style="white-space: nowrap;">
                                         <div class="avatar avatar-sm mr-8pt">
                                                 <span class="avatar-title rounded bg-primary text-black-100">
-                                                     <img src="{{ asset('backend/images/icon/') }}"
+                                                     <img src="{{ asset('backend/images/icon/fast-delivery.png') }}"
                                                           alt="Avatar"
                                                           class="avatar-img ">
                                                 </span>
                                         </div>
                                         <div class="media-body">
                                             <div class="d-flex flex-column">
-                                                <small class=""><strong>{{ $pickup->type }}</strong></small>
-                                                <span class="indicator-line rounded bg-"></span>
+                                                <small class=""><strong>{{ date("F j, Y", strtotime($pickup->scheduled_date)) }}</strong></small>
+                                                <span class="">{{ date("g:i a", strtotime($pickup->scheduled_date)) }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -207,7 +193,7 @@
 
                                 <td>
                                     <div href="#"
-                                         class="chip chip-outline-secondary ">{{ $pickup->cash_on_delivery }} EGP</div>
+                                         class="chip chip-outline-secondary ">{{ $pickup->type }}</div>
                                 </td>
 
                                 <td>

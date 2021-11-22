@@ -38,8 +38,8 @@ class CustomerController extends Controller
     {
         $categories = UserCategory::all();
         $currencies = Currency::all();
-        $cities = State::where('country_id',64)->get();
-        //$states = State::where('country_id',64);
+        $states     = State::all();
+        $cities     = City::all();
         $countries = Country::all();
         return view('users.customers.create',compact('currencies','categories','countries','cities'));
     }
@@ -146,8 +146,8 @@ class CustomerController extends Controller
     {
         $categories = UserCategory::all();
         $currencies = Currency::all();
-        $cities = State::where('country_id',64)->get();
-        //$cities = City::all();
+        $states     = State::all();
+        $cities     = City::all();
         $countries = Country::all();
         return view('users.customers.edit',compact('customer','categories','currencies','cities','countries'));
     }

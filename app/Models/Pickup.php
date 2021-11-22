@@ -18,4 +18,19 @@ class Pickup extends Model
     {
         return $this->hasOne(Location::class  , "id" , "location_id");
     }
+
+    public static function rules($update = false, $id = null)
+    {
+        $common = [
+            'pickup_id'          => "required|max:40|unique:pickups,pickup_id,$id",
+        ];
+
+        if ($update) {
+            return $common;
+        }
+
+        return array_merge($common, [
+            'pickup_id'          => "required|max:40|unique:currencies",
+        ]);
+    }
 }

@@ -4,6 +4,8 @@ namespace App\Imports;
 
 use App\Models\Order;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+
 
 class OrderImport implements ToModel
 {
@@ -17,7 +19,7 @@ class OrderImport implements ToModel
         return new Order([
             'name'     => $row[0],
             'email'    => $row[1],
-            'password' => Hash::make($row[2])
+            //'name'     => $row['name'],
         ]);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
+use App\Models\Contact;
 use App\Models\Country;
 use App\Models\Location;
 use App\Models\Order;
@@ -84,11 +86,11 @@ class OrderController extends Controller
     public function create()
     {
         $pickups = Pickup::all();
-        $cities = State::where('country_id',64)->get();
-        //$states = State::where('country_id',64);
+        $states = State::all();
+        $cities = City::all();
         $countries = Country::all();
         $locations = Location::all();
-        return view('orders.create',compact('pickups','cities','countries','locations'));
+        return view('orders.create',compact('pickups','cities', 'states','countries','locations'));
     }
 
     public function multi()
@@ -104,7 +106,49 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, Order::rules());
+
+        try {
+            \DB::transaction(function () use(/* $data, */ $request) {
+
+                $order = Order::create([
+                    'pickup_id'             => $request->pickup_id,
+                    'type'                  => $request->type,
+                    'scheduled_date'        => $request->scheduled_date,
+                    'status'                => $request->status,
+                    'notes'                 => $request->notes,
+                    'contact_id'            => $request->contact_id,
+                    'location_id'           => $request->location_id,
+                ]);
+
+                if(!$request->contact_id){
+                    $contact = Contact::create([
+                        'contact_name'          => $request->contact_name,
+                        'contact_job_title'     => $request->contact_job_title,
+                        'contact_email'         => $request->contact_email,
+                        'contact_phone'         => $request->contact_phone,
+                    ]);
+                }
+
+                for($j=0;$j < count($request->street);$j++){
+                    $user->address()->create([
+                        'street'                => $request->street[$j],
+                        'building'              => $request->building[$j],
+                        'floor'                 => $request->floor[$j],
+                        'apartment'             => $request->apartment[$j],
+                        'country_id'            => $request->country_id[$j],
+                        'city_id'               => $request->city_id[$j],
+                        /*'zone_id'               => $request->zone_id[$j],*/
+                    ]);
+                }
+
+                $user->assignRole('customer');
+            });
+        } catch (\Exception $ex) {
+            return redirect()->back()->withErrors($ex->getMessage());
+        }
+
+        return redirect()->route('orders.show',$order->id)->with('success','Data created successfully');
     }
 
     /**
@@ -150,7 +194,12 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        $pickups = Pickup::all();
+        $states = State::all();
+        $cities = City::all();
+        $countries = Country::all();
+        $locations = Location::all();
+        return view('orders.edit',compact('order','pickups','cities','states','countries','locations'));
     }
 
     /**
@@ -162,7 +211,19 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $this->validate($request, Order::rules($update = true, $order->id));
+
+        $order->update([
+            'pickup_id'             => $request->pickup_id,
+            'type'                  => $request->type,
+            'scheduled_date'        => $request->scheduled_date,
+            'status'                => $request->status,
+            'notes'                 => $request->notes,
+            'contact_id'            => $request->contact_id,
+            'location_id'           => $request->location_id,
+        ]);
+
+        return redirect()->route('orders.index')->with('success','Data updated successfully');
     }
 
     /**
@@ -173,6 +234,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        Order::destroy($order->id);
+        return redirect()->route('orders.index')->with('success','Data deleted successfully');
     }
 }

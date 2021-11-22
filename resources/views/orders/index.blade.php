@@ -54,7 +54,7 @@
                                             style="width: 200px;">
                                         <option value="" {{ old('status') == '' ?'selected':'' }}>All Status</option>
                                         @foreach($status as $item)
-                                            <option value="{{ $item }}">{{ $item }}</option>
+                                            <option value="{{ $item }}" {{ isset($_GET['status']) &&  $_GET['status'] == $item ? 'selected':''}}>{{ $item }}</option>
                                         @endforeach
                                     </select>
                                 </div>
