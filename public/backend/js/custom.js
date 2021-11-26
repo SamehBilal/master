@@ -325,3 +325,84 @@ function handleClick1() {
 function handleClick2() {
     $('.multiple-select').css('display','block');
 }
+
+/* Order type change */
+$('a[data-toggle="tab"]').on( 'shown.bs.tab', function () {
+    var value = $(this).attr('data-info');
+    $('input[name="type"]').val(value);
+    if( value == 'Return' || value == 'Cash Collection')
+    {
+        $('.pickups_card').addClass('hidden');
+    }else{
+        $('.pickups_card').removeClass('hidden');
+    }
+} );
+
+$('input[name="collect_cash"]').on('change',function () {
+    var value = $(this).val();
+    if(value == 'collect cash')
+    {
+        $('#collect_cash_small').text('Droplin courier shall receive this amount from your customer.')
+    }else if(value == 'refund cash'){
+        $('#collect_cash_small').text('Droplin courier shall pay this amount to your customer.')
+    }
+})
+
+$('input[name="with_refund"]').on('change',function () {
+    var value = $(this).val();
+    if(value == 'with refund')
+    {
+        $('#refund_amount').attr('disabled',false)
+    }else if(value == 'without refund'){
+        $('#refund_amount').attr('disabled',true).val('')
+    }
+})
+
+$('input[name="with_cash_difference"]').on('change',function () {
+    var value = $(this).val();
+    if(value == 'with cash difference')
+    {
+        $('#cash_exchange_amount').attr('disabled',false)
+    }else if(value == 'without cash difference'){
+        $('#cash_exchange_amount').attr('disabled',true).val('')
+    }
+})
+
+$('input[name="with_cash_collection"]').on('change',function () {
+    var value = $(this).val();
+    if(value == 'with cash collection')
+    {
+        $('#cash_on_delivery').attr('disabled',false)
+    }else if(value == 'without cash collection'){
+        $('#cash_on_delivery').attr('disabled',true).val('')
+    }
+})
+
+$('input[name="radio-stacked"]').on('change',function () {
+    var value = $(this).val();
+    if(value == 'parcel')
+    {
+        $('#allow_open_packages').removeClass('hidden');
+        $('#package_description').attr('placeholder','Product code - Color - Size');
+        $('#bulky_type').addClass('hidden');
+    }else if(value == 'document'){
+        $('#allow_open_packages').removeClass('hidden');
+        $('#package_description').attr('placeholder','Contract - Credit Card - ATM Card');
+        $('#bulky_type').addClass('hidden');
+    }else if(value == 'bulky'){
+        $('#allow_open_packages').addClass('hidden');
+        $('#package_description').attr('placeholder','Microwave, Fan, Carpet, Beanbags, side tables, etc...');
+        $('#bulky_type').removeClass('hidden');
+    }
+})
+
+
+$('input[name="light_bulky"]').on('change',function () {
+    var value = $(this).val();
+    if(value == 'light bulky')
+    {
+        $('#package_description').attr('placeholder','Microwave, Fan, Carpet, Beanbags, side tables, etc...')
+    }else if(value == 'heavy bulky'){
+        $('#package_description').attr('placeholder','AC, Refrigerator, washing machine, sofa bed, dining table, bedroom, etc...')
+    }
+})

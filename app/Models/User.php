@@ -37,6 +37,7 @@ class User extends Authenticatable
         'other_phone',
         'status',
         'bio',
+        'user_category_id',
     ];
 
     /**
@@ -71,6 +72,11 @@ class User extends Authenticatable
     public function location()
     {
         return $this->hasMany(Location::class);
+    }
+
+    public function UserCategory()
+    {
+        return $this->hasOne(UserCategory::class , "id" , "user_category_id");
     }
 
     public function getAvatarlinkAttribute()

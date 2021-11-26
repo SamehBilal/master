@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserCategory;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -14,7 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.all.index');
+        $users = User::all();
+        $categories = UserCategory::where('model','App\Models\Customer')->get();
+        return view('users.index',compact('categories','users'));
     }
 
     /**
@@ -24,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.all.create');
+        return view('users.create');
     }
 
     /**
@@ -68,7 +71,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.all.show',compact('user'));
+        return view('users.show',compact('user'));
     }
 
     /**
@@ -79,7 +82,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.all.edit',compact('user'));
+        return view('users.edit',compact('user'));
     }
 
     /**

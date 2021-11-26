@@ -25,7 +25,7 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = Customer::all();
-        $categories = UserCategory::all();
+        $categories = UserCategory::where('model','App\Models\Customer')->get();
         return view('users.customers.index',compact('customers','categories'));
     }
 
