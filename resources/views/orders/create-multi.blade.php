@@ -34,8 +34,7 @@
                     <div class="page-separator">
                         <div class="page-separator__text">Drag &amp; Drop Upload</div>
                     </div>
-                   {{--  <p class="card-subtitle text-70 mb-16pt mb-lg-0">Drag and drop file uploads with image previews powered by Dropzone.js. Please read the <a href="http://www.dropzonejs.com/"
-                                                                                                                                                               target="_blank">official plugin documentation</a> for a full list of options.</p>
+                   {{--  <p class="card-subtitle text-70 mb-16pt mb-lg-0">Drag and drop file uploads with image previews powered by Dropzone.js. Please read the <a href="http://www.dropzonejs.com/"                                                                                                                                        target="_blank">official plugin documentation</a> for a full list of options.</p>
                  --}}</div>
                 <div class="col-lg-8 d-flex align-items-center">
                     <div class="flex"

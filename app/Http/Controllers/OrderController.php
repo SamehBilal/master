@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\Models\Contact;
 use App\Models\Country;
+use App\Models\Customer;
 use App\Models\Location;
 use App\Models\Order;
 use App\Models\Pickup;
@@ -85,12 +86,14 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $pickups = Pickup::all();
-        $states = State::all();
-        $cities = City::all();
-        $countries = Country::all();
-        $locations = Location::all();
-        return view('orders.create',compact('pickups','cities', 'states','countries','locations'));
+        $pickups    = Pickup::all();
+        $states     = State::where('country_id',64)->get();
+        $cities     = City::all();
+        $countries  = Country::all();
+        $locations  = Location::all();
+        $customers  = Customer::all();
+        $contacts   = Contact::all();
+        return view('orders.create',compact('pickups','cities', 'states','countries','locations','customers','contacts'));
     }
 
     public function multi()
@@ -109,6 +112,16 @@ class OrderController extends Controller
         $this->validate($request, Order::rules());
 
         try {
+            switch ($request->type){
+                case 'Deliver':
+                    break;
+                case 'Exchange':
+                    break;
+                case 'Return':
+                    break;
+                case 'Cash Collection':
+                    break;
+            }
             \DB::transaction(function () use(/* $data, */ $request) {
 
                 $order = Order::create([
@@ -143,12 +156,11 @@ class OrderController extends Controller
                 }
 
                 $user->assignRole('customer');
+                return redirect()->route('orders.show',$order->id)->with('success','Data created successfully');
             });
         } catch (\Exception $ex) {
             return redirect()->back()->withErrors($ex->getMessage());
         }
-
-        return redirect()->route('orders.show',$order->id)->with('success','Data created successfully');
     }
 
     /**
@@ -169,7 +181,6 @@ class OrderController extends Controller
         //$order = Order::findOrFail($order);
         $qr = QrCode::generate(route('orders.show',$order->id));
         //$pdf = PDF::loadView('orders.pdf', $order);
-        //return $pdf->download('invoice.pdf');
         //PDF::loadHTML($html)->setPaper('a4')->setOrientation('landscape')->setOption('margin-bottom', 0)->save('myfile.pdf')
         //$html = view('orders.pdf', compact('order','qr'))->render();
         return view('orders.pdf',compact('qr','order'));
@@ -181,9 +192,6 @@ class OrderController extends Controller
         $pdf = PDF::loadHTML($html)->stream();
         //$pdf->stream("filename.pdf", array("Attachment" => false));
         return $pdf->download('pdf_file.pdf');
-
-        // download PDF file with download method
-        //return $pdf->download('pdf_file.pdf');
     }
 
     /**

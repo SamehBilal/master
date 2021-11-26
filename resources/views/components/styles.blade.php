@@ -1,3 +1,5 @@
+<link rel="shortcut icon" href="{{ asset('frontend/assets/images/favicon.png') }}"/>
+
 <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CRoboto:400,500%7CExo+2:600&display=swap"
       rel="stylesheet">
 

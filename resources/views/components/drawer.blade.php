@@ -22,7 +22,7 @@
                {{-- <img class="sidebar-brand-icon" src="{{ asset('backend/images/illustration/student/128/white.svg') }}" alt="Luma">--}}
 
                 <span class="avatar avatar-xl sidebar-brand-icon h-auto">
-                    <span class="avatar-title rounded bg-primary"><img src="{{ asset('backend/images/illustration/student/128/white.svg') }}"
+                    <span class="avatar-title rounded bg-transparent"><img src="{{ asset('backend/images/illustration/student/128/black.png') }}"
                                                                        class="img-fluid"
                                                                        alt="logo" /></span>
 

@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+/* Language */
+Route::get('lang/{locale}',[\App\Http\Controllers\ConfigController::class,'changelocal']); //language session
 
 Route::get('/',[\App\Http\Controllers\WebsiteRoutesController::class,'index'])->name('website.index');
 
