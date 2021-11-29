@@ -2174,7 +2174,7 @@ ul.tabs.title p {
 /** 4.4. Banner Center **/
 .banner-home1-bottom .container {
   /* background: url(../images/Dana-home1-bg-featured3.jpg) no-repeat scroll center top; */
-  position: relative; 
+  position: relative;
 }
 
 .banner-home1-bottom .images {
@@ -2596,7 +2596,7 @@ ul.tabs.title p {
 
 .newsletter form input {
   font-family: "PT Serif";
-  color: #FCAF01;
+  color: #FFAF00;
   letter-spacing: 1px;
   background: #134E9E;
   border: none;

@@ -1,113 +1,88 @@
-<div class="header-top">
+<nav class="mega-menu">
     <div class="container">
-        <div class="inner-container">
-            <p class="icon-menu-mobile"><span class="icon-bar"></span></p>
-            <div class="logo"><a href="#" title="Dana-Logo"><img src="{{ asset('frontend/assets/images/Dana-menu-logo.png') }}" alt="Dana-Logo" height="50"></a></div>
-            <div class="social social-home2">
-                <a class="facebook" href="#" title="facebook"><i class="zmdi zmdi-facebook"></i></a>
-                <a class="twitter" href="#" title="twitter"><i class="zmdi zmdi-twitter"></i></a>
-                <a class="instagram" href="#" title="instagram"><i class="zmdi zmdi-instagram"></i></a>
-                <a class="google" href="#" title="google"><i class="zmdi zmdi-google-glass"></i></a>
-            </div>
-            <div class="search">
-                <div class="search-form">
-                    <form method="get" action="#">
-                        <div class="search-select">
-                            Search Package
-                            <!-- <select class="category-search" name="orderby">
-                                 <option value="">Select Category</option>
-                                 <option value="Headphone">Headphone</option>
-                                 <option value="Smart phone">Smart phone</option>
-                                 <option value="game consoles">game consoles</option>
-                                 <option value="Laptop">Laptop</option>
-                                 <option value="televison">televison</option>
-                             </select>-->
-                        </div>
-                        <!-- End search Select -->
-                        <input type="text" name="search" class="ajax_autosuggest_input ac_input" value="" placeholder="search tracking no. " autocomplete="off">
-                        <button class="icon-search" type="submit">
-                            <i class="zmdi zmdi-search"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <div class="menu-top menu-top-v2">
-                <ul class="nav-top">
-                    <li class="level1"><a href="#" title="Home">Home</a></li>
-                    <li class="level1"><a href="#" title="Track Package">Track</a></li>
-                    <li class="level1 active"><a href="#" title="Pricing">Pricing</a></li>
-                    <li class="level1 active"><a href="#" title="About">About Us</a></li>
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <ul class="nav navbar-nav" id="navbar">
+            <li class="level1 @yield('home')"><a href="#" title="Headphone">Home</a>
+                <ul class="menu-level-1">
+                    <li class="level2"><a href="#" title="Home 1">Headphone 1</a></li>
+                    <li class="level2"><a href="#" title="Home 2">Headphone 2</a></li>
+                    <li class="level2"><a href="#" title="Home 3">Headphone 3</a></li>
+                    <li class="level2"><a href="#" title="Home 4">Headphone 4</a></li>
                 </ul>
-            </div>
-            <!-- End menutop -->
-        </div>
-        <!-- End inner container -->
-        <nav class="mega-menu mega-menu-v2">
-            <!-- Brand and toggle get grouped for better mobile display -->
+            </li>
+            <li class="level1 @yield('pricing')"><a href="{{ route('website.pricing') }}" title="Pricing">Pricing</a></li>
+            <li class="level1 @yield('track') dropdown">
+                <a href="#" title="men">Track</a>
+                <div class="sub-menu dropdown-menu">
+                    <ul class="menu-level-1">
+                        <li class="level2"><a href="#">Laptop</a>
+                            <ul class="menu-level-2">
+                                <li class="level3"><a href="#" title="Apple">Apple</a></li>
+                                <li class="level3"><a href="#" title="Samsung">Samsung</a></li>
+                                <li class="level3"><a href="#" title="Sony">Sony</a></li>
+                                <li class="level3"><a href="#" title="HTC">HTC</a></li>
+                                <li class="level3"><a href="#" title="Xaomi">Xaomi</a></li>
+                                <li class="level3"><a href="#" title="LG">LG</a></li>
+                            </ul>
+                        </li>
+                        <li class="level2"><a href="#">Accessories</a>
+                            <ul class="menu-level-2">
+                                <li class="level3"><a href="#" title="Submenu1">Submenu1</a></li>
+                                <li class="level3"><a href="#" title="Submenu2">Submenu2</a></li>
+                                <li class="level3"><a href="#" title="Submenu3">Submenu3</a></li>
+                                <li class="level3"><a href="#" title="Submenu4">Submenu4</a></li>
+                                <li class="level3"><a href="#" title="Submenu5">Submenu5</a></li>
+                            </ul>
+                        </li>
+                        <li class="level2">
+                            <img src="{{ asset('frontend/assets/images/images-menu.jpg') }}" alt="Sub-Menu" />
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Dropdow Menu -->
+            </li>
+            <li class="level1 @yield('about-us')"><a href="{{ route('website.about-us') }}" title="About Us">About Us</a></li>
+            <li class="level1 @yield('contact-us')"><a href="{{ route('website.contact-us') }}" title="Contact Us">Contact Us</a></li>
+        </ul>
+        <div class="menu-icon-right">
+            <a class="refresh" href="#" title="twitter"><i class="zmdi zmdi-refresh-sync"></i></a>
+            <a class="favor" href="#" title="sky"><i class="zmdi zmdi-favorite-outline"></i></a>
 
-            <ul class="nav navbar-nav" id="navbar">
-
-                <li class="level1 dropdown">
-                    {{-- <a href="#" title="men"><span class="icon-menu-header"></span></a> --}}
-                    <span class="icon-menu-header ver2" style="background-color: #ffaf00;cursor: pointer"></span>
-                    <div class="sub-menu dropdown-menu">
-                        <ul class="menu-level-1">
-                            <li class="level2"><a href="#">Links</a>
-                                <ul class="menu-level-2">
-                                    <li class="level3"><a href="#" title="Home">Home</a></li>
-                                    <li class="level3"><a href="#" title="Pricing">Pricing</a></li>
-                                    <li class="level3"><a href="#" title="About Us">About Us</a></li>
-                                    <li class="level3"><a href="#" title="Contact Us">Contact Us</a></li>
-                                </ul>
-                            </li>
-                            <li class="level2"><a href="#">ACtions</a>
-                                <ul class="menu-level-2">
-                                    <li class="level3"><a href="#" title="Apple">Track a package</a></li>
-                                    <li class="level3"><a href="#" title="Samsung">Create a shipment</a></li>
-                                    <li class="level3"><a href="#" title="Sony">Change my delivery</a></li>
-                                    <li class="level3"><a href="#" title="HTC">Schedule a pickup</a></li>
-                                    <li class="level3"><a href="#" title="Xaomi">Calculate time & cost</a></li>
-                                </ul>
-                            </li>
-                            <li class="level2">
-                                <img src="{{ asset('frontend/assets/images/images-menu.jpg') }}" alt="Sub-Menu" />
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- End Dropdow Menu -->
-                </li>
-                <li class="level1">
-                </li>
-                <li class="level1 dropdown">
-
-                </li>
-                <li class="level1"></li>
-                <li class="level1"></li>
-                <li class="level1"></li>
-            </ul>
-        </nav>
-        <!-- End mega menu -->
-        <div class="search search-v2">
-            <div class="search-form">
-                <form method="get" action="#">
-                    <div class="search-select dropdown">
-                        Search Package
-                        <!-- <i class="zmdi zmdi-chevron-down"></i>
-                         <ul class="dropdown-menu">
-                             <li><a href="#" title="category1">category1</a></li>
-                             <li><a href="#" title="category2">category2</a></li>
-                             <li><a href="#" title="category3">category3</a></li>
-                         </ul>-->
-                    </div>
-                    <!-- End search Select -->
-                    <input type="text" name="search" class="ajax_autosuggest_input ac_input" value="" placeholder="search tracking no. " autocomplete="off">
-                    <button class="icon-search" type="submit">
-                        <i class="zmdi zmdi-search"></i>
-                    </button>
-                </form>
+            <div class="cart dropdown">
+                <a class="icon-cart" href="#" title="Cart">
+                    <i class="zmdi zmdi-shopping-cart-plus"></i>
+                    <span class="cart-count">4</span>
+                </a>
+                <div class="cart-list dropdown-menu">
+                    <ul class="list">
+                        <li>
+                            <a href="#" title="" class="cart-product-image"><img src="{{ asset('frontend/assets/images/products/1.jpg') }}" alt="Product"></a>
+                            <div class="text">
+                                <p class="product-name">Duma #2145</p>
+                                <p class="product-price">1 x $69.90</p>
+                            </div>
+                            <a href="#" class="delete-item">
+                                <i class="zmdi zmdi-close-circle-o"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" title="" class="cart-product-image"><img src="{{ asset('frontend/assets/images/products/1.jpg') }}" alt="Product"></a>
+                            <div class="text">
+                                <p class="product-name">Duma #2145</p>
+                                <p class="product-price">1 x $69.90</p>
+                            </div>
+                            <a href="#" class="delete-item">
+                                <i class="zmdi zmdi-close-circle-o"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="total"><span>Total cost</span> $1121.98</p>
+                    <a class="checkout" href="#" title="view cart">view cart</a>
+                    <a class="checkout bg-black" href="#" title="check out">Check out</a>
+                </div>
             </div>
         </div>
     </div>
     <!-- End container -->
-</div>
-<!-- End header-top -->
+</nav>
+<!-- End mega menu -->

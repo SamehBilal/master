@@ -1,31 +1,12 @@
 <div id="topbar">
     <div class="container">
         <div class="topbar-left">
-            <a class="refresh" href="#" title="Refresh"><i class="zmdi zmdi-refresh-sync"></i></a>
-            <div class="cart dropdown">
-                <a class="icon-cart" href="#" title="Search">
-                    <i class="zmdi zmdi-search"></i>
-                    <!--<span class="cart-count">4</span>-->
-                </a>
-                <div class="cart-list dropdown-menu">
-                <!--<ul class="list">
-                                <li>
-                                    <a href="#" title="" class="cart-product-image"><img src="{{ asset('frontend/assets/images/products/1.jpg') }}" alt="Product"></a>
-                                    <div class="text">
-                                        <p class="product-name">Duma #2145</p>
-                                        <p class="product-price">1 x $69.90</p>
-                                    </div>
-                                    &lt;!&ndash;<a href="#" class="delete-item">
-                                        <i class="zmdi zmdi-close-circle-o"></i>
-                                    </a>&ndash;&gt;
-                                </li>
-                            </ul>-->
-                    <p class="total"><span>Track Your Shipment</span> </p><br>
-                    <p>Enter your tracking No.</p>
-                    <input type="text" placeholder="tracking No" class="checkout" href="#" title="Search">
-                    <a class="checkout bg-black" href="#" title="Search">Search</a>
-                </div>
-            </div>
+            <a class="facebook" href="#" title="facebook"><i class="zmdi zmdi-facebook"></i></a>
+            <a class="twitter" href="#" title="twitter"><i class="zmdi zmdi-twitter"></i></a>
+            <a class="instagram" href="#" title="instagram"><i class="zmdi zmdi-instagram"></i></a>
+            <a class="google" href="#" title="google"><i class="zmdi zmdi-google-glass"></i></a>
+
+            <!-- End cart -->
         </div>
         <!-- End topBar-left -->
         <div class="topbar-right">

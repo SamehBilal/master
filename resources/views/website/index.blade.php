@@ -2,6 +2,262 @@
 
 
 @section('content')
+    <header id="header" class="header-v1">
+        <div id="topbar">
+            <div class="container">
+                <div class="topbar-left">
+                    <a class="refresh" href="#" title="Refresh"><i class="zmdi zmdi-refresh-sync"></i></a>
+                    <div class="cart dropdown">
+                        <a class="icon-cart" href="#" title="Search">
+                            <i class="zmdi zmdi-search"></i>
+                            <!--<span class="cart-count">4</span>-->
+                        </a>
+                        <div class="cart-list dropdown-menu">
+                        <!--<ul class="list">
+                                <li>
+                                    <a href="#" title="" class="cart-product-image"><img src="{{ asset('frontend/assets/images/products/1.jpg') }}" alt="Product"></a>
+                                    <div class="text">
+                                        <p class="product-name">Duma #2145</p>
+                                        <p class="product-price">1 x $69.90</p>
+                                    </div>
+                                    &lt;!&ndash;<a href="#" class="delete-item">
+                                        <i class="zmdi zmdi-close-circle-o"></i>
+                                    </a>&ndash;&gt;
+                                </li>
+                            </ul>-->
+                            <p class="total"><span>Track Your Shipment</span> </p><br>
+                            <p>Enter your tracking No.</p>
+                            <input type="text" placeholder="tracking No" class="checkout" href="#" title="Search">
+                            <a class="checkout bg-black" href="#" title="Search">Search</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- End topBar-left -->
+                <div class="topbar-right">
+                    <a href="#" title="Adress"><i class="zmdi zmdi-pin"></i>locations</a>
+                    <div class="wrap-dollar-box dropdown">
+                        <a href="#" title="Dollar"><i class="zmdi zmdi-money-box"></i>Language<i class="zmdi zmdi-chevron-down"></i></a>
+                        <div class="dollar-list dropdown-menu" style="background-color: white">
+                            <ul>
+                                <li><a href="{{ url('lang/en') }}" title="English" style="color: #1b1b1b">English</a></li>
+                                <li><a href="{{ url('lang/ar') }}" title="Arabic" style="color: #1b1b1b">Arabic</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="wrap-sign-in cart dropdown">
+                        <a class="sign-in" href="#" title="user"><i class="zmdi zmdi-account"></i>My account</a>
+                        <div class="register-list cart-list dropdown-menu ">
+                            <h3>My account</h3>
+                            <form class="form-horizontal" method="POST">
+                                <div class="acc-name">
+                                    <input class="form-control" type="text" placeholder="Account name" id="inputacname">
+                                </div>
+                                <div class="acc-pass">
+                                    <input class="form-control" type="text" placeholder="Password" id="inputpass">
+                                </div>
+                                <div class="remember">
+                                    <input type="checkbox" id="me" name="nar" />
+                                    <label for="me">remember me</label>
+                                    <a class="help" href="#" title="help ?">help?</a>
+                                </div>
+                                <button type="submit" class="link-button">Submit</button>
+                            </form>
+                            <h3>Or register</h3>
+                            <form class="form-horizontal" method="POST">
+                                <input type="text" placeholder="Your mail" id="inputmail" class="form-control">
+                                <input type="password" placeholder="Password" id="inputpass1" class="form-control">
+                                <button type="submit" class="link-button">register</button>
+                            </form>
+                            <h4>or register to</h4>
+                            <div class="social">
+                                <a class="facebook" href="#" title="facebook"><i class="zmdi zmdi-facebook"></i></a>
+                                <a class="google" href="#" title="google"><i class="zmdi zmdi-google-glass"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End topbar-right -->
+            </div>
+            <!-- End container -->
+        </div>
+        <!-- End Top Bar -->
+
+        <div class="header-top">
+            <div class="container">
+                <div class="inner-container">
+                    <p class="icon-menu-mobile"><span class="icon-bar"></span></p>
+                    <div class="logo"><a href="#" title="Dana-Logo"><img src="{{ asset('frontend/assets/images/Dana-menu-logo.png') }}" alt="Dana-Logo" height="50"></a></div>
+                    <div class="social social-home2">
+                        <a class="facebook" href="#" title="facebook"><i class="zmdi zmdi-facebook"></i></a>
+                        <a class="twitter" href="#" title="twitter"><i class="zmdi zmdi-twitter"></i></a>
+                        <a class="instagram" href="#" title="instagram"><i class="zmdi zmdi-instagram"></i></a>
+                        <a class="google" href="#" title="google"><i class="zmdi zmdi-google-glass"></i></a>
+                    </div>
+                    <div class="search">
+                        <div class="search-form">
+                            <form method="get" action="#">
+                                <div class="search-select">
+                                    Search Package
+                                    <!-- <select class="category-search" name="orderby">
+                                         <option value="">Select Category</option>
+                                         <option value="Headphone">Headphone</option>
+                                         <option value="Smart phone">Smart phone</option>
+                                         <option value="game consoles">game consoles</option>
+                                         <option value="Laptop">Laptop</option>
+                                         <option value="televison">televison</option>
+                                     </select>-->
+                                </div>
+                                <!-- End search Select -->
+                                <input type="text" name="search" class="ajax_autosuggest_input ac_input" value="" placeholder="search tracking no. " autocomplete="off">
+                                <button class="icon-search" type="submit">
+                                    <i class="zmdi zmdi-search"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="menu-top menu-top-v2">
+                        <ul class="nav-top">
+                            <li class="level1"><a href="#" title="Home">Home</a></li>
+                            <li class="level1"><a href="#" title="Track Package">Track</a></li>
+                            <li class="level1 active"><a href="#" title="Pricing">Pricing</a></li>
+                            <li class="level1 active"><a href="#" title="About">About Us</a></li>
+                        </ul>
+                    </div>
+                    <!-- End menutop -->
+                </div>
+                <!-- End inner container -->
+                <nav class="mega-menu mega-menu-v2">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+
+                    <ul class="nav navbar-nav" id="navbar">
+
+                        <li class="level1 dropdown">
+                            {{-- <a href="#" title="men"><span class="icon-menu-header"></span></a> --}}
+                            <span class="icon-menu-header ver2" style="background-color: #ffaf00;cursor: pointer"></span>
+                            <div class="sub-menu dropdown-menu">
+                                <ul class="menu-level-1">
+                                    <li class="level2"><a href="#">Links</a>
+                                        <ul class="menu-level-2">
+                                            <li class="level3"><a href="#" title="Home">Home</a></li>
+                                            <li class="level3"><a href="#" title="Pricing">Pricing</a></li>
+                                            <li class="level3"><a href="#" title="About Us">About Us</a></li>
+                                            <li class="level3"><a href="#" title="Contact Us">Contact Us</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="level2"><a href="#">ACtions</a>
+                                        <ul class="menu-level-2">
+                                            <li class="level3"><a href="#" title="Apple">Track a package</a></li>
+                                            <li class="level3"><a href="#" title="Samsung">Create a shipment</a></li>
+                                            <li class="level3"><a href="#" title="Sony">Change my delivery</a></li>
+                                            <li class="level3"><a href="#" title="HTC">Schedule a pickup</a></li>
+                                            <li class="level3"><a href="#" title="Xaomi">Calculate time & cost</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="level2">
+                                        <img src="{{ asset('frontend/assets/images/images-menu.jpg') }}" alt="Sub-Menu" />
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- End Dropdow Menu -->
+                        </li>
+                        <li class="level1">
+                        </li>
+                        <li class="level1 dropdown">
+
+                        </li>
+                        <li class="level1"></li>
+                        <li class="level1"></li>
+                        <li class="level1"></li>
+                    </ul>
+                </nav>
+                <!-- End mega menu -->
+                <div class="search search-v2">
+                    <div class="search-form">
+                        <form method="get" action="#">
+                            <div class="search-select dropdown">
+                                Search Package
+                                <!-- <i class="zmdi zmdi-chevron-down"></i>
+                                 <ul class="dropdown-menu">
+                                     <li><a href="#" title="category1">category1</a></li>
+                                     <li><a href="#" title="category2">category2</a></li>
+                                     <li><a href="#" title="category3">category3</a></li>
+                                 </ul>-->
+                            </div>
+                            <!-- End search Select -->
+                            <input type="text" name="search" class="ajax_autosuggest_input ac_input" value="" placeholder="search tracking no. " autocomplete="off">
+                            <button class="icon-search" type="submit">
+                                <i class="zmdi zmdi-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- End container -->
+        </div>
+        <!-- End header-top -->
+
+        <nav class="menu-mobile">
+            <ul class="nav">
+                <li class="level1"><a href="#" title="Home">Home</a>
+                    <ul class="menu-level-1">
+                        <li class="level2"><a href="#" title="Home" target="_blank">Home</a></li>
+                        <li class="level2"><a href="#" title="about us" target="_blank">about us</a></li>
+                        <li class="level2"><a href="#" title="contatc us" target="_blank">contatc us</a></li>
+                    </ul>
+                </li>
+                <li class="level1"><a href="#" title="Track">Track</a>
+                    <ul class="menu-level-1">
+                        <li class="level2"><a href="#" title="Track" target="_blank">Track</a></li>
+                    </ul>
+                </li>
+                <li class="level1"><a href="#" title="Pricing">Pricing</a>
+                    <ul class="menu-level-1">
+                        <li class="level2"><a href="#" title="Pricing" target="_blank">Pricing</a></li>
+                    </ul>
+                </li>
+                <!--<li class="level1"><a href="#" title="Headphone">Headphone</a>
+                    <ul class="menu-level-1">
+                        <li class="level2"><a href="#" title="Home 1" target="_blank">Headphone 1</a></li>
+                        <li class="level2"><a href="#" title="Home 2" target="_blank">Headphone 2</a></li>
+                        <li class="level2"><a href="#" title="Home 3" target="_blank">Headphone 3</a></li>
+                        <li class="level2"><a href="#" title="Home 4" target="_blank">Headphone 4</a></li>
+                    </ul>
+                </li>
+                <li class="level1">
+                    <a href="#" title="Smart watch">Smart watch</a>
+                    <ul class="menu-level-1">
+                        <li class="level2">
+                        <a href="#">Laptop</a>
+                            <ul class="menu-level-2">
+                                <li class="level3"><a href="#" title="Apple">Apple</a></li>
+                                <li class="level3"><a href="#" title="Samsung">Samsung</a></li>
+                                <li class="level3"><a href="#" title="Sony">Sony</a></li>
+                                <li class="level3"><a href="#" title="HTC">HTC</a></li>
+                                <li class="level3"><a href="#" title="Xaomi">Xaomi</a></li>
+                                <li class="level3"><a href="#" title="LG">LG</a></li>
+                            </ul>
+                        </li>
+                        <li class="level2">
+                        <a href="#">Accessories</a>
+                            <ul class="menu-level-2">
+                                <li class="level3"><a href="#" title="Submenu1">Submenu1</a></li>
+                                <li class="level3"><a href="#" title="Submenu2">Submenu2</a></li>
+                                <li class="level3"><a href="#" title="Submenu3">Submenu3</a></li>
+                                <li class="level3"><a href="#" title="Submenu4">Submenu4</a></li>
+                                <li class="level3"><a href="#" title="Submenu5">Submenu5</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>-->
+                <!--<li class="level1"><a href="#" title="Smart phone ">Smart phone </a></li>
+                <li class="level1"><a href="#">game consoles</a></li>
+                <li class="level1"><a href="#" title="Laptop">Laptop</a></li>
+                <li class="level1"><a href="#" title="televison">televison</a></li>-->
+            </ul>
+        </nav>
+        <!-- End menu mobile -->
+
+    </header>
     <div class="slide-show-ver2">
         <div class="container">
             <div class="tp-banner-container">
@@ -742,16 +998,4 @@
         <!-- End Container -->
     </div>
     <!-- End Brand Container -->
-    <div class="newsletter">
-        <div class="container">
-            <h3><a href="#" title="sign up">sign up</a> to newsletter</h3>
-            <p>and receive a coupon for first shipping</p>
-            <form action="#" method="get" accept-charset="utf-8">
-                <input type="text" onblur="if (this.value == '') {this.value = 'Enter your email';}" onfocus="if(this.value != '') {this.value = '';}" value="Enter your emaill" class="input-text required-entry validate-email" title="Sign up for our newsletter" id="newsletter" name="email">
-                <button class="button button1" title="Subscribe" type="submit"></button>
-            </form>
-        </div>
-        <!-- End container -->
-    </div>
-    <!-- End newsletter -->
 @endsection

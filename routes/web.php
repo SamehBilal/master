@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('lang/{locale}',[\App\Http\Controllers\ConfigController::class,'changelocal']); //language session
 
 Route::get('/',[\App\Http\Controllers\WebsiteRoutesController::class,'index'])->name('website.index');
+Route::get('/about-us',[\App\Http\Controllers\WebsiteRoutesController::class,'about'])->name('website.about-us');
+Route::get('/contact-us',[\App\Http\Controllers\WebsiteRoutesController::class,'contact'])->name('website.contact-us');
+Route::get('/pricing',[\App\Http\Controllers\WebsiteRoutesController::class,'pricing'])->name('website.pricing');
+Route::get('/calculate-shipment',[\App\Http\Controllers\WebsiteRoutesController::class,'calculate_shipment'])->name('website.calculation');
+Route::resource('contact-forms',\App\Http\Controllers\ContactFormController::class); //Contact Forms
+Route::resource('subscribes',\App\Http\Controllers\SubscribeController::class); //Subscribes
 
 /* Route::get('/', function () {
     return view('coming-soon');
