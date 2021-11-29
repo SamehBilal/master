@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             UserCategorySeeder::class,
             CustomerSeeder::class,
             OrderSeeder::class,
+            TicketIssueSeeder::class,
         ]);
     }
 }

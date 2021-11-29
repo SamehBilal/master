@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('import',[\App\Http\Controllers\ExcelController::class,'import'])->name('import'); //import
     Route::get('export',[\App\Http\Controllers\ExcelController::class,'export'])->name('export'); //export
 
+    Route::resource('tickets',\App\Http\Controllers\TicketController::class);
 
     Route::group(['prefix' => 'dashboard', 'as' => 'dashboard' . '.'], function () {
         //
