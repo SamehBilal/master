@@ -44,4 +44,9 @@ class WebsiteRoutesController extends Controller
     {
         return view('website.terms');
     }
+
+    public function track()
+    {
+        return view('website.tracking');
+    }
 }

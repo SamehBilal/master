@@ -38,17 +38,25 @@
                         <div class="form-group col-md-6">
                             @csrf
                             <label class=" control-label" for="inputName">Your name</label>
-                            <input type="text" name="name" value="{{ old('name') }}" class="form-control" id="inputName" placeholder="Name">
+                            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" id="inputName" placeholder="Name">
+                            @error('name')
+                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <label class=" control-label" for="inputEmail">Your Mail</label>
-                            <input type="text" name="email" value="{{ old('email') }}" class="form-control" id="inputEmail" placeholder="Email">
+                            <input type="text" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" id="inputEmail" placeholder="Email">
+                            @error('email')
+                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group col-md-12">
                             <label class=" control-label" for="message">massage</label>
-                            <textarea class="form-control" id="message" name="message">{{ old('message') }}</textarea>
-                            <div class="checkbox space-10">
-                            </div>
+                            <textarea class="form-control @error('message') is-invalid @enderror" id="message" name="message" placeholder="Message">{{ old('message') }}</textarea>
+                            @error('message')
+                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                            @enderror
+                            <div class="checkbox space-10"></div>
                             <button class="btn link-button width-100" type="submit">Send your message</button>
                         </div>
                     </form>
@@ -73,7 +81,7 @@
                         </div>
                         <div class="fbox-body">
                             <h4>Our Address</h4>
-                            <p>150 - CUa dong - ba dinh - Ha Noi.</p>
+                            <p>Misr Al gadeda, Cairo, Egypt</p>
                         </div>
                     </div>
                 </div>
@@ -85,7 +93,7 @@
                         </div>
                         <div class="fbox-body">
                             <h4>Phone number</h4>
-                            <p>(+84) 8445.567 - (+84) 7564.7755</p>
+                            <p>+(20) 10 4568 7895</p>
                         </div>
                     </div>
                 </div>
@@ -97,7 +105,7 @@
                         </div>
                         <div class="fbox-body">
                             <h4>Email address</h4>
-                            <p>Damastore@gmail.com.</p>
+                            <p>info@droplin.com</p>
                         </div>
                     </div>
                 </div>
@@ -114,36 +122,36 @@
                 <div class="col-md-3">
                     <div class="items">
                         <span class="icon">1</span>
-                        <h3>StoreDama 01</h3>
-                        <p><span>Address: </span>47 Hao Nam - Dong Da - Ha Noi - Viet Nam</p>
-                        <p><span>Phone: </span>(+84) 163.5545.42</p>
+                        <h3>Location 01</h3>
+                        <p><span>Address: </span>6 october, Cairo, Egypt</p>
+                        <p><span>Phone: </span> +(20) 10 4568 7895</p>
                     </div>
                 </div>
                 <!-- End col-md-3 -->
                 <div class="col-md-3">
                     <div class="items">
                         <span class="icon">2</span>
-                        <h3>StoreDama 02</h3>
-                        <p><span>Address: </span>47 Hao Nam - Dong Da - Ha Noi - Viet Nam</p>
-                        <p><span>Phone: </span>(+84) 163.5545.42</p>
+                        <h3>Location 02</h3>
+                        <p><span>Address: </span>Giza, Cairo, Egypt</p>
+                        <p><span>Phone: </span> +(20) 10 4568 7896</p>
                     </div>
                 </div>
                 <!-- End col-md-3 -->
                 <div class="col-md-3">
                     <div class="items">
                         <span class="icon">3</span>
-                        <h3>StoreDama 03</h3>
-                        <p><span>Address: </span>47 Hao Nam - Dong Da - Ha Noi - Viet Nam</p>
-                        <p><span>Phone: </span>(+84) 163.5545.42</p>
+                        <h3>Location 03</h3>
+                        <p><span>Address: </span>5th District, Cairo, Egypt</p>
+                        <p><span>Phone: </span> +(20) 10 4568 7897</p>
                     </div>
                 </div>
                 <!-- End col-md-3 -->
                 <div class="col-md-3">
                     <div class="items">
                         <span class="icon">4</span>
-                        <h3>StoreDama 04</h3>
-                        <p><span>Address: </span>47 Hao Nam - Dong Da - Ha Noi - Viet Nam</p>
-                        <p><span>Phone: </span>(+84) 163.5545.42</p>
+                        <h3>Location 04</h3>
+                        <p><span>Address: </span>Nasr City, Cairo, Egypt</p>
+                        <p><span>Phone: </span> +(20) 10 4568 7898</p>
                     </div>
                 </div>
                 <!-- End col-md-3 -->

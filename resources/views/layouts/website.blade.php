@@ -6,6 +6,8 @@
         <title>{{ config('app.name', 'Droplin') }}</title>
 
         @include('website.components.styles')
+
+        @yield('extra-scripts')
     </head>
     <body>
         @yield('content')

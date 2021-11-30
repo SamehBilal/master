@@ -13,7 +13,7 @@ class Subscribe extends Model
     public static function rules($update = false, $id = null)
     {
         $common = [
-            'email'         => "nullable|email|regex:/(.+)@(.+)\.(.+)/i|unique:subscribes,email,$id",
+            'email'         => "required|email|regex:/(.+)@(.+)\.(.+)/i|unique:subscribes,email,$id",
         ];
 
         if ($update) {
@@ -21,7 +21,7 @@ class Subscribe extends Model
         }
 
         return array_merge($common, [
-            'email'         => 'nullable|email|regex:/(.+)@(.+)\.(.+)/i|max:255|unique:subscribes',
+            'email'         => 'required|email|regex:/(.+)@(.+)\.(.+)/i|max:255|unique:subscribes',
         ]);
     }
 }

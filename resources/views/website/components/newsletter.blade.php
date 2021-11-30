@@ -6,6 +6,9 @@
             @csrf
             <input type="email" onblur="if (this.value == '') {this.value = 'Enter your email';}" onfocus="if(this.value != '') {this.value = '';}" value="Enter your emaill" class="input-text required-entry validate-email" title="Sign up for our newsletter" id="newsletter" name="email">
             <button class="button button1" title="Subscribe" type="submit"></button>
+            @error('email')
+                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+            @enderror
         </form>
     </div>
     <!-- End container -->
