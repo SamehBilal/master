@@ -86,6 +86,20 @@
                         Support Tickets
                     </a>
                 </li>
+                <li class="sidebar-menu-item {{ set_active(['dashboard/subscribers*'])}}">
+                    <a class="sidebar-menu-button"
+                       href="{{ route('dashboard.subscribers.index') }}">
+                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">card_membership</span>
+                        Subscribers
+                    </a>
+                </li>
+                <li class="sidebar-menu-item {{ set_active(['dashboard/contact-forms*'])}}">
+                    <a class="sidebar-menu-button"
+                       href="{{ route('dashboard.contact-forms.index') }}">
+                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">insert_drive_file</span>
+                        Contact Forms
+                    </a>
+                </li>
             </ul>
             <div class="sidebar-heading">Users</div>
             <ul class="sidebar-menu">
@@ -101,6 +115,13 @@
                        href="{{ route('dashboard.user-categories.index') }}">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">badge</span>
                         User Categories
+                    </a>
+                </li>
+                <li class="sidebar-menu-item {{ set_active(['dashboard/contacts*'])}}">
+                    <a class="sidebar-menu-button"
+                       href="{{ route('dashboard.contacts.index') }}">
+                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">perm_contact_calendar</span>
+                        Contacts
                     </a>
                 </li>
                 <li class="sidebar-menu-item {{ set_active(['dashboard/users*'])}}">

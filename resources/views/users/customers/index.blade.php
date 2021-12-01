@@ -11,7 +11,7 @@
 @endsection
 
 @section('button-link')
-    {{ route('customers.create') }}
+    {{ route('dashboard.customers.create') }}
 @endsection
 
 @section('button-icon')
@@ -20,29 +20,6 @@
 
 @section('button-title')
     New Customer
-@endsection
-
-@section('extra_styles')
-    <style>
-       /* table.dataTable tbody td.select-checkbox:before, table.dataTable tbody th.select-checkbox:before{
-            content: " "!important;
-            margin-top: -2px!important;
-            margin-left: -6px!important;
-            border: 1px solid red!important;
-            border-radius: 3px!important;
-        }
-        table.dataTable tr.selected td.select-checkbox:after, table.dataTable tr.selected th.select-checkbox:after{
-            content: "x"!important;
-            font-size: 20px!important;
-            margin-top: -19px!important;
-            margin-left: -6px!important;
-            text-align: center!important;
-            text-shadow: 1px 1px #b0bed9, -1px -1px #b0bed9, 1px -1px #b0bed9, -1px 1px #b0bed9!important;
-        }
-        table.dataTable tbody td.select-checkbox, table.dataTable tbody th.select-checkbox {
-            position: static !important;
-        }*/
-    </style>
 @endsection
 
 @section('main_content')
@@ -124,7 +101,6 @@
                                role="tab"
                                aria-selected="true"
                                class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start active">
-                                {{--<span class="h2 mb-0 mr-3">{{ $category->id }}</span>--}}
                                 <div class="avatar avatar-sm mr-8pt">
                                     <span class="avatar-title rounded bg-transparent text-black-100">
                                          <img src="{{ asset('backend/images/icon/all.png') }}"
@@ -339,11 +315,11 @@
                                         <a href="#" data-toggle="dropdown"
                                            class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="{{ route('customers.show',$customer->id) }}" class="dropdown-item active"><i class="material-icons ">visibility</i> View</a>
-                                            <a href="{{ route('customers.edit',$customer->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> Edit</a>
+                                            <a href="{{ route('dashboard.customers.show',$customer->id) }}" class="dropdown-item active"><i class="material-icons ">visibility</i> View</a>
+                                            <a href="{{ route('dashboard.customers.edit',$customer->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> Edit</a>
                                             <div class="dropdown-divider"></div>
                                             <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $customer->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
-                                            <form id="delete-form{{ $customer->id }}" action="{{ route('customers.destroy',$customer->id) }}" method="POST" class="d-none">
+                                            <form id="delete-form{{ $customer->id }}" action="{{ route('dashboard.customers.destroy',$customer->id) }}" method="POST" class="d-none">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>

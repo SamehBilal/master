@@ -24,8 +24,8 @@ Route::get('/help',[\App\Http\Controllers\WebsiteRoutesController::class,'help']
 Route::get('/terms-and-conditions',[\App\Http\Controllers\WebsiteRoutesController::class,'terms'])->name('website.terms');
 Route::get('/track-shipment',[\App\Http\Controllers\WebsiteRoutesController::class,'track'])->name('website.track');
 Route::get('/calculate-shipment',[\App\Http\Controllers\WebsiteRoutesController::class,'calculate_shipment'])->name('website.calculation');
-Route::resource('contact-forms',\App\Http\Controllers\ContactFormController::class); //Contact Forms
-Route::resource('subscribes',\App\Http\Controllers\SubscribeController::class); //Subscribes
+Route::resource('contact-forms', \App\Http\Controllers\ContactFormController::class)->only(['create', 'store']);//Contact Forms
+Route::resource('subscribers', \App\Http\Controllers\SubscribeController::class)->only(['create', 'store']);//Subscribes
 Route::get('/my-account',[\App\Http\Controllers\WebsiteRoutesController::class,'account'])->name('website.account');
 
 /* Route::get('/', function () {
@@ -54,6 +54,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('user-categories',\App\Http\Controllers\UserCategoryController::class); //User Categories
         Route::resource('zones',\App\Http\Controllers\ZoneController::class); //Zone Categories
         Route::resource('locations',\App\Http\Controllers\LocationController::class); //Location
+        Route::resource('contact-forms',\App\Http\Controllers\ContactFormController::class)->except(['create', 'store',]);; //Contact Forms
+        Route::resource('subscribers',\App\Http\Controllers\SubscribeController::class)->except(['create', 'store',]);; //Subscribes
         Route::get('location-states',[\App\Http\Controllers\LocationController::class,'get_state'])->name('locations.states'); //Get States Ajax
         Route::get('location-cities',[\App\Http\Controllers\LocationController::class,'get_city'])->name('locations.cities'); //Get Cities Ajax
         Route::resource('contacts',\App\Http\Controllers\ContactController::class); //Contact

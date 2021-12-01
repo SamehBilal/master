@@ -24,7 +24,7 @@
 
 @section('main_content')
     <div class="page-section container page__container">
-        <form method="POST" action="{{ route('profile.edit',$user->id) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('dashboard.profile.edit',$user->id) }}" enctype="multipart/form-data">
             @csrf
             <div class="page-separator">
                 <div class="page-separator__text">Basic Information</div>

@@ -15,11 +15,11 @@
 @endsection
 
 @section('button-icon')
-    add
+    format_list_bulleted
 @endsection
 
 @section('button-title')
-    New Contact Form
+    All Contact Form
 @endsection
 
 @section('main_content')

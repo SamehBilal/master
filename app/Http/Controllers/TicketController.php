@@ -17,7 +17,8 @@ class TicketController extends Controller
         if (auth()->user()->hasRole('Super Admin') || auth()->user()->hasRole('admin')) {
             $tickets = Ticket::with('TicketIssues','TicketChats')->orderBy('updated_at','desc')->get();
 
-            // return view tickets index for admin 
+            // return view tickets index for admin
+            return view('tickets.index',compact('tickets'));
         }
 
         $tickets = Ticket::where('user_id', auth()->user()->id)
@@ -25,6 +26,7 @@ class TicketController extends Controller
                           ->orderBy('updated_at','desc')
                           ->get();
         // return customer view
+        return view('tickets.index',compact('tickets'));
     }
 
     /**

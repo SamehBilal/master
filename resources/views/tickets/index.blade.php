@@ -1,17 +1,17 @@
 @extends('layouts.backend')
 
 @section('title')
-    Pickups
+    tickets
 @endsection
 
 @section('links')
     <li class="breadcrumb-item active">
-        Pickups
+        tickets
     </li>
 @endsection
 
 @section('button-link')
-    {{ route('dashboard.pickups.create') }}
+    {{ route('dashboard.tickets.create') }}
 @endsection
 
 @section('button-icon')
@@ -30,7 +30,7 @@
                 <div class="page-separator__text">Filter</div>
             </div>
 
-            <form action="{{ route('dashboard.pickups.index') }}" method="GET">
+            <form action="{{ route('dashboard.tickets.index') }}" method="GET">
                 <div class="card card-form d-flex flex-column flex-sm-row mb-lg-32pt">
                     <div class="card-form__body card-body-form-group flex">
                         <div class="row">
@@ -47,29 +47,13 @@
                             </div>
                             <div class="col-sm-auto">
                                 <div class="form-group">
-                                    <label for="filter_category">Locations</label><br>
-                                    <select id="filter_category"
-                                            class="custom-select"
-                                            name="location"
-                                            style="width: 200px;">
-                                        <option value="" {{ old('location') == '' ?'selected':'' }}>Select Location</option>
-                                        @foreach($locations as $location)
-                                            <option value="{{ $location->id }}"  {{ isset($_GET['location']) &&  $_GET['location'] == $location->id ? 'selected':''}}>{{ $location->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-auto">
-                                <div class="form-group">
                                     <label for="filter_category">Status</label><br>
                                     <select id="filter_category"
                                             class="custom-select"
                                             name="status"
                                             style="width: 200px;">
                                         <option value="" {{ old('status') == '' ?'selected':'' }}>All Status</option>
-                                        @foreach($status as $item)
-                                            <option value="{{ $item }}"  {{ isset($_GET['status']) &&  $_GET['status'] == $item ? 'selected':''}}>{{ $item }}</option>
-                                        @endforeach
+                                        <option value=""></option>
                                     </select>
                                 </div>
                             </div>
@@ -95,7 +79,7 @@
             </form>
 
             <div class="page-separator">
-                <div class="page-separator__text">Pickups</div>
+                <div class="page-separator__text">tickets</div>
             </div>
 
             <div class="card dashboard-area-tabs p-relative o-hidden mb-32pt">
@@ -155,7 +139,7 @@
                         </tr>
                         </thead>
                         <tbody id="projects">
-                        @foreach($pickups as $pickup)
+                        @foreach($tickets as $ticket)
                             <tr class="">
 
                                 <td class="pr-0">
@@ -165,8 +149,8 @@
                                 <td></td>
 
                                 <td>
-                                    <a href="{{ route('dashboard.pickups.show',$pickup->id) }}"
-                                       class="chip text-underline">{{ $pickup->pickup_id }}</a>
+                                    <a href="{{ route('dashboard.tickets.show',$ticket->id) }}"
+                                       class="chip text-underline">{{ $ticket->pickup_id }}</a>
                                 </td>
 
                                 <td>
@@ -181,8 +165,8 @@
                                         </div>
                                         <div class="media-body">
                                             <div class="d-flex flex-column">
-                                                <small class=""><strong>{{ $pickup->location ? $pickup->location->name:'' }}</strong></small>
-                                                <span class=" rounded ">{{ $pickup->location ? $pickup->location->apartment.$pickup->location->building.$pickup->location->street:'' }}</span>
+                                                <small class=""><strong>{{ $ticket->location ? $ticket->location->name:'' }}</strong></small>
+                                                <span class=" rounded ">{{ $ticket->location ? $ticket->location->apartment.$ticket->location->building.$ticket->location->street:'' }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -200,8 +184,8 @@
                                         </div>
                                         <div class="media-body">
                                             <div class="d-flex flex-column">
-                                                <small class=""><strong>{{ date("F j, Y", strtotime($pickup->scheduled_date)) }}</strong></small>
-                                                <span class="">{{ date("g:i a", strtotime($pickup->scheduled_date)) }}</span>
+                                                <small class=""><strong>{{ date("F j, Y", strtotime($ticket->scheduled_date)) }}</strong></small>
+                                                <span class="">{{ date("g:i a", strtotime($ticket->scheduled_date)) }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -209,20 +193,20 @@
 
                                 <td>
                                     <div href="#"
-                                         class="chip chip-outline-secondary ">{{ $pickup->type }}</div>
+                                         class="chip chip-outline-secondary ">{{ $ticket->type }}</div>
                                 </td>
 
                                 <td>
                                     <div class="d-flex flex-column">
-                                        <small class="badge badge-{{ random_color() }}">{{ $pickup->status }}</small>
+                                        <small class="badge badge-{{ random_color() }}">{{ $ticket->status }}</small>
                                     </div>
                                 </td>
 
 
                                 <td>
                                     <div class="d-flex flex-column">
-                                        <small class=""><strong>{{ date("F j, Y", strtotime($pickup->created_at)) }}</strong></small>
-                                        <small class="text-50">{{ $pickup->created_at->diffForHumans() }}</small>
+                                        <small class=""><strong>{{ date("F j, Y", strtotime($ticket->created_at)) }}</strong></small>
+                                        <small class="text-50">{{ $ticket->created_at->diffForHumans() }}</small>
                                     </div>
                                 </td>
 
@@ -230,11 +214,11 @@
                                     <a href="#" data-toggle="dropdown"
                                        class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="{{ route('dashboard.pickups.show',$pickup->id) }}" class="dropdown-item"><i class="material-icons ">visibility</i> View</a>
-                                        <a href="{{ route('dashboard.pickups.edit',$pickup->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> Edit</a>
+                                        <a href="{{ route('dashboard.tickets.show',$ticket->id) }}" class="dropdown-item"><i class="material-icons ">visibility</i> View</a>
+                                        <a href="{{ route('dashboard.tickets.edit',$ticket->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> Edit</a>
                                         <div class="dropdown-divider"></div>
-                                        <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $pickup->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
-                                        <form id="delete-form{{ $pickup->id }}" action="{{ route('dashboard.pickups.destroy',$pickup->id) }}" method="POST" class="d-none">
+                                        <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $ticket->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
+                                        <form id="delete-form{{ $ticket->id }}" action="{{ route('dashboard.tickets.destroy',$ticket->id) }}" method="POST" class="d-none">
                                             @csrf
                                             @method('DELETE')
                                         </form>

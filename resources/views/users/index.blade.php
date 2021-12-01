@@ -11,7 +11,7 @@
 @endsection
 
 @section('button-link')
-    {{ route('users.create') }}
+    {{ route('dashboard.users.create') }}
 @endsection
 
 @section('button-icon')
@@ -241,7 +241,7 @@
                                     </div>
                                 </td>
                                 <td class="text-right">
-                                    <a href="{{ route('users.edit',$user->id) }}" {{--data-toggle="dropdown"--}}
+                                    <a href="{{ route('dashboard.users.edit',$user->id) }}" {{--data-toggle="dropdown"--}}
                                        class="btn text-50  text-70"><i class="material-icons ">edit</i> </a>
                                 </td>
                             </tr>
