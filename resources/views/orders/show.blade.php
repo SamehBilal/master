@@ -6,7 +6,7 @@
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('orders.index') }}">Orders</a>
+        <a href="{{ route('dashboard.orders.index') }}">Orders</a>
     </li>
     <li class="breadcrumb-item active">
         {{ $order->tracking_no }}
@@ -14,7 +14,7 @@
 @endsection
 
 @section('button-link')
-    {{ route('orders.index') }}
+    {{ route('dashboard.orders.index') }}
 @endsection
 
 @section('button-icon')
@@ -436,7 +436,7 @@
                                         </div>
                                     </div>
                                     <div class="col text-right">
-                                        <a href="{{ route('customers.show',$order->customer->id) }}"
+                                        <a href="{{ route('dashboard.customers.show',$order->customer->id) }}"
                                            class="btn btn-outline-secondary">View Customer</a>
                                     </div>
                                 </div>
@@ -540,7 +540,7 @@
                                         </div>
                                     </div>
                                     <div class="col text-right">
-                                        <a href="{{ route('locations.show',$order->location->id) }}"
+                                        <a href="{{ route('dashboard.locations.show',$order->location->id) }}"
                                            class="btn btn-outline-secondary">View Location</a>
                                     </div>
                                 </div>
@@ -706,7 +706,7 @@
                                         </div>
                                     </div>
                                     <div class="col text-right">
-                                        <a href="{{ route('locations.show',$order->pickup->location->id) }}"
+                                        <a href="{{ route('dashboard.locations.show',$order->pickup->location->id) }}"
                                            class="btn btn-outline-secondary">View Location</a>
                                     </div>
                                 </div>

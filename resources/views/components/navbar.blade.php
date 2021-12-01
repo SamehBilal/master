@@ -213,7 +213,7 @@
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-header"><strong>Profile</strong></div>
                 <a class="dropdown-item"
-                   href="{{ route('profile') }}">Edit Profile</a>
+                   href="{{ route('dashboard.profile') }}">Edit Profile</a>
                 {{--<a class="dropdown-item"
                    href="billing.html">Billing</a>
                 <a class="dropdown-item"

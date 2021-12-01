@@ -33,14 +33,14 @@
 
             <div class="sidebar-heading">Application</div>
             <ul class="sidebar-menu">
-                <li class="sidebar-menu-item {{ set_active(['dashboard'])}}">
+                <li class="sidebar-menu-item {{ set_active(['dashboard/dashboard'])}}">
                     <a class="sidebar-menu-button"
                        href="{{ route('dashboard') }}">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">dashboard</span>
                         Dashboard
                     </a>
                 </li>
-                <li class="sidebar-menu-item {{ set_active(['orders*'],'active open')}}">
+                <li class="sidebar-menu-item {{ set_active(['dashboard/orders*'],'active open')}}">
                     <a class="sidebar-menu-button js-sidebar-collapse"
                        data-toggle="collapse"
                        href="#student_menu">
@@ -50,38 +50,38 @@
                         <span class="sidebar-menu-toggle-icon"></span>--}}
                         <span class="ml-auto sidebar-menu-toggle-icon"></span>
                     </a>
-                    <ul class="sidebar-submenu collapse {{ set_active(['orders*'],'show')}} sm-indent"
+                    <ul class="sidebar-submenu collapse {{ set_active(['dashboard/orders*'],'show')}} sm-indent"
                         id="student_menu">
-                        <li class="sidebar-menu-item {{ set_active(['orders'])}}">
+                        <li class="sidebar-menu-item {{ set_active(['dashboard/orders'])}}">
                             <a class="sidebar-menu-button"
-                               href="{{ route('orders.index') }}">
+                               href="{{ route('dashboard.orders.index') }}">
                                 <span class="sidebar-menu-text">All orders</span>
                             </a>
                         </li>
-                        <li class="sidebar-menu-item {{ set_active(['orders/create'])}}">
+                        <li class="sidebar-menu-item {{ set_active(['dashboard/orders/create'])}}">
                             <a class="sidebar-menu-button"
-                               href="{{ route('orders.create') }}">
+                               href="{{ route('dashboard.orders.create') }}">
                                 <span class="sidebar-menu-text">Single order</span>
                             </a>
                         </li>
-                        <li class="sidebar-menu-item {{ set_active(['orders/create/multi'])}}">
+                        <li class="sidebar-menu-item {{ set_active(['dashboard/orders/create/multi'])}}">
                             <a class="sidebar-menu-button"
-                               href="{{ route('orders.create.multi') }}">
+                               href="{{ route('dashboard.orders.create.multi') }}">
                                 <span class="sidebar-menu-text">Multi orders</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="sidebar-menu-item {{ set_active(['pickups*'])}}">
+                <li class="sidebar-menu-item {{ set_active(['dashboard/pickups*'])}}">
                     <a class="sidebar-menu-button"
-                       href="{{ route('pickups.index') }}">
+                       href="{{ route('dashboard.pickups.index') }}">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">map</span>
                         Pickups
                     </a>
                 </li>
-                <li class="sidebar-menu-item {{ set_active(['tickets*'])}}">
+                <li class="sidebar-menu-item {{ set_active(['dashboard/tickets*'])}}">
                     <a class="sidebar-menu-button"
-                       href="{{ route('tickets.index') }}">
+                       href="{{ route('dashboard.tickets.index') }}">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">confirmation_number</span>
                         Support Tickets
                     </a>
@@ -89,23 +89,23 @@
             </ul>
             <div class="sidebar-heading">Users</div>
             <ul class="sidebar-menu">
-                <li class="sidebar-menu-item {{ set_active(['customers*'])}}">
+                <li class="sidebar-menu-item {{ set_active(['dashboard/customers*'])}}">
                     <a class="sidebar-menu-button"
-                       href="{{ route('customers.index') }}">
+                       href="{{ route('dashboard.customers.index') }}">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">person</span>
                         Customers
                     </a>
                 </li>
-                <li class="sidebar-menu-item {{ set_active(['user-categories*'])}}">
+                <li class="sidebar-menu-item {{ set_active(['dashboard/user-categories*'])}}">
                     <a class="sidebar-menu-button"
-                       href="{{ route('user-categories.index') }}">
+                       href="{{ route('dashboard.user-categories.index') }}">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">badge</span>
                         User Categories
                     </a>
                 </li>
-                <li class="sidebar-menu-item {{ set_active(['users*'])}}">
+                <li class="sidebar-menu-item {{ set_active(['dashboard/users*'])}}">
                     <a class="sidebar-menu-button"
-                       href="{{ route('users.index') }}">
+                       href="{{ route('dashboard.users.index') }}">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">group</span>
                         All Users
                     </a>
@@ -114,28 +114,28 @@
 
             <div class="sidebar-heading">Setup</div>
             <ul class="sidebar-menu">
-                <li class="sidebar-menu-item {{ set_active(['profile*'])}}">
+                <li class="sidebar-menu-item {{ set_active(['dashboard/profile*'])}}">
                     <a class="sidebar-menu-button"
-                       href="{{ route('profile') }}">
+                       href="{{ route('dashboard.profile') }}">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">account_circle</span>
                         Profile
                     </a>
                 </li>
-                <li class="sidebar-menu-item {{ set_active(['currencies*'])}}">
+                <li class="sidebar-menu-item {{ set_active(['dashboard/currencies*'])}}">
                     <a class="sidebar-menu-button"
-                       href="{{ route('currencies.index') }}">
+                       href="{{ route('dashboard.currencies.index') }}">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">monetization_on</span>
                         Currencies
                     </a>
                 </li>
-                <li class="sidebar-menu-item {{ set_active(['locations*'])}}">
+                <li class="sidebar-menu-item {{ set_active(['dashboard/locations*'])}}">
                     <a class="sidebar-menu-button"
-                       href="{{ route('locations.index') }}">
+                       href="{{ route('dashboard.locations.index') }}">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">map</span>
                         Locations
                     </a>
                 </li>
-                <li class="sidebar-menu-item {{ set_active(['settings*'])}}">
+                <li class="sidebar-menu-item {{ set_active(['dashboard/settings*'])}}">
                     <a class="sidebar-menu-button"
                        href="#">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">settings</span>

@@ -11,7 +11,7 @@
 @endsection
 
 @section('button-link')
-    {{ route('orders.create') }}
+    {{ route('dashboard.orders.create') }}
 @endsection
 
 @section('button-icon')

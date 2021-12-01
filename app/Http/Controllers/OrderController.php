@@ -112,16 +112,52 @@ class OrderController extends Controller
         $this->validate($request, Order::rules());
 
         try {
-            switch ($request->type){
-                case 'Deliver':
+            switch($request->type)
+            {
+                case 'Deliver';
+                    $order = Order::create([
+                        'pickup_id'             => $request->pickup_id,
+                        'type'                  => $request->type,
+                        'scheduled_date'        => $request->scheduled_date,
+                        'status'                => $request->status,
+                        'notes'                 => $request->notes,
+                        'contact_id'            => $request->contact_id,
+                        'location_id'           => $request->location_id,
+                    ]);
                     break;
-                case 'Exchange':
+                case 'Exchange';
+                    $order = Order::create([
+                        'pickup_id'             => $request->pickup_id,
+                        'type'                  => $request->type,
+                        'scheduled_date'        => $request->scheduled_date,
+                        'status'                => $request->status,
+                        'notes'                 => $request->notes,
+                        'contact_id'            => $request->contact_id,
+                        'location_id'           => $request->location_id,
+                    ]);
                     break;
-                case 'Return':
+                case 'Return';
+                    $order = Order::create([
+                        'type'                  => $request->type,
+                        'scheduled_date'        => $request->scheduled_date,
+                        'status'                => $request->status,
+                        'notes'                 => $request->notes,
+                        'contact_id'            => $request->contact_id,
+                        'location_id'           => $request->location_id,
+                    ]);
                     break;
-                case 'Cash Collection':
+                case 'Cash Collection';
+                    $order = Order::create([
+                        'type'                  => $request->type,
+                        'scheduled_date'        => $request->scheduled_date,
+                        'status'                => $request->status,
+                        'notes'                 => $request->notes,
+                        'contact_id'            => $request->contact_id,
+                        'location_id'           => $request->location_id,
+                    ]);
                     break;
             }
+
             \DB::transaction(function () use(/* $data, */ $request) {
 
                 $order = Order::create([
@@ -156,7 +192,7 @@ class OrderController extends Controller
                 }
 
                 $user->assignRole('customer');
-                return redirect()->route('orders.show',$order->id)->with('success','Data created successfully');
+                return redirect()->route('dashboard.orders.show',$order->id)->with('success','Data created successfully');
             });
         } catch (\Exception $ex) {
             return redirect()->back()->withErrors($ex->getMessage());
@@ -171,7 +207,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $qr = QrCode::generate(route('orders.show',$order->id));
+        $qr = QrCode::generate(route('dashboard.orders.show',$order->id));
 
         return view('orders.show',compact('order','qr'));
     }
@@ -231,7 +267,7 @@ class OrderController extends Controller
             'location_id'           => $request->location_id,
         ]);
 
-        return redirect()->route('orders.index')->with('success','Data updated successfully');
+        return redirect()->route('dashboard.index')->with('success','Data updated successfully');
     }
 
     /**
@@ -243,6 +279,6 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         Order::destroy($order->id);
-        return redirect()->route('orders.index')->with('success','Data deleted successfully');
+        return redirect()->route('dashboard.orders.index')->with('success','Data deleted successfully');
     }
 }

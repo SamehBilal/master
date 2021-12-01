@@ -6,7 +6,7 @@
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('orders.index') }}">Orders</a>
+        <a href="{{ route('dashboard.orders.index') }}">Orders</a>
     </li>
     <li class="breadcrumb-item active">
         create
@@ -14,7 +14,7 @@
 @endsection
 
 @section('button-link')
-    {{ route('orders.index') }}
+    {{ route('dashboard.orders.index') }}
 @endsection
 
 @section('button-icon')
@@ -537,7 +537,7 @@
                                                        for="select05">Country</label>
                                                 <select id="select05"
                                                         data-toggle="select"
-                                                        class="form-control form-control-sm @error('country_id') is-invalid @enderror"
+                                                        class="form-control select05 form-control-sm @error('country_id') is-invalid @enderror"
                                                         name="country_id">
                                                     @foreach($countries as $country)
                                                         <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -558,7 +558,7 @@
                                                 <select id="select01"
                                                         data-toggle="select"
                                                         data-minimum-results-for-search="-1"
-                                                        class="form-control form-control-sm @error('state_id') is-invalid @enderror"
+                                                        class="form-control select01 form-control-sm @error('state_id') is-invalid @enderror"
                                                         name="state_id">
                                                     @foreach($states as $state)
                                                         <option value="{{ $state->id }}" {{ old('state_id') == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -580,7 +580,7 @@
                                                         data-toggle="select"
                                                         disabled
                                                         data-minimum-results-for-search="-1"
-                                                        class="form-control form-control-sm @error('city_id') is-invalid @enderror"
+                                                        class="form-control select03 form-control-sm @error('city_id') is-invalid @enderror"
                                                         name="city_id">
                                                 </select>
                                                 @error('city_id')
@@ -889,7 +889,7 @@
                                                        for="select05">Country</label>
                                                 <select id="select05"
                                                         data-toggle="select"
-                                                        class="form-control form-control-sm @error('country_id') is-invalid @enderror"
+                                                        class="form-control select05 form-control-sm @error('country_id') is-invalid @enderror"
                                                         name="country_id">
                                                     @foreach($countries as $country)
                                                         <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -910,7 +910,7 @@
                                                 <select id="select01"
                                                         data-toggle="select"
                                                         data-minimum-results-for-search="-1"
-                                                        class="form-control form-control-sm @error('state_id') is-invalid @enderror"
+                                                        class="form-control select01 form-control-sm @error('state_id') is-invalid @enderror"
                                                         name="state_id">
                                                     @foreach($states as $state)
                                                         <option value="{{ $state->id }}" {{ old('state_id') == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -932,7 +932,7 @@
                                                         data-toggle="select"
                                                         disabled
                                                         data-minimum-results-for-search="-1"
-                                                        class="form-control form-control-sm @error('city_id') is-invalid @enderror"
+                                                        class="form-control select03 form-control-sm @error('city_id') is-invalid @enderror"
                                                         name="city_id">
                                                 </select>
                                                 @error('city_id')
@@ -1353,7 +1353,7 @@
                                        for="select05">Country</label>
                                 <select id="select05"
                                         data-toggle="select"
-                                        class="form-control form-control-sm @error('country_id') is-invalid @enderror"
+                                        class="form-control select05 form-control-sm @error('country_id') is-invalid @enderror"
                                         name="country_id">
                                     @foreach($countries as $country)
                                         <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -1374,7 +1374,7 @@
                                 <select id="select01"
                                         data-toggle="select"
                                         data-minimum-results-for-search="-1"
-                                        class="form-control form-control-sm @error('state_id') is-invalid @enderror"
+                                        class="form-control select01 form-control-sm @error('state_id') is-invalid @enderror"
                                         name="state_id">
                                     @foreach($states as $state)
                                         <option value="{{ $state->id }}" {{ old('state_id') == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -1396,7 +1396,7 @@
                                         data-toggle="select"
                                         disabled
                                         data-minimum-results-for-search="-1"
-                                        class="form-control form-control-sm @error('city_id') is-invalid @enderror"
+                                        class="form-control select03 form-control-sm @error('city_id') is-invalid @enderror"
                                         name="city_id">
                                 </select>
                                 @error('city_id')

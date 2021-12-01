@@ -15,6 +15,7 @@ class CreateOrderLogsTable extends Migration
     {
         Schema::create('order_logs', function (Blueprint $table) {
             $table->id();
+            $table->
             $table->timestamps();
         });
     }

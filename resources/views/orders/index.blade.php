@@ -11,7 +11,7 @@
 @endsection
 
 @section('button-link')
-    {{ route('orders.create') }}
+    {{ route('dashboard.orders.create') }}
 @endsection
 
 @section('button-icon')
@@ -30,7 +30,7 @@
                 <div class="page-separator__text">Filter</div>
             </div>
 
-            <form action="{{ route('orders.index') }}" method="GET">
+            <form action="{{ route('dashboard.orders.index') }}" method="GET">
                 <div class="card card-form d-flex flex-column flex-sm-row mb-lg-32pt">
                     <div class="card-form__body card-body-form-group flex">
                         <div class="row">
@@ -234,7 +234,7 @@
                                     <td></td>
 
                                     <td>
-                                        <a href="{{ route('orders.show',$order->id) }}"
+                                        <a href="{{ route('dashboard.orders.show',$order->id) }}"
                                            class="chip text-underline">{{ $order->tracking_no }}</a>
                                     </td>
 
@@ -249,7 +249,7 @@
 
                                                 <div class="d-flex flex-column">
                                                     <p class="mb-0"><strong class="js-lists-values-name">{{ $order->customer->user->full_name }}</strong></p>
-                                                    <small class="js-lists-values-email text-50">{{ $order->customer->status }}</small>
+                                                    <small class="js-lists-values-email text-50">{{ $order->customer->user->phone }}</small>
                                                     <span class="indicator-line rounded {{ $order->customer->status == 'active' ? 'bg-success':'bg-danger' }}"></span>
                                                 </div>
 
@@ -300,12 +300,12 @@
                                         <a href="#" data-toggle="dropdown"
                                            class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="{{ route('orders.create.airwaybell',$order->id) }}" class="dropdown-item active"><i class="material-icons ">receipt</i> Print Airwaybell</a>
-                                            <a href="{{ route('orders.show',$order->id) }}" class="dropdown-item"><i class="material-icons ">visibility</i> View</a>
-                                            <a href="{{ route('orders.edit',$order->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> Edit</a>
+                                            <a href="{{ route('dashboard.orders.create.airwaybell',$order->id) }}" class="dropdown-item active"><i class="material-icons ">receipt</i> Print Airwaybell</a>
+                                            <a href="{{ route('dashboard.orders.show',$order->id) }}" class="dropdown-item"><i class="material-icons ">visibility</i> View</a>
+                                            <a href="{{ route('dashboard.orders.edit',$order->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> Edit</a>
                                             <div class="dropdown-divider"></div>
                                             <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $order->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
-                                            <form id="delete-form{{ $order->id }}" action="{{ route('orders.destroy',$order->id) }}" method="POST" class="d-none">
+                                            <form id="delete-form{{ $order->id }}" action="{{ route('dashboard.orders.destroy',$order->id) }}" method="POST" class="d-none">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
