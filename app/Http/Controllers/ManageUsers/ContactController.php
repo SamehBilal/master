@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ManageUsers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Contact;
 use App\Models\Customer;
+use App\Models\UserCategory;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -15,8 +17,11 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::all();
-        return view('users.customers.contacts.index',compact('contacts'));
+        $contacts = Contact::where('user_id',auth()->user()->id)
+                            ->orderBy('updated_at','desc')
+                            ->get();
+        $categories = UserCategory::where('model','App\Models\Contact')->get();
+        return view('users.contacts.index',compact('contacts','categories'));
     }
 
     /**
@@ -27,7 +32,8 @@ class ContactController extends Controller
     public function create()
     {
         $customers = Customer::all();
-        return view('users.customers.contacts.create',compact('customers'));
+        $categories = UserCategory::where('model','App\Models\Contact')->get();
+        return view('users.contacts.create',compact('customers','categories'));
     }
 
     /**
@@ -40,14 +46,18 @@ class ContactController extends Controller
     {
         $this->validate($request, Contact::rules());
 
+        $user_id = auth()->user()->id;
+
         $contact = Contact::create([
             'contact_name'                  => $request->contact_name,
             'contact_job_title'             => $request->contact_job_title,
             'contact_email'                 => $request->contact_email,
             'contact_phone'                 => $request->contact_phone,
+            'user_category_id'              => $request->user_category_id,
+            'user_id'                       => $user_id,
         ]);
 
-        return redirect()->route('contacts.show',$contact->id)->with('success','Data created successfully');
+        return redirect()->route('dashboard.contacts.show',$contact->id)->with('success','Data created successfully');
     }
 
     /**
@@ -58,7 +68,7 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        return view('users.customers.contacts.edit',compact('contact'));
+        return view('users.contacts.edit',compact('contact'));
     }
 
     /**
@@ -69,7 +79,7 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        return view('users.customers.contacts.edit',compact('contact'));
+        return view('users.contacts.edit',compact('contact'));
     }
 
     /**
@@ -83,14 +93,18 @@ class ContactController extends Controller
     {
         $this->validate($request, Contact::rules($update = true, $contact->id));
 
+        $user_id = auth()->user()->id;
+
         $contact->update([
             'contact_name'                  => $request->contact_name,
             'contact_job_title'             => $request->contact_job_title,
             'contact_email'                 => $request->contact_email,
             'contact_phone'                 => $request->contact_phone,
+            'user_category_id'              => $request->user_category_id,
+            'user_id'                       => $user_id,
         ]);
 
-        return redirect()->route('contacts.index')->with('success','Data updated successfully');
+        return redirect()->route('dashboard.contacts.index')->with('success','Data updated successfully');
     }
 
     /**
@@ -102,6 +116,6 @@ class ContactController extends Controller
     public function destroy(Contact $contact)
     {
         Contact::destroy($contact->id);
-        return redirect()->route('contacts.index')->with('success','Data deleted successfully');
+        return redirect()->route('dashboard.contacts.index')->with('success','Data deleted successfully');
     }
 }

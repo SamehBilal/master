@@ -193,8 +193,7 @@
                                     <a href="#" data-toggle="dropdown"
                                        class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="{{ route('dashboard.locations.show',$location->id) }}" class="dropdown-item active"><i class="material-icons ">visibility</i> View</a>
-                                        <a href="{{ route('dashboard.locations.edit',$location->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> Edit</a>
+                                        <a href="{{ route('dashboard.locations.edit',$location->id) }}" class="dropdown-item active"><i class="material-icons ">edit</i> Edit</a>
                                         <div class="dropdown-divider"></div>
                                         <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $location->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
                                         <form id="delete-form{{ $location->id }}" action="{{ route('dashboard.locations.destroy',$location->id) }}" method="POST" class="d-none">

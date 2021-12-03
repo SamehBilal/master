@@ -16,6 +16,11 @@ class Contact extends Model
         $this->belongsTo(Customer::class);
     }
 
+    public function UserCategory()
+    {
+        return $this->hasOne(UserCategory::class , "id" , "user_category_id");
+    }
+
     public static function rules($update = false, $id = null)
     {
         $common = [
@@ -29,9 +34,7 @@ class Contact extends Model
         }
 
         return array_merge($common, [
-            'contact_name'          => "required|max:40",
             'contact_email'         => 'nullable|email|regex:/(.+)@(.+)\.(.+)/i|max:255',
-            'contact_phone'         => "nullable|numeric|digits_between:1,16",
         ]);
     }
 }

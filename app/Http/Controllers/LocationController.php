@@ -19,7 +19,9 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $locations = Location::all();
+        $locations = Location::where('business_user_id',auth()->user()->id)
+                                ->orderBy('updated_at','desc')
+                                ->get();
         return view('setup.locations.index',compact('locations'));
     }
 
@@ -33,7 +35,7 @@ class LocationController extends Controller
         $countries  = Country::all();
         $states     = State::where('country_id',64)->get();
         $cities     = City::all();
-        return view('setup.locations.create',compact('countries','states','cities'));   
+        return view('setup.locations.create',compact('countries','states','cities'));
      }
 
     /**
@@ -46,6 +48,8 @@ class LocationController extends Controller
     {
         $this->validate($request, Location::rules());
 
+        $user_id = auth()->user()->id;
+
         $location = Location::create([
             'name'                  => $request->name,
             'street'                => $request->street,
@@ -57,10 +61,11 @@ class LocationController extends Controller
             'state_id'              => $request->state_id,
             'city_id'               => $request->city_id,
             'zone_id'               => $request->zone_id,
-            'user_id'               => $request->user_id,
+            'customer_id'           => $request->customer_id,
+            'business_user_id'      => $user_id,
         ]);
 
-        return redirect()->route('locations.show',$location->id)->with('success','Data created successfully');
+        return redirect()->route('dashboard.locations.index')->with('success','Data created successfully');
     }
 
     /**
@@ -86,8 +91,8 @@ class LocationController extends Controller
     public function edit(Location $location)
     {
         $countries  = Country::all();
-        $states     = State::all();
-        $cities     = City::all();
+        $states     = State::where('country_id',$location->country_id)->get();
+        $cities     = City::where('state_id',$location->state_id)->get();
         return view('setup.locations.edit',compact('location','countries','states','cities'));
     }
 
@@ -102,6 +107,8 @@ class LocationController extends Controller
     {
         $this->validate($request, Location::rules($update = true, $location->id));
 
+        $user_id = auth()->user()->id;
+
         $location->update([
             'name'                  => $request->name,
             'street'                => $request->street,
@@ -113,10 +120,11 @@ class LocationController extends Controller
             'state_id'              => $request->state_id,
             'city_id'               => $request->city_id,
             'zone_id'               => $request->zone_id,
-            'user_id'               => $request->user_id,
+            'customer_id'           => $request->customer_id,
+            'business_user_id'      => $user_id,
         ]);
 
-        return redirect()->route('locations.index')->with('success','Data updated successfully');
+        return redirect()->route('dashboard.locations.index')->with('success','Data updated successfully');
     }
 
     /**
@@ -128,6 +136,6 @@ class LocationController extends Controller
     public function destroy(Location $location)
     {
         Location::destroy($location->id);
-        return redirect()->route('locations.index')->with('success','Data deleted successfully');
+        return redirect()->route('dashboard.locations.index')->with('success','Data deleted successfully');
     }
 }

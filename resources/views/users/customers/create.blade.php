@@ -6,7 +6,7 @@
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('customers.index') }}">Customers</a>
+        <a href="{{ route('dashboard.customers.index') }}">Customers</a>
     </li>
     <li class="breadcrumb-item active">
         Create
@@ -14,7 +14,7 @@
 @endsection
 
 @section('button-link')
-    {{ route('customers.index') }}
+    {{ route('dashboard.customers.index') }}
 @endsection
 
 @section('button-icon')
@@ -27,7 +27,7 @@
 
 @section('main_content')
     <div class="container page__container page-section">
-        <form method="POST" action="{{ route('customers.index') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('dashboard.customers.index') }}" enctype="multipart/form-data">
             @csrf
             <div class="card">
                 <div class="row card-body mb-32pt">
@@ -280,7 +280,7 @@
                                            for="select05">Country</label>
                                     <select id="select05"
                                             data-toggle="select"
-                                            class="form-control form-control-sm @error('country_id') is-invalid @enderror"
+                                            class="form-control select05 form-control-sm @error('country_id') is-invalid @enderror"
                                             name="country_id[]">
                                         @foreach($countries as $country)
                                             <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -297,17 +297,34 @@
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select01">City</label>
+                                           for="select01">State</label>
                                     <select id="select01"
                                             data-toggle="select"
                                             data-minimum-results-for-search="-1"
-                                            class="form-control form-control-sm @error('city_id') is-invalid @enderror"
-                                            name="city_id[]">
-                                        @foreach($cities as $city)
-                                            <option value="{{ $city->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
-                                                {{ $city->name }}
+                                            class="form-control select01 form-control-sm @error('state_id') is-invalid @enderror"
+                                            name="state_id[]">
+                                        @foreach($states as $state)
+                                            <option value="{{ $state->id }}" {{ old('state_id') == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                                {{ $state->name }}
                                             </option>
                                         @endforeach
+                                    </select>
+                                    @error('city_id')
+                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                    @enderror
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="select03">City</label>
+                                    <select id="select03"
+                                            data-toggle="select"
+                                            disabled
+                                            data-minimum-results-for-search="-1"
+                                            class="form-control select03 form-control-sm @error('city_id') is-invalid @enderror"
+                                            name="city_id[]">
                                     </select>
                                     @error('city_id')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -1026,3 +1043,4 @@
 @section('extra-scripts')
     <script src="{{  asset('backend/js/locations_ajax.js') }}"></script>
 @endsection
+

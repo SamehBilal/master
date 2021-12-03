@@ -310,17 +310,17 @@
                             </div>
                         </div>
                     </div>
-                        {{--<div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox"
-                                       class="custom-control-input"
-                                       checked
-                                       id="customCheck2">
-                                <label class="custom-control-label"
-                                       for="customCheck2">Allow everyone to see your profile</label>
-                                <small class="form-text text-muted">If unchecked, your profile will be private and no one except you will be able to view it.</small>
-                            </div>
-                        </div>--}}
+                    {{--<div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox"
+                                   class="custom-control-input"
+                                   checked
+                                   id="customCheck2">
+                            <label class="custom-control-label"
+                                   for="customCheck2">Allow everyone to see your profile</label>
+                            <small class="form-text text-muted">If unchecked, your profile will be private and no one except you will be able to view it.</small>
+                        </div>
+                    </div>--}}
                 </div>
             </div>
             <button type="submit"

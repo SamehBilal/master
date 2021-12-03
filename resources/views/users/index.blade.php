@@ -11,38 +11,15 @@
 @endsection
 
 @section('button-link')
-    {{ route('dashboard.users.create') }}
+    {{ route('dashboard') }}
 @endsection
 
 @section('button-icon')
-    add
+    dashboard
 @endsection
 
 @section('button-title')
-    New User
-@endsection
-
-@section('extra_styles')
-    <style>
-        /* table.dataTable tbody td.select-checkbox:before, table.dataTable tbody th.select-checkbox:before{
-             content: " "!important;
-             margin-top: -2px!important;
-             margin-left: -6px!important;
-             border: 1px solid red!important;
-             border-radius: 3px!important;
-         }
-         table.dataTable tr.selected td.select-checkbox:after, table.dataTable tr.selected th.select-checkbox:after{
-             content: "x"!important;
-             font-size: 20px!important;
-             margin-top: -19px!important;
-             margin-left: -6px!important;
-             text-align: center!important;
-             text-shadow: 1px 1px #b0bed9, -1px -1px #b0bed9, 1px -1px #b0bed9, -1px 1px #b0bed9!important;
-         }
-         table.dataTable tbody td.select-checkbox, table.dataTable tbody th.select-checkbox {
-             position: static !important;
-         }*/
-    </style>
+    Dashboard
 @endsection
 
 @section('main_content')
@@ -154,75 +131,46 @@
                         <tbody id="projects">
                         @foreach($users as $user)
                             <tr class="">
-
                                 <td class="pr-0">
-                                    {{--<div class="custom-control custom-checkbox">
-                                        <input type="checkbox" id="checkItem" class="checkItem " name="checkItem"  />
-                                        <label class=""
-                                               for="checkItem"><span class="text-hide">Check</span></label>
-                                    </div>--}}
-
-                                    <div class="custom-control custom-checkbox">
-                                        {{--<input type="checkbox"
-                                               class="custom-control-input "
-                                               checked=""
-                                               id="customCheck1_5">
-                                        <label class="custom-control-label"
-                                               for="customCheck1_5"><span class="text-hide">Check</span></label>--}}
-                                    </div>
+                                    <div class="custom-control custom-checkbox"></div>
                                 </td>
-
                                 <td></td>
-
                                 <td>
-
                                     <div class="media flex-nowrap align-items-center"
                                          style="white-space: nowrap;">
                                         <div class="avatar avatar-sm mr-8pt">
-
                                             <img src="{{ asset('backend/images/people/110/guy-3.jpg') }}"
                                                  alt="Avatar"
                                                  class="avatar-img rounded-circle">
-
                                         </div>
                                         <div class="media-body">
-
                                             <div class="d-flex align-items-center">
                                                 <div class="flex d-flex flex-column">
                                                     <p class="mb-0"><strong class="">{{ $user->full_name }}</strong></p>
                                                     <small class="">{{ $user->email }}</small>
                                                 </div>
-                                                {{--<div class="d-flex align-items-center ml-24pt">
-                                                    <i class="material-icons text-20 icon-16pt">message</i>
-                                                    <small class="ml-4pt"><strong class="text-50">2</strong></small>
-                                                </div>--}}
                                             </div>
-
                                         </div>
                                     </div>
-
                                 </td>
-
                                 <td>
-
                                     <div class="media flex-nowrap align-items-center"
                                          style="white-space: nowrap;">
                                         <div class="avatar avatar-sm mr-8pt">
-                                            <span class="avatar-title rounded bg-warning text-black-100">{{ $user->UserCategory ? initials($user->UserCategory->name):''  }}</span>
+                                            <span class="avatar-title rounded bg-warning text-black-100">{{ $user->UserCategory ? initials($user->UserCategory->name):'NO'  }}</span>
                                         </div>
                                         <div class="media-body">
                                             <div class="d-flex flex-column">
-                                                <small class=""><strong>{{ $user->UserCategory ? $user->UserCategory->name:'' }}</strong></small>
+                                                <small class=""><strong>{{ $user->UserCategory ? $user->UserCategory->name:'No Category' }}</strong></small>
                                                 <small class=" text-50">{{ $user->UserCategory ? $user->UserCategory->status:'' }}</small>
-                                                <span class="indicator-line rounded {{--{{ $user->UserCategory->status == 'active' ? 'bg-success':'bg-danger' }}--}}"></span>
+                                                <span class="indicator-line rounded @if($user->UserCategory) {{ $user->UserCategory->status == 'active' ? 'bg-success':'bg-danger' }} @else bg-success @endif"></span>
                                             </div>
                                         </div>
                                     </div>
-
                                 </td>
 
                                 <td>
-                                    @foreach($user->roles as $role)
+                                @foreach($user->roles as $role)
                                         <a href="#"
                                            class="chip chip-outline-secondary">{{ $role->name }}</a>
                                     @endforeach
@@ -233,7 +181,6 @@
                                         <button class="btn btn-sm {{ $user->status == 1 ? 'btn-success':'btn-danger' }}">{{ $user->status == 1 ? 'Active':'Inctive' }}</button>
                                     </div>
                                 </td>
-
                                 <td>
                                     <div class="d-flex flex-column">
                                         <small class=""><strong>{{--{{ date("F j, Y, g:i a", strtotime($user->created_at)) }}--}}{{ date("F j, Y", strtotime($user->created_at)) }}</strong></small>
@@ -273,7 +220,7 @@
 
                             <th >Created</th>
 
-                            <th ></th>
+                            <th></th>
                         </tr>
                         </tfoot>
                     </table>

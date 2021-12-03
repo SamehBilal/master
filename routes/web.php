@@ -40,8 +40,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['prefix' => 'dashboard', 'as' => 'dashboard' . '.'], function () {
         /* Profile */
-        Route::get('profile',[\App\Http\Controllers\ProfileController::class,'index'])->name('profile');
-        Route::post('profile/{id}',[\App\Http\Controllers\ProfileController::class,'update'])->name('profile.edit');
+        Route::get('settings/profile',[\App\Http\Controllers\ProfileController::class,'index'])->name('settings.profile');
+        Route::post('settings/profile/{id}',[\App\Http\Controllers\ProfileController::class,'update'])->name('settings.profile.edit');
 
         Route::resource('customers',\App\Http\Controllers\ManageUsers\CustomerController::class); //Customers
         Route::resource('users',\App\Http\Controllers\UserController::class); //Users
@@ -58,10 +58,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('subscribers',\App\Http\Controllers\SubscribeController::class)->except(['create', 'store',]);; //Subscribes
         Route::get('location-states',[\App\Http\Controllers\LocationController::class,'get_state'])->name('locations.states'); //Get States Ajax
         Route::get('location-cities',[\App\Http\Controllers\LocationController::class,'get_city'])->name('locations.cities'); //Get Cities Ajax
-        Route::resource('contacts',\App\Http\Controllers\ContactController::class); //Contact
+        Route::resource('contacts',\App\Http\Controllers\ManageUsers\ContactController::class); //Contact
         Route::get('import',[\App\Http\Controllers\ExcelController::class,'import'])->name('import'); //import
         Route::get('export',[\App\Http\Controllers\ExcelController::class,'export'])->name('export'); //export
+        Route::get('settings',[\App\Http\Controllers\SettingsController::class,'index'])->name('settings'); //settings
     });
+
     Route::group(['middleware' => ['role:Super Admin|admin']], function () {
         //
     });

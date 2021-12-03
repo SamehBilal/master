@@ -14,7 +14,9 @@ class UserCategoryController extends Controller
      */
     public function index()
     {
-        $categories = UserCategory::all();
+        $categories = UserCategory::where('business_user_id',auth()->user()->id)
+                                    ->orderBy('updated_at','desc')
+                                    ->get();
         return view('users.categories.index',compact('categories'));
     }
 
@@ -38,15 +40,18 @@ class UserCategoryController extends Controller
     {
         $this->validate($request, UserCategory::rules());
 
+        $user_id = auth()->user()->id;
+
         $userCategory = UserCategory::create([
             'name'                  => $request->name,
             'description'           => $request->description,
             'model'                 => $request->model,
             'icon'                  => $request->icon,
             'status'                => $request->status,
+            'business_user_id'      => $user_id,
         ]);
 
-        return redirect()->route('user-categories.show',$userCategory->id)->with('success','Data created successfully');
+        return redirect()->route('dashboard.user-categories.index')->with('success','Data created successfully');
     }
 
     /**
@@ -82,15 +87,18 @@ class UserCategoryController extends Controller
     {
         $this->validate($request, UserCategory::rules($update = true, $userCategory->id));
 
+        $user_id = auth()->user()->id;
+
         $userCategory->update([
             'name'                  => $request->name,
             'description'           => $request->description,
             'model'                 => $request->model,
             'icon'                  => $request->icon,
             'status'                => $request->status,
+            'business_user_id'      => $user_id,
         ]);
 
-        return redirect()->route('user-categories.index')->with('success','Data updated successfully');
+        return redirect()->route('dashboard.user-categories.index')->with('success','Data updated successfully');
     }
 
     /**
@@ -102,6 +110,6 @@ class UserCategoryController extends Controller
     public function destroy(UserCategory $userCategory)
     {
         UserCategory::destroy($userCategory->id);
-        return redirect()->route('user-categories.index')->with('success','Data deleted successfully');
+        return redirect()->route('dashboard.user-categories.index')->with('success','Data deleted successfully');
     }
 }

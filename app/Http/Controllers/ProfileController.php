@@ -10,7 +10,7 @@ class ProfileController extends Controller
     public function index()
     {
         $user = User::find(auth()->user()->id);
-        return view('users.profile',compact('user'));
+        return view('setup.settings.profile',compact('user'));
     }
 
     public function update(Request $request, $id)
@@ -44,6 +44,6 @@ class ProfileController extends Controller
             $user->update(['avatar' =>  $image]);
         }
 
-        return redirect()->route('profile')->with('success','Data updated successfully');
+        return redirect()->route('dashboard.settings.profile')->with('success','Data updated successfully');
     }
 }

@@ -24,8 +24,12 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::all();
-        $categories = UserCategory::where('model','App\Models\Customer')->get();
+        $customers = Customer::where('business_user_id',auth()->user()->id)
+                                ->orderBy('updated_at','desc')
+                                ->get();
+        $categories = UserCategory::where([['user_id',auth()->user()->id],['model','App\Models\Customer']])
+                                    ->orderBy('updated_at','desc')
+                                    ->get();
         return view('users.customers.index',compact('customers','categories'));
     }
 
@@ -36,12 +40,12 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $categories = UserCategory::all();
+        $categories = UserCategory::where('model','App\Models\Customer')->get();
         $currencies = Currency::all();
-        $states     = State::all();
+        $states     = State::where('country_id',64)->get();
         $cities     = City::all();
-        $countries = Country::all();
-        return view('users.customers.create',compact('currencies','categories','countries','cities'));
+        $countries  = Country::all();
+        return view('users.customers.create',compact('currencies','categories','countries','cities','states'));
     }
 
     /**
@@ -148,8 +152,8 @@ class CustomerController extends Controller
         $currencies = Currency::all();
         $states     = State::all();
         $cities     = City::all();
-        $countries = Country::all();
-        return view('users.customers.edit',compact('customer','categories','currencies','cities','countries'));
+        $countries  = Country::all();
+        return view('users.customers.edit',compact('customer','categories','currencies','cities','states','countries'));
     }
 
     /**

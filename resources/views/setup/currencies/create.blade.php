@@ -6,7 +6,7 @@
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('currencies.index') }}">Currencies</a>
+        <a href="{{ route('dashboard.currencies.index') }}">Currencies</a>
     </li>
     <li class="breadcrumb-item active">
         create
@@ -14,7 +14,7 @@
 @endsection
 
 @section('button-link')
-    {{ route('currencies.index') }}
+    {{ route('dashboard.currencies.index') }}
 @endsection
 
 @section('button-icon')
@@ -32,7 +32,7 @@
                 Currency Information
             </div>
         </div>
-        <form method="POST" action="{{ route('currencies.index') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('dashboard.currencies.index') }}" enctype="multipart/form-data">
             @csrf
             <div class="card">
                 <div class="card-body ">

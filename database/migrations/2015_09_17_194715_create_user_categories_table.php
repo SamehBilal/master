@@ -20,6 +20,8 @@ class CreateUserCategoriesTable extends Migration
             $table->string('icon')->default('user_category.png');
             $table->set('status',['active','inactive'])->nullable();
             $table->longText('description')->nullable();
+            $table->unsignedBigInteger('business_user_id')->nullable();
+            $table->foreign('business_user_id')->references('id')->on('users')->onDelete('SET NULL');
             $table->timestamps();
         });
     }

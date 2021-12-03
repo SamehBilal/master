@@ -6,7 +6,7 @@
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('user-categories.index') }}">Categories</a>
+        <a href="{{ route('dashboard.user-categories.index') }}">Categories</a>
     </li>
     <li class="breadcrumb-item active">
         create
@@ -14,7 +14,7 @@
 @endsection
 
 @section('button-link')
-    {{ route('user-categories.index') }}
+    {{ route('dashboard.user-categories.index') }}
 @endsection
 
 @section('button-icon')
@@ -32,7 +32,7 @@
                 Categories Information
             </div>
         </div>
-        <form method="POST" action="{{ route('user-categories.index') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('dashboard.user-categories.index') }}" enctype="multipart/form-data">
             @csrf
             <div class="card">
                 <div class="card-body ">
@@ -55,7 +55,7 @@
                                            name="name"
                                            required="required"
                                            autocomplete="name"
-                                           placeholder="Currency name ..."
+                                           placeholder="Name ..."
                                            autofocus>
                                     @error('name')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -72,14 +72,18 @@
                                             data-minimum-results-for-search="-1"
                                             class="form-control form-control-sm @error('model') is-invalid @enderror"
                                             name="model">
-                                        <option {{ old('model') == 'App\Models\Customer' ? 'selected':'' }} value="App\Models\Customer" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                        <option {{ old('model') == 'App\Models\Customer' ? 'selected':'' }} value="App\Models\Customer" data-avatar-src="{{ asset('backend/images/icon/customer.png') }}">
                                             Customer
-                                        <option {{ old('model') == 'App\Models\User' ? 'selected':'' }} value="App\Models\User" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                        </option>
+                                        <option {{ old('model') == 'App\Models\Contact' ? 'selected':'' }} value="App\Models\Contact" data-avatar-src="{{ asset('backend/images/icon/contacts.png') }}">
+                                            Contact
+                                        </option>
+                                        <option {{ old('model') == 'App\Models\User' ? 'selected':'' }} value="App\Models\User" data-avatar-src="{{ asset('backend/images/icon/programmer.png') }}">
                                             User
                                         </option>
                                     </select>
                                     @error('model')
-                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
@@ -115,7 +119,7 @@
                                               class="form-control @error('description') is-invalid @enderror"
                                               placeholder="Description">{{ old('description') }}</textarea>
                                     @error('description')
-                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>

@@ -30,67 +30,6 @@
                 <div class="page-separator__text">Customers</div>
             </div>
 
-            {{--<div class="card card-form d-flex flex-column flex-sm-row mb-lg-32pt">
-                <div class="card-form__body card-body-form-group flex">
-                    <div class="row">
-                        <div class="col-sm-auto">
-                            <div class="form-group">
-                                <label for="filter_name">Name</label>
-                                <input id="filter_name"
-                                       type="text"
-                                       class="form-control"
-                                       placeholder="Search by name">
-                            </div>
-                        </div>
-                        <div class="col-sm-auto">
-                            <div class="form-group">
-                                <label for="filter_category">Category</label><br>
-                                <select id="filter_category"
-                                        class="custom-select"
-                                        style="width: 200px;">
-                                    <option value="all">All Categories</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-auto">
-                            <div class="form-group">
-                                <label for="filter_stock">In stock?</label>
-                                <div class="custom-control custom-checkbox mt-sm-2">
-                                    <input type="checkbox"
-                                           class="custom-control-input"
-                                           id="filter_stock"
-                                           checked="">
-                                    <label class="custom-control-label"
-                                           for="filter_stock">Yes</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-auto">
-                            <div class="form-group"
-                                 style="width: 200px;">
-                                <label for="filter_date">Order date</label>
-                                <input id="filter_date"
-                                       type="text"
-                                       class="form-control"
-                                       placeholder="Select date ..."
-                                       value="13/03/2018 to 20/03/2018"
-                                       data-toggle="flatpickr"
-                                       data-flatpickr-mode="range"
-                                       data-flatpickr-alt-format="d/m/Y"
-                                       data-flatpickr-date-format="d/m/Y">
-                            </div>
-                        </div>
-                        <div class="ml-auto col-sm-auto">
-                            <div class="form-group" style="width: 150px;">
-                                <label for="price_range">Price</label>
-                                <input id="price_range" type="text" data-toggle="ion-rangeslider" data-min="0" data-max="100" data-from="50" data-step="5" data-max-postfix="+" data-prefix="$">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn bg-alt border-left border-top border-top-sm-0 rounded-0"><i class="material-icons text-primary icon-20pt">refresh</i></button>
-            </div>--}}
-
             <div class="card dashboard-area-tabs p-relative o-hidden mb-32pt">
                 <div class="card-header p-0 nav">
                     <div class="row no-gutters"
@@ -149,35 +88,8 @@
                                    placeholder="Search ...">
 
                             <div class="col-lg d-flex flex-wrap buttons-datatable-add">
-                                <div class="ml-lg-auto dropdown select-datatable-add">
-                                   {{-- <a href="#"
-                                       class="btn btn-link dropdown-toggle text-70"
-                                       data-toggle="dropdown">All Topics</a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a href=""
-                                           class="dropdown-item active">All Topics</a>
-                                        <a href=""
-                                           class="dropdown-item">My Topics</a>
-                                    </div>--}}
-                                </div>
-                               {{-- <a href="#"
-                                   class="btn ml-2 btn-accent">Ask a question</a>--}}
-                                {{--<a href="#"
-                                   class="btn ml-2 btn-success">Ask </a>--}}
+                                <div class="ml-lg-auto dropdown select-datatable-add"></div>
                             </div>
-
-                           {{-- <div class="ml-auto mb-2 mb-sm-0 custom-control-inline mr-0">
-                                <label class="form-label mb-0"
-                                       for="active">Active</label>
-                                <div class="custom-control custom-checkbox-toggle ml-8pt">
-                                    <input checked=""
-                                           type="checkbox"
-                                           id="active"
-                                           class="custom-control-input">
-                                    <label class="custom-control-label"
-                                           for="active">Active</label>
-                                </div>
-                            </div>--}}
                         </form>
 
                     </div>
@@ -220,20 +132,7 @@
                                 <tr class="">
 
                                     <td class="pr-0">
-                                        {{--<div class="custom-control custom-checkbox">
-                                            <input type="checkbox" id="checkItem" class="checkItem " name="checkItem"  />
-                                            <label class=""
-                                                   for="checkItem"><span class="text-hide">Check</span></label>
-                                        </div>--}}
-
-                                        <div class="custom-control custom-checkbox">
-                                            {{--<input type="checkbox"
-                                                   class="custom-control-input "
-                                                   checked=""
-                                                   id="customCheck1_5">
-                                            <label class="custom-control-label"
-                                                   for="customCheck1_5"><span class="text-hide">Check</span></label>--}}
-                                        </div>
+                                        <div class="custom-control custom-checkbox"></div>
                                     </td>
 
                                     <td></td>
@@ -316,7 +215,7 @@
                                            class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a href="{{ route('dashboard.customers.show',$customer->id) }}" class="dropdown-item active"><i class="material-icons ">visibility</i> View</a>
-                                            <a href="{{ route('dashboard.customers.edit',$customer->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> Edit</a>
+                                            <a href="{{ route('dashboard.customers.edit',$customer->id) }}" class="dropdown-item "><i class="material-icons ">edit</i> Edit</a>
                                             <div class="dropdown-divider"></div>
                                             <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $customer->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
                                             <form id="delete-form{{ $customer->id }}" action="{{ route('dashboard.customers.destroy',$customer->id) }}" method="POST" class="d-none">

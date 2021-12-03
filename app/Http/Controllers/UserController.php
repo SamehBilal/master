@@ -15,8 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        $categories = UserCategory::where('model','App\Models\Customer')->get();
+        $users = User::orderBy('updated_at','desc')->get();
+        $categories = UserCategory::where('model','App\Models\User')->get();
         return view('users.index',compact('categories','users'));
     }
 
@@ -60,7 +60,7 @@ class UserController extends Controller
             $user->auth()->user()->update(['avatar' =>  $image]);
         }
 
-        return redirect()->route('users.show',$user->id)->with('success','Data created successfully');
+        return redirect()->route('dashboard.users.index')->with('success','Data created successfully');
     }
 
     /**
@@ -116,7 +116,7 @@ class UserController extends Controller
             $user->auth()->user()->update(['avatar' =>  $image]);
         }
 
-        return redirect()->route('users.index')->with('success','Data updated successfully');
+        return redirect()->route('dashboard.users.index')->with('success','Data updated successfully');
     }
 
     /**
@@ -128,6 +128,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         User::destroy($user->id);
-        return redirect()->route('users.index')->with('success','Data deleted successfully');
+        return redirect()->route('dashboard.users.index')->with('success','Data deleted successfully');
     }
 }

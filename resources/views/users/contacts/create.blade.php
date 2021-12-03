@@ -6,10 +6,7 @@
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('contacts.index') }}">Contacts</a>
-    </li>
-    <li class="breadcrumb-item ">
-        <a href="{{ route('contacts.show',$contact->id) }}">{{  $contact->contact_name }}</a>
+        <a href="{{ route('dashboard.contacts.index') }}">Contacts</a>
     </li>
     <li class="breadcrumb-item active">
         create
@@ -17,7 +14,7 @@
 @endsection
 
 @section('button-link')
-    {{ route('contacts.index') }}
+    {{ route('dashboard.contacts.index') }}
 @endsection
 
 @section('button-icon')
@@ -35,11 +32,10 @@
                 Contact Information
             </div>
         </div>
-        <form method="POST" action="{{ route('contacts.update', $contact->id) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('dashboard.contacts.index') }}" enctype="multipart/form-data">
             @csrf
-            @method('PUT')
             <div class="card">
-                <div class="card-body">
+                <div class="card-body ">
                     <div class="row">
                         <div class="col-lg-3 bg-light">
                             <div class="page-separator">
@@ -58,7 +54,7 @@
                                             <div class="">
                                                 <input type="text"
                                                     class="form-control @error('contact_name') is-invalid @enderror"
-                                                    value="{{ old('contact_name') ? old ('contact_name'):$contact->contact_name }}"
+                                                    value="{{ old('contact_name') }}"
                                                     autocomplete="contact_name"
                                                     name="contact_name"
                                                     id="contact_name"
@@ -79,7 +75,7 @@
                                             <div>
                                                 <input type="text"
                                                     class="form-control @error('contact_job_title') is-invalid @enderror"
-                                                    value="{{ old('contact_job_title')  ? old ('contact_job_title'):$contact->contact_job_title }}"
+                                                    value="{{ old('contact_job_title') }}"
                                                     autocomplete="contact_job_title"
                                                     name="contact_job_title"
                                                     id="contact_job_title"
@@ -102,7 +98,7 @@
                                             <div>
                                                 <input type="text"
                                                     class="form-control @error('contact_phone') is-invalid @enderror"
-                                                    value="{{ old('contact_phone') ? old ('contact_phone'):$contact->contact_phone }}"
+                                                    value="{{ old('contact_phone') }}"
                                                     autocomplete="contact_phone"
                                                     name="contact_phone"
                                                     id="contact_phone"
@@ -124,7 +120,7 @@
                                             <div>
                                                 <input type="email"
                                                     class="form-control @error('contact_email') is-invalid @enderror"
-                                                    value="{{ old('contact_email') ? old ('contact_email'):$contact->contact_email }}"
+                                                    value="{{ old('contact_email') }}"
                                                     autocomplete="contact_email"
                                                     name="contact_email"
                                                     id="contact_email"
@@ -136,6 +132,29 @@
                                                 @enderror
                                                 <div class="valid-feedback">Looks good!</div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <div class="form-group">
+                                            <label class="form-label"
+                                                   for="select04">Category</label>
+                                            <select id="select04"
+                                                    data-toggle="select"
+                                                    data-minimum-results-for-search="-1"
+                                                    class="form-control form-control-sm @error('user_category_id') is-invalid @enderror"
+                                                    name="user_category_id">
+                                                @foreach($categories as $category)
+                                                    <option value="{{ $category->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                                        {{ $category->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('user_category_id')
+                                            <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                            @enderror
+                                            <div class="valid-feedback">Looks good!</div>
                                         </div>
                                     </div>
                                 </div>

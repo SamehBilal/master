@@ -14,7 +14,9 @@ class CurrencyController extends Controller
      */
     public function index()
     {
-        $currencies = Currency::all();
+        $currencies = Currency::where('business_user_id',auth()->user()->id)
+                                ->orderBy('updated_at','desc')
+                                ->get();
         return view('setup.currencies.index',compact('currencies'));
     }
 
@@ -38,12 +40,15 @@ class CurrencyController extends Controller
     {
         $this->validate($request, Currency::rules());
 
+        $user_id = auth()->user()->id;
+
         $currency = Currency::create([
             'name'                  => $request->name,
             'rate'                  => $request->rate,
+            'business_user_id'      => $user_id,
         ]);
 
-        return redirect()->route('currencies.show',$currency->id)->with('success','Data created successfully');
+        return redirect()->route('dashboard.currencies.index')->with('success','Data created successfully');
     }
 
     /**
@@ -79,12 +84,15 @@ class CurrencyController extends Controller
     {
         $this->validate($request, Currency::rules($update = true, $currency->id));
 
+        $user_id = auth()->user()->id;
+
         $currency->update([
             'name'                  => $request->name,
             'rate'                  => $request->rate,
+            'business_user_id'      => $user_id,
         ]);
 
-        return redirect()->route('currencies.index')->with('success','Data updated successfully');
+        return redirect()->route('dashboard.currencies.index')->with('success','Data updated successfully');
     }
 
     /**
@@ -96,6 +104,6 @@ class CurrencyController extends Controller
     public function destroy(Currency $currency)
     {
         Currency::destroy($currency->id);
-        return redirect()->route('currencies.index')->with('success','Data deleted successfully');
+        return redirect()->route('dashboard.currencies.index')->with('success','Data deleted successfully');
     }
 }

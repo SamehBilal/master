@@ -26,11 +26,20 @@ class Location extends Model
         return $this->hasOne(Country::class  , "id" , "country_id");
     }
 
+    public function customer()
+    {
+        return $this->hasOne(Customer::class  , "id" , "customer_id");
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class  , "id" , "business_user_id");
+    }
+
     public static function rules($update = false, $id = null)
     {
         $common = [
-            'name'          => "nullable|max:40",
-            
+            //
         ];
 
         if ($update) {
@@ -38,8 +47,7 @@ class Location extends Model
         }
 
         return array_merge($common, [
-            'name'          => "required|max:40",
-           
+            //
         ]);
     }
 }

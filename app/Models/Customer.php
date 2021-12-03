@@ -43,7 +43,7 @@ class Customer extends Model
         }
 
         return array_merge($common, [
-
+            //
         ]);
     }
 }

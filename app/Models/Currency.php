@@ -16,6 +16,11 @@ class Currency extends Model
         $this->belongsTo(Customer::class);
     }
 
+    public function user()
+    {
+        return $this->hasOne(User::class  , "id" , "business_user_id");
+    }
+
     public static function rules($update = false, $id = null)
     {
         $common = [

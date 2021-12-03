@@ -1,15 +1,15 @@
 @extends('layouts.backend')
 
 @section('title')
-    Currencies
+    {{ $currency->name }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('currencies.index') }}">Currencies</a>
+        <a href="{{ route('dashboard.currencies.index') }}">Currencies</a>
     </li>
     <li class="breadcrumb-item ">
-        <a href="{{ route('currencies.show',$currency->id) }}">{{ $currency->name }}</a>
+        <a href="{{ route('dashboard.currencies.show',$currency->id) }}">{{ $currency->name }}</a>
     </li>
     <li class="breadcrumb-item active">
         edit
@@ -17,7 +17,7 @@
 @endsection
 
 @section('button-link')
-    {{ route('currencies.index') }}
+    {{ route('dashboard.currencies.index') }}
 @endsection
 
 @section('button-icon')
@@ -35,7 +35,7 @@
                 Currency Information
             </div>
         </div>
-        <form method="POST" action="{{ route('currencies.update',$currency->id) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('dashboard.currencies.update',$currency->id) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="card">

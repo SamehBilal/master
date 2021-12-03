@@ -110,18 +110,18 @@
                         Customers
                     </a>
                 </li>
-                <li class="sidebar-menu-item {{ set_active(['dashboard/user-categories*'])}}">
-                    <a class="sidebar-menu-button"
-                       href="{{ route('dashboard.user-categories.index') }}">
-                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">badge</span>
-                        User Categories
-                    </a>
-                </li>
                 <li class="sidebar-menu-item {{ set_active(['dashboard/contacts*'])}}">
                     <a class="sidebar-menu-button"
                        href="{{ route('dashboard.contacts.index') }}">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">perm_contact_calendar</span>
                         Contacts
+                    </a>
+                </li>
+                <li class="sidebar-menu-item {{ set_active(['dashboard/user-categories*'])}}">
+                    <a class="sidebar-menu-button"
+                       href="{{ route('dashboard.user-categories.index') }}">
+                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">badge</span>
+                        User Categories
                     </a>
                 </li>
                 <li class="sidebar-menu-item {{ set_active(['dashboard/users*'])}}">
@@ -135,13 +135,6 @@
 
             <div class="sidebar-heading">Setup</div>
             <ul class="sidebar-menu">
-                <li class="sidebar-menu-item {{ set_active(['dashboard/profile*'])}}">
-                    <a class="sidebar-menu-button"
-                       href="{{ route('dashboard.profile') }}">
-                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">account_circle</span>
-                        Profile
-                    </a>
-                </li>
                 <li class="sidebar-menu-item {{ set_active(['dashboard/currencies*'])}}">
                     <a class="sidebar-menu-button"
                        href="{{ route('dashboard.currencies.index') }}">
@@ -156,12 +149,26 @@
                         Locations
                     </a>
                 </li>
-                <li class="sidebar-menu-item {{ set_active(['dashboard/settings*'])}}">
-                    <a class="sidebar-menu-button"
-                       href="#">
+
+                <li class="sidebar-menu-item {{ set_active(['dashboard/settings*'],'active open')}}">
+                    <a class="sidebar-menu-button js-sidebar-collapse"
+                       data-toggle="collapse"
+                       href="#settings_menu">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">settings</span>
                         Settings
+                        {{--<span class="sidebar-menu-badge badge badge-accent badge-notifications ml-auto">2</span>
+                        <span class="sidebar-menu-toggle-icon"></span>--}}
+                        <span class="ml-auto sidebar-menu-toggle-icon"></span>
                     </a>
+                    <ul class="sidebar-submenu collapse {{ set_active(['dashboard/settings*'],'show')}} sm-indent"
+                        id="settings_menu">
+                        <li class="sidebar-menu-item {{ set_active(['dashboard/settings/profile'])}}">
+                            <a class="sidebar-menu-button"
+                               href="{{ route('dashboard.settings.profile') }}">
+                                <span class="sidebar-menu-text">Profile</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
 

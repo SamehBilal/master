@@ -1,15 +1,15 @@
 @extends('layouts.backend')
 
 @section('title')
-    Categories
+    {{ $userCategory->name }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('user-categories.index') }}">Categories</a>
+        <a href="{{ route('dashboard.user-categories.index') }}">Categories</a>
     </li>
     <li class="breadcrumb-item ">
-        <a href="{{ route('user-categories.show',$userCategory->id) }}">{{ $userCategory->name }}</a>
+        <a href="{{ route('dashboard.user-categories.show',$userCategory->id) }}">{{ $userCategory->name }}</a>
     </li>
     <li class="breadcrumb-item active">
         edit
@@ -17,7 +17,7 @@
 @endsection
 
 @section('button-link')
-    {{ route('user-categories.index') }}
+    {{ route('dashboard.user-categories.index') }}
 @endsection
 
 @section('button-icon')
@@ -35,7 +35,7 @@
                 Categories Information
             </div>
         </div>
-        <form method="POST" action="{{ route('user-categories.update',$userCategory->id) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('dashboard.user-categories.update',$userCategory->id) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="card">
@@ -59,7 +59,7 @@
                                            name="name"
                                            required="required"
                                            autocomplete="name"
-                                           placeholder="Currency name ..."
+                                           placeholder="Name ..."
                                            autofocus>
                                     @error('name')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -76,9 +76,13 @@
                                             data-minimum-results-for-search="-1"
                                             class="form-control form-control-sm @error('model') is-invalid @enderror"
                                             name="model">
-                                        <option @if(old('model')) {{ old('model') == 'App\Models\Customer' ? 'selected':'' }} @else {{ $userCategory->model == 'App\Models\Customer' ? 'selected':'' }} @endif value="App\Models\Customer" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                        <option @if(old('model')) {{ old('model') == 'App\Models\Customer' ? 'selected':'' }} @else {{ $userCategory->model == 'App\Models\Customer' ? 'selected':'' }} @endif value="App\Models\Customer" data-avatar-src="{{ asset('backend/images/icon/customer.png') }}">
                                             Customer
-                                        <option @if(old('model')) {{ old('model') == 'App\Models\User' ? 'selected':'' }} @else {{ $userCategory->model == 'App\Models\User' ? 'selected':'' }} @endif value="App\Models\User" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                        </option>
+                                        <option @if(old('model')) {{ old('model') == 'App\Models\Contact' ? 'selected':'' }} @else {{ $userCategory->model == 'App\Models\Contact' ? 'selected':'' }} @endif value="App\Models\Contact" data-avatar-src="{{ asset('backend/images/icon/contacts.png') }}">
+                                            Contact
+                                        </option>
+                                        <option @if(old('model')) {{ old('model') == 'App\Models\User' ? 'selected':'' }} @else {{ $userCategory->model == 'App\Models\User' ? 'selected':'' }} @endif value="App\Models\User" data-avatar-src="{{ asset('backend/images/icon/programmer.png') }}">
                                             User
                                         </option>
                                     </select>

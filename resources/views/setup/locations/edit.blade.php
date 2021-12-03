@@ -1,15 +1,15 @@
 @extends('layouts.backend')
 
 @section('title')
-    Locations
+    {{ $location->name}}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('locations.index') }}">Locations</a>
+        <a href="{{ route('dashboard.locations.index') }}">Locations</a>
     </li>
     <li class="breadcrumb-item ">
-        <a href="{{ route('locations.show', $location->id) }}">{{ $location->name}}</a>
+        <a href="{{ route('dashboard.locations.show', $location->id) }}">{{ $location->name}}</a>
     </li>
     <li class="breadcrumb-item active">
         Edit
@@ -17,7 +17,7 @@
 @endsection
 
 @section('button-link')
-    {{ route('locations.index') }}
+    {{ route('dashboard.locations.index') }}
 @endsection
 
 @section('button-icon')
@@ -35,7 +35,7 @@
                 Location Information
             </div>
         </div>
-        <form method="POST" action="{{ route('locations.update',$location->id) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('dashboard.locations.update',$location->id) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="card">
@@ -73,7 +73,7 @@
                                            for="select05">Country</label>
                                     <select id="select05"
                                             data-toggle="select"
-                                            class="form-control form-control-sm @error('country_id') is-invalid @enderror"
+                                            class="form-control select05 form-control-sm @error('country_id') is-invalid @enderror"
                                             name="country_id">
                                         @foreach($countries as $country)
                                             <option value="{{ $country->id }}" {{ $country->id == $location->country_id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -94,7 +94,7 @@
                                     <select id="select01"
                                             data-toggle="select"
                                             data-minimum-results-for-search="-1"
-                                            class="form-control form-control-sm @error('state_id') is-invalid @enderror"
+                                            class="form-control select01 form-control-sm @error('state_id') is-invalid @enderror"
                                             name="state_id">
                                         @foreach($states as $state)
                                             <option value="{{ $state->id }}" {{ $state->id == $location->state_id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -115,7 +115,7 @@
                                     <select id="select03"
                                             data-toggle="select"
                                             data-minimum-results-for-search="-1"
-                                            class="form-control form-control-sm @error('city_id') is-invalid @enderror"
+                                            class="form-control select03 form-control-sm @error('city_id') is-invalid @enderror"
                                             name="city_id">
                                         @foreach($cities as $city)
                                             <option value="{{ $city->id }}" {{ $city->id == $location->city_id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
