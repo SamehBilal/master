@@ -11,10 +11,23 @@ class Ticket extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+    protected $appends = ['status_color'];
 
-    public function TicketIssues()
+    public function getStatusColorAttribute()
     {
-        return $this->hasMany(TicketIssue::class);
+        switch($this->attributes['status']){
+            case 'Open':
+                return "badge-primary";
+            case 'Resolved':
+                return "badge-success";
+            default:
+                return "badge-danger";
+        }
+    }
+
+    public function TicketIssue()
+    {
+        return $this->belongsTo(TicketIssue::class);
     }
 
     public function TicketChats()

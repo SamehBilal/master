@@ -19,256 +19,201 @@
 @endsection
 
 @section('button-title')
-    New Pickup
+    New Ticket
 @endsection
 
 @section('main_content')
-    <div class="container page__container">
-        <div class="page-section">
+<div class="mdk-drawer-layout js-mdk-drawer-layout">
+    <div class="mdk-drawer-layout__content"
+        data-perfect-scrollbar>
+        @if (request()->ticket_id || $tickets->first())
+            @php
+                $ticket_chat = NULL;
+                if ($ticket != NULL) {
+                    $ticket_chat = $ticket;
+                }else{
+                    $ticket_chat = $tickets->first();
+                }
+            @endphp
+            <div class="container page__container page-section">
 
-            <div class="page-separator">
-                <div class="page-separator__text">Filter</div>
-            </div>
-
-            <form action="{{ route('dashboard.tickets.index') }}" method="GET">
-                <div class="card card-form d-flex flex-column flex-sm-row mb-lg-32pt">
-                    <div class="card-form__body card-body-form-group flex">
-                        <div class="row">
-                            <div class="col-sm-auto">
-                                <div class="form-group">
-                                    <label for="pickup_id">Pickup ID</label>
-                                    <input id="pickup_id"
-                                           type="text"
-                                           name="pickup_id"
-                                           value="{{ isset($_GET['pickup_id']) &&  $_GET['pickup_id'] >= 0?$_GET['pickup_id']:old('pickup_id') }}"
-                                           class="form-control"
-                                           placeholder="Search by Pickup ID">
-                                </div>
-                            </div>
-                            <div class="col-sm-auto">
-                                <div class="form-group">
-                                    <label for="filter_category">Status</label><br>
-                                    <select id="filter_category"
-                                            class="custom-select"
-                                            name="status"
-                                            style="width: 200px;">
-                                        <option value="" {{ old('status') == '' ?'selected':'' }}>All Status</option>
-                                        <option value=""></option>
-                                    </select>
-                                </div>
-                            </div>
-                             <div class="col-sm-auto">
-                                 <div class="form-group">
-                                     <label for="filter_stock">One Time?</label>
-                                     <div class="custom-control custom-checkbox mt-sm-2">
-                                         <input type="checkbox"
-                                                class="custom-control-input"
-                                                id="filter_stock"
-                                                name="type"
-                                                value="One Time"
-                                                {{ isset($_GET['type']) &&  $_GET['type'] == 'One Time'?'checked=""':'' }}>
-                                         <label class="custom-control-label"
-                                                for="filter_stock">Yes</label>
-                                     </div>
-                                 </div>
-                             </div>
+                <div class="card">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="flex">
+                            <p class="text-50 mb-0">Ticket ID {{$ticket_chat->id}}</p>
+                            <h4 class="mb-0">{{$ticket_chat->subject}}</h4>
+                            <p class="text-50 mb-0">{{$ticket_chat->TicketIssue->issue}}</p>
                         </div>
                     </div>
-                    <button class="btn bg-alt border-left border-top border-top-sm-0 rounded-0"><i class="material-icons text-primary icon-20pt">refresh</i></button>
                 </div>
-            </form>
+                <ul class="d-flex flex-column list-unstyled">
+                    <li>
+                        <div class="card-body d-flex align-items-center" style="text-align: center;border-bottom:1px solid #ebedf0">
+                            <div class="flex">
+                                <p class="text-50 mb-0">Tracking Number</p>
+                                <p class="mb-0">{{$ticket_chat->traking_number}}</p>
+                                <p class="text-50 mb-0">Description</p>
+                                <p class="mb-0">{{$ticket_chat->description}}</p>
+                                <p class="text-50 mb-0">Attachments</p>
+                                <p class="mb-0">N/A</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="d-inline-flex">
+                        <div class="" style="    margin-right: 1rem;">
+                            <a href="profile.html"
+                            class="avatar avatar-sm">
+                                <img src="{{asset('backend/images/people/110/guy-6.jpg')}}"
+                                    alt="people"
+                                    class="avatar-img rounded-circle">
+                            </a>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex mr-3">
+                                        <a href="profile.html"
+                                        class="text-body"><strong>Laza Bogdan</strong></a>
+                                    </div>
+                                    <div>
+                                        <small class="text-50">1 hour ago</small>
+                                    </div>
+                                </div>
+                                <span class="text-70">Coming along nicely, we&#39;ve got a draft for the client design completed, take a look! 🤓</span>
 
-            <div class="page-separator">
-                <div class="page-separator__text">tickets</div>
+                                <a href="#"
+                                class="media align-items-center mt-2 text-decoration-0 px-3">
+                                    <span class="avatar mr-12pt">
+                                        <span class="avatar-title rounded-circle">
+                                            <i class="material-icons font-size-24pt">attach_file</i>
+                                        </span>
+                                    </span>
+                                    <span class="media-body"
+                                        style="line-height: 1.5">
+                                        <span class="text-primary">draft.sketch</span><br>
+                                        <span class="text-50">5 MB</span>
+                                    </span>
+                                </a>
+
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="d-inline-flex" style="margin-left: auto">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex mr-3">
+                                        <a href="profile.html"
+                                        class="text-body"><strong>Michelle</strong></a>
+                                    </div>
+                                    <div>
+                                        <small class="text-50">5 minutes ago</small>
+                                    </div>
+                                </div>
+                                <span class="text-70">Clients loved the new design.</span>
+
+                            </div>
+                        </div>
+                        <div style="margin-left: 1rem;">
+                            <a href="profile.html"
+                            class="avatar avatar-sm">
+                                <img src="{{asset('backend/images/people/110/guy-6.jpg')}}"
+                                    alt="people"
+                                    class="avatar-img rounded-circle">
+                            </a>
+                        </div>
+                    </li>
+
+                </ul>
+
             </div>
-
-            <div class="card dashboard-area-tabs p-relative o-hidden mb-32pt">
-
-                <div class="table-responsive">
-                    <div class="card-header">
-                        <form class="form-inline">
-                            <label class="mr-sm-2 form-label"
-                                   for="myInputTextField">Filter by:</label>
-                            <input type="text"
-                                   class="form-control search mb-2 mr-sm-2 mb-sm-0"
-                                   id="myInputTextField"
-                                   placeholder="Search ...">
-
-                            <div class="col-lg d-flex flex-wrap buttons-datatable-add">
-                                <div class="ml-lg-auto dropdown select-datatable-add">
-
+            <div class="container page__container page__container">
+                <form action="#"
+                    id="message-reply">
+                    <div class="input-group input-group-merge">
+                        <input type="text"
+                            class="form-control form-control-appended"
+                            autofocus=""
+                            required=""
+                            placeholder="Type message">
+                        <div class="input-group-append">
+                            <div class="input-group-text pl-0">
+                                <div class="custom-file custom-file-naked d-flex"
+                                    style="width: 24px; overflow: hidden;">
+                                    <input type="file"
+                                        class="custom-file-input"
+                                        id="customFile">
+                                    <label class="custom-file-label"
+                                        style="color: inherit;"
+                                        for="customFile">
+                                        <i class="material-icons">attach_file</i>
+                                    </label>
                                 </div>
                             </div>
-                        </form>
-
+                        </div>
                     </div>
-
-                    <table
-                        class="datatable-func display table mb-0 thead-border-top-0 table-nowrap"
-                        style="width:100%">
-                        <thead>
-                        <tr>
-
-                            <th style="width: 18px;"
-                                class="pr-0 select-checkbox">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox"
-                                           class="custom-control-input js-toggle-check-all"
-                                           data-target="#projects"
-                                           id="customCheckAll">
-                                    <label class="custom-control-label"
-                                           for="customCheckAll"><span class="text-hide">Toggle all</span></label>
-                                </div>
-                            </th>
-
-                            <th>#</th>
-
-                            <th>Pickup Id</th>
-
-                            <th>Pickup location</th>
-
-                            <th>Scheduled date</th>
-
-                            <th>Pickup type</th>
-
-                            <th>Status</th>
-
-                            <th>Created</th>
-
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody id="projects">
-                        @foreach($tickets as $ticket)
-                            <tr class="">
-
-                                <td class="pr-0">
-                                    <div class="custom-control custom-checkbox"></div>
-                                </td>
-
-                                <td></td>
-
-                                <td>
-                                    <a href="{{ route('dashboard.tickets.show',$ticket->id) }}"
-                                       class="chip text-underline">{{ $ticket->pickup_id }}</a>
-                                </td>
-
-                                <td>
-                                    <div class="media flex-nowrap align-items-center"
-                                    style="white-space: nowrap;">
-                                        <div class="avatar avatar-sm mr-8pt">
-                                                <span class="avatar-title rounded bg-transparent text-black-100">
-                                                        <img src="{{ asset('backend/images/icon/map.png') }}"
-                                                            alt="Avatar"
-                                                            class="avatar-img ">
-                                                </span>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="d-flex flex-column">
-                                                <small class=""><strong>{{ $ticket->location ? $ticket->location->name:'' }}</strong></small>
-                                                <span class=" rounded ">{{ $ticket->location ? $ticket->location->apartment.$ticket->location->building.$ticket->location->street:'' }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-
-                                <td>
-                                    <div class="media flex-nowrap align-items-center"
-                                         style="white-space: nowrap;">
-                                        <div class="avatar avatar-sm mr-8pt">
-                                                <span class="avatar-title rounded bg-primary text-black-100">
-                                                     <img src="{{ asset('backend/images/icon/fast-delivery.png') }}"
-                                                          alt="Avatar"
-                                                          class="avatar-img ">
-                                                </span>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="d-flex flex-column">
-                                                <small class=""><strong>{{ date("F j, Y", strtotime($ticket->scheduled_date)) }}</strong></small>
-                                                <span class="">{{ date("g:i a", strtotime($ticket->scheduled_date)) }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-
-                                <td>
-                                    <div href="#"
-                                         class="chip chip-outline-secondary ">{{ $ticket->type }}</div>
-                                </td>
-
-                                <td>
-                                    <div class="d-flex flex-column">
-                                        <small class="badge badge-{{ random_color() }}">{{ $ticket->status }}</small>
-                                    </div>
-                                </td>
-
-
-                                <td>
-                                    <div class="d-flex flex-column">
-                                        <small class=""><strong>{{ date("F j, Y", strtotime($ticket->created_at)) }}</strong></small>
-                                        <small class="text-50">{{ $ticket->created_at->diffForHumans() }}</small>
-                                    </div>
-                                </td>
-
-                                <td class="text-right">
-                                    <a href="#" data-toggle="dropdown"
-                                       class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="{{ route('dashboard.tickets.show',$ticket->id) }}" class="dropdown-item"><i class="material-icons ">visibility</i> View</a>
-                                        <a href="{{ route('dashboard.tickets.edit',$ticket->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> Edit</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $ticket->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
-                                        <form id="delete-form{{ $ticket->id }}" action="{{ route('dashboard.tickets.destroy',$ticket->id) }}" method="POST" class="d-none">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <th style="width: 18px;"
-                                class="pr-0 select-checkbox">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox"
-                                           class="custom-control-input js-toggle-check-all"
-                                           data-target="#projects"
-                                           id="customCheckAll1">
-                                    <label class="custom-control-label"
-                                           for="customCheckAll1"><span class="text-hide">Toggle all</span></label>
-                                </div>
-                            </th>
-
-                            <th>#</th>
-
-                            <th>Pickup Id</th>
-
-                            <th>Pickup location</th>
-
-                            <th>Scheduled date</th>
-
-                            <th>Pickup type</th>
-
-                            <th>Status</th>
-
-                            <th>Created</th>
-
-                            <th></th>
-                        </tr>
-                        </tfoot>
-                    </table>
-                </div>
-
-                <div class="card-footer p-8pt">
-
-                    <ul class="pagination justify-content-start pagination-xsm m-0">
-                        <li class="text-right info-pagination"></li>
-                    </ul>
-                </div>
+                </form>
             </div>
-        </div>
+        @endif
 
     </div>
+    
+
+    <div class="mdk-drawer sub-layout-drawer js-mdk-drawer"
+        data-align="start"
+        id="email-drawer">
+    <div class="mdk-drawer__content ">
+        <div class="sidebar sidebar-left sidebar-light bg-white  o-hidden"
+                data-perfect-scrollbar>
+
+            <div class="navbar">
+                <div class="search-form form-control-rounded search-form--light">
+                    <input type="text"
+                            class="form-control"
+                            placeholder="Search for ticket..."
+                            id="searchSample02">
+                    <button class="btn"
+                            type="button"><i class="material-icons">search</i></button>
+                </div>
+            </div>
+            <p style="margin-bottom: 5px">Tickets ({{count($tickets)}})</p>
+            <div class="list-group list-group-flush"
+                    style="position: relative; z-index: 0;border-top:1px solid #ebedf0">
+                @foreach ($tickets as $ticket)
+                <a href="{{request()->ticket_id != $ticket->id? route('dashboard.tickets.index',['ticket_id' => $ticket->id]) : '#'}}">
+                    <div class="list-group-item d-flex align-items-start bg-transparent">
+                        <div class="flex">
+                            <p class="m-0">
+                                <span class="d-flex align-items-center mb-1">
+                                    <strong class="text-body text-muted">{{$ticket->TicketIssue->issue}}</strong>
+                                        
+                                    <span class="badge {{$ticket->status_color}} ml-auto">{{$ticket->status}}</span>
+                                </span>
+                                <span class="d-flex align-items-end">
+                                    <span class="flex mr-3">
+                                        <small class="text-muted"
+                                                style="max-height: 2rem; overflow: hidden; position: relative; display: inline-block;">Ticket ID {{$ticket->id}}</small>
+                                    </span>
+                                </span>
+                                <span class="d-flex align-items-end">
+                                    <span class="flex mr-3">
+                                        <strong class="text-body mb-1">{{$ticket->subject}}</strong><br>
+                                        <small class="text-muted"
+                                                style="max-height: 2rem; overflow: hidden; position: relative; display: inline-block;">{{$ticket->created_at->format('d M Y - h:i A')}}</small>
+                                                {{-- 04 Dec 2021 - 07:19 AM --}}
+                                    </span>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                @endforeach
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+</div>
 @endsection
