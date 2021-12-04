@@ -64,6 +64,11 @@ class User extends Authenticatable
         return $this->hasOne(Customer::class);
     }
 
+    public function contact()
+    {
+        return $this->hasOne(Contact::class);
+    }
+
     public function address()
     {
         return $this->hasMany(address::class);
@@ -89,9 +94,9 @@ class User extends Authenticatable
             'first_name'    => "nullable|min:3|max:20",
             'last_name'     => "nullable|min:3|max:20",
             'full_name'     => "nullable|max:40",
-            'email'         => "nullable|email|regex:/(.+)@(.+)\.(.+)/i|unique:users,email,$id|unique:users,email,$id",
+            'email'         => "nullable|email|regex:/(.+)@(.+)\.(.+)/i|unique:users,email,$id",
             'password'      => 'nullable|confirmed',
-            'other_email'   => "nullable|email|regex:/(.+)@(.+)\.(.+)/i|unique:users,email,$id|unique:users,other_email,$id",
+            'other_email'   => "nullable|email|regex:/(.+)@(.+)\.(.+)/i|unique:users,email,$id",
             'phone'         => "nullable|numeric|digits_between:1,16",
             'other_phone'   => "nullable|numeric|digits_between:1,16",
             'gender'        => 'nullable',Rule::in(['Male','Female']),
@@ -105,9 +110,6 @@ class User extends Authenticatable
         }
 
         return array_merge($common, [
-            'first_name'    => "required|min:3|max:20",
-            'last_name'     => "required|min:3|max:20",
-            'full_name'     => "required|max:40",
             'email'         => 'nullable|email|regex:/(.+)@(.+)\.(.+)/i|max:255|unique:users',
             'password'      => 'required|confirmed|min:8',
         ]);

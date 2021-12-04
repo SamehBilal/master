@@ -27,7 +27,7 @@ class CustomerController extends Controller
         $customers = Customer::where('business_user_id',auth()->user()->id)
                                 ->orderBy('updated_at','desc')
                                 ->get();
-        $categories = UserCategory::where([['user_id',auth()->user()->id],['model','App\Models\Customer']])
+        $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Customer']])
                                     ->orderBy('updated_at','desc')
                                     ->get();
         return view('users.customers.index',compact('customers','categories'));

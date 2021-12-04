@@ -46,7 +46,6 @@ class UserCategoryController extends Controller
             'name'                  => $request->name,
             'description'           => $request->description,
             'model'                 => $request->model,
-            'icon'                  => $request->icon,
             'status'                => $request->status,
             'business_user_id'      => $user_id,
         ]);
@@ -93,7 +92,6 @@ class UserCategoryController extends Controller
             'name'                  => $request->name,
             'description'           => $request->description,
             'model'                 => $request->model,
-            'icon'                  => $request->icon,
             'status'                => $request->status,
             'business_user_id'      => $user_id,
         ]);

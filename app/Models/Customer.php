@@ -31,6 +31,11 @@ class Customer extends Model
         return $this->hasOne(User::class  , "id" , "user_id");
     }
 
+    public function business()
+    {
+        return $this->hasOne(User::class  , "id" , "business_user_id");
+    }
+
     public static function rules($update = false, $id = null)
     {
         $common = [

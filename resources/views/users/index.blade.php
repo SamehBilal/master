@@ -55,29 +55,71 @@
                                     </span>
                             </a>
                         </div>
-                        @foreach($categories as $category)
-                            <div class="col-auto border-left border-right{{--{{ $category->id != 1 ? 'border-left border-right':'' }}--}}">
-                                <a href="#"
-                                   data-toggle="tab"
-                                   role="tab"
-                                   data-name="{{ $category->name }}"
-                                   aria-selected="false{{--{{ $category->id == 1 ? 'true':'false' }}--}}"
-                                   class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start {{--{{ $category->id == 1 ? 'active':'' }}--}}">
-                                    {{--<span class="h2 mb-0 mr-3">{{ $category->id }}</span>--}}
-                                    <div class="avatar avatar-sm mr-8pt">
-                                        <span class="avatar-title rounded bg-warning text-black-100">{{  initials($category->name)  }}</span>
-                                    </div>
-                                    <span class="flex d-flex flex-column">
-                                        <strong>{{ $category->name }}</strong>
-                                        <small class=" text-50">{{ $category->status }}</small>
-                                        <span class="indicator-line rounded {{ $category->status == 'active' ? 'bg-success':'bg-danger' }}"></span>
+                        <div class="col-auto border-left border-right">
+                            <a href="#"
+                               data-toggle="tab"
+                               role="tab"
+                               data-name="Contacts"
+                               aria-selected="false"
+                               class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start ">
+                                <div class="avatar avatar-sm mr-8pt">
+                                    <span class="avatar-title rounded bg-transparent text-black-100">
+                                         <img src="{{ asset('backend/images/icon/contacts.png') }}"
+                                              alt="Avatar"
+                                              class="avatar-img ">
                                     </span>
-                                </a>
-                            </div>
-                        @endforeach
+                                </div>
+                                <span class="flex d-flex flex-column">
+                                    <strong>Contacts</strong>
+                                    <small class=" text-50">Active</small>
+                                    <span class="indicator-line rounded bg-success"></span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col-auto border-left border-right">
+                            <a href="#"
+                               data-toggle="tab"
+                               role="tab"
+                               data-name="Customers"
+                               aria-selected="false"
+                               class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start ">
+                                <div class="avatar avatar-sm mr-8pt">
+                                    <span class="avatar-title rounded bg-transparent text-black-100">
+                                         <img src="{{ asset('backend/images/icon/customer.png') }}"
+                                              alt="Avatar"
+                                              class="avatar-img ">
+                                    </span>
+                                </div>
+                                <span class="flex d-flex flex-column">
+                                    <strong>Customers</strong>
+                                    <small class=" text-50">Active</small>
+                                    <span class="indicator-line rounded bg-success"></span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col-auto border-left border-right">
+                            <a href="#"
+                               data-toggle="tab"
+                               role="tab"
+                               data-name="Clients"
+                               aria-selected="false"
+                               class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start ">
+                                <div class="avatar avatar-sm mr-8pt">
+                                    <span class="avatar-title rounded bg-transparent text-black-100">
+                                         <img src="{{ asset('backend/images/icon/client.png') }}"
+                                              alt="Avatar"
+                                              class="avatar-img ">
+                                    </span>
+                                </div>
+                                <span class="flex d-flex flex-column">
+                                    <strong>Clients</strong>
+                                    <small class=" text-50">Active</small>
+                                    <span class="indicator-line rounded bg-success"></span>
+                                </span>
+                            </a>
+                        </div>
                     </div>
                 </div>
-
                 <div class="table-responsive">
                     <div class="card-header">
                         <form class="form-inline">
@@ -157,20 +199,24 @@
                                     <div class="media flex-nowrap align-items-center"
                                          style="white-space: nowrap;">
                                         <div class="avatar avatar-sm mr-8pt">
-                                            <span class="avatar-title rounded bg-warning text-black-100">{{ $user->UserCategory ? initials($user->UserCategory->name):'NO'  }}</span>
+                                            <span class="avatar-title rounded bg-transparent text-black-100">
+                                                 <img src="{{ $user->customer ? asset('backend/images/icon/customer.png'): ($user->contact ? asset('backend/images/icon/contacts.png'):asset('backend/images/icon/client.png')) }}"
+                                                      alt="Avatar"
+                                                      class="avatar-img ">
+                                            </span>
                                         </div>
                                         <div class="media-body">
                                             <div class="d-flex flex-column">
-                                                <small class=""><strong>{{ $user->UserCategory ? $user->UserCategory->name:'No Category' }}</strong></small>
-                                                <small class=" text-50">{{ $user->UserCategory ? $user->UserCategory->status:'' }}</small>
-                                                <span class="indicator-line rounded @if($user->UserCategory) {{ $user->UserCategory->status == 'active' ? 'bg-success':'bg-danger' }} @else bg-success @endif"></span>
+                                                <small class=""><strong>{{ $user->customer ? 'Customers': ($user->contact ? 'Contacts':'Clients') }}</strong></small>
+                                                <small class=" text-50">{{ $user->status == 1 ? 'active':'' }}</small>
+                                                <span class="indicator-line rounded {{ $user->status == 1 ? 'bg-success':'bg-danger' }} "></span>
                                             </div>
                                         </div>
                                     </div>
                                 </td>
 
                                 <td>
-                                @foreach($user->roles as $role)
+                                    @foreach($user->roles as $role)
                                         <a href="#"
                                            class="chip chip-outline-secondary">{{ $role->name }}</a>
                                     @endforeach

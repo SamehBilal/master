@@ -78,9 +78,6 @@
                                         <option {{ old('model') == 'App\Models\Contact' ? 'selected':'' }} value="App\Models\Contact" data-avatar-src="{{ asset('backend/images/icon/contacts.png') }}">
                                             Contact
                                         </option>
-                                        <option {{ old('model') == 'App\Models\User' ? 'selected':'' }} value="App\Models\User" data-avatar-src="{{ asset('backend/images/icon/programmer.png') }}">
-                                            User
-                                        </option>
                                     </select>
                                     @error('model')
                                         <div class="invalid-feedback" role="alert">{{ $message }}</div>

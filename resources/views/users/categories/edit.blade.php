@@ -82,9 +82,6 @@
                                         <option @if(old('model')) {{ old('model') == 'App\Models\Contact' ? 'selected':'' }} @else {{ $userCategory->model == 'App\Models\Contact' ? 'selected':'' }} @endif value="App\Models\Contact" data-avatar-src="{{ asset('backend/images/icon/contacts.png') }}">
                                             Contact
                                         </option>
-                                        <option @if(old('model')) {{ old('model') == 'App\Models\User' ? 'selected':'' }} @else {{ $userCategory->model == 'App\Models\User' ? 'selected':'' }} @endif value="App\Models\User" data-avatar-src="{{ asset('backend/images/icon/programmer.png') }}">
-                                            User
-                                        </option>
                                     </select>
                                     @error('model')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -101,9 +98,9 @@
                                             data-minimum-results-for-search="-1"
                                             class="form-control form-control-sm @error('status') is-invalid @enderror"
                                             name="status">
-                                        <option value="active" @if(old('model')) {{ old('status') == 'active' ? 'selected':'' }} @else {{ $userCategory->status == 'active' ? 'selected':'' }} @endif>
+                                        <option value="active" @if(old('status')) {{ old('status') == 'active' ? 'selected':'' }} @else {{ $userCategory->status == 'active' ? 'selected':'' }} @endif>
                                             active
-                                        <option value="inactive" @if(old('model')) {{ old('status') == 'inactive' ? 'selected':'' }} @else {{ $userCategory->status == 'inactive' ? 'selected':'' }} @endif>
+                                        <option value="inactive" @if(old('status')) {{ old('status') == 'inactive' ? 'selected':'' }} @else {{ $userCategory->status == 'inactive' ? 'selected':'' }} @endif>
                                             inactive
                                         </option>
                                     </select>

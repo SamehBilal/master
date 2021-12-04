@@ -16,8 +16,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::orderBy('updated_at','desc')->get();
-        $categories = UserCategory::where('model','App\Models\User')->get();
-        return view('users.index',compact('categories','users'));
+        return view('users.index',compact('users'));
     }
 
     /**
@@ -41,8 +40,11 @@ class UserController extends Controller
         $this->validate($request, User::rules());
 
         $user = User::create([
-            'name'                  => $request->name,
+            'first_name'            => $request->first_name,
+            'last_name'             => $request->last_name,
+            'full_name'             => $request->full_name,
             'email'                 => $request->email,
+            'other_email'           => $request->other_email,
             'username'              => $request->username,
             'password'              => $request->password,
             'gender'                => $request->gender,
@@ -50,13 +52,14 @@ class UserController extends Controller
             'date_of_birth'         => $request->date_of_birth,
             'phone'                 => $request->phone,
             'other_phone'           => $request->other_phone,
+            'status'                => $request->status,
             'bio'                   => $request->bio,
         ]);
 
         if(request()->hasFile('avatar'))
         {
             $image = time() . '_' . request()->file('avatar')->getClientOriginalName();
-            request()->file('avatar')->storeAs('/', "/user/{$image}", '');
+            request()->file('avatar')->storeAs('/', "/user/{$user->id}/{$image}", '');
             $user->auth()->user()->update(['avatar' =>  $image]);
         }
 
@@ -71,7 +74,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show',compact('user'));
+        return view('users.edit',compact('user'));
     }
 
     /**
@@ -97,22 +100,26 @@ class UserController extends Controller
         $this->validate($request, User::rules($update = true, $user->id));
 
         $user->update([
-            'name'                  => $request->name,
+            'first_name'            => $request->first_name,
+            'last_name'             => $request->last_name,
+            'full_name'             => $request->full_name,
             'email'                 => $request->email,
+            'other_email'           => $request->other_email,
             'username'              => $request->username,
-            'password'              => $request->password,
+            'password'              => $request->password == '' ? $user->password:$request->password,
             'gender'                => $request->gender,
             'religion'              => $request->religion,
             'date_of_birth'         => $request->date_of_birth,
             'phone'                 => $request->phone,
             'other_phone'           => $request->other_phone,
+            'status'                => $request->status,
             'bio'                   => $request->bio,
         ]);
 
         if(request()->hasFile('avatar'))
         {
             $image = time() . '_' . request()->file('avatar')->getClientOriginalName();
-            request()->file('avatar')->storeAs('/', "/user/{$image}", '');
+            request()->file('avatar')->storeAs('/', "/user/{$user->id}/{$image}", '');
             $user->auth()->user()->update(['avatar' =>  $image]);
         }
 

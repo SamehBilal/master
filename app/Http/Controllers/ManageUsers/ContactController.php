@@ -17,7 +17,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::where('user_id',auth()->user()->id)
+        $contacts = Contact::where('business_user_id',auth()->user()->id)
                             ->orderBy('updated_at','desc')
                             ->get();
         $categories = UserCategory::where('model','App\Models\Contact')->get();
@@ -54,7 +54,7 @@ class ContactController extends Controller
             'contact_email'                 => $request->contact_email,
             'contact_phone'                 => $request->contact_phone,
             'user_category_id'              => $request->user_category_id,
-            'user_id'                       => $user_id,
+            'business_user_id'              => $user_id,
         ]);
 
         return redirect()->route('dashboard.contacts.show',$contact->id)->with('success','Data created successfully');
@@ -101,7 +101,7 @@ class ContactController extends Controller
             'contact_email'                 => $request->contact_email,
             'contact_phone'                 => $request->contact_phone,
             'user_category_id'              => $request->user_category_id,
-            'user_id'                       => $user_id,
+            'business_user_id'              => $user_id,
         ]);
 
         return redirect()->route('dashboard.contacts.index')->with('success','Data updated successfully');

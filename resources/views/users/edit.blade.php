@@ -1,56 +1,65 @@
 @extends('layouts.backend')
 
 @section('title')
-    Profile
+    {{ $user->full_name }}
 @endsection
 
 @section('links')
+    <li class="breadcrumb-item ">
+        <a href="{{ route('dashboard.users.index') }}">Users</a>
+    </li>
+    <li class="breadcrumb-item ">
+        <a href="{{ route('dashboard.users.show',$user->id) }}">{{ $user->full_name }}</a>
+    </li>
     <li class="breadcrumb-item active">
-        Profile
+        edit
     </li>
 @endsection
 
 @section('button-link')
-    {{ route('dashboard') }}
+    {{ route('dashboard.users.index') }}
 @endsection
 
 @section('button-icon')
-    dashboard
+    format_list_bulleted
 @endsection
 
 @section('button-title')
-    Dashboard
+    All Users
 @endsection
 
 @section('main_content')
-    <div class="page-section container page__container">
-        <form method="POST" action="{{ route('dashboard.settings.profile.edit',$user->id) }}" enctype="multipart/form-data">
-            @csrf
-            <div class="page-separator">
-                <div class="page-separator__text">Basic Information</div>
+    <div class="container page__container page-section">
+        <div class="page-separator">
+            <div class="page-separator__text" >
+                Users Information
             </div>
+        </div>
+        <form method="POST" action="{{ route('dashboard.users.update',$user->id) }}" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
             <div class="card">
-                <div class="card-body">
+                <div class="card-body ">
                     <div class="row">
                         <div class="col-lg-3 bg-light">
                             <div class="page-separator">
                                 <div class="page-separator__text">Basic Details</div>
                             </div>
-                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of your profile.</p>
+                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of the user categories listed.</p>
                         </div>
-                        <div class="col-lg-9 row p-3">
-                            <div class="col-md-5 p-0">
+                        <div class="col-lg-9 row p-2">
+                            <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="first_name">First Name:</label>
                                     <input type="text"
                                            class="form-control @error('first_name') is-invalid @enderror"
-                                           value="{{ $user->first_name }}"
+                                           value="{{ old('first_name') ? old('first_name'):$user->first_name }}"
                                            id="first_name"
                                            name="first_name"
                                            required="required"
                                            autocomplete="first_name"
-                                           placeholder="Your first name ..."
+                                           placeholder="First Name ..."
                                            autofocus>
                                     @error('first_name')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -58,18 +67,18 @@
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
                             </div>
-                            <div class="offset-md-1 col-md-5 p-0">
+                            <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="last_name">Last Name:</label>
                                     <input type="text"
                                            class="form-control @error('last_name') is-invalid @enderror"
-                                           value="{{ $user->last_name }}"
+                                           value="{{ old('last_name') ? old('last_name'):$user->last_name }}"
                                            id="last_name"
                                            name="last_name"
                                            required="required"
                                            autocomplete="last_name"
-                                           placeholder="Your last name ..."
+                                           placeholder="Last Name ..."
                                            autofocus>
                                     @error('last_name')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -77,18 +86,18 @@
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
                             </div>
-                            <div class="col-md-12 p-0">
+                            <div class="col-12 col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="full_name">Full Name:</label>
                                     <input type="text"
                                            class="form-control @error('full_name') is-invalid @enderror"
-                                           value="{{ $user->full_name }}"
+                                           value="{{ old('full_name') ? old('full_name'):$user->full_name }}"
                                            id="full_name"
                                            name="full_name"
                                            required="required"
                                            autocomplete="full_name"
-                                           placeholder="Your full name ..."
+                                           placeholder="Full Name ..."
                                            autofocus>
                                     @error('full_name')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -96,14 +105,14 @@
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
                             </div>
-                            <div class="col-md-12 p-0">
+                            <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="email">Email address:</label>
                                     <input type="email"
                                            id="email"
                                            class="form-control @error('email') is-invalid @enderror"
-                                           value="{{ $user->email }}"
+                                           value="{{ old('email') ? old('email'):$user->email }}"
                                            required="required"
                                            name="email"
                                            autocomplete="email"
@@ -112,7 +121,44 @@
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
                                     <div class="valid-feedback">Looks good!</div>
-                                    <small class="form-text text-muted">Note that if you change your email, you will have to confirm it again.</small>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="other_email">Other Email address:</label>
+                                    <input type="email"
+                                           id="other_email"
+                                           class="form-control @error('other_email') is-invalid @enderror"
+                                           value="{{ old('other_email') ? old('other_email'):$user->other_email }}"
+                                           name="other_email"
+                                           autocomplete="other_email"
+                                           placeholder="Your other email address ...">
+                                    @error('other_email')
+                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                    @enderror
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="select04">Status</label>
+                                    <select id="select04"
+                                            data-toggle="select"
+                                            data-minimum-results-for-search="-1"
+                                            class="form-control form-control-sm @error('status') is-invalid @enderror"
+                                            name="status">
+                                        <option value="1" @if(old('status')) {{ old('status') == '1' ? 'selected':'' }} @else {{ $user->status == '1' ? 'selected':'' }} @endif>
+                                            active
+                                        <option value="0" @if(old('status')) {{ old('status') == '0' ? 'selected':'' }} @else {{ $user->status == '0' ? 'selected':'' }} @endif>
+                                            inactive
+                                        </option>
+                                    </select>
+                                    @error('status')
+                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                    @enderror
+                                    <div class="valid-feedback">Looks good!</div>
                                 </div>
                             </div>
                         </div>
@@ -123,16 +169,16 @@
                 <div class="page-separator__text">Change password</div>
             </div>
             <div class="card">
-                <div class="card-body">
+                <div class="card-body ">
                     <div class="row">
                         <div class="col-lg-3 bg-light">
                             <div class="page-separator">
                                 <div class="page-separator__text">Password & Security</div>
                             </div>
-                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">Security details of your profile.</p>
+                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">Security details of user.</p>
                         </div>
-                        <div class="col-lg-9 row p-3">
-                            <div class="col-md-12 p-0">
+                        <div class="col-lg-9 row p-2">
+                            <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="password">New password:</label>
@@ -148,7 +194,7 @@
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
                             </div>
-                            <div class="col-md-12 p-0">
+                            <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="password-confirm">Confirm password:</label>
@@ -172,7 +218,7 @@
                 <div class="page-separator__text">Profile &amp; Privacy</div>
             </div>
             <div class="card">
-                <div class="card-body">
+                <div class="card-body ">
                     <div class="row">
                         <div class="col-lg-3 bg-light">
                             <div class="page-separator">
@@ -180,8 +226,8 @@
                             </div>
                             <p class="card-subtitle text-70 mb-16pt mb-lg-0">Upload your photo and the remaining data.</p>
                         </div>
-                        <div class="col-lg-9 row p-3">
-                            <div class="col-md-12 p-0">
+                        <div class="col-lg-9 row p-2">
+                            <div class="col-12 col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label">Your photo:</label>
                                     <div class="media align-items-center">
@@ -211,14 +257,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12 p-0">
+                            <div class="col-12 col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="username">Profile name:</label>
                                     <input type="text"
                                            id="username"
                                            class="form-control @error('username') is-invalid @enderror"
-                                           value="{{ $user->username }}"
+                                           value="{{ old('username') ? old('username'):$user->username }}"
                                            name="username"
                                            placeholder="Your profile name ...">
                                     @error('username')
@@ -228,13 +274,13 @@
                                     {{--<small class="form-text text-muted">Your profile name will be used as part of your public profile URL address.</small>--}}
                                 </div>
                             </div>
-                            <div class="col-md-12 p-0">
+                            <div class="col-12 col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="phone">Phone:</label>
                                     <input type="text"
                                            class="form-control @error('phone') is-invalid @enderror"
-                                           value="{{ $user->phone }}"
+                                           value="{{ old('phone') ? old('phone'):$user->phone }}"
                                            id="phone"
                                            name="phone"
                                            data-mask="00000000000"
@@ -245,7 +291,24 @@
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
                             </div>
-                            <div class="col-md-12 p-0">
+                            <div class="col-12 col-md-12 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="other_phone">Other Phone:</label>
+                                    <input type="text"
+                                           class="form-control @error('other_phone') is-invalid @enderror"
+                                           value="{{ old('other_phone') ? old('other_phone'):$user->other_phone }}"
+                                           id="other_phone"
+                                           name="other_phone"
+                                           data-mask="00000000000"
+                                           placeholder="Your other mobile phone ...">
+                                    @error('other_phone')
+                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                    @enderror
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="select05">Gender:</label>
@@ -262,13 +325,13 @@
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
                             </div>
-                            <div class="col-md-12 p-0">
+                            <div class="col-12 col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="date_of_birth">Date of Birth:</label>
                                     <input type="hidden"
                                            class="form-control @error('date_of_birth') is-invalid @enderror flatpickr-input"
-                                           value="{{ $user->date_of_birth }}"
+                                           value="{{ old('date_of_birth') ? old('date_of_birth'):$user->date_of_birth }}"
                                            id="date_of_birth"
                                            name="date_of_birth"
                                            data-toggle="flatpickr"
@@ -279,52 +342,28 @@
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
                             </div>
-                            <div class="col-md-12 p-0">
+                            <div class="col-12 col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="bio">About you:</label>
+                                           for="bio">About you:</label> <small class="badge badge-secondary">optional</small>
                                     <textarea rows="3"
                                               id="bio"
                                               name="bio"
                                               class="form-control @error('bio') is-invalid @enderror"
-                                              placeholder="About you ...">{{ $user->bio }}</textarea>
+                                              placeholder="About you ...">{{ old('bio') ? old('bio'):$user->bio }}</textarea>
                                     @error('bio')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
                             </div>
-                            <div class="col-md-12 p-0">
-                                <div class="form-group">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox"
-                                               class="custom-control-input"
-                                               name="real_name"
-                                               checked
-                                               id="customCheck1">
-                                        <label class="custom-control-label"
-                                               for="customCheck1">Display your real name on your profile</label>
-                                        <small class="form-text text-muted">If unchecked, your profile name will be displayed instead of your full name.</small>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                        {{--<div class="form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox"
-                                       class="custom-control-input"
-                                       checked
-                                       id="customCheck2">
-                                <label class="custom-control-label"
-                                       for="customCheck2">Allow everyone to see your profile</label>
-                                <small class="form-text text-muted">If unchecked, your profile will be private and no one except you will be able to view it.</small>
-                            </div>
-                        </div>--}}
                 </div>
             </div>
+
             <button type="submit"
-                    class="btn btn-primary">Save Changes</button>
+                    class="btn pull-right btn-primary">Submit</button>
         </form>
     </div>
 @endsection
