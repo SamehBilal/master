@@ -47,7 +47,7 @@
                         </thead>
                         <tbody id="projects">
                         @php $count = 1; @endphp
-                        @foreach($subscribers as $subscriber)
+                        @forelse($subscribers as $subscriber)
                             <tr class="">
                                 <td>{{ $count }}</td>
 
@@ -72,23 +72,12 @@
                                         <small class="text-50">{{ $subscriber->created_at->diffForHumans() }}</small>
                                     </div>
                                 </td>
-                                {{--<td class="text-right">
-                                    <a href="#" data-toggle="dropdown"
-                                       class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="{{ route('contact-forms.show',$contact->id) }}" class="dropdown-item active"><i class="material-icons ">visibility</i> View</a>
-                                        <a href="{{ route('contact-forms.edit',$contact->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> Edit</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $contact->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
-                                        <form id="delete-form{{ $contact->id }}" action="{{ route('contact-forms.destroy',$contact->id) }}" method="POST" class="d-none">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
-                                    </div>
-                                </td>--}}
                             </tr>
                             @php $count++ @endphp
-                        @endforeach
+                        @empty
+                            <td></td>
+                            <td colspan="3"><h4>There are no subscribers yet.</h4></td>
+                        @endforelse
                         </tbody>
                         <tfoot>
                         <tr>

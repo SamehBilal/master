@@ -6,10 +6,10 @@
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('customers.index') }}">Customers</a>
+        <a href="{{ route('dashboard.customers.index') }}">Customers</a>
     </li>
     <li class="breadcrumb-item ">
-        <a href="{{ route('customers.show',$customer->id) }}">{{ $customer->name }}</a>
+        <a href="{{ route('dashboard.customers.show',$customer->id) }}">{{ $customer->name }}</a>
     </li>
     <li class="breadcrumb-item active">
         Create
@@ -17,7 +17,7 @@
 @endsection
 
 @section('button-link')
-    {{ route('customers.index') }}
+    {{ route('dashboard.customers.index') }}
 @endsection
 
 @section('button-icon')
@@ -30,7 +30,7 @@
 
 @section('main_content')
     <div class="container page__container page-section">
-        <form method="POST" action="{{ route('customers.index') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('dashboard.customers.index') }}" enctype="multipart/form-data">
             @csrf
             <div class="card">
                 <div class="row card-body mb-32pt">
@@ -263,7 +263,7 @@
                     </a>
                 </div>
             </div>
-            @forelse($customer->user->address as $address)
+            @forelse($customer->location as $location)
                 <div class="card address_card">
                     <div class="row card-body mb-32pt">
                         <div class="col-lg-4 bg-light">
@@ -287,7 +287,7 @@
                                                     class="form-control form-control-sm @error('country_id') is-invalid @enderror"
                                                     name="country_id[]">
                                                 @foreach($countries as $country)
-                                                    <option value="{{ $country->id }}" @if(old('country_id[]') ==  $country->id) selected @else {{ $address->country_id == $country->id  ? 'selected':'' }} @endif data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                                    <option value="{{ $country->id }}" @if(old('country_id[]') ==  $country->id) selected @else {{ $location->country_id == $country->id  ? 'selected':'' }} @endif data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
                                                         {{ $country->name }}
                                                     </option>
                                                 @endforeach
@@ -307,11 +307,6 @@
                                                     data-minimum-results-for-search="-1"
                                                     class="form-control form-control-sm @error('city_id') is-invalid @enderror"
                                                     name="city_id[]">
-                                                @foreach($cities as $city)
-                                                    <option value="{{ $city->id }}" @if(old('currency_id[]') ==  $currency->id)  selected @else {{ $address->currency_id == $currency->id  ? 'selected':'' }} @endif data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
-                                                        {{ $city->name }}
-                                                    </option>
-                                                @endforeach
                                             </select>
                                             @error('city_id')
                                             <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -328,7 +323,7 @@
                                             <div class="input-group input-group-merge">
                                                 <input type="text"
                                                        class="form-control @error('street') is-invalid @enderror"
-                                                       value="{{ old('street[]') ? old('street[]'):$address->street }}"
+                                                       value="{{ old('street[]') ? old('street[]'):$location->street }}"
                                                        autocomplete="street"
                                                        name="street[]"
                                                        id="street"
@@ -353,7 +348,7 @@
                                             <div class="input-group input-group-merge">
                                                 <input type="text"
                                                        class="form-control @error('building') is-invalid @enderror"
-                                                       value="{{ old('building[]') ? old('building[]'):$address->building }}"
+                                                       value="{{ old('building[]') ? old('building[]'):$location->building }}"
                                                        autocomplete="building"
                                                        name="building[]"
                                                        id="building"
@@ -380,7 +375,7 @@
                                             <div class="input-group input-group-merge">
                                                 <input type="text"
                                                        class="form-control @error('floor') is-invalid @enderror"
-                                                       value="{{ old('floor[]') ? old('floor[]'):$address->floor }}"
+                                                       value="{{ old('floor[]') ? old('floor[]'):$location->floor }}"
                                                        autocomplete="floor"
                                                        name="floor[]"
                                                        id="floor"
@@ -405,7 +400,7 @@
                                             <div class="input-group input-group-merge">
                                                 <input type="text"
                                                        class="form-control @error('apartment') is-invalid @enderror"
-                                                       value="{{ old('apartment[]') ? old('apartment[]'):$address->apartment }}"
+                                                       value="{{ old('apartment[]') ? old('apartment[]'):$location->apartment }}"
                                                        autocomplete="apartment"
                                                        name="apartment[]"
                                                        id="apartment"
@@ -472,11 +467,6 @@
                                                     data-minimum-results-for-search="-1"
                                                     class="form-control form-control-sm @error('city_id') is-invalid @enderror"
                                                     name="city_id[]">
-                                                @foreach($cities as $city)
-                                                    <option value="{{ $city->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
-                                                        {{ $city->name }}
-                                                    </option>
-                                                @endforeach
                                             </select>
                                             @error('city_id')
                                             <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -1027,7 +1017,7 @@
                 '                                        <div class="input-group input-group-merge">\n' +
                 '                                            <input type="text"\n' +
                 '                                                   class="form-control @error('contact_name') is-invalid @enderror"\n' +
-                '                                                   value="{{ old('contact_name') }}"\n' +
+                '                                                   value="{{ old('contact_name[]') }}"\n' +
                 '                                                   autocomplete="contact_name"\n' +
                 '                                                   name="contact_name[]"\n' +
                 '                                                   id="contact_name"\n' +
@@ -1052,7 +1042,7 @@
                 '                                        <div class="input-group input-group-merge">\n' +
                 '                                            <input type="text"\n' +
                 '                                                   class="form-control @error('contact_job_title') is-invalid @enderror"\n' +
-                '                                                   value="{{ old('contact_job_title') }}"\n' +
+                '                                                   value="{{ old('contact_job_title[]') }}"\n' +
                 '                                                   autocomplete="contact_job_title"\n' +
                 '                                                   name="contact_job_title[]"\n' +
                 '                                                   id="contact_job_title"\n' +
@@ -1079,7 +1069,7 @@
                 '                                        <div class="input-group input-group-merge">\n' +
                 '                                            <input type="text"\n' +
                 '                                                   class="form-control @error('contact_phone') is-invalid @enderror"\n' +
-                '                                                   value="{{ old('contact_phone') }}"\n' +
+                '                                                   value="{{ old('contact_phone[]') }}"\n' +
                 '                                                   autocomplete="contact_phone"\n' +
                 '                                                   name="contact_phone[]"\n' +
                 '                                                   id="contact_phone"\n' +
@@ -1105,7 +1095,7 @@
                 '                                        <div class="input-group input-group-merge">\n' +
                 '                                            <input type="email"\n' +
                 '                                                   class="form-control @error('contact_email') is-invalid @enderror"\n' +
-                '                                                   value="{{ old('contact_email') }}"\n' +
+                '                                                   value="{{ old('contact_email[]') }}"\n' +
                 '                                                   autocomplete="contact_email"\n' +
                 '                                                   name="contact_email[]"\n' +
                 '                                                   id="contact_email"\n' +
@@ -1176,11 +1166,6 @@
                 '                                            data-minimum-results-for-search="-1"\n' +
                 '                                            class="form-control form-control-sm @error('city_id') is-invalid @enderror"\n' +
                 '                                            name="city_id[]">\n' +
-                '                                        @foreach($cities as $city)\n' +
-                '                                            <option value="{{ $city->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">\n' +
-                '                                                {{ $city->name }}\n' +
-                '                                            </option>\n' +
-                '                                        @endforeach\n' +
                 '                                    </select>\n' +
                 '                                    @error('city_id')\n' +
                 '                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>\n' +
@@ -1197,7 +1182,7 @@
                 '                                    <div class="input-group input-group-merge">\n' +
                 '                                        <input type="text"\n' +
                 '                                               class="form-control @error('street') is-invalid @enderror"\n' +
-                '                                               value="{{ old('street') }}"\n' +
+                '                                               value="{{ old('street[]') }}"\n' +
                 '                                               autocomplete="street"\n' +
                 '                                               name="street[]"\n' +
                 '                                               id="street"\n' +
@@ -1222,7 +1207,7 @@
                 '                                    <div class="input-group input-group-merge">\n' +
                 '                                        <input type="text"\n' +
                 '                                               class="form-control @error('building') is-invalid @enderror"\n' +
-                '                                               value="{{ old('building') }}"\n' +
+                '                                               value="{{ old('building[]') }}"\n' +
                 '                                               autocomplete="building"\n' +
                 '                                               name="building[]"\n' +
                 '                                               id="building"\n' +
@@ -1249,7 +1234,7 @@
                 '                                    <div class="input-group input-group-merge">\n' +
                 '                                        <input type="text"\n' +
                 '                                               class="form-control @error('floor') is-invalid @enderror"\n' +
-                '                                               value="{{ old('floor') }}"\n' +
+                '                                               value="{{ old('floor[]') }}"\n' +
                 '                                               autocomplete="floor"\n' +
                 '                                               name="floor[]"\n' +
                 '                                               id="floor"\n' +
@@ -1274,7 +1259,7 @@
                 '                                    <div class="input-group input-group-merge">\n' +
                 '                                        <input type="text"\n' +
                 '                                               class="form-control @error('apartment') is-invalid @enderror"\n' +
-                '                                               value="{{ old('apartment') }}"\n' +
+                '                                               value="{{ old('apartment[]') }}"\n' +
                 '                                               autocomplete="apartment"\n' +
                 '                                               name="apartment[]"\n' +
                 '                                               id="apartment"\n' +

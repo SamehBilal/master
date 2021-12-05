@@ -277,6 +277,25 @@
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
+                                           for="location_name">Name:</label>
+                                    <input type="text"
+                                           class="form-control @error('location_name') is-invalid @enderror"
+                                           value="{{ old('location_name') }}"
+                                           id="location_name"
+                                           name="location_name[]"
+                                           required="required"
+                                           autocomplete="location_name"
+                                           placeholder="name ..."
+                                           autofocus>
+                                    @error('location_name')
+                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                    @enderror
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label"
                                            for="select05">Country</label>
                                     <select id="select05"
                                             data-toggle="select"
@@ -309,7 +328,7 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                    @error('city_id')
+                                    @error('state_id')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
                                     <div class="valid-feedback">Looks good!</div>
@@ -430,6 +449,31 @@
                                             </div>
                                         </div>
                                         @error('apartment')
+                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                        @enderror
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="landmarks">Landmarks:</label>
+                                    <div class="input-group input-group-merge">
+                                        <input type="text"
+                                               class="form-control @error('landmarks') is-invalid @enderror"
+                                               value="{{ old('landmarks') }}"
+                                               autocomplete="landmarks"
+                                               name="landmarks[]"
+                                               id="landmarks"
+                                               placeholder="Enter your landmarks .."
+                                               autofocus>
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="material-icons">apartment</span>
+                                            </div>
+                                        </div>
+                                        @error('landmarks')
                                         <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                         @enderror
                                         <div class="valid-feedback">Looks good!</div>
@@ -725,6 +769,7 @@
 @endsection
 
 @section('extra-scripts')
+    <script src="{{  asset('backend/js/locations_ajax.js') }}"></script>
     <script>
         function doubling()
         {
@@ -871,11 +916,11 @@
                 '                            <div class="col-12 col-md-6 mb-3">\n' +
                 '                                <div class="form-group">\n' +
                 '                                    <label class="form-label"\n' +
-                '                                           for="select06">Country</label>\n' +
-                '                                    <select id="select06"\n' +
+                '                                           for="select05">Country</label>\n' +
+                '                                    <select id="select05"\n' +
                 '                                            data-toggle="select"\n' +
                 '                                            data-minimum-results-for-search="-1"\n' +
-                '                                            class="form-control form-control-sm @error('country_id') is-invalid @enderror"\n' +
+                '                                            class="form-control select05 form-control-sm @error('country_id') is-invalid @enderror"\n' +
                 '                                            name="country_id[]">\n' +
                 '                                        @foreach($countries as $country)\n' +
                 '                                            <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">\n' +
@@ -892,17 +937,33 @@
                 '                            <div class="col-12 col-md-6 mb-3">\n' +
                 '                                <div class="form-group">\n' +
                 '                                    <label class="form-label"\n' +
-                '                                           for="select01">City</label>\n' +
+                '                                           for="select01">State</label>\n' +
                 '                                    <select id="select01"\n' +
                 '                                            data-toggle="select"\n' +
                 '                                            data-minimum-results-for-search="-1"\n' +
-                '                                            class="form-control form-control-sm @error('city_id') is-invalid @enderror"\n' +
-                '                                            name="city_id[]">\n' +
-                '                                        @foreach($cities as $city)\n' +
-                '                                            <option value="{{ $city->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">\n' +
-                '                                                {{ $city->name }}\n' +
+                '                                            class="form-control select03 form-control-sm @error('state_id') is-invalid @enderror"\n' +
+                '                                            name="state_id[]">\n' +
+                '                                        @foreach($states as $state)\n' +
+                '                                            <option value="{{ $state->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">\n' +
+                '                                                {{ $state->name }}\n' +
                 '                                            </option>\n' +
                 '                                        @endforeach\n' +
+                '                                    </select>\n' +
+                '                                    @error('state_id')\n' +
+                '                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>\n' +
+                '                                    @enderror\n' +
+                '                                    <div class="valid-feedback">Looks good!</div>\n' +
+                '                                </div>\n' +
+                '                            </div>\n' +
+                '                            <div class="col-12 col-md-6 mb-3">\n' +
+                '                                <div class="form-group">\n' +
+                '                                    <label class="form-label"\n' +
+                '                                           for="select03">City</label>\n' +
+                '                                    <select id="select03"\n' +
+                '                                            data-toggle="select"\n' +
+                '                                            data-minimum-results-for-search="-1"\n' +
+                '                                            class="form-control select03 form-control-sm @error('city_id') is-invalid @enderror"\n' +
+                '                                            name="city_id[]">\n' +
                 '                                    </select>\n' +
                 '                                    @error('city_id')\n' +
                 '                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>\n' +
@@ -1040,7 +1101,4 @@
     </script>
 @endsection
 
-@section('extra-scripts')
-    <script src="{{  asset('backend/js/locations_ajax.js') }}"></script>
-@endsection
 

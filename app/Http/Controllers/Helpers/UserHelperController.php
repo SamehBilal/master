@@ -18,13 +18,13 @@ class UserHelperController extends Controller
             'last_name'     => $data['last_name'],
             'full_name'     => $data['full_name'],
             'email'         => $data['email'],
-            'other_email'   => $data['other_email'],//
+            'other_email'   => $data['other_email'],
             'username'      => $data['username'],
             'password'      => $data['password'],
             'phone'         => $data['phone'],
             'other_phone'   => $data['other_phone'],
             'gender'        => $data['gender'],
-            'religion'      => $data['religion'],//
+            'religion'      => $data['religion'],
             'date_of_birth' => $data['date_of_birth'],
             'bio'           => $data['bio'],
         ]);

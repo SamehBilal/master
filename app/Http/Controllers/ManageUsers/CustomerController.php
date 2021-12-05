@@ -27,7 +27,7 @@ class CustomerController extends Controller
         $customers = Customer::where('business_user_id',auth()->user()->id)
                                 ->orderBy('updated_at','desc')
                                 ->get();
-        $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Customer']])
+        $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Customer'],['status','active']])
                                     ->orderBy('updated_at','desc')
                                     ->get();
         return view('users.customers.index',compact('customers','categories'));
@@ -40,8 +40,8 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $categories = UserCategory::where('model','App\Models\Customer')->get();
-        $currencies = Currency::all();
+        $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Customer'],['status','active']])->get();
+        $currencies = Currency::where('business_user_id',auth()->user()->id)->get();
         $states     = State::where('country_id',64)->get();
         $cities     = City::all();
         $countries  = Country::all();
@@ -56,9 +56,15 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $request['password']              = '123456789';
-        $request['password_confirmation'] = '123456789';
-        $request['payment']               = 'cash';
+        $request->request->add(['password' => 123456789]);
+        $request->request->add(['password_confirmation' => 123456789]);
+        $request->request->add(['payment' => 'cash']);
+        $this->validate($request, User::rules());
+        $this->validate($request, Customer::rules());
+        $data                   = $request->all();
+        $data['password']       = Hash::make($request->password);
+        $data['other_email']    = null;
+        $data['religion']       = null;
 
         if($request->status == 'on')
         {
@@ -66,31 +72,20 @@ class CustomerController extends Controller
         }else{
             $request['status']            = 'inactive';
         }
-
-        $this->validate($request, User::rules());
-        $this->validate($request, Customer::rules());
-
-        $data                   = $request->all();
-        $data['password']       = Hash::make($data['password']);
-        $data['other_email']    = null;
-        $data['other_phone']    = null;
-        $data['religion']       = null;
-        //create user
         try {
             \DB::transaction(function () use($data, $request) {
                 $userhelperController = new UserHelperController();
                 $user = $userhelperController->createuser($data);
 
                 $customer = Customer::create([
-                    'user_id'               => $user->id,
-                    'fax'                   => $request->fax,
-                    'status'                => $request->status,
-                    'user_category_id'      => $request->user_category_id,
-                    'currency_id'           => $request->currency_id,
-                    'note'                  => $request->note,//
-                    'payment'               => $request->payment,
-                    /*'student_national_id'   => $data['student_national_id'],
-                    'citizenship'           => $data['citizenship'],*/
+                    'user_id'                   => $user->id,
+                    'fax'                       => $request->fax,
+                    'status'                    => $request->status,
+                    'user_category_id'          => $request->user_category_id,
+                    'currency_id'               => $request->currency_id,
+                    'note'                      => $request->note,
+                    'payment'                   => $request->payment,
+                    'business_user_id'          => auth()->user()->id,
                 ]);
 
                 for($i=0;$i < count($request->contact_name);$i++){
@@ -99,34 +94,38 @@ class CustomerController extends Controller
                         'contact_job_title'     => $request->contact_job_title[$i],
                         'contact_email'         => $request->contact_email[$i],
                         'contact_phone'         => $request->contact_phone[$i],
+                        'business_user_id'      => auth()->user()->id,
                     ]);
                 }
 
                 for($j=0;$j < count($request->street);$j++){
-                    $user->address()->create([
+                    $customer->location()->create([
+                        'name'                  => $request->location_name[$j],
                         'street'                => $request->street[$j],
                         'building'              => $request->building[$j],
                         'floor'                 => $request->floor[$j],
                         'apartment'             => $request->apartment[$j],
+                        'landmarks'             => $request->landmarks[$j],
                         'country_id'            => $request->country_id[$j],
+                        'state_id'              => $request->state_id[$j],
                         'city_id'               => $request->city_id[$j],
-                        /*'zone_id'               => $request->zone_id[$j],*/
+                        'business_user_id'      => auth()->user()->id,
                     ]);
                 }
 
-                /*if(request()->hasFile('document'))
+                if(request()->hasFile('avatar'))
                 {
-                    $document = request()->file('document')->getClientOriginalName();
-                    request()->file('document')->storeAs('/', "/users/{$student->user_id}/{$document}", '');
-                    $student->update(['document' =>  $document]);
-                }*/
+                    $avatar = request()->file('avatar')->getClientOriginalName();
+                    request()->file('avatar')->storeAs('/', "/users/{$user->id}/{$avatar}", '');
+                    $user->update(['avatar' =>  $avatar]);
+                }
                 $user->assignRole('customer');
             });
         } catch (\Exception $ex) {
             return redirect()->back()->withErrors($ex->getMessage());
         }
 
-        return redirect()->route('customers.index')->with('success','Data created successfully');
+        return redirect()->route('dashboard.customers.index')->with('success','Data created successfully');
     }
 
     /**
@@ -137,7 +136,12 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        return view('users.customers.show',compact('customer'));
+        $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Customer'],['status','active']])->get();
+        $currencies = Currency::where('business_user_id',auth()->user()->id)->get();
+        $states     = State::all();
+        $cities     = City::all();
+        $countries  = Country::all();
+        return view('users.customers.edit',compact('customer','categories','currencies','cities','states','countries'));
     }
 
     /**
@@ -148,8 +152,8 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        $categories = UserCategory::all();
-        $currencies = Currency::all();
+        $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Customer'],['status','active']])->get();
+        $currencies = Currency::where('business_user_id',auth()->user()->id)->get();
         $states     = State::all();
         $cities     = City::all();
         $countries  = Country::all();
@@ -165,37 +169,23 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        $id = $customer->user_id;
-        $this->validate($request, User::rules($update = true, $id));
-        //$customer = Customer::where('user_id',$id)->first();
         $this->validate($request, Customer::rules($update = true, $customer->id));
-
-
-        $data = $request->all();
-        if ($data['password'] != null) {
-            $data['password'] = Hash::make($data['password']);
-        }else{
-            unset($data['password']);
-        }
-        $data['other_email']    = null;
-        $data['other_phone']         = null;
-        //update user data
+        $this->validate($request, User::rules($update = true, $customer->user_id));
+        $data                   = $request->all();
         try {
-            \DB::transaction(function () use($data, $request, $id) {
+            \DB::transaction(function () use($data, $request, $customer) {
                 $userhelperController = new UserHelperController();
-                $user = $userhelperController->updateuser($data, $id);
+                $user = $userhelperController->updateuser($data, $customer->user_id);
 
-                $customer = Customer::where('user_id',$id)->first();
                 $customer->update([
-                    'user_id'               => $user->id,
-                    'fax'                   => $request->fax,
-                    'status'                => $request->status,
-                    'user_category_id'      => $request->user_category_id,
-                    'currency_id'           => $request->currency_id,
-                    'note'                  => $request->note,//
-                    'payment'               => $request->payment,
-                    /*'student_national_id'   => $data['student_national_id'],
-                    'citizenship'           => $data['citizenship'],*/
+                    'user_id'                   => $user->id,
+                    'fax'                       => $request->fax,
+                    'status'                    => $request->status,
+                    'user_category_id'          => $request->user_category_id,
+                    'currency_id'               => $request->currency_id,
+                    'note'                      => $request->note,
+                    'payment'                   => $request->payment,
+                    'business_user_id'          => auth()->user()->id,
                 ]);
 
                 for($i=0;$i < $request->contact_name;$i++){
@@ -204,46 +194,49 @@ class CustomerController extends Controller
                         'contact_job_title'     => $request->contact_job_title[$i],
                         'contact_email'         => $request->contact_email[$i],
                         'contact_phone'         => $request->contact_phone[$i],
+                        'business_user_id'      => auth()->user()->id,
                     ]);
                 }
 
                 for($j=0;$j < $request->street;$j++){
-                    $user->address()->update([
+                    $user->location()->update([
+                        'name'                  => $request->location_name[$j],
                         'street'                => $request->street[$j],
                         'building'              => $request->building[$j],
                         'floor'                 => $request->floor[$j],
                         'apartment'             => $request->apartment[$j],
+                        'landmarks'             => $request->landmarks[$j],
                         'country_id'            => $request->country_id[$j],
+                        'state_id'              => $request->state_id[$j],
                         'city_id'               => $request->city_id[$j],
-                        'zone_id'               => $request->zone_id[$j],
+                        'business_user_id'      => auth()->user()->id,
                     ]);
                 }
 
-                /*if(request()->hasFile('document'))
+                if(request()->hasFile('avatar'))
                 {
-                    if(!empty($student->document))
+                    if(!empty($user->avatar))
                     {
-                        $document = "/storage/users/{$student->user_id}/{$student->document}";
+                        $avatar = "/storage/users/{$user->id}/{$user->avatar}";
                         $path = str_replace('\\','/',public_path());
 
-                        if(file_exists($path . $document))
+                        if(file_exists($path . $avatar))
                         {
-                            unlink($path . $document);
+                            unlink($path . $avatar);
                         }
                     }
 
+                    $avatar = request()->file('avatar')->getClientOriginalName();
+                    request()->file('avatar')->storeAs('/', "/users/{$user->id}/{$avatar}", '');
+                    $user->update(['avatar' =>  $avatar]);
 
-                    $document = request()->file('document')->getClientOriginalName();
-                    request()->file('document')->storeAs('/', "/users/{$student->user_id}/{$document}", '');
-                    $student->update(['document' =>  $document]);
-
-                }*/
+                }
             });
         } catch (\Exception $ex) {
             return redirect()->back()->withErrors($ex->getMessage());
         }
 
-        return redirect()->route('customers.index')->with('success','Data updated successfully');
+        return redirect()->route('dashboard.customers.index')->with('success','Data updated successfully');
     }
 
     /**
@@ -255,6 +248,6 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         Customer::destroy($customer->id);
-        return redirect()->route('customers.index')->with('success','Data deleted successfully');
+        return redirect()->route('dashboard.customers.index')->with('success','Data deleted successfully');
     }
 }

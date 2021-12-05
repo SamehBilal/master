@@ -163,7 +163,6 @@
                     </div>
                 </div>
             </div>
-
             <button type="submit"
                     class="btn pull-right btn-primary">Submit</button>
         </form>

@@ -26,6 +26,11 @@ class Customer extends Model
         return $this->hasMany(Contact::class);
     }
 
+    public function location()
+    {
+        return $this->hasMany(Location::class);
+    }
+
     public function user()
     {
         return $this->hasOne(User::class  , "id" , "user_id");

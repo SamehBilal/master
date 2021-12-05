@@ -51,7 +51,7 @@
                         </thead>
                         <tbody id="projects">
                         @php $count = 1; @endphp
-                        @foreach($contactforms as $forms)
+                        @forelse($contactforms as $forms)
                             <tr class="">
                                 <td>{{ $count }}</td>
 
@@ -103,7 +103,10 @@
                                 </td>--}}
                             </tr>
                             @php $count++ @endphp
-                        @endforeach
+                        @empty
+                            <td></td>
+                            <td colspan="3"><h4>There are no contact forms yet.</h4></td>
+                        @endforelse
                         </tbody>
                         <tfoot>
                         <tr>

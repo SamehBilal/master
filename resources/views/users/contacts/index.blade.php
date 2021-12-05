@@ -31,6 +31,51 @@
             </div>
 
             <div class="card dashboard-area-tabs p-relative o-hidden mb-32pt">
+                <div class="card-header p-0 nav">
+                    <div class="row no-gutters"
+                         role="tablist">
+                        <div class="col-auto">
+                            <a href="#"
+                               data-toggle="tab"
+                               role="tab"
+                               aria-selected="true"
+                               class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start active">
+                                <div class="avatar avatar-sm mr-8pt">
+                                    <span class="avatar-title rounded bg-transparent text-black-100">
+                                         <img src="{{ asset('backend/images/icon/all.png') }}"
+                                              alt="Avatar"
+                                              class="avatar-img ">
+                                    </span>
+                                </div>
+                                <span class="flex d-flex flex-column">
+                                        <strong>All Contacts</strong>
+                                        <small class=" text-50">active</small>
+                                        <span class="indicator-line rounded bg-success"></span>
+                                    </span>
+                            </a>
+                        </div>
+                        @foreach($categories as $category)
+                            <div class="col-auto border-left border-right{{--{{ $category->id != 1 ? 'border-left border-right':'' }}--}}">
+                                <a href="#"
+                                   data-toggle="tab"
+                                   role="tab"
+                                   data-name="{{ $category->name }}"
+                                   aria-selected="false{{--{{ $category->id == 1 ? 'true':'false' }}--}}"
+                                   class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start {{--{{ $category->id == 1 ? 'active':'' }}--}}">
+                                    {{--<span class="h2 mb-0 mr-3">{{ $category->id }}</span>--}}
+                                    <div class="avatar avatar-sm mr-8pt">
+                                        <span class="avatar-title rounded bg-warning text-black-100">{{  initials($category->name)  }}</span>
+                                    </div>
+                                    <span class="flex d-flex flex-column">
+                                        <strong>{{ $category->name }}</strong>
+                                        <small class=" text-50">{{ $category->status }}</small>
+                                        <span class="indicator-line rounded {{ $category->status == 'active' ? 'bg-success':'bg-danger' }}"></span>
+                                    </span>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
 
                 <div class="table-responsive">
                     <div class="card-header">
@@ -43,35 +88,8 @@
                                    placeholder="Search ...">
 
                             <div class="col-lg d-flex flex-wrap buttons-datatable-add">
-                                <div class="ml-lg-auto dropdown select-datatable-add">
-                                    {{-- <a href="#"
-                                        class="btn btn-link dropdown-toggle text-70"
-                                        data-toggle="dropdown">All Topics</a>
-                                     <div class="dropdown-menu dropdown-menu-right">
-                                         <a href=""
-                                            class="dropdown-item active">All Topics</a>
-                                         <a href=""
-                                            class="dropdown-item">My Topics</a>
-                                     </div>--}}
-                                </div>
-                                {{-- <a href="#"
-                                    class="btn ml-2 btn-accent">Ask a question</a>--}}
-                                {{--<a href="#"
-                                   class="btn ml-2 btn-success">Ask </a>--}}
+                                <div class="ml-lg-auto dropdown select-datatable-add"></div>
                             </div>
-
-                            {{-- <div class="ml-auto mb-2 mb-sm-0 custom-control-inline mr-0">
-                                 <label class="form-label mb-0"
-                                        for="active">Active</label>
-                                 <div class="custom-control custom-checkbox-toggle ml-8pt">
-                                     <input checked=""
-                                            type="checkbox"
-                                            id="active"
-                                            class="custom-control-input">
-                                     <label class="custom-control-label"
-                                            for="active">Active</label>
-                                 </div>
-                             </div>--}}
                         </form>
 
                     </div>
@@ -98,9 +116,9 @@
 
                             <th>Name</th>
 
-                            <th>Job Title</th>
-
                             <th>Email</th>
+
+                            <th>Category</th>
 
                             <th>Phone</th>
 
@@ -114,20 +132,8 @@
                             <tr class="">
 
                                 <td class="pr-0">
-                                    {{--<div class="custom-control custom-checkbox">
-                                        <input type="checkbox" id="checkItem" class="checkItem " name="checkItem"  />
-                                        <label class=""
-                                               for="checkItem"><span class="text-hide">Check</span></label>
-                                    </div>--}}
 
-                                    <div class="custom-control custom-checkbox">
-                                        {{--<input type="checkbox"
-                                               class="custom-control-input "
-                                               checked=""
-                                               id="customCheck1_5">
-                                        <label class="custom-control-label"
-                                               for="customCheck1_5"><span class="text-hide">Check</span></label>--}}
-                                    </div>
+                                    <div class="custom-control custom-checkbox"></div>
                                 </td>
 
                                 <td></td>
@@ -142,7 +148,6 @@
                                         <div class="media-body">
                                             <div class="d-flex flex-column">
                                                 <small class=""><strong>{{ $contact->contact_name }}</strong></small>
-                                                {{-- <small class=" text-50">{{ $customer->UserCategory ? $customer->UserCategory->status:'' }}</small> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -151,15 +156,25 @@
 
                                 <td>
 
-                                   <a href="#"
-                                       class="chip ">{{ $contact->contact_job_title }}</a>
-                                </td>
-
-                                <td>
-
                                     <a href="#"
                                        class="chip ">{{ $contact->contact_email }}</a>
 
+                                </td>
+
+                                <td>
+                                    <div class="media flex-nowrap align-items-center"
+                                         style="white-space: nowrap;">
+                                        <div class="avatar avatar-sm mr-8pt">
+                                            <span class="avatar-title rounded bg-dark text-white-100">{{ $contact->UserCategory ? initials($contact->UserCategory->name):'No'  }}</span>
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="d-flex flex-column">
+                                                <small class=""><strong>{{ $contact->UserCategory ? $contact->UserCategory->name:'No Category' }}</strong></small>
+                                                <small class=" text-50">{{ $contact->UserCategory ? $contact->UserCategory->status:'' }}</small>
+                                                <span class="indicator-line rounded {{ $contact->UserCategory ? ($contact->UserCategory->status == 'active' ? 'bg-success':'bg-danger'):'bg-success' }}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
 
                                 <td>

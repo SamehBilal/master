@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\ManageUsers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Helpers\UserHelperController;
 use App\Models\Contact;
 use App\Models\Customer;
+use App\Models\User;
 use App\Models\UserCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ContactController extends Controller
 {
@@ -20,7 +23,7 @@ class ContactController extends Controller
         $contacts = Contact::where('business_user_id',auth()->user()->id)
                             ->orderBy('updated_at','desc')
                             ->get();
-        $categories = UserCategory::where('model','App\Models\Contact')->get();
+        $categories = UserCategory::where([['model','App\Models\Contact'],['status','active'],['business_user_id',auth()->user()->id]])->get();
         return view('users.contacts.index',compact('contacts','categories'));
     }
 
@@ -32,7 +35,7 @@ class ContactController extends Controller
     public function create()
     {
         $customers = Customer::all();
-        $categories = UserCategory::where('model','App\Models\Contact')->get();
+        $categories = UserCategory::where([['model','App\Models\Contact'],['status','active'],['business_user_id',auth()->user()->id]])->get();
         return view('users.contacts.create',compact('customers','categories'));
     }
 
@@ -44,20 +47,44 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
+        $request->request->add(['password' => 123456789]);
+        $request->request->add(['password_confirmation' => 123456789]);
         $this->validate($request, Contact::rules());
+        $this->validate($request, User::rules());
+        $data                   = $request->all();
+        $data['first_name']     = $request->contact_name;
+        $data['last_name']      = '';
+        $data['full_name']      = $request->contact_name;
+        $data['email']          = $request->contact_email;
+        $data['username']       = null;
+        $data['password']       = Hash::make($request->password);
+        $data['other_email']    = null;
+        $data['date_of_birth']  = null;
+        $data['phone']          = $request->contact_phone;
+        $data['other_phone']    = null;
+        $data['religion']       = null;
+        $data['gender']         = null;
+        $data['bio']            = null;
+        try {
+            \DB::transaction(function () use($data, $request) {
+                $userhelperController = new UserHelperController();
+                $user = $userhelperController->createuser($data);
 
-        $user_id = auth()->user()->id;
+                Contact::create([
+                    'contact_name'                  => $request->contact_name,
+                    'contact_job_title'             => $request->contact_job_title,
+                    'contact_email'                 => $request->contact_email,
+                    'contact_phone'                 => $request->contact_phone,
+                    'user_category_id'              => $request->user_category_id,
+                    'business_user_id'              => auth()->user()->id,
+                    'user_id'                       => $user->id,
+                ]);
+            });
+        } catch (\Exception $ex) {
+            return redirect()->back()->withErrors($ex->getMessage());
+        }
 
-        $contact = Contact::create([
-            'contact_name'                  => $request->contact_name,
-            'contact_job_title'             => $request->contact_job_title,
-            'contact_email'                 => $request->contact_email,
-            'contact_phone'                 => $request->contact_phone,
-            'user_category_id'              => $request->user_category_id,
-            'business_user_id'              => $user_id,
-        ]);
-
-        return redirect()->route('dashboard.contacts.show',$contact->id)->with('success','Data created successfully');
+        return redirect()->route('dashboard.contacts.index')->with('success','Data created successfully');
     }
 
     /**
@@ -79,7 +106,8 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        return view('users.contacts.edit',compact('contact'));
+        $categories = UserCategory::where([['model','App\Models\Contact'],['status','active'],['business_user_id',auth()->user()->id]])->get();
+        return view('users.contacts.edit',compact('contact','categories'));
     }
 
     /**
@@ -92,17 +120,30 @@ class ContactController extends Controller
     public function update(Request $request, Contact $contact)
     {
         $this->validate($request, Contact::rules($update = true, $contact->id));
+        $this->validate($request, User::rules($update = true, $contact->user_id));
+        $data                   = $request->all();
+        $data['first_name']     = $request->contact_name;
+        $data['full_name']      = $request->contact_name;
+        $data['email']          = $request->contact_email;
+        $data['phone']          = $request->contact_phone;
 
-        $user_id = auth()->user()->id;
+        try {
+            \DB::transaction(function () use($data, $request,$contact) {
+                $userhelperController = new UserHelperController();
+                $user = $userhelperController->updateuser($data,$contact->user_id);
 
-        $contact->update([
-            'contact_name'                  => $request->contact_name,
-            'contact_job_title'             => $request->contact_job_title,
-            'contact_email'                 => $request->contact_email,
-            'contact_phone'                 => $request->contact_phone,
-            'user_category_id'              => $request->user_category_id,
-            'business_user_id'              => $user_id,
-        ]);
+                $contact->update([
+                    'contact_name'                  => $request->contact_name,
+                    'contact_job_title'             => $request->contact_job_title,
+                    'contact_email'                 => $request->contact_email,
+                    'contact_phone'                 => $request->contact_phone,
+                    'user_category_id'              => $request->user_category_id,
+                    'business_user_id'              => auth()->user()->id,
+                ]);
+            });
+        } catch (\Exception $ex) {
+            return redirect()->back()->withErrors($ex->getMessage());
+        }
 
         return redirect()->route('dashboard.contacts.index')->with('success','Data updated successfully');
     }
