@@ -43,7 +43,7 @@ class Ticket extends Model
             'ticket_issue_id'   => 'required|exists:ticket_issues,id',
             'subject'           => "required|max:255",
             'description'       => "nullable",
-            'files.*'           => 'nullable|image|mimes:jpeg,jpg,png,gif|max:10000',
+            'files.*'           => 'nullable|max:10000',
             'order_id'          => 'nullable|exists:orders,id',
         ];
 

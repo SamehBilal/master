@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ticket;
+use App\Models\TicketIssue;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -40,7 +41,8 @@ class TicketController extends Controller
      */
     public function create()
     {
-        //
+        $ticketIssues = TicketIssue::all();
+        return view('tickets.create', compact('ticketIssues'));
     }
 
     /**
@@ -52,7 +54,6 @@ class TicketController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, Ticket::rules());
-
         $files = NULL;
 
         if(request()->hasFile('files'))
@@ -72,11 +73,10 @@ class TicketController extends Controller
             'ticket_issue_id'   => $request->ticket_issue_id,
             'subject'           => $request->subject,
             'description'       => $request->description,
-            'order_id'          => $request->order_id,
             'files'             => $files
         ]);
 
-        return redirect()->back()->with('success','Ticket Submited successfully');
+        return redirect()->route('dashboard.tickets.index')->with('success','Ticket Submited successfully');
 
     }
 
