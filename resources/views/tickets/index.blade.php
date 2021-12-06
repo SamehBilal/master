@@ -1,12 +1,12 @@
 @extends('layouts.backend')
 
 @section('title')
-    tickets
+    Tickets
 @endsection
 
 @section('links')
     <li class="breadcrumb-item active">
-        tickets
+        Tickets
     </li>
 @endsection
 
