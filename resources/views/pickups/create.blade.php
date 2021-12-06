@@ -6,7 +6,7 @@
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('pickups.index') }}">pickups</a>
+        <a href="{{ route('dashboard.pickups.index') }}">pickups</a>
     </li>
     <li class="breadcrumb-item active">
         create
@@ -14,7 +14,7 @@
 @endsection
 
 @section('button-link')
-    {{ route('pickups.index') }}
+    {{ route('dashboard.pickups.index') }}
 @endsection
 
 @section('button-icon')
@@ -27,7 +27,7 @@
 
 @section('main_content')
     <div class="container page__container page-section">
-        <form method="POST" action="{{ route('pickups.index') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('dashboard.pickups.index') }}" enctype="multipart/form-data">
             @csrf
             <div class="page-separator">
                 <div class="page-separator__text" style="line-height: 30px;">
@@ -81,7 +81,7 @@
                                            for="select05">Country</label>
                                     <select id="select05"
                                             data-toggle="select"
-                                            class="form-control form-control-sm @error('country_id') is-invalid @enderror"
+                                            class="form-control select05 form-control-sm @error('country_id') is-invalid @enderror"
                                             name="country_id">
                                         @foreach($countries as $country)
                                             <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -102,7 +102,7 @@
                                     <select id="select01"
                                             data-toggle="select"
                                             data-minimum-results-for-search="-1"
-                                            class="form-control form-control-sm @error('state_id') is-invalid @enderror"
+                                            class="form-control select01 form-control-sm @error('state_id') is-invalid @enderror"
                                             name="state_id">
                                         @foreach($states as $state)
                                             <option value="{{ $state->id }}" {{ old('state_id') == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -124,7 +124,7 @@
                                             data-toggle="select"
                                             disabled
                                             data-minimum-results-for-search="-1"
-                                            class="form-control form-control-sm @error('city_id') is-invalid @enderror"
+                                            class="form-control select03 form-control-sm @error('city_id') is-invalid @enderror"
                                             name="city_id">
                                         {{-- @foreach($cities as $city)
                                             <option value="{{ $city->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">

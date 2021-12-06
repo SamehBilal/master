@@ -23,6 +23,7 @@ class Pickup extends Model
     {
         $common = [
             'pickup_id'          => "required|max:40|unique:pickups,pickup_id,$id",
+            'scheduled_date'     => "required",
         ];
 
         if ($update) {
