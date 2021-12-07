@@ -59,83 +59,109 @@
                             </div>
                         </div>
                     </li>
-                    <li class="d-inline-flex">
-                        <div class="" style="    margin-right: 1rem;">
-                            <a href="profile.html"
-                            class="avatar avatar-sm">
-                                <img src="{{asset('backend/images/people/110/guy-6.jpg')}}"
-                                    alt="people"
-                                    class="avatar-img rounded-circle">
-                            </a>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <div class="flex mr-3">
-                                        <a href="profile.html"
-                                        class="text-body"><strong>Laza Bogdan</strong></a>
-                                    </div>
-                                    <div>
-                                        <small class="text-50">1 hour ago</small>
-                                    </div>
-                                </div>
-                                <span class="text-70">Coming along nicely, we&#39;ve got a draft for the client design completed, take a look! 🤓</span>
-
-                                <a href="#"
-                                class="media align-items-center mt-2 text-decoration-0 px-3">
-                                    <span class="avatar mr-12pt">
-                                        <span class="avatar-title rounded-circle">
-                                            <i class="material-icons font-size-24pt">attach_file</i>
-                                        </span>
-                                    </span>
-                                    <span class="media-body"
-                                        style="line-height: 1.5">
-                                        <span class="text-primary">draft.sketch</span><br>
-                                        <span class="text-50">5 MB</span>
-                                    </span>
-                                </a>
-
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="d-inline-flex" style="margin-left: auto">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <div class="flex mr-3">
-                                        <a href="profile.html"
-                                        class="text-body"><strong>Michelle</strong></a>
-                                    </div>
-                                    <div>
-                                        <small class="text-50">5 minutes ago</small>
+                    @foreach ($ticket_chat->TicketChats as $chat)
+                        @if ($chat->user_id == $ticket_chat->user_id)
+                            <li class="d-inline-flex" style="margin-left: auto">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex mr-3">
+                                                <a href="profile.html"
+                                                class="text-body"><strong>{{$chat->user->full_name}}</strong></a>
+                                            </div>
+                                            <div>
+                                                <small class="text-50">{{$chat->created_at->diffForHumans()}}</small>
+                                            </div>
+                                        </div>
+                                        <span class="text-70">{{$chat->message}}</span>
+                                        @if ($chat->files)
+                                            @php
+                                                $files_array = explode(",",$chat->files)
+                                            @endphp
+                                            @foreach ($files_array as$file)
+                                                <a href='{{asset("storage/tickets/messages/{$file}")}}' target="_blank" class="media align-items-center mt-2 text-decoration-0 px-3">
+                                                    <span class="avatar mr-12pt">
+                                                        <span class="avatar-title rounded-circle">
+                                                            <i class="material-icons font-size-24pt">attach_file</i>
+                                                        </span>
+                                                    </span>
+                                                    <span class="media-body"
+                                                        style="line-height: 1.5">
+                                                        <span class="text-primary">{{$file}}</span><br>
+                                                        {{-- <span class="text-50">5 MB</span> --}}
+                                                    </span>
+                                                </a>
+                                            @endforeach
+                                        @endif
                                     </div>
                                 </div>
-                                <span class="text-70">Clients loved the new design.</span>
-
-                            </div>
-                        </div>
-                        <div style="margin-left: 1rem;">
-                            <a href="profile.html"
-                            class="avatar avatar-sm">
-                                <img src="{{asset('backend/images/people/110/guy-6.jpg')}}"
-                                    alt="people"
-                                    class="avatar-img rounded-circle">
-                            </a>
-                        </div>
-                    </li>
-
+                                <div style="margin-left: 1rem;">
+                                    <a href="profile.html"
+                                    class="avatar avatar-sm">
+                                        <img src="{{asset('backend/images/people/110/guy-6.jpg')}}"
+                                            alt="people"
+                                            class="avatar-img rounded-circle">
+                                    </a>
+                                </div>
+                            </li>
+                        @else
+                            <li class="d-inline-flex">
+                                <div style="margin-right: 1rem;">
+                                    <a href="profile.html"
+                                    class="avatar avatar-sm">
+                                        <img src="{{asset('backend/images/people/110/guy-6.jpg')}}"
+                                            alt="people"
+                                            class="avatar-img rounded-circle">
+                                    </a>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex mr-3">
+                                                <a href="profile.html"
+                                                class="text-body"><strong>{{$chat->user->full_name}}</strong></a>
+                                            </div>
+                                            <div>
+                                                <small class="text-50">{{$chat->created_at->diffForHumans()}}</small>
+                                            </div>
+                                        </div>
+                                        <span class="text-70">{{$chat->message}}</span>
+                                        @if ($chat->files)
+                                            @php
+                                                $files_array = explode(",",$chat->files)
+                                            @endphp
+                                            @foreach ($files_array as$file)
+                                                <a href='{{asset("storage/tickets/messages/{$file}")}}' target="_blank" class="media align-items-center mt-2 text-decoration-0 px-3">
+                                                    <span class="avatar mr-12pt">
+                                                        <span class="avatar-title rounded-circle">
+                                                            <i class="material-icons font-size-24pt">attach_file</i>
+                                                        </span>
+                                                    </span>
+                                                    <span class="media-body"
+                                                        style="line-height: 1.5">
+                                                        <span class="text-primary">{{$file}}</span><br>
+                                                        {{-- <span class="text-50">5 MB</span> --}}
+                                                    </span>
+                                                </a>
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                </div>
+                            </li>
+                        @endif
+                    @endforeach
                 </ul>
 
             </div>
             <div class="container page__container page__container">
-                <form action="#"
-                    id="message-reply">
+                <form action="{{ route('dashboard.tickets.sendmessage',$ticket_chat->id) }}" method="POST" id="message-reply" enctype="multipart/form-data">
+                    @csrf
                     <div class="input-group input-group-merge">
                         <input type="text"
                             class="form-control form-control-appended"
+                            name="message"
                             autofocus=""
-                            required=""
+                            required
                             placeholder="Type message">
                         <div class="input-group-append">
                             <div class="input-group-text pl-0">
@@ -143,6 +169,8 @@
                                     style="width: 24px; overflow: hidden;">
                                     <input type="file"
                                         class="custom-file-input"
+                                        name="files[]"
+                                        multiple
                                         id="customFile">
                                     <label class="custom-file-label"
                                         style="color: inherit;"

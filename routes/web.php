@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('orders',\App\Http\Controllers\OrderController::class); //Orders
         Route::get('orders/create/multi',[\App\Http\Controllers\OrderController::class,'multi'])->name('orders.create.multi'); //Multi Orders
         Route::get('orders/{order}/airwaybell',[\App\Http\Controllers\OrderController::class,'airwaybell'])->name('orders.create.airwaybell'); //Airway bell Orders
+        Route::post('ticketchat/{ticket_id}',[\App\Http\Controllers\TicketController::class,'sendTicketMessage'])->name('tickets.sendmessage'); //send ticket message
         Route::resource('tickets',\App\Http\Controllers\TicketController::class); //Tickets
         Route::resource('currencies',\App\Http\Controllers\CurrencyController::class); //Currencies
         Route::resource('user-categories',\App\Http\Controllers\UserCategoryController::class); //User Categories
