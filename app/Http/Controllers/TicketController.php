@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ticket;
 use App\Models\TicketIssue;
+use App\Models\TicketChat;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -129,5 +130,30 @@ class TicketController extends Controller
     public function destroy(Ticket $ticket)
     {
         //
+    }
+
+    public function sendTicketMessage(Request $request, $ticket_id)
+    {
+        $files = NULL;
+
+        if(request()->hasFile('files'))
+        {
+            $request_files = request()->file('files');
+            foreach ($request_files as $file) {
+                $file_name =  time() . '_' . $file->getClientOriginalName();
+                $file->storeAs('/',"/tickets/messages/{$file_name}", '');
+                $file_data[] = $file_name;
+            }
+            $files  = implode(',',$file_data);
+        }
+
+        TicketChat::create([
+            'user_id'   => auth()->user()->id,
+            'ticket_id' => $ticket_id,
+            'message'   => $request->message,
+            'files'     => $files
+        ]);
+
+        return redirect()->back()->with('success', 'Message Submitted Successfully');
     }
 }

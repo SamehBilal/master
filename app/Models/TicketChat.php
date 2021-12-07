@@ -11,6 +11,16 @@ class TicketChat extends Model
 
     protected $guarded = ['id'];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function ticket()
+    {
+        return $this->belongsTo(Ticket::class);
+    }
+
     public static function rules($update = false, $id = null)
     {
         $common = [
