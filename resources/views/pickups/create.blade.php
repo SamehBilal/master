@@ -78,6 +78,31 @@
                             <div class="col-12 hidden locations col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
+                                           for="name">Name:</label>
+                                    <div class="input-group input-group-merge">
+                                        <input type="text"
+                                               class="form-control @error('name') is-invalid @enderror"
+                                               value="{{ old('name') }}"
+                                               autocomplete="name"
+                                               name="name"
+                                               id="name"
+                                               placeholder="Enter your name .."
+                                               autofocus>
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="material-icons">home_work</span>
+                                            </div>
+                                        </div>
+                                        @error('name')
+                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                        @enderror
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 hidden locations col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label"
                                            for="select05">Country</label>
                                     <select id="select05"
                                             data-toggle="select"
@@ -335,15 +360,15 @@
                             <div class="col-md-12 hidden dates">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="scheduled_date">Start Pickup Date:</label>
+                                           for="start_date">Start Pickup Date:</label>
                                     <input type="hidden"
-                                           class="form-control @error('scheduled_date') is-invalid @enderror flatpickr-input"
-                                           value="{{ old('scheduled_date') }}"
-                                           id="scheduled_date"
-                                           name="scheduled_date"
+                                           class="form-control @error('start_date') is-invalid @enderror flatpickr-input"
+                                           value="{{ old('start_date') }}"
+                                           id="start_date"
+                                           name="start_date"
                                            data-toggle="flatpickr"
                                            placeholder="Pickup Date...">
-                                    @error('scheduled_date')
+                                    @error('start_date')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
                                     <div class="valid-feedback">Looks good!</div>
@@ -574,6 +599,9 @@
                     </div>
                 </div>
             </div>
+            <input type="hidden" name="location_in" value="full">
+            <input type="hidden" name="contact_in" value="full">
+            <input type="hidden" name="date_in" value="full">
             <button type="submit"
                     class="btn pull-right btn-primary">Submit</button>
         </form>

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pickup extends Model
 {
     use HasFactory;
+    protected $guarded = ['id'];
 
     public function contact()
     {
@@ -31,7 +32,7 @@ class Pickup extends Model
         }
 
         return array_merge($common, [
-            'pickup_id'          => "required|max:40|unique:currencies",
+            'pickup_id'          => "required|max:40|unique:pickups",
         ]);
     }
 }

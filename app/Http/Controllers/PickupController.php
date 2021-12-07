@@ -68,10 +68,13 @@ class PickupController extends Controller
      */
     public function store(Request $request)
     {
+        $request['pickup_id'] = random_int(100000, 999999);
+        $request['status'] = 'Created';
         $this->validate($request, Pickup::rules());
 
-        if($request->location_id == "")
+        if($request->location_in == null)
         {
+            $this->validate($request, Location::rules());
             $location = Location::create([
                 'name'                  => $request->name,
                 'street'                => $request->street,
@@ -82,30 +85,35 @@ class PickupController extends Controller
                 'country_id'            => $request->country_id,
                 'state_id'              => $request->state_id,
                 'city_id'               => $request->city_id,
+                'business_user_id'      => auth()->user()->id,
             ]);
         }
 
-        if(!$request->contact_id == "")
+        if($request->contact_in == null)
         {
+            $this->validate($request, Contact::rules());
             $contact = Contact::create([
                 'contact_name'                  => $request->contact_name,
                 'contact_job_title'             => $request->contact_job_title,
                 'contact_email'                 => $request->contact_email,
                 'contact_phone'                 => $request->contact_phone,
+                'business_user_id'      => auth()->user()->id,
             ]);
         }
 
         $pickup = Pickup::create([
             'pickup_id'             => $request->pickup_id,
-            'type'                  => $request->type,
+            'type'                  => ($request->date_in == null) ? $request->type:'One Time',
             'scheduled_date'        => $request->scheduled_date,
+            'start_date'            => $request->start_date,
             'status'                => $request->status,
             'notes'                 => $request->notes,
-            'contact_id'            => ($request->contact_id == "") ? $contact:$request->contact_id,
-            'location_id'           => ($request->location_id = "") ? $location:$request->location_id,
+            'contact_id'            => ($request->contact_in == null) ? $contact->id:$request->contact_id,
+            'location_id'           => ($request->location_in = null) ? $location:$request->location_id,
+            'business_user_id'      => auth()->user()->id,
         ]);
 
-        return redirect()->route('pickups.show',$pickup->id)->with('success','Data created successfully');
+        return redirect()->route('dashboard.pickups.show',$pickup->id)->with('success','Data created successfully');
     }
 
     /**
@@ -156,7 +164,7 @@ class PickupController extends Controller
             'location_id'           => $request->location_id,
         ]);
 
-        return redirect()->route('pickups.index')->with('success','Data updated successfully');
+        return redirect()->route('dashboard.pickups.index')->with('success','Data updated successfully');
     }
 
     /**
@@ -168,6 +176,6 @@ class PickupController extends Controller
     public function destroy(Pickup $pickup)
     {
         Pickup::destroy($pickup->id);
-        return redirect()->route('pickups.index')->with('success','Data deleted successfully');
+        return redirect()->route('dashboard.pickups.index')->with('success','Data deleted successfully');
     }
 }

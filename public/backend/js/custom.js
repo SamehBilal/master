@@ -306,7 +306,7 @@ function display(module) {
     var modules = module+'s';
     $('.'+modules).css('display','block');
     $('.'+module).css('display','none');
-    $('#'+module+'_id').val('');
+    $('input[name="'+module+'_in"]').attr('value',null);
 }
 
 /* Invert Display */
@@ -314,7 +314,7 @@ function displayInvert(module) {
     var modules = module+'s';
     $('.'+modules).css('display','none');
     $('.'+module).css('display','block');
-    $('#'+module+'_id').val('');
+    $('input[name="'+module+'_in"]').val('full');
 }
 
 /* Daily vs Weekly */
