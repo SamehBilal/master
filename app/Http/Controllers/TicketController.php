@@ -26,6 +26,7 @@ class TicketController extends Controller
 
         $tickets = Ticket::where('user_id', auth()->user()->id)
                           ->with('TicketIssue')
+                          ->orderBy('status','asc')
                           ->orderBy('updated_at','desc')
                           ->get();
         if (request()->ticket_id) {
@@ -112,11 +113,11 @@ class TicketController extends Controller
      */
     public function update(Request $request, Ticket $ticket)
     {
-        $ticket->update([
+            $ticket->update([
             'status'  => $request->status,
         ]);
 
-        $message = $request->status == 'Closed' ? 'Ticket Closed Successfully' : 'Ticket Reopened Successfully';
+        $message = $request->status == '3' ? 'Ticket Closed Successfully' : 'Ticket Reopened Successfully';
 
         return redirect()->back()->with('success',$message);
     }

@@ -28,21 +28,37 @@
         data-perfect-scrollbar>
         @if (request()->ticket_id || $tickets->first())
             @php
-                $ticket_chat = NULL;
+                $active_ticket = NULL;
                 if ($ticket != NULL) {
-                    $ticket_chat = $ticket;
+                    $active_ticket = $ticket;
                 }else{
-                    $ticket_chat = $tickets->first();
+                    $active_ticket = $tickets->first();
                 }
             @endphp
             <div class="container page__container page-section">
 
                 <div class="card">
-                    <div class="card-body d-flex align-items-center">
-                        <div class="flex">
-                            <p class="text-50 mb-0">Ticket ID {{$ticket_chat->id}}</p>
-                            <h4 class="mb-0">{{$ticket_chat->subject}}</h4>
-                            <p class="text-50 mb-0">{{$ticket_chat->TicketIssue->issue}}</p>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="flex">
+                                    <p class="text-50 mb-0">Ticket ID {{$active_ticket->id}}</p>
+                                    <h4 class="mb-0">{{$active_ticket->subject}}</h4>
+                                    <p class="text-50 mb-0">{{$active_ticket->TicketIssue->issue}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2" style="margin-top: 3%;">
+                            <a href="{{ route('dashboard.tickets.update', $active_ticket->id) }}" 
+                                onclick="event.preventDefault(); $('#change-status-form').submit();"
+                                class="btn btn-outline-secondary">
+                            <i class="fa fa-folder-open icon--left"></i> {{ in_array($active_ticket->status_name,['Closed','Resolved'])? 'Re-open': 'Close'}}
+                        </a>
+                        <form method="POST" id="change-status-form" action="{{ route('dashboard.tickets.update', $active_ticket->id) }}">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" name="status" value="{{ in_array($active_ticket->status_name,['Closed','Resolved'])? '1': '3'}}">
+                        </form>
                         </div>
                     </div>
                 </div>
@@ -51,16 +67,30 @@
                         <div class="card-body d-flex align-items-center" style="text-align: center;border-bottom:1px solid #ebedf0">
                             <div class="flex">
                                 <p class="text-50 mb-0">Tracking Number</p>
-                                <p class="mb-0">{{$ticket_chat->traking_number}}</p>
+                                <p class="mb-0">{{$active_ticket->traking_number}}</p>
                                 <p class="text-50 mb-0">Description</p>
-                                <p class="mb-0">{{$ticket_chat->description}}</p>
+                                <p class="mb-0">{{$active_ticket->description}}</p>
                                 <p class="text-50 mb-0">Attachments</p>
-                                <p class="mb-0">N/A</p>
+                                <p class="mb-0">
+                                    @if ($active_ticket->files)
+                                        @php
+                                            $files_array = explode(",",$active_ticket->files)
+                                        @endphp
+                                        @foreach ($files_array as$file)
+                                            <a href='{{asset("storage/tickets/{$file}")}}' target="_blank" class="align-items-center mt-2 text-decoration-0 px-3">
+                                                <img src="{{asset("storage/tickets/{$file}")}}" style="width:100px;height: 100px">
+                                            </a>
+                                        @endforeach
+                                    @else
+                                        N/A
+                                    @endif
+                                    
+                                </p>
                             </div>
                         </div>
                     </li>
-                    @foreach ($ticket_chat->TicketChats as $chat)
-                        @if ($chat->user_id == $ticket_chat->user_id)
+                    @foreach ($active_ticket->TicketChats as $chat)
+                        @if ($chat->user_id == $active_ticket->user_id)
                             <li class="d-inline-flex" style="margin-left: auto">
                                 <div class="card">
                                     <div class="card-body">
@@ -154,7 +184,7 @@
 
             </div>
             <div class="container page__container page__container">
-                <form action="{{ route('dashboard.tickets.sendmessage',$ticket_chat->id) }}" method="POST" id="message-reply" enctype="multipart/form-data">
+                <form action="{{ route('dashboard.tickets.sendmessage',$active_ticket->id) }}" method="POST" id="message-reply" enctype="multipart/form-data">
                     @csrf
                     <div class="input-group input-group-merge">
                         <input type="text"
@@ -216,7 +246,7 @@
                                 <span class="d-flex align-items-center mb-1">
                                     <strong class="text-body text-muted">{{$ticket->TicketIssue->issue}}</strong>
                                         
-                                    <span class="badge {{$ticket->status_color}} ml-auto">{{$ticket->status}}</span>
+                                    <span class="badge {{$ticket->status_color}} ml-auto">{{$ticket->status_name}}</span>
                                 </span>
                                 <span class="d-flex align-items-end">
                                     <span class="flex mr-3">
