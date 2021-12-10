@@ -1209,7 +1209,7 @@
                         <div class="col-lg-12 invert customer">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="select04">Customer's Locations:</label>
+                                       for="select04">Customer:</label>
                                 <select id="select04"
                                         data-toggle="select"
                                         name="customer_id"

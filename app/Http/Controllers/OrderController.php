@@ -123,7 +123,7 @@ class OrderController extends Controller
         $user                   = null;
 
         try {
-            if($request->customer_id != '')
+            if($request->customer_id == null)
             {
                 $userhelperController = new UserHelperController();
                 $user = $userhelperController->createuser($data);
@@ -137,9 +137,26 @@ class OrderController extends Controller
                     'payment'                   => $request->payment,
                     'business_user_id'          => auth()->user()->id,
                 ]);
-                if($request->location_id != '')
+                if($request->location_id == null)
                 {
-                    $customer->location()->create([
+                    $location = $customer->location()->create([
+                        'name'                  => $request->location_name,
+                        'street'                => $request->street,
+                        'building'              => $request->building,
+                        'floor'                 => $request->floor,
+                        'apartment'             => $request->apartment,
+                        'landmarks'             => $request->landmarks,
+                        'country_id'            => $request->country_id,
+                        'state_id'              => $request->state_id,
+                        'city_id'               => $request->city_id,
+                        'business_user_id'      => auth()->user()->id,
+                    ]);
+                }
+            }else{
+                $customer = Customer::findOrFail($request->customer_id);
+                if($request->location_id == null)
+                {
+                    $location = $customer->location()->create([
                         'name'                  => $request->location_name,
                         'street'                => $request->street,
                         'building'              => $request->building,
@@ -154,6 +171,23 @@ class OrderController extends Controller
                 }
             }
 
+            if($request->pickup_id == null)
+            {
+                $request['pickup_id'] = random_int(100000, 999999);
+                $request['status'] = 'Created';
+                $request['type'] = 'One Time';
+                $this->validate($request, Pickup::rules());
+                $pickup = Pickup::create([
+                    'pickup_id'             => $request->pickup_id,
+                    'type'                  => $request->type,
+                    'scheduled_date'        => $request->scheduled_date,
+                    'start_date'            => $request->scheduled_date,
+                    'status'                => $request->status,
+                    'contact_id'            => $request->contact_in,
+                    'location_id'           => $request->location_id,
+                    'business_user_id'      => auth()->user()->id,
+                ]);
+            }
 
             switch($request->type)
             {
@@ -168,10 +202,9 @@ class OrderController extends Controller
                         'order_reference'                       => $request->order_reference,
                         'working_hours'                         => $request->working_hours,
                         'delivery_notes'                        => $request->delivery_notes,
-                        'customer_id'                           => $request->customer_id,//
-                        'location_id'                           => $request->location_id,//
-                        'pickup_location'                       => $request->pickup_location,//
-                        'pickup_id'                             => $request->pickup_id,//
+                        'customer_id'                           => $request->customer_id == null ? $customer->id:$request->customer_id,
+                        'location_id'                           => $request->location_id == null ? $location->id:$request->location_id,
+                        'pickup_id'                             => $request->pickup_id   == null ? $pickup->id:$request->pickup_id,
                         'business_user_id'                      => auth()->user()->id,
                     ]);
                     break;
@@ -187,10 +220,9 @@ class OrderController extends Controller
                         'package_description_return_package'    => $request->package_description_return_package,
                         'return_location'                       => $request->return_location,//
                         'delivery_notes'                        => $request->delivery_notes,
-                        'customer_id'                           => $request->customer_id,//
-                        'location_id'                           => $request->location_id,//
-                        'pickup_location'                       => $request->pickup_location,//
-                        'pickup_id'                             => $request->pickup_id,//
+                        'customer_id'                           => $request->customer_id == null ? $customer->id:$request->customer_id,
+                        'location_id'                           => $request->location_id == null ? $location->id:$request->location_id,
+                        'pickup_id'                             => $request->pickup_id   == null ? $pickup->id:$request->pickup_id,
                         'business_user_id'                      => auth()->user()->id,
                     ]);
                     break;
@@ -203,8 +235,8 @@ class OrderController extends Controller
                         'order_reference'                       => $request->order_reference,
                         'return_location'                       => $request->return_location,//
                         'delivery_notes'                        => $request->delivery_notes,
-                        'customer_id'                           => $request->customer_id,//
-                        'location_id'                           => $request->location_id,//
+                        'customer_id'                           => $request->customer_id == null ? $customer->id:$request->customer_id,
+                        'location_id'                           => $request->location_id == null ? $location->id:$request->location_id,
                         'business_user_id'                      => auth()->user()->id,
                     ]);
                     break;
@@ -214,38 +246,18 @@ class OrderController extends Controller
                         'collect_cash'                          => $request->collect_cash,
                         'order_reference'                       => $request->order_reference,
                         'delivery_notes'                        => $request->delivery_notes,
-                        'customer_id'                           => $request->customer_id,//
-                        'location_id'                           => $request->location_id,//
+                        'customer_id'                           => $request->customer_id == null ? $customer->id:$request->customer_id,
+                        'location_id'                           => $request->location_id == null ? $location->id:$request->location_id,
                         'business_user_id'                      => auth()->user()->id,
                     ]);
                     break;
             }
 
-            \DB::transaction(function () use( $data,  $request) {
+            /*\DB::transaction(function () use( $data,  $request) {
 
-                if(!$request->contact_id){
-                    $contact = Contact::create([
-                        'contact_name'          => $request->contact_name,
-                        'contact_job_title'     => $request->contact_job_title,
-                        'contact_email'         => $request->contact_email,
-                        'contact_phone'         => $request->contact_phone,
-                    ]);
-                }
-
-                for($j=0;$j < count($request->street);$j++){
-                    $user->address()->create([
-                        'street'                => $request->street[$j],
-                        'building'              => $request->building[$j],
-                        'floor'                 => $request->floor[$j],
-                        'apartment'             => $request->apartment[$j],
-                        'country_id'            => $request->country_id[$j],
-                        'city_id'               => $request->city_id[$j],
-                        /*'zone_id'               => $request->zone_id[$j],*/
-                    ]);
-                }
 
                 return redirect()->route('dashboard.orders.show',$order->id)->with('success','Data created successfully');
-            });
+            });*/
         } catch (\Exception $ex) {
             return redirect()->back()->withErrors($ex->getMessage());
         }
