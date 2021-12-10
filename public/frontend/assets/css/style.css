@@ -7169,7 +7169,7 @@ nav.pagination {
   transition: transform 0.3s ease 0s;
   padding: 0px;
   top: 100%;
-  min-width: 700px;
+  min-width: 500px;
   background: #0a2b56;
   transform: translate(0px, 20px);
   box-shadow: -6px 12px 40px 0px rgba(0, 0, 0, 0.41);
@@ -9757,3 +9757,4 @@ nav.pagination {
     top: 50px;
   }
 }
+

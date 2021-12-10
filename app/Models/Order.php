@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
+    protected $guarded = ['id'];
 
     public function customer()
     {
@@ -22,6 +23,11 @@ class Order extends Model
     public function pickup()
     {
         return $this->hasOne(Pickup::class  , "id" , "pickup_id");
+    }
+
+    public function log()
+    {
+        return $this->hasMany(OrderLog::class)->orderByDesc('created_at');
     }
 
 }

@@ -15,7 +15,7 @@
                 <h3>Quick link</h3>
                 <ul class="menu">
                     <li><a href="{{ route('website.index') }}" title="Home">Home</a></li>
-                    <li><a href="{{ route('website.track') }}" title="Track Shipment">Track Shipment</a></li>
+                    <li><a href="{{ route('website.search') }}" title="Search Shipment">Search Shipment</a></li>
                     <li><a href="{{ route('website.calculation') }}" title="Calculate Shipping">Calculate Shipping</a></li>
                     <li><a href="{{ route('website.about-us') }}" title="About Us">About Us</a></li>
                     <li><a href="{{ route('website.pricing') }}" title="Pricing">Pricing</a></li>
@@ -27,7 +27,6 @@
                 <ul class="menu">
                     <li><a href="{{ route('website.account') }}" title="My account">My account</a></li>
                     <li><a href="{{ route('website.locations') }}" title="Locations">Locations</a></li>
-                    <li><a href="{{ route('website.help') }}" title="Help & Support">Help & Support</a></li>
                     <li><a href="{{ route('website.terms') }}" title="Terms and Conditions">Terms and Conditions</a></li>
                 </ul>
             </div>

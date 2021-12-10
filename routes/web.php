@@ -22,7 +22,8 @@ Route::get('/pricing',[\App\Http\Controllers\WebsiteRoutesController::class,'pri
 Route::get('/locations',[\App\Http\Controllers\WebsiteRoutesController::class,'locations'])->name('website.locations');
 Route::get('/help',[\App\Http\Controllers\WebsiteRoutesController::class,'help'])->name('website.help');
 Route::get('/terms-and-conditions',[\App\Http\Controllers\WebsiteRoutesController::class,'terms'])->name('website.terms');
-Route::get('/track-shipment',[\App\Http\Controllers\WebsiteRoutesController::class,'track'])->name('website.track');
+Route::get('/track-shipment/{order}',[\App\Http\Controllers\WebsiteRoutesController::class,'track'])->name('website.track');
+Route::get('/search',[\App\Http\Controllers\WebsiteRoutesController::class,'search'])->name('website.search');
 Route::get('/calculate-shipment',[\App\Http\Controllers\WebsiteRoutesController::class,'calculate_shipment'])->name('website.calculation');
 Route::resource('contact-forms', \App\Http\Controllers\ContactFormController::class)->only(['create', 'store']);//Contact Forms
 Route::resource('subscribers', \App\Http\Controllers\SubscribeController::class)->only(['create', 'store']);//Subscribes

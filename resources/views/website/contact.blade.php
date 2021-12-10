@@ -71,13 +71,15 @@
             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto</p>
         </div>
         <!-- End contact content -->
-        <div id="googleMap2"></div>
+        <div id="googleMap2">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3451.341359188153!2d31.340813384586312!3d30.113044122282954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145815c3b5ce2d21%3A0x2189d1a95462a8ca!2z2KzYp9mF2Lkg2KfZhNmB2KrYrQ!5e0!3m2!1sar!2seg!4v1639064650425!5m2!1sar!2seg" width="100%" height="640" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
         <div class="container">
             <div class="box-icon-adress">
                 <div class="col-md-4">
                     <div class="feature-box feature-box-v3 feature-box-center space-30">
                         <div class="fbox-icon">
-                            <a href="#"><img src="{{ asset('frontend/assets/images/contact2-icon-adress1.png') }}" alt="icons"></a>
+                            <a href="#"><img src="{{ asset('frontend/assets/images/phone-book.png') }}" height="46" alt="icons"></a>
                         </div>
                         <div class="fbox-body">
                             <h4>Our Address</h4>
@@ -89,7 +91,7 @@
                 <div class="col-md-4">
                     <div class="feature-box feature-box-v3 feature-box-center space-30">
                         <div class="fbox-icon">
-                            <a href="#"><img src="{{ asset('frontend/assets/images/contact2-icon-adress2.png') }}" alt="icons"></a>
+                            <a href="#"><img src="{{ asset('frontend/assets/images/address.png') }}" height="46" alt="icons"></a>
                         </div>
                         <div class="fbox-body">
                             <h4>Phone number</h4>
@@ -101,7 +103,7 @@
                 <div class="col-md-4">
                     <div class="feature-box feature-box-v3 feature-box-center space-30">
                         <div class="fbox-icon">
-                            <a href="#"><img src="{{ asset('frontend/assets/images/contact2-icon-adress3.png') }}" alt="icons"></a>
+                            <a href="#"><img src="{{ asset('frontend/assets/images/email.png') }}" height="46" alt="icons"></a>
                         </div>
                         <div class="fbox-body">
                             <h4>Email address</h4>
@@ -111,7 +113,7 @@
                 </div>
                 <!-- End col-md-4 -->
                 <div class="border-cotact2">
-                    <img src="{{ asset('frontend/assets/images/border-contact2.png') }}" alt="border">
+                    <img src="{{ asset('frontend/assets/images/border-contact2.png') }}"  alt="border">
                 </div>
             </div>
             <!-- End container -->

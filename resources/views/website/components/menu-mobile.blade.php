@@ -1,42 +1,24 @@
 <nav class="menu-mobile">
     <ul class="nav">
-        <li class="level1"><a href="#" title="Headphone">Home</a>
-            <ul class="menu-level-1">
-                <li class="level2"><a href="#" title="Home 1" target="_blank">Headphone 1</a></li>
-                <li class="level2"><a href="#" title="Home 2" target="_blank">Headphone 2</a></li>
-                <li class="level2"><a href="#" title="Home 3" target="_blank">Headphone 3</a></li>
-                <li class="level2"><a href="#" title="Home 4" target="_blank">Headphone 4</a></li>
-            </ul>
-        </li>
-        <li class="level1"><a href="#" title="Pricing">Pricing</a></li>
+        <li class="level1"><a href="{{ route('website.index') }}" title="Home">Home</a></li>
+        <li class="level1"><a href="{{ route('website.pricing') }}" title="Pricing">Pricing</a></li>
         <li class="level1">
-            <a href="#" title="Smart watch">Track</a>
+            <a href="#" title="Packages">Packages</a>
             <ul class="menu-level-1">
                 <li class="level2">
-                    <a href="#">Laptop</a>
+                    <a href="#">Actions</a>
                     <ul class="menu-level-2">
-                        <li class="level3"><a href="#" title="Apple">Apple</a></li>
-                        <li class="level3"><a href="#" title="Samsung">Samsung</a></li>
-                        <li class="level3"><a href="#" title="Sony">Sony</a></li>
-                        <li class="level3"><a href="#" title="HTC">HTC</a></li>
-                        <li class="level3"><a href="#" title="Xaomi">Xaomi</a></li>
-                        <li class="level3"><a href="#" title="LG">LG</a></li>
-                    </ul>
-                </li>
-                <li class="level2">
-                    <a href="#">Pricing</a>
-                    <ul class="menu-level-2">
-                        <li class="level3"><a href="#" title="Submenu1">Submenu1</a></li>
-                        <li class="level3"><a href="#" title="Submenu2">Submenu2</a></li>
-                        <li class="level3"><a href="#" title="Submenu3">Submenu3</a></li>
-                        <li class="level3"><a href="#" title="Submenu4">Submenu4</a></li>
-                        <li class="level3"><a href="#" title="Submenu5">Submenu5</a></li>
+                        <li class="level3"><a href="{{ route('website.search') }}" title="Search a package">Search a package</a></li>
+                        <li class="level3"><a href="{{ route('website.calculation') }}" title="Calculate time & cost">Calculate time & cost</a></li>
+                        <li class="level3"><a href="{{ route('dashboard.orders.create') }}" title="Create a shipment">Create a shipment</a></li>
+                        <li class="level3"><a href="{{ route('dashboard.orders.index') }}" title="Change my delivery">Change my delivery</a></li>
+                        <li class="level3"><a href="{{ route('dashboard.pickups.create') }}" title="Schedule a pickup">Schedule a pickup</a></li>
                     </ul>
                 </li>
             </ul>
         </li>
-        <li class="level1"><a href="#" title="Smart phone ">About Us</a></li>
-        <li class="level1"><a href="#">Contact Us</a></li>
+        <li class="level1"><a href="{{ route('website.about-us') }}" title="About Us">About Us</a></li>
+        <li class="level1"><a href="{{ route('website.contact-us') }}" title="Contact Us">Contact Us</a></li>
     </ul>
 </nav>
 <!-- End menu  mobile -->

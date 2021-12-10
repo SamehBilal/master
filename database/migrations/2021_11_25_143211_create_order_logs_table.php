@@ -17,7 +17,8 @@ class CreateOrderLogsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('order_id')->nullable();
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('SET NULL');
-            $table->set('status',['active','inactive'])->nullable();
+            $table->set('status',['New','Picked up','In transit','Out for delivery','Delivered'])->nullable();
+            $table->longText('notes')->nullable();
             $table->timestamps();
         });
     }

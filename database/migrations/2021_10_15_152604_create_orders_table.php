@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
             $table->string('package_type')->nullable();
             $table->longText('package_description')->nullable();
             $table->set('status', ['New','Awaiting your action','On hold','Canceled','Rescheduled','Out for delivery','Completed','Return to origin','Cannot be delivered'])->default('New');
-            $table->unsignedBigInteger('no_of_items')->nullable();
+            $table->unsignedBigInteger('no_of_items')->default(1);
             $table->longText('delivery_notes')->nullable();
             $table->boolean('open_package')->default(1);
             $table->unsignedBigInteger('customer_id');

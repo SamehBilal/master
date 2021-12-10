@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Location;
+use App\Models\Order;
 
 class WebsiteRoutesController extends Controller
 {
@@ -26,7 +27,7 @@ class WebsiteRoutesController extends Controller
         return view('website.pricing');
     }
 
-    public function calculate_shipment(Request $request)
+    public function calculate_shipment()
     {
         $subtotal   =   '';
         $tax        =   '';
@@ -45,8 +46,27 @@ class WebsiteRoutesController extends Controller
         return view('website.terms');
     }
 
-    public function track()
+    public function track($order)
     {
-        return view('website.tracking');
+        $order = Order::findOrFail($order);
+        return view('website.tracking',compact('order'));
+    }
+
+    public function search()
+    {
+        $order          = '';
+        $location       = '';
+        if(request()->s)
+        {
+            $order      = Order::where('tracking_no',request()->s)->get();
+            $location   = Location::findOrFail($order[0]['location_id']);
+        }
+        return view('website.search',compact('order','location'));
+    }
+
+    public function account()
+    {
+        $user           = auth()->user();
+        return view('website.account',compact('user'));
     }
 }

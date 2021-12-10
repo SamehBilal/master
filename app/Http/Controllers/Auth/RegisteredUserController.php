@@ -33,6 +33,12 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->full_name)
+        {
+            $name = explode(" ", $request->full_name);
+            $request['first_name']  = $name[0];
+            $request['last_name']   = $name[count($name-1)];
+        }
         $request->validate([
             'first_name'    => ['required', 'string', 'max:255'],
             'last_name'     => ['required', 'string', 'max:255'],
@@ -43,7 +49,7 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'first_name'    => $request->first_name,
             'last_name'     => $request->last_name,
-            'full_name'     => $request->first_name.' '.$request->last_name,
+            'full_name'     => $request->full_name ? $request->full_name:$request->first_name.' '.$request->last_name,
             'email'         => $request->email,
             'password'      => Hash::make($request->password),
         ]);

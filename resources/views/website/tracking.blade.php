@@ -161,10 +161,10 @@
         }
         /* Variables */
         /* Base */
-        body {
+        /*body {
             background: #252827;
             font-size: 16px;
-        }
+        }*/
         p {
             font-weight: 300;
         }
@@ -185,7 +185,7 @@
         }
         /* Timeline */
         .timeline {
-            border-left: 4px solid #004ffc;
+            border-left: 4px solid #FCAF00;
             border-bottom-right-radius: 4px;
             border-top-right-radius: 4px;
             background: rgba(255, 255, 255, 0.03);
@@ -200,7 +200,7 @@
             list-style: none;
             text-align: left;
             font-weight: 100;
-            max-width: 30%;
+            /*max-width: 30%;*/
         }
         .timeline h1 {
             font-family: 'Saira', sans-serif;
@@ -243,7 +243,7 @@
             font-family: 'Saira', sans-serif;
         }
         .timeline .event:after {
-            box-shadow: 0 0 0 4px #004ffc;
+            box-shadow: 0 0 0 4px #FCAF00;
             left: -57.85px;
             background: #313534;
             border-radius: 50%;
@@ -271,39 +271,136 @@
         <div class="container">
             <ul>
                 <li><a href="{{ route('website.index') }}">Home</a></li>
-                <li class="active">Track</li>
+                <li class="active">Track #{{ $order->tracking_no }}</li>
             </ul>
         </div>
         <!-- End container -->
     </div>
-    <div id="timeline-content">
-        <h1>Timeline</h1>
+    <div class="main-content">
+        <div class="container">
+            <div class="product-details-content">
+                <div class="col-md-6 col-sm-6">
+                    <div class="hoz-tab-container space-padding-tb-40">
+                        <ul class="tabs">
+                            {{--<li class="item" rel="overview">Overview</li>--}}
+                            <li class="item" rel="specification">Specification</li>
+                        </ul>
+                        <div class="tab-container">
+                            {{--<div id="overview" class="tab-content">
+                                <h2>About This Product</h2>
+                                <p><b>The Next Big Thing Is Here</b> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
+                                    unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                                    typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.</p>
+                                <div class="panel-body">
+                                    <div class="media images col-md-6">
+                                        <div class="pull-right">
+                                            <img src="{{ asset('frontend/assets/images/product-details-tab-1.jpg') }}" class="media-object img-circle" alt="images">
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">Circular Interface</h4>
+                                            <p>A revolutionary design keeps everything you need at your fingertips. The circular interface and unique rotating bezel let you navigate through notifications, apps and widgets quickly without covering the display.</p>
+                                            <!-- Nested media object -->
+                                        </div>
+                                    </div>
+                                    <div class="media images col-md-6">
+                                        <div class="pull-right">
+                                            <img src="{{ asset('frontend/assets/images/product-details-tab-1.jpg') }}" class="media-object img-circle" alt="images">
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">3G or 4G2 Network Connectivity</h4>
+                                            <p>A revolutionary design keeps everything you need at your fingertips. The circular interface and unique rotating bezel let you navigate through notifications, apps and widgets quickly without covering the display.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>--}}
+                            <div id="specification" class="tab-content">
+                                <table class="table">
+                                    <tr>
+                                        <td>Tracking No.</td>
+                                        <td><b>{{ $order->tracking_no }}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Type</td>
+                                        <td><b>{{ $order->type }}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cash on Delivery</td>
+                                        <td>{{ $order->cash_on_delivery }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>No of Items</td>
+                                        <td><b>{{ $order->no_of_items }}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Customer</td>
+                                        <td><b>{{ $order->customer->user->full_name }}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Customer Phone</td>
+                                        <td><b>{{ $order->customer->user->phone }}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Customer Other Phone</td>
+                                        <td><b>{{ $order->customer->user->other_phone }}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Location</td>
+                                        <td><b>{{ $order->location->name }}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Street</td>
+                                        <td><b>{{ $order->location->street }}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Building</td>
+                                        <td><b>{{ $order->location->building }}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Floor</td>
+                                        <td><b>{{ $order->location->floor }}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Apartment</td>
+                                        <td><b>{{ $order->location->apartment }}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Open Package</td>
+                                        <td><b>{{ $order->open_package == 1 ? 'Allowed':'Not Allowed' }}</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Delivery Notes</td>
+                                        <td><b>{{ $order->delivery_notes }} </b></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tab-container -->
+                </div>
+                <div class="col-md-6 col-sm-6" style="margin-bottom: 1em!important;">
+                    <div class="product-box-content">
+                        <div id="timeline-content">
+                            <h1>Timeline</h1>
 
-        <ul class="timeline">
-            <li class="event" data-date="65Million B.C.">
-                <h3>Dinosaurs Roamed the Earth</h3>
-                <p>RAWWWWWWRRR 🐢🦂</p>
-            </li>
-            <li class="event" data-date="2005">
-                <h3>Creative Component Launched</h3>
-                <p>"We can be all things to all people!" 📣</p>
-            </li>
-            <li class="event" id="date" data-date="2009">
-                <h3>Squareflair was Born</h3>
-                <p></p> <p>"We can be all things to Squarespace users!" 📣</p>
-            </li>
-
-            <li class="event" data-date="2021">
-
-                <h3>Squareflair Today</h3>
-
-                <p>"We design and build from scratch!" 📣<p/> <p>When we say <em><strong>100% custom</strong></em> we mean it— and we build all sites on the Squarespace Developer platform.<p/>
-                <p>Did you know that all of our pixels are hand-forged from the rarest of subpixels grown and harvested in the <em>Nerd Forest</em>? <br>🤜💥🤛</p>
-
-                <p><strong>Our success can be measured by lives and brands enhanced by 9+ years of 100% Squarespace-focused service!</strong></p>
-
-                <p><a href="https://www.squareflair.com">squareflair.com</a></p>
-            </li>
-        </ul>
+                            <ul class="timeline">
+                                @foreach($order->log as $log)
+                                <li class="event" data-date="2005">
+                                    <h3>{{ date("F j, Y g:i A", strtotime($log->created_at)) }}</h3>
+                                    <p>"{{ $log->notes }}" 📣</p>
+                                    <p><i class="zmdi zmdi-info"></i>
+                                         <a href="#">{{ $log->status }}</a></p>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <!-- End Options -->
+                    </div>
+                    <!-- End product box -->
+                </div>
+                <!-- End col-md-6 -->
+            </div>
+            <!-- End product-details-content -->
+        </div>
+        <!-- End container -->
     </div>
 @endsection

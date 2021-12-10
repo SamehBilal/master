@@ -1,6 +1,6 @@
 @extends('layouts.website')
 
-@section('about-us')
+@section('track')
     active
 @endsection
 
@@ -19,7 +19,7 @@
         <div class="container">
             <ul>
                 <li><a href="{{ route('website.index') }}">Home</a></li>
-                <li class="active">About</li>
+                <li class="active">Track</li>
             </ul>
         </div>
         <!-- End container -->
