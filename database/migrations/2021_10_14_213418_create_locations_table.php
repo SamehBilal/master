@@ -27,6 +27,7 @@ class CreateLocationsTable extends Migration
             $table->unsignedBigInteger('zone_id')->nullable();
             $table->unsignedBigInteger('customer_id')->nullable();
             $table->unsignedBigInteger('business_user_id')->nullable();
+            $table->boolean('working_address')->default(0);
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('SET NULL');
             $table->foreign('state_id')->references('id')->on('states')->onDelete('SET NULL');
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('SET NULL');

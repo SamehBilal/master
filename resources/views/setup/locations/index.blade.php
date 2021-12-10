@@ -44,34 +44,11 @@
 
                             <div class="col-lg d-flex flex-wrap buttons-datatable-add">
                                 <div class="ml-lg-auto dropdown select-datatable-add">
-                                    {{-- <a href="#"
-                                        class="btn btn-link dropdown-toggle text-70"
-                                        data-toggle="dropdown">All Topics</a>
-                                     <div class="dropdown-menu dropdown-menu-right">
-                                         <a href=""
-                                            class="dropdown-item active">All Topics</a>
-                                         <a href=""
-                                            class="dropdown-item">My Topics</a>
-                                     </div>--}}
+
                                 </div>
-                                {{-- <a href="#"
-                                    class="btn ml-2 btn-accent">Ask a question</a>--}}
-                                {{--<a href="#"
-                                   class="btn ml-2 btn-success">Ask </a>--}}
+
                             </div>
 
-                            {{-- <div class="ml-auto mb-2 mb-sm-0 custom-control-inline mr-0">
-                                 <label class="form-label mb-0"
-                                        for="active">Active</label>
-                                 <div class="custom-control custom-checkbox-toggle ml-8pt">
-                                     <input checked=""
-                                            type="checkbox"
-                                            id="active"
-                                            class="custom-control-input">
-                                     <label class="custom-control-label"
-                                            for="active">Active</label>
-                                 </div>
-                             </div>--}}
                         </form>
 
                     </div>
@@ -114,20 +91,8 @@
                             <tr class="">
 
                                 <td class="pr-0">
-                                    {{--<div class="custom-control custom-checkbox">
-                                        <input type="checkbox" id="checkItem" class="checkItem " name="checkItem"  />
-                                        <label class=""
-                                               for="checkItem"><span class="text-hide">Check</span></label>
-                                    </div>--}}
 
-                                    <div class="custom-control custom-checkbox">
-                                        {{--<input type="checkbox"
-                                               class="custom-control-input "
-                                               checked=""
-                                               id="customCheck1_5">
-                                        <label class="custom-control-label"
-                                               for="customCheck1_5"><span class="text-hide">Check</span></label>--}}
-                                    </div>
+                                    <div class="custom-control custom-checkbox"></div>
                                 </td>
 
                                 <td></td>
@@ -142,12 +107,7 @@
                                             <div class="d-flex align-items-center">
                                                 <div class="flex d-flex flex-column">
                                                     <p class="mb-0"><strong class="">{{ $location->name }}</strong></p>
-
                                                 </div>
-                                                {{--<div class="d-flex align-items-center ml-24pt">
-                                                    <i class="material-icons text-20 icon-16pt">message</i>
-                                                    <small class="ml-4pt"><strong class="text-50">2</strong></small>
-                                                </div>--}}
                                             </div>
 
                                         </div>

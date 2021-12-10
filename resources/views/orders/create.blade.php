@@ -206,7 +206,7 @@
                                                 <div class="custom-controls-stacked">
                                                     <div class="custom-control custom-radio">
                                                         <input id="radioStacked1"
-                                                               name="radio-stacked"
+                                                               name="radio_stacked"
                                                                type="radio"
                                                                value="parcel"
                                                                class="custom-control-input"
@@ -216,7 +216,7 @@
                                                     </div>
                                                     <div class="custom-control custom-radio">
                                                         <input id="radioStacked2"
-                                                               name="radio-stacked"
+                                                               name="radio_stacked"
                                                                type="radio"
                                                                value="document"
                                                                class="custom-control-input">
@@ -225,7 +225,7 @@
                                                     </div>
                                                     <div class="custom-control custom-radio">
                                                         <input id="radioStacked3"
-                                                               name="radio-stacked"
+                                                               name="radio_stacked"
                                                                type="radio"
                                                                value="bulky"
                                                                class="custom-control-input">
@@ -458,7 +458,7 @@
                                                 <div class="custom-control custom-checkbox">
                                                     <input type="checkbox"
                                                            class="custom-control-input"
-                                                           name="working_hours"
+                                                           name="allow_opening"
                                                            id="customCheck1">
                                                     <label class="custom-control-label"
                                                            for="customCheck1">Allow customers to open packages ?</label>
@@ -474,18 +474,18 @@
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="no_of_items">Number of Items:</label>
+                                                       for="no_of_items_of_return_package">Number of Items:</label>
                                                 <input type="number"
-                                                       class="form-control @error('no_of_items') is-invalid @enderror"
+                                                       class="form-control @error('no_of_items_of_return_package') is-invalid @enderror"
                                                        value="1"
                                                        min="0"
                                                        step="1"
-                                                       id="no_of_items"
-                                                       name="no_of_items"
-                                                       autocomplete="no_of_items"
+                                                       id="no_of_items_of_return_package"
+                                                       name="no_of_items_of_return_package"
+                                                       autocomplete="no_of_items_of_return_package"
                                                        placeholder="Number of Items ..."
                                                        autofocus>
-                                                @error('no_of_items')
+                                                @error('no_of_items_of_return_package')
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
                                                 <div class="valid-feedback">Looks good!</div>
@@ -495,13 +495,13 @@
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="package_description">Package Description:</label> <small class="badge badge-secondary">optional</small>
+                                                       for="package_description_return_package">Package Description:</label> <small class="badge badge-secondary">optional</small>
                                                 <textarea rows="3"
-                                                          id="package_description"
-                                                          name="package_description"
-                                                          class="form-control @error('package_description') is-invalid @enderror"
-                                                          placeholder="Product code - Color - Size">{{ old('package_description') }}</textarea>
-                                                @error('package_description')
+                                                          id="package_description_return_package"
+                                                          name="package_description_return_package"
+                                                          class="form-control @error('package_description_return_package') is-invalid @enderror"
+                                                          placeholder="Product code - Color - Size">{{ old('package_description_return_package') }}</textarea>
+                                                @error('package_description_return_package')
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
                                                 <div class="valid-feedback">Looks good!</div>
@@ -723,7 +723,7 @@
                                                 <div class="custom-control custom-checkbox">
                                                     <input type="checkbox"
                                                            class="custom-control-input"
-                                                           name="working_hours"
+                                                           name="working_hours_exchange"
                                                            id="customCheck1">
                                                     <label class="custom-control-label"
                                                            for="customCheck1">This is a work address</label>
@@ -1075,7 +1075,7 @@
                                                 <div class="custom-control custom-checkbox">
                                                     <input type="checkbox"
                                                            class="custom-control-input"
-                                                           name="working_hours"
+                                                           name="working_hours_return"
                                                            id="customCheck1">
                                                     <label class="custom-control-label"
                                                            for="customCheck1">This is a work address</label>
@@ -1300,7 +1300,11 @@
                                 <div class="valid-feedback">Looks good!</div>
                             </div>
                         </div>
-                        <div class="col-lg-12 hidden customers">
+                        <div class="col-lg-12 hidden customers mb-1">
+                            <a href="#" class="text-dark" onclick="event.preventDefault();
+                                                    displayInvert(module='customer')">- Select from existed customers</a>
+                        </div>
+                        <div class="col-lg-12">
                             <div class="form-group">
                                 <label class="form-label"
                                        for="delivery_notes">Delivery Notes:</label> <small class="badge badge-secondary">optional</small>
@@ -1314,10 +1318,6 @@
                                 @enderror
                                 <div class="valid-feedback">Looks good!</div>
                             </div>
-                        </div>
-                        <div class="col-lg-12 hidden customers mb-1">
-                            <a href="#" class="text-dark" onclick="event.preventDefault();
-                                                    displayInvert(module='customer')">- Select from existed customers</a>
                         </div>
                         <div class="page-separator col-lg-12">
                             <div class="page-separator__text" >
@@ -1661,6 +1661,9 @@
         </div>
         <div id="hidden_inputs">
             <input type="hidden" name="type" value="Deliver">
+            {{--<input type="hidden" name="location_in" value="full">
+            <input type="hidden" name="contact_in" value="full">
+            <input type="hidden" name="date_in" value="full">--}}
         </div>
 
         <button type="submit"

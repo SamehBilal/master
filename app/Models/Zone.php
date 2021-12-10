@@ -11,9 +11,9 @@ class Zone extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function address()
+    public function location()
     {
-        return $this->belongsTo(address::class);
+        return $this->belongsTo(Location::class);
     }
 
     public static function rules($update = false, $id = null)

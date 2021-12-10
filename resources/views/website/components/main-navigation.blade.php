@@ -44,6 +44,11 @@
                             @break
                         @endforeach
                         <a class="checkout" href="{{ route('website.account') }}" title="My Account">My Account</a>
+                        <a class="checkout bg-black" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                $('#logout-form').submit();" title="{{ __('Log Out') }}">{{ __('Log Out') }}</a>
+                        <form method="POST" id="logout-form" action="{{ route('logout') }}">
+                            @csrf
+                        </form>
                     </div>
                 @else
                     <div class="register-list cart-list dropdown-menu ">

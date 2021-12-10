@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Helpers\UserHelperController;
 use App\Models\City;
 use App\Models\Contact;
 use App\Models\Country;
 use App\Models\Customer;
 use App\Models\Location;
 use App\Models\Order;
+use App\Models\OrderLog;
 use App\Models\Pickup;
 use App\Models\State;
 use App\Traits\Verified;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use PDF;
 
@@ -109,66 +112,116 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        $request->request->add(['password' => 123456789]);
+        $request->request->add(['password_confirmation' => 123456789]);
+        $request->request->add(['payment' => 'cash']);
         $this->validate($request, Order::rules());
+        $data                   = $request->all();
+        $data['password']       = Hash::make($request->password);
+        $data['other_email']    = null;
+        $data['religion']       = null;
+        $user                   = null;
 
         try {
+            if($request->customer_id != '')
+            {
+                $userhelperController = new UserHelperController();
+                $user = $userhelperController->createuser($data);
+                $customer = Customer::create([
+                    'user_id'                   => $user->id,
+                    'fax'                       => $request->fax,
+                    'status'                    => $request->status,
+                    'user_category_id'          => $request->user_category_id,
+                    'currency_id'               => $request->currency_id,
+                    'note'                      => $request->note,
+                    'payment'                   => $request->payment,
+                    'business_user_id'          => auth()->user()->id,
+                ]);
+                if($request->location_id != '')
+                {
+                    $customer->location()->create([
+                        'name'                  => $request->location_name,
+                        'street'                => $request->street,
+                        'building'              => $request->building,
+                        'floor'                 => $request->floor,
+                        'apartment'             => $request->apartment,
+                        'landmarks'             => $request->landmarks,
+                        'country_id'            => $request->country_id,
+                        'state_id'              => $request->state_id,
+                        'city_id'               => $request->city_id,
+                        'business_user_id'      => auth()->user()->id,
+                    ]);
+                }
+            }
+
+
             switch($request->type)
             {
                 case 'Deliver';
                     $order = Order::create([
-                        'pickup_id'             => $request->pickup_id,
-                        'type'                  => $request->type,
-                        'scheduled_date'        => $request->scheduled_date,
-                        'status'                => $request->status,
-                        'notes'                 => $request->notes,
-                        'contact_id'            => $request->contact_id,
-                        'location_id'           => $request->location_id,
+                        'with_cash_collection'                  => $request->with_cash_collection,
+                        'cash_on_delivery'                      => $request->cash_on_delivery,
+                        'radio_stacked'                         => $request->radio_stacked,
+                        'light_bulky'                           => $request->light_bulky,
+                        'package_description'                   => $request->package_description,
+                        'no_of_items'                           => $request->no_of_items,
+                        'order_reference'                       => $request->order_reference,
+                        'working_hours'                         => $request->working_hours,
+                        'delivery_notes'                        => $request->delivery_notes,
+                        'customer_id'                           => $request->customer_id,//
+                        'location_id'                           => $request->location_id,//
+                        'pickup_location'                       => $request->pickup_location,//
+                        'pickup_id'                             => $request->pickup_id,//
+                        'business_user_id'                      => auth()->user()->id,
                     ]);
                     break;
                 case 'Exchange';
                     $order = Order::create([
-                        'pickup_id'             => $request->pickup_id,
-                        'type'                  => $request->type,
-                        'scheduled_date'        => $request->scheduled_date,
-                        'status'                => $request->status,
-                        'notes'                 => $request->notes,
-                        'contact_id'            => $request->contact_id,
-                        'location_id'           => $request->location_id,
+                        'with_cash_difference'                  => $request->with_cash_difference,
+                        'cash_exchange_amount'                  => $request->cash_exchange_amount,
+                        'no_of_items'                           => $request->no_of_items,
+                        'package_description'                   => $request->package_description,
+                        'order_reference'                       => $request->order_reference,
+                        'allow_opening'                         => $request->allow_opening,
+                        'no_of_items_of_return_package'         => $request->no_of_items_of_return_package,
+                        'package_description_return_package'    => $request->package_description_return_package,
+                        'return_location'                       => $request->return_location,//
+                        'delivery_notes'                        => $request->delivery_notes,
+                        'customer_id'                           => $request->customer_id,//
+                        'location_id'                           => $request->location_id,//
+                        'pickup_location'                       => $request->pickup_location,//
+                        'pickup_id'                             => $request->pickup_id,//
+                        'business_user_id'                      => auth()->user()->id,
                     ]);
                     break;
                 case 'Return';
                     $order = Order::create([
-                        'type'                  => $request->type,
-                        'scheduled_date'        => $request->scheduled_date,
-                        'status'                => $request->status,
-                        'notes'                 => $request->notes,
-                        'contact_id'            => $request->contact_id,
-                        'location_id'           => $request->location_id,
+                        'refund_amount'                         => $request->refund_amount,
+                        'with_refund'                           => $request->with_refund,
+                        'no_of_items'                           => $request->no_of_items,
+                        'package_description'                   => $request->package_description,
+                        'order_reference'                       => $request->order_reference,
+                        'return_location'                       => $request->return_location,//
+                        'delivery_notes'                        => $request->delivery_notes,
+                        'customer_id'                           => $request->customer_id,//
+                        'location_id'                           => $request->location_id,//
+                        'business_user_id'                      => auth()->user()->id,
                     ]);
                     break;
                 case 'Cash Collection';
                     $order = Order::create([
-                        'type'                  => $request->type,
-                        'scheduled_date'        => $request->scheduled_date,
-                        'status'                => $request->status,
-                        'notes'                 => $request->notes,
-                        'contact_id'            => $request->contact_id,
-                        'location_id'           => $request->location_id,
+                        'cash_to_collect'                       => $request->cash_to_collect,
+                        'collect_cash'                          => $request->collect_cash,
+                        'order_reference'                       => $request->order_reference,
+                        'delivery_notes'                        => $request->delivery_notes,
+                        'customer_id'                           => $request->customer_id,//
+                        'location_id'                           => $request->location_id,//
+                        'business_user_id'                      => auth()->user()->id,
                     ]);
                     break;
             }
 
-            \DB::transaction(function () use(/* $data, */ $request) {
-
-                $order = Order::create([
-                    'pickup_id'             => $request->pickup_id,
-                    'type'                  => $request->type,
-                    'scheduled_date'        => $request->scheduled_date,
-                    'status'                => $request->status,
-                    'notes'                 => $request->notes,
-                    'contact_id'            => $request->contact_id,
-                    'location_id'           => $request->location_id,
-                ]);
+            \DB::transaction(function () use( $data,  $request) {
 
                 if(!$request->contact_id){
                     $contact = Contact::create([
@@ -191,7 +244,6 @@ class OrderController extends Controller
                     ]);
                 }
 
-                $user->assignRole('customer');
                 return redirect()->route('dashboard.orders.show',$order->id)->with('success','Data created successfully');
             });
         } catch (\Exception $ex) {
@@ -207,15 +259,37 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $qr = QrCode::generate(route('dashboard.orders.show',$order->id));
-
-        return view('orders.show',compact('order','qr'));
+        $qr     = QrCode::generate(route('dashboard.orders.show',$order->id));
+        $log    = $order->log()->first();
+        $logs  = [
+            0 => [
+                'type' => 'New',
+                'icon' => 'new_releases',
+            ],
+            1 => [
+                'type' => 'Picked up',
+                'icon' => 'hail',
+            ],
+            2 => [
+                'type' => 'In transit',
+                'icon' => 'home_work',
+            ],
+            3 => [
+                'type' => 'Out for delivery',
+                'icon' => 'local_shipping',
+            ],
+            4 => [
+                'type' => 'Delivered',
+                'icon' => 'check',
+            ],
+        ];
+        return view('orders.show',compact('order','qr','logs','log'));
     }
 
     public function airwaybell(Order $order)
     {
         //$order = Order::findOrFail($order);
-        $qr = QrCode::generate(route('orders.show',$order->id));
+        $qr = QrCode::generate(route('dashboard.orders.show',$order->id));
         //$pdf = PDF::loadView('orders.pdf', $order);
         //PDF::loadHTML($html)->setPaper('a4')->setOrientation('landscape')->setOption('margin-bottom', 0)->save('myfile.pdf')
         //$html = view('orders.pdf', compact('order','qr'))->render();

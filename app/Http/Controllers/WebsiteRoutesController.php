@@ -58,8 +58,8 @@ class WebsiteRoutesController extends Controller
         $location       = '';
         if(request()->s)
         {
-            $order      = Order::where('tracking_no',request()->s)->get();
-            $location   = Location::findOrFail($order[0]['location_id']);
+            $order       = Order::where('tracking_no',request()->s)->get();
+            $location    = Location::findOrFail($order[0]['location_id']);
         }
         return view('website.search',compact('order','location'));
     }

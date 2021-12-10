@@ -32,54 +32,24 @@
             <div class="row">
                 <div class="col-lg-5 mb-24pt mb-lg-0">
                     <div class="border-left-3 border-left-primary pl-24pt pl-md-32pt">
-                        <h4 class="mb-8pt">Pending pickup</h4>
-                        <p class="text-70 mb-24pt">It is expected to be pickup your order at pickup date.</p>
-                        {{--<a href="student-path-assessment.html"
-                           class="btn btn-primary">Start assessment</a>--}}
+                        <h4 class="mb-8pt">{{ $log->status }}</h4>
+                        <p class="text-70 mb-24pt">{{ $log->description }}</p>
+                        <a href="{{ route("dashboard.order-logs.index",$order->id) }}"
+                           class="btn btn-primary">Order Logs</a>
                     </div>
                 </div>
                 <div class="col-lg-7 d-flex align-items-center">
                     <div class="page-num-timeline d-flex flex-column flex-sm-row align-items-center justify-content-center flex">
-                        <a href=""
-                           data-toggle="tooltip"
-                           data-placement="top"
-                           data-title="New"
-                           class="page-num-timeline__item page-num-timeline__item-current">
-                            <span class="page-num-timeline__item-tip"></span>
-                            <span class="page-num"><i class="material-icons">new_releases</i></span>
-                        </a>
-                        <a href=""
-                           data-toggle="tooltip"
-                           data-placement="top"
-                           data-title="Picked up"
-                           class="page-num-timeline__item">
-                            <span class="page-num-timeline__item-tip"></span>
-                            <span class="page-num"><i class="material-icons">hail</i></span>
-                        </a>
-                        <a href=""
-                           data-toggle="tooltip"
-                           data-placement="top"
-                           data-title="In transit"
-                           class="page-num-timeline__item">
-                            <span class="page-num-timeline__item-tip"></span>
-                            <span class="page-num"><i class="material-icons">home_work</i></span>
-                        </a>
-                        <a href=""
-                           data-toggle="tooltip"
-                           data-placement="top"
-                           data-title="Out for delivery"
-                           class="page-num-timeline__item">
-                            <span class="page-num-timeline__item-tip"></span>
-                            <span class="page-num"><i class="material-icons">local_shipping</i></span>
-                        </a>
-                        <a href=""
-                           data-toggle="tooltip"
-                           data-placement="top"
-                           data-title="Delivered"
-                           class="page-num-timeline__item">
-                            <span class="page-num-timeline__item-tip"></span>
-                            <span class="page-num"><i class="material-icons">check</i></span>
-                        </a>
+                        @foreach($logs as $icon)
+                            <a href="#"
+                               data-toggle="tooltip"
+                               data-placement="top"
+                               data-title="{{ $icon['type'] }}"
+                               class="page-num-timeline__item {{ $icon['type'] ==  $log->status  ? 'page-num-timeline__item-current':''}}">
+                                <span class="page-num-timeline__item-tip"></span>
+                                <span class="page-num"><i class="material-icons">{{ $icon['icon'] }}</i></span>
+                            </a>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -205,7 +175,6 @@
                                 <div class="flex">
                                     <strong class="card-title">Codes</strong>
                                 </div>
-                                <i class="material-icons text-50">more_horiz</i>
                             </div>
                         </div>
                         <div class="card-body d-flex flex-column align-items-center justify-content-center p-24pt">

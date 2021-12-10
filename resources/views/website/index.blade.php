@@ -58,6 +58,11 @@
                                     @break
                                 @endforeach
                                 <a class="checkout" href="{{ route('website.account') }}" title="My Account">My Account</a>
+                                <a class="checkout bg-black" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                $('#logout-form').submit();" title="{{ __('Log Out') }}">{{ __('Log Out') }}</a>
+                                <form method="POST" id="logout-form" action="{{ route('logout') }}">
+                                    @csrf
+                                </form>
                             </div>
                         @else
                             <div class="register-list cart-list dropdown-menu ">
@@ -107,7 +112,7 @@
             <div class="container">
                 <div class="inner-container">
                     <p class="icon-menu-mobile"><span class="icon-bar"></span></p>
-                    <div class="logo"><a href="#" title="Dana-Logo"><img src="{{ asset('frontend/assets/images/Dana-menu-logo.png') }}" alt="Dana-Logo" height="50"></a></div>
+                    <div class="logo"><a href="#" title="Dana-Logo"><img src="{{ asset('frontend/assets/images/Dana-menu-logo1.png') }}" alt="Dana-Logo" height="50"></a></div>
                     <div class="social social-home2">
                         <a class="facebook" href="#" title="facebook"><i class="zmdi zmdi-facebook"></i></a>
                         <a class="twitter" href="#" title="twitter"><i class="zmdi zmdi-twitter"></i></a>
@@ -537,42 +542,22 @@
     <!-- End Slide-Show -->
     <div class="banner-home3">
         <div class="container">
-            <div class="col-md-4 " data-wow-duration="0.5s" data-wow-delay="200ms">
-                <div class="item">
-                    <div class="images">
-                        <img src="{{ asset('frontend/assets/images/banner-home3-4.png') }}" alt="Banner">
-                    </div>
-                    <div class="text">
-                        <h4>Number one</h4>
-                        <h3>Shipping Co. </h3>
-                        <p>Lorem Ipsum is here asdsad</p>
-                    </div>
+            <div class="col-md-12 coupon">
+                <div class="title-ver2">
+                    <h3 style="color: #0A2B56">Search Package</h3>
                 </div>
-            </div>
-            <div class="col-md-4 " data-wow-duration="0.5s" data-wow-delay="300ms">
-                <div class="item">
-                    <div class="images">
-                        <img src="{{ asset('frontend/assets/images/banner-home3-5.png') }}" alt="Banner">
-                    </div>
-                    <div class="text">
-                        <h3>consectetur adipiscing </h3>
-                        <h3>Lorem </h3>
-                        <p>seut <span>perspiis</span> </p>
-                        <a class="link-v1" href="#" title="link"><span>Start now</span><i class="zmdi zmdi-shopping-cart-plus"></i></a>
-                    </div>
+                <div class="contact-form" style="background-image: url({{ asset('frontend/assets/images/search_background.png') }})">
+                    <form class="form-horizontal" action="{{ route('website.search') }}" method="GET">
+                        <div class="form-group col-md-12">
+                            <input type="text" autocomplete="off" placeholder="Tracking no." required name="s" class="form-control" id="inputfname" >
+                        </div>
+                        <div class="form-group col-md-12">
+                            <button value="Submit" class="btn link-button link-border-raidus" style="background: #FFAF00" type="submit">Search</button>
+                        </div>
+                    </form>
                 </div>
-            </div>
-            <div class="col-md-4 " data-wow-duration="0.5s" data-wow-delay="400ms">
-                <div class="item">
-                    <div class="images">
-                        <img src="{{ asset('frontend/assets/images/banner-home3-6.png') }}" alt="Banner">
-                    </div>
-                    <div class="text">
-                        <h3>24 Hours</h3>
-                        <p>Lorem Ipsum consect adipiscing elit.</p>
-                        <h4>Lorem <span>24</span></h4>
-                    </div>
-                </div>
+                <!-- <a class="btn link-button link-border-raidus bg-gray" href="#" title="Continue shopping">Continue shopping</a>
+                 <a class="btn link-button link-border-raidus bg-gray" href="#" title="Update cart">Update cart</a>-->
             </div>
         </div>
         <!-- End container -->
