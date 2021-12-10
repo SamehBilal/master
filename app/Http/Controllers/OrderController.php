@@ -171,27 +171,27 @@ class OrderController extends Controller
                 }
             }
 
-            if($request->pickup_id == null)
-            {
-                $request['pickup_id'] = random_int(100000, 999999);
-                $request['status'] = 'Created';
-                $request['type'] = 'One Time';
-                $this->validate($request, Pickup::rules());
-                $pickup = Pickup::create([
-                    'pickup_id'             => $request->pickup_id,
-                    'type'                  => $request->type,
-                    'scheduled_date'        => $request->scheduled_date,
-                    'start_date'            => $request->scheduled_date,
-                    'status'                => $request->status,
-                    'contact_id'            => $request->contact_in,
-                    'location_id'           => $request->location_id,
-                    'business_user_id'      => auth()->user()->id,
-                ]);
-            }
-
             switch($request->type)
             {
                 case 'Deliver';
+                    if($request->pickup_id == null)
+                    {
+                        $request['pickup_id'] = random_int(100000, 999999);
+                        $request['status'] = 'Created';
+                        $request['type'] = 'One Time';
+                        $this->validate($request, Pickup::rules());
+                        $pickup = Pickup::create([
+                            'pickup_id'             => $request->pickup_id,
+                            'type'                  => $request->type,
+                            'scheduled_date'        => $request->scheduled_date,
+                            'start_date'            => $request->scheduled_date,
+                            'status'                => $request->status,
+                            'contact_id'            => $request->contact_in,
+                            'location_id'           => $request->location_id,
+                            'business_user_id'      => auth()->user()->id,
+                        ]);
+                    }
+
                     $order = Order::create([
                         'with_cash_collection'                  => $request->with_cash_collection,
                         'cash_on_delivery'                      => $request->cash_on_delivery,
@@ -209,6 +209,41 @@ class OrderController extends Controller
                     ]);
                     break;
                 case 'Exchange';
+
+                    if($request->pickup_id == null)
+                    {
+                        $request['pickup_id'] = random_int(100000, 999999);
+                        $request['status'] = 'Created';
+                        $request['type'] = 'One Time';
+                        $this->validate($request, Pickup::rules());
+                        $pickup = Pickup::create([
+                            'pickup_id'             => $request->pickup_id,
+                            'type'                  => $request->type,
+                            'scheduled_date'        => $request->scheduled_date,
+                            'start_date'            => $request->scheduled_date,
+                            'status'                => $request->status,
+                            'contact_id'            => $request->contact_in,
+                            'location_id'           => $request->location_id,
+                            'business_user_id'      => auth()->user()->id,
+                        ]);
+                    }
+
+                    if($request->return_location == null)
+                    {
+                        $return_location = Location::create([
+                            'name'                  => $request->location_name,
+                            'street'                => $request->street,
+                            'building'              => $request->building,
+                            'floor'                 => $request->floor,
+                            'apartment'             => $request->apartment,
+                            'landmarks'             => $request->landmarks,
+                            'country_id'            => $request->country_id,
+                            'state_id'              => $request->state_id,
+                            'city_id'               => $request->city_id,
+                            'business_user_id'      => auth()->user()->id,
+                        ]);
+                    }
+
                     $order = Order::create([
                         'with_cash_difference'                  => $request->with_cash_difference,
                         'cash_exchange_amount'                  => $request->cash_exchange_amount,
@@ -218,7 +253,7 @@ class OrderController extends Controller
                         'allow_opening'                         => $request->allow_opening,
                         'no_of_items_of_return_package'         => $request->no_of_items_of_return_package,
                         'package_description_return_package'    => $request->package_description_return_package,
-                        'return_location'                       => $request->return_location,//
+                        'return_location'                       => $request->return_location == null ? $return_location->id:$request->return_location,
                         'delivery_notes'                        => $request->delivery_notes,
                         'customer_id'                           => $request->customer_id == null ? $customer->id:$request->customer_id,
                         'location_id'                           => $request->location_id == null ? $location->id:$request->location_id,
@@ -227,13 +262,29 @@ class OrderController extends Controller
                     ]);
                     break;
                 case 'Return';
+                    if($request->return_location == null)
+                    {
+                        $return_location = Location::create([
+                            'name'                  => $request->location_name,
+                            'street'                => $request->street,
+                            'building'              => $request->building,
+                            'floor'                 => $request->floor,
+                            'apartment'             => $request->apartment,
+                            'landmarks'             => $request->landmarks,
+                            'country_id'            => $request->country_id,
+                            'state_id'              => $request->state_id,
+                            'city_id'               => $request->city_id,
+                            'business_user_id'      => auth()->user()->id,
+                        ]);
+                    }
+
                     $order = Order::create([
                         'refund_amount'                         => $request->refund_amount,
                         'with_refund'                           => $request->with_refund,
                         'no_of_items'                           => $request->no_of_items,
                         'package_description'                   => $request->package_description,
                         'order_reference'                       => $request->order_reference,
-                        'return_location'                       => $request->return_location,//
+                        'return_location'                       => $request->return_location == null ? $return_location->id:$request->return_location,
                         'delivery_notes'                        => $request->delivery_notes,
                         'customer_id'                           => $request->customer_id == null ? $customer->id:$request->customer_id,
                         'location_id'                           => $request->location_id == null ? $location->id:$request->location_id,
