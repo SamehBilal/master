@@ -16,7 +16,7 @@ class CreateTicketsTable extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->set('status',['1','2','3'])->default('Open');
+            $table->set('status',['1','2','3'])->default('1');
             $table->string('traking_number')->nullable();
             $table->unsignedBigInteger('ticket_issue_id');
             $table->string('subject');

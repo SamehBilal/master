@@ -33,9 +33,7 @@ Route::get('/my-account',[\App\Http\Controllers\WebsiteRoutesController::class,'
     return view('coming-soon');
 }); */
 
-Route::get('/dashboard', function () {
-    return view('dashboard.admin');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard',\App\Http\Controllers\DashboardController::class)->middleware(['auth'])->name('dashboard');
 
 Route::group(['middleware' => ['auth']], function () {
 

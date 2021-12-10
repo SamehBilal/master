@@ -17,22 +17,23 @@ class TicketController extends Controller
     public function index()
     {
         $ticket = NULL;
-        // if (auth()->user()->hasRole('Super Admin') || auth()->user()->hasRole('admin')) {
-        //     $tickets = Ticket::with('TicketIssues','TicketChats')->orderBy('updated_at','desc')->get();
+        if (auth()->user()->hasRole('Super Admin') || auth()->user()->hasRole('admin')) {
+            $tickets = Ticket::with('TicketIssues','TicketChats')
+                            ->orderBy('status','asc')
+                            ->orderBy('updated_at','desc')
+                            ->get();
+        }else{
+            $tickets = Ticket::where('user_id', auth()->user()->id)
+                            ->with('TicketIssue')
+                            ->orderBy('status','asc')
+                            ->orderBy('updated_at','desc')
+                            ->get();
+        }
 
-        //     // return view tickets index for admin
-        //     return view('tickets.index',compact('tickets'));
-        // }
-
-        $tickets = Ticket::where('user_id', auth()->user()->id)
-                          ->with('TicketIssue')
-                          ->orderBy('status','asc')
-                          ->orderBy('updated_at','desc')
-                          ->get();
         if (request()->ticket_id) {
             $ticket = Ticket::with('TicketIssue','TicketChats')->findOrFail(request()->ticket_id);
         }                
-        // return customer view
+
         return view('tickets.index',compact('tickets','ticket'));
     }
 
