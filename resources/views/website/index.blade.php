@@ -765,15 +765,15 @@
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="title-text color-white">
-                                        <h3><span>T</span>his week's hot deals</h3>
+                                        <h3><span>F</span>irst time hot deals</h3>
                                     </div>
-                                    <p>Duis aute irure</p>
-                                    <p><b>Sed ut perspiciatis unde omnis iste omnis iste</b></p>
+                                    <p>Hot Deals</p>
+                                    <p><b>Join now and enjoy our deals</b></p>
                                     <ul>
-                                        <li>sed do eiusmod tempor incididunt ut labore et dolore magna.</li>
-                                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit </li>
-                                        <li>Duis aute irure dolor in reprehenderit  </li>
-                                        <li>Sed ut perspiciatis unde omnis iste </li>
+                                        <li>Your first orders are 10% less.</li>
+                                        <li>Discount on your total orders </li>
+                                        <li>Your first orders are 10% less. </li>
+                                        <li>Discount on your total orders </li>
                                     </ul>
                                     <p class="wrap-price">Start <span class="price">Now </span></p>
                                 </div>
@@ -808,13 +808,13 @@
                                     <div class="title-text color-white">
                                         <h3><span>T</span>his week's hot deals</h3>
                                     </div>
-                                    <p>Duis aute irure</p>
-                                    <p><b>Sed ut perspiciatis unde omnis iste omnis iste</b></p>
+                                    <p>This Week's Deals</p>
+                                    <p><b>Join now and injoy this week's delas</b></p>
                                     <ul>
-                                        <li>sed do eiusmod tempor incididunt ut labore et dolore magna.</li>
-                                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit </li>
-                                        <li>Duis aute irure dolor in reprehenderit  </li>
-                                        <li>Sed ut perspiciatis unde omnis iste </li>
+                                        <li>Your orders will be 20% less.</li>
+                                        <li>Discount 50% on any package less than 5 minutes.</li>
+                                        <li>Your orders will be 20% less.  </li>
+                                        <li>Discount 50% on any package less than 5 minutes. </li>
                                     </ul>
                                     <p class="wrap-price">Start <span class="price">Now </span></p>
                                 </div>
