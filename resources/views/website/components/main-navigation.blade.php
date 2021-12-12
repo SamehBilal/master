@@ -10,7 +10,7 @@
         </div>
         <!-- End topBar-left -->
         <div class="topbar-right">
-            <a href="{{ route('website.locations') }}" title="Locations"><i class="zmdi zmdi-pin"></i>locations</a>
+{{--            <a href="{{ route('website.locations') }}" title="Locations"><i class="zmdi zmdi-pin"></i>locations</a>--}}
             <div class="wrap-dollar-box dropdown">
                 <a href="#" title="Dollar"><i class="zmdi zmdi-money-box"></i>Language<i class="zmdi zmdi-chevron-down"></i></a>
                 <div class="dollar-list dropdown-menu" style="background-color: white">

@@ -24,7 +24,7 @@
                 </div>
                 <!-- End topBar-left -->
                 <div class="topbar-right">
-                    <a href="{{ route('website.locations') }}" title="Locations"><i class="zmdi zmdi-pin"></i>locations</a>
+{{--                    <a href="{{ route('website.locations') }}" title="Locations"><i class="zmdi zmdi-pin"></i>locations</a>--}}
                     <div class="wrap-dollar-box dropdown">
                         <a href="#" title="Dollar"><i class="zmdi zmdi-money-box"></i>Language<i class="zmdi zmdi-chevron-down"></i></a>
                         <div class="dollar-list dropdown-menu" style="background-color: white">
@@ -248,7 +248,7 @@
                                  data-endspeed="300"
                                  data-endeasing="Power1.easeIn"
                                  data-captionhidden="on"
-                                 style="z-index: 7">Lorem Ipsum and typesetting industry.<br>189usd
+                                 style="z-index: 7">Deliver What You Love, On Time. We cover all of Egypt
                             </div>
 
 
@@ -263,7 +263,7 @@
                                  data-endspeed="300"
                                  data-endeasing="Power1.easeIn"
                                  data-captionhidden="on"
-                                 style="z-index: 8"><a href="#" title="Follow">Start Now</a>
+                                 style="z-index: 8"><a href="#" title="Start Now">Start Now</a>
                             </div>
 
                             <div class="tp-caption skewfromleft customout link-1 link-2 icons height-50"
@@ -310,7 +310,7 @@
                                  data-endspeed="300"
                                  data-endeasing="Power1.easeIn"
                                  data-captionhidden="on"
-                                 style="z-index: 9">Fast Shipping
+                                 style="z-index: 9">On Time
                             </div>
                             <!-- LAYER NR. 4 -->
 
@@ -325,7 +325,7 @@
                                  data-endspeed="300"
                                  data-endeasing="Power1.easeIn"
                                  data-captionhidden="on"
-                                 style="z-index: 7">Lorem Ipsum and typesetting industry.<br>189usd
+                                 style="z-index: 7">From documents to products, deliver shipments to any location in Egypt
                             </div>
 
 
@@ -340,7 +340,7 @@
                                  data-endspeed="300"
                                  data-endeasing="Power1.easeIn"
                                  data-captionhidden="on"
-                                 style="z-index: 8"><a href="#" title="Follow">Start Now</a>
+                                 style="z-index: 8"><a href="#" title="Start Now">Start Now</a>
                             </div>
 
                             <div class="tp-caption skewfromleft customout link-1 link-2 icons height-50"
@@ -570,38 +570,38 @@
                     <h3>Calculate Shipment</h3>
                 </div>
                 <div class="contact-form">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" action="{{ route('website.index') }}" method="GET">
                         <div class="form-group col-md-6">
-                            <select name="" class="form-control" id="" >
+                            <select name="from" class="form-control" id="" >
                                 <option >From</option>
-                                <option value="">Cairo</option>
-                                <option value="">Giza</option>
-                                <option value="">Alexandria</option>
+                                <option value="Cairo">Cairo</option>
+                                <option value="Giza">Giza</option>
+                                <option value="Alexandria">Alexandria</option>
                             </select>
                             <!--                                <input type="text" class="form-control" id="inputfname" placeholder="Enter your first name...">-->
                         </div>
                         <div class="form-group col-md-6">
-                            <select name="" class="form-control" id="">
+                            <select name="to" class="form-control" id="">
                                 <option >To</option>
-                                <option value="">Cairo</option>
-                                <option value="">Giza</option>
-                                <option value="">Alexandria</option>
+                                <option value="Cairo">Cairo</option>
+                                <option value="Giza">Giza</option>
+                                <option value="Alexandria">Alexandria</option>
                             </select>
                             <!--                                <input type="text" class="form-control" id="inputfname" placeholder="Enter your first name...">-->
                         </div>
                         <div class="form-group col-md-6">
-                            <select name="" class="form-control" id="">
+                            <select name="unit" class="form-control" id="">
                                 <option >Unit</option>
-                                <option value="">Kg</option>
-                                <option value="">gm</option>
+                                <option value="Kg">Kg</option>
+                                <option value="gm">gm</option>
                             </select>
                             <!--                                <input type="text" class="form-control" id="inputfname" placeholder="Enter your first name...">-->
                         </div>
                         <div class="form-group col-md-6">
-                            <input type="number" step="0.01" class="form-control" id="inputfname" placeholder="Value...">
+                            <input type="number" step="0.01" name="value" class="form-control" id="inputfname" placeholder="Value...">
                         </div>
                         <div class="form-group col-md-12">
-                            <button value="Submit" class="btn link-button link-border-raidus" type="submit">Calculate</button>
+                            <button value="Submit" class="btn link-button link-border-raidus" style="background: #FFAF00" type="submit">Calculate</button>
                         </div>
                     </form>
                 </div>
@@ -614,9 +614,9 @@
                     <h3>Shipment Total</h3>
                 </div>
                 <ul>
-                    <li><span class="text">Subtotal</span><span class="number"> 1990 EGP</span></li>
-                    <li><span class="text">Tax</span><span class="number"> 50 EGP</span></li>
-                    <li><span class="text totals">Total</span><span class="number totals"> 2040 EGP</span></li>
+                    <li><span class="text">Subtotal</span><span class="number"> {{ $subtotal }} EGP</span></li>
+                    <li><span class="text">Tax</span><span class="number"> {{ $tax }} EGP</span></li>
+                    <li><span class="text totals">Total</span><span class="number totals"> {{ $total }} EGP</span></li>
                 </ul>
                 <!--
                                     <a class="btn link-button link-border-raidus" href="#" title="Proceed to checkout">Proceed to checkout</a>
@@ -646,22 +646,19 @@
                             <img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product-featured1.jpg') }}" alt="Product"/>
                         </a>
                         <div class="product-content">
-                            <p>voluptatem </p>
-                            <p class="title"> Lorem Ipsum</p>
+                            <p>Delivery </p>
+                            <p class="title">  Next Day Delivery</p>
                             <ul>
-                                <li>Lorem ipsum dolor sit amet.</li>
-                                <li>incididunt ut labore, consectetur adipiscing elit</li>
-                                <li>Excepteur sint occaecat cupidatat.</li>
-                                <li>sed do eiusmod tempor incididunt ut labore et.</li>
-                                <li>non proident, sunt </li>
+
+                                <p>Our promise is to deliver the next day we receive the pickups, depending on the drop-off city location.</p>
                             </ul>
                         </div>
                         <!-- End product content -->
-                        <!-- <div class="action">
+                        {{--<div class="action">
                             <a href="#" class="refresh"><i class="zmdi zmdi-refresh-sync"></i></a>
                             <a title="Like" href="#"><i class="zmdi zmdi-favorite-outline"></i></a>
                             <a title="add-to-cart" href="#"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
-                        </div> -->
+                        </div> --}}
                     </div>
                     <!-- End product -->
                     <div class="product">
@@ -670,14 +667,10 @@
                             <img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product-featured2.jpg') }}" alt="Product"/>
                         </a>
                         <div class="product-content">
-                            <p>accusantium </p>
-                            <p class="title"> Lorem Ipsum</p>
+                            <p>Exchange </p>
+                            <p class="title">Exchange Shipments</p>
                             <ul>
-                                <li>Lorem ipsum dolor sit amet.</li>
-                                <li>incididunt ut labore, consectetur adipiscing elit</li>
-                                <li>Excepteur sint occaecat cupidatat.</li>
-                                <li>sed do eiusmod tempor incididunt ut labore et.</li>
-                                <li>non proident, sunt </li>
+                                <p>Exchange a shipment for another through our smart logistics system.</p>
                             </ul>
                         </div>
                         <!-- End product content -->
@@ -694,14 +687,10 @@
                             <img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product-featured4.jpg') }}" alt="Product"/>
                         </a>
                         <div class="product-content">
-                            <p>doloremque </p>
-                            <p class="title"> Lorem Ipsum</p>
+                            <p>Returns </p>
+                            <p class="title"> Customer Returns</p>
                             <ul>
-                                <li>Lorem ipsum dolor sit amet.</li>
-                                <li>incididunt ut labore, consectetur adipiscing elit</li>
-                                <li>Excepteur sint occaecat cupidatat.</li>
-                                <li>sed do eiusmod tempor incididunt ut labore et.</li>
-                                <li>non proident, sunt </li>
+                                <p>From second thoughts to total satisfaction, Bosta handles customer returns.</p>
                             </ul>
                         </div>
                         <!-- End product content -->
@@ -718,14 +707,10 @@
                             <img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product-featured3.jpg') }}" alt="Product"/>
                         </a>
                         <div class="product-content">
-                            <p>laudantium</p>
-                            <p class="title"> Lorem Ipsum</p>
+                            <p>Cash Collection</p>
+                            <p class="title"> Cash Collection</p>
                             <ul>
-                                <li>Lorem ipsum dolor sit amet.</li>
-                                <li>incididunt ut labore, consectetur adipiscing elit</li>
-                                <li>Excepteur sint occaecat cupidatat.</li>
-                                <li>sed do eiusmod tempor incididunt ut labore et.</li>
-                                <li>non proident, sunt </li>
+                                <p>Real-time insights on your cash collections through Bosta cash collection service.</p>
                             </ul>
                         </div>
                         <!-- End product content -->
@@ -740,10 +725,8 @@
                 <!-- End product -->
 
                 <div class="wrap-time">
-                    <h3>quae ab illo inventore veritatis</h3>
-                    <p>Lorem Ipsum is simply dummy text of the</p>
-                    <div class="time" data-countdown="countdown" data-date="12-20-2016-10-20-30"></div>
-                    <p class="best-price"><span>Start now:</span>100.00 EGP- <span class="price-old">240.00 EGP</span></p>
+                    <h3>From documents to products</h3>
+                    <p>we deliver shipments to any location in Egypt.</p>
                 </div>
                 <!-- End wrap-time -->
             </div>

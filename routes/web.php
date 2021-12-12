@@ -28,6 +28,7 @@ Route::get('/calculate-shipment',[\App\Http\Controllers\WebsiteRoutesController:
 Route::resource('contact-forms', \App\Http\Controllers\ContactFormController::class)->only(['create', 'store']);//Contact Forms
 Route::resource('subscribers', \App\Http\Controllers\SubscribeController::class)->only(['create', 'store']);//Subscribes
 Route::get('/my-account',[\App\Http\Controllers\WebsiteRoutesController::class,'account'])->name('website.account');
+Route::post('my-account/{id}',[\App\Http\Controllers\WebsiteRoutesController::class,'update'])->name('website.account.edit');
 
 /* Route::get('/', function () {
     return view('coming-soon');

@@ -50,12 +50,12 @@
                             </div>
                         </div>
 
-                         <code class="highlight html  bg-transparent">&lt;div&nbsp;<br />
+                         {{--<code class="highlight html  bg-transparent">&lt;div&nbsp;<br />
                             &nbsp;&nbsp;class=&quot;dropzone&nbsp;dropzone-multiple&nbsp;w-100&quot;&nbsp;<br />
                             &nbsp;&nbsp;data-toggle=&quot;dropzone&quot;&nbsp;<br />
                             &nbsp;&nbsp;data-dropzone-multiple&nbsp;<br />
                             &nbsp;&nbsp;data-dropzone-url=&quot;http://&quot;<br />
-                            &nbsp;&nbsp;data-dropzone-files=&#39;[&quot;public/images/256_daniel-gaffey-1060698-unsplash.jpg&quot;,&nbsp;&quot;public/images/256_rsz_clem-onojeghuo-150467-unsplash.jpg&quot;,&nbsp;&quot;public/images/256_rsz_florian-perennes-594195-unsplash.jpg&quot;]&#39;&gt;...&lt;/div&gt;</code>
+                            &nbsp;&nbsp;data-dropzone-files=&#39;[&quot;public/images/256_daniel-gaffey-1060698-unsplash.jpg&quot;,&nbsp;&quot;public/images/256_rsz_clem-onojeghuo-150467-unsplash.jpg&quot;,&nbsp;&quot;public/images/256_rsz_florian-perennes-594195-unsplash.jpg&quot;]&#39;&gt;...&lt;/div&gt;</code>--}}
                     </div>
                 </div>
             </div>

@@ -40,7 +40,7 @@
                         <h3><a href="{{ route('website.track',$order[0]['id']) }}" title="#{{ $order[0]['tracking_no'] }}">#{{ $order[0]['tracking_no'] }}</a></h3>
                         <p class="content"><i class="zmdi zmdi-map"></i> {{ $location->name }}</p>
                         <div class="bottom-tag">
-                            <a class="read-more" href="{{ route('website.track',$order[0]['id']) }}" title="Read more">Track Package</a>
+                            <a class="read-more" href="{{ route('website.track',$order[0]['id']) }}" title="Track Package">Track Package</a>
                             <p class="tags">
                                 <a class="user" href="#" title="Order Type"><i class="zmdi zmdi-shopping-cart"></i>{{ $order[0]['type'] }} </a>
                                 <a class="comment" href="#" title="Number of Items"><i class="zmdi zmdi-collection-item-9-plus"></i>{{ $order[0]['no_of_items'] }} item(s)</a>

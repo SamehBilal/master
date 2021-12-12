@@ -41,6 +41,11 @@ class Customer extends Model
         return $this->hasOne(User::class  , "id" , "business_user_id");
     }
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
     public static function rules($update = false, $id = null)
     {
         $common = [

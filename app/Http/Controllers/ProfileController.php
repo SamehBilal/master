@@ -42,6 +42,6 @@ class ProfileController extends Controller
             $user->update(['avatar' =>  $image]);
         }
 
-        return redirect()->route('dashboard.settings.profile')->with('success','Data updated successfully');
+        return redirect()->back()->with('success','Data updated successfully');
     }
 }

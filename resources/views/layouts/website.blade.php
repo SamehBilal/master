@@ -1,5 +1,6 @@
+@php $locale = session()->get('locale'); @endphp
 <!DOCTYPE html>
-<html  lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html  lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ $locale == 'ar' ? 'rtl':'ltr' }}">
     <head>
         @include('website.components.meta-tags')
 
@@ -9,7 +10,7 @@
 
         @yield('extra-scripts')
     </head>
-    <body>
+    <body >
         @yield('content')
 
         @include('website.components.newsletter')
