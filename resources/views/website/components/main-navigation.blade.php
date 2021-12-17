@@ -1,4 +1,5 @@
-<div id="topbar">
+@php $locale = session()->get('locale'); @endphp
+<div id="topbar" dir="ltr">
     <div class="container">
         <div class="topbar-left">
             <a class="facebook" href="#" title="facebook"><i class="zmdi zmdi-facebook"></i></a>
@@ -10,21 +11,21 @@
         </div>
         <!-- End topBar-left -->
         <div class="topbar-right">
-{{--            <a href="{{ route('website.locations') }}" title="Locations"><i class="zmdi zmdi-pin"></i>locations</a>--}}
+            <a href="{{ route('website.locations') }}" title="Locations"><i class="zmdi zmdi-pin"></i>{{ __('content.locations') }}</a>
             <div class="wrap-dollar-box dropdown">
-                <a href="#" title="Dollar"><i class="zmdi zmdi-money-box"></i>Language<i class="zmdi zmdi-chevron-down"></i></a>
+                <a href="#" title="Dollar"><i class="zmdi zmdi-money-box"></i>{{ __('content.Language') }}<i class="zmdi zmdi-chevron-down"></i></a>
                 <div class="dollar-list dropdown-menu" style="background-color: white">
                     <ul>
-                        <li><a href="{{ url('lang/en') }}" title="English" class="language_title" style="color: #1b1b1b;" >English</a></li>
-                        <li><a href="{{ url('lang/ar') }}" title="Arabic" style="color: #1b1b1b;" >Arabic</a></li>
+                        <li><a href="{{ url('lang/en') }}" title="English" class="language_title" style="color: #1b1b1b;" >{{ __('content.English') }}</a></li>
+                        <li><a href="{{ url('lang/ar') }}" title="Arabic" style="color: #1b1b1b;" >{{ __('content.Arabic') }}</a></li>
                     </ul>
                 </div>
             </div>
             <div class="wrap-sign-in cart dropdown">
-                <a class="sign-in" href="{{ route('website.account') }}" title="My account"><i class="zmdi zmdi-account"></i>My account</a>
+                <a class="sign-in" href="{{ route('website.account') }}" title="My account"><i class="zmdi zmdi-account"></i>{{ __('content.my_account') }}</a>
                 @auth
                     <div class="register-list cart-list dropdown-menu ">
-                        <h3>My account</h3>
+                        <h3>{{ __('content.my_account') }}</h3>
                         @foreach($orders = \App\Models\Order::all() as $order)
                             @if($order->customer->user->id == auth()->user()->id)
                                 <ul class="list">
@@ -52,7 +53,7 @@
                     </div>
                 @else
                     <div class="register-list cart-list dropdown-menu ">
-                        <h3>My account</h3>
+                        <h3>{{ __('content.my_account') }}</h3>
                         <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="acc-name">

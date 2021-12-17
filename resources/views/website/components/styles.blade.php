@@ -4,3 +4,9 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/vendor/owl-slider.css') }}"/>
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/vendor/settings.css') }}"/>
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/vendor/animate.css') }}"/>
+
+<style>
+    * {
+        font-family: 'Cairo',Helvetica,Arial,Lucida,sans-serif;!important;
+    }
+</style>

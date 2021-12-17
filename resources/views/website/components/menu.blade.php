@@ -1,11 +1,11 @@
 <nav class="mega-menu">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <ul class="nav navbar-nav" id="navbar">
-            <li class="level1 @yield('home')"><a href="{{ route('website.index') }}" title="Home">Home</a></li>
-            <li class="level1 @yield('pricing')"><a href="{{ route('website.pricing') }}" title="Pricing">Pricing</a></li>
+        <ul class="nav navbar-nav" id="navbar" >
+            <li class="level1 @yield('home')"><a href="{{ route('website.index') }}" title="{{ __('content.Home') }}">{{ __('content.Home') }}</a></li>
+            <li class="level1 @yield('pricing')"><a href="{{ route('website.pricing') }}" title="{{ __('content.Pricing') }}">{{ __('content.Pricing') }}</a></li>
             <li class="level1 @yield('track') dropdown">
-                <a href="#" title="Packages">Packages</a>
+                <a href="#" title="{{ __('content.Packages') }}">{{ __('content.Packages') }}</a>
                 <div class="sub-menu dropdown-menu">
                     <ul class="menu-level-1">
 
@@ -25,8 +25,8 @@
                 </div>
                 <!-- End Dropdow Menu -->
             </li>
-            <li class="level1 @yield('about-us')"><a href="{{ route('website.about-us') }}" title="About Us">About Us</a></li>
-            <li class="level1 @yield('contact-us')"><a href="{{ route('website.contact-us') }}" title="Contact Us">Contact Us</a></li>
+            <li class="level1 @yield('about-us')"><a href="{{ route('website.about-us') }}" title="{{ __('content.About-us') }}">{{ __('content.About-us') }}</a></li>
+            <li class="level1 @yield('contact-us')"><a href="{{ route('website.contact-us') }}" title="{{ __('content.Contact-us') }}">{{ __('content.Contact-us') }}</a></li>
         </ul>
         <div class="menu-icon-right">
             <a class="refresh" href="{{ \Illuminate\Support\Facades\URL::current()  }}" title="Refresh"><i class="zmdi zmdi-refresh-sync"></i></a>
