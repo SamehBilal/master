@@ -9,13 +9,14 @@
                 <div class="sub-menu dropdown-menu">
                     <ul class="menu-level-1">
 
-                        <li class="level2"><a href="#">Actions</a>
+                        <li class="level2">
+                            <a href="#">{{ __('content.Actions') }}</a>
                             <ul class="menu-level-2">
-                                <li class="level3"><a href="{{ route('website.search') }}" title="Search a package">Search a package</a></li>
-                                <li class="level3"><a href="{{ route('website.calculation') }}" title="Calculate time & cost">Calculate time & cost</a></li>
-                                <li class="level3"><a href="{{ route('dashboard.orders.create') }}" title="Create a shipment">Create a shipment</a></li>
-                                <li class="level3"><a href="{{ route('dashboard.orders.index') }}" title="Change my delivery">Change my delivery</a></li>
-                                <li class="level3"><a href="{{ route('dashboard.pickups.create') }}" title="Schedule a pickup">Schedule a pickup</a></li>
+                                <li class="level3"><a href="{{ route('website.search') }}" title="{{ __('content.Search a package') }}">{{ __('content.Search a package') }}</a></li>
+                                <li class="level3"><a href="{{ route('website.calculation') }}" title="{{ __('content.Calculate time & cost') }}">{{ __('content.Calculate time & cost') }}</a></li>
+                                <li class="level3"><a href="{{ route('dashboard.orders.create') }}" title="{{ __('content.Create a shipment') }}">{{ __('content.Create a shipment') }}</a></li>
+                                <li class="level3"><a href="{{ route('dashboard.orders.index') }}" title="{{ __('content.Change my delivery') }}">{{ __('content.Change my delivery') }}</a></li>
+                                <li class="level3"><a href="{{ route('dashboard.pickups.create') }}" title="{{ __('content.Schedule a pickup') }}">{{ __('content.Schedule a pickup') }}</a></li>
                             </ul>
                         </li>
                         <li class="level2">
