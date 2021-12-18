@@ -7,10 +7,10 @@
                 <div class="search-form">
                     <form action="{{ route('website.search') }}" method="GET">
                         <div class="search-select">
-                            Search Package
+                            {{ __('content.Search a package') }}
                         </div>
                         <!-- End search Select -->
-                        <input type="text" autocomplete="off" placeholder="Tracking no." value="@isset($_GET['s']) {{ $_GET['s'] }} @endisset" class="ajax_autosuggest_input ac_input" name="s">
+                        <input type="text" autocomplete="off" placeholder="{{ __('content.tracking No') }}" value="@isset($_GET['s']) {{ $_GET['s'] }} @endisset" class="ajax_autosuggest_input ac_input" name="s">
                         <button type="submit" class="icon-search">
                             <i class="zmdi zmdi-search"></i>
                         </button>

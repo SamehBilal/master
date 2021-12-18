@@ -18,8 +18,8 @@
     <div class="breadcrumb">
         <div class="container">
             <ul>
-                <li><a href="{{ route('website.index') }}">Home</a></li>
-                <li class="active">My Account</li>
+                <li><a href="{{ route('website.index') }}">{{ __('content.Home') }}</a></li>
+                <li class="active">{{ __('content.my_account') }}</li>
             </ul>
         </div>
         <!-- End container -->

@@ -1,6 +1,6 @@
 <footer id="footer">
     <div class="container">
-        <div class="row footer-top">
+        <div class="row footer-top" >
             <div class="col-md-5">
                 <a class="logo" href="{{ route('website.index') }}" title="logo"><img src="{{ asset('frontend/assets/images/Dana-menu-logo.png') }}" alt="Logo"></a>
                 <p class="italic">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
@@ -12,22 +12,22 @@
             </div>
 
             <div class="col-md-4">
-                <h3>Quick link</h3>
+                <h3>{{ __('content.Quick link') }}</h3>
                 <ul class="menu">
-                    <li><a href="{{ route('website.index') }}" title="Home">Home</a></li>
-                    <li><a href="{{ route('website.search') }}" title="Search Shipment">Search Shipment</a></li>
-                    <li><a href="{{ route('website.calculation') }}" title="Calculate Shipping">Calculate Shipping</a></li>
-                    <li><a href="{{ route('website.about-us') }}" title="About Us">About Us</a></li>
-                    <li><a href="{{ route('website.pricing') }}" title="Pricing">Pricing</a></li>
-                    <li><a href="{{ route('website.contact-us') }}" title="Contact us">Contact Us</a></li>
+                    <li><a href="{{ route('website.index') }}" title="{{ __('content.Home') }}">{{ __('content.Home') }}</a></li>
+                    <li><a href="{{ route('website.search') }}" title="{{ __('content.Search a package') }}">{{ __('content.Search a package') }}</a></li>
+                    <li><a href="{{ route('website.calculation') }}" title="{{ __('content.Calculate time & cost') }}">{{ __('content.Calculate time & cost') }}</a></li>
+                    <li><a href="{{ route('website.about-us') }}" title="{{ __('content.About-us') }}">{{ __('content.About-us') }}</a></li>
+                    <li><a href="{{ route('website.pricing') }}" title="{{ __('content.Pricing') }}">{{ __('content.Pricing') }}</a></li>
+                    <li><a href="{{ route('website.contact-us') }}" title="{{ __('content.Contact-us') }}">{{ __('content.Contact-us') }}</a></li>
                 </ul>
             </div>
             <div class="col-md-3">
-                <h3>Customer care</h3>
+                <h3>{{ __('content.Customer Care') }}</h3>
                 <ul class="menu">
-                    <li><a href="{{ route('website.account') }}" title="My account">My account</a></li>
-                    <li><a href="{{ route('website.locations') }}" title="Locations">Locations</a></li>
-                    <li><a href="{{ route('website.terms') }}" title="Terms and Conditions">Terms and Conditions</a></li>
+                    <li><a href="{{ route('website.account') }}" title="{{ __('content.my_account') }}">{{ __('content.my_account') }}</a></li>
+                    <li><a href="{{ route('website.locations') }}" title="{{ __('content.locations') }}">{{ __('content.locations') }}</a></li>
+                    <li><a href="{{ route('website.terms') }}" title="{{ __('content.Terms and Conditions') }}">{{ __('content.Terms and Conditions') }}</a></li>
                 </ul>
             </div>
         </div>

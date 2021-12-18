@@ -8,14 +8,14 @@
                 <div class="topbar-left">
                     <a class="refresh" href="{{ route('website.index') }}" title="Refresh"><i class="zmdi zmdi-refresh-sync"></i></a>
                     <div class="cart dropdown">
-                        <a class="icon-cart" href="#" title="Search">
+                        <a class="icon-cart" href="#" title="{{ __('content.search') }}">
                             <i class="zmdi zmdi-search"></i>
                         </a>
                         <div class="cart-list dropdown-menu">
                             <p class="total"><span>{{ __('content.Track Your Shipment') }}</span> </p><br>
                             <p>{{ __('content.Enter your tracking No.') }}</p>
                             <form action="{{ route('website.search') }}" method="GET">
-                                <input type="text" placeholder="{{ __('content.tracking No') }}" class="checkout" name="s" title="Search">
+                                <input type="text" placeholder="{{ __('content.tracking No') }}" class="checkout" name="s" title="{{ __('content.search') }}">
                                 <button class="checkout bg-black"  title="{{ __('content.search') }}">{{ __('content.search') }}</button>
                             </form>
 
@@ -24,18 +24,18 @@
                 </div>
                 <!-- End topBar-left -->
                 <div class="topbar-right">
-                    <a href="{{ route('website.locations') }}" title="Locations"><i class="zmdi zmdi-pin"></i>{{ __('content.locations') }}</a>
+                    <a href="{{ route('website.locations') }}" title="{{ __('content.locations') }}"><i class="zmdi zmdi-pin"></i>{{ __('content.locations') }}</a>
                     <div class="wrap-dollar-box dropdown">
-                        <a href="#" title="Dollar"><i class="zmdi zmdi-money-box"></i>{{ __('content.Language') }}<i class="zmdi zmdi-chevron-down"></i></a>
+                        <a href="#" title="{{ __('content.Language') }}"><i class="zmdi zmdi-money-box"></i>{{ __('content.Language') }}<i class="zmdi zmdi-chevron-down"></i></a>
                         <div class="dollar-list dropdown-menu" style="background-color: white">
                             <ul>
-                                <li><a href="{{ url('lang/en') }}" title="English" class="language_title" style="color: #1b1b1b;" >{{ __('content.English') }}</a></li>
-                                <li><a href="{{ url('lang/ar') }}" title="Arabic" style="color: #1b1b1b;" >{{ __('content.Arabic') }}</a></li>
+                                <li><a href="{{ url('lang/en') }}" title="{{ __('content.English') }}" class="language_title" style="color: #1b1b1b;" >{{ __('content.English') }}</a></li>
+                                <li><a href="{{ url('lang/ar') }}" title="{{ __('content.Arabic') }}" style="color: #1b1b1b;" >{{ __('content.Arabic') }}</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="wrap-sign-in cart dropdown">
-                        <a class="sign-in" href="{{ route('website.account') }}" title="My account"><i class="zmdi zmdi-account"></i>{{ __('content.my_account') }}</a>
+                        <a class="sign-in" href="{{ route('website.account') }}" title="{{ __('content.my_account') }}"><i class="zmdi zmdi-account"></i>{{ __('content.my_account') }}</a>
                         @auth
                             <div class="register-list cart-list dropdown-menu ">
                                 <h3>{{ __('content.my_account') }}</h3>
@@ -57,7 +57,7 @@
                                     @endif
                                     @break
                                 @endforeach
-                                <a class="checkout" href="{{ route('website.account') }}" title="My Account">{{ __('content.my_account') }}</a>
+                                <a class="checkout" href="{{ route('website.account') }}" title="{{ __('content.my_account') }}">{{ __('content.my_account') }}</a>
                                 <a class="checkout bg-black" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                 $('#logout-form').submit();" title="{{ __('content.Logout') }}">{{ __('content.Logout') }}</a>
                                 <form method="POST" id="logout-form" action="{{ route('logout') }}">
@@ -135,10 +135,10 @@
                     </div>
                     <div class="menu-top menu-top-v2">
                         <ul class="nav-top">
-                            <li class="level1 active"><a href="{{ route('website.index') }}" title="Home">Home</a></li>
-                            <li class="level1"><a href="{{ route('website.search') }}" title="Search">Search</a></li>
-                            <li class="level1 "><a href="{{ route('website.pricing') }}" title="Pricing">Pricing</a></li>
-                            <li class="level1 "><a href="{{ route('website.about-us') }}" title="About Us">About Us</a></li>
+                            <li class="level1 active"><a href="{{ route('website.index') }}" title="{{ __('content.Home') }}">{{ __('content.Home') }}</a></li>
+                            <li class="level1"><a href="{{ route('website.search') }}" title="{{ __('content.Search a package') }}">{{ __('content.Search a package') }}</a></li>
+                            <li class="level1 "><a href="{{ route('website.pricing') }}" title="{{ __('content.Pricing') }}">{{ __('content.Pricing') }}</a></li>
+                            <li class="level1 "><a href="{{ route('website.about-us') }}" title="{{ __('content.About-us') }}">{{ __('content.About-us') }}</a></li>
                         </ul>
                     </div>
                     <!-- End menutop -->
@@ -154,12 +154,12 @@
                             <span class="icon-menu-header ver2" style="background-color: #ffaf00;cursor: pointer"></span>
                             <div class="sub-menu dropdown-menu">
                                 <ul class="menu-level-1">
-                                    <li class="level2"><a href="#">Links</a>
+                                    <li class="level2"><a href="#">{{ __('content.Links') }}</a>
                                         <ul class="menu-level-2">
-                                            <li class="level3"><a href="{{ route('website.index') }}" title="Home">Home</a></li>
-                                            <li class="level3"><a href="{{ route('website.pricing') }}" title="Pricing">Pricing</a></li>
-                                            <li class="level3"><a href="{{ route('website.about-us') }}" title="About Us">About Us</a></li>
-                                            <li class="level3"><a href="{{ route('website.contact-us') }}" title="Contact Us">Contact Us</a></li>
+                                            <li class="level3"><a href="{{ route('website.index') }}" title="{{ __('content.Home') }}">{{ __('content.Home') }}</a></li>
+                                            <li class="level3"><a href="{{ route('website.pricing') }}" title="{{ __('content.Pricing') }}">{{ __('content.Pricing') }}</a></li>
+                                            <li class="level3"><a href="{{ route('website.about-us') }}" title="{{ __('content.About-us') }}">{{ __('content.About-us') }}</a></li>
+                                            <li class="level3"><a href="{{ route('website.contact-us') }}" title="{{ __('content.Contact-us') }}">{{ __('content.Contact-us') }}</a></li>
                                         </ul>
                                     </li>
                                     <li class="level2">
@@ -194,10 +194,10 @@
                     <div class="search-form">
                         <form action="{{ route('website.search') }}" method="GET">
                             <div class="search-select dropdown">
-                                Search Package
+                                {{ __('content.Search a package') }}
                             </div>
                             <!-- End search Select -->
-                            <input type="text" name="search" class="ajax_autosuggest_input ac_input" name="s" placeholder="search tracking no. " autocomplete="off">
+                            <input type="text"  class="ajax_autosuggest_input ac_input" name="s" placeholder="{{ __('content.tracking No') }}" autocomplete="off">
                             <button type="submit" class="icon-search">
                                 <i class="zmdi zmdi-search"></i>
                             </button>

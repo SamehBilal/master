@@ -270,7 +270,7 @@
     <div class="breadcrumb">
         <div class="container">
             <ul>
-                <li><a href="{{ route('website.index') }}">Home</a></li>
+                <li><a href="{{ route('website.index') }}">{{ __('content.Home') }}</a></li>
                 <li class="active">Track #{{ $order->tracking_no }}</li>
             </ul>
         </div>
