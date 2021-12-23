@@ -1,6 +1,6 @@
 <div class="nav-item ml-16pt dropdown dropdown-notifications dropdown-xs-down-full"
      data-toggle="tooltip"
-     data-title="Notifications"
+     data-title="{{ __('dashboard.Notifications') }}"
      data-placement="bottom"
      data-boundary="window">
     <button class="nav-link btn-flush dropdown-toggle"
@@ -16,7 +16,7 @@
     <div class="dropdown-menu dropdown-menu-right">
         <div data-perfect-scrollbar
              class="position-relative">
-            <div class="dropdown-header"><strong>System notifications</strong></div>
+            <div class="dropdown-header"><strong>{{ __('dashboard.System_notifications') }}</strong></div>
             <div class="list-group list-group-flush mb-0">
                 @if(count($user->unreadnotifications) > 0)
                     @foreach($user->unreadnotifications as $note)
@@ -89,7 +89,7 @@
                                 </span>
                             </span>
                             <span class="flex d-flex flex-column">
-                                <span class="text-black-70">No New Notifications</span>
+                                <span class="text-black-70">{{ __('dashboard.No_New_Notifications') }}</span>
                             </span>
                         </span>
                     </a>

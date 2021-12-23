@@ -1,12 +1,12 @@
 @extends('layouts.backend')
 
 @section('title')
-    Orders
+{{ __('dashboard.Orders') }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item active">
-        Orders
+        {{ __('dashboard.Orders') }}
     </li>
 @endsection
 
@@ -19,7 +19,7 @@
 @endsection
 
 @section('button-title')
-    New Order
+{{ __('dashboard.New_Order') }}
 @endsection
 
 @section('main_content')
@@ -27,7 +27,7 @@
         <div class="page-section">
 
             <div class="page-separator">
-                <div class="page-separator__text">Filter</div>
+                <div class="page-separator__text">{{ __('dashboard.Filter') }}</div>
             </div>
 
             <form action="{{ route('dashboard.orders.index') }}" method="GET">
@@ -36,23 +36,23 @@
                         <div class="row">
                             <div class="col-sm-auto">
                                 <div class="form-group">
-                                    <label for="filter_name">Tracking No.</label>
+                                    <label for="filter_name">{{ __('dashboard.Tracking_No') }}</label>
                                     <input id="filter_name"
                                            type="text"
                                            name="tracking_no"
                                            value="{{ isset($_GET['tracking_no']) &&  $_GET['tracking_no'] >= 0?$_GET['tracking_no']:old('tracking_no') }}"
                                            class="form-control"
-                                           placeholder="Search by Tracking No.">
+                                           placeholder="{{ __('dashboard.Search_by_Tracking_No') }}">
                                 </div>
                             </div>
                             <div class="col-sm-auto">
                                 <div class="form-group">
-                                    <label for="filter_category">Status</label><br>
+                                    <label for="filter_category">{{ __('dashboard.Status') }}</label><br>
                                     <select id="filter_category"
                                             class="custom-select"
                                             name="status"
                                             style="width: 200px;">
-                                        <option value="" {{ old('status') == '' ?'selected':'' }}>All Status</option>
+                                        <option value="" {{ old('status') == '' ?'selected':'' }}>{{ __('dashboard.All_Status') }}</option>
                                         @foreach($status as $item)
                                             <option value="{{ $item }}" {{ isset($_GET['status']) &&  $_GET['status'] == $item ? 'selected':''}}>{{ $item }}</option>
                                         @endforeach
@@ -90,7 +90,7 @@
                             </div>--}}
                             <div class="ml-auto col-sm-auto">
                                 <div class="form-group" style="width: 150px;">
-                                    <label for="price_range">COD</label>
+                                    <label for="price_range">{{ __('dashboard.COD') }}</label>
                                     <input id="price_range" type="text" name="cash_on_delivery" data-toggle="ion-rangeslider" data-min="1" data-max="{{ $max_order + 1 }}" data-from="@if(old('cash_on_delivery')) {{ old('cash_on_delivery') }} @else {{ isset($_GET['cash_on_delivery']) &&  $_GET['cash_on_delivery'] >= 0?$_GET['cash_on_delivery']:$max_order/2 }} @endif" data-step="5" data-max-postfix=" EGP" {{--data-prefix="EGP"--}}>
                                 </div>
                             </div>
@@ -101,7 +101,7 @@
             </form>
 
             <div class="page-separator">
-                <div class="page-separator__text">Orders</div>
+                <div class="page-separator__text">{{ __('dashboard.Orders') }}</div>
             </div>
 
             <div class="card dashboard-area-tabs p-relative o-hidden mb-32pt">
@@ -123,8 +123,8 @@
                                         </span>
                                 </div>
                                 <span class="flex d-flex flex-column">
-                                        <strong>All Orders</strong>
-                                        <small class=" text-50">active</small>
+                                        <strong>{{ __('dashboard.All_orders') }}</strong>
+                                        <small class=" text-50">{{ __("dashboard.active")  }}</small>
                                         <span class="indicator-line rounded bg-success"></span>
                                     </span>
                             </a>
@@ -146,8 +146,8 @@
                                         </span>
                                     </div>
                                     <span class="flex d-flex flex-column">
-                                        <strong>{{ $type['name'] }}</strong>
-                                        <small class="text-20" >{{ $type['description'] }}</small>
+                                        <strong>{{ __("dashboard.{$type['name']}")  }}</strong>
+                                        <small class="text-20" >{{ __("dashboard.{$type['description']}")  }}</small>
                                         <span class="indicator-line rounded bg-{{ $type['color'] }}"></span>
                                     </span>
                                 </a>
@@ -160,11 +160,11 @@
                     <div class="card-header">
                         <form class="form-inline">
                             <label class="mr-sm-2 form-label"
-                                   for="myInputTextField">Filter by:</label>
+                                   for="myInputTextField">{{ __('dashboard.Filter_by') }}:</label>
                             <input type="text"
                                    class="form-control search mb-2 mr-sm-2 mb-sm-0"
                                    id="myInputTextField"
-                                   placeholder="Search ...">
+                                   placeholder="{{ __('dashboard.Search') }} ...">
 
                             <div class="col-lg d-flex flex-wrap buttons-datatable-add">
                                 <div class="ml-lg-auto dropdown select-datatable-add">
@@ -195,17 +195,17 @@
 
                             <th>#</th>
 
-                            <th>Tracking No.</th>
+                            <th>{{ __('dashboard.Tracking_No') }}</th>
 
-                            <th>Customer Info</th>
+                            <th>{{ __('dashboard.Customer_Info') }}</th>
 
-                            <th>Type</th>
+                            <th>{{ __('dashboard.Type') }}</th>
 
-                            <th>COD</th>
+                            <th>{{ __('dashboard.COD') }}</th>
 
-                            <th>Status</th>
+                            <th>{{ __('dashboard.Status') }}</th>
 
-                            <th>Created</th>
+                            <th>{{ __('dashboard.Created_At') }}</th>
 
                             <th></th>
                         </tr>
@@ -270,7 +270,7 @@
                                             </div>
                                             <div class="media-body">
                                                 <div class="d-flex flex-column">
-                                                    <small class=""><strong>{{ $order->type }}</strong></small>
+                                                    <small class=""><strong>{{ __("dashboard.{$order->type}")  }}</strong></small>
                                                     <span class="indicator-line rounded bg-{{ $types[$order->type]['color'] }}"></span>
                                                 </div>
                                             </div>
@@ -279,12 +279,12 @@
 
                                     <td>
                                         <div href="#"
-                                           class="chip chip-outline-secondary ">{{ $order->cash_on_delivery }} EGP</div>
+                                           class="chip chip-outline-secondary ">{{ $order->cash_on_delivery }} {{ __('dashboard.EGP')}}</div>
                                     </td>
 
                                     <td>
                                         <div class="d-flex flex-column">
-                                            <small class="badge badge-{{ random_color() }}">{{ $order->status }}</small>
+                                            <small class="badge badge-{{ random_color() }}">{{ __("dashboard.{$order->status}")  }}</small>
                                         </div>
                                     </td>
 
@@ -330,17 +330,17 @@
 
                             <th>#</th>
 
-                            <th>Tracking No.</th>
+                            <th>{{ __('dashboard.Tracking_No') }}</th>
 
-                            <th>Customer Info</th>
+                            <th>{{ __('dashboard.Customer_Info') }}</th>
 
-                            <th>Type</th>
+                            <th>{{ __('dashboard.Type') }}</th>
 
-                            <th>COD</th>
+                            <th>{{ __('dashboard.COD') }}</th>
 
-                            <th>Status</th>
+                            <th>{{ __('dashboard.Status') }}</th>
 
-                            <th>Created</th>
+                            <th>{{ __('dashboard.Created_At') }}</th>
 
                             <th></th>
                         </tr>

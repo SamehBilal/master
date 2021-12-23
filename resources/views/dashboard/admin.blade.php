@@ -1,12 +1,12 @@
 @extends('layouts.backend')
 
 @section('title')
-    Dashboard
+{{ __('dashboard.Dashboard') }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item active">
-        Dashboard
+        {{ __('dashboard.Dashboard') }}
     </li>
 @endsection
 
@@ -19,7 +19,7 @@
 @endsection
 
 @section('button-title')
-    New Orders
+{{ __('dashboard.New_Order') }}
 @endsection
 
 @section('main_content')
@@ -30,16 +30,16 @@
                     <div class="row">
                         <div class="col-sm-auto">
                             <div class="form-group">
-                                <label for="filter_name">Name</label>
+                                <label for="filter_name">{{ __('dashboard.Name') }}</label>
                                 <input id="filter_name"
                                        type="text"
                                        class="form-control"
-                                       placeholder="Search by name">
+                                       placeholder="{{ __('dashboard.Search_by_name') }}">
                             </div>
                         </div>
                         <div class="col-sm-auto">
                             <div class="form-group">
-                                <label for="filter_category">Status</label><br>
+                                <label for="filter_category">{{ __('dashboard.Status') }}</label><br>
                                 <select id="filter_category"
                                         class="custom-select"
                                         style="width: 200px;">
@@ -49,21 +49,21 @@
                         </div>
                         <div class="col-sm-auto">
                             <div class="form-group">
-                                <label for="filter_stock">Delivered?</label>
+                                <label for="filter_stock">{{ __('dashboard.Delivered?') }}</label>
                                 <div class="custom-control custom-checkbox mt-sm-2">
                                     <input type="checkbox"
                                            class="custom-control-input"
                                            id="filter_stock"
                                            checked="">
                                     <label class="custom-control-label"
-                                           for="filter_stock">Yes</label>
+                                           for="filter_stock">{{ __('dashboard.Yes') }}</label>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-auto">
                             <div class="form-group"
                                  style="width: 200px;">
-                                <label for="filter_date">Order date</label>
+                                <label for="filter_date">{{ __('dashboard.Order_date') }}</label>
                                 <input id="filter_date"
                                        type="text"
                                        class="form-control"
@@ -87,7 +87,7 @@
                             <div class="flex d-flex align-items-center">
                                 <div class="h2 mb-0 mr-3">3</div>
                                 <div class="flex">
-                                    <div class="card-title">Tickets</div>
+                                    <div class="card-title">{{ __('dashboard.Tickets') }}</div>
                                     <p class="card-subtitle text-50 d-flex align-items-center">
                                         31.5%
                                         <i class="material-icons text-accent ml-4pt icon-16pt">keyboard_arrow_up</i>
@@ -104,7 +104,7 @@
                             <div class="flex d-flex align-items-center">
                                 <div class="h2 mb-0 mr-3">40</div>
                                 <div class="flex">
-                                    <div class="card-title">Orders</div>
+                                    <div class="card-title">{{ __('dashboard.Orders') }}</div>
                                     <p class="card-subtitle text-50 d-flex align-items-center">
                                         51.5%
                                         <i class="material-icons text-accent ml-4pt icon-16pt">keyboard_arrow_up</i>
@@ -121,7 +121,7 @@
                             <div class="flex d-flex align-items-center">
                                 <div class="h2 mb-0 mr-3">78</div>
                                 <div class="flex">
-                                    <div class="card-title">Customers</div>
+                                    <div class="card-title">{{ __('dashboard.Customers') }}</div>
                                     <p class="card-subtitle text-50 d-flex align-items-center">
                                         20%
                                         <i class="material-icons text-accent ml-4pt icon-16pt">keyboard_arrow_up</i>
@@ -138,9 +138,9 @@
                 <div class="col-lg-4 col-md-6 card-group-row__col">
                     <div class="card card-group-row__card">
                         <div class="card-body d-flex flex-row align-items-center flex-0">
-                            <div class="h2 mb-0 mr-3">82.99 EGP</div>
+                            <div class="h2 mb-0 mr-3">82.99 {{ __('dashboard.EGP')}}</div>
                             <div class="flex">
-                                <div class="card-title">Total sales</div>
+                                <div class="card-title">{{ __('dashboard.Total_Sales') }}</div>
                                 <div class="card-subtitle text-50 d-flex align-items-center">2.6% <i class="material-icons text-accent icon-16pt ml-4pt">keyboard_arrow_up</i></div>
                             </div>
                             <div class="ml-3 align-self-start">
@@ -158,13 +158,13 @@
                         </div>
                         <div class="card-body flex-0">
                             <small class="d-flex align-items-center font-weight-bold text-muted mb-1">
-                                <span class="flex text-body">This Week</span>
-                                <span class="mx-3">50.99 EGP</span>
+                                <span class="flex text-body">{{ __('dashboard.This_Week') }}</span>
+                                <span class="mx-3">50.99 {{ __('dashboard.EGP')}}</span>
                                 <span class="d-flex align-items-center"><i class="material-icons text-success icon-16pt mr-1">keyboard_arrow_up</i> 3.2%</span>
                             </small>
                             <small class="d-flex align-items-center font-weight-bold text-muted">
-                                <span class="flex text-body">Last Week</span>
-                                <span class="mx-3">32.00 EGP</span>
+                                <span class="flex text-body">{{ __('dashboard.Last_Week') }}</span>
+                                <span class="mx-3">32.00 {{ __('dashboard.EGP')}}</span>
                                 <span class="d-flex align-items-center"><i class="material-icons text-danger icon-16pt mr-1">keyboard_arrow_down</i> 7.0%</span>
                             </small>
                         </div>
@@ -177,9 +177,9 @@
                                         data-chart-line-background-color="gradient:primary"
                                         data-chart-line-background-opacity="0.24"
                                         data-chart-line-border-color="primary"
-                                        data-chart-prefix="EGP"
+                                        data-chart-prefix="{{ __('dashboard.EGP')}}"
                                         data-chart-dark-mode="false">
-                                    <span style="font-size: 1rem;"><strong>Total Sales</strong> chart goes here.</span>
+                                    <span style="font-size: 1rem;"><strong>{{ __('dashboard.Total_Sales') }}</strong> chart goes here.</span>
                                 </canvas>
                             </div>
                             <div id="totalSalesChartLegend"
@@ -192,7 +192,7 @@
                         <div class="card-body d-flex flex-row align-items-center flex-0">
                             <div class="h2 mb-0 mr-3">78</div>
                             <div class="flex">
-                                <div class="card-title">Total Customers</div>
+                                <div class="card-title">{{ __('dashboard.Total_Customers') }}</div>
                                 <div class="card-subtitle text-50 d-flex align-items-center">9.6% <i class="material-icons text-accent icon-16pt ml-4pt">keyboard_arrow_down</i></div>
                             </div>
                             <div class="ml-3 align-self-start">
@@ -217,7 +217,7 @@
                                         data-chart-line-background-color="gradient:primary"
                                         data-chart-suffix="k"
                                         data-chart-dark-mode="false">
-                                    <span style="font-size: 1rem;"><strong>Total Customers</strong> chart goes here.</span>
+                                    <span style="font-size: 1rem;"><strong>{{ __('dashboard.Total_Customers') }}</strong> chart goes here.</span>
                                 </canvas>
                             </div>
                             <div id="totalVisitorsChartLegend"
@@ -230,7 +230,7 @@
                         <div class="card-body d-flex flex-row align-items-center flex-0">
                             <div class="h2 mb-0 mr-3">5.43%</div>
                             <div class="flex">
-                                <div class="card-title">Repeat customer</div>
+                                <div class="card-title">{{ __('dashboard.Repeat_customer') }}</div>
                                 <div class="card-subtitle text-50 d-flex align-items-center">2.6% <i class="material-icons text-accent icon-16pt ml-4pt">keyboard_arrow_up</i></div>
                             </div>
                             <div class="ml-3 align-self-start">
@@ -271,7 +271,7 @@
                         <div class="card-body d-flex flex-row align-items-center flex-0">
                             <div class="h2 mb-0 mr-3">40</div>
                             <div class="flex">
-                                <div class="card-title">Total orders</div>
+                                <div class="card-title">{{ __('dashboard.Total_orders') }}</div>
                                 <div class="card-subtitle text-50 d-flex align-items-center">92% <i class="material-icons text-accent icon-16pt ml-4pt">keyboard_arrow_up</i></div>
                             </div>
                             <div class="ml-3 align-self-start">
@@ -295,7 +295,7 @@
                                         data-chart-legend="#totalOrdersChartLegend"
                                         data-chart-line-border-color="primary"
                                         data-chart-dark-mode="false">
-                                    <span style="font-size: 1rem;"><strong>Total Orders</strong> chart goes here.</span>
+                                    <span style="font-size: 1rem;"><strong>{{ __('dashboard.Total_orders') }}</strong> chart goes here.</span>
                                 </canvas>
                             </div>
                             <div id="totalOrdersChartLegend"
@@ -306,9 +306,9 @@
                 <div class="col-lg-4 col-md-12 card-group-row__col">
                     <div class="card card-group-row__card">
                         <div class="card-body d-flex flex-row align-items-center flex-0">
-                            <div class="h2 mb-0 mr-3">25 EGP</div>
+                            <div class="h2 mb-0 mr-3">25 {{ __('dashboard.EGP')}}</div>
                             <div class="flex">
-                                <div class="card-title">Average order</div>
+                                <div class="card-title">{{ __('dashboard.Average_order') }}</div>
                                 <div class="card-subtitle text-50 d-flex align-items-center">6.7% <i class="material-icons text-accent icon-16pt ml-4pt">keyboard_arrow_up</i></div>
                             </div>
                             <div class="ml-3 align-self-start">
@@ -331,7 +331,7 @@
                                         id="averageOrderValueChart"
                                         data-chart-legend="#averageOrderValueChartLegend"
                                         data-chart-line-border-color="primary"
-                                        data-chart-prefix="EGP"
+                                        data-chart-prefix="{{ __('dashboard.EGP')}}"
                                         data-chart-dark-mode="false">
                                     <span style="font-size: 1rem;"><strong>Average Order Value</strong> chart goes here.</span>
                                 </canvas>
@@ -346,7 +346,7 @@
                         <div class="card-body d-flex flex-row align-items-center flex-0">
                             <div class="h2 mb-0 mr-3">10</div>
                             <div class="flex">
-                                <div class="card-title">Tickets</div>
+                                <div class="card-title">{{ __('dashboard.Tickets') }}</div>
                                 <div class="card-subtitle text-50 d-flex align-items-center">56.7% <i class="material-icons text-accent icon-16pt ml-4pt">keyboard_arrow_up</i></div>
                             </div>
                             <div class="ml-3 align-self-start">
@@ -368,7 +368,7 @@
                                 <div class="position-relative">
                                     <div class="text-center fullbleed d-flex align-items-center justify-content-center flex-column z-0">
                                         <h3 class="mb-0">59%</h3>
-                                        <small class="text-uppercase">Open</small>
+                                        <small class="text-uppercase">{{ __('dashboard.Open') }}</small>
                                     </div>
                                     <canvas id="visitsByDeviceChart"
                                             class="chart-canvas"
@@ -381,12 +381,12 @@
                         </div>
                         <div class="card-body flex-0">
                             <small class="d-flex align-items-center font-weight-bold text-muted mb-1">
-                                <span class="flex text-body">Open</span>
+                                <span class="flex text-body">{{ __('dashboard.Open') }}</span>
                                 <span class="mx-3">267</span>
                                 <span class="d-flex align-items-center"><i class="material-icons text-success icon-16pt mr-1">keyboard_arrow_up</i> 2.1%</span>
                             </small>
                             <small class="d-flex align-items-center font-weight-bold text-muted mb-1">
-                                <span class="flex text-body">Close</span>
+                                <span class="flex text-body">{{ __('dashboard.Close') }}</span>
                                 <span class="mx-3">184</span>
                                 <span class="d-flex align-items-center"><i class="material-icons text-danger icon-16pt mr-1">keyboard_arrow_down</i> 4.8%</span>
                             </small>
@@ -403,7 +403,7 @@
                 <div class="card-header d-flex align-items-center">
                     <div class="flatpickr-wrapper flex">
                         <div id="recent_orders_date">
-                            <strong class="card-title d-block">Recent Orders</strong>
+                            <strong class="card-title d-block">{{ __('dashboard.Recent_Orders') }}</strong>
                         </div>
                     </div>
                 </div>
@@ -426,26 +426,26 @@
                             <th>
                                 <a href="javascript:void(0)"
                                    class="sort"
-                                   data-sort="js-lists-values-employee-name">Customers</a>
+                                   data-sort="js-lists-values-employee-name"></a>
                             </th>
 
                             <th style="width: 150px;">
                                 <a href="javascript:void(0)"
                                    class="sort"
-                                   data-sort="js-lists-values-employer-name">Package No.</a>
+                                   data-sort="js-lists-values-employer-name">{{ __('dashboard.Package_No') }}</a>
                             </th>
 
-                            <th style="width: 37px;">Status</th>
+                            <th style="width: 37px;">{{ __('dashboard.Status') }}</th>
 
                             <th style="width: 120px;">
                                 <a href="javascript:void(0)"
                                    class="sort"
-                                   data-sort="js-lists-values-activity">Created</a>
+                                   data-sort="js-lists-values-activity">{{ __('dashboard.Earnings') }}</a>
                             </th>
                             <th style="width: 51px;">
                                 <a href="javascript:void(0)"
                                    class="sort"
-                                   data-sort="js-lists-values-earnings">Earnings</a>
+                                   data-sort="js-lists-values-earnings">{{ __('dashboard.Created_Date') }}</a>
                             </th>
                             <th style="width: 24px;"
                                 class="pl-0"></th>
@@ -499,7 +499,7 @@
                                 </div>
                             </td>
 
-                            <td class="js-lists-values-earnings small">12,402 EGP</td>
+                            <td class="js-lists-values-earnings small">12,402 {{ __('dashboard.EGP')}}</td>
                             <td class="text-50 js-lists-values-activity small">3 days ago</td>
                             <td class="text-right pl-0">
                                 <a href=""
@@ -550,7 +550,7 @@
                                 </div>
                             </td>
 
-                            <td class="js-lists-values-earnings small">1,943 EGP</td>
+                            <td class="js-lists-values-earnings small">1,943 {{ __('dashboard.EGP')}}</td>
                             <td class="text-50 js-lists-values-activity small">1 week ago</td>
                             <td class="text-right pl-0">
                                 <a href=""
@@ -602,7 +602,7 @@
                                 </div>
                             </td>
 
-                            <td class="js-lists-values-earnings small">1,401 EGP</td>
+                            <td class="js-lists-values-earnings small">1,401 {{ __('dashboard.EGP')}}</td>
                             <td class="text-50 js-lists-values-activity small">2 weeks ago</td>
                             <td class="text-right pl-0">
                                 <a href=""
@@ -653,7 +653,7 @@
                                 </div>
                             </td>
 
-                            <td class="js-lists-values-earnings small">22,402 EGP</td>
+                            <td class="js-lists-values-earnings small">22,402 {{ __('dashboard.EGP')}}</td>
                             <td class="text-50 js-lists-values-activity small">3 weeks ago</td>
                             <td class="text-right pl-0">
                                 <a href=""
