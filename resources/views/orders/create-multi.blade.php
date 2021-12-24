@@ -1,15 +1,15 @@
 @extends('layouts.backend')
 
 @section('title')
-    Orders
+{{ __('dashboard.Orders') }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('dashboard.orders.index') }}">Orders</a>
+        <a href="{{ route('dashboard.orders.index') }}">{{ __('dashboard.Orders') }}</a>
     </li>
     <li class="breadcrumb-item active">
-        create multi orders
+        {{ __('dashboard.create multi orders') }}
     </li>
 @endsection
 
@@ -22,7 +22,7 @@
 @endsection
 
 @section('button-title')
-    All Orders
+{{ __('dashboard.All_orders') }}
 @endsection
 
 @section('main_content')
@@ -32,7 +32,7 @@
             <div class="row mb-32pt">
                 <div class="col-lg-4">
                     <div class="page-separator">
-                        <div class="page-separator__text">Upload Multiple Orders</div>
+                        <div class="page-separator__text">{{ __('dashboard.Upload Multiple Orders') }}</div>
                     </div>
                    {{--  <p class="card-subtitle text-70 mb-16pt mb-lg-0">Drag and drop file uploads with image previews powered by Dropzone.js. Please read the <a href="http://www.dropzonejs.com/"                                                                                                                                        target="_blank">official plugin documentation</a> for a full list of options.</p>
                  --}}</div>
@@ -46,7 +46,7 @@
                                        id="file"
                                        class="custom-file-input">
                                 <label for="file"
-                                       class="custom-file-label">Choose file</label>
+                                       class="custom-file-label">{{ __('dashboard.Choose file') }}</label>
                             </div>
                         </div>
 
