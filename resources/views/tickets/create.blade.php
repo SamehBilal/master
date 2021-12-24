@@ -1,15 +1,15 @@
 @extends('layouts.backend')
 
 @section('title')
-    Tickets
+{{ __('dashboard.Tickets') }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('dashboard.tickets.index') }}">Tickets</a>
+        <a href="{{ route('dashboard.tickets.index') }}">{{ __('dashboard.Tickets') }}</a>
     </li>
     <li class="breadcrumb-item active">
-        create
+        {{ __('dashboard.create') }}
     </li>
 @endsection
 
@@ -22,14 +22,14 @@
 @endsection
 
 @section('button-title')
-    All Tickets
+{{ __('dashboard.All Tickets') }}
 @endsection
 
 @section('main_content')
     <div class="container page__container page-section">
         <div class="page-separator">
             <div class="page-separator__text" >
-                Create New Ticket
+                {{ __('dashboard.Create New Ticket') }}
             </div>
         </div>
         <form method="POST" action="{{ route('dashboard.tickets.store') }}" enctype="multipart/form-data">
@@ -39,15 +39,15 @@
                     <div class="row">
                         <div class="col-lg-3 bg-light">
                             <div class="page-separator">
-                                <div class="page-separator__text">New Ticket</div>
+                                <div class="page-separator__text">{{ __('dashboard.New Ticket') }}</div>
                             </div>
-                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">Tell us more about your issue.</p>
+                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.Tell us more about your issue') }}</p>
                         </div>
                         <div class="col-lg-9 row p-2">
                             <div class="col-12 col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="name">Tracking No:</label> <small class="badge badge-secondary">optional</small>
+                                           for="name">{{ __('dashboard.Tracking_No') }}:</label> <small class="badge badge-secondary">{{ __('dashboard.optional') }}</small>
                                     <input type="text"
                                            class="form-control @error('traking_number') is-invalid @enderror"
                                            value="{{ old('traking_number') }}"
@@ -55,7 +55,7 @@
                                            name="traking_number"
                                            required="required"
                                            autocomplete="traking_number"
-                                           placeholder="You can add more than one tracking number ..."
+                                           placeholder="{{ __('dashboard.You can add more than one tracking number') }} ..."
                                            autofocus>
                                     @error('traking_number')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -66,13 +66,13 @@
                             <div class="col-12 col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select03">I've got a problem with</label>
+                                           for="select03">{{ __('dashboard.I\'ve got a problem with') }}</label>
                                     <select id="select03"
                                             data-toggle="select"
                                             data-minimum-results-for-search="-1"
                                             class="form-control form-control-sm @error('ticket_issue_id') is-invalid @enderror"
                                             name="ticket_issue_id" required>
-                                            <option value="">Select Proplem</option>
+                                            <option value="">{{ __('dashboard.Select Proplem') }}</option>
                                             @foreach ($ticketIssues as $ticketIssue)
                                                 <option value="{{$ticketIssue->id}}" {{ old('ticket_issue_id') == $ticketIssue->id ? 'selected':'' }}>
                                                     {{$ticketIssue->issue}}
@@ -88,7 +88,7 @@
                             <div class="col-12 col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="name">Ticket subject:</label>
+                                           for="name">{{ __('dashboard.Ticket subject') }}:</label>
                                     <input type="text"
                                            class="form-control @error('subject') is-invalid @enderror"
                                            value="{{ old('subject') }}"
@@ -96,7 +96,7 @@
                                            name="subject"
                                            required="required"
                                            autocomplete="Ticket subject"
-                                           placeholder="Ticket subject ..."
+                                           placeholder="{{ __('dashboard.Ticket subject') }} ..."
                                            required>
                                     @error('subject')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -107,12 +107,12 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="description">Description:</label> <small class="badge badge-secondary">optional</small>
+                                           for="description">{{ __('dashboard.Description') }}:</label> <small class="badge badge-secondary">{{ __('dashboard.optional') }}</small>
                                     <textarea rows="8"
                                               id="description"
                                               name="description"
                                               class="form-control @error('description') is-invalid @enderror"
-                                              placeholder="Description">{{ old('description') }}</textarea>
+                                              placeholder="{{ __('dashboard.Description') }}">{{ old('description') }}</textarea>
                                     @error('description')
                                         <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
@@ -122,7 +122,7 @@
                             <div class="col-12 col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="files">Images or Excelsheets:</label> <small class="badge badge-secondary">optional</small>
+                                           for="files">{{ __('dashboard.Images or Excelsheets') }}:</label> <small class="badge badge-secondary">{{ __('dashboard.optional') }}</small>
                                            <input type="file"
                                            @error('files') is-invalid @enderror"
                                            id="files"
@@ -140,7 +140,7 @@
             </div>
 
             <button type="submit"
-                    class="btn pull-right btn-primary">Submit</button>
+                    class="btn pull-right btn-primary">{{ __('dashboard.Submit') }}</button>
         </form>
     </div>
 @endsection

@@ -1,12 +1,12 @@
 @extends('layouts.backend')
 
 @section('title')
-    Subscribers
+{{ __('dashboard.Subscribers') }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item active">
-        Subscribers
+        {{ __('dashboard.Subscribers') }}
     </li>
 @endsection
 
@@ -19,7 +19,7 @@
 @endsection
 
 @section('button-title')
-    All Subscriber
+{{ __('dashboard.All Subscriber') }}
 @endsection
 
 @section('main_content')
@@ -27,7 +27,7 @@
         <div class="page-section">
 
             <div class="page-separator">
-                <div class="page-separator__text">Subscribers</div>
+                <div class="page-separator__text">{{ __('dashboard.Subscribers') }}</div>
             </div>
 
             <div class="card dashboard-area-tabs p-relative o-hidden mb-32pt">
@@ -40,9 +40,9 @@
                         <tr>
                             <th>#</th>
 
-                            <th>Email</th>
+                            <th>{{ __('dashboard.Email') }}</th>
 
-                            <th>Created</th>
+                            <th>{{ __('dashboard.Created_At') }}</th>
                         </tr>
                         </thead>
                         <tbody id="projects">
@@ -76,16 +76,16 @@
                             @php $count++ @endphp
                         @empty
                             <td></td>
-                            <td colspan="3"><h4>There are no subscribers yet.</h4></td>
+                            <td colspan="3"><h4>{{ __('dashboard.There are no subscribers yet') }}</h4></td>
                         @endforelse
                         </tbody>
                         <tfoot>
                         <tr>
                             <th>#</th>
 
-                            <th>Email</th>
+                            <th>{{ __('dashboard.Email') }}</th>
 
-                            <th>Created</th>
+                            <th>{{ __('dashboard.Created_At') }}</th>
                         </tr>
                         </tfoot>
                     </table>

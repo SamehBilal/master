@@ -1613,7 +1613,8 @@
                         </div>
                         <div class="col-lg-12 invert pickup">
                             <a href="#" class="text-dark" onclick="event.preventDefault();
-                                                    display(module='pickup')">+ {{ __('dashboard.Create new Pickup') }}</a>
+                                                    display(module='pickup')">+ {{ __('dashboard.
+                                                     Pickup') }}</a>
                         </div>
                         <div class="col-md-12 hidden pickups">
                             <div class="form-group">
