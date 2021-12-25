@@ -6,13 +6,13 @@
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('dashboard.locations.index') }}">Locations</a>
+        <a href="{{ route('dashboard.locations.index') }}">{{ __('dashboard.Locations') }}</a>
     </li>
     <li class="breadcrumb-item ">
         <a href="{{ route('dashboard.locations.show', $location->id) }}">{{ $location->name}}</a>
     </li>
     <li class="breadcrumb-item active">
-        Edit
+        {{ __('dashboard.Edit') }}
     </li>
 @endsection
 
@@ -25,14 +25,14 @@
 @endsection
 
 @section('button-title')
-    All Locations
+{{ __('dashboard.Edit') }}
 @endsection
 
 @section('main_content')
     <div class="container page__container page-section">
         <div class="page-separator">
             <div class="page-separator__text" >
-                Location Information
+                {{ __('dashboard.Location Information') }}
             </div>
         </div>
         <form method="POST" action="{{ route('dashboard.locations.update',$location->id) }}" enctype="multipart/form-data">
@@ -43,15 +43,15 @@
                     <div class="row">
                         <div class="col-lg-3 bg-light">
                             <div class="page-separator">
-                                <div class="page-separator__text">Basic Details</div>
+                                <div class="page-separator__text">{{ __('dashboard.Basic Details') }}</div>
                             </div>
-                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of the user locations listed.</p>
+                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.Basic details of the user locations listed') }}</p>
                         </div>
                         <div class="col-lg-9 row p-2">
                         <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="name">Name:</label>
+                                           for="name">{{ __('dashboard.Name') }}:</label>
                                     <input type="text"
                                            class="form-control @error('name') is-invalid @enderror"
                                            value="{{ old('name') ? old('name'):$location->name }}"
@@ -59,7 +59,7 @@
                                            name="name"
                                            required="required"
                                            autocomplete="name"
-                                           placeholder="Currency name ..."
+                                           placeholder="{{ __('dashboard.Name') }} ..."
                                            autofocus>
                                     @error('name')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -70,7 +70,7 @@
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select05">Country</label>
+                                           for="select05">{{ __('dashboard.Country') }}</label>
                                     <select id="select05"
                                             data-toggle="select"
                                             class="form-control select05 form-control-sm @error('country_id') is-invalid @enderror"
@@ -90,7 +90,7 @@
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select01">State</label>
+                                           for="select01">{{ __('dashboard.State') }}</label>
                                     <select id="select01"
                                             data-toggle="select"
                                             data-minimum-results-for-search="-1"
@@ -111,7 +111,7 @@
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select03">City</label>
+                                           for="select03">{{ __('dashboard.City') }}</label>
                                     <select id="select03"
                                             data-toggle="select"
                                             data-minimum-results-for-search="-1"
@@ -134,7 +134,7 @@
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="street">Street:</label>
+                                           for="street">{{ __('dashboard.Street') }}:</label>
                                     <div class="input-group input-group-merge">
                                         <input type="text"
                                                class="form-control @error('street') is-invalid @enderror"
@@ -142,7 +142,7 @@
                                                autocomplete="street"
                                                name="street"
                                                id="street"
-                                               placeholder="Enter your street .."
+                                               placeholder="{{ __('dashboard.Enter your street') }} .."
                                                autofocus>
                                         <div class="input-group-append">
                                             <div class="input-group-text">
@@ -159,7 +159,7 @@
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="building">Building:</label>
+                                           for="building">{{ __('dashboard.Building') }}:</label>
                                     <div class="input-group input-group-merge">
                                         <input type="text"
                                                class="form-control @error('building') is-invalid @enderror"
@@ -167,7 +167,7 @@
                                                autocomplete="building"
                                                name="building"
                                                id="building"
-                                               placeholder="Enter your building .."
+                                               placeholder="{{ __('dashboard.Enter your building') }} .."
                                                autofocus>
                                         <div class="input-group-append">
                                             <div class="input-group-text">
@@ -186,7 +186,7 @@
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="floor">Floor:</label>
+                                           for="floor">{{ __('dashboard.Floor') }}:</label>
                                     <div class="input-group input-group-merge">
                                         <input type="text"
                                                class="form-control @error('floor') is-invalid @enderror"
@@ -194,7 +194,7 @@
                                                autocomplete="floor"
                                                name="floor"
                                                id="floor"
-                                               placeholder="Enter your floor .."
+                                               placeholder="{{ __('dashboard.Enter your floor') }} .."
                                                autofocus>
                                         <div class="input-group-append">
                                             <div class="input-group-text">
@@ -211,7 +211,7 @@
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="apartment">Apartment:</label>
+                                           for="apartment">{{ __('dashboard.Apartment') }}:</label>
                                     <div class="input-group input-group-merge">
                                         <input type="text"
                                                class="form-control @error('apartment') is-invalid @enderror"
@@ -219,7 +219,7 @@
                                                autocomplete="apartment"
                                                name="apartment"
                                                id="apartment"
-                                               placeholder="Enter your apartment .."
+                                               placeholder="{{ __('dashboard.Enter your apartment') }} .."
                                                autofocus>
                                         <div class="input-group-append">
                                             <div class="input-group-text">
@@ -236,7 +236,7 @@
                             <div class="col-12 col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="landmarks">Landmarks:</label>
+                                           for="landmarks">{{ __('dashboard.Landmarks') }}:</label>
                                     <div class="input-group input-group-merge">
                                         <input type="text"
                                                class="form-control @error('landmarks') is-invalid @enderror"
@@ -244,7 +244,7 @@
                                                autocomplete="landmarks"
                                                name="landmarks"
                                                id="landmarks"
-                                               placeholder="Enter your landmarks .."
+                                               placeholder="{{ __('dashboard.Enter your landmarks') }} .."
                                                autofocus>
                                         <div class="input-group-append">
                                             <div class="input-group-text">
@@ -264,7 +264,7 @@
             </div>
 
             <button type="submit"
-                    class="btn pull-right btn-primary">Submit</button>
+                    class="btn pull-right btn-primary">{{ __('dashboard.Submit') }}</button>
         </form>
     </div>
 @endsection

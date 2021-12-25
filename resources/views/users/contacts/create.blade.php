@@ -1,15 +1,15 @@
 @extends('layouts.backend')
 
 @section('title')
-    Contacts
+{{ __('dashboard.Contacts') }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('dashboard.contacts.index') }}">Contacts</a>
+        <a href="{{ route('dashboard.contacts.index') }}">{{ __('dashboard.Contacts') }}</a>
     </li>
     <li class="breadcrumb-item active">
-        create
+        {{ __('dashboard.create') }}
     </li>
 @endsection
 
@@ -22,14 +22,14 @@
 @endsection
 
 @section('button-title')
-    All Contacts
+{{ __('dashboard.All Contacts') }}
 @endsection
 
 @section('main_content')
     <div class="container page__container page-section">
         <div class="page-separator">
             <div class="page-separator__text" >
-                Contact Information
+                {{ __('dashboard.Contact Information') }}
             </div>
         </div>
         <form method="POST" action="{{ route('dashboard.contacts.index') }}" enctype="multipart/form-data">
@@ -39,9 +39,9 @@
                     <div class="row">
                         <div class="col-lg-3 bg-light">
                             <div class="page-separator">
-                                <div class="page-separator__text">Basic Details</div>
+                                <div class="page-separator__text">{{ __('dashboard.Basic Details') }}</div>
                             </div>
-                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of the user contacts listed.</p>
+                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.Basic details of the user contacts listed') }}</p>
                         </div>
                         <div class="col-lg-9 p-4 row">
                             <div class="flex"
@@ -50,7 +50,7 @@
                                     <div class="col-12 col-md-6 mb-3">
                                         <div class="form-group">
                                             <label class="form-label"
-                                                for="contact_name">Contact name:</label>
+                                                for="contact_name">{{ __('dashboard.Contact name') }}:</label>
                                             <div class="">
                                                 <input type="text"
                                                     class="form-control @error('contact_name') is-invalid @enderror"
@@ -58,7 +58,7 @@
                                                     autocomplete="contact_name"
                                                     name="contact_name"
                                                     id="contact_name"
-                                                    placeholder="Enter your contact name .."
+                                                    placeholder="{{ __('dashboard.Enter your contact name') }} .."
                                                     autofocus>
 
                                                 @error('contact_name')
@@ -71,7 +71,7 @@
                                     <div class="col-12 col-md-6 mb-3">
                                         <div class="form-group">
                                             <label class="form-label"
-                                                for="contact_job_title">Job title:</label>
+                                                for="contact_job_title">{{ __('dashboard.Job title') }}:</label>
                                             <div>
                                                 <input type="text"
                                                     class="form-control @error('contact_job_title') is-invalid @enderror"
@@ -79,7 +79,7 @@
                                                     autocomplete="contact_job_title"
                                                     name="contact_job_title"
                                                     id="contact_job_title"
-                                                    placeholder="Enter your contact job title .."
+                                                    placeholder="{{ __('dashboard.Enter your contact job title') }} .."
                                                     >
 
                                                 @error('contact_job_title')
@@ -94,7 +94,7 @@
                                     <div class="col-12 col-md-6 mb-3">
                                         <div class="form-group">
                                             <label class="form-label"
-                                                for="contact_phone">Phone:</label>
+                                                for="contact_phone">{{ __('dashboard.Phone') }}:</label>
                                             <div>
                                                 <input type="text"
                                                     class="form-control @error('contact_phone') is-invalid @enderror"
@@ -116,7 +116,7 @@
                                     <div class="col-12 col-md-6 mb-3">
                                         <div class="form-group">
                                             <label class="form-label"
-                                                for="contact_email">Email:</label>
+                                                for="contact_email">{{ __('dashboard.Email') }}:</label>
                                             <div>
                                                 <input type="email"
                                                     class="form-control @error('contact_email') is-invalid @enderror"
@@ -124,7 +124,7 @@
                                                     autocomplete="contact_email"
                                                     name="contact_email"
                                                     id="contact_email"
-                                                    placeholder="Enter your email address .."
+                                                    placeholder="{{ __('dashboard.Enter your email address') }} .."
                                                     autofocus>
 
                                                 @error('contact_email')
@@ -139,7 +139,7 @@
                                     <div class="col-12 col-md-6 mb-3">
                                         <div class="form-group">
                                             <label class="form-label"
-                                                   for="select04">Category</label>
+                                                   for="select04">{{ __('dashboard.Category') }}</label>
                                             <select id="select04"
                                                     data-toggle="select"
                                                     data-minimum-results-for-search="-1"
@@ -164,7 +164,7 @@
                 </div>
             </div>
             <button type="submit"
-                    class="btn pull-right btn-primary">Submit</button>
+                    class="btn pull-right btn-primary">{{ __('dashboard.Submit') }}</button>
         </form>
     </div>
 @endsection

@@ -1,12 +1,12 @@
 @extends('layouts.backend')
 
 @section('title')
-    Categories
+{{ __('dashboard.Categories') }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item active">
-        Categories
+        {{ __('dashboard.Categories') }}
     </li>
 @endsection
 
@@ -19,7 +19,7 @@
 @endsection
 
 @section('button-title')
-    New User Category
+{{ __('dashboard.New User Category') }}
 @endsection
 
 @section('main_content')
@@ -29,9 +29,9 @@
             <div class="row mb-32pt">
                 <div class="col-lg-4">
                     <div class="page-separator">
-                        <div class="page-separator__text">Categories</div>
+                        <div class="page-separator__text">{{ __('dashboard.Categories') }}</div>
                     </div>
-                    <p class="card-subtitle text-70 mb-16pt mb-lg-0">All the User Categories listed in the app.</p>
+                    <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.All the User Categories listed in the app') }}</p>
                 </div>
                 <div class="col-8 d-flex align-items-center">
                     <div class="flex"
@@ -48,7 +48,7 @@
                                     <div class="search-form">
                                         <input type="text"
                                                class="form-control search"
-                                               placeholder="Search ...">
+                                               placeholder="{{ __('dashboard.Search') }} ...">
                                         <button class="btn"
                                                 type="button"><i class="material-icons">search</i></button>
                                     </div>
@@ -61,16 +61,16 @@
                                         <th>
                                             <a href="javascript:void(0)"
                                                class="sort"
-                                               data-sort="js-lists-values-name">Name</a>
+                                               data-sort="js-lists-values-name">{{ __('dashboard.Name') }}</a>
                                         </th>
 
                                         <th style="width: 37px;"
-                                            data-sort="js-lists-values-status">Status</th>
+                                            data-sort="js-lists-values-status">{{ __('dashboard.Status') }}</th>
 
                                         <th style="width: 120px;">
                                             <a href="javascript:void(0)"
                                                class="sort"
-                                               data-sort="js-lists-values-created">Created</a>
+                                               data-sort="js-lists-values-created">{{ __('dashboard.Created_At') }}</a>
                                         </th>
 
                                         <th style="width: 24px;"
@@ -106,7 +106,7 @@
 
                                             <td class="js-lists-values-status small">
                                                 <div class="d-flex flex-column">
-                                                    <button class="btn btn-sm {{ $category->status == 'active' ? 'btn-success':'btn-danger' }}">{{ $category->status }}</button>
+                                                    <button class="btn btn-sm {{ $category->status == 'active' ? 'btn-success':'btn-danger' }}">{{ __("dashboard.{$category->status}") }}</button>
                                                 </div>
                                             </td>
 

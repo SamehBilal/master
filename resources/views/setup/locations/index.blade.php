@@ -1,12 +1,12 @@
 @extends('layouts.backend')
 
 @section('title')
-    Locations
+{{ __('dashboard.Locations') }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item active">
-        Locations
+        {{ __('dashboard.Locations') }}
     </li>
 @endsection
 
@@ -19,7 +19,7 @@
 @endsection
 
 @section('button-title')
-    New Location
+{{ __('dashboard.New Location') }}
 @endsection
 
 @section('main_content')
@@ -27,7 +27,7 @@
         <div class="page-section">
 
             <div class="page-separator">
-                <div class="page-separator__text">Locations</div>
+                <div class="page-separator__text">{{ __('dashboard.Locations') }}</div>
             </div>
 
             <div class="card dashboard-area-tabs p-relative o-hidden mb-32pt">
@@ -36,11 +36,11 @@
                     <div class="card-header">
                         <form class="form-inline">
                             <label class="mr-sm-2 form-label"
-                                   for="myInputTextField">Filter by:</label>
+                                   for="myInputTextField">{{ __('dashboard.Filter by') }}:</label>
                             <input type="text"
                                    class="form-control search mb-2 mr-sm-2 mb-sm-0"
                                    id="myInputTextField"
-                                   placeholder="Search ...">
+                                   placeholder="{{ __('dashboard.Search') }} ...">
 
                             <div class="col-lg d-flex flex-wrap buttons-datatable-add">
                                 <div class="ml-lg-auto dropdown select-datatable-add">
@@ -73,15 +73,15 @@
 
                             <th>#</th>
 
-                            <th>Name</th>
+                            <th>{{ __('dashboard.Name') }}</th>
 
-                            <th>Address</th>
+                            <th>{{ __('dashboard.Address') }}</th>
 
-                            <th>City</th>
+                            <th>{{ __('dashboard.City') }}</th>
 
-                            <th>State</th>
+                            <th>{{ __('dashboard.State') }}</th>
 
-                            <th>Created</th>
+                            <th>{{ __('dashboard.Created_At') }}</th>
 
                             <th ></th>
                         </tr>
@@ -181,15 +181,15 @@
 
                             <th>#</th>
 
-                            <th>Name</th>
+                            <th>{{ __('dashboard.Name') }}</th>
 
-                            <th>Address</th>
+                            <th>{{ __('dashboard.Address') }}</th>
 
-                            <th>City</th>
+                            <th>{{ __('dashboard.City') }}</th>
 
-                            <th>State</th>
+                            <th>{{ __('dashboard.State') }}</th>
 
-                            <th>Created</th>
+                            <th>{{ __('dashboard.Created_At') }}</th>
 
                             <th ></th>
                         </tr>

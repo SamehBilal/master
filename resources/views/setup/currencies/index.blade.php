@@ -1,12 +1,12 @@
 @extends('layouts.backend')
 
 @section('title')
-    Currencies
+{{ __('dashboard.Currencies') }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item active">
-        Currencies
+        {{ __('dashboard.Currencies') }}
     </li>
 @endsection
 
@@ -19,7 +19,7 @@
 @endsection
 
 @section('button-title')
-    New Currency
+{{ __('dashboard.New Currency') }}
 @endsection
 
 @section('main_content')
@@ -29,9 +29,9 @@
             <div class="row mb-32pt">
                 <div class="col-lg-4">
                     <div class="page-separator">
-                        <div class="page-separator__text">Currencies</div>
+                        <div class="page-separator__text">{{ __('dashboard.Currencies') }}</div>
                     </div>
-                    <p class="card-subtitle text-70 mb-16pt mb-lg-0">All the currencies listed in the app.</p>
+                    <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.All the currencies listed in the app') }}</p>
                 </div>
                 <div class="col-8 d-flex align-items-center">
                     <div class="flex"
@@ -48,7 +48,7 @@
                                     <div class="search-form">
                                         <input type="text"
                                                class="form-control search"
-                                               placeholder="Search ...">
+                                               placeholder="{{ __('dashboard.Search') }} ...">
                                         <button class="btn"
                                                 type="button"><i class="material-icons">search</i></button>
                                     </div>
@@ -61,16 +61,16 @@
                                         <th>
                                             <a href="javascript:void(0)"
                                                class="sort"
-                                               data-sort="js-lists-values-name">Name</a>
+                                               data-sort="js-lists-values-name">{{ __('dashboard.Name') }}</a>
                                         </th>
 
                                         <th style="width: 37px;"
-                                            data-sort="js-lists-values-rate">Rate</th>
+                                            data-sort="js-lists-values-rate">{{ __('dashboard.Rate') }}</th>
 
                                         <th style="width: 120px;">
                                             <a href="javascript:void(0)"
                                                class="sort"
-                                               data-sort="js-lists-values-created">Created</a>
+                                               data-sort="js-lists-values-created">{{ __('dashboard.Created_At') }}</a>
                                         </th>
 
                                         <th style="width: 24px;"
