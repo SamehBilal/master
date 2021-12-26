@@ -110,6 +110,13 @@
                         Customers
                     </a>
                 </li>
+                <li class="sidebar-menu-item {{ set_active(['dashboard/businesses*'])}}">
+                    <a class="sidebar-menu-button"
+                       href="{{ route('dashboard.businesses.index') }}">
+                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">business</span>
+                        Business
+                    </a>
+                </li>
                 <li class="sidebar-menu-item {{ set_active(['dashboard/contacts*'])}}">
                     <a class="sidebar-menu-button"
                        href="{{ route('dashboard.contacts.index') }}">
