@@ -1,12 +1,12 @@
 @extends('layouts.backend')
 
 @section('title')
-    Pickups
+    Business
 @endsection
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('dashboard.pickups.index') }}">pickups</a>
+        <a href="{{ route('dashboard.businesses.index') }}">pickups</a>
     </li>
     <li class="breadcrumb-item active">
         create
@@ -14,7 +14,7 @@
 @endsection
 
 @section('button-link')
-    {{ route('dashboard.pickups.index') }}
+    {{ route('dashboard.businesses.index') }}
 @endsection
 
 @section('button-icon')
@@ -22,12 +22,12 @@
 @endsection
 
 @section('button-title')
-    All Pickups
+    All Businesses
 @endsection
 
 @section('main_content')
     <div class="container page__container page-section">
-        <form method="POST" action="{{ route('dashboard.pickups.index') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('dashboard.businesses.index') }}" enctype="multipart/form-data">
             @csrf
             <div class="page-separator">
                 <div class="page-separator__text" style="line-height: 30px;">
