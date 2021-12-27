@@ -1,15 +1,15 @@
 @extends('layouts.backend')
 
 @section('title')
-    Orders
+{{ __('dashboard.Orders') }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('dashboard.orders.index') }}">Orders</a>
+        <a href="{{ route('dashboard.orders.index') }}">{{ __('dashboard.Orders') }}</a>
     </li>
     <li class="breadcrumb-item active">
-        create
+        {{ __('dashboard.create') }}
     </li>
 @endsection
 
@@ -22,7 +22,7 @@
 @endsection
 
 @section('button-title')
-    All Orders
+{{ __('dashboard.All_orders') }}
 @endsection
 
 @section('main_content')
@@ -32,7 +32,7 @@
                 <button type="button" class="btn btn-sm rounded-circle btn-dark">
                     &nbsp;  1 &nbsp;
                 </button>
-                &nbsp;Order Information
+                &nbsp;{{ __('dashboard.Order_Information') }}
             </div>
         </div>
         <div class="row mb-32pt">
@@ -61,8 +61,8 @@
                                             </div>
                                         </span>
                                         <span class="flex d-flex flex-column">
-                                                        <strong class="card-title">Deliver</strong>
-                                                        <small class="card-subtitle text-20">Deliver a package <br>to your customer.</small>
+                                                        <strong class="card-title">{{ __('dashboard.Deliver') }}</strong>
+                                                        <small class="card-subtitle text-20">{{ __('dashboard.Deliver a package') }} <br>{{ __('dashboard.to your customer') }}</small>
                                                     </span>
                                     </a>
                                 </div>
@@ -83,8 +83,8 @@
                                             </div>
                                         </span>
                                         <span class="flex d-flex flex-column">
-                                                        <strong class="card-title">Exchange</strong>
-                                                        <small class="card-subtitle text-20">Exchange packages <br>with your customer.</small>
+                                                        <strong class="card-title">{{ __('dashboard.Exchange') }}</strong>
+                                                        <small class="card-subtitle text-20">{{ __('dashboard.Exchange packages') }}<br>{{ __('dashboard.with your customer') }}</small>
                                                     </span>
                                     </a>
                                 </div>
@@ -105,8 +105,8 @@
                                             </div>
                                         </span>
                                         <span class="flex d-flex flex-column">
-                                                        <strong class="card-title">Return</strong>
-                                                        <small class="card-subtitle text-20">Pickup a package <br>from your customer.</small>
+                                                        <strong class="card-title">{{ __('dashboard.Return') }}</strong>
+                                                        <small class="card-subtitle text-20">{{ __('dashboard.Pickup a package') }} <br>{{ __('dashboard.from your customer') }}</small>
                                                     </span>
                                     </a>
                                 </div>
@@ -127,8 +127,8 @@
                                             </div>
                                         </span>
                                         <span class="flex d-flex flex-column">
-                                                        <strong class="card-title">Cash Collection</strong>
-                                                        <small class="card-subtitle text-20">Collect or refund <br>cash to your customer.</small>
+                                                        <strong class="card-title">{{ __('dashboard.Cash Collection') }}</strong>
+                                                        <small class="card-subtitle text-20">{{ __('dashboard.Collect or refund') }} <br>{{ __('dashboard.cash to your customer') }}</small>
                                                     </span>
                                     </a>
                                 </div>
@@ -139,14 +139,14 @@
                                 <div class="row">
                                     <div class="col-lg-3 bg-light">
                                         <div class="page-separator">
-                                            <div class="page-separator__text">Basic Details</div>
+                                            <div class="page-separator__text">{{ __('dashboard.Basic Details') }}</div>
                                         </div>
-                                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of the customer.</p>
+                                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.Basic details of the customer') }}</p>
                                     </div>
                                     <div class="col-lg-9 row ">
                                         <div class="page-separator col-lg-12">
                                             <div class="page-separator__text" >
-                                                &nbsp; Customer Information
+                                                &nbsp; {{ __('dashboard.Customer Information') }}
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -160,7 +160,7 @@
                                                                value="with cash collection"
                                                                checked="">
                                                         <label for="with_cash_collection"
-                                                               class="custom-control-label">With cash collection</label>
+                                                               class="custom-control-label">{{ __('dashboard.With cash collection') }}</label>
                                                     </div>
                                                     <div class="custom-control custom-radio">
                                                         <input id="without_cash_collection"
@@ -169,7 +169,7 @@
                                                                value="without cash collection"
                                                                class="custom-control-input">
                                                         <label for="without_cash_collection"
-                                                               class="custom-control-label">Without cash collection</label>
+                                                               class="custom-control-label">{{ __('dashboard.Without cash collection') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -177,7 +177,7 @@
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="cash_on_delivery">Cash on Delivery:</label>
+                                                       for="cash_on_delivery">{{ __('dashboard.Cash on Delivery') }}:</label>
                                                 <input type="number"
                                                        class="form-control @error('cash_on_delivery') is-invalid @enderror"
                                                        value=""
@@ -186,19 +186,19 @@
                                                        id="cash_on_delivery"
                                                        name="cash_on_delivery"
                                                        autocomplete="cash_on_delivery"
-                                                       placeholder="Cash on Delivery ..."
+                                                       placeholder="{{ __('dashboard.Cash on Delivery') }} ..."
                                                        autofocus>
                                                 @error('cash_on_delivery')
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
                                                 <div class="valid-feedback">Looks good!</div>
-                                                <small>Your customer shall pay this amount to courier upon delivery.</small>
+                                                <small>{{ __('dashboard.Without cash collection') }}</small>
                                             </div>
                                         </div>
                                         <br>
                                         <div class="page-separator col-lg-12">
                                             <div class="page-separator__text" >
-                                                &nbsp; Package Details
+                                                &nbsp; {{ __('dashboard.Package Details') }}
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -212,7 +212,7 @@
                                                                class="custom-control-input"
                                                                checked="">
                                                         <label for="radioStacked1"
-                                                               class="custom-control-label">Parcel</label>
+                                                               class="custom-control-label">{{ __('dashboard.Parcel') }}</label>
                                                     </div>
                                                     <div class="custom-control custom-radio">
                                                         <input id="radioStacked2"
@@ -221,7 +221,7 @@
                                                                value="document"
                                                                class="custom-control-input">
                                                         <label for="radioStacked2"
-                                                               class="custom-control-label">Document</label>
+                                                               class="custom-control-label">{{ __('dashboard.Document') }}</label>
                                                     </div>
                                                     <div class="custom-control custom-radio">
                                                         <input id="radioStacked3"
@@ -230,10 +230,10 @@
                                                                value="bulky"
                                                                class="custom-control-input">
                                                         <label for="radioStacked3"
-                                                               class="custom-control-label">Bulky</label>
+                                                               class="custom-control-label">{{ __('dashboard.Bulky') }}</label>
                                                     </div>
                                                 </div>
-                                                <small>Select the package type to ensure the right vehicle is selected for pickup.</small>
+                                                <small>{{ __('dashboard.Select the package type to ensure the right vehicle is selected for pickup') }}.</small>
                                             </div>
                                         </div>
                                         <div class="col-12 hidden" id="bulky_type">
@@ -264,12 +264,12 @@
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="package_description">Package Description:</label> <small class="badge badge-secondary">optional</small>
+                                                       for="package_description">{{ __('dashboard.Package Description') }}:</label> <small class="badge badge-secondary">{{ __('dashboard.optional') }}</small>
                                                 <textarea rows="3"
                                                           id="package_description"
                                                           name="package_description"
                                                           class="form-control @error('package_description') is-invalid @enderror"
-                                                          placeholder="Product code - Color - Size">{{ old('package_description') }}</textarea>
+                                                          placeholder="{{ __('dashboard.Product code - Color - Size') }}">{{ old('package_description') }}</textarea>
                                                 @error('package_description')
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
@@ -279,7 +279,7 @@
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="no_of_items">Number of Items:</label>
+                                                       for="no_of_items">{{ __('dashboard.Number of Items') }}:</label>
                                                 <input type="number"
                                                        class="form-control @error('no_of_items') is-invalid @enderror"
                                                        value=""
@@ -288,19 +288,19 @@
                                                        id="no_of_items"
                                                        name="no_of_items"
                                                        autocomplete="no_of_items"
-                                                       placeholder="Number of Items ..."
+                                                       placeholder="{{ __('dashboard.Number of Items') }} ..."
                                                        autofocus>
                                                 @error('no_of_items')
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
                                                 <div class="valid-feedback">Looks good!</div>
-                                                <small>If your items don't fit in one flyer of any size, create multiple orders.</small>
+                                                <small>{{ __("dashboard.If your items don't fit in one flyer of any size, create multiple orders") }}</small>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="no_of_items">Order Reference:</label>
+                                                       for="no_of_items">{{ __('dashboard.Order Reference') }}:</label>
                                                 <input type="text"
                                                        class="form-control @error('order_reference') is-invalid @enderror"
                                                        value=""
@@ -313,7 +313,7 @@
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
                                                 <div class="valid-feedback">Looks good!</div>
-                                                <small>Add a reference that you can later use to search for the order.</small>
+                                                <small>{{ __('dashboard.Add a reference that you can later use to search for the order') }}</small>
                                             </div>
                                         </div>
                                         <div class="col-md-12 mb-3" id="allow_open_packages">
@@ -324,8 +324,8 @@
                                                            name="working_hours"
                                                            id="customCheck1">
                                                     <label class="custom-control-label"
-                                                           for="customCheck1">Allow customers to open packages ?</label>
-                                                    <small class="form-text text-muted">Allowing customers to open package allows them to refuse taking it. In this case Bosta will return it back to you. Return fees will be applied.</small>
+                                                           for="customCheck1">{{ __('dashboard.Allow customers to open packages ?') }}</label>
+                                                    <small class="form-text text-muted">{{ __('dashboard.Allowing customers to open package allows them to refuse taking it. In this case Bosta will return it back to you. Return fees will be applied') }}</small>
                                                 </div>
                                             </div>
                                         </div>
@@ -336,14 +336,14 @@
                                 <div class="row">
                                     <div class="col-lg-3 bg-light">
                                         <div class="page-separator">
-                                            <div class="page-separator__text">Basic Details</div>
+                                            <div class="page-separator__text">{{ __('dashboard.Basic Details') }}</div>
                                         </div>
-                                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of the customer.</p>
+                                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.Basic details of the customer') }}</p>
                                     </div>
                                     <div class="col-lg-9 row ">
                                         <div class="page-separator col-lg-12">
                                             <div class="page-separator__text" >
-                                                &nbsp; Customer Information
+                                                &nbsp; {{ __('dashboard.Customer Information') }}
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -357,7 +357,7 @@
                                                                value="with cash difference"
                                                                checked="">
                                                         <label for="with_cash_difference"
-                                                               class="custom-control-label">With cash difference</label>
+                                                               class="custom-control-label">{{ __('dashboard.With cash difference') }}</label>
                                                     </div>
                                                     <div class="custom-control custom-radio">
                                                         <input id="without_cash_difference"
@@ -366,7 +366,7 @@
                                                                type="radio"
                                                                class="custom-control-input">
                                                         <label for="without_cash_difference"
-                                                               class="custom-control-label">Without cash difference</label>
+                                                               class="custom-control-label">{{ __('dashboard.Without cash difference') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -374,7 +374,7 @@
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="cash_exchange_amount">Cash Exchange Amount:</label>
+                                                       for="cash_exchange_amount">{{ __('dashboard.Cash Exchange Amount') }}:</label>
                                                 <input type="number"
                                                        class="form-control @error('cash_exchange_amount') is-invalid @enderror"
                                                        value=""
@@ -383,25 +383,25 @@
                                                        id="cash_exchange_amount"
                                                        name="cash_exchange_amount"
                                                        autocomplete="cash_exchange_amount"
-                                                       placeholder="Cash Exchange Amount..."
+                                                       placeholder="{{ __('dashboard.Cash Exchange Amount') }}..."
                                                        autofocus>
                                                 @error('cash_exchange_amount')
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
                                                 <div class="valid-feedback">Looks good!</div>
-                                                <small>Droplin courier shall pay/receive this amount to/from your customer upon pickup.</small>
+                                                <small>{{ __('dashboard.Droplin courier shall pay/receive this amount to/from your customer upon pickup') }}</small>
                                             </div>
                                         </div>
                                         <br>
                                         <div class="page-separator col-lg-12">
                                             <div class="page-separator__text" >
-                                                &nbsp; Delivery Package Details
+                                                &nbsp; {{ __('dashboard.Delivery Package Details') }}
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="no_of_items">Number of Items:</label>
+                                                       for="no_of_items">{{ __('dashboard.Number of Items') }}:</label>
                                                 <input type="number"
                                                        class="form-control @error('no_of_items') is-invalid @enderror"
                                                        value="1"
@@ -416,18 +416,18 @@
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
                                                 <div class="valid-feedback">Looks good!</div>
-                                                <small>If your items don't fit in one flyer of any size, create multiple orders.</small>
+                                                <small>{{ __("dashboard.If your items don't fit in one flyer of any size, create multiple orders") }}</small>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="package_description">Package Description:</label> <small class="badge badge-secondary">optional</small>
+                                                       for="package_description">{{ __('dashboard.Package Description') }}:</label> <small class="badge badge-secondary">{{ __('dashboard.optional') }}</small>
                                                 <textarea rows="3"
                                                           id="package_description"
                                                           name="package_description"
                                                           class="form-control @error('package_description') is-invalid @enderror"
-                                                          placeholder="Product code - Color - Size">{{ old('package_description') }}</textarea>
+                                                          placeholder="{{ __('dashboard.Product code - Color - Size') }}">{{ old('package_description') }}</textarea>
                                                 @error('package_description')
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
@@ -437,7 +437,7 @@
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="no_of_items">Order Reference:</label>
+                                                       for="no_of_items">{{ __('dashboard.Order Reference') }}:</label>
                                                 <input type="text"
                                                        class="form-control @error('order_reference') is-invalid @enderror"
                                                        value=""
@@ -450,7 +450,7 @@
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
                                                 <div class="valid-feedback">Looks good!</div>
-                                                <small>Add a reference that you can later use to search for the order.</small>
+                                                <small>{{ __('dashboard.Add a reference that you can later use to search for the order') }}</small>
                                             </div>
                                         </div>
                                         <div class="col-md-12  mb-3">
@@ -461,20 +461,20 @@
                                                            name="allow_opening"
                                                            id="customCheck1">
                                                     <label class="custom-control-label"
-                                                           for="customCheck1">Allow customers to open packages ?</label>
-                                                    <small class="form-text text-muted">Allowing customers to open package allows them to refuse taking it. In this case Bosta will return it back to you. Return fees will be applied.</small>
+                                                           for="customCheck1">{{ __('dashboard.Allow customers to open packages ?') }}</label>
+                                                    <small class="form-text text-muted">{{ __('dashboard.Allowing customers to open package allows them to refuse taking it. In this case Bosta will return it back to you. Return fees will be applied') }}</small>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="page-separator col-lg-12">
                                             <div class="page-separator__text" >
-                                                &nbsp; Return Package Details
+                                                &nbsp; {{ __('dashboard.Return Package Details') }}
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="no_of_items_of_return_package">Number of Items:</label>
+                                                       for="no_of_items_of_return_package">{{ __('dashboard.Number of Items') }}:</label>
                                                 <input type="number"
                                                        class="form-control @error('no_of_items_of_return_package') is-invalid @enderror"
                                                        value="1"
@@ -483,24 +483,24 @@
                                                        id="no_of_items_of_return_package"
                                                        name="no_of_items_of_return_package"
                                                        autocomplete="no_of_items_of_return_package"
-                                                       placeholder="Number of Items ..."
+                                                       placeholder="{{ __('dashboard.Number of Items') }} ..."
                                                        autofocus>
                                                 @error('no_of_items_of_return_package')
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
                                                 <div class="valid-feedback">Looks good!</div>
-                                                <small>If your items don't fit in one flyer of any size, create multiple orders.</small>
+                                                <small>{{ __("dashboard.If your items don't fit in one flyer of any size, create multiple orders") }}</small>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="package_description_return_package">Package Description:</label> <small class="badge badge-secondary">optional</small>
+                                                       for="package_description_return_package">{{ __('dashboard.Package Description') }}:</label> <small class="badge badge-secondary">{{ __('dashboard.optional') }}</small>
                                                 <textarea rows="3"
                                                           id="package_description_return_package"
                                                           name="package_description_return_package"
                                                           class="form-control @error('package_description_return_package') is-invalid @enderror"
-                                                          placeholder="Product code - Color - Size">{{ old('package_description_return_package') }}</textarea>
+                                                          placeholder="{{ __('dashboard.Product code - Color - Size') }}">{{ old('package_description_return_package') }}</textarea>
                                                 @error('package_description_return_package')
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
@@ -510,12 +510,12 @@
                                         <div class="col-lg-12 invert exchangelocation">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="select02">Return Location:</label>
+                                                       for="select02">{{ __('dashboard.Return Location') }}:</label>
                                                 <select id="select02"
                                                         data-toggle="select"
                                                         name="return_location"
                                                         class="form-control form-control-sm @error('return_location') is-invalid @enderror">
-                                                    <option value="">Select location</option>
+                                                    <option value="">{{ __('dashboard.Select location') }}</option>
                                                     @foreach($locations as $location)
                                                         <option value="{{ $location->id }}" {{ old('return_location') == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
                                                     @endforeach
@@ -524,17 +524,17 @@
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
                                                 <div class="valid-feedback">Looks good!</div>
-                                                <small>Select the location to which the package should be returned.</small>
+                                                <small>{{ __('dashboard.Select the location to which the package should be returned') }}</small>
                                             </div>
                                         </div>
                                         <div class="col-lg-12 invert exchangelocation">
                                             <a href="#" class="text-dark" onclick="event.preventDefault();
-                                                    display(module='exchangelocation')">+ Create new Location</a>
+                                                    display(module='exchangelocation')">+ {{ __('dashboard.Create new Location') }}</a>
                                         </div>
                                         <div class="col-12 hidden exchangelocations col-md-6 mb-3">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="select05">Country</label>
+                                                       for="select05">{{ __('dashboard.Country') }}</label>
                                                 <select id="select05"
                                                         data-toggle="select"
                                                         class="form-control select05 form-control-sm @error('country_id') is-invalid @enderror"
@@ -554,7 +554,7 @@
                                         <div class="col-12 hidden exchangelocations col-md-6 mb-3">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="select01">State</label>
+                                                       for="select01">{{ __('dashboard.State') }}</label>
                                                 <select id="select01"
                                                         data-toggle="select"
                                                         data-minimum-results-for-search="-1"
@@ -575,7 +575,7 @@
                                         <div class="col-12 hidden exchangelocations col-md-6 mb-3">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="select03">City</label>
+                                                       for="select03">{{ __('dashboard.City') }}</label>
                                                 <select id="select03"
                                                         data-toggle="select"
                                                         disabled
@@ -594,7 +594,7 @@
                                         <div class="col-12 hidden exchangelocations col-md-6 mb-3">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="street">Street:</label>
+                                                       for="street">{{ __('dashboard.Street') }}:</label>
                                                 <div class="input-group input-group-merge">
                                                     <input type="text"
                                                            class="form-control @error('street') is-invalid @enderror"
@@ -602,7 +602,7 @@
                                                            autocomplete="street"
                                                            name="street"
                                                            id="street"
-                                                           placeholder="Enter your street .."
+                                                           placeholder="{{ __('dashboard.Enter your street') }} .."
                                                            autofocus>
                                                     <div class="input-group-append">
                                                         <div class="input-group-text">
@@ -619,7 +619,7 @@
                                         <div class="col-12 hidden exchangelocations col-md-6 mb-3">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="building">Building:</label>
+                                                       for="building">{{ __('dashboard.Building') }}:</label>
                                                 <div class="input-group input-group-merge">
                                                     <input type="text"
                                                            class="form-control @error('building') is-invalid @enderror"
@@ -627,7 +627,7 @@
                                                            autocomplete="building"
                                                            name="building"
                                                            id="building"
-                                                           placeholder="Enter your building .."
+                                                           placeholder="{{ __('dashboard.Enter your building') }} .."
                                                            autofocus>
                                                     <div class="input-group-append">
                                                         <div class="input-group-text">
@@ -646,7 +646,7 @@
                                         <div class="col-12 hidden exchangelocations col-md-6 mb-3">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="floor">Floor:</label>
+                                                       for="floor">{{ __('dashboard.Floor') }}:</label>
                                                 <div class="input-group input-group-merge">
                                                     <input type="text"
                                                            class="form-control @error('floor') is-invalid @enderror"
@@ -654,7 +654,7 @@
                                                            autocomplete="floor"
                                                            name="floor"
                                                            id="floor"
-                                                           placeholder="Enter your floor .."
+                                                           placeholder="{{ __('dashboard.Enter your floor') }} .."
                                                            autofocus>
                                                     <div class="input-group-append">
                                                         <div class="input-group-text">
@@ -671,7 +671,7 @@
                                         <div class="col-12 hidden exchangelocations col-md-6 mb-3">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="apartment">Apartment:</label>
+                                                       for="apartment">{{ __('dashboard.Apartment') }}:</label>
                                                 <div class="input-group input-group-merge">
                                                     <input type="text"
                                                            class="form-control @error('apartment') is-invalid @enderror"
@@ -679,7 +679,7 @@
                                                            autocomplete="apartment"
                                                            name="apartment"
                                                            id="apartment"
-                                                           placeholder="Enter your apartment .."
+                                                           placeholder="{{ __('dashboard.Enter your apartment') }} .."
                                                            autofocus>
                                                     <div class="input-group-append">
                                                         <div class="input-group-text">
@@ -696,7 +696,7 @@
                                         <div class="col-12 hidden exchangelocations col-md-12 mb-3">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="landmarks">Landmarks:</label>
+                                                       for="landmarks">{{ __('dashboard.Landmarks') }}:</label>
                                                 <div class="input-group input-group-merge">
                                                     <input type="text"
                                                            class="form-control @error('landmarks') is-invalid @enderror"
@@ -704,7 +704,7 @@
                                                            autocomplete="landmarks"
                                                            name="landmarks"
                                                            id="landmarks"
-                                                           placeholder="Enter your landmarks .."
+                                                           placeholder="{{ __('dashboard.Enter your landmarks') }} .."
                                                            autofocus>
                                                     <div class="input-group-append">
                                                         <div class="input-group-text">
@@ -726,14 +726,14 @@
                                                            name="working_hours_exchange"
                                                            id="customCheck1">
                                                     <label class="custom-control-label"
-                                                           for="customCheck1">This is a work address</label>
-                                                    <small class="form-text text-muted">Mark it to deliver it within business days and working hours.</small>
+                                                           for="customCheck1">{{ __('dashboard.This is a work address') }}</label>
+                                                    <small class="form-text text-muted">{{ __('dashboard.Mark it to deliver it within business days and working hours') }}</small>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-12 hidden exchangelocations">
                                             <a href="#" class="text-dark" onclick="event.preventDefault();
-                                                    displayInvert(module='exchangelocation')">- Select from existed locations</a>
+                                                    displayInvert(module='exchangelocation')">- {{ __('dashboard.Select from existed locations') }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -742,20 +742,20 @@
                                 <div class="row">
                                     <div class="col-lg-3 bg-light">
                                         <div class="page-separator">
-                                            <div class="page-separator__text">Basic Details</div>
+                                            <div class="page-separator__text">{{ __('dashboard.Basic Details') }}</div>
                                         </div>
-                                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of the customer.</p>
+                                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.Basic details of the customer') }}</p>
                                     </div>
                                     <div class="col-lg-9 row ">
                                         <div class="page-separator col-lg-12">
                                             <div class="page-separator__text" >
-                                                &nbsp; Customer Information
+                                                &nbsp; {{ __('dashboard.Customer Information') }}
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="refund_amount">Refund Amount :</label>
+                                                       for="refund_amount">{{ __('dashboard.Refund Amount') }} :</label>
                                                 <input type="number"
                                                        class="form-control @error('refund_amount') is-invalid @enderror"
                                                        value=""
@@ -764,13 +764,13 @@
                                                        id="refund_amount"
                                                        name="refund_amount"
                                                        autocomplete="refund_amount"
-                                                       placeholder="Refund amount ..."
+                                                       placeholder="{{ __('dashboard.Refund Amount') }} ..."
                                                        autofocus>
                                                 @error('refund_amount')
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
                                                 <div class="valid-feedback">Looks good!</div>
-                                                <small>Droplin courier shall pay this amount to your customer upon pickup.</small>
+                                                <small>{{ __('dashboard.Droplin courier shall pay this amount to your customer upon pickup') }}</small>
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -784,7 +784,7 @@
                                                                value="with refund"
                                                                checked="">
                                                         <label for="with_refund"
-                                                               class="custom-control-label">With refund</label>
+                                                               class="custom-control-label">{{ __('dashboard.With refund') }}</label>
                                                     </div>
                                                     <div class="custom-control custom-radio">
                                                         <input id="without_refund"
@@ -793,7 +793,7 @@
                                                                value="without refund"
                                                                class="custom-control-input">
                                                         <label for="without_refund"
-                                                               class="custom-control-label">Without refund</label>
+                                                               class="custom-control-label">{{ __('dashboard.Without refund') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -801,13 +801,13 @@
                                         <br>
                                         <div class="page-separator col-lg-12">
                                             <div class="page-separator__text" >
-                                                &nbsp; Return Package Details
+                                                &nbsp; {{ __('dashboard.Return Package Details') }}
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="no_of_items">Number of Items:</label>
+                                                       for="no_of_items">{{ __('dashboard.Number of Items') }}:</label>
                                                 <input type="number"
                                                        class="form-control @error('no_of_items') is-invalid @enderror"
                                                        value="1"
@@ -816,24 +816,24 @@
                                                        id="no_of_items"
                                                        name="no_of_items"
                                                        autocomplete="no_of_items"
-                                                       placeholder="Number of Items ..."
+                                                       placeholder="{{ __('dashboard.Number of Items') }} ..."
                                                        autofocus>
                                                 @error('no_of_items')
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
                                                 <div class="valid-feedback">Looks good!</div>
-                                                <small>If your items don't fit in one flyer of any size, create multiple orders.</small>
+                                                <small>{{ __("dashboard.If your items don't fit in one flyer of any size, create multiple orders") }}</small>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="package_description">Package Description:</label> <small class="badge badge-secondary">optional</small>
+                                                       for="package_description">{{ __('dashboard.Package Description') }}:</label> <small class="badge badge-secondary">{{ __('dashboard.optional') }}</small>
                                                 <textarea rows="3"
                                                           id="package_description"
                                                           name="package_description"
                                                           class="form-control @error('package_description') is-invalid @enderror"
-                                                          placeholder="Product code - Color - Size">{{ old('package_description') }}</textarea>
+                                                          placeholder="{{ __('dashboard.Product code - Color - Size') }}">{{ old('package_description') }}</textarea>
                                                 @error('package_description')
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
@@ -843,7 +843,7 @@
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="no_of_items">Order Reference:</label>
+                                                       for="no_of_items">{{ __('dashboard.Order Reference') }}:</label>
                                                 <input type="text"
                                                        class="form-control @error('order_reference') is-invalid @enderror"
                                                        value=""
@@ -856,18 +856,18 @@
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
                                                 <div class="valid-feedback">Looks good!</div>
-                                                <small>Add a reference that you can later use to search for the order.</small>
+                                                <small>{{ __('dashboard.Add a reference that you can later use to search for the order') }}</small>
                                             </div>
                                         </div>
                                         <div class="col-lg-12 invert returnlocation">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="select02">Return Location:</label>
+                                                       for="select02">{{ __('dashboard.Return Location') }}:</label>
                                                 <select id="select02"
                                                         data-toggle="select"
                                                         name="return_location"
                                                         class="form-control form-control-sm @error('return_location') is-invalid @enderror">
-                                                    <option value="">Select location</option>
+                                                    <option value="">{{ __('dashboard.Select location') }}</option>
                                                     @foreach($locations as $location)
                                                         <option value="{{ $location->id }}" {{ old('return_location') == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
                                                     @endforeach
@@ -876,17 +876,17 @@
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
                                                 <div class="valid-feedback">Looks good!</div>
-                                                <small>Select the location to which the package should be returned.</small>
+                                                <small>{{ __('dashboard.Select the location to which the package should be returned') }}</small>
                                             </div>
                                         </div>
                                         <div class="col-lg-12 invert returnlocation">
                                             <a href="#" class="text-dark" onclick="event.preventDefault();
-                                                    display(module='returnlocation')">+ Create new Location</a>
+                                                    display(module='returnlocation')">+ {{ __('dashboard.Create new Location') }}</a>
                                         </div>
                                         <div class="col-12 hidden returnlocations col-md-6 mb-3">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="select05">Country</label>
+                                                       for="select05">{{ __('dashboard.Country') }}</label>
                                                 <select id="select05"
                                                         data-toggle="select"
                                                         class="form-control select05 form-control-sm @error('country_id') is-invalid @enderror"
@@ -906,7 +906,7 @@
                                         <div class="col-12 hidden returnlocations col-md-6 mb-3">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="select01">State</label>
+                                                       for="select01">{{ __('dashboard.State') }}</label>
                                                 <select id="select01"
                                                         data-toggle="select"
                                                         data-minimum-results-for-search="-1"
@@ -927,7 +927,7 @@
                                         <div class="col-12 hidden returnlocations col-md-6 mb-3">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="select03">City</label>
+                                                       for="select03">{{ __('dashboard.City') }}</label>
                                                 <select id="select03"
                                                         data-toggle="select"
                                                         disabled
@@ -946,7 +946,7 @@
                                         <div class="col-12 hidden returnlocations col-md-6 mb-3">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="street">Street:</label>
+                                                       for="street">{{ __('dashboard.Street') }}:</label>
                                                 <div class="input-group input-group-merge">
                                                     <input type="text"
                                                            class="form-control @error('street') is-invalid @enderror"
@@ -954,7 +954,7 @@
                                                            autocomplete="street"
                                                            name="street"
                                                            id="street"
-                                                           placeholder="Enter your street .."
+                                                           placeholder="{{ __('dashboard.Enter your street') }} .."
                                                            autofocus>
                                                     <div class="input-group-append">
                                                         <div class="input-group-text">
@@ -971,7 +971,7 @@
                                         <div class="col-12 hidden returnlocations col-md-6 mb-3">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="building">Building:</label>
+                                                       for="building">{{ __('dashboard.Building') }}:</label>
                                                 <div class="input-group input-group-merge">
                                                     <input type="text"
                                                            class="form-control @error('building') is-invalid @enderror"
@@ -979,7 +979,7 @@
                                                            autocomplete="building"
                                                            name="building"
                                                            id="building"
-                                                           placeholder="Enter your building .."
+                                                           placeholder="{{ __('dashboard.Enter your building') }} .."
                                                            autofocus>
                                                     <div class="input-group-append">
                                                         <div class="input-group-text">
@@ -1006,7 +1006,7 @@
                                                            autocomplete="floor"
                                                            name="floor"
                                                            id="floor"
-                                                           placeholder="Enter your floor .."
+                                                           placeholder="{{ __('dashboard.Enter your floor') }} .."
                                                            autofocus>
                                                     <div class="input-group-append">
                                                         <div class="input-group-text">
@@ -1023,7 +1023,7 @@
                                         <div class="col-12 hidden returnlocations col-md-6 mb-3">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="apartment">Apartment:</label>
+                                                       for="apartment">{{ __('dashboard.Apartment') }}:</label>
                                                 <div class="input-group input-group-merge">
                                                     <input type="text"
                                                            class="form-control @error('apartment') is-invalid @enderror"
@@ -1031,7 +1031,7 @@
                                                            autocomplete="apartment"
                                                            name="apartment"
                                                            id="apartment"
-                                                           placeholder="Enter your apartment .."
+                                                           placeholder="{{ __('dashboard.Enter your apartment') }} .."
                                                            autofocus>
                                                     <div class="input-group-append">
                                                         <div class="input-group-text">
@@ -1048,7 +1048,7 @@
                                         <div class="col-12 hidden returnlocations col-md-12 mb-3">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="landmarks">Landmarks:</label>
+                                                       for="landmarks">{{ __('dashboard.Landmarks') }}:</label>
                                                 <div class="input-group input-group-merge">
                                                     <input type="text"
                                                            class="form-control @error('landmarks') is-invalid @enderror"
@@ -1056,7 +1056,7 @@
                                                            autocomplete="landmarks"
                                                            name="landmarks"
                                                            id="landmarks"
-                                                           placeholder="Enter your landmarks .."
+                                                           placeholder="{{ __('dashboard.Enter your landmarks') }} .."
                                                            autofocus>
                                                     <div class="input-group-append">
                                                         <div class="input-group-text">
@@ -1078,14 +1078,14 @@
                                                            name="working_hours_return"
                                                            id="customCheck1">
                                                     <label class="custom-control-label"
-                                                           for="customCheck1">This is a work address</label>
-                                                    <small class="form-text text-muted">Mark it to deliver it within business days and working hours.</small>
+                                                           for="customCheck1">{{ __('dashboard.This is a work address') }}</label>
+                                                    <small class="form-text text-muted">{{ __('dashboard.Mark it to deliver it within business days and working hours') }}</small>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-12 hidden returnlocations">
                                             <a href="#" class="text-dark" onclick="event.preventDefault();
-                                                    displayInvert(module='returnlocation')">- Select from existed locations</a>
+                                                    displayInvert(module='returnlocation')">- {{ __('dashboard.Select from existed locations') }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -1094,20 +1094,20 @@
                                 <div class="row">
                                     <div class="col-lg-3 bg-light">
                                         <div class="page-separator">
-                                            <div class="page-separator__text">Basic Details</div>
+                                            <div class="page-separator__text">{{ __('dashboard.Basic Details') }}</div>
                                         </div>
-                                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of the customer.</p>
+                                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.Basic details of the customer') }}</p>
                                     </div>
                                     <div class="col-lg-9 row ">
                                         <div class="page-separator col-lg-12">
                                             <div class="page-separator__text" >
-                                                &nbsp; Customer Information
+                                                &nbsp; {{ __('dashboard.Customer Information') }}
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="cash_to_collect">Cash to Collect:</label>
+                                                       for="cash_to_collect">{{ __('dashboard.Cash to Collect') }}:</label>
                                                 <input type="number"
                                                        class="form-control @error('cash_to_collect') is-invalid @enderror"
                                                        value=""
@@ -1116,13 +1116,13 @@
                                                        id="cash_to_collect"
                                                        name="cash_to_collect"
                                                        autocomplete="cash_to_collect"
-                                                       placeholder="Cash to Collect ..."
+                                                       placeholder="{{ __('dashboard.Cash to Collect') }} ..."
                                                        autofocus>
                                                 @error('cash_to_collect')
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
                                                 <div class="valid-feedback">Looks good!</div>
-                                                <small id="collect_cash_small">Droplin courier shall receive this amount from your customer.</small>
+                                                <small id="collect_cash_small">{{ __('dashboard.Droplin courier shall receive this amount from your customer') }}</small>
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -1136,7 +1136,7 @@
                                                                value="collect cash"
                                                                checked="">
                                                         <label for="collect_cash"
-                                                               class="custom-control-label">Collect cash from customer</label>
+                                                               class="custom-control-label">{{ __('dashboard.Collect cash from customer') }}</label>
                                                     </div>
                                                     <div class="custom-control custom-radio">
                                                         <input id="refund_cash"
@@ -1145,7 +1145,7 @@
                                                                value="refund cash"
                                                                class="custom-control-input">
                                                         <label for="refund_cash"
-                                                               class="custom-control-label">Refund cash to customer</label>
+                                                               class="custom-control-label">{{ __('dashboard.Refund cash to customer') }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1153,13 +1153,13 @@
                                         <br>
                                         <div class="page-separator col-lg-12">
                                             <div class="page-separator__text" >
-                                                &nbsp; Return Package Details
+                                                &nbsp; {{ __('dashboard.Return Package Details') }}
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label class="form-label"
-                                                       for="no_of_items">Order Reference:</label>
+                                                       for="no_of_items">{{ __('dashboard.Order Reference') }}:</label>
                                                 <input type="text"
                                                        class="form-control @error('order_reference') is-invalid @enderror"
                                                        value=""
@@ -1188,7 +1188,7 @@
                 <button type="button" class="btn btn-sm rounded-circle btn-dark">
                     &nbsp;  2 &nbsp;
                 </button>
-                &nbsp; Customer Information
+                &nbsp; {{ __('dashboard.Customer Information') }}
             </div>
         </div>
         <div class="card">
@@ -1196,25 +1196,25 @@
                 <div class="row">
                     <div class="col-lg-3 bg-light">
                         <div class="page-separator">
-                            <div class="page-separator__text">Basic Details</div>
+                            <div class="page-separator__text">{{ __('dashboard.Basic Details') }}</div>
                         </div>
-                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of the customer.</p>
+                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.Basic details of the customer') }}</p>
                     </div>
                     <div class="col-lg-9 row ">
                         <div class="page-separator col-lg-12">
                             <div class="page-separator__text" >
-                                &nbsp; Customer Information
+                                &nbsp; {{ __('dashboard.Customer Information') }}
                             </div>
                         </div>
                         <div class="col-lg-12 invert customer">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="select04">Customer:</label>
+                                       for="select04">{{ __('dashboard.Customer') }}:</label>
                                 <select id="select04"
                                         data-toggle="select"
                                         name="customer_id"
                                         class="form-control form-control-sm @error('customer_id') is-invalid @enderror">
-                                    <option value="">Select customer</option>
+                                    <option value="">{{ __('dashboard.Select customer') }}</option>
                                     @foreach($customers as $customer)
                                         <option value="{{ $customer->id }}" {{ old('customer_id') == $customer->id ? 'selected':'' }}>{{ $customer->user->full_name }}</option>
                                     @endforeach
@@ -1227,12 +1227,12 @@
                         </div>
                         <div class="col-lg-12 invert customer mb-1">
                             <a href="#" class="text-dark" onclick="event.preventDefault();
-                                                    display(module='customer')">+ Create new customer</a>
+                                                    display(module='customer')">+ {{ __('dashboard.Create new customer') }}</a>
                         </div>
                         <div class="col-lg-6 hidden customers">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="name">Name:</label>
+                                       for="name">{{ __('dashboard.Name') }}:</label>
                                 <input type="text"
                                        class="form-control @error('name') is-invalid @enderror"
                                        value=""
@@ -1240,7 +1240,7 @@
                                        name="name"
                                        required="required"
                                        autocomplete="name"
-                                       placeholder="Your first name ..."
+                                       placeholder="{{ __('dashboard.Your first name') }} ..."
                                        autofocus>
                                 @error('name')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -1251,7 +1251,7 @@
                         <div class="col-lg-6 hidden customers">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="email">Email address:</label>
+                                       for="email">{{ __('dashboard.Email address') }}:</label>
                                 <input type="email"
                                        id="email"
                                        class="form-control @error('email') is-invalid @enderror"
@@ -1259,7 +1259,7 @@
                                        required="required"
                                        name="email"
                                        autocomplete="email"
-                                       placeholder="Your email address ...">
+                                       placeholder="{{ __('dashboard.Your email address') }} ...">
                                 @error('email')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                 @enderror
@@ -1269,14 +1269,14 @@
                         <div class="col-lg-6 hidden customers">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="phone">Phone:</label>
+                                       for="phone">{{ __('dashboard.Phone') }}:</label>
                                 <input type="text"
                                        class="form-control @error('phone') is-invalid @enderror"
                                        value=""
                                        id="phone"
                                        name="phone"
                                        data-mask="00000000000"
-                                       placeholder="Your mobile phone ...">
+                                       placeholder="{{ __('dashboard.Your mobile phone') }} ...">
                                 @error('phone')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                 @enderror
@@ -1286,14 +1286,14 @@
                         <div class="col-lg-6 hidden customers">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="secondary_phone">Secondary Phone:</label>
+                                       for="secondary_phone">{{ __('dashboard.Secondary Phone') }}:</label>
                                 <input type="text"
                                        class="form-control @error('secondary_phone') is-invalid @enderror"
                                        value=""
                                        id="secondary_phone"
                                        name="secondary_phone"
                                        data-mask="00000000000"
-                                       placeholder="Your secondary phone ...">
+                                       placeholder="{{ __('dashboard.Your secondary phone') }} ...">
                                 @error('secondary_phone')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                 @enderror
@@ -1302,17 +1302,17 @@
                         </div>
                         <div class="col-lg-12 hidden customers mb-1">
                             <a href="#" class="text-dark" onclick="event.preventDefault();
-                                                    displayInvert(module='customer')">- Select from existed customers</a>
+                                                    displayInvert(module='customer')">- {{ __('dashboard.Select from existed customers') }}</a>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="delivery_notes">Delivery Notes:</label> <small class="badge badge-secondary">optional</small>
+                                       for="delivery_notes">{{ __('dashboard.Delivery Notes') }}:</label> <small class="badge badge-secondary">{{ __('dashboard.optional') }}</small>
                                 <textarea rows="3"
                                           id="delivery_notes"
                                           name="delivery_notes"
                                           class="form-control @error('delivery_notes') is-invalid @enderror"
-                                          placeholder="Delivery Notes ..."></textarea>
+                                          placeholder="{{ __('dashboard.Delivery Notes') }} ..."></textarea>
                                 @error('delivery_notes')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                 @enderror
@@ -1321,18 +1321,18 @@
                         </div>
                         <div class="page-separator col-lg-12">
                             <div class="page-separator__text" >
-                                &nbsp; Location Information
+                                &nbsp; {{ __('dashboard.Location Information') }}
                             </div>
                         </div>
                         <div class="col-lg-12 invert location">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="select02">Customer's Locations:</label>
+                                       for="select02">{{ __("dashboard.Customer's Locations") }}:</label>
                                 <select id="select02"
                                         data-toggle="select"
                                         name="location_id"
                                         class="form-control form-control-sm @error('location_id') is-invalid @enderror">
-                                    <option value="">Select location</option>
+                                    <option value="">{{ __('dashboard.Select location') }}</option>
                                     @foreach($locations as $location)
                                         <option value="{{ $location->id }}" {{ old('location_id') == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
                                     @endforeach
@@ -1345,7 +1345,7 @@
                         </div>
                         <div class="col-lg-12 invert location">
                             <a href="#" class="text-dark" onclick="event.preventDefault();
-                                                    display(module='location')">+ Create new Location</a>
+                                                    display(module='location')">+ {{ __('dashboard.Create new Location') }}</a>
                         </div>
                         <div class="col-12 hidden locations col-md-6 mb-3">
                             <div class="form-group">
@@ -1370,7 +1370,7 @@
                         <div class="col-12 hidden locations col-md-6 mb-3">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="select01">State</label>
+                                       for="select01">{{ __('dashboard.State') }}</label>
                                 <select id="select01"
                                         data-toggle="select"
                                         data-minimum-results-for-search="-1"
@@ -1391,7 +1391,7 @@
                         <div class="col-12 hidden locations col-md-6 mb-3">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="select03">City</label>
+                                       for="select03">{{ __('dashboard.City') }}</label>
                                 <select id="select03"
                                         data-toggle="select"
                                         disabled
@@ -1410,7 +1410,7 @@
                         <div class="col-12 hidden locations col-md-6 mb-3">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="street">Street:</label>
+                                       for="street">{{ __('dashboard.Street') }}:</label>
                                 <div class="input-group input-group-merge">
                                     <input type="text"
                                            class="form-control @error('street') is-invalid @enderror"
@@ -1418,7 +1418,7 @@
                                            autocomplete="street"
                                            name="street"
                                            id="street"
-                                           placeholder="Enter your street .."
+                                           placeholder="{{ __('dashboard.Enter your street') }} .."
                                            autofocus>
                                     <div class="input-group-append">
                                         <div class="input-group-text">
@@ -1435,7 +1435,7 @@
                         <div class="col-12 hidden locations col-md-6 mb-3">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="building">Building:</label>
+                                       for="building">{{ __('dashboard.Building') }}:</label>
                                 <div class="input-group input-group-merge">
                                     <input type="text"
                                            class="form-control @error('building') is-invalid @enderror"
@@ -1443,7 +1443,7 @@
                                            autocomplete="building"
                                            name="building"
                                            id="building"
-                                           placeholder="Enter your building .."
+                                           placeholder="{{ __('dashboard.Enter your building') }} .."
                                            autofocus>
                                     <div class="input-group-append">
                                         <div class="input-group-text">
@@ -1462,7 +1462,7 @@
                         <div class="col-12 hidden locations col-md-6 mb-3">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="floor">Floor:</label>
+                                       for="floor">{{ __('dashboard.Floor') }}:</label>
                                 <div class="input-group input-group-merge">
                                     <input type="text"
                                            class="form-control @error('floor') is-invalid @enderror"
@@ -1470,7 +1470,7 @@
                                            autocomplete="floor"
                                            name="floor"
                                            id="floor"
-                                           placeholder="Enter your floor .."
+                                           placeholder="{{ __('dashboard.Enter your floor') }} .."
                                            autofocus>
                                     <div class="input-group-append">
                                         <div class="input-group-text">
@@ -1487,7 +1487,7 @@
                         <div class="col-12 hidden locations col-md-6 mb-3">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="apartment">Apartment:</label>
+                                       for="apartment">{{ __('dashboard.Apartment') }}:</label>
                                 <div class="input-group input-group-merge">
                                     <input type="text"
                                            class="form-control @error('apartment') is-invalid @enderror"
@@ -1495,7 +1495,7 @@
                                            autocomplete="apartment"
                                            name="apartment"
                                            id="apartment"
-                                           placeholder="Enter your apartment .."
+                                           placeholder="{{ __('dashboard.Enter your apartment') }} .."
                                            autofocus>
                                     <div class="input-group-append">
                                         <div class="input-group-text">
@@ -1512,7 +1512,7 @@
                         <div class="col-12 hidden locations col-md-12 mb-3">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="landmarks">Landmarks:</label>
+                                       for="landmarks">{{ __('dashboard.Landmarks') }}:</label>
                                 <div class="input-group input-group-merge">
                                     <input type="text"
                                            class="form-control @error('landmarks') is-invalid @enderror"
@@ -1520,7 +1520,7 @@
                                            autocomplete="landmarks"
                                            name="landmarks"
                                            id="landmarks"
-                                           placeholder="Enter your landmarks .."
+                                           placeholder="{{ __('dashboard.Enter your landmarks') }} .."
                                            autofocus>
                                     <div class="input-group-append">
                                         <div class="input-group-text">
@@ -1542,14 +1542,14 @@
                                            name="working_hours"
                                            id="customCheck1">
                                     <label class="custom-control-label"
-                                           for="customCheck1">This is a work address</label>
-                                    <small class="form-text text-muted">Mark it to deliver it within business days and working hours.</small>
+                                           for="customCheck1">{{ __('dashboard.This is a work address') }}</label>
+                                    <small class="form-text text-muted">{{ __('dashboard.Mark it to deliver it within business days and working hours') }}</small>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-12 hidden locations">
                             <a href="#" class="text-dark" onclick="event.preventDefault();
-                                                    displayInvert(module='location')">- Select from existed locations</a>
+                                                    displayInvert(module='location')">- {{ __('dashboard.Select from existed locations') }}</a>
                         </div>
 
                     </div>
@@ -1561,7 +1561,7 @@
                 <button type="button" class="btn btn-sm rounded-circle btn-dark">
                     &nbsp;  3 &nbsp;
                 </button>
-                &nbsp; Request Pickup &nbsp; <small class="badge badge-secondary">Optional</small>
+                &nbsp; {{ __('dashboard.Request Pickup') }} &nbsp; <small class="badge badge-secondary">{{ __('dashboard.optional') }}</small>
             </div>
         </div>
         <div class="card pickups_card">
@@ -1569,20 +1569,20 @@
                 <div class="row">
                     <div class="col-lg-3 bg-light">
                         <div class="page-separator">
-                            <div class="page-separator__text">Request Pickup</div>
+                            <div class="page-separator__text">{{ __('dashboard.Request Pickup') }}</div>
                         </div>
-                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">You can skip requesting a pickup now but make sure to request a pickup when you have packages ready to be shipped.</p>
+                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.You can skip requesting a pickup now but make sure to request a pickup when you have packages ready to be shipped') }}</p>
                     </div>
                     <div class="col-lg-9 row p-2">
                         <div class="col-lg-12 invert location">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="select02">Pickup Locations:</label>
+                                       for="select02">{{ __('dashboard.Pickup Locations') }}:</label>
                                 <select id="select02"
                                         data-toggle="select"
                                         name="pickup_location_id"
                                         class="form-control form-control-sm @error('pickup_location_id') is-invalid @enderror">
-                                    <option value="">Select location</option>
+                                    <option value="">{{ __('dashboard.Select location') }}</option>
                                     @foreach($locations as $location)
                                         <option value="{{ $location->id }}" {{ old('pickup_location_id') == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
                                     @endforeach
@@ -1596,7 +1596,7 @@
                         <div class="col-lg-12 invert pickup">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="select06">Scheduled Pickups:</label>
+                                       for="select06">{{ __('dashboard.Scheduled Pickups') }}:</label>
                                 <select id="select06"
                                         data-toggle="select"
                                         name="pickup_id"
@@ -1613,19 +1613,20 @@
                         </div>
                         <div class="col-lg-12 invert pickup">
                             <a href="#" class="text-dark" onclick="event.preventDefault();
-                                                    display(module='pickup')">+ Create new Pickup</a>
+                                                    display(module='pickup')">+ {{ __('dashboard.
+                                                     Pickup') }}</a>
                         </div>
                         <div class="col-md-12 hidden pickups">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="scheduled_date">Pickup Date:</label>
+                                       for="scheduled_date">{{ __('dashboard.Pickup Date') }}:</label>
                                 <input type="hidden"
                                        class="form-control @error('scheduled_date') is-invalid @enderror flatpickr-input"
                                        value="{{ old('scheduled_date') }}"
                                        id="scheduled_date"
                                        name="scheduled_date"
                                        data-toggle="flatpickr"
-                                       placeholder="Pickup Date...">
+                                       placeholder="{{ __('dashboard.Pickup Date') }}...">
                                 @error('scheduled_date')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                 @enderror
@@ -1635,12 +1636,12 @@
                         <div class="col-lg-12 hidden pickups">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="select06">Contacts:</label>
+                                       for="select06">{{ __('dashboard.Contacts') }}:</label>
                                 <select id="select06"
                                         data-toggle="select"
                                         name="contact_id"
                                         class="form-control form-control-sm @error('contact_id') is-invalid @enderror">
-                                    <option value="">Select Contact</option>
+                                    <option value="">{{ __('dashboard.Select Contact') }}</option>
                                     @foreach($contacts as $contact)
                                         <option value="{{ $contact->id }}" {{ old('contact_id') == $contact->id ? 'selected':'' }}>{{ $contact->contact_name }}</option>
                                     @endforeach
@@ -1653,7 +1654,7 @@
                         </div>
                         <div class="col-lg-12 hidden pickups">
                             <a href="#" class="text-dark" onclick="event.preventDefault();
-                                                    displayInvert(module='pickup')">- Select from existed pickups</a>
+                                                    displayInvert(module='pickup')">- {{ __('dashboard.Select from existed pickups') }}</a>
                         </div>
                     </div>
                 </div>
@@ -1667,7 +1668,7 @@
         </div>
 
         <button type="submit"
-                class="btn pull-right btn-primary">Submit</button>
+                class="btn pull-right btn-primary">{{ __('dashboard.Submit') }}</button>
 
     </div>
 @endsection

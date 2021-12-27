@@ -1,12 +1,12 @@
 @extends('layouts.backend')
 
 @section('title')
-    Pickups
+{{ __('dashboard.Pickups') }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item active">
-        Pickups
+        {{ __('dashboard.Pickups') }}
     </li>
 @endsection
 
@@ -19,7 +19,7 @@
 @endsection
 
 @section('button-title')
-    New Pickup
+{{ __('dashboard.New Pickup') }}
 @endsection
 
 @section('main_content')
@@ -27,7 +27,7 @@
         <div class="page-section">
 
             <div class="page-separator">
-                <div class="page-separator__text">Filter</div>
+                <div class="page-separator__text">{{ __('dashboard.Filter') }}</div>
             </div>
 
             <form action="{{ route('dashboard.pickups.index') }}" method="GET">
@@ -36,23 +36,23 @@
                         <div class="row">
                             <div class="col-sm-auto">
                                 <div class="form-group">
-                                    <label for="pickup_id">Pickup ID</label>
+                                    <label for="pickup_id">{{ __('dashboard.Pickup ID') }}</label>
                                     <input id="pickup_id"
                                            type="text"
                                            name="pickup_id"
                                            value="{{ isset($_GET['pickup_id']) &&  $_GET['pickup_id'] >= 0?$_GET['pickup_id']:old('pickup_id') }}"
                                            class="form-control"
-                                           placeholder="Search by Pickup ID">
+                                           placeholder="{{ __('dashboard.Search by Pickup ID') }}">
                                 </div>
                             </div>
                             <div class="col-sm-auto">
                                 <div class="form-group">
-                                    <label for="filter_category">Locations</label><br>
+                                    <label for="filter_category">{{ __('dashboard.Locations') }}</label><br>
                                     <select id="filter_category"
                                             class="custom-select"
                                             name="location"
                                             style="width: 200px;">
-                                        <option value="" {{ old('location') == '' ?'selected':'' }}>Select Location</option>
+                                        <option value="" {{ old('location') == '' ?'selected':'' }}>{{ __('dashboard.Select location') }}</option>
                                         @foreach($locations as $location)
                                             <option value="{{ $location->id }}"  {{ isset($_GET['location']) &&  $_GET['location'] == $location->id ? 'selected':''}}>{{ $location->name }}</option>
                                         @endforeach
@@ -61,12 +61,12 @@
                             </div>
                             <div class="col-sm-auto">
                                 <div class="form-group">
-                                    <label for="filter_category">Status</label><br>
+                                    <label for="filter_category">{{ __('dashboard.Status') }}</label><br>
                                     <select id="filter_category"
                                             class="custom-select"
                                             name="status"
                                             style="width: 200px;">
-                                        <option value="" {{ old('status') == '' ?'selected':'' }}>All Status</option>
+                                        <option value="" {{ old('status') == '' ?'selected':'' }}>{{ __('dashboard.All_Status') }}</option>
                                         @foreach($status as $item)
                                             <option value="{{ $item }}"  {{ isset($_GET['status']) &&  $_GET['status'] == $item ? 'selected':''}}>{{ $item }}</option>
                                         @endforeach
@@ -75,7 +75,7 @@
                             </div>
                             <div class="col-sm-auto">
                                 <div class="form-group">
-                                    <label for="filter_stock">One Time?</label>
+                                    <label for="filter_stock">{{ __('dashboard.One Time?') }}</label>
                                     <div class="custom-control custom-checkbox mt-sm-2">
                                         <input type="checkbox"
                                                class="custom-control-input"
@@ -84,7 +84,7 @@
                                                value="One Time"
                                             {{ isset($_GET['type']) &&  $_GET['type'] == 'One Time'?'checked=""':'' }}>
                                         <label class="custom-control-label"
-                                               for="filter_stock">Yes</label>
+                                               for="filter_stock">{{ __('dashboard.Yes') }}</label>
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
             </form>
 
             <div class="page-separator">
-                <div class="page-separator__text">Pickups</div>
+                <div class="page-separator__text">{{ __('dashboard.Pickups') }}</div>
             </div>
 
             <div class="card dashboard-area-tabs p-relative o-hidden mb-32pt">
@@ -104,11 +104,11 @@
                     <div class="card-header">
                         <form class="form-inline">
                             <label class="mr-sm-2 form-label"
-                                   for="myInputTextField">Filter by:</label>
+                                   for="myInputTextField">{{ __('dashboard.Filter by') }}:</label>
                             <input type="text"
                                    class="form-control search mb-2 mr-sm-2 mb-sm-0"
                                    id="myInputTextField"
-                                   placeholder="Search ...">
+                                   placeholder="{{ __('dashboard.Search') }} ...">
 
                             <div class="col-lg d-flex flex-wrap buttons-datatable-add">
                                 <div class="ml-lg-auto dropdown select-datatable-add">
@@ -139,17 +139,17 @@
 
                             <th>#</th>
 
-                            <th>Pickup Id</th>
+                            <th>{{ __('dashboard.Pickup ID') }}</th>
 
-                            <th>Pickup location</th>
+                            <th>{{ __('dashboard.Pickup location') }}</th>
 
-                            <th>Scheduled date</th>
+                            <th>{{ __('dashboard.Scheduled date') }}</th>
 
-                            <th>Pickup type</th>
+                            <th>{{ __('dashboard.Pickup type') }}</th>
 
-                            <th>Status</th>
+                            <th>{{ __('dashboard.Status') }}</th>
 
-                            <th>Created</th>
+                            <th>{{ __('dashboard.Created_At') }}</th>
 
                             <th></th>
                         </tr>
@@ -259,17 +259,17 @@
 
                             <th>#</th>
 
-                            <th>Pickup Id</th>
+                            <th>{{ __('dashboard.Pickup ID') }}</th>
 
-                            <th>Pickup location</th>
+                            <th>{{ __('dashboard.Pickup location') }}</th>
 
-                            <th>Scheduled date</th>
+                            <th>{{ __('dashboard.Scheduled date') }}</th>
 
-                            <th>Pickup type</th>
+                            <th>{{ __('dashboard.Pickup type') }}</th>
 
-                            <th>Status</th>
+                            <th>{{ __('dashboard.Status') }}</th>
 
-                            <th>Created</th>
+                            <th>{{ __('dashboard.Created_At') }}</th>
 
                             <th></th>
                         </tr>

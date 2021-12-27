@@ -1,12 +1,12 @@
 @extends('layouts.backend')
 
 @section('title')
-    Customers
+{{ __('dashboard.Customers') }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item active">
-        Customers
+        {{ __('dashboard.Customers') }}
     </li>
 @endsection
 
@@ -19,7 +19,7 @@
 @endsection
 
 @section('button-title')
-    New Customer
+{{ __('dashboard.New Customer') }}
 @endsection
 
 @section('main_content')
@@ -27,7 +27,7 @@
         <div class="page-section">
 
             <div class="page-separator">
-                <div class="page-separator__text">Customers</div>
+                <div class="page-separator__text">{{ __('dashboard.Customers') }}</div>
             </div>
 
             <div class="card dashboard-area-tabs p-relative o-hidden mb-32pt">
@@ -48,8 +48,8 @@
                                     </span>
                                 </div>
                                 <span class="flex d-flex flex-column">
-                                        <strong>All Customers</strong>
-                                        <small class=" text-50">active</small>
+                                        <strong>{{ __('dashboard.All Customers') }}</strong>
+                                        <small class=" text-50">{{ __('dashboard.active') }}</small>
                                         <span class="indicator-line rounded bg-success"></span>
                                     </span>
                             </a>
@@ -81,11 +81,11 @@
                     <div class="card-header">
                         <form class="form-inline">
                             <label class="mr-sm-2 form-label"
-                                   for="myInputTextField">Filter by:</label>
+                                   for="myInputTextField">{{ __('dashboard.Filter by') }}:</label>
                             <input type="text"
                                    class="form-control search mb-2 mr-sm-2 mb-sm-0"
                                    id="myInputTextField"
-                                   placeholder="Search ...">
+                                   placeholder="{{ __('dashboard.Search') }} ...">
 
                             <div class="col-lg d-flex flex-wrap buttons-datatable-add">
                                 <div class="ml-lg-auto dropdown select-datatable-add"></div>
@@ -114,15 +114,15 @@
 
                                 <th>#</th>
 
-                                <th >Name</th>
+                                <th >{{ __('dashboard.Name') }}</th>
 
-                                <th>Category</th>
+                                <th>{{ __('dashboard.Category') }}</th>
 
-                                <th>Phone</th>
+                                <th>{{ __('dashboard.Phone') }}</th>
 
-                                <th>Status</th>
+                                <th>{{ __('dashboard.Status') }}</th>
 
-                                <th>Created</th>
+                                <th>{{ __('dashboard.Created_At') }}</th>
 
                                 <th ></th>
                             </tr>
@@ -243,15 +243,15 @@
 
                                 <th>#</th>
 
-                                <th >Name</th>
+                                <th >{{ __('dashboard.Name') }}</th>
 
-                                <th>Category</th>
+                                <th>{{ __('dashboard.Category') }}</th>
 
-                                <th>Phone</th>
+                                <th>{{ __('dashboard.Phone') }}</th>
 
-                                <th>Status</th>
+                                <th>{{ __('dashboard.Status') }}</th>
 
-                                <th >Created</th>
+                                <th>{{ __('dashboard.Created_At') }}</th>
 
                                 <th ></th>
                             </tr>

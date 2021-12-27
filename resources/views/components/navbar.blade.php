@@ -150,7 +150,7 @@
                         </span>
 
                         <small class="flex d-flex flex-column">
-                            <strong class="navbar-text-100">Orders</strong>
+                            <strong class="navbar-text-100">{{ __('dashboard.Orders') }}</strong>
                             <span class="navbar-text-50">{{ \App\Models\Order::count() }}</span>
                         </small>
                     </span>
@@ -163,7 +163,7 @@
                         </span>
 
                         <small class="flex d-flex flex-column">
-                            <strong class="navbar-text-100">Customers</strong>
+                            <strong class="navbar-text-100">{{ __('dashboard.Customers') }}</strong>
                             <span class="navbar-text-50">{{ \App\Models\Customer::count() }}</span>
                         </small>
                     </span>
@@ -211,16 +211,16 @@
 
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-header"><strong>Profile</strong></div>
+                <div class="dropdown-header"><strong>{{ __('dashboard.Profile') }}</strong></div>
                 <a class="dropdown-item"
-                   href="{{ route('dashboard.settings.profile') }}">Edit Profile</a>
+                   href="{{ route('dashboard.settings.profile') }}">{{ __('dashboard.Edit_Profile') }}</a>
                 {{--<a class="dropdown-item"
                    href="billing.html">Billing</a>
                 <a class="dropdown-item"
                    href="billing-history.html">Payments</a>--}}
                 <a class="dropdown-item"
                    href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                $('#logout-form').submit();">{{ __('Log Out') }}</a>
+                                                $('#logout-form').submit();">{{ __('content.Logout') }}</a>
                 <form method="POST" id="logout-form" action="{{ route('logout') }}">
                     @csrf
                 </form>

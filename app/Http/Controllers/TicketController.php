@@ -18,7 +18,7 @@ class TicketController extends Controller
     {
         $ticket = NULL;
         if (auth()->user()->hasRole('Super Admin') || auth()->user()->hasRole('admin')) {
-            $tickets = Ticket::with('TicketIssues','TicketChats')
+            $tickets = Ticket::with('TicketIssue','TicketChats')
                             ->orderBy('status','asc')
                             ->orderBy('updated_at','desc')
                             ->get();

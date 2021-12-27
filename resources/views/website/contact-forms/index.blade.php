@@ -1,12 +1,12 @@
 @extends('layouts.backend')
 
 @section('title')
-    Contact Forms
+{{ __('dashboard.Contact_Forms') }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item active">
-        Contact Forms
+        {{ __('dashboard.Contact_Forms') }}
     </li>
 @endsection
 
@@ -19,7 +19,7 @@
 @endsection
 
 @section('button-title')
-    All Contact Form
+{{ __('dashboard.All Contact Form') }}
 @endsection
 
 @section('main_content')
@@ -27,7 +27,7 @@
         <div class="page-section">
 
             <div class="page-separator">
-                <div class="page-separator__text">Contact Forms</div>
+                <div class="page-separator__text">{{ __('dashboard.Contact_Forms') }}</div>
             </div>
 
             <div class="card dashboard-area-tabs p-relative o-hidden mb-32pt">
@@ -40,13 +40,13 @@
                         <tr>
                             <th>#</th>
 
-                            <th>Name</th>
+                            <th>{{ __('dashboard.Name') }}</th>
 
-                            <th>Email</th>
+                            <th>{{ __('dashboard.Email') }}</th>
 
-                            <th>Message</th>
+                            <th>{{ __('dashboard.Message') }}</th>
 
-                            <th>Created</th>
+                            <th>{{ __('dashboard.Created_At') }}</th>
 
                             <th></th>
                         </tr>
@@ -96,20 +96,20 @@
                             @php $count++ @endphp
                         @empty
                             <td></td>
-                            <td colspan="3"><h4>There are no contact forms yet.</h4></td>
+                            <td colspan="3"><h4>{{ __('dashboard.There are no contact forms yet') }}</h4></td>
                         @endforelse
                         </tbody>
                         <tfoot>
                         <tr>
                             <th>#</th>
 
-                            <th>Name</th>
+                            <th>{{ __('dashboard.Name') }}</th>
 
-                            <th>Email</th>
+                            <th>{{ __('dashboard.Email') }}</th>
 
-                            <th>Message</th>
+                            <th>{{ __('dashboard.Message') }}</th>
 
-                            <th>Created</th>
+                            <th>{{ __('dashboard.Created_At') }}</th>
 
                             <th></th>
                         </tr>

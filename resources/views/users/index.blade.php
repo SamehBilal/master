@@ -1,12 +1,12 @@
 @extends('layouts.backend')
 
 @section('title')
-    Users
+{{ __('dashboard.Users') }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item active">
-        Users
+        {{ __('dashboard.Users') }}
     </li>
 @endsection
 
@@ -19,7 +19,7 @@
 @endsection
 
 @section('button-title')
-    Dashboard
+{{ __('dashboard.Dashboard') }}
 @endsection
 
 @section('main_content')
@@ -27,7 +27,7 @@
         <div class="page-section">
 
             <div class="page-separator">
-                <div class="page-separator__text">Users</div>
+                <div class="page-separator__text">{{ __('dashboard.Users') }}</div>
             </div>
 
             <div class="card dashboard-area-tabs p-relative o-hidden mb-32pt">
@@ -49,8 +49,8 @@
                                     </span>
                                 </div>
                                 <span class="flex d-flex flex-column">
-                                        <strong>All Users</strong>
-                                        <small class=" text-50">active</small>
+                                        <strong>{{ __('dashboard.All_Users') }}</strong>
+                                        <small class=" text-50">{{ __('dashboard.active') }}</small>
                                         <span class="indicator-line rounded bg-success"></span>
                                     </span>
                             </a>
@@ -70,8 +70,8 @@
                                     </span>
                                 </div>
                                 <span class="flex d-flex flex-column">
-                                    <strong>Contacts</strong>
-                                    <small class=" text-50">Active</small>
+                                    <strong>{{ __('dashboard.Contacts') }}</strong>
+                                    <small class=" text-50">{{ __('dashboard.active') }}</small>
                                     <span class="indicator-line rounded bg-success"></span>
                                 </span>
                             </a>
@@ -91,8 +91,8 @@
                                     </span>
                                 </div>
                                 <span class="flex d-flex flex-column">
-                                    <strong>Customers</strong>
-                                    <small class=" text-50">Active</small>
+                                    <strong>{{ __('dashboard.Customers') }}</strong>
+                                    <small class=" text-50">{{ __('dashboard.active') }}</small>
                                     <span class="indicator-line rounded bg-success"></span>
                                 </span>
                             </a>
@@ -112,8 +112,8 @@
                                     </span>
                                 </div>
                                 <span class="flex d-flex flex-column">
-                                    <strong>Clients</strong>
-                                    <small class=" text-50">Active</small>
+                                    <strong>{{ __('dashboard.Clients') }}</strong>
+                                    <small class=" text-50">{{ __('dashboard.active') }}</small>
                                     <span class="indicator-line rounded bg-success"></span>
                                 </span>
                             </a>
@@ -124,11 +124,11 @@
                     <div class="card-header">
                         <form class="form-inline">
                             <label class="mr-sm-2 form-label"
-                                   for="myInputTextField">Filter by:</label>
+                                   for="myInputTextField">{{ __('dashboard.Filter by') }}:</label>
                             <input type="text"
                                    class="form-control search mb-2 mr-sm-2 mb-sm-0"
                                    id="myInputTextField"
-                                   placeholder="Search ...">
+                                   placeholder="{{ __('dashboard.Search') }} ...">
 
                             <div class="col-lg d-flex flex-wrap buttons-datatable-add">
                                 <div class="ml-lg-auto dropdown select-datatable-add"></div>
@@ -157,15 +157,15 @@
 
                             <th>#</th>
 
-                            <th >Name</th>
+                            <th >{{ __('dashboard.Name') }}</th>
 
-                            <th>Category</th>
+                            <th>{{ __('dashboard.Category') }}</th>
 
-                            <th>Role</th>
+                            <th>{{ __('dashboard.Role') }}</th>
 
-                            <th>Status</th>
+                            <th>{{ __('dashboard.Status') }}</th>
 
-                            <th>Created</th>
+                            <th>{{ __('dashboard.Created_At') }}</th>
 
                             <th ></th>
                         </tr>
@@ -207,8 +207,8 @@
                                         </div>
                                         <div class="media-body">
                                             <div class="d-flex flex-column">
-                                                <small class=""><strong>{{ $user->customer ? 'Customers': ($user->contact ? 'Contacts':'Clients') }}</strong></small>
-                                                <small class=" text-50">{{ $user->status == 1 ? 'active':'' }}</small>
+                                                <small class=""><strong>{{ $user->customer ? __("dashboard.Customers") : ($user->contact ? __("dashboard.Contacts"):__("dashboard.Clients")) }}</strong></small>
+                                                <small class=" text-50">{{ $user->status == 1 ? __("dashboard.active"):'' }}</small>
                                                 <span class="indicator-line rounded {{ $user->status == 1 ? 'bg-success':'bg-danger' }} "></span>
                                             </div>
                                         </div>
@@ -224,7 +224,7 @@
 
                                 <td>
                                     <div class="d-flex flex-column">
-                                        <button class="btn btn-sm {{ $user->status == 1 ? 'btn-success':'btn-danger' }}">{{ $user->status == 1 ? 'Active':'Inctive' }}</button>
+                                        <button class="btn btn-sm {{ $user->status == 1 ? 'btn-success':'btn-danger' }}">{{ $user->status == 1 ? __("dashboard.active"):__("dashboard.inctive") }}</button>
                                     </div>
                                 </td>
                                 <td>
@@ -256,15 +256,15 @@
 
                             <th>#</th>
 
-                            <th >Name</th>
+                            <th >{{ __('dashboard.Name') }}</th>
 
-                            <th>Category</th>
+                            <th>{{ __('dashboard.Category') }}</th>
 
-                            <th>Phone</th>
+                            <th>{{ __('dashboard.Role') }}</th>
 
-                            <th>Status</th>
+                            <th>{{ __('dashboard.Status') }}</th>
 
-                            <th >Created</th>
+                            <th>{{ __('dashboard.Created_At') }}</th>
 
                             <th></th>
                         </tr>
