@@ -46,6 +46,149 @@
                             </div>
                             <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of the Location of the pickup.</p>
                         </div>
+                        <div class="col-lg-9 p-4 row">
+                            <div class="flex"
+                                 style="max-width: 100%">
+                                <div class="form-row">
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <div class="form-group">
+                                            <label class="form-label"
+                                                   for="contact_name">{{ __('dashboard.Business Name ') }}:</label>
+                                            <div class="">
+                                                <input type="text"
+                                                       class="form-control @error('ar_name') is-invalid @enderror"
+                                                       value="{{ old('ar_name') }}"
+                                                       autocomplete="ar_name"
+                                                       name="ar_name"
+                                                       id="ar_name"
+                                                       placeholder="{{ __('dashboard.Enter your business name') }} .."
+                                                       autofocus>
+
+                                                @error('ar_name')
+                                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                                @enderror
+                                                <div class="valid-feedback">Looks good!</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <div class="form-group">
+                                            <label class="form-label"
+                                                   for="contact_name">{{ __('dashboard.Business Name ') }}:</label>
+                                            <div class="">
+                                                <input type="text"
+                                                       class="form-control @error('en_name') is-invalid @enderror"
+                                                       value="{{ old('en_name') }}"
+                                                       autocomplete="en_name"
+                                                       name="en_name"
+                                                       id="en_name"
+                                                       placeholder="{{ __('dashboard.Enter your business name') }} .."
+                                                       autofocus>
+
+                                                @error('en_name')
+                                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                                @enderror
+                                                <div class="valid-feedback">Looks good!</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <div class="form-group">
+                                            <label class="form-label"
+                                                   for="select01">{{ __('dashboard.Sales Channel') }}</label>
+                                            <select id="select01"
+                                                    data-toggle="select"
+                                                    data-minimum-results-for-search="-1"
+                                                    class="form-control form-control-sm @error('sales_channel') is-invalid @enderror"
+                                                    name="sales_channel">
+                                                    <option value="Facebook" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                                        Facebook
+                                                    </option>
+                                                    <option value="Instagram" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                                        Instagram
+                                                    </option>
+                                                    <option value="Website" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                                        Website
+                                                    </option>
+                                                    <option value="Marketplace" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                                        Marketplace
+                                                    </option>
+                                            </select>
+                                            @error('sales_channel')
+                                            <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                            @enderror
+                                            <div class="valid-feedback">Looks good!</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <div class="form-group">
+                                            <label class="form-label"
+                                                   for="select05">{{ __('dashboard.industry') }}</label>
+                                            <select id="select05"
+                                                    data-toggle="select"
+                                                    data-minimum-results-for-search="-1"
+                                                    class="form-control form-control-sm @error('industry') is-invalid @enderror"
+                                                    name="industry">
+                                                @foreach($categories as $category)
+                                                    <option value="{{ $category }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                                        {{ $category }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('industry')
+                                            <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                            @enderror
+                                            <div class="valid-feedback">Looks good!</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-12 col-md-12 mb-3">
+                                        <div class="form-group">
+                                            <label class="form-label"
+                                                   for="store_url">{{ __('dashboard.Store URL ') }}:</label>
+                                            <div class="">
+                                                <input type="text"
+                                                       class="form-control @error('store_url') is-invalid @enderror"
+                                                       value="{{ old('store_url') }}"
+                                                       autocomplete="store_url"
+                                                       name="store_url"
+                                                       id="store_url"
+                                                       placeholder="{{ __('dashboard.Enter your Store URL') }} .."
+                                                       autofocus>
+
+                                                @error('store_url')
+                                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                                @enderror
+                                                <div class="valid-feedback">Looks good!</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-separator">
+                <div class="page-separator__text" style="line-height: 30px;">
+                    <button type="button" class="btn btn-sm rounded-circle btn-dark">
+                        &nbsp;  2 &nbsp;
+                    </button>
+                    &nbsp; Location Information
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-lg-3 bg-light">
+                            <div class="page-separator">
+                                <div class="page-separator__text">Location Details</div>
+                            </div>
+                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of the Location of the pickup.</p>
+                        </div>
                         <div class="col-lg-9 row ">
                             <div class="page-separator col-lg-12">
                                 <div class="page-separator__text" >
