@@ -112,6 +112,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         $request->request->add(['password' => 123456789]);
         $request->request->add(['password_confirmation' => 123456789]);
         $request->request->add(['payment' => 'cash']);
@@ -187,7 +188,7 @@ class OrderController extends Controller
                             'start_date'            => $request->scheduled_date,
                             'status'                => $request->status,
                             'contact_id'            => $request->contact_in,
-                            'location_id'           => $request->location_id,
+                            'location_id'           => $request->pickup_location_id,
                             'business_user_id'      => auth()->user()->id,
                         ]);
                     }
@@ -195,12 +196,12 @@ class OrderController extends Controller
                     $order = Order::create([
                         'with_cash_collection'                  => $request->with_cash_collection,
                         'cash_on_delivery'                      => $request->cash_on_delivery,
-                        'radio_stacked'                         => $request->radio_stacked,
+                        'package_type'                          => $request->radio_stacked,
                         'light_bulky'                           => $request->light_bulky,
                         'package_description'                   => $request->package_description,
                         'no_of_items'                           => $request->no_of_items,
                         'order_reference'                       => $request->order_reference,
-                        'working_hours'                         => $request->working_hours,
+                        'open_package'                          => $request->open_package,
                         'delivery_notes'                        => $request->delivery_notes,
                         'customer_id'                           => $request->customer_id == null ? $customer->id:$request->customer_id,
                         'location_id'                           => $request->location_id == null ? $location->id:$request->location_id,
@@ -223,7 +224,7 @@ class OrderController extends Controller
                             'start_date'            => $request->scheduled_date,
                             'status'                => $request->status,
                             'contact_id'            => $request->contact_in,
-                            'location_id'           => $request->location_id,
+                            'location_id'           => $request->pickup_location_id,
                             'business_user_id'      => auth()->user()->id,
                         ]);
                     }
@@ -231,59 +232,61 @@ class OrderController extends Controller
                     if($request->return_location == null)
                     {
                         $return_location = Location::create([
-                            'name'                  => $request->location_name,
-                            'street'                => $request->street,
-                            'building'              => $request->building,
-                            'floor'                 => $request->floor,
-                            'apartment'             => $request->apartment,
-                            'landmarks'             => $request->landmarks,
-                            'country_id'            => $request->country_id,
-                            'state_id'              => $request->state_id,
-                            'city_id'               => $request->city_id,
-                            'business_user_id'      => auth()->user()->id,
+                            'name_exchange'                  => $request->name_exchange,
+                            'street_exchange'                => $request->street_exchange,
+                            'building_exchange'              => $request->building_exchange,
+                            'floor_exchange'                 => $request->floor_exchange,
+                            'apartment_exchange'             => $request->apartment_exchange,
+                            'landmarks_exchange'             => $request->landmarks_exchange,
+                            'country_id_exchange'            => $request->country_id_exchange,
+                            'state_id_exchange'              => $request->state_id_exchange,
+                            'city_id_exchange'               => $request->city_id_exchange,
+                            'working_hours_exchange'         => $request->working_hours_exchange,
+                            'business_user_id'               => auth()->user()->id,
                         ]);
                     }
 
                     $order = Order::create([
-                        'with_cash_difference'                  => $request->with_cash_difference,
-                        'cash_exchange_amount'                  => $request->cash_exchange_amount,
-                        'no_of_items'                           => $request->no_of_items,
-                        'package_description'                   => $request->package_description,
-                        'order_reference'                       => $request->order_reference,
-                        'allow_opening'                         => $request->allow_opening,
-                        'no_of_items_of_return_package'         => $request->no_of_items_of_return_package,
-                        'package_description_return_package'    => $request->package_description_return_package,
-                        'return_location'                       => $request->return_location == null ? $return_location->id:$request->return_location,
-                        'delivery_notes'                        => $request->delivery_notes,
-                        'customer_id'                           => $request->customer_id == null ? $customer->id:$request->customer_id,
-                        'location_id'                           => $request->location_id == null ? $location->id:$request->location_id,
-                        'pickup_id'                             => $request->pickup_id   == null ? $pickup->id:$request->pickup_id,
-                        'business_user_id'                      => auth()->user()->id,
+                        'with_cash_difference'                          => $request->with_cash_difference,
+                        'cash_exchange_amount'                          => $request->cash_exchange_amount,
+                        'no_of_items_exchange'                          => $request->no_of_items_exchange,
+                        'package_description_exchange'                  => $request->package_description_exchange,
+                        'order_reference_exchange'                      => $request->order_reference_exchange,
+                        'allow_opening'                                 => $request->allow_opening,
+                        'no_of_items_of_return_package_exchange'        => $request->no_of_items_of_return_package_exchange,
+                        'package_description_return_package_exchange'   => $request->package_description_return_package_exchange,
+                        'return_location_exchange'                      => $request->return_location_exchange == null ? $return_location->id:$request->return_location_exchange,
+                        'delivery_notes'                                => $request->delivery_notes,
+                        'customer_id'                                   => $request->customer_id == null ? $customer->id:$request->customer_id,
+                        'location_id'                                   => $request->location_id == null ? $location->id:$request->location_id,
+                        'pickup_id'                                     => $request->pickup_id   == null ? $pickup->id:$request->pickup_id,
+                        'business_user_id'                              => auth()->user()->id,
                     ]);
                     break;
                 case 'Return';
                     if($request->return_location == null)
                     {
                         $return_location = Location::create([
-                            'name'                  => $request->location_name,
-                            'street'                => $request->street,
-                            'building'              => $request->building,
-                            'floor'                 => $request->floor,
-                            'apartment'             => $request->apartment,
-                            'landmarks'             => $request->landmarks,
-                            'country_id'            => $request->country_id,
-                            'state_id'              => $request->state_id,
-                            'city_id'               => $request->city_id,
-                            'business_user_id'      => auth()->user()->id,
+                            'name_return'                  => $request->name_return,
+                            'street_return'                => $request->street_return,
+                            'building_return'              => $request->building_return,
+                            'floor_return'                 => $request->floor_return,
+                            'apartment_return'             => $request->apartment_return,
+                            'landmarks_return'             => $request->landmarks_return,
+                            'country_id_return'            => $request->country_id_return,
+                            'state_id_return'              => $request->state_id_return,
+                            'city_id_return'               => $request->city_id_return,
+                            'working_hours_return'         => $request->working_hours_return,
+                            'business_user_id'             => auth()->user()->id,
                         ]);
                     }
 
                     $order = Order::create([
                         'refund_amount'                         => $request->refund_amount,
                         'with_refund'                           => $request->with_refund,
-                        'no_of_items'                           => $request->no_of_items,
-                        'package_description'                   => $request->package_description,
-                        'order_reference'                       => $request->order_reference,
+                        'no_of_items_return'                    => $request->no_of_items_return,
+                        'package_description_return'            => $request->package_description_return,
+                        'order_reference_return'                => $request->order_reference_return,
                         'return_location'                       => $request->return_location == null ? $return_location->id:$request->return_location,
                         'delivery_notes'                        => $request->delivery_notes,
                         'customer_id'                           => $request->customer_id == null ? $customer->id:$request->customer_id,
@@ -295,7 +298,7 @@ class OrderController extends Controller
                     $order = Order::create([
                         'cash_to_collect'                       => $request->cash_to_collect,
                         'collect_cash'                          => $request->collect_cash,
-                        'order_reference'                       => $request->order_reference,
+                        'order_reference_cash_collection'       => $request->order_reference_cash_collection,
                         'delivery_notes'                        => $request->delivery_notes,
                         'customer_id'                           => $request->customer_id == null ? $customer->id:$request->customer_id,
                         'location_id'                           => $request->location_id == null ? $location->id:$request->location_id,

@@ -378,7 +378,7 @@ $('input[name="with_cash_collection"]').on('change',function () {
     }
 })
 
-$('input[name="radio-stacked"]').on('change',function () {
+$('input[name="radio_stacked"]').on('change',function () {
     var value = $(this).val();
     if(value == 'parcel')
     {

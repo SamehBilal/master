@@ -16,21 +16,53 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->set('type', ['Deliver', 'Exchange', 'Return', 'Cash Collection']);
-            $table->unsignedBigInteger('tracking_no');
-            $table->unsignedFloat('cash_on_delivery');
-            $table->string('order_reference')->nullable();
-            $table->string('package_type')->nullable();
-            $table->longText('package_description')->nullable();
-            $table->set('status', ['New','Awaiting your action','On hold','Canceled','Rescheduled','Out for delivery','Completed','Return to origin','Cannot be delivered'])->default('New');
-            $table->unsignedBigInteger('no_of_items')->default(1);
             $table->longText('delivery_notes')->nullable();
-            $table->boolean('open_package')->default(1);
+            $table->unsignedBigInteger('tracking_no');
+            $table->set('status', ['New','Awaiting your action','On hold','Canceled','Rescheduled','Out for delivery','Completed','Return to origin','Cannot be delivered'])->default('New');
+
+            /* Deliver */
+            $table->string('with_cash_collection')->nullable();
+            $table->unsignedFloat('cash_on_delivery')->nullable();
+            $table->string('package_type')->nullable();
+            $table->string('light_bulky')->nullable();
+            $table->longText('package_description')->nullable();
+            $table->unsignedBigInteger('no_of_items')->default(1);
+            $table->string('order_reference')->nullable();
+            $table->boolean('working_hours')->default('off');
+            $table->boolean('open_package')->default('off');
+
+            /* Exchange */
+            $table->unsignedFloat('cash_exchange_amount')->nullable();
+            $table->string('with_cash_difference')->nullable();
+            $table->unsignedBigInteger('no_of_items_exchange')->default(1);
+            $table->longText('package_description_exchange')->nullable();
+            $table->string('order_reference_exchange')->nullable();
+            $table->boolean('allow_opening')->default('off');
+            $table->unsignedBigInteger('no_of_items_of_return_package_exchange')->default(1);
+            $table->longText('package_description_return_package_exchange')->nullable();
+
+            /* Return */
+            $table->unsignedFloat('refund_amount')->nullable();
+            $table->string('with_refund')->nullable();
+            $table->unsignedBigInteger('no_of_items_return')->default(1);
+            $table->longText('package_description_return')->nullable();
+            $table->string('order_reference_return')->nullable();
+
+            /* Cash Collection */
+            $table->unsignedFloat('cash_to_collect')->nullable();
+            $table->string('collect_cash')->nullable();
+            $table->string('order_reference_cash_collection')->nullable();
+
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('pickup_id')->nullable();
             $table->unsignedBigInteger('location_id')->nullable();
+            $table->unsignedBigInteger('return_location')->nullable();
+            $table->unsignedBigInteger('return_location_exchange')->nullable();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->foreign('pickup_id')->references('id')->on('pickups')->onDelete('SET NULL');
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('SET NULL');
+            $table->foreign('return_location')->references('id')->on('locations')->onDelete('SET NULL');
+            $table->foreign('return_location_exchange')->references('id')->on('locations')->onDelete('SET NULL');
             $table->timestamps();
         });
     }
