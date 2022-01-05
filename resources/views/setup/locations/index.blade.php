@@ -9,11 +9,11 @@
         {{ __('dashboard.Locations') }}
     </li>
 @endsection
-
-@section('button-link')
-    {{ route('dashboard.locations.create') }}
-@endsection
-
+@can('create locations')
+    @section('button-link')
+        {{ route('dashboard.locations.create') }}
+    @endsection
+@endcan
 @section('button-icon')
     add
 @endsection
@@ -153,13 +153,17 @@
                                     <a href="#" data-toggle="dropdown"
                                        class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="{{ route('dashboard.locations.edit',$location->id) }}" class="dropdown-item active"><i class="material-icons ">edit</i> Edit</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $location->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
-                                        <form id="delete-form{{ $location->id }}" action="{{ route('dashboard.locations.destroy',$location->id) }}" method="POST" class="d-none">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
+                                        @can('edit locations')
+                                            <a href="{{ route('dashboard.locations.edit',$location->id) }}" class="dropdown-item active"><i class="material-icons ">edit</i> Edit</a>
+                                        @endcan
+                                        @can('delete locations')
+                                            <div class="dropdown-divider"></div>
+                                            <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $location->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
+                                            <form id="delete-form{{ $location->id }}" action="{{ route('dashboard.locations.destroy',$location->id) }}" method="POST" class="d-none">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                        @endcan
                                     </div>
                                 </td>
                             </tr>

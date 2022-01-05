@@ -9,10 +9,11 @@
         {{ __('dashboard.Customers') }}
     </li>
 @endsection
-
-@section('button-link')
-    {{ route('dashboard.customers.create') }}
-@endsection
+@can('create customers')
+    @section('button-link')
+        {{ route('dashboard.customers.create') }}
+    @endsection
+@endcan
 
 @section('button-icon')
     add
@@ -215,13 +216,17 @@
                                            class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             {{--<a href="{{ route('dashboard.customers.show',$customer->id) }}" class="dropdown-item active"><i class="material-icons ">visibility</i> View</a>--}}
-                                            <a href="{{ route('dashboard.customers.edit',$customer->id) }}" class="dropdown-item active"><i class="material-icons ">edit</i> Edit</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $customer->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
-                                            <form id="delete-form{{ $customer->id }}" action="{{ route('dashboard.customers.destroy',$customer->id) }}" method="POST" class="d-none">
-                                                @csrf
-                                                @method('DELETE')
-                                            </form>
+                                            @can('edit customers')
+                                                <a href="{{ route('dashboard.customers.edit',$customer->id) }}" class="dropdown-item active"><i class="material-icons ">edit</i> Edit</a>
+                                            @endcan
+                                            @can('delete customers')
+                                                <div class="dropdown-divider"></div>
+                                                <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $customer->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
+                                                <form id="delete-form{{ $customer->id }}" action="{{ route('dashboard.customers.destroy',$customer->id) }}" method="POST" class="d-none">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
+                                            @endcan
                                         </div>
                                     </td>
                                 </tr>

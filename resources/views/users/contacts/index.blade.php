@@ -9,11 +9,11 @@
         {{ __('dashboard.Contacts') }}
     </li>
 @endsection
-
-@section('button-link')
-    {{ route('dashboard.contacts.create') }}
-@endsection
-
+@can('create contacts')
+    @section('button-link')
+        {{ route('dashboard.contacts.create') }}
+    @endsection
+@endan
 @section('button-icon')
     add
 @endsection
@@ -192,13 +192,17 @@
                                     <a href="#" data-toggle="dropdown"
                                        class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="{{ route('dashboard.contacts.edit',$contact->id) }}" class="dropdown-item active"><i class="material-icons ">edit</i> Edit</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $contact->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
-                                        <form id="delete-form{{ $contact->id }}" action="{{ route('dashboard.contacts.destroy',$contact->id) }}" method="POST" class="d-none">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
+                                        @can('edit contacts')
+                                            <a href="{{ route('dashboard.contacts.edit',$contact->id) }}" class="dropdown-item active"><i class="material-icons ">edit</i> Edit</a>
+                                        @endcan
+                                        @can('delete contacts')
+                                            <div class="dropdown-divider"></div>
+                                            <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $contact->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
+                                            <form id="delete-form{{ $contact->id }}" action="{{ route('dashboard.contacts.destroy',$contact->id) }}" method="POST" class="d-none">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                        @endcan
                                     </div>
                                 </td>
                             </tr>

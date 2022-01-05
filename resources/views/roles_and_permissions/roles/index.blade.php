@@ -9,11 +9,11 @@
         {{ __('dashboard.Roles') }}
     </li>
 @endsection
-
-@section('button-link')
-    {{ route('dashboard.roles.create') }}
-@endsection
-
+@can('create roles')
+    @section('button-link')
+        {{ route('dashboard.roles.create') }}
+    @endsection
+@endcan
 @section('button-icon')
     add
 @endsection
@@ -129,13 +129,17 @@
                                                 <a href="#" data-toggle="dropdown"
                                                    class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <a href="{{ route('dashboard.roles.edit',$role->id) }}" class="dropdown-item active"><i class="material-icons ">edit</i> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $role->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
-                                                    <form id="delete-form{{ $role->id }}" action="{{ route('dashboard.roles.destroy',$role->id) }}" method="POST" class="d-none">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
+                                                    @can('edit roles')
+                                               can('delete roles')         <a href="{{ route('dashboard.roles.edit',$role->id) }}" class="dropdown-item active"><i class="material-icons ">edit</i> Edit</a>
+                                                    @endcan
+                                                    @
+                                                        <div class="dropdown-divider"></div>
+                                                        <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $role->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
+                                                        <form id="delete-form{{ $role->id }}" action="{{ route('dashboard.roles.destroy',$role->id) }}" method="POST" class="d-none">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                    @endcan
                                                 </div>
                                             </td>
                                         </tr>

@@ -9,11 +9,11 @@
         {{ __('dashboard.Tickets') }}
     </li>
 @endsection
-
-@section('button-link')
-    {{ route('dashboard.tickets.create') }}
-@endsection
-
+@can('create tickets')
+    @section('button-link')
+        {{ route('dashboard.tickets.create') }}
+    @endsection
+@endcan
 @section('button-icon')
     add
 @endsection

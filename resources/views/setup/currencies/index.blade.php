@@ -9,11 +9,11 @@
         {{ __('dashboard.Currencies') }}
     </li>
 @endsection
-
-@section('button-link')
-    {{ route('dashboard.currencies.create') }}
-@endsection
-
+@can('create currencies')
+    @section('button-link')
+        {{ route('dashboard.currencies.create') }}
+    @endsection
+@endcan
 @section('button-icon')
     add
 @endsection
@@ -117,13 +117,17 @@
                                                 <a href="#" data-toggle="dropdown"
                                                    class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <a href="{{ route('dashboard.currencies.edit',$currency->id) }}" class="dropdown-item active"><i class="material-icons ">edit</i> Edit</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $currency->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
-                                                    <form id="delete-form{{ $currency->id }}" action="{{ route('dashboard.currencies.destroy',$currency->id) }}" method="POST" class="d-none">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
+                                                    @can('edit currencies')
+                                                        <a href="{{ route('dashboard.currencies.edit',$currency->id) }}" class="dropdown-item active"><i class="material-icons ">edit</i> Edit</a>
+                                                    @endcan
+                                                    @can('delete currencies')
+                                                        <div class="dropdown-divider"></div>
+                                                        <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $currency->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
+                                                        <form id="delete-form{{ $currency->id }}" action="{{ route('dashboard.currencies.destroy',$currency->id) }}" method="POST" class="d-none">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                    @endcan
                                                 </div>
                                             </td>
                                         </tr>

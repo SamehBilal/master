@@ -234,8 +234,10 @@
                                     </div>
                                 </td>
                                 <td class="text-right">
-                                    <a href="{{ route('dashboard.users.edit',$user->id) }}" {{--data-toggle="dropdown"--}}
-                                       class="btn text-50  text-70"><i class="material-icons ">edit</i> </a>
+                                    @can('edit users')
+                                        <a href="{{ route('dashboard.users.edit',$user->id) }}" {{--data-toggle="dropdown"--}}
+                                            class="btn text-50  text-70"><i class="material-icons ">edit</i> </a>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach
