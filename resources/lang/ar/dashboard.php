@@ -334,4 +334,20 @@ return [
     'industry'              =>  'الصناعة',
     'Store URL '            =>  'رابط التسوق',
     'Enter your Store URL'  =>  'ادخل رابط التسوق',
+
+    // roles and permissions
+    'Roles'                 => 'الادوار',
+    'Permissions'           => 'الصلاحيات',
+    'New Role'              => 'دور جديد',
+    'New Permission'        => 'صلاحيه جديده',
+    'All the Roles listed in the app'   => 'جميع الادوار المدرجة في التطبيق',
+    'Select Role Permissions'   => 'أختر صلاحيات الدور',
+    'Basic details of the Roles listed' => 'التفاصيل الأساسية للأدوار المدرجة',
+    'Role Information'      => 'معلومات الدور',
+    'All Roles'             => 'جميع الادوار',
+    'All the Permissions listed in the app' => 'جميع الصلاحيات المدرجة في التطبيق',
+    'All Permissions'       => 'جميع الصلاحيات',
+    'Permission Information'=> 'معلومات الصلاحيه',
+    'Basic details of the Permission listed'    => 'التفاصيل الأساسية للصلاحيات المدرجة',
+
 ];

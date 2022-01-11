@@ -28,8 +28,8 @@ class CreateOrdersTable extends Migration
             $table->longText('package_description')->nullable();
             $table->unsignedBigInteger('no_of_items')->default(1);
             $table->string('order_reference')->nullable();
-            $table->boolean('working_hours')->default('off');
-            $table->boolean('open_package')->default('off');
+            $table->boolean('working_hours')->default(0);
+            $table->boolean('open_package')->default(0);
 
             /* Exchange */
             $table->unsignedFloat('cash_exchange_amount')->nullable();
@@ -37,7 +37,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('no_of_items_exchange')->default(1);
             $table->longText('package_description_exchange')->nullable();
             $table->string('order_reference_exchange')->nullable();
-            $table->boolean('allow_opening')->default('off');
+            $table->boolean('allow_opening')->default(0);
             $table->unsignedBigInteger('no_of_items_of_return_package_exchange')->default(1);
             $table->longText('package_description_return_package_exchange')->nullable();
 

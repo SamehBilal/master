@@ -44,7 +44,7 @@ return [
     'Yes'                   => 'Yes',
     'Order_date'            => 'Order date',
     'Tickets'               => 'Tickets',
-    'Total Sales'           => 'Total Sales',
+    'Total_Sales'           => 'Total Sales',
     'This_Week'             => 'This Week',
     'Last_Week'             => 'Last Week',
     'Total_Customers'       => 'Total Customers',
@@ -333,4 +333,23 @@ return [
     'industry'              =>  'Industry',
     'Store URL '            =>  'Store URL',
     'Enter your Store URL'  =>  'Enter your Store URL',
+
+    // roles and permissions
+    'Roles'                 => 'Roles',
+    'Permissions'           => 'Permissions',
+    'New Role'              => 'New Role',
+    'New Permission'        => 'New Permission',
+    'All the Roles listed in the app'   => 'All the Roles listed in the app',
+    'Select Role Permissions'   => 'Select Role Permissions',
+    'Basic details of the Roles listed' => 'Basic details of the Roles listed',
+    'Role Information'      => 'Role Information',
+    'All Roles'             => 'All Roles',
+    'All the Permissions listed in the app' => 'All the Permissions listed in the app',
+    'All Permissions'       => 'All Permissions',
+    'Permission Information'=> 'Permission Information',
+    'Basic details of the Permission listed'    => 'Basic details of the Permission listed',
+
+
+
+
 ];

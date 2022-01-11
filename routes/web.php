@@ -66,6 +66,9 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('import',[\App\Http\Controllers\ExcelController::class,'import'])->name('import'); //import
             Route::get('export',[\App\Http\Controllers\ExcelController::class,'export'])->name('export'); //export
             Route::get('settings',[\App\Http\Controllers\SettingsController::class,'index'])->name('settings'); //settings
+            Route::resource('permissions',\App\Http\Controllers\PermissionController::class)->except(['show']); //permissions
+            Route::resource('roles',\App\Http\Controllers\RoleController::class)->except(['show']); //roles
+
         //});
     });
 

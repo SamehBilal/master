@@ -9,11 +9,11 @@
         {{ __('dashboard.Pickups') }}
     </li>
 @endsection
-
-@section('button-link')
-    {{ route('dashboard.pickups.create') }}
-@endsection
-
+@can('create pickups')
+    @section('button-link')
+        {{ route('dashboard.pickups.create') }}
+    @endsection
+@endcan
 @section('button-icon')
     add
 @endsection
@@ -230,14 +230,20 @@
                                     <a href="#" data-toggle="dropdown"
                                        class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="{{ route('dashboard.pickups.show',$pickup->id) }}" class="dropdown-item"><i class="material-icons ">visibility</i> View</a>
-                                        <a href="{{ route('dashboard.pickups.edit',$pickup->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> Edit</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $pickup->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
-                                        <form id="delete-form{{ $pickup->id }}" action="{{ route('dashboard.pickups.destroy',$pickup->id) }}" method="POST" class="d-none">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
+                                        @can('show pickups')
+                                            <a href="{{ route('dashboard.pickups.show',$pickup->id) }}" class="dropdown-item"><i class="material-icons ">visibility</i> View</a>
+                                        @endcan
+                                        @can('edit pickups')
+                                            <a href="{{ route('dashboard.pickups.edit',$pickup->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> Edit</a>
+                                        @endcan
+                                        @can('delete pickups')
+                                            <div class="dropdown-divider"></div>
+                                            <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $pickup->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
+                                            <form id="delete-form{{ $pickup->id }}" action="{{ route('dashboard.pickups.destroy',$pickup->id) }}" method="POST" class="d-none">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                        @endcan
                                     </div>
                                 </td>
                             </tr>
