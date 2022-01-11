@@ -71,15 +71,15 @@
 
                             <th>#</th>
 
-                            <th>Pickup Id</th>
+                            <th>Name <small>(Arabic)</small></th>
 
-                            <th>Pickup location</th>
+                            <th>Name <small>(English)</small></th>
 
-                            <th>Scheduled date</th>
+                            <th>Sales Channel</th>
 
-                            <th>Pickup type</th>
+                            <th>Industry</th>
 
-                            <th>Status</th>
+                            <th>Location</th>
 
                             <th>Created</th>
 
@@ -97,8 +97,28 @@
                                 <td></td>
 
                                 <td>
-                                    <a href="{{ route('dashboard.pickups.show',$item->id) }}"
-                                       class="chip text-underline">{{ $item->pickup_id }}</a>
+                                    <span class="chip ">{{ $item->ar_name }}</span>
+                                </td>
+
+                                <td>
+                                    <span class="chip ">{{ $item->en_name }}</span>
+                                </td>
+
+                                <td>
+                                    <div class="media flex-nowrap align-items-center"
+                                         style="white-space: nowrap;">
+
+                                        <div class="media-body">
+                                            <div class="d-flex flex-column">
+                                                <small class=""><strong>{{ $item->sales_channel }}</strong></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div href="#"
+                                         class="chip chip-outline-secondary ">{{ $item->industry }}</div>
                                 </td>
 
                                 <td>
@@ -120,36 +140,6 @@
                                     </div>
                                 </td>
 
-                                <td>
-                                    <div class="media flex-nowrap align-items-center"
-                                         style="white-space: nowrap;">
-                                        <div class="avatar avatar-sm mr-8pt">
-                                                <span class="avatar-title rounded bg-primary text-black-100">
-                                                     <img src="{{ asset('backend/images/icon/fast-delivery.png') }}"
-                                                          alt="Avatar"
-                                                          class="avatar-img ">
-                                                </span>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="d-flex flex-column">
-                                                <small class=""><strong>{{ date("F j, Y", strtotime($item->scheduled_date)) }}</strong></small>
-                                                <span class="">{{ date("g:i a", strtotime($item->scheduled_date)) }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-
-                                <td>
-                                    <div href="#"
-                                         class="chip chip-outline-secondary ">{{ $item->type }}</div>
-                                </td>
-
-                                <td>
-                                    <div class="d-flex flex-column">
-                                        <small class="badge badge-{{ random_color() }}">{{ $item->status }}</small>
-                                    </div>
-                                </td>
-
 
                                 <td>
                                     <div class="d-flex flex-column">
@@ -162,7 +152,6 @@
                                     <a href="#" data-toggle="dropdown"
                                        class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="{{ route('dashboard.pickups.show',$item->id) }}" class="dropdown-item"><i class="material-icons ">visibility</i> View</a>
                                         <a href="{{ route('dashboard.pickups.edit',$item->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> Edit</a>
                                         <div class="dropdown-divider"></div>
                                         <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $item->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
@@ -191,15 +180,15 @@
 
                             <th>#</th>
 
-                            <th>Pickup Id</th>
+                            <th>Name <small>(Arabic)</small></th>
 
-                            <th>Pickup location</th>
+                            <th>Name <small>(English)</small></th>
 
-                            <th>Scheduled date</th>
+                            <th>Sales Channel</th>
 
-                            <th>Pickup type</th>
+                            <th>Industry</th>
 
-                            <th>Status</th>
+                            <th>Location</th>
 
                             <th>Created</th>
 

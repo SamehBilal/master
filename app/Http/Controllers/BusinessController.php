@@ -69,13 +69,30 @@ class BusinessController extends Controller
 
         $user_id = auth()->user()->id;
 
+        if($request->location_in == null)
+        {
+            $this->validate($request, Location::rules());
+            $location = Location::create([
+                'name'                  => $request->name,
+                'street'                => $request->street,
+                'building'              => $request->building,
+                'floor'                 => $request->floor,
+                'apartment'             => $request->apartment,
+                'landmarks'             => $request->landmarks,
+                'country_id'            => $request->country_id,
+                'state_id'              => $request->state_id,
+                'city_id'               => $request->city_id,
+                'business_user_id'      => auth()->user()->id,
+            ]);
+        }
+
         $business = Business::create([
             'ar_name'                 => $request->ar_name,
             'en_name'                 => $request->en_name,
             'sales_channel'           => $request->sales_channel,
             'industry'                => $request->industry,
             'store_url'               => $request->store_url,
-            'location_id'             => $request->location_id,
+            'location_id'             => ($request->location_in = null) ? $location:$request->location_id,
             'business_user_id'        => $user_id,
         ]);
 
@@ -90,7 +107,32 @@ class BusinessController extends Controller
      */
     public function show(Business $business)
     {
-        return view('users.customers.business.edit');
+        $locations  = Location::all();
+        $countries  = Country::all();
+        $states     = State::where('country_id',64)->get();
+        $cities     = City::all();
+        $categories = [
+            'Books, Arts and Media',
+            'Electronics',
+            'Cosmetics and personal care',
+            'Fashion',
+            'Furniture and appliances',
+            'Healthcare supplements',
+            'Home and living',
+            'Gifts',
+            'Jewelry and accessories',
+            'Leather',
+            'Mothers and babies',
+            'Medical supplies',
+            'Office equipment and supplies',
+            'Pet supplies',
+            'Sports wear and equipment',
+            'Toys',
+            'E-commerce',
+            'Food',
+            'Shoes',
+        ];
+        return view('users.customers.business.edit',compact('locations','countries','states','cities','categories','business'));
     }
 
     /**
@@ -101,7 +143,32 @@ class BusinessController extends Controller
      */
     public function edit(Business $business)
     {
-        return view('users.customers.business.edit');
+        $locations  = Location::all();
+        $countries  = Country::all();
+        $states     = State::where('country_id',64)->get();
+        $cities     = City::all();
+        $categories = [
+            'Books, Arts and Media',
+            'Electronics',
+            'Cosmetics and personal care',
+            'Fashion',
+            'Furniture and appliances',
+            'Healthcare supplements',
+            'Home and living',
+            'Gifts',
+            'Jewelry and accessories',
+            'Leather',
+            'Mothers and babies',
+            'Medical supplies',
+            'Office equipment and supplies',
+            'Pet supplies',
+            'Sports wear and equipment',
+            'Toys',
+            'E-commerce',
+            'Food',
+            'Shoes',
+        ];
+        return view('users.customers.business.edit',compact('locations','countries','states','cities','categories','business'));
     }
 
     /**
@@ -117,13 +184,30 @@ class BusinessController extends Controller
 
         $user_id = auth()->user()->id;
 
+        if($request->location_in == null)
+        {
+            $this->validate($request, Location::rules());
+            $location = Location::create([
+                'name'                  => $request->name,
+                'street'                => $request->street,
+                'building'              => $request->building,
+                'floor'                 => $request->floor,
+                'apartment'             => $request->apartment,
+                'landmarks'             => $request->landmarks,
+                'country_id'            => $request->country_id,
+                'state_id'              => $request->state_id,
+                'city_id'               => $request->city_id,
+                'business_user_id'      => auth()->user()->id,
+            ]);
+        }
+
         $business->update([
             'ar_name'                 => $request->ar_name,
             'en_name'                 => $request->en_name,
             'sales_channel'           => $request->sales_channel,
             'industry'                => $request->industry,
             'store_url'               => $request->store_url,
-            'location_id'             => $request->location_id,
+            'location_id'             => ($request->location_in = null) ? $location:$request->location_id,
             'business_user_id'        => $user_id,
         ]);
 

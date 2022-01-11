@@ -254,7 +254,7 @@ return [
     'There are no contact forms yet'    => 'There are no contact forms yet',
     'Message'               => 'Message',
 
-    // customers 
+    // customers
     'All Customers'         => 'All Customers',
     'Category'              => 'Category',
     'New Customer'          => 'New Customer',
@@ -325,4 +325,12 @@ return [
     'Upload your photo and the remaining data'  => 'Upload your photo and the remaining data',
     'Save Changes'          => 'Save Changes',
     'Password'              =>  'Password',
+    'Business Name '        =>  'Business Name (Arabic)',
+    'Business English Name '        =>  'Business Name (English)',
+    'Enter your business name'        =>  'Enter your Arabic business name',
+    'Enter your English business name'        =>  'Enter your English business name',
+    'Sales Channel'         =>  'Sales Channel',
+    'industry'              =>  'Industry',
+    'Store URL '            =>  'Store URL',
+    'Enter your Store URL'  =>  'Enter your Store URL',
 ];

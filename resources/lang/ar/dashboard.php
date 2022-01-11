@@ -255,7 +255,7 @@ return [
     'There are no contact forms yet'    => 'لا يوجد استمارات حتى الان',
     'Message'               => 'الرساله',
 
-    // customers 
+    // customers
     'All Customers'         => 'كل العملاء',
     'Category'              => 'فئة',
     'New Customer'          => 'عميل جديد',
@@ -326,4 +326,12 @@ return [
     'Upload your photo and the remaining data'  => 'قم بتحميل صورتك والبيانات المتبقية',
     'Save Changes'          => 'حفظ التغييرات',
     'Password'              =>  'كلمه المرور',
+    'Business Name '        =>  'اسم البيزنس بالعربي',
+    'Business English Name '        =>  'اسم البيزنس بالإنجليزي',
+    'Enter your business name'        =>  'ادخل اسم البيزنس بالعربي',
+    'Enter your English business name'        =>  'ادخل اسم البيزنس بالإنجليزي',
+    'Sales Channel'         =>  'مكان البيع',
+    'industry'              =>  'الصناعة',
+    'Store URL '            =>  'رابط التسوق',
+    'Enter your Store URL'  =>  'ادخل رابط التسوق',
 ];
