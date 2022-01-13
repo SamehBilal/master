@@ -27,6 +27,9 @@ class OrderFactory extends Factory
             'tracking_no'           => $this->faker->numerify('#######'),
             'cash_on_delivery'      => $this->faker->numerify('###'),
             'customer_id'           => $this->faker->randomElement([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]),
+            'pickup_id'             => $this->faker->randomElement([1,2,3,4,5]),
+            'location_id'           => $this->faker->randomElement([1,2,3,4,5]),
+            'business_user_id'      => 2,
         ];
     }
 }

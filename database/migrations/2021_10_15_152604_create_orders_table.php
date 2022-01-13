@@ -58,11 +58,13 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('location_id')->nullable();
             $table->unsignedBigInteger('return_location')->nullable();
             $table->unsignedBigInteger('return_location_exchange')->nullable();
+            $table->unsignedBigInteger('business_user_id')->nullable();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->foreign('pickup_id')->references('id')->on('pickups')->onDelete('SET NULL');
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('SET NULL');
             $table->foreign('return_location')->references('id')->on('locations')->onDelete('SET NULL');
             $table->foreign('return_location_exchange')->references('id')->on('locations')->onDelete('SET NULL');
+            $table->foreign('business_user_id')->references('id')->on('users')->onDelete('SET NULL');
             $table->timestamps();
         });
     }

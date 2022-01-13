@@ -21,8 +21,12 @@ class DatabaseSeeder extends Seeder
             CitySeeder::class,
             UserCategorySeeder::class,
             CustomerSeeder::class,
-            OrderSeeder::class,
             TicketIssueSeeder::class,
+            LocationSeeder::class,
+            ContactSeeder::class,
+            PickupSeeder::class,
+            OrderSeeder::class,
+            OrderLogSeeder::class,
         ]);
     }
 }

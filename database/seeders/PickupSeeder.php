@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Pickup;
 use Illuminate\Database\Seeder;
 
 class PickupSeeder extends Seeder
@@ -13,6 +14,6 @@ class PickupSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Pickup::factory()->count(5)->create();
     }
 }

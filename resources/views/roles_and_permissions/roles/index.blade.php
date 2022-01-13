@@ -106,14 +106,14 @@
                                             <td>
                                                 @foreach ($role->permissions as $permission)
                                                     <li>{{$permission->name}}</li>
-                                                @endforeach 
+                                                @endforeach
                                                 {{-- <a href="#"
                                                    class="chip ">{{ $role->state ? $location->state->name:'' }}</a> --}}
                                             </td>
                                             <td>
                                                 @foreach ($role->users as $user)
                                                     <li>{{$user->full_name}}</li>
-                                                @endforeach 
+                                                @endforeach
                                                 {{-- <a href="#"
                                                    class="chip ">{{ $role->state ? $location->state->name:'' }}</a> --}}
                                             </td>
@@ -130,9 +130,9 @@
                                                    class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     @can('edit roles')
-                                               can('delete roles')         <a href="{{ route('dashboard.roles.edit',$role->id) }}" class="dropdown-item active"><i class="material-icons ">edit</i> Edit</a>
+                                                        <a href="{{ route('dashboard.roles.edit',$role->id) }}" class="dropdown-item active"><i class="material-icons ">edit</i> Edit</a>
                                                     @endcan
-                                                    @
+                                                    @can('delete roles')
                                                         <div class="dropdown-divider"></div>
                                                         <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $role->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
                                                         <form id="delete-form{{ $role->id }}" action="{{ route('dashboard.roles.destroy',$role->id) }}" method="POST" class="d-none">

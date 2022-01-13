@@ -112,17 +112,18 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
         $request->request->add(['password' => 123456789]);
         $request->request->add(['password_confirmation' => 123456789]);
         $request->request->add(['payment' => 'cash']);
+        //dd($request->all());
         $this->validate($request, Order::rules());
-        $data                   = $request->all();
-        $data['password']       = Hash::make($request->password);
-        $data['other_email']    = null;
-        $data['religion']       = null;
-        $user                   = null;
-
+        $data                           = $request->all();
+        $data['password']               = Hash::make(123456789);
+        $data['password_confirmation']  = $data['password'];
+        $data['other_email']            = null;
+        $data['religion']               = null;
+        $user                           = null;
         try {
             if($request->customer_id == null)
             {
@@ -171,7 +172,6 @@ class OrderController extends Controller
                     ]);
                 }
             }
-
             switch($request->type)
             {
                 case 'Deliver';
@@ -378,12 +378,14 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        $pickups = Pickup::all();
-        $states = State::all();
-        $cities = City::all();
-        $countries = Country::all();
-        $locations = Location::all();
-        return view('orders.edit',compact('order','pickups','cities','states','countries','locations'));
+        $pickups    = Pickup::all();
+        $states     = State::where('country_id',64)->get();
+        $cities     = City::all();
+        $countries  = Country::all();
+        $locations  = Location::all();
+        $customers  = Customer::all();
+        $contacts   = Contact::all();
+        return view('orders.edit',compact('order','pickups','cities','states','countries','locations','customers','contacts'));
     }
 
     /**

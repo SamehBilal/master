@@ -40,32 +40,6 @@
                         {{ __('dashboard.Dashboard') }}
                     </a>
                 </li>
-                <li class="sidebar-menu-item {{ set_active(['dashboard/roles*','dashboard/permissions*'],'active open')}}">
-                    <a class="sidebar-menu-button js-sidebar-collapse"
-                       data-toggle="collapse"
-                       href="#student_menu">
-                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">shopping_cart</span>
-                        {{ __('dashboard.Permissions') }}
-                        {{--<span class="sidebar-menu-badge badge badge-accent badge-notifications ml-auto">2</span>
-                        <span class="sidebar-menu-toggle-icon"></span>--}}
-                        <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                    </a>
-                    <ul class="sidebar-submenu collapse {{ set_active(['dashboard/roles*','dashboard/permissions*'],'show')}} sm-indent"
-                        id="student_menu">
-                        <li class="sidebar-menu-item {{ set_active(['dashboard/roles'])}}">
-                            <a class="sidebar-menu-button"
-                               href="{{ route('dashboard.roles.index') }}">
-                                <span class="sidebar-menu-text">{{ __('dashboard.Roles') }}</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item {{ set_active(['dashboard/permissions*'])}}">
-                            <a class="sidebar-menu-button"
-                               href="{{ route('dashboard.permissions.index') }}">
-                                <span class="sidebar-menu-text">{{ __('dashboard.Permissions') }}</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
                 <li class="sidebar-menu-item {{ set_active(['dashboard/orders*'],'active open')}}">
                     <a class="sidebar-menu-button js-sidebar-collapse"
                        data-toggle="collapse"
@@ -181,6 +155,32 @@
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">map</span>
                         {{ __('dashboard.Locations') }}
                     </a>
+                </li>
+                <li class="sidebar-menu-item {{ set_active(['dashboard/roles*','dashboard/permissions*'],'active open')}}">
+                    <a class="sidebar-menu-button js-sidebar-collapse"
+                       data-toggle="collapse"
+                       href="#role_menu">
+                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">security</span>
+                        {{ __('dashboard.Permissions') }}
+                        {{--<span class="sidebar-menu-badge badge badge-accent badge-notifications ml-auto">2</span>
+                        <span class="sidebar-menu-toggle-icon"></span>--}}
+                        <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                    </a>
+                    <ul class="sidebar-submenu collapse {{ set_active(['dashboard/roles*','dashboard/permissions*'],'show')}} sm-indent"
+                        id="role_menu">
+                        <li class="sidebar-menu-item {{ set_active(['dashboard/roles'])}}">
+                            <a class="sidebar-menu-button"
+                               href="{{ route('dashboard.roles.index') }}">
+                                <span class="sidebar-menu-text">{{ __('dashboard.Roles') }}</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item {{ set_active(['dashboard/permissions*'])}}">
+                            <a class="sidebar-menu-button"
+                               href="{{ route('dashboard.permissions.index') }}">
+                                <span class="sidebar-menu-text">{{ __('dashboard.Permissions') }}</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="sidebar-menu-item {{ set_active(['dashboard/settings*'],'active open')}}">

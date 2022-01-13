@@ -30,4 +30,18 @@ class Order extends Model
         return $this->hasMany(OrderLog::class)->orderByDesc('created_at');
     }
 
+    public static function rules($update = false, $id = null)
+    {
+        $common = [
+            //'tracking_no'        => "required|max:40|unique:orders,tracking_no,$id",
+        ];
+
+        if ($update) {
+            return $common;
+        }
+
+        return array_merge($common, [
+            //'tracking_no'          => "required|max:40|unique:orders",
+        ]);
+    }
 }

@@ -288,7 +288,6 @@
                                         </div>
                                     </td>
 
-
                                     <td>
                                         <div class="d-flex flex-column">
                                             <small class=""><strong>{{ date("F j, Y", strtotime($order->created_at)) }}</strong></small>

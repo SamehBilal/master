@@ -23,7 +23,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $customer   = Role::create(['name' => 'customer']);
 
 
-        // roles permissions  
+        // roles permissions
         Permission::create(['name' => 'view roles']);
         Permission::create(['name' => 'create roles']);
         Permission::create(['name' => 'edit roles']);
@@ -162,12 +162,12 @@ class RolesAndPermissionsSeeder extends Seeder
             'create users',
             'edit users',
             'delete users',
-            // currenies permissions
-            'view currenies',
-            'show currenies',
-            'create currenies',
-            'edit currenies',
-            'delete currenies',
+            // currencies permissions
+            'view currencies',
+            'show currencies',
+            'create currencies',
+            'edit currencies',
+            'delete currencies',
             // locations permissions
             'view locations',
             'show locations',

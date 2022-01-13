@@ -18,7 +18,7 @@ class UsersSeeder extends Seeder
             'first_name'        => 'Super',
             'last_name'         => 'Admin',
             'full_name'         => 'Super Admin',
-            'email'             => 'superadmin@gmail.com',
+            'email'             => 'superadmin@droplin.com',
             'email_verified_at' => now(),
             'password'          => '$2y$10$Tz8KW1vWlv6yyyBSFNnZLup0H3om2N24BvAR29sGSeQT5XmX8MbFK', // 123456789
         ]);
@@ -28,7 +28,7 @@ class UsersSeeder extends Seeder
             'first_name'         => 'Osama',
             'last_name'          => 'Fathy',
             'full_name'          => 'Osama Fathy',
-            'email'             => 'osama.fathy@meis-eg.com',
+            'email'             => 'osama.fathy@droplin.com',
             'email_verified_at' => now(),
             'password'          => '$2y$10$Tz8KW1vWlv6yyyBSFNnZLup0H3om2N24BvAR29sGSeQT5XmX8MbFK', // 123456789
         ]);
@@ -39,7 +39,7 @@ class UsersSeeder extends Seeder
             'first_name'         => 'Ahmed',
             'last_name'          => 'Osama',
             'full_name'          => 'Ahmed Osama',
-            'email'             => 'ahmedo.fathy@meis-eg.com',
+            'email'             => 'ahmedo.fathy@droplin.com',
             'email_verified_at' => now(),
             'password'          => '$2y$10$Tz8KW1vWlv6yyyBSFNnZLup0H3om2N24BvAR29sGSeQT5XmX8MbFK', // 123456789
         ]);

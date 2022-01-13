@@ -27,7 +27,7 @@
 
 @section('main_content')
     <div class="container page__container page-section">
-        <form method="POST" action="{{ route('dashboard.orders.index') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('dashboard.orders.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="page-separator">
                 <div class="page-separator__text" style="line-height: 30px;">

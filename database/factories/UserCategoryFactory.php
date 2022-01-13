@@ -25,6 +25,7 @@ class UserCategoryFactory extends Factory
             'name'          => $this->faker->word,
             'model'         => 'App\Models\UserCategory',
             'status'        => $this->faker->randomElement(['active','inactive']),
+            'business_user_id'      => 2,
         ];
     }
 }

@@ -13,7 +13,7 @@
     @section('button-link')
         {{ route('dashboard.contacts.create') }}
     @endsection
-@endan
+@endcan
 @section('button-icon')
     add
 @endsection
