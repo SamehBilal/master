@@ -124,7 +124,12 @@ class PickupController extends Controller
      */
     public function show(Pickup $pickup)
     {
-        return view('pickups.show',compact('pickup'));
+        $locations  = Location::all();
+        $contacts   = Contact::all();
+        $countries  = Country::all();
+        $states     = State::where('country_id',64)->get();
+        $cities     = City::all();
+        return view('pickups.edit',compact('pickup','locations','contacts','countries','states','cities'));
     }
 
     /**

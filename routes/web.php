@@ -43,6 +43,7 @@ Route::group(['middleware' => ['auth']], function () {
             /* Profile */
             Route::get('settings/profile',[\App\Http\Controllers\ProfileController::class,'index'])->name('settings.profile');
             Route::post('settings/profile/{id}',[\App\Http\Controllers\ProfileController::class,'update'])->name('settings.profile.edit');
+            Route::get('settings/language',[\App\Http\Controllers\ConfigController::class,'index'])->name('settings.language');
 
             Route::resource('customers',\App\Http\Controllers\ManageUsers\CustomerController::class); //Customers
             Route::resource('users',\App\Http\Controllers\UserController::class); //Users

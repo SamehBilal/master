@@ -6,10 +6,10 @@
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('pickups.index') }}">pickups</a>
+        <a href="{{ route('dashboard.pickups.index') }}">pickups</a>
     </li>
     <li class="breadcrumb-item ">
-        <a href="{{ route('pickups.show',$pickup->id) }}">{{ $pickup->pickup_id }}</a>
+        <a href="{{ route('dashboard.pickups.show',$pickup->id) }}">{{ $pickup->pickup_id }}</a>
     </li>
     <li class="breadcrumb-item active">
         Edit
@@ -17,7 +17,7 @@
 @endsection
 
 @section('button-link')
-    {{ route('pickups.index') }}
+    {{ route('dashboard.pickups.index') }}
 @endsection
 
 @section('button-icon')
@@ -30,7 +30,7 @@
 
 @section('main_content')
     <div class="container page__container page-section">
-        <form method="POST" action="{{ route('pickups.update',$pickup->id) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('dashboard.pickups.update',$pickup->id) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="page-separator">

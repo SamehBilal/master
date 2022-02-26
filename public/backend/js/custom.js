@@ -406,3 +406,9 @@ $('input[name="light_bulky"]').on('change',function () {
         $('#package_description').attr('placeholder','AC, Refrigerator, washing machine, sofa bed, dining table, bedroom, etc...')
     }
 })
+
+$('.language-change').on('change',function () {
+    var value = $(this).val();
+    var action = 'http://localhost:8000/lang/';
+    $('#form_change').attr('action',action+value)
+})

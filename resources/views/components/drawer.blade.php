@@ -86,6 +86,10 @@
                         {{ __('dashboard.Support_Tickets') }}
                     </a>
                 </li>
+            </ul>
+
+            <div class="sidebar-heading">{{ __('dashboard.Website') }}</div>
+            <ul class="sidebar-menu">
                 <li class="sidebar-menu-item {{ set_active(['dashboard/subscribers*'])}}">
                     <a class="sidebar-menu-button"
                        href="{{ route('dashboard.subscribers.index') }}">
@@ -142,13 +146,13 @@
 
             <div class="sidebar-heading">{{ __('dashboard.Setup') }}</div>
             <ul class="sidebar-menu">
-                <li class="sidebar-menu-item {{ set_active(['dashboard/currencies*'])}}">
+                {{--<li class="sidebar-menu-item {{ set_active(['dashboard/currencies*'])}}">
                     <a class="sidebar-menu-button"
                        href="{{ route('dashboard.currencies.index') }}">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">monetization_on</span>
                         {{ __('dashboard.Currencies') }}
                     </a>
-                </li>
+                </li>--}}
                 <li class="sidebar-menu-item {{ set_active(['dashboard/locations*'])}}">
                     <a class="sidebar-menu-button"
                        href="{{ route('dashboard.locations.index') }}">
@@ -199,6 +203,12 @@
                             <a class="sidebar-menu-button"
                                href="{{ route('dashboard.settings.profile') }}">
                                 <span class="sidebar-menu-text">{{ __('dashboard.Profile') }}</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item {{ set_active(['dashboard/settings/language'])}}">
+                            <a class="sidebar-menu-button"
+                               href="{{ route('dashboard.settings.language') }}">
+                                <span class="sidebar-menu-text">{{ __('dashboard.Language') }}</span>
                             </a>
                         </li>
                     </ul>

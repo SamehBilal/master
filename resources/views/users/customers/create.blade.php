@@ -262,109 +262,30 @@
             </div>
             <div class="card address_card">
                 <div class="row card-body mb-32pt">
-                <div class="col-lg-4 bg-light">
-                    <div class="page-separator">
-                        <div class="page-separator__text">{{ __('dashboard.Location Information') }}</div>
-                    </div>
-                    <p class="card-subtitle text-70 mb-16pt mb-lg-0">
-                        {{ __('dashboard.Add your customer address information') }}
-                    </p>
-                </div>
-                <div class="col-lg-8 d-flex align-items-center">
-                    <div class="flex"
-                         style="max-width: 100%">
-                        <div class="form-row">
-                            <div class="col-12 col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                           for="location_name">{{ __('dashboard.Name') }}:</label>
-                                    <input type="text"
-                                           class="form-control @error('location_name') is-invalid @enderror"
-                                           value="{{ old('location_name') }}"
-                                           id="location_name"
-                                           name="location_name[]"
-                                           required="required"
-                                           autocomplete="location_name"
-                                           placeholder="{{ __('dashboard.Name') }} ..."
-                                           autofocus>
-                                    @error('location_name')
-                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                    @enderror
-                                    <div class="valid-feedback">Looks good!</div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                           for="select05">{{ __('dashboard.Country') }}</label>
-                                    <select id="select05"
-                                            data-toggle="select"
-                                            class="form-control select05 form-control-sm @error('country_id') is-invalid @enderror"
-                                            name="country_id[]">
-                                        @foreach($countries as $country)
-                                            <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
-                                                {{ $country->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('country_id')
-                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                    @enderror
-                                    <div class="valid-feedback">Looks good!</div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                           for="select01">{{ __('dashboard.State') }}</label>
-                                    <select id="select01"
-                                            data-toggle="select"
-                                            data-minimum-results-for-search="-1"
-                                            class="form-control select01 form-control-sm @error('state_id') is-invalid @enderror"
-                                            name="state_id[]">
-                                        @foreach($states as $state)
-                                            <option value="{{ $state->id }}" {{ old('state_id') == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
-                                                {{ $state->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('state_id')
-                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                    @enderror
-                                    <div class="valid-feedback">Looks good!</div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                           for="select03">{{ __('dashboard.City') }}</label>
-                                    <select id="select03"
-                                            data-toggle="select"
-                                            disabled
-                                            data-minimum-results-for-search="-1"
-                                            class="form-control select03 form-control-sm @error('city_id') is-invalid @enderror"
-                                            name="city_id[]">
-                                    </select>
-                                    @error('city_id')
-                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                    @enderror
-                                    <div class="valid-feedback">Looks good!</div>
-                                </div>
-                            </div>
+                    <div class="col-lg-4 bg-light">
+                        <div class="page-separator">
+                            <div class="page-separator__text">{{ __('dashboard.Location Information') }}</div>
                         </div>
-                        <div class="form-row">
-                            <div class="col-12 col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                           for="street">{{ __('dashboard.Street') }}:</label>
-                                    <div class="input-group input-group-merge">
+                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">
+                            {{ __('dashboard.Add your customer address information') }}
+                        </p>
+                    </div>
+                    <div class="col-lg-8 d-flex align-items-center">
+                        <div class="flex"
+                             style="max-width: 100%">
+                            <div class="form-row">
+                                <div class="col-12 col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <label class="form-label"
+                                               for="location_name">{{ __('dashboard.Name') }}:</label>
                                         <input type="text"
-                                               class="form-control @error('street') is-invalid @enderror"
-                                               value="{{ old('street[]') }}"
-                                               autocomplete="street"
-                                               name="street[]"
-                                               id="street"
-                                               placeholder="{{ __('dashboard.Enter your street') }} .."
+                                               class="form-control @error('location_name') is-invalid @enderror"
+                                               value="{{ old('location_name') }}"
+                                               id="location_name"
+                                               name="location_name[]"
+                                               required="required"
+                                               autocomplete="location_name"
+                                               placeholder="{{ __('dashboard.Name') }} ..."
                                                autofocus>
                                         @error('location_name')
                                         <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -372,102 +293,80 @@
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-12 col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                           for="building">{{ __('dashboard.Building') }}:</label>
-                                    <div class="input-group input-group-merge">
-                                        <input type="text"
-                                               class="form-control @error('building') is-invalid @enderror"
-                                               value="{{ old('building[]') }}"
-                                               autocomplete="building"
-                                               name="building[]"
-                                               id="building"
-                                               placeholder="{{ __('dashboard.Enter your building') }} .."
-                                               autofocus>
-                                        <div class="input-group-append">
-                                            <div class="input-group-text">
-                                                <span class="material-icons">home</span>
-                                            </div>
-                                        </div>
-                                        @error('building')
+                                <div class="col-12 col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <label class="form-label"
+                                               for="select05">{{ __('dashboard.Country') }}</label>
+                                        <select id="select05"
+                                                data-toggle="select"
+                                                class="form-control select05 form-control-sm @error('country_id') is-invalid @enderror"
+                                                name="country_id[]">
+                                            @foreach($countries as $country)
+                                                <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                                    {{ $country->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('country_id')
+                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                        @enderror
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <label class="form-label"
+                                               for="select01">{{ __('dashboard.State') }}</label>
+                                        <select id="select01"
+                                                data-toggle="select"
+                                                data-minimum-results-for-search="-1"
+                                                class="form-control select01 form-control-sm @error('state_id') is-invalid @enderror"
+                                                name="state_id[]">
+                                            @foreach($states as $state)
+                                                <option value="{{ $state->id }}" {{ old('state_id') == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                                    {{ $state->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('state_id')
+                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                        @enderror
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <label class="form-label"
+                                               for="select03">{{ __('dashboard.City') }}</label>
+                                        <select id="select03"
+                                                data-toggle="select"
+                                                disabled
+                                                data-minimum-results-for-search="-1"
+                                                class="form-control select03 form-control-sm @error('city_id') is-invalid @enderror"
+                                                name="city_id[]">
+                                        </select>
+                                        @error('city_id')
                                         <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                         @enderror
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-12 col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                           for="floor">{{ __('dashboard.Floor') }}:</label>
-                                    <div class="input-group input-group-merge">
-                                        <input type="text"
-                                               class="form-control @error('floor') is-invalid @enderror"
-                                               value="{{ old('floor[]') }}"
-                                               autocomplete="floor"
-                                               name="floor[]"
-                                               id="floor"
-                                               placeholder="{{ __('dashboard.Enter your floor') }} .."
-                                               autofocus>
-                                        <div class="input-group-append">
-                                            <div class="input-group-text">
-                                                <span class="material-icons">local_convenience_store</span>
-                                            </div>
-                                        </div>
-                                        @error('floor')
-                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                        @enderror
-                                        <div class="valid-feedback">Looks good!</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 mb-3">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                           for="apartment">{{ __('dashboard.Apartment') }}:</label>
-                                    <div class="input-group input-group-merge">
-                                        <input type="text"
-                                               class="form-control @error('apartment') is-invalid @enderror"
-                                               value="{{ old('apartment[]') }}"
-                                               autocomplete="apartment"
-                                               name="apartment[]"
-                                               id="apartment"
-                                               placeholder="{{ __('dashboard.Enter your apartment') }} .."
-                                               autofocus>
-                                        <div class="input-group-append">
-                                            <div class="input-group-text">
-                                                <span class="material-icons">apartment</span>
-                                            </div>
-                                        </div>
-                                        @error('apartment')
-                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                        @enderror
-                                        <div class="valid-feedback">Looks good!</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-12 mb-3">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                           for="landmarks">{{ __('dashboard.Landmarks') }}:</label>
-                                    <div class="input-group input-group-merge">
-                                        <input type="text"
-                                               class="form-control @error('landmarks') is-invalid @enderror"
-                                               value="{{ old('landmarks') }}"
-                                               autocomplete="landmarks"
-                                               name="landmarks[]"
-                                               id="landmarks"
-                                               placeholder="{{ __('dashboard.Enter your landmarks') }} .."
-                                               autofocus>
-                                        <div class="input-group-append">
-                                            <div class="input-group-text">
-                                                <span class="material-icons">apartment</span>
-                                            </div>
-                                            @error('street')
+                            <div class="form-row">
+                                <div class="col-12 col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <label class="form-label"
+                                               for="street">{{ __('dashboard.Street') }}:</label>
+                                        <div class="input-group input-group-merge">
+                                            <input type="text"
+                                                   class="form-control @error('street') is-invalid @enderror"
+                                                   value="{{ old('street[]') }}"
+                                                   autocomplete="street"
+                                                   name="street[]"
+                                                   id="street"
+                                                   placeholder="{{ __('dashboard.Enter your street') }} .."
+                                                   autofocus>
+                                            @error('location_name')
                                             <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                             @enderror
                                             <div class="valid-feedback">Looks good!</div>
@@ -477,7 +376,7 @@
                                 <div class="col-12 col-md-6 mb-3">
                                     <div class="form-group">
                                         <label class="form-label"
-                                               for="building">Building:</label>
+                                               for="building">{{ __('dashboard.Building') }}:</label>
                                         <div class="input-group input-group-merge">
                                             <input type="text"
                                                    class="form-control @error('building') is-invalid @enderror"
@@ -485,7 +384,7 @@
                                                    autocomplete="building"
                                                    name="building[]"
                                                    id="building"
-                                                   placeholder="Enter your building .."
+                                                   placeholder="{{ __('dashboard.Enter your building') }} .."
                                                    autofocus>
                                             <div class="input-group-append">
                                                 <div class="input-group-text">
@@ -504,7 +403,7 @@
                                 <div class="col-12 col-md-6 mb-3">
                                     <div class="form-group">
                                         <label class="form-label"
-                                               for="floor">Floor:</label>
+                                               for="floor">{{ __('dashboard.Floor') }}:</label>
                                         <div class="input-group input-group-merge">
                                             <input type="text"
                                                    class="form-control @error('floor') is-invalid @enderror"
@@ -512,7 +411,7 @@
                                                    autocomplete="floor"
                                                    name="floor[]"
                                                    id="floor"
-                                                   placeholder="Enter your floor .."
+                                                   placeholder="{{ __('dashboard.Enter your floor') }} .."
                                                    autofocus>
                                             <div class="input-group-append">
                                                 <div class="input-group-text">
@@ -529,7 +428,7 @@
                                 <div class="col-12 col-md-6 mb-3">
                                     <div class="form-group">
                                         <label class="form-label"
-                                               for="apartment">Apartment:</label>
+                                               for="apartment">{{ __('dashboard.Apartment') }}:</label>
                                         <div class="input-group input-group-merge">
                                             <input type="text"
                                                    class="form-control @error('apartment') is-invalid @enderror"
@@ -537,7 +436,7 @@
                                                    autocomplete="apartment"
                                                    name="apartment[]"
                                                    id="apartment"
-                                                   placeholder="Enter your apartment .."
+                                                   placeholder="{{ __('dashboard.Enter your apartment') }} .."
                                                    autofocus>
                                             <div class="input-group-append">
                                                 <div class="input-group-text">
@@ -554,7 +453,7 @@
                                 <div class="col-12 col-md-12 mb-3">
                                     <div class="form-group">
                                         <label class="form-label"
-                                               for="landmarks">Landmarks:</label>
+                                               for="landmarks">{{ __('dashboard.Landmarks') }}:</label>
                                         <div class="input-group input-group-merge">
                                             <input type="text"
                                                    class="form-control @error('landmarks') is-invalid @enderror"
@@ -562,17 +461,17 @@
                                                    autocomplete="landmarks"
                                                    name="landmarks[]"
                                                    id="landmarks"
-                                                   placeholder="Enter your landmarks .."
+                                                   placeholder="{{ __('dashboard.Enter your landmarks') }} .."
                                                    autofocus>
                                             <div class="input-group-append">
                                                 <div class="input-group-text">
                                                     <span class="material-icons">apartment</span>
                                                 </div>
+                                                @error('street')
+                                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                                @enderror
+                                                <div class="valid-feedback">Looks good!</div>
                                             </div>
-                                            @error('landmarks')
-                                            <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                            @enderror
-                                            <div class="valid-feedback">Looks good!</div>
                                         </div>
                                     </div>
                                 </div>

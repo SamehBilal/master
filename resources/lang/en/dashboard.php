@@ -35,6 +35,11 @@ return [
     'Setup'                 => 'Setup',
     'Locations'             => 'Locations',
     'Settings'              => 'Settings',
+    'Language'              => 'Language',
+    'Arabic'                => 'Arabic',
+    'English'               => 'English',
+    'Change Language'       => 'Change Language',
+    'Change the language of the system'    => 'Change the language of the system',
 
     /* Content */
     'Name'                  => 'Name',
@@ -58,6 +63,7 @@ return [
     'Open'                  => 'Open',
     'Close'                 => 'Close',
     'EGP'                   => 'EGP',
+    'Website'               => 'Website',
 
     //orders
     'Tracking_No'           => 'Tracking No.',

@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class ConfigController extends Controller
 {
+    public function index()
+    {
+        return view('setup.settings.language');
+    }
+
     public function changelocal($locale)
     {
         \App::setLocale($locale);

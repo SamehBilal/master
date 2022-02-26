@@ -58,6 +58,12 @@ return [
     'Open'                  => 'فتح',
     'Close'                 => 'غلق',
     'EGP'                   => 'جنيه',
+    'Website'               => 'الموقع',
+    'Language'              => 'اللغة',
+    'Arabic'                => 'العربية',
+    'English'               => 'اللإنجليزية',
+    'Change Language'       => 'تغيير اللغة',
+    'Change the language of the system'    => 'قم بتغيير لغة النظام',
 
     //orders
     'Tracking_No'           => 'رقم التتبع',
