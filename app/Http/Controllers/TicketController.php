@@ -32,7 +32,7 @@ class TicketController extends Controller
 
         if (request()->ticket_id) {
             $ticket = Ticket::with('TicketIssue','TicketChats')->findOrFail(request()->ticket_id);
-        }                
+        }
 
         return view('tickets.index',compact('tickets','ticket'));
     }
@@ -72,7 +72,7 @@ class TicketController extends Controller
 
         $ticket = Ticket::create([
             'user_id'           => auth()->user()->id,
-            'traking_number'    => $request->traking_number,
+            'tracking_number'   => $request->tracking_number,
             'ticket_issue_id'   => $request->ticket_issue_id,
             'subject'           => $request->subject,
             'description'       => $request->description,

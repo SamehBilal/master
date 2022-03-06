@@ -49,15 +49,15 @@
                                     <label class="form-label"
                                            for="name">{{ __('dashboard.Tracking_No') }}:</label> <small class="badge badge-secondary">{{ __('dashboard.optional') }}</small>
                                     <input type="text"
-                                           class="form-control @error('traking_number') is-invalid @enderror"
-                                           value="{{ old('traking_number') }}"
-                                           id="traking_number"
-                                           name="traking_number"
+                                           class="form-control @error('tracking_number') is-invalid @enderror"
+                                           value="{{ old('tracking_number') }}"
+                                           id="tracking_number"
+                                           name="tracking_number"
                                            required="required"
-                                           autocomplete="traking_number"
+                                           autocomplete="tracking_number"
                                            placeholder="{{ __('dashboard.You can add more than one tracking number') }} ..."
                                            autofocus>
-                                    @error('traking_number')
+                                    @error('tracking_number')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
                                     <div class="valid-feedback">Looks good!</div>
