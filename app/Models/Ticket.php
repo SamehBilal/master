@@ -46,11 +46,16 @@ class Ticket extends Model
         return $this->hasMany(TicketChat::class);
     }
 
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
+
     public static function rules($update = false, $id = null)
     {
         $common = [
             'status'            => Rule::in(['Open','Resolved','Closed']),
-            'traking_number'    => "nullable|max:255",
+            'tracking_number'   => "nullable|max:255",
             'ticket_issue_id'   => 'required|exists:ticket_issues,id',
             'subject'           => "required|max:255",
             'description'       => "nullable",
@@ -63,7 +68,7 @@ class Ticket extends Model
         }
 
         return array_merge($common, [
-           
+
         ]);
     }
 }

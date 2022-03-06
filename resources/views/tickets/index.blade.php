@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <div class="col-md-2" style="margin-top: 3%;">
-                            <a href="{{ route('dashboard.tickets.update', $active_ticket->id) }}" 
+                            <a href="{{ route('dashboard.tickets.update', $active_ticket->id) }}"
                                 onclick="event.preventDefault(); $('#change-status-form').submit();"
                                 class="btn btn-outline-secondary">
                             <i class="fa fa-folder-open icon--left"></i> {{ in_array($active_ticket->status_name,['Closed','Resolved'])? __('dashboard.Re-open'): __('dashboard.Close')}}
@@ -67,7 +67,7 @@
                         <div class="card-body d-flex align-items-center" style="text-align: center;border-bottom:1px solid #ebedf0">
                             <div class="flex">
                                 <p class="text-50 mb-0">{{ __('dashboard.Tracking Number') }}</p>
-                                <p class="mb-0">{{$active_ticket->traking_number}}</p>
+                                <p class="mb-0">{{$active_ticket->tracking_number}}</p>
                                 <p class="text-50 mb-0">{{ __('dashboard.Description') }}</p>
                                 <p class="mb-0">{{$active_ticket->description}}</p>
                                 <p class="text-50 mb-0">{{ __('dashboard.Attachments') }}</p>
@@ -84,7 +84,7 @@
                                     @else
                                         N/A
                                     @endif
-                                    
+
                                 </p>
                             </div>
                         </div>
@@ -216,7 +216,7 @@
         @endif
 
     </div>
-    
+
 
     <div class="mdk-drawer sub-layout-drawer js-mdk-drawer"
         data-align="start"
@@ -245,7 +245,7 @@
                             <p class="m-0">
                                 <span class="d-flex align-items-center mb-1">
                                     <strong class="text-body text-muted">{{$ticket->TicketIssue->issue}}</strong>
-                                        
+
                                     <span class="badge {{$ticket->status_color}} ml-auto">{{__("dashboard.{$ticket->status_name}")}}</span>
                                 </span>
                                 <span class="d-flex align-items-end">

@@ -17,7 +17,7 @@ class CreateTicketsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->set('status',['1','2','3'])->default('1');
-            $table->string('traking_number')->nullable();
+            $table->string('tracking_number')->nullable();
             $table->unsignedBigInteger('ticket_issue_id');
             $table->string('subject');
             $table->longText('description')->nullable();
