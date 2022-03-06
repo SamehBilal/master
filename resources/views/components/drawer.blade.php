@@ -104,44 +104,90 @@
                         {{ __('dashboard.Contact_Forms') }}
                     </a>
                 </li>
+                @can('view pickups')
+                    <li class="sidebar-menu-item {{ set_active(['dashboard/pickups*'])}}">
+                        <a class="sidebar-menu-button"
+                        href="{{ route('dashboard.pickups.index') }}">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">map</span>
+                            {{ __('dashboard.Pickups') }}
+                        </a>
+                    </li>
+                @endcan
+                @can('view tickets')
+                    <li class="sidebar-menu-item {{ set_active(['dashboard/tickets*'])}}">
+                        <a class="sidebar-menu-button"
+                        href="{{ route('dashboard.tickets.index') }}">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">confirmation_number</span>
+                            {{ __('dashboard.Support_Tickets') }}
+                        </a>
+                    </li>
+                @endcan
+                @can('view subscribers')
+                    <li class="sidebar-menu-item {{ set_active(['dashboard/subscribers*'])}}">
+                        <a class="sidebar-menu-button"
+                        href="{{ route('dashboard.subscribers.index') }}">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">card_membership</span>
+                            {{ __('dashboard.Subscribers') }}
+                        </a>
+                    </li>
+                @endcan
+                @can('view contact form')
+                    <li class="sidebar-menu-item {{ set_active(['dashboard/contact-forms*'])}}">
+                        <a class="sidebar-menu-button"
+                        href="{{ route('dashboard.contact-forms.index') }}">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">insert_drive_file</span>
+                            {{ __('dashboard.Contact_Forms') }}
+                        </a>
+                    </li>
+                @endcan
             </ul>
             <div class="sidebar-heading">{{ __('dashboard.Users') }}</div>
             <ul class="sidebar-menu">
-                <li class="sidebar-menu-item {{ set_active(['dashboard/customers*'])}}">
-                    <a class="sidebar-menu-button"
-                       href="{{ route('dashboard.customers.index') }}">
-                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">person</span>
-                        {{ __('dashboard.Customers') }}
-                    </a>
-                </li>
-                <li class="sidebar-menu-item {{ set_active(['dashboard/businesses*'])}}">
-                    <a class="sidebar-menu-button"
-                       href="{{ route('dashboard.businesses.index') }}">
-                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">business</span>
-                        Business
-                    </a>
-                </li>
-                <li class="sidebar-menu-item {{ set_active(['dashboard/contacts*'])}}">
-                    <a class="sidebar-menu-button"
-                       href="{{ route('dashboard.contacts.index') }}">
-                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">perm_contact_calendar</span>
-                        {{ __('dashboard.Contacts') }}
-                    </a>
-                </li>
-                <li class="sidebar-menu-item {{ set_active(['dashboard/user-categories*'])}}">
-                    <a class="sidebar-menu-button"
-                       href="{{ route('dashboard.user-categories.index') }}">
-                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">badge</span>
-                        {{ __('dashboard.User_Categories') }}
-                    </a>
-                </li>
-                <li class="sidebar-menu-item {{ set_active(['dashboard/users*'])}}">
-                    <a class="sidebar-menu-button"
-                       href="{{ route('dashboard.users.index') }}">
-                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">group</span>
-                        {{ __('dashboard.All_Users') }}
-                    </a>
-                </li>
+                @can('view customers')
+                    <li class="sidebar-menu-item {{ set_active(['dashboard/customers*'])}}">
+                        <a class="sidebar-menu-button"
+                        href="{{ route('dashboard.customers.index') }}">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">person</span>
+                            {{ __('dashboard.Customers') }}
+                        </a>
+                    </li>
+                @endcan
+                @can('view businesses')
+                    <li class="sidebar-menu-item {{ set_active(['dashboard/businesses*'])}}">
+                        <a class="sidebar-menu-button"
+                        href="{{ route('dashboard.businesses.index') }}">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">business</span>
+                            Business
+                        </a>
+                    </li>
+                @endcan
+                @can('view contacts')
+                    <li class="sidebar-menu-item {{ set_active(['dashboard/contacts*'])}}">
+                        <a class="sidebar-menu-button"
+                        href="{{ route('dashboard.contacts.index') }}">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">perm_contact_calendar</span>
+                            {{ __('dashboard.Contacts') }}
+                        </a>
+                    </li>
+                @endcan
+                @can('view user categories')
+                    <li class="sidebar-menu-item {{ set_active(['dashboard/user-categories*'])}}">
+                        <a class="sidebar-menu-button"
+                        href="{{ route('dashboard.user-categories.index') }}">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">badge</span>
+                            {{ __('dashboard.User_Categories') }}
+                        </a>
+                    </li>
+                @endcan
+                @can('view users')
+                    <li class="sidebar-menu-item {{ set_active(['dashboard/users*'])}}">
+                        <a class="sidebar-menu-button"
+                        href="{{ route('dashboard.users.index') }}">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">group</span>
+                            {{ __('dashboard.All_Users') }}
+                        </a>
+                    </li>
+                @endcan
             </ul>
 
             <div class="sidebar-heading">{{ __('dashboard.Setup') }}</div>
@@ -172,18 +218,22 @@
                     </a>
                     <ul class="sidebar-submenu collapse {{ set_active(['dashboard/roles*','dashboard/permissions*'],'show')}} sm-indent"
                         id="role_menu">
-                        <li class="sidebar-menu-item {{ set_active(['dashboard/roles'])}}">
-                            <a class="sidebar-menu-button"
-                               href="{{ route('dashboard.roles.index') }}">
-                                <span class="sidebar-menu-text">{{ __('dashboard.Roles') }}</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-menu-item {{ set_active(['dashboard/permissions*'])}}">
-                            <a class="sidebar-menu-button"
-                               href="{{ route('dashboard.permissions.index') }}">
-                                <span class="sidebar-menu-text">{{ __('dashboard.Permissions') }}</span>
-                            </a>
-                        </li>
+                        @can('view roles')
+                            <li class="sidebar-menu-item {{ set_active(['dashboard/roles'])}}">
+                                <a class="sidebar-menu-button"
+                                href="{{ route('dashboard.roles.index') }}">
+                                    <span class="sidebar-menu-text">{{ __('dashboard.Roles') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('view permissions')
+                            <li class="sidebar-menu-item {{ set_active(['dashboard/permissions*'])}}">
+                                <a class="sidebar-menu-button"
+                                href="{{ route('dashboard.permissions.index') }}">
+                                    <span class="sidebar-menu-text">{{ __('dashboard.Permissions') }}</span>
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
 
