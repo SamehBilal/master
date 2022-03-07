@@ -52,26 +52,33 @@
                     </a>
                     <ul class="sidebar-submenu collapse {{ set_active(['dashboard/orders*'],'show')}} sm-indent"
                         id="student_menu">
+                        @can('view orders')
                         <li class="sidebar-menu-item {{ set_active(['dashboard/orders'])}}">
                             <a class="sidebar-menu-button"
                                href="{{ route('dashboard.orders.index') }}">
                                 <span class="sidebar-menu-text">{{ __('dashboard.All_orders') }}</span>
                             </a>
                         </li>
+                        @endcan
+                        @can('create orders')
                         <li class="sidebar-menu-item {{ set_active(['dashboard/orders/create'])}}">
                             <a class="sidebar-menu-button"
                                href="{{ route('dashboard.orders.create') }}">
                                 <span class="sidebar-menu-text">{{ __('dashboard.Single_order') }}</span>
                             </a>
                         </li>
+                        @endcan 
+                        @can('create multi orders')
                         <li class="sidebar-menu-item {{ set_active(['dashboard/orders/create/multi'])}}">
                             <a class="sidebar-menu-button"
                                href="{{ route('dashboard.orders.create.multi') }}">
                                 <span class="sidebar-menu-text">{{ __('dashboard.Multi_orders') }}</span>
                             </a>
                         </li>
+                        @endcan
                     </ul>
                 </li>
+                @can('view pickups')
                 <li class="sidebar-menu-item {{ set_active(['dashboard/pickups*'])}}">
                     <a class="sidebar-menu-button"
                        href="{{ route('dashboard.pickups.index') }}">
@@ -79,6 +86,8 @@
                         {{ __('dashboard.Pickups') }}
                     </a>
                 </li>
+                @endcan
+                @can('view tickets')
                 <li class="sidebar-menu-item {{ set_active(['dashboard/tickets*'])}}">
                     <a class="sidebar-menu-button"
                        href="{{ route('dashboard.tickets.index') }}">
@@ -86,10 +95,12 @@
                         {{ __('dashboard.Support_Tickets') }}
                     </a>
                 </li>
+                @endcan
             </ul>
 
             <div class="sidebar-heading">{{ __('dashboard.Website') }}</div>
             <ul class="sidebar-menu">
+                @can('view subscribers')
                 <li class="sidebar-menu-item {{ set_active(['dashboard/subscribers*'])}}">
                     <a class="sidebar-menu-button"
                        href="{{ route('dashboard.subscribers.index') }}">
@@ -97,6 +108,8 @@
                         {{ __('dashboard.Subscribers') }}
                     </a>
                 </li>
+                @endcan
+                @can('view contact form')
                 <li class="sidebar-menu-item {{ set_active(['dashboard/contact-forms*'])}}">
                     <a class="sidebar-menu-button"
                        href="{{ route('dashboard.contact-forms.index') }}">
@@ -104,6 +117,7 @@
                         {{ __('dashboard.Contact_Forms') }}
                     </a>
                 </li>
+                @endcan
                 @can('view pickups')
                     <li class="sidebar-menu-item {{ set_active(['dashboard/pickups*'])}}">
                         <a class="sidebar-menu-button"
@@ -199,6 +213,7 @@
                         {{ __('dashboard.Currencies') }}
                     </a>
                 </li>--}}
+                @can('view locations')
                 <li class="sidebar-menu-item {{ set_active(['dashboard/locations*'])}}">
                     <a class="sidebar-menu-button"
                        href="{{ route('dashboard.locations.index') }}">
@@ -206,6 +221,8 @@
                         {{ __('dashboard.Locations') }}
                     </a>
                 </li>
+                @endcan
+                @can('view roles','view permissions')
                 <li class="sidebar-menu-item {{ set_active(['dashboard/roles*','dashboard/permissions*'],'active open')}}">
                     <a class="sidebar-menu-button js-sidebar-collapse"
                        data-toggle="collapse"
@@ -236,7 +253,7 @@
                         @endcan
                     </ul>
                 </li>
-
+                @endcan
                 <li class="sidebar-menu-item {{ set_active(['dashboard/settings*'],'active open')}}">
                     <a class="sidebar-menu-button js-sidebar-collapse"
                        data-toggle="collapse"

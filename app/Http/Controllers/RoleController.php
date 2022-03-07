@@ -27,7 +27,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $permissions =  Permission::all();
+        $permissions = Permission::get()->groupBy('order');
+        
         return view('roles_and_permissions.roles.create', compact('permissions'));
     }
 
@@ -40,7 +41,7 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $role = Role::create(['name' => $request->name]);
-        $role->syncPermissions($request->permissions);
+        $role->syncPermissions(array_keys($request->permissions));
 
         return back()->with('success','Role created successfully');
     }
@@ -65,7 +66,8 @@ class RoleController extends Controller
     public function edit($id)
     {
         $role = Role::findOrFail($id);
-        $permissions =  Permission::all();
+        $permissions = Permission::get()->groupBy('order');
+
         return view('roles_and_permissions.roles.edit', compact('role','permissions'));
     }
 
@@ -81,8 +83,7 @@ class RoleController extends Controller
         $role->update([
             'name'  =>  $request->name
         ]);
-        $role->syncPermissions();        
-        $role->syncPermissions($request->permissions);
+        $role->syncPermissions(array_keys($request->permissions));
 
         return back()->with('success','Role Updated successfully');
     }
