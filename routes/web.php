@@ -30,6 +30,10 @@ Route::resource('subscribers', \App\Http\Controllers\SubscribeController::class)
 Route::get('/my-account',[\App\Http\Controllers\WebsiteRoutesController::class,'account'])->name('website.account');
 Route::post('my-account/{id}',[\App\Http\Controllers\WebsiteRoutesController::class,'update'])->name('website.account.edit');
 
+
+/* Notifications */
+Route::get('/notification',[\App\Http\Controllers\NotificationsController::class,'markasreadajax']);
+
 /* Route::get('/', function () {
     return view('coming-soon');
 }); */

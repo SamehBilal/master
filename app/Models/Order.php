@@ -33,7 +33,7 @@ class Order extends Model
     public static function rules($update = false, $id = null)
     {
         $common = [
-            //'tracking_no'        => "required|max:40|unique:orders,tracking_no,$id",
+            //''        => "required|max:40|unique:orders,tracking_no,$id",
         ];
 
         if ($update) {

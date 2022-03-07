@@ -86,4 +86,23 @@
 <!-- custom -->
 <script src="{{ asset('backend/js/custom.js') }}"></script>
 
+<script>
+    $('.notification').on('click',function () {
+        var notification = $(this).find('input').val();
+        $.ajax({
+            url:'{{ url('notification') }}',
+            method:'GET',
+            data: {
+                notification:notification,
+            },
+            success:function (result) {
+
+            },
+            error: function(result) {
+
+            }
+        });
+
+    });
+</script>
 

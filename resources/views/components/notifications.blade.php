@@ -20,19 +20,28 @@
             <div class="list-group list-group-flush mb-0">
                 @if(count($user->unreadnotifications) > 0)
                     @foreach($user->unreadnotifications as $note)
-                        @if($note->type == 'App\Notifications\OrderNotification')
-                        @elseif('')
-                        @endif
-                        <a href="javascript:void(0);"
-                           class="list-group-item list-group-item-action unread notification">
-                            <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
-                            <span class="d-flex align-items-center mb-1">
+                        @if($note->type == 'App\Notifications\NewBusiness')
+                        @elseif($note->type == 'App\Notifications\NewContactForm')
+                        @elseif($note->type == 'App\Notifications\NewOrder')
+                        @elseif($note->type == 'App\Notifications\NewPickup')
+                        @elseif($note->type == 'App\Notifications\NewSubscriber')
+                        @elseif($note->type == 'App\Notifications\NewTicket')
+                        @elseif($note->type == 'App\Notifications\NewTicketChat')
+                        @elseif($note->type == 'App\Notifications\NewUser')
+                        @elseif($note->type == 'App\Notifications\OrderLog')
+                        @elseif($note->type == 'App\Notifications\UpdatedOrder')
+                        @elseif($note->type == 'App\Notifications\UpdatedPickup')
+                        @elseif($note->type == 'App\Notifications\UpdatedTicket')
+                            <a href="javascript:void(0);"
+                               class="list-group-item list-group-item-action unread notification">
+                                <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
+                                <span class="d-flex align-items-center mb-1">
                                 <small class="text-black-50">{{ $note->created_at->diffForHumans() }}</small>
 
                                 <span class="ml-auto unread-indicator bg-accent"></span>
 
                             </span>
-                            <span class="d-flex">
+                                <span class="d-flex">
                                 <span class="avatar avatar-xs mr-2">
                                     <span class="avatar-title rounded-circle bg-light">
                                         <i class="material-icons font-size-16pt text-accent">account_circle</i>
@@ -43,7 +52,8 @@
                                     <span class="text-black-70">{{ $note['data']['name'] }}Your profile information has not been synced correctly.</span>
                                 </span>
                             </span>
-                        </a>
+                            </a>
+                        @endif
                     @endforeach
                 @else
                     <a href="javascript:void(0);"
