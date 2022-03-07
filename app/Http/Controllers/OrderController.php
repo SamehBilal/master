@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Helpers\UserHelperController;
+use PDF;
 use App\Models\City;
+use App\Models\Order;
+use App\Models\State;
+use App\Models\Pickup;
 use App\Models\Contact;
 use App\Models\Country;
 use App\Models\Customer;
 use App\Models\Location;
-use App\Models\Order;
 use App\Models\OrderLog;
-use App\Models\Pickup;
-use App\Models\State;
 use App\Traits\Verified;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
-use PDF;
+use App\Http\Controllers\Helpers\UserHelperController;
 
 class OrderController extends Controller
 {
@@ -112,21 +113,23 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
-        $request->request->add(['password' => 123456789]);
-        $request->request->add(['password_confirmation' => 123456789]);
-        $request->request->add(['payment' => 'cash']);
+        DB::beginTransaction();
         //dd($request->all());
         $this->validate($request, Order::rules());
-        $data                           = $request->all();
-        $data['password']               = Hash::make(123456789);
-        $data['password_confirmation']  = $data['password'];
-        $data['other_email']            = null;
-        $data['religion']               = null;
-        $user                           = null;
         try {
             if($request->customer_id == null)
             {
+                $request->request->add(['password' => 123456789]);
+                $request->request->add(['password_confirmation' => 123456789]);
+                $request->request->add(['payment' => 'cash']);
+        
+                $data                           = $request->all();
+                $data['password']               = Hash::make(123456789);
+                $data['password_confirmation']  = $data['password'];
+                $data['other_email']            = null;
+                $data['religion']               = null;
+                $user                           = null;
+                
                 $userhelperController = new UserHelperController();
                 $user = $userhelperController->createuser($data);
                 $customer = Customer::create([
@@ -139,38 +142,24 @@ class OrderController extends Controller
                     'payment'                   => $request->payment,
                     'business_user_id'          => auth()->user()->id,
                 ]);
-                if($request->location_id == null)
-                {
-                    $location = $customer->location()->create([
-                        'name'                  => $request->location_name,
-                        'street'                => $request->street,
-                        'building'              => $request->building,
-                        'floor'                 => $request->floor,
-                        'apartment'             => $request->apartment,
-                        'landmarks'             => $request->landmarks,
-                        'country_id'            => $request->country_id,
-                        'state_id'              => $request->state_id,
-                        'city_id'               => $request->city_id,
-                        'business_user_id'      => auth()->user()->id,
-                    ]);
-                }
             }else{
                 $customer = Customer::findOrFail($request->customer_id);
-                if($request->location_id == null)
-                {
-                    $location = $customer->location()->create([
-                        'name'                  => $request->location_name,
-                        'street'                => $request->street,
-                        'building'              => $request->building,
-                        'floor'                 => $request->floor,
-                        'apartment'             => $request->apartment,
-                        'landmarks'             => $request->landmarks,
-                        'country_id'            => $request->country_id,
-                        'state_id'              => $request->state_id,
-                        'city_id'               => $request->city_id,
-                        'business_user_id'      => auth()->user()->id,
-                    ]);
-                }
+            }
+
+            if($request->location_id == null)
+            {
+                $location = $customer->location()->create([
+                    'name'                  => $request->location_name,
+                    'street'                => $request->street,
+                    'building'              => $request->building,
+                    'floor'                 => $request->floor,
+                    'apartment'             => $request->apartment,
+                    'landmarks'             => $request->landmarks,
+                    'country_id'            => $request->country_id,
+                    'state_id'              => $request->state_id,
+                    'city_id'               => $request->city_id,
+                    'business_user_id'      => auth()->user()->id,
+                ]);
             }
             switch($request->type)
             {
@@ -306,13 +295,11 @@ class OrderController extends Controller
                     ]);
                     break;
             }
+            DB::commit();
+            return redirect()->route('dashboard.orders.show',$order->id)->with('success','Data created successfully');
 
-            /*\DB::transaction(function () use( $data,  $request) {
-
-
-                return redirect()->route('dashboard.orders.show',$order->id)->with('success','Data created successfully');
-            });*/
         } catch (\Exception $ex) {
+            DB::rollback();
             return redirect()->back()->withErrors($ex->getMessage());
         }
     }

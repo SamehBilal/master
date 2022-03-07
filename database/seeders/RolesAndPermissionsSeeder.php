@@ -18,85 +18,89 @@ class RolesAndPermissionsSeeder extends Seeder
     {
         //create roles
         Role::create(['name' => 'Super Admin']);
-        $admin      = Role::create(['name' => 'admin']);
-        $staff      = Role::create(['name' => 'staff']);
-        $customer   = Role::create(['name' => 'customer']);
+        $admin              = Role::create(['name' => 'admin']);
+        $sales              = Role::create(['name' => 'sales']);
+        $finance            = Role::create(['name' => 'finance']);
+        $operation_admin    = Role::create(['name' => 'operation admin']);
+        $operation_logistics= Role::create(['name' => 'operation logistics']);
+        $operation_courier  = Role::create(['name' => 'operation courier']);
+        $customer           = Role::create(['name' => 'customer']);
 
 
         // roles permissions
-        Permission::create(['name' => 'view roles']);
-        Permission::create(['name' => 'create roles']);
-        Permission::create(['name' => 'edit roles']);
-        Permission::create(['name' => 'delete roles']);
+        Permission::create(['name' => 'view roles', "order" => 1]);
+        Permission::create(['name' => 'create roles', "order" => 1]);
+        Permission::create(['name' => 'edit roles', "order" => 1]);
+        Permission::create(['name' => 'delete roles', "order" => 1]);
         // permissions permissions
-        Permission::create(['name' => 'view permissions']);
-        Permission::create(['name' => 'create permissions']);
-        Permission::create(['name' => 'edit permissions']);
+        Permission::create(['name' => 'view permissions', "order" => 2]);
+        Permission::create(['name' => 'create permissions', "order" => 2]);
+        Permission::create(['name' => 'edit permissions', "order" => 2]);
         // orders permissions
-        Permission::create(['name' => 'view orders']);
-        Permission::create(['name' => 'show orders']);
-        Permission::create(['name' => 'create orders']);
-        Permission::create(['name' => 'edit orders']);
-        Permission::create(['name' => 'delete orders']);
-        Permission::create(['name' => 'create multi orders']);
+        Permission::create(['name' => 'view orders', "order" => 3]);
+        Permission::create(['name' => 'show orders', "order" => 3]);
+        Permission::create(['name' => 'create orders', "order" => 3]);
+        Permission::create(['name' => 'edit orders', "order" => 3]);
+        Permission::create(['name' => 'delete orders', "order" => 3]);
+        Permission::create(['name' => 'create multi orders', "order" => 3]);
         // pickups permissions
-        Permission::create(['name' => 'view pickups']);
-        Permission::create(['name' => 'show pickups']);
-        Permission::create(['name' => 'create pickups']);
-        Permission::create(['name' => 'edit pickups']);
-        Permission::create(['name' => 'delete pickups']);
+        Permission::create(['name' => 'view pickups', "order" => 4]);
+        Permission::create(['name' => 'show pickups', "order" => 4]);
+        Permission::create(['name' => 'create pickups', "order" => 4]);
+        Permission::create(['name' => 'edit pickups', "order" => 4]);
+        Permission::create(['name' => 'delete pickups', "order" => 4]);
         // tickets permissions
-        Permission::create(['name' => 'view tickets']);
-        Permission::create(['name' => 'show tickets']);
-        Permission::create(['name' => 'create tickets']);
-        Permission::create(['name' => 'edit tickets']);
-        Permission::create(['name' => 'delete tickets']);
+        Permission::create(['name' => 'view tickets', "order" => 5]);
+        Permission::create(['name' => 'show tickets', "order" => 5]);
+        Permission::create(['name' => 'create tickets', "order" => 5]);
+        Permission::create(['name' => 'edit tickets', "order" => 5]);
+        Permission::create(['name' => 'delete tickets', "order" => 5]);
         // subscribers permissions
-        Permission::create(['name' => 'view subscribers']);
+        Permission::create(['name' => 'view subscribers', "order" => 6]);
         // contact form permissions
-        Permission::create(['name' => 'view contact form']);
+        Permission::create(['name' => 'view contact form', "order" => 7]);
         // customers permissions
-        Permission::create(['name' => 'view customers']);
-        Permission::create(['name' => 'show customers']);
-        Permission::create(['name' => 'create customers']);
-        Permission::create(['name' => 'edit customers']);
-        Permission::create(['name' => 'delete customers']);
+        Permission::create(['name' => 'view customers', "order" => 8]);
+        Permission::create(['name' => 'show customers', "order" => 8]);
+        Permission::create(['name' => 'create customers', "order" => 8]);
+        Permission::create(['name' => 'edit customers', "order" => 8]);
+        Permission::create(['name' => 'delete customers', "order" => 8]);
         // businesses permissions
-        Permission::create(['name' => 'view businesses']);
-        Permission::create(['name' => 'show businesses']);
-        Permission::create(['name' => 'create businesses']);
-        Permission::create(['name' => 'edit businesses']);
-        Permission::create(['name' => 'delete businesses']);
+        Permission::create(['name' => 'view businesses', "order" => 9]);
+        Permission::create(['name' => 'show businesses', "order" => 9]);
+        Permission::create(['name' => 'create businesses', "order" => 9]);
+        Permission::create(['name' => 'edit businesses', "order" => 9]);
+        Permission::create(['name' => 'delete businesses', "order" => 9]);
         // contacts permissions
-        Permission::create(['name' => 'view contacts']);
-        Permission::create(['name' => 'show contacts']);
-        Permission::create(['name' => 'create contacts']);
-        Permission::create(['name' => 'edit contacts']);
-        Permission::create(['name' => 'delete contacts']);
+        Permission::create(['name' => 'view contacts', "order" => 10]);
+        Permission::create(['name' => 'show contacts', "order" => 10]);
+        Permission::create(['name' => 'create contacts', "order" => 10]);
+        Permission::create(['name' => 'edit contacts', "order" => 10]);
+        Permission::create(['name' => 'delete contacts', "order" => 10]);
         // user categories permissions
-        Permission::create(['name' => 'view user categories']);
-        Permission::create(['name' => 'show user categories']);
-        Permission::create(['name' => 'create user categories']);
-        Permission::create(['name' => 'edit user categories']);
-        Permission::create(['name' => 'delete user categories']);
+        Permission::create(['name' => 'view user categories', "order" => 11]);
+        Permission::create(['name' => 'show user categories', "order" => 11]);
+        Permission::create(['name' => 'create user categories', "order" => 11]);
+        Permission::create(['name' => 'edit user categories', "order" => 11]);
+        Permission::create(['name' => 'delete user categories', "order" => 11]);
         // users permissions
-        Permission::create(['name' => 'view users']);
-        Permission::create(['name' => 'show users']);
-        Permission::create(['name' => 'create users']);
-        Permission::create(['name' => 'edit users']);
-        Permission::create(['name' => 'delete users']);
+        Permission::create(['name' => 'view users', "order" => 12]);
+        Permission::create(['name' => 'show users', "order" => 12]);
+        Permission::create(['name' => 'create users', "order" => 12]);
+        Permission::create(['name' => 'edit users', "order" => 12]);
+        Permission::create(['name' => 'delete users', "order" => 12]);
         // currenies permissions
-        Permission::create(['name' => 'view currencies']);
-        Permission::create(['name' => 'show currencies']);
-        Permission::create(['name' => 'create currencies']);
-        Permission::create(['name' => 'edit currencies']);
-        Permission::create(['name' => 'delete currencies']);
+        Permission::create(['name' => 'view currencies', "order" => 13]);
+        Permission::create(['name' => 'show currencies', "order" => 13]);
+        Permission::create(['name' => 'create currencies', "order" => 13]);
+        Permission::create(['name' => 'edit currencies', "order" => 13]);
+        Permission::create(['name' => 'delete currencies', "order" => 13]);
         // locations permissions
-        Permission::create(['name' => 'view locations']);
-        Permission::create(['name' => 'show locations']);
-        Permission::create(['name' => 'create locations']);
-        Permission::create(['name' => 'edit locations']);
-        Permission::create(['name' => 'delete locations']);
+        Permission::create(['name' => 'view locations', "order" => 14]);
+        Permission::create(['name' => 'show locations', "order" => 14]);
+        Permission::create(['name' => 'create locations', "order" => 14]);
+        Permission::create(['name' => 'edit locations', "order" => 14]);
+        Permission::create(['name' => 'delete locations', "order" => 14]);
 
 
 
@@ -174,5 +178,50 @@ class RolesAndPermissionsSeeder extends Seeder
             'create locations',
             'edit locations',
             'delete locations');
+
+        $sales->givePermissionTo(
+            // pickups permissions
+            'view pickups',
+            'show pickups',
+            // orders permissions
+            'view orders',
+            'show orders',
+            'create orders',
+            'edit orders',
+        );
+
+        $finance->givePermissionTo(
+            // orders permissions
+            'view orders',
+            'show orders',
+            // customers permissions
+            'view customers',
+            'show customers',
+        );
+
+        $operation_admin->givePermissionTo(
+            // orders permissions
+            'view orders',
+            'show orders',
+            // pickups permissions
+            'view pickups',
+            'show pickups',
+            // locations permissions
+            'view locations',
+            'show locations',
+        );
+
+        $operation_logistics->givePermissionTo(
+            // orders permissions
+            'view orders',
+            'show orders',
+            // pickups permissions
+            'view pickups',
+            'show pickups',
+            // locations permissions
+            'view locations',
+            'show locations',
+        );
     }
+
 }

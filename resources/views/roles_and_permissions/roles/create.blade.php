@@ -64,19 +64,47 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                           for="select03">{{ __('dashboard.Select Role Permissions') }}</label>
-                                    <select id="select03"
-                                            name="permissions[]"
-                                            data-toggle="select"
-                                            multiple
-                                            class="form-control">
-										@foreach ($permissions as $permission)
-											<option value="{{$permission->id}}">{{$permission->name}}</option>
-										@endforeach
-                                    </select>
-                                </div>
+                                <div class="row">
+
+                                    @foreach($permissions as $chunk)
+                                    
+                                    <div class="col-xl-4">
+                                        <!--begin::List Widget 4-->
+                                        <div class="card card-custom card-stretch gutter-b">
+                                            <!--begin::Header-->
+                                            <div class="card-header border-0">
+                                                <h3 class="card-title font-weight-bolder text-dark">{{ Str::afterLast(array_values($chunk->toArray())[0]['name'], ' ') }}</h3>
+                                            </div>
+                                            <!--end::Header-->
+                                            <!--begin::Body-->
+                                            <div class="card-body pt-2">
+                                                @foreach($chunk as $permission)
+                                                <!--begin::Item-->
+                                                <div class="d-flex align-items-center mb-5">
+                                                    <!--begin::Bullet-->
+                                                    <span class="bullet bullet-bar bg-success align-self-stretch"></span>
+                                                    <!--end::Bullet-->
+                                                    <!--begin::Checkbox-->
+                                                    <label class="checkbox checkbox-lg checkbox-success checkbox-inline flex-shrink-0 m-0 mx-4">
+                                                        <input type="checkbox" name="permissions[{{ $permission['id'] }}]">
+                                                        <span></span>
+                                                    </label>
+                                                    <!--end::Checkbox-->
+                                                    <!--begin::Text-->
+                                                    <div class="d-flex flex-column flex-grow-1">
+                                                        <label class="text-dark-75 text-hover-success font-weight-bold font-size-lg mb-1">{{ Str::beforeLast($permission['name'], ' ') }}</label>
+                                                    </div>
+                                                    <!--end::Text-->
+                                                </div>
+                                                <!--end:Item-->
+                                                @endforeach 
+                                            </div>
+                                            <!--end::Body-->
+                                        </div>
+                                        <!--end:List Widget 4-->
+                                    </div>
+                                    @endforeach 
+                                </div>                            
                             </div>
                         </div>
                     </div>
