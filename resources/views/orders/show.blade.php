@@ -683,7 +683,7 @@
                     </div>
                 </div>
             </div>
-
+            @if(isset($order->pickup))
             <div class="page-separator">
                 <div class="page-separator__text">Pickup Details</div>
             </div>
@@ -849,6 +849,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 @endsection

@@ -33,7 +33,7 @@ class Order extends Model
     public static function rules($update = false, $id = null)
     {
         $common = [
-            //''        => "required|max:40|unique:orders,tracking_no,$id",
+            'tracking_no'           => "required|max:40|unique:orders,tracking_no,$id",
         ];
 
         if ($update) {
@@ -41,7 +41,7 @@ class Order extends Model
         }
 
         return array_merge($common, [
-            //'tracking_no'          => "required|max:40|unique:orders",
+            'tracking_no'           => "required|max:40|unique:orders",
         ]);
     }
 }

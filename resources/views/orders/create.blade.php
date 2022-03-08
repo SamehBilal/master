@@ -1601,6 +1601,7 @@
                                             data-toggle="select"
                                             name="pickup_id"
                                             class="form-control form-control-sm @error('pickup_id') is-invalid @enderror">
+                                        <option value="">Choose pickup</option>
                                         @foreach($pickups as $pickup)
                                             <option value="{{ $pickup->id }}" {{ old('pickup_id') == $pickup->id ? 'selected':'' }}>{{ $pickup->pickup_id }}</option>
                                         @endforeach

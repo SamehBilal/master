@@ -22,7 +22,7 @@ class UserHelperController extends Controller
             'username'      => $data['username'],
             'password'      => $data['password'],
             'phone'         => $data['phone'],
-            'other_phone'   => $data['other_phone'],
+            'other_phone'   => $data['secondary_phone'],
             'gender'        => $data['gender'],
             'religion'      => $data['religion'],
             'date_of_birth' => $data['date_of_birth'],

@@ -97,7 +97,7 @@ class PickupController extends Controller
                 'contact_job_title'             => $request->contact_job_title,
                 'contact_email'                 => $request->contact_email,
                 'contact_phone'                 => $request->contact_phone,
-                'business_user_id'      => auth()->user()->id,
+                'business_user_id'              => auth()->user()->id,
             ]);
         }
 

@@ -114,7 +114,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         DB::beginTransaction();
-        //dd($request->all());
+        $request['tracking_no'] = random_int(100000, 999999);
         $this->validate($request, Order::rules());
         try {
             if($request->customer_id == null)
@@ -122,14 +122,24 @@ class OrderController extends Controller
                 $request->request->add(['password' => 123456789]);
                 $request->request->add(['password_confirmation' => 123456789]);
                 $request->request->add(['payment' => 'cash']);
-        
+
                 $data                           = $request->all();
                 $data['password']               = Hash::make(123456789);
                 $data['password_confirmation']  = $data['password'];
                 $data['other_email']            = null;
                 $data['religion']               = null;
+                $data['username']               = null;
+                $data['gender']                 = null;
+                $data['date_of_birth']          = null;
+                $data['bio']                    = null;
+                $full_name= explode(" ",$request->name);
+                $first_name = $full_name[0];
+                $last_name = $full_name[1];
+                $data['first_name']             = $first_name;
+                $data['last_name']              = $last_name;
+                $data['full_name']              = $data['name'];
                 $user                           = null;
-                
+
                 $userhelperController = new UserHelperController();
                 $user = $userhelperController->createuser($data);
                 $customer = Customer::create([
@@ -149,7 +159,7 @@ class OrderController extends Controller
             if($request->location_id == null)
             {
                 $location = $customer->location()->create([
-                    'name'                  => $request->location_name,
+                    'name'                  => $request->apartment.', '.$request->building.', '.$request->street,
                     'street'                => $request->street,
                     'building'              => $request->building,
                     'floor'                 => $request->floor,
@@ -161,28 +171,30 @@ class OrderController extends Controller
                     'business_user_id'      => auth()->user()->id,
                 ]);
             }
+
             switch($request->type)
             {
                 case 'Deliver';
                     if($request->pickup_id == null)
                     {
-                        $request['pickup_id'] = random_int(100000, 999999);
+                        $request['pickup_no'] = random_int(100000, 999999);
                         $request['status'] = 'Created';
                         $request['type'] = 'One Time';
-                        $this->validate($request, Pickup::rules());
+                        //$this->validate($request, Pickup::rules());
                         $pickup = Pickup::create([
-                            'pickup_id'             => $request->pickup_id,
+                            'pickup_id'             => $request->pickup_no,
                             'type'                  => $request->type,
                             'scheduled_date'        => $request->scheduled_date,
                             'start_date'            => $request->scheduled_date,
                             'status'                => $request->status,
-                            'contact_id'            => $request->contact_in,
+                            'contact_id'            => $request->contact_id,
                             'location_id'           => $request->pickup_location_id,
                             'business_user_id'      => auth()->user()->id,
                         ]);
                     }
-
                     $order = Order::create([
+                        'type'                                  => $request->type,
+                        'tracking_no'                           => $request->tracking_no,
                         'with_cash_collection'                  => $request->with_cash_collection,
                         'cash_on_delivery'                      => $request->cash_on_delivery,
                         'package_type'                          => $request->radio_stacked,
@@ -199,20 +211,19 @@ class OrderController extends Controller
                     ]);
                     break;
                 case 'Exchange';
-
                     if($request->pickup_id == null)
                     {
-                        $request['pickup_id'] = random_int(100000, 999999);
+                        $request['pickup_no'] = random_int(100000, 999999);
                         $request['status'] = 'Created';
                         $request['type'] = 'One Time';
                         $this->validate($request, Pickup::rules());
                         $pickup = Pickup::create([
-                            'pickup_id'             => $request->pickup_id,
+                            'pickup_id'             => $request->pickup_no,
                             'type'                  => $request->type,
                             'scheduled_date'        => $request->scheduled_date,
                             'start_date'            => $request->scheduled_date,
                             'status'                => $request->status,
-                            'contact_id'            => $request->contact_in,
+                            'contact_id'            => $request->contact_id,
                             'location_id'           => $request->pickup_location_id,
                             'business_user_id'      => auth()->user()->id,
                         ]);
@@ -221,7 +232,7 @@ class OrderController extends Controller
                     if($request->return_location == null)
                     {
                         $return_location = Location::create([
-                            'name_exchange'                  => $request->name_exchange,
+                            'name_exchange'                  => $request->apartment_exchange.', '.$request->building_exchange.', '.$request->street_exchange,
                             'street_exchange'                => $request->street_exchange,
                             'building_exchange'              => $request->building_exchange,
                             'floor_exchange'                 => $request->floor_exchange,
@@ -236,6 +247,8 @@ class OrderController extends Controller
                     }
 
                     $order = Order::create([
+                        'type'                                          => $request->type,
+                        'tracking_no'                                   => $request->tracking_no,
                         'with_cash_difference'                          => $request->with_cash_difference,
                         'cash_exchange_amount'                          => $request->cash_exchange_amount,
                         'no_of_items_exchange'                          => $request->no_of_items_exchange,
@@ -253,10 +266,11 @@ class OrderController extends Controller
                     ]);
                     break;
                 case 'Return';
+
                     if($request->return_location == null)
                     {
                         $return_location = Location::create([
-                            'name_return'                  => $request->name_return,
+                            'name_return'                  => $request->apartment_return.', '.$request->building_return.', '.$request->street_return,
                             'street_return'                => $request->street_return,
                             'building_return'              => $request->building_return,
                             'floor_return'                 => $request->floor_return,
@@ -271,6 +285,8 @@ class OrderController extends Controller
                     }
 
                     $order = Order::create([
+                        'type'                                  => $request->type,
+                        'tracking_no'                           => $request->tracking_no,
                         'refund_amount'                         => $request->refund_amount,
                         'with_refund'                           => $request->with_refund,
                         'no_of_items_return'                    => $request->no_of_items_return,
@@ -285,6 +301,8 @@ class OrderController extends Controller
                     break;
                 case 'Cash Collection';
                     $order = Order::create([
+                        'type'                                  => $request->type,
+                        'tracking_no'                           => $request->tracking_no,
                         'cash_to_collect'                       => $request->cash_to_collect,
                         'collect_cash'                          => $request->collect_cash,
                         'order_reference_cash_collection'       => $request->order_reference_cash_collection,
@@ -295,6 +313,12 @@ class OrderController extends Controller
                     ]);
                     break;
             }
+
+            $order->log()->create([
+                'status'                  => 'New',
+                'description'             => 'It is expected to be pickup your order at pickup date.',
+                'notes'                   => NULL,
+            ]);
             DB::commit();
             return redirect()->route('dashboard.orders.show',$order->id)->with('success','Data created successfully');
 
