@@ -9,6 +9,9 @@ class Pickup extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    protected $casts = [
+        'repeat_days' => 'array',
+    ];
 
     public function contact()
     {

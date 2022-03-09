@@ -18,7 +18,8 @@ class CreatePickupsTable extends Migration
             $table->unsignedBigInteger('pickup_id');
             $table->set('type', ['One Time', 'Daily', 'Weekly'])->default('One Time');
             $table->dateTime('scheduled_date')->nullable();
-            $table->set('status', ['Created','Out for pickup'])->default('Created');
+            $table->set('status', ['Created','Out for pickup','Picked up'])->default('Created');
+            $table->string('repeat_days')->nullable();
             $table->longText('notes')->nullable();
             $table->unsignedBigInteger('contact_id');
             $table->unsignedBigInteger('location_id');

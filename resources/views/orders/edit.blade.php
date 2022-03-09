@@ -8,11 +8,8 @@
     <li class="breadcrumb-item ">
         <a href="{{ route('dashboard.orders.index') }}">{{ __('dashboard.Orders') }}</a>
     </li>
-    <li class="breadcrumb-item ">
-        <a href="{{ route('dashboard.orders.show',$order->id) }}">{{ $order->tracking_no }}</a>
-    </li>
     <li class="breadcrumb-item active">
-        {{ __('dashboard.edit') }}
+        {{ __('dashboard.create') }}
     </li>
 @endsection
 
@@ -30,9 +27,8 @@
 
 @section('main_content')
     <div class="container page__container page-section">
-        <form method="POST" action="{{ route('dashboard.orders.update',$order->id) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('dashboard.orders.store') }}" enctype="multipart/form-data">
             @csrf
-            @method('PUT')
             <div class="page-separator">
                 <div class="page-separator__text" style="line-height: 30px;">
                     <button type="button" class="btn btn-sm rounded-circle btn-dark">
@@ -55,8 +51,8 @@
                                            data-toggle="tab"
                                            role="tab"
                                            data-info="Deliver"
-                                           aria-selected="true"
-                                           class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start active">
+                                           aria-selected="{{ $order->type == 'Deliver' ? 'true':'false' }}"
+                                           class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start {{ $order->type == 'Deliver' ? 'active':'' }}">
                                             <span class="h2 mb-0 mr-3">
                                                 <div class="avatar mr-8pt">
 
@@ -77,8 +73,8 @@
                                            data-toggle="tab"
                                            role="tab"
                                            data-info="Exchange"
-                                           aria-selected="false"
-                                           class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start">
+                                           aria-selected="{{ $order->type == 'Exchange' ? 'true':'false' }}"
+                                           class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start {{ $order->type == 'Exchange' ? 'active':'' }}">
                                             <span class="h2 mb-0 mr-3">
                                                 <div class="avatar mr-8pt">
 
@@ -99,8 +95,8 @@
                                            data-toggle="tab"
                                            role="tab"
                                            data-info="Return"
-                                           aria-selected="false"
-                                           class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start">
+                                           aria-selected="{{ $order->type == 'Return' ? 'true':'false' }}"
+                                           class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start {{ $order->type == 'Return' ? 'active':'' }}">
                                             <span class="h2 mb-0 mr-3">
                                                 <div class="avatar mr-8pt">
 
@@ -121,8 +117,8 @@
                                            data-toggle="tab"
                                            role="tab"
                                            data-info="Cash Collection"
-                                           aria-selected="false"
-                                           class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start">
+                                           aria-selected="{{ $order->type == 'Cash Collection' ? 'true':'false' }}"
+                                           class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start {{ $order->type == 'Cash Collection' ? 'active':'' }}">
                                             <span class="h2 mb-0 mr-3">
                                                   <div class="avatar  mr-8pt">
 
@@ -141,7 +137,7 @@
                                 </div>
                             </div>
                             <div class="card-body tab-content">
-                                <div class="tab-pane text-70  fade show active" id="deliver" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div class="tab-pane text-70  fade {{ $order->type == 'Deliver' ? 'show active':'' }}" id="deliver" role="tabpanel" aria-labelledby="nav-home-tab">
                                     <div class="row">
                                         <div class="col-lg-3 bg-light">
                                             <div class="page-separator">
@@ -164,7 +160,7 @@
                                                                    type="radio"
                                                                    class="custom-control-input"
                                                                    value="with cash collection"
-                                                                   checked="">
+                                                                {{ $order->with_cash_collection == 'with cash collection' ? 'checked="checked"':'' }}>
                                                             <label for="with_cash_collection"
                                                                    class="custom-control-label">{{ __('dashboard.With cash collection') }}</label>
                                                         </div>
@@ -173,7 +169,8 @@
                                                                    name="with_cash_collection"
                                                                    type="radio"
                                                                    value="without cash collection"
-                                                                   class="custom-control-input">
+                                                                   class="custom-control-input"
+                                                                {{ $order->with_cash_collection == 'without cash collection' ? 'checked="checked"':'' }}>
                                                             <label for="without_cash_collection"
                                                                    class="custom-control-label">{{ __('dashboard.Without cash collection') }}</label>
                                                         </div>
@@ -186,7 +183,7 @@
                                                            for="cash_on_delivery">{{ __('dashboard.Cash on Delivery') }}:</label>
                                                     <input type="number"
                                                            class="form-control @error('cash_on_delivery') is-invalid @enderror"
-                                                           value=""
+                                                           value="{{ old('cash_on_delivery',$order->cash_on_delivery) }}"
                                                            min="0"
                                                            step="0.01"
                                                            id="cash_on_delivery"
@@ -216,7 +213,7 @@
                                                                    type="radio"
                                                                    value="parcel"
                                                                    class="custom-control-input"
-                                                                   checked="">
+                                                                {{ $order->radio_stacked == 'parcel' ? 'checked="checked"':'' }}>
                                                             <label for="radioStacked1"
                                                                    class="custom-control-label">{{ __('dashboard.Parcel') }}</label>
                                                         </div>
@@ -225,7 +222,8 @@
                                                                    name="radio_stacked"
                                                                    type="radio"
                                                                    value="document"
-                                                                   class="custom-control-input">
+                                                                   class="custom-control-input"
+                                                                {{ $order->radio_stacked == 'document' ? 'checked="checked"':'' }}>
                                                             <label for="radioStacked2"
                                                                    class="custom-control-label">{{ __('dashboard.Document') }}</label>
                                                         </div>
@@ -234,7 +232,8 @@
                                                                    name="radio_stacked"
                                                                    type="radio"
                                                                    value="bulky"
-                                                                   class="custom-control-input">
+                                                                   class="custom-control-input"
+                                                                {{ $order->radio_stacked == 'bulky' ? 'checked="checked"':'' }}>
                                                             <label for="radioStacked3"
                                                                    class="custom-control-label">{{ __('dashboard.Bulky') }}</label>
                                                         </div>
@@ -251,7 +250,7 @@
                                                                    type="radio"
                                                                    value="light bulky"
                                                                    class="custom-control-input"
-                                                                   checked="">
+                                                                {{ $order->light_bulky == 'light bulky' ? 'checked="checked"':'' }}>
                                                             <label for="light_bulky"
                                                                    class="custom-control-label">Light Bulky</label>
                                                         </div>
@@ -260,7 +259,8 @@
                                                                    name="light_bulky"
                                                                    value="heavy bulky"
                                                                    type="radio"
-                                                                   class="custom-control-input">
+                                                                   class="custom-control-input"
+                                                                {{ $order->light_bulky == 'heavy bulky' ? 'checked="checked"':'' }}>
                                                             <label for="heavy_bulky"
                                                                    class="custom-control-label">Heavy Bulky</label>
                                                         </div>
@@ -275,7 +275,7 @@
                                                               id="package_description"
                                                               name="package_description"
                                                               class="form-control @error('package_description') is-invalid @enderror"
-                                                              placeholder="{{ __('dashboard.Product code - Color - Size') }}">{{ old('package_description') }}</textarea>
+                                                              placeholder="{{ __('dashboard.Product code - Color - Size') }}">{{ old('package_description',$order->package_description) }}</textarea>
                                                     @error('package_description')
                                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                     @enderror
@@ -288,7 +288,7 @@
                                                            for="no_of_items">{{ __('dashboard.Number of Items') }}:</label>
                                                     <input type="number"
                                                            class="form-control @error('no_of_items') is-invalid @enderror"
-                                                           value=""
+                                                           value="{{ old('no_of_items',$order->no_of_items) }}"
                                                            min="0"
                                                            step="1"
                                                            id="no_of_items"
@@ -309,7 +309,7 @@
                                                            for="no_of_items">{{ __('dashboard.Order Reference') }}:</label>
                                                     <input type="text"
                                                            class="form-control @error('order_reference') is-invalid @enderror"
-                                                           value=""
+                                                           value="{{ old('order_reference',$order->order_reference) }}"
                                                            id="order_reference"
                                                            name="order_reference"
                                                            autocomplete="order_reference"
@@ -328,7 +328,8 @@
                                                         <input type="checkbox"
                                                                class="custom-control-input"
                                                                name="open_package"
-                                                               id="customCheck1">
+                                                               id="customCheck1"
+                                                            {{ $order->open_package  ? 'checked="checked"':'' }}>
                                                         <label class="custom-control-label"
                                                                for="customCheck1">{{ __('dashboard.Allow customers to open packages ?') }}</label>
                                                         <small class="form-text text-muted">{{ __('dashboard.Allowing customers to open package allows them to refuse taking it. In this case Bosta will return it back to you. Return fees will be applied') }}</small>
@@ -338,7 +339,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane text-70  fade " id="exchange" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div class="tab-pane text-70  fade {{ $order->type == 'Exchange' ? 'show active':'' }}" id="exchange" role="tabpanel" aria-labelledby="nav-home-tab">
                                     <div class="row">
                                         <div class="col-lg-3 bg-light">
                                             <div class="page-separator">
@@ -361,7 +362,7 @@
                                                                    type="radio"
                                                                    class="custom-control-input"
                                                                    value="with cash difference"
-                                                                   checked="">
+                                                                   {{ $order->with_cash_difference == 'with cash difference' ? 'checked="checked"':'' }}>
                                                             <label for="with_cash_difference"
                                                                    class="custom-control-label">{{ __('dashboard.With cash difference') }}</label>
                                                         </div>
@@ -370,7 +371,8 @@
                                                                    name="with_cash_difference"
                                                                    value="without cash difference"
                                                                    type="radio"
-                                                                   class="custom-control-input">
+                                                                   class="custom-control-input"
+                                                                {{ $order->with_cash_difference == 'without cash difference' ? 'checked="checked"':'' }}>
                                                             <label for="without_cash_difference"
                                                                    class="custom-control-label">{{ __('dashboard.Without cash difference') }}</label>
                                                         </div>
@@ -383,7 +385,7 @@
                                                            for="cash_exchange_amount">{{ __('dashboard.Cash Exchange Amount') }}:</label>
                                                     <input type="number"
                                                            class="form-control @error('cash_exchange_amount') is-invalid @enderror"
-                                                           value=""
+                                                           value="{{ old('cash_exchange_amount',$order->cash_exchange_amount) }}"
                                                            min="0"
                                                            step="0.01"
                                                            id="cash_exchange_amount"
@@ -410,7 +412,7 @@
                                                            for="no_of_items">{{ __('dashboard.Number of Items') }}:</label>
                                                     <input type="number"
                                                            class="form-control @error('no_of_items_exchange') is-invalid @enderror"
-                                                           value="1"
+                                                           value="{{ old('no_of_items_exchange',$order->no_of_items_exchange) }}"
                                                            min="0"
                                                            step="1"
                                                            id="no_of_items_exchange"
@@ -433,7 +435,7 @@
                                                               id="package_description_exchange"
                                                               name="package_description_exchange"
                                                               class="form-control @error('package_description_exchange') is-invalid @enderror"
-                                                              placeholder="{{ __('dashboard.Product code - Color - Size') }}">{{ old('package_description_exchange') }}</textarea>
+                                                              placeholder="{{ __('dashboard.Product code - Color - Size') }}">{{ old('package_description_exchange',$order->package_description_exchange) }}</textarea>
                                                     @error('package_description_exchange')
                                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                     @enderror
@@ -446,7 +448,7 @@
                                                            for="order_reference_exchange">{{ __('dashboard.Order Reference') }}:</label>
                                                     <input type="text"
                                                            class="form-control @error('order_reference_exchange') is-invalid @enderror"
-                                                           value=""
+                                                           value="{{ old('order_reference_exchange',$order->order_reference_exchange) }}"
                                                            id="order_reference_exchange"
                                                            name="order_reference_exchange"
                                                            autocomplete="order_reference_exchange"
@@ -465,7 +467,8 @@
                                                         <input type="checkbox"
                                                                class="custom-control-input"
                                                                name="allow_opening"
-                                                               id="customCheck1_allow">
+                                                               id="customCheck1_allow"
+                                                            {{ $order->allow_opening  ? 'checked="checked"':'' }}>
                                                         <label class="custom-control-label"
                                                                for="customCheck1_allow">{{ __('dashboard.Allow customers to open packages ?') }}</label>
                                                         <small class="form-text text-muted">{{ __('dashboard.Allowing customers to open package allows them to refuse taking it. In this case Bosta will return it back to you. Return fees will be applied') }}</small>
@@ -483,7 +486,7 @@
                                                            for="no_of_items_of_return_package_exchange">{{ __('dashboard.Number of Items') }}:</label>
                                                     <input type="number"
                                                            class="form-control @error('no_of_items_of_return_package_exchange') is-invalid @enderror"
-                                                           value="1"
+                                                           value="{{ old('no_of_items_of_return_package_exchange',$order->no_of_items_of_return_package_exchange) }}"
                                                            min="0"
                                                            step="1"
                                                            id="no_of_items_of_return_package_exchange"
@@ -506,7 +509,7 @@
                                                               id="package_description_return_package_exchange"
                                                               name="package_description_return_package_exchange"
                                                               class="form-control @error('package_description_return_package_exchange') is-invalid @enderror"
-                                                              placeholder="{{ __('dashboard.Product code - Color - Size') }}">{{ old('package_description_return_package') }}</textarea>
+                                                              placeholder="{{ __('dashboard.Product code - Color - Size') }}">{{ old('package_description_return_package',$order->package_description_return_package_exchange) }}</textarea>
                                                     @error('package_description_return_package_exchange')
                                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                     @enderror
@@ -523,7 +526,7 @@
                                                             class="form-control form-control-sm @error('return_location_exchange') is-invalid @enderror">
                                                         <option value="">{{ __('dashboard.Select location') }}</option>
                                                         @foreach($locations as $location)
-                                                            <option value="{{ $location->id }}" {{ old('return_location_exchange') == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
+                                                            <option value="{{ $location->id }}" {{ $order->return_location_exchange == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('return_location_exchange')
@@ -567,7 +570,7 @@
                                                             class="form-control select01 form-control-sm @error('state_id_exchange') is-invalid @enderror"
                                                             name="state_id_exchange">
                                                         @foreach($states as $state)
-                                                            <option value="{{ $state->id }}" {{ old('state_id_exchange') == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                                            <option value="{{ $state->id }}" {{ ($order->return_locations_exchange) ? $order->return_locations_exchange->state_id == $state->id ? 'selected':'':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
                                                                 {{ $state->name }}
                                                             </option>
                                                         @endforeach
@@ -604,7 +607,7 @@
                                                     <div class="input-group input-group-merge">
                                                         <input type="text"
                                                                class="form-control @error('street_exchange') is-invalid @enderror"
-                                                               value="{{ old('street_exchange') }}"
+                                                               value="{{ ($order->return_locations_exchange) ? old('street_exchange',$order->return_locations_exchange->street):old('street_exchange') }}"
                                                                autocomplete="street_exchange"
                                                                name="street_exchange"
                                                                id="street_exchange"
@@ -629,7 +632,7 @@
                                                     <div class="input-group input-group-merge">
                                                         <input type="text"
                                                                class="form-control @error('building_exchange') is-invalid @enderror"
-                                                               value="{{ old('building_exchange') }}"
+                                                               value="{{ ($order->return_locations_exchange) ? old('building_exchange',$order->return_locations_exchange->building):old('building_exchange') }}"
                                                                autocomplete="building_exchange"
                                                                name="building_exchange"
                                                                id="building_exchange"
@@ -656,7 +659,7 @@
                                                     <div class="input-group input-group-merge">
                                                         <input type="text"
                                                                class="form-control @error('floor_exchange') is-invalid @enderror"
-                                                               value="{{ old('floor_exchange') }}"
+                                                               value="{{ ($order->return_locations_exchange) ? old('floor_exchange',$order->return_locations_exchange->floor):old('floor_exchange') }}"
                                                                autocomplete="floor_exchange"
                                                                name="floor_exchange"
                                                                id="floor_exchange"
@@ -681,7 +684,7 @@
                                                     <div class="input-group input-group-merge">
                                                         <input type="text"
                                                                class="form-control @error('apartment_exchange') is-invalid @enderror"
-                                                               value="{{ old('apartment_exchange') }}"
+                                                               value="{{ ($order->return_locations_exchange) ? old('apartment_exchange',$order->return_locations_exchange->apartment):old('apartment_exchange') }}"
                                                                autocomplete="apartment_exchange"
                                                                name="apartment_exchange"
                                                                id="apartment_exchange"
@@ -706,7 +709,7 @@
                                                     <div class="input-group input-group-merge">
                                                         <input type="text"
                                                                class="form-control @error('landmarks_exchange') is-invalid @enderror"
-                                                               value="{{ old('landmarks_exchange') }}"
+                                                               value="{{ ($order->return_locations_exchange) ? old('landmarks_exchange',$order->return_locations_exchange->landmarks):old('landmarks_exchange') }}"
                                                                autocomplete="landmarks_exchange"
                                                                name="landmarks_exchange"
                                                                id="landmarks_exchange"
@@ -730,7 +733,8 @@
                                                         <input type="checkbox"
                                                                class="custom-control-input"
                                                                name="working_hours_exchange"
-                                                               id="customCheck1_exchange">
+                                                               id="customCheck1_exchange"
+                                                            {{ ($order->return_locations_exchange) ? $order->return_locations_exchange->created_at ? 'checked="checked"':'':'' }}>
                                                         <label class="custom-control-label"
                                                                for="customCheck1_exchange">{{ __('dashboard.This is a work address') }}</label>
                                                         <small class="form-text text-muted">{{ __('dashboard.Mark it to deliver it within business days and working hours') }}</small>
@@ -744,7 +748,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane text-70  fade " id="return" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div class="tab-pane text-70  fade {{ $order->type == 'Return' ? 'show active':'' }}" id="return" role="tabpanel" aria-labelledby="nav-home-tab">
                                     <div class="row">
                                         <div class="col-lg-3 bg-light">
                                             <div class="page-separator">
@@ -764,7 +768,7 @@
                                                            for="refund_amount">{{ __('dashboard.Refund Amount') }} :</label>
                                                     <input type="number"
                                                            class="form-control @error('refund_amount') is-invalid @enderror"
-                                                           value=""
+                                                           value="{{ old('refund_amount',$order->refund_amount) }}"
                                                            min="0"
                                                            step="0.01"
                                                            id="refund_amount"
@@ -788,7 +792,7 @@
                                                                    type="radio"
                                                                    class="custom-control-input"
                                                                    value="with refund"
-                                                                   checked="">
+                                                                   {{ $order->with_refund == 'with refund' ? 'checked="checked"':'' }}>
                                                             <label for="with_refund"
                                                                    class="custom-control-label">{{ __('dashboard.With refund') }}</label>
                                                         </div>
@@ -797,7 +801,8 @@
                                                                    name="with_refund"
                                                                    type="radio"
                                                                    value="without refund"
-                                                                   class="custom-control-input">
+                                                                   class="custom-control-input"
+                                                                    {{ $order->with_refund == 'without refund' ? 'checked="checked"':'' }}>
                                                             <label for="without_refund"
                                                                    class="custom-control-label">{{ __('dashboard.Without refund') }}</label>
                                                         </div>
@@ -816,7 +821,7 @@
                                                            for="no_of_items_return">{{ __('dashboard.Number of Items') }}:</label>
                                                     <input type="number"
                                                            class="form-control @error('no_of_items_return') is-invalid @enderror"
-                                                           value="1"
+                                                           value="{{ old('no_of_items_return',$order->no_of_items_return) }}"
                                                            min="0"
                                                            step="1"
                                                            id="no_of_items_return"
@@ -839,7 +844,7 @@
                                                               id="package_description_return"
                                                               name="package_description_return"
                                                               class="form-control @error('package_description_return') is-invalid @enderror"
-                                                              placeholder="{{ __('dashboard.Product code - Color - Size') }}">{{ old('package_description_return') }}</textarea>
+                                                              placeholder="{{ __('dashboard.Product code - Color - Size') }}">{{ old('package_description_return',$order->package_description_return) }}</textarea>
                                                     @error('package_description_return')
                                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                     @enderror
@@ -852,7 +857,7 @@
                                                            for="order_reference_return">{{ __('dashboard.Order Reference') }}:</label>
                                                     <input type="text"
                                                            class="form-control @error('order_reference_return') is-invalid @enderror"
-                                                           value=""
+                                                           value="{{ old('order_reference_return',$order->order_reference_return) }}"
                                                            id="order_reference_return"
                                                            name="order_reference_return"
                                                            autocomplete="order_reference_return"
@@ -875,7 +880,7 @@
                                                             class="form-control form-control-sm @error('return_location') is-invalid @enderror">
                                                         <option value="">{{ __('dashboard.Select location') }}</option>
                                                         @foreach($locations as $location)
-                                                            <option value="{{ $location->id }}" {{ old('return_location') == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
+                                                            <option value="{{ $location->id }}" {{ $order->return_location == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
                                                         @endforeach
                                                     </select>
                                                     @error('return_location')
@@ -919,7 +924,7 @@
                                                             class="form-control select01 form-control-sm @error('state_id_return') is-invalid @enderror"
                                                             name="state_id_return">
                                                         @foreach($states as $state)
-                                                            <option value="{{ $state->id }}" {{ old('state_id_return') == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                                            <option value="{{ $state->id }}" {{ ($order->return_locations) ? $order->return_locations->state_id == $state->id ? 'selected':'':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
                                                                 {{ $state->name }}
                                                             </option>
                                                         @endforeach
@@ -956,7 +961,7 @@
                                                     <div class="input-group input-group-merge">
                                                         <input type="text"
                                                                class="form-control @error('street_return') is-invalid @enderror"
-                                                               value="{{ old('street_return') }}"
+                                                               value="{{ ($order->return_locations) ? old('street_return',$order->return_locations->street):old('street_return') }}"
                                                                autocomplete="street_return"
                                                                name="street_return"
                                                                id="street_return"
@@ -981,7 +986,7 @@
                                                     <div class="input-group input-group-merge">
                                                         <input type="text"
                                                                class="form-control @error('building_return') is-invalid @enderror"
-                                                               value="{{ old('building_return') }}"
+                                                               value="{{ ($order->return_locations) ? old('building_return',$order->return_locations->building):old('building_return') }}"
                                                                autocomplete="building_return"
                                                                name="building_return"
                                                                id="building_return"
@@ -1008,7 +1013,7 @@
                                                     <div class="input-group input-group-merge">
                                                         <input type="text"
                                                                class="form-control @error('floor_return') is-invalid @enderror"
-                                                               value="{{ old('floor_return') }}"
+                                                               value="{{ ($order->return_locations) ? old('floor_return',$order->return_locations->floor):old('floor_return') }}"
                                                                autocomplete="floor_return"
                                                                name="floor_return"
                                                                id="floor_return"
@@ -1033,7 +1038,7 @@
                                                     <div class="input-group input-group-merge">
                                                         <input type="text"
                                                                class="form-control @error('apartment_return') is-invalid @enderror"
-                                                               value="{{ old('apartment_return') }}"
+                                                               value="{{ ($order->return_locations) ? old('apartment_return',$order->return_locations->apartment):old('apartment_return') }}"
                                                                autocomplete="apartment_return"
                                                                name="apartment_return"
                                                                id="apartment_return"
@@ -1058,7 +1063,7 @@
                                                     <div class="input-group input-group-merge">
                                                         <input type="text"
                                                                class="form-control @error('landmarks_return') is-invalid @enderror"
-                                                               value="{{ old('landmarks_return') }}"
+                                                               value="{{ ($order->return_locations) ? old('landmarks_return',$order->return_locations->landmarks):old('landmarks_return') }}"
                                                                autocomplete="landmarks_return"
                                                                name="landmarks_return"
                                                                id="landmarks_return"
@@ -1082,7 +1087,8 @@
                                                         <input type="checkbox"
                                                                class="custom-control-input"
                                                                name="working_hours_return"
-                                                               id="customCheck1_return">
+                                                               id="customCheck1_return"
+                                                            {{ ($order->return_locations) ? $order->return_locations->created_at ? 'checked="checked"':'':'' }}>
                                                         <label class="custom-control-label"
                                                                for="customCheck1_return">{{ __('dashboard.This is a work address') }}</label>
                                                         <small class="form-text text-muted">{{ __('dashboard.Mark it to deliver it within business days and working hours') }}</small>
@@ -1096,7 +1102,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane text-70  fade " id="cash_collection" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div class="tab-pane text-70  fade {{ $order->type == 'Cash Collection' ? 'show active':'' }}" id="cash_collection" role="tabpanel" aria-labelledby="nav-home-tab">
                                     <div class="row">
                                         <div class="col-lg-3 bg-light">
                                             <div class="page-separator">
@@ -1116,7 +1122,7 @@
                                                            for="cash_to_collect">{{ __('dashboard.Cash to Collect') }}:</label>
                                                     <input type="number"
                                                            class="form-control @error('cash_to_collect') is-invalid @enderror"
-                                                           value=""
+                                                           value="{{ old('cash_to_collect',$order->cash_to_collect) }}"
                                                            min="0"
                                                            step="0.01"
                                                            id="cash_to_collect"
@@ -1140,7 +1146,7 @@
                                                                    type="radio"
                                                                    class="custom-control-input"
                                                                    value="collect cash"
-                                                                   checked="">
+                                                                   {{ $order->collect_cash == 'collect cash' ? 'checked=""':'' }}>
                                                             <label for="collect_cash"
                                                                    class="custom-control-label">{{ __('dashboard.Collect cash from customer') }}</label>
                                                         </div>
@@ -1149,7 +1155,8 @@
                                                                    name="collect_cash"
                                                                    type="radio"
                                                                    value="refund cash"
-                                                                   class="custom-control-input">
+                                                                   class="custom-control-input"
+                                                                {{ $order->collect_cash == 'refund cash' ? 'checked=""':'' }}>
                                                             <label for="refund_cash"
                                                                    class="custom-control-label">{{ __('dashboard.Refund cash to customer') }}</label>
                                                         </div>
@@ -1168,7 +1175,7 @@
                                                            for="no_of_items">{{ __('dashboard.Order Reference') }}:</label>
                                                     <input type="text"
                                                            class="form-control @error('order_reference_cash_collection') is-invalid @enderror"
-                                                           value=""
+                                                           value="{{ old('order_reference_cash_collection',$order->order_reference_cash_collection) }}"
                                                            id="order_reference_cash_collection"
                                                            name="order_reference_cash_collection"
                                                            autocomplete="order_reference_cash_collection"
@@ -1222,7 +1229,7 @@
                                             class="form-control form-control-sm @error('customer_id') is-invalid @enderror">
                                         <option value="">{{ __('dashboard.Select customer') }}</option>
                                         @foreach($customers as $customer)
-                                            <option value="{{ $customer->id }}" {{ old('customer_id') == $customer->id ? 'selected':'' }}>{{ $customer->user->full_name }}</option>
+                                            <option value="{{ $customer->id }}" {{ $order->customer_id == $customer->id ? 'selected':'' }}>{{ $customer->user->full_name }}</option>
                                         @endforeach
                                     </select>
                                     @error('customer_id')
@@ -1241,7 +1248,7 @@
                                            for="name">{{ __('dashboard.Name') }}:</label>
                                     <input type="text"
                                            class="form-control @error('name') is-invalid @enderror"
-                                           value=""
+                                           value="{{ old('customer_id') ? old('customer_id'): $order->customer->user->full_name }}"
                                            id="name"
                                            name="name"
                                            autocomplete="name"
@@ -1260,7 +1267,7 @@
                                     <input type="email"
                                            id="email"
                                            class="form-control @error('email') is-invalid @enderror"
-                                           value=""
+                                           value="{{ old('email') ? old('email'): $order->customer->user->email }}"
                                            name="email"
                                            autocomplete="email"
                                            placeholder="{{ __('dashboard.Your email address') }} ...">
@@ -1276,7 +1283,7 @@
                                            for="phone">{{ __('dashboard.Phone') }}:</label>
                                     <input type="text"
                                            class="form-control @error('phone') is-invalid @enderror"
-                                           value=""
+                                           value="{{ old('phone') ? old('phone'): $order->customer->user->phone }}"
                                            id="phone"
                                            name="phone"
                                            data-mask="00000000000"
@@ -1293,7 +1300,7 @@
                                            for="secondary_phone">{{ __('dashboard.Secondary Phone') }}:</label>
                                     <input type="text"
                                            class="form-control @error('secondary_phone') is-invalid @enderror"
-                                           value=""
+                                           value="{{ old('secondary_phone') ? old('secondary_phone'): $order->customer->user->other_phone }}"
                                            id="secondary_phone"
                                            name="secondary_phone"
                                            data-mask="00000000000"
@@ -1316,7 +1323,7 @@
                                               id="delivery_notes"
                                               name="delivery_notes"
                                               class="form-control @error('delivery_notes') is-invalid @enderror"
-                                              placeholder="{{ __('dashboard.Delivery Notes') }} ..."></textarea>
+                                              placeholder="{{ __('dashboard.Delivery Notes') }} ...">{{ old('delivery_notes') ? old('delivery_notes'): $order->delivery_notes }}</textarea>
                                     @error('delivery_notes')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
@@ -1338,7 +1345,7 @@
                                             class="form-control form-control-sm @error('location_id') is-invalid @enderror">
                                         <option value="">{{ __('dashboard.Select location') }}</option>
                                         @foreach($locations as $location)
-                                            <option value="{{ $location->id }}" {{ old('location_id') == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
+                                            <option value="{{ $location->id }}" {{ $order->location_id == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('location_id')
@@ -1381,7 +1388,7 @@
                                             class="form-control select01 form-control-sm @error('state_id') is-invalid @enderror"
                                             name="state_id">
                                         @foreach($states as $state)
-                                            <option value="{{ $state->id }}" {{ old('state_id') == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                            <option value="{{ $state->id }}" {{ $order->location->state_id == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
                                                 {{ $state->name }}
                                             </option>
                                         @endforeach
@@ -1418,7 +1425,7 @@
                                     <div class="input-group input-group-merge">
                                         <input type="text"
                                                class="form-control @error('street') is-invalid @enderror"
-                                               value="{{ old('street') }}"
+                                               value="{{ old('street',$order->location->street) }}"
                                                autocomplete="street"
                                                name="street"
                                                id="street"
@@ -1443,7 +1450,7 @@
                                     <div class="input-group input-group-merge">
                                         <input type="text"
                                                class="form-control @error('building') is-invalid @enderror"
-                                               value="{{ old('building') }}"
+                                               value="{{ old('building',$order->location->building) }}"
                                                autocomplete="building"
                                                name="building"
                                                id="building"
@@ -1470,7 +1477,7 @@
                                     <div class="input-group input-group-merge">
                                         <input type="text"
                                                class="form-control @error('floor') is-invalid @enderror"
-                                               value="{{ old('floor') }}"
+                                               value="{{ old('floor',$order->location->floor) }}"
                                                autocomplete="floor"
                                                name="floor"
                                                id="floor"
@@ -1495,7 +1502,7 @@
                                     <div class="input-group input-group-merge">
                                         <input type="text"
                                                class="form-control @error('apartment') is-invalid @enderror"
-                                               value="{{ old('apartment') }}"
+                                               value="{{ old('apartment',$order->location->apartment) }}"
                                                autocomplete="apartment"
                                                name="apartment"
                                                id="apartment"
@@ -1520,7 +1527,7 @@
                                     <div class="input-group input-group-merge">
                                         <input type="text"
                                                class="form-control @error('landmarks') is-invalid @enderror"
-                                               value="{{ old('landmarks') }}"
+                                               value="{{ old('landmarks',$order->location->landmarks) }}"
                                                autocomplete="landmarks"
                                                name="landmarks"
                                                id="landmarks"
@@ -1544,6 +1551,7 @@
                                         <input type="checkbox"
                                                class="custom-control-input"
                                                name="working_hours"
+                                               {{ $order->location->working_hours ? 'checked="checked"':'' }}
                                                id="customCheck1">
                                         <label class="custom-control-label"
                                                for="customCheck1">{{ __('dashboard.This is a work address') }}</label>
@@ -1578,7 +1586,7 @@
                             <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.You can skip requesting a pickup now but make sure to request a pickup when you have packages ready to be shipped') }}</p>
                         </div>
                         <div class="col-lg-9 row p-2">
-                            <div class="col-lg-12 invert location">
+                            <div class="col-lg-12 invert ">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="select02">{{ __('dashboard.Pickup Locations') }}:</label>
@@ -1588,7 +1596,7 @@
                                             class="form-control form-control-sm @error('pickup_location_id') is-invalid @enderror">
                                         <option value="">{{ __('dashboard.Select location') }}</option>
                                         @foreach($locations as $location)
-                                            <option value="{{ $location->id }}" {{ old('pickup_location_id') == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
+                                            <option value="{{ $location->id }}" {{ ($order->pickup) ? $order->pickup_location_id == $location->id ? 'selected':'':'' }}>{{ $location->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('pickup_location_id')
@@ -1605,8 +1613,9 @@
                                             data-toggle="select"
                                             name="pickup_id"
                                             class="form-control form-control-sm @error('pickup_id') is-invalid @enderror">
+                                        <option value="">Choose pickup</option>
                                         @foreach($pickups as $pickup)
-                                            <option value="{{ $pickup->id }}" {{ old('pickup_id') == $pickup->id ? 'selected':'' }}>{{ $pickup->pickup_id }}</option>
+                                            <option value="{{ $pickup->id }}" {{ $order->pickup_id == $pickup->id ? 'selected':'' }}>{{ $pickup->pickup_id }}</option>
                                         @endforeach
                                     </select>
                                     @error('pickup_id')
@@ -1625,7 +1634,7 @@
                                            for="scheduled_date">{{ __('dashboard.Pickup Date') }}:</label>
                                     <input type="hidden"
                                            class="form-control @error('scheduled_date') is-invalid @enderror flatpickr-input"
-                                           value="{{ old('scheduled_date') }}"
+                                           value="{{ $order->pickup ? old('scheduled_date',$order->pickup->scheduled_date):old('scheduled_date') }}"
                                            id="scheduled_date"
                                            name="scheduled_date"
                                            data-toggle="flatpickr"
@@ -1646,7 +1655,7 @@
                                             class="form-control form-control-sm @error('contact_id') is-invalid @enderror">
                                         <option value="">{{ __('dashboard.Select Contact') }}</option>
                                         @foreach($contacts as $contact)
-                                            <option value="{{ $contact->id }}" {{ old('contact_id') == $contact->id ? 'selected':'' }}>{{ $contact->contact_name }}</option>
+                                            <option value="{{ $contact->id }}" {{ ($order->pickup) ? $order->pickup->contact_id == $contact->id ? 'selected':'':'' }}>{{ $contact->contact_name }}</option>
                                         @endforeach
                                     </select>
                                     @error('contact_id')
@@ -1664,7 +1673,7 @@
                 </div>
             </div>
             <div id="hidden_inputs">
-                <input type="hidden" name="type" value="Deliver">
+                <input type="hidden" name="type" value="{{ $order->type }}">
                 {{--<input type="hidden" name="location_in" value="full">
                 <input type="hidden" name="contact_in" value="full">
                 <input type="hidden" name="date_in" value="full">--}}

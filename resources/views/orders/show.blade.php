@@ -366,7 +366,7 @@
 
                     <div class="card card-group-row__card d-flex flex-column">
                         <div class="row no-gutters flex">
-                            <div class="col-lg-2 col-sm-4">
+                            <div class="{{ $order->type == 'Cash Collection' ? 'col-lg-4':'col-lg-2' }} col-sm-4">
                                 <div class="card-body">
                                     <h6 class="text-50">Type</h6>
 
@@ -384,83 +384,309 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-sm-4 border-left">
-                                <div class="card-body">
-                                    <h6 class="text-50">Order reference</h6>
+                            @switch($order->type)
+                                @case('Deliver')
+                                <div class="col-lg-2 col-sm-4 border-left">
+                                    <div class="card-body">
+                                        <h6 class="text-50">Order reference</h6>
 
-                                    <div class="h2 mb-0">{{ $order->order_reference ? $order->order_reference:'None' }}</div>
-                                    {{--<div class="d-flex flex-column">
-                                        <strong>Total Views</strong>
-                                        <small class="text-50">1.3k today</small>
+                                        <div class="h2 mb-0">{{ $order->order_reference ? $order->order_reference:'None' }}</div>
+                                        {{--<div class="d-flex flex-column">
+                                            <strong>Total Views</strong>
+                                            <small class="text-50">1.3k today</small>
+                                        </div>--}}
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="h2 mb-0"></div>
+                                        <small class="text-50">Package description</small>
+                                        <strong>{{ $order->package_description }}</strong>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-sm-4 border-left">
+                                    <div class="card-body">
+                                        <h6 class="text-50">Cash on delivery</h6>
+
+                                        <div class="h2 mb-0">{{ $order->cash_on_delivery }} <small>EGP</small></div>
+                                        {{--<div class="d-flex flex-column">
+                                            <strong>Total Views</strong>
+                                            <small class="text-50">1.3k today</small>
+                                        </div>--}}
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="h2 mb-0"></div>
+                                        <small class="text-50">Delivery notes</small>
+                                        <strong>{{ $order->delivery_notes }}</strong>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-sm-4 border-left">
+                                    <div class="card-body">
+                                        <h6 class="text-50">Package Type</h6>
+
+                                        <div class="h2 mb-0">{{ $order->package_type }}</div>
+                                        {{--<div class="d-flex flex-column">
+                                            <strong>Total Views</strong>
+                                            <small class="text-50">1.3k today</small>
+                                        </div>--}}
+                                    </div>
+                                    {{--<div class="card-body">
+                                        <div class="h2 mb-0">113</div>
+                                        <strong>Comments</strong>
                                     </div>--}}
                                 </div>
-                                <div class="card-body">
-                                    <div class="h2 mb-0"></div>
-                                    <small class="text-50">Package description</small>
-                                    <strong>{{ $order->package_description }}</strong>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-sm-4 border-left">
-                                <div class="card-body">
-                                    <h6 class="text-50">Cash on delivery</h6>
+                                <div class="col-lg-2 col-sm-4 border-left">
+                                    <div class="card-body">
+                                        <h6 class="text-50">No. of items</h6>
 
-                                    <div class="h2 mb-0">{{ $order->cash_on_delivery }} <small>EGP</small></div>
-                                    {{--<div class="d-flex flex-column">
-                                        <strong>Total Views</strong>
-                                        <small class="text-50">1.3k today</small>
+                                        <div class="h2 mb-0">{{ $order->no_of_items > 1 ? $order->no_of_items:1 }}</div>
+                                        {{--<div class="d-flex flex-column">
+                                            <strong>Total Views</strong>
+                                            <small class="text-50">1.3k today</small>
+                                        </div>--}}
+                                    </div>
+                                    {{-- <div class="card-body">
+                                         <div class="h2 mb-0">113</div>
+                                         <strong>Comments</strong>
+                                     </div>--}}
+                                </div>
+                                <div class="col-lg-2 col-sm-4 border-left">
+                                    <div class="card-body">
+                                        <h6 class="text-50">Opening Package</h6>
+
+                                        <div class="h2 mb-0">{{ $order->open_package == 1 ? 'Yes':'No' }}</div>
+                                        {{--<div class="d-flex flex-column">
+                                            <strong>Total Views</strong>
+                                            <small class="text-50">1.3k today</small>
+                                        </div>--}}
+                                    </div>
+                                    {{--<div class="card-body">
+                                        <div class="h2 mb-0">113</div>
+                                        <strong>Comments</strong>
                                     </div>--}}
                                 </div>
-                                <div class="card-body">
-                                    <div class="h2 mb-0"></div>
-                                    <small class="text-50">Delivery notes</small>
-                                    <strong>{{ $order->delivery_notes }}</strong>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-sm-4 border-left">
-                                <div class="card-body">
-                                    <h6 class="text-50">Package Type</h6>
+                                @break
+                                @case('Exchange')
+                                <div class="col-lg-2 col-sm-4 border-left">
+                                    <div class="card-body">
+                                        <h6 class="text-50">Order reference</h6>
 
-                                    <div class="h2 mb-0">{{ $order->package_type }}</div>
-                                    {{--<div class="d-flex flex-column">
-                                        <strong>Total Views</strong>
-                                        <small class="text-50">1.3k today</small>
+                                        <div class="h2 mb-0">{{ $order->order_reference_exchange ? $order->order_reference_exchange:'None' }}</div>
+                                        {{--<div class="d-flex flex-column">
+                                            <strong>Total Views</strong>
+                                            <small class="text-50">1.3k today</small>
+                                        </div>--}}
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="h2 mb-0"></div>
+                                        <small class="text-50">Package description</small>
+                                        <strong>{{ $order->package_description_exchange }}</strong>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-sm-4 border-left">
+                                    <div class="card-body">
+                                        <h6 class="text-50">Cash exchange amount</h6>
+
+                                        <div class="h2 mb-0">{{ $order->cash_exchange_amount }} <small>EGP</small></div>
+                                        {{--<div class="d-flex flex-column">
+                                            <strong>Total Views</strong>
+                                            <small class="text-50">1.3k today</small>
+                                        </div>--}}
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="h2 mb-0"></div>
+                                        <small class="text-50">Delivery notes</small>
+                                        <strong>{{ $order->delivery_notes }}</strong>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-sm-4 border-left">
+                                    <div class="card-body">
+                                        <h6 class="text-50">No. of items</h6>
+
+                                        <div class="h2 mb-0">{{ $order->no_of_items > 1 ? $order->no_of_items:1 }}</div>
+                                        {{--<div class="d-flex flex-column">
+                                            <strong>Total Views</strong>
+                                            <small class="text-50">1.3k today</small>
+                                        </div>--}}
+                                    </div>
+                                    {{-- <div class="card-body">
+                                         <div class="h2 mb-0">113</div>
+                                         <strong>Comments</strong>
+                                     </div>--}}
+                                </div>
+                                <div class="col-lg-2 col-sm-4 border-left">
+                                    <div class="card-body">
+                                        <h6 class="text-50">No. of items to return</h6>
+
+                                        <div class="h2 mb-0">{{ $order->no_of_items_of_return_package_exchange }}</div>
+                                        {{--<div class="d-flex flex-column">
+                                            <strong>Total Views</strong>
+                                            <small class="text-50">1.3k today</small>
+                                        </div>--}}
+                                    </div>
+                                    {{--<div class="card-body">
+                                        <div class="h2 mb-0">113</div>
+                                        <strong>Comments</strong>
                                     </div>--}}
                                 </div>
-                                {{--<div class="card-body">
-                                    <div class="h2 mb-0">113</div>
-                                    <strong>Comments</strong>
+                                <div class="col-lg-2 col-sm-4 border-left">
+                                    <div class="card-body">
+                                        <h6 class="text-50">Opening Package</h6>
+
+                                        <div class="h2 mb-0">{{ $order->allow_opening == 1 ? 'Yes':'No' }}</div>
+                                        {{--<div class="d-flex flex-column">
+                                            <strong>Total Views</strong>
+                                            <small class="text-50">1.3k today</small>
+                                        </div>--}}
+                                    </div>
+                                    {{--<div class="card-body">
+                                        <div class="h2 mb-0">113</div>
+                                        <strong>Comments</strong>
+                                    </div>--}}
+                                </div>
+                                @break
+                                @case('Return')
+                                <div class="col-lg-4 col-sm-4 border-left">
+                                    <div class="card-body">
+                                        <h6 class="text-50">Order reference</h6>
+
+                                        <div class="h2 mb-0">{{ $order->order_reference_return ? $order->order_reference_return:'None' }}</div>
+                                        {{--<div class="d-flex flex-column">
+                                            <strong>Total Views</strong>
+                                            <small class="text-50">1.3k today</small>
+                                        </div>--}}
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="h2 mb-0"></div>
+                                        <small class="text-50">Package description</small>
+                                        <strong>{{ $order->package_description_return }}</strong>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-sm-4 border-left">
+                                    <div class="card-body">
+                                        <h6 class="text-50">Refund amount</h6>
+
+                                        <div class="h2 mb-0">{{ $order->refund_amount }} <small>EGP</small></div>
+                                        {{--<div class="d-flex flex-column">
+                                            <strong>Total Views</strong>
+                                            <small class="text-50">1.3k today</small>
+                                        </div>--}}
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="h2 mb-0"></div>
+                                        <small class="text-50">Delivery notes</small>
+                                        <strong>{{ $order->delivery_notes }}</strong>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-sm-4 border-left">
+                                    <div class="card-body">
+                                        <h6 class="text-50">No. of items to return</h6>
+
+                                        <div class="h2 mb-0">{{ $order->no_of_items_return > 1 ? $order->no_of_items_return:1 }}</div>
+                                        {{--<div class="d-flex flex-column">
+                                            <strong>Total Views</strong>
+                                            <small class="text-50">1.3k today</small>
+                                        </div>--}}
+                                    </div>
+                                    {{-- <div class="card-body">
+                                         <div class="h2 mb-0">113</div>
+                                         <strong>Comments</strong>
+                                     </div>--}}
+                                </div>
+                                <div class="col-lg-2 col-sm-4 border-left">
+                                    <div class="card-body">
+                                        <h6 class="text-50">Opening Package</h6>
+
+                                        <div class="h2 mb-0">{{ $order->open_package == 1 ? 'Yes':'No' }}</div>
+                                        {{--<div class="d-flex flex-column">
+                                            <strong>Total Views</strong>
+                                            <small class="text-50">1.3k today</small>
+                                        </div>--}}
+                                    </div>
+                                    {{--<div class="card-body">
+                                        <div class="h2 mb-0">113</div>
+                                        <strong>Comments</strong>
+                                    </div>--}}
+                                </div>
+                                @break
+                                @case('Cash Collection')
+                                <div class="col-lg-2 col-sm-4 border-left">
+                                    <div class="card-body">
+                                        <h6 class="text-50">Order reference</h6>
+
+                                        <div class="h2 mb-0">{{ $order->order_reference_cash_collection ? $order->order_reference_cash_collection:'None' }}</div>
+                                        {{--<div class="d-flex flex-column">
+                                            <strong>Total Views</strong>
+                                            <small class="text-50">1.3k today</small>
+                                        </div>--}}
+                                    </div>
+                                    {{--<div class="card-body">
+                                        <div class="h2 mb-0"></div>
+                                        <small class="text-50">Package description</small>
+                                        <strong>{{ $order->package_description }}</strong>
+                                    </div>--}}
+                                </div>
+                                <div class="col-lg-4 col-sm-4 border-left">
+                                    <div class="card-body">
+                                        <h6 class="text-50">Cash to delivery</h6>
+
+                                        <div class="h2 mb-0">{{ $order->cash_to_collect }} <small>EGP</small></div>
+                                        {{--<div class="d-flex flex-column">
+                                            <strong>Total Views</strong>
+                                            <small class="text-50">1.3k today</small>
+                                        </div>--}}
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="h2 mb-0"></div>
+                                        <small class="text-50">Delivery notes</small>
+                                        <strong>{{ $order->delivery_notes }}</strong>
+                                    </div>
+                                </div>
+                                {{--<div class="col-lg-2 col-sm-4 border-left">
+                                    <div class="card-body">
+                                        <h6 class="text-50">Package Type</h6>
+
+                                        <div class="h2 mb-0">{{ $order->package_type }}</div>
+                                        --}}{{--<div class="d-flex flex-column">
+                                            <strong>Total Views</strong>
+                                            <small class="text-50">1.3k today</small>
+                                        </div>--}}{{--
+                                    </div>
+                                    --}}{{--<div class="card-body">
+                                        <div class="h2 mb-0">113</div>
+                                        <strong>Comments</strong>
+                                    </div>--}}{{--
                                 </div>--}}
-                            </div>
-                            <div class="col-lg-2 col-sm-4 border-left">
-                                <div class="card-body">
-                                    <h6 class="text-50">No. of items</h6>
+                                <div class="col-lg-2 col-sm-4 border-left">
+                                    <div class="card-body">
+                                        <h6 class="text-50">No. of items</h6>
 
-                                    <div class="h2 mb-0">{{ $order->no_of_items > 1 ? $order->no_of_items:1 }}</div>
-                                    {{--<div class="d-flex flex-column">
-                                        <strong>Total Views</strong>
-                                        <small class="text-50">1.3k today</small>
-                                    </div>--}}
+                                        <div class="h2 mb-0">{{ $order->no_of_items > 1 ? $order->no_of_items:1 }}</div>
+                                        {{--<div class="d-flex flex-column">
+                                            <strong>Total Views</strong>
+                                            <small class="text-50">1.3k today</small>
+                                        </div>--}}
+                                    </div>
+                                    {{-- <div class="card-body">
+                                         <div class="h2 mb-0">113</div>
+                                         <strong>Comments</strong>
+                                     </div>--}}
                                 </div>
-                               {{-- <div class="card-body">
-                                    <div class="h2 mb-0">113</div>
-                                    <strong>Comments</strong>
-                                </div>--}}
-                            </div>
-                            <div class="col-lg-2 col-sm-4 border-left">
-                                <div class="card-body">
-                                    <h6 class="text-50">Opening Package</h6>
+                                {{--<div class="col-lg-2 col-sm-4 border-left">
+                                    <div class="card-body">
+                                        <h6 class="text-50">Opening Package</h6>
 
-                                    <div class="h2 mb-0">{{ $order->open_package == 1 ? 'Yes':'No' }}</div>
-                                    {{--<div class="d-flex flex-column">
-                                        <strong>Total Views</strong>
-                                        <small class="text-50">1.3k today</small>
-                                    </div>--}}
-                                </div>
-                                {{--<div class="card-body">
-                                    <div class="h2 mb-0">113</div>
-                                    <strong>Comments</strong>
+                                        <div class="h2 mb-0">{{ $order->open_package == 1 ? 'Yes':'No' }}</div>
+                                        --}}{{--<div class="d-flex flex-column">
+                                            <strong>Total Views</strong>
+                                            <small class="text-50">1.3k today</small>
+                                        </div>--}}{{--
+                                    </div>
+                                    --}}{{--<div class="card-body">
+                                        <div class="h2 mb-0">113</div>
+                                        <strong>Comments</strong>
+                                    </div>--}}{{--
                                 </div>--}}
-                            </div>
+                                @break
+                            @endswitch
                         </div>
                     </div>
 

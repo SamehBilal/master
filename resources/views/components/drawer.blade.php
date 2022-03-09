@@ -67,7 +67,7 @@
                                 <span class="sidebar-menu-text">{{ __('dashboard.Single_order') }}</span>
                             </a>
                         </li>
-                        @endcan 
+                        @endcan
                         @can('create multi orders')
                         <li class="sidebar-menu-item {{ set_active(['dashboard/orders/create/multi'])}}">
                             <a class="sidebar-menu-button"
@@ -117,42 +117,6 @@
                         {{ __('dashboard.Contact_Forms') }}
                     </a>
                 </li>
-                @endcan
-                @can('view pickups')
-                    <li class="sidebar-menu-item {{ set_active(['dashboard/pickups*'])}}">
-                        <a class="sidebar-menu-button"
-                        href="{{ route('dashboard.pickups.index') }}">
-                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">map</span>
-                            {{ __('dashboard.Pickups') }}
-                        </a>
-                    </li>
-                @endcan
-                @can('view tickets')
-                    <li class="sidebar-menu-item {{ set_active(['dashboard/tickets*'])}}">
-                        <a class="sidebar-menu-button"
-                        href="{{ route('dashboard.tickets.index') }}">
-                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">confirmation_number</span>
-                            {{ __('dashboard.Support_Tickets') }}
-                        </a>
-                    </li>
-                @endcan
-                @can('view subscribers')
-                    <li class="sidebar-menu-item {{ set_active(['dashboard/subscribers*'])}}">
-                        <a class="sidebar-menu-button"
-                        href="{{ route('dashboard.subscribers.index') }}">
-                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">card_membership</span>
-                            {{ __('dashboard.Subscribers') }}
-                        </a>
-                    </li>
-                @endcan
-                @can('view contact form')
-                    <li class="sidebar-menu-item {{ set_active(['dashboard/contact-forms*'])}}">
-                        <a class="sidebar-menu-button"
-                        href="{{ route('dashboard.contact-forms.index') }}">
-                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">insert_drive_file</span>
-                            {{ __('dashboard.Contact_Forms') }}
-                        </a>
-                    </li>
                 @endcan
             </ul>
             <div class="sidebar-heading">{{ __('dashboard.Users') }}</div>

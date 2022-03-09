@@ -89,7 +89,7 @@ class PickupController extends Controller
             ]);
         }
 
-        if($request->contact_in == null)
+        if($request->contact_id == null)
         {
             $this->validate($request, Contact::rules());
             $contact = Contact::create([
@@ -100,16 +100,16 @@ class PickupController extends Controller
                 'business_user_id'              => auth()->user()->id,
             ]);
         }
-
         $pickup = Pickup::create([
             'pickup_id'             => $request->pickup_id,
             'type'                  => ($request->date_in == null) ? $request->type:'One Time',
             'scheduled_date'        => $request->scheduled_date,
             'start_date'            => $request->start_date,
             'status'                => $request->status,
+            'repeat_days'           => $request->repeat_days,
             'notes'                 => $request->notes,
             'contact_id'            => ($request->contact_in == null) ? $contact->id:$request->contact_id,
-            'location_id'           => ($request->location_in = null) ? $location:$request->location_id,
+            'location_id'           => ($request->location_in == null) ? $location->id:$request->location_id,
             'business_user_id'      => auth()->user()->id,
         ]);
 
@@ -124,12 +124,21 @@ class PickupController extends Controller
      */
     public function show(Pickup $pickup)
     {
-        $locations  = Location::all();
-        $contacts   = Contact::all();
-        $countries  = Country::all();
-        $states     = State::where('country_id',64)->get();
-        $cities     = City::all();
-        return view('pickups.edit',compact('pickup','locations','contacts','countries','states','cities'));
+        $logs  = [
+            0 => [
+                'type' => 'Created',
+                'icon' => 'new_releases',
+            ],
+            1 => [
+                'type' => 'Out for pickup',
+                'icon' => 'local_shipping',
+            ],
+            2 => [
+                'type' => 'Picked up',
+                'icon' => 'check',
+            ],
+        ];
+        return view('pickups.show',compact('pickup','logs'));
     }
 
     /**
@@ -165,6 +174,7 @@ class PickupController extends Controller
             'scheduled_date'        => $request->scheduled_date,
             'status'                => $request->status,
             'notes'                 => $request->notes,
+            'repeat_days'           => $request->repeat_days,
             'contact_id'            => $request->contact_id,
             'location_id'           => $request->location_id,
         ]);

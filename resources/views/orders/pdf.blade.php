@@ -153,13 +153,13 @@
                 <div class="{{--container-fluid--}} page__container">
 
                     <div class="row">
-                        <div class="col-md-8 offset-md-2">
+                        <div class="col-md-10 offset-md-1">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="mb-3">{!! $qr; !!}</div>
                                     <div class="px-3">
                                         <div class="d-flex justify-content-center flex-column text-center my-5 navbar-light">
-                                            <a href="index.html"
+                                            <a href="#"
                                                class="navbar-brand d-flex flex-column m-0"
                                                style="min-width: 0">
                                                 <img src="{{ asset('backend/images/illustration/student/128/black.png') }}"
@@ -172,7 +172,7 @@
                                             <div class="text-muted">Airway Bell {{ $order->tracking_no }}</div>
                                         </div>
                                         <div class="row card-group-row mb-lg-8pt">
-                                            <div class="col-lg-6 card-group-row__col">
+                                            <div class="col-lg-4 card-group-row__col">
 
                                                 <div class="card card-group-row__card d-flex flex-column">
                                                     <div class="row no-gutters flex">
@@ -190,7 +190,7 @@
                                                 </div>
 
                                             </div>
-                                            <div class="col-lg-6 card-group-row__col">
+                                            <div class="col-lg-8 card-group-row__col">
 
                                                 <div class="card card-group-row__card d-flex flex-column">
                                                     <div class="row no-gutters flex">
@@ -205,7 +205,7 @@
                                             </div>
                                         </div>
                                         <div class="row card-group-row mb-lg-8pt">
-                                            <div class="col-lg-6 card-group-row__col">
+                                            <div class="col-lg-4 card-group-row__col">
 
                                                 <div class="card card-group-row__card d-flex flex-column">
                                                     <div class="row no-gutters flex">
@@ -251,28 +251,28 @@
                                                 </div>
 
                                             </div>
-                                            <div class="col-lg-6 card-group-row__col">
+                                            <div class="col-lg-8 card-group-row__col">
 
                                                 <div class="card card-group-row__card d-flex flex-column">
                                                     <div class="row no-gutters flex">
-                                                        <div class="col-lg-9 col-sm-4">
+                                                        <div class="col-lg-9 col-sm-4 border-bottom">
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>{{ $order->no_of_items > 1 ? $order->no_of_items:1  }}</strong>
+                                                                    <strong>{{ $order->business->user->full_name }}</strong>
                                                                 </div>
                                                             </div>
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>{{ $order->open_package == 1 ? 'نعم':'لا' }}</strong>
+                                                                    <strong>{{ $order->customer->user->full_name }}</strong>
                                                                 </div>
                                                             </div>
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>{{ $order->open_package == 1 ? 'نعم':'لا' }}</strong>
+                                                                    <strong>0{{ $order->customer->user->phone }}</strong>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-3 col-sm-4 border-left">
+                                                        <div class="col-lg-3 col-sm-4 border-left border-bottom">
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
                                                                     <strong>من</strong>
@@ -289,19 +289,170 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-12 col-sm-4 border-top">
+                                                        <div class="col-lg-6 col-sm-4  border-bottom">
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>وصف الشحنة</strong>
+                                                                    <strong>{{ $order->location->name }}</strong>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-sm-4 border-left border-bottom">
+                                                            <div class="card-body">
+                                                                <div class="d-flex flex-column text-center">
+                                                                    <strong>{{ $order->location->state->name }}</strong>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-sm-4 border-left border-bottom">
+                                                            <div class="card-body">
+                                                                <div class="d-flex flex-column text-center">
+                                                                    <strong>المدينة</strong>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-9 col-sm-4 border-bottom">
+                                                            <div class="card-body">
+                                                                <div class="d-flex flex-column text-center">
+                                                                    <strong>{{ $order->location->city->name }}</strong>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="d-flex flex-column text-center">
+                                                                    <strong>{{ $order->location->apartment.', '.$order->location->building.', '.$order->location->street }}</strong>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-sm-4 border-left border-bottom">
+                                                            <div class="card-body">
+                                                                <div class="d-flex flex-column text-center">
+                                                                    <strong>المنطقة</strong>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="d-flex flex-column text-center">
+                                                                    <strong>العنوان</strong>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-sm-4">
+                                                            <div class="card-body">
+                                                                <div class="d-flex flex-column text-center">
+                                                                    <strong>{{ $order->location->apartment }}</strong>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-sm-4 border-left">
+                                                            <div class="card-body">
+                                                                <div class="d-flex flex-column text-center">
+                                                                    <strong>الشقة</strong>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-sm-4 border-left">
+                                                            <div class="card-body">
+                                                                <div class="d-flex flex-column text-center">
+                                                                    <strong>{{ $order->location->floor }}</strong>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-sm-4 border-left">
+                                                            <div class="card-body">
+                                                                <div class="d-flex flex-column text-center">
+                                                                    <strong>الدور</strong>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-12 col-sm-4 border-top">
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>{{ $order->package_description }}</strong>
+                                                                    <strong>الملاحظات</strong>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                        <div class="col-lg-12 col-sm-4 border-top">
+                                                            <div class="card-body">
+                                                                <div class="d-flex flex-column text-center">
+                                                                    <strong>{{ $order->delivery_notes }}</strong>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row card-group-row mb-lg-8pt">
+                                            <div class="col-lg-4 card-group-row__col">
+
+                                                <div class="card card-group-row__card d-flex flex-column">
+                                                    <div class="row no-gutters flex">
+                                                        <div class="col-lg-6 col-sm-4">
+                                                            <div class="card-body">
+                                                                <div class="d-flex flex-column text-center">
+                                                                    <strong>Order REF</strong>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="d-flex flex-column text-center">
+                                                                    <strong>{{ $order->order_reference }}</strong>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-sm-4 border-left">
+                                                            <div class="card-body">
+                                                                <div class="d-flex flex-column text-center">
+                                                                    <strong>Created At</strong>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="d-flex flex-column text-center">
+                                                                    <strong>{{ $order->created_at }}</strong>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-8 card-group-row__col">
+
+                                                <div class="card card-group-row__card d-flex flex-column">
+                                                    <div class="row no-gutters flex">
+                                                        <div class="col-lg-8 col-sm-4">
+                                                            <div class="card-body">
+                                                                <div class="d-flex flex-column text-center">
+                                                                    <strong>{{ $order->pickup->location->city->name }}</strong>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="d-flex flex-column text-center">
+                                                                    <strong>{{ $order->pickup->location->state->name }}</strong>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2 col-sm-4 border-left">
+                                                            <div class="card-body">
+                                                                <div class="d-flex flex-column text-center">
+                                                                    <strong>المدينة</strong>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="d-flex flex-column text-center">
+                                                                    <strong>المنطقة</strong>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2 col-sm-4 border-left">
+                                                            <div class="card-body">
+                                                                <div class="d-flex flex-column text-center">
+                                                                    <strong>عنوان المرتجع</strong>
+                                                                </div>
+                                                            </div>
+                                                           {{-- <div class="card-body">
+                                                                <div class="d-flex flex-column text-center">
+                                                                    <strong></strong>
+                                                                </div>
+                                                            </div>--}}
                                                         </div>
                                                     </div>
                                                 </div>

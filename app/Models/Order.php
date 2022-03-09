@@ -15,9 +15,24 @@ class Order extends Model
         return $this->hasOne(Customer::class  , "id" , "customer_id");
     }
 
+    public function business()
+    {
+        return $this->hasOne(Customer::class  , "id" , "business_user_id");
+    }
+
     public function location()
     {
         return $this->hasOne(Location::class  , "id" , "location_id");
+    }
+
+    public function return_locations()
+    {
+        return $this->hasOne(Location::class  , "id" , "return_location");
+    }
+
+    public function return_locations_exchange()
+    {
+        return $this->hasOne(Location::class  , "id" , "return_location_exchange");
     }
 
     public function pickup()

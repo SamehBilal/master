@@ -388,12 +388,12 @@
                                             name="repeat_days"
                                             multiple
                                             class="form-control">
-                                        <option value="Saturday"    {{ $pickup->repeat_days == 'Saturday' ? 'selected':'' }}>Saturday</option>
-                                        <option value="Sunday"      {{ $pickup->repeat_days == 'Sunday' ? 'selected':'' }}>Sunday</option>
-                                        <option value="Monday"      {{ $pickup->repeat_days == 'Monday' ? 'selected':'' }}>Monday</option>
-                                        <option value="Tuesday"     {{ $pickup->repeat_days == 'Tuesday' ? 'selected':'' }}>Tuesday</option>
-                                        <option value="Wednesday"   {{ $pickup->repeat_days == 'Wednesday' ? 'selected':'' }}>Wednesday</option>
-                                        <option value="Thursday"    {{ $pickup->repeat_days == 'Thursday' ? 'selected':'' }}>Thursday</option>
+                                            <option value="Saturday"    {{ in_array('Saturday', $pickup->repeat_days)  ? 'selected':'' }}>Saturday</option>
+                                            <option value="Sunday"      {{ in_array('Sunday', $pickup->repeat_days) == 'Sunday' ? 'selected':'' }}>Sunday</option>
+                                            <option value="Monday"      {{ in_array('Monday', $pickup->repeat_days) == 'Monday' ? 'selected':'' }}>Monday</option>
+                                            <option value="Tuesday"     {{ in_array('Tuesday', $pickup->repeat_days) == 'Tuesday' ? 'selected':'' }}>Tuesday</option>
+                                            <option value="Wednesday"   {{ in_array('Wednesday', $pickup->repeat_days) == 'Wednesday' ? 'selected':'' }}>Wednesday</option>
+                                            <option value="Thursday"    {{ in_array('Thursday', $pickup->repeat_days) == 'Thursday' ? 'selected':'' }}>Thursday</option>
                                     </select>
                                 </div>
                             </div>

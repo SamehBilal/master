@@ -1574,7 +1574,7 @@
                             <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.You can skip requesting a pickup now but make sure to request a pickup when you have packages ready to be shipped') }}</p>
                         </div>
                         <div class="col-lg-9 row p-2">
-                            <div class="col-lg-12 invert location">
+                            <div class="col-lg-12 invert ">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="select02">{{ __('dashboard.Pickup Locations') }}:</label>
