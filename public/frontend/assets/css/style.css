@@ -750,8 +750,8 @@ a:hover {
 }
 
 .dropdown-menu li a:hover, .dropdown-menu li a:active, .dropdown-menu li a:focus {
-  background: #0A2B56;
-  color: #ddd;
+  background: #ddd;
+  color: #0A2B56
 }
 
 .title-text {

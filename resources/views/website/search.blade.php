@@ -19,7 +19,7 @@
         <div class="container">
             <ul>
                 <li><a href="{{ route('website.index') }}">{{ __('content.Home') }}</a></li>
-                <li class="active">Search</li>
+                <li class="active">{{ __('content.search') }}</li>
             </ul>
         </div>
         <!-- End container -->
@@ -40,7 +40,7 @@
                         <h3><a href="{{ route('website.track',$order[0]['id']) }}" title="#{{ $order[0]['tracking_no'] }}">#{{ $order[0]['tracking_no'] }}</a></h3>
                         <p class="content"><i class="zmdi zmdi-map"></i> {{ $location->name }}</p>
                         <div class="bottom-tag">
-                            <a class="read-more" href="{{ route('website.track',$order[0]['id']) }}" title="Track Package">Track Package</a>
+                            <a class="read-more" href="{{ route('website.track',$order[0]['id']) }}" title="{{ __('content.Track Your Shipment') }}">{{ __('content.Track Your Shipment') }}</a>
                             <p class="tags">
                                 <a class="user" href="#" title="Order Type"><i class="zmdi zmdi-shopping-cart"></i>{{ $order[0]['type'] }} </a>
                                 <a class="comment" href="#" title="Number of Items"><i class="zmdi zmdi-collection-item-9-plus"></i>{{ $order[0]['no_of_items'] }} item(s)</a>
@@ -51,15 +51,15 @@
                     @else
                         <div class="col-md-12 coupon">
                             <div class="title-ver2">
-                                <h3 style="color: #0A2B56">Search Package</h3>
+                                <h3 style="color: #0A2B56">{{ __('content.Search package') }}</h3>
                             </div>
                             <div class="contact-form" >
                                 <form class="form-horizontal" action="{{ route('website.search') }}" method="GET">
                                     <div class="form-group col-md-12">
-                                        <input type="text" autocomplete="off" placeholder="Tracking no." required name="s" class="form-control" id="inputfname" >
+                                        <input type="text" autocomplete="off" placeholder="{{ __('content.tracking No') }}" required name="s" class="form-control" id="inputfname" >
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <button value="Submit" class="btn link-button link-border-raidus" style="background: #FFAF00" type="submit">Search</button>
+                                        <button value="Submit" class="btn link-button link-border-raidus" style="background: #FFAF00" type="submit">{{ __('content.search') }}</button>
                                     </div>
                                 </form>
                             </div>
@@ -75,7 +75,7 @@
                     <h4>Search Another Package</h4>
                     <div class="search">
                         <form action="{{ route('website.search') }}" method="GET">
-                            <input type="text" autocomplete="off" placeholder="Tracking no." value="" class="ajax_autosuggest_input ac_input" name="s">
+                            <input type="text" autocomplete="off" placeholder="{{ __('content.tracking No') }}" value="" class="ajax_autosuggest_input ac_input" name="s">
                             <button type="submit" class="icon-search">
                                 <i class="zmdi zmdi-search"></i>
                             </button>
@@ -85,12 +85,12 @@
                 <aside class="widget">
                     <h4>Links</h4>
                     <ul class="menu-category">
-                        <li><a title="Home" href="{{ route('website.index') }}">Home</a></li>
-                        <li><a title="Pricing" href="{{ route('website.pricing') }}">Pricing</a></li>
-                        <li><a title="Contact Us" href="{{ route('website.contact-us') }}">Contact Us</a></li>
-                        <li><a title="My Account" href="{{ route('website.account') }}">My Account</a></li>
-                        <li><a title="Terms & Conditions" href="{{ route('website.terms') }}">Terms & Conditions</a></li>
-                        <li><a href="{{ route('website.calculation') }}" title="Calculate time & cost">Calculate time & cost</a></li>
+                        <li><a title="Home" href="{{ route('website.index') }}">{{ __('content.Home') }}</a></li>
+                        <li><a title="Pricing" href="{{ route('website.pricing') }}">{{ __('content.Pricing') }}</a></li>
+                        <li><a title="Contact Us" href="{{ route('website.contact-us') }}">{{ __('content.Confirm Password') }}</a></li>
+                        <li><a title="My Account" href="{{ route('website.account') }}">{{ __('content.my_account') }}</a></li>
+                        <li><a title="Terms & Conditions" href="{{ route('website.terms') }}">{{ __('content.Terms and Conditions') }}</a></li>
+                        {{--<li><a href="{{ route('website.calculation') }}" title="Calculate time & cost">Calculate time & cost</a></li>--}}
                     </ul>
                 </aside>
             </div>

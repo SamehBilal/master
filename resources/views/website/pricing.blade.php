@@ -35,7 +35,8 @@
                    {{-- <h3>iphone 6s silver-64gb</h3>
                     <p>Lorem Ipsum is simply dummy text of the</p>
                     <div class="time" data-countdown="countdown" data-date="12-20-2016-10-20-30"></div>--}}
-                    <p class="best-price"><span>Best price:</span>69 EGP</p>
+                    <p class="best-price" style="text-align: left;"><span>* Prices vary according to business packages. <br> Aka ' no. of shipments/month ' ** Prices are VAT exclusive ** :<br></span>Please contact sales at: sales@droplin.co
+                        <br>or 01060073643 for personalized business packages and deals.</p>
                 </div>
                 <!-- End wrap-time -->
 
@@ -43,12 +44,12 @@
                     <div class="product">
                         <div class="wrap-title">
                             <a title="headphone" href="#" class="icon-cat"></a>
-                            <p class="product-title">Package 1</p>
-                            <p class="product-price"><span>Duration: </span>3 months</p>
+                            <p class="product-title">Cairo</p>
+                           {{-- <p class="product-price"><span>Duration: </span>3 months</p>--}}
                         </div>
                         <!-- End wrap-title -->
                         <a title="" href="#" class="product-images">
-                            <h1 style="font-size: 8em;color: #3a3a3a">29</h1><small> EGP</small>
+                            <h1 style="font-size: 8em;color: #3a3a3a">50</h1><small> EGP</small>
                         </a>
                         <div class="action">
                             <a href="#" class="link-button">Join Now</a>
@@ -58,12 +59,12 @@
                     <div class="product">
                         <div class="wrap-title">
                             <a title="headphone" href="#" class="icon-cat"></a>
-                            <p class="product-title">Package 2</p>
-                            <p class="product-price"><span>Duration: </span>6 months</p>
+                            <p class="product-title">Alex</p>
+                            {{--<p class="product-price"><span>Duration: </span>6 months</p>--}}
                         </div>
                         <!-- End wrap-title -->
                         <a title="" href="#" class="product-images">
-                            <h1 style="font-size: 8em;color: #3a3a3a">69</h1><small> EGP</small>
+                            <h1 style="font-size: 8em;color: #3a3a3a">55</h1><small> EGP</small>
                         </a>
                         <div class="action">
                             <a href="#" class="link-button">Join Now</a>
@@ -73,12 +74,12 @@
                     <div class="product">
                         <div class="wrap-title">
                             <a title="headphone" href="#" class="icon-cat"></a>
-                            <p class="product-title">Package 3</p>
-                            <p class="product-price"><span>Duration: </span>9 months</p>
+                            <p class="product-title">Delta</p>
+                            {{--<p class="product-price"><span>Duration: </span>9 months</p>--}}
                         </div>
                         <!-- End wrap-title -->
                         <a title="" href="#" class="product-images">
-                            <h1 style="font-size: 8em;color: #3a3a3a">99</h1><small> EGP</small>
+                            <h1 style="font-size: 8em;color: #3a3a3a">60</h1><small> EGP</small>
                         </a>
                         <div class="action">
                             <a href="#" class="link-button">Join Now</a>
@@ -88,12 +89,27 @@
                     <div class="product">
                         <div class="wrap-title">
                             <a title="headphone" href="#" class="icon-cat"></a>
-                            <p class="product-title">Package 4</p>
-                            <p class="product-price"><span>Duration: </span>12 months</p>
+                            <p class="product-title">Upper Egypt</p>
+                            {{--<p class="product-price"><span>Duration: </span>12 months</p>--}}
                         </div>
                         <!-- End wrap-title -->
                         <a title="" href="#" class="product-images">
-                            <h1 style="font-size: 8em;color: #3a3a3a">119</h1><small> EGP</small>
+                            <h1 style="font-size: 8em;color: #3a3a3a">65</h1><small> EGP</small>
+                        </a>
+                        <div class="action">
+                            <a href="#" class="btn-sm link-button">Join Now</a>
+                        </div>
+                    </div>
+                    <!-- End product -->
+                    <div class="product">
+                        <div class="wrap-title">
+                            <a title="headphone" href="#" class="icon-cat"></a>
+                            <p class="product-title">Suez</p>
+                            {{--<p class="product-price"><span>Duration: </span>12 months</p>--}}
+                        </div>
+                        <!-- End wrap-title -->
+                        <a title="" href="#" class="product-images">
+                            <h1 style="font-size: 8em;color: #3a3a3a">60</h1><small> EGP</small>
                         </a>
                         <div class="action">
                             <a href="#" class="btn-sm link-button">Join Now</a>

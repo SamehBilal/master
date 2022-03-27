@@ -224,19 +224,19 @@
                                                         <div class="col-lg-6 col-sm-4 border-left">
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>عدد القطع</strong>
+                                                                    <strong style="font-weight: bold">عدد القطع</strong>
                                                                 </div>
                                                             </div>
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>السماح بفتح الشحنة</strong>
+                                                                    <strong style="font-weight: bold">السماح بفتح الشحنة</strong>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-12 col-sm-4 border-top">
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>وصف الشحنة</strong>
+                                                                    <strong style="font-weight: bold">وصف الشحنة</strong>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -275,17 +275,17 @@
                                                         <div class="col-lg-3 col-sm-4 border-left border-bottom">
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>من</strong>
+                                                                    <strong style="font-weight: bold">من</strong>
                                                                 </div>
                                                             </div>
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>إلى</strong>
+                                                                    <strong style="font-weight: bold">إلى</strong>
                                                                 </div>
                                                             </div>
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>تليفون</strong>
+                                                                    <strong style="font-weight: bold">تليفون</strong>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -306,7 +306,7 @@
                                                         <div class="col-lg-3 col-sm-4 border-left border-bottom">
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>المدينة</strong>
+                                                                    <strong style="font-weight: bold">المدينة</strong>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -325,12 +325,12 @@
                                                         <div class="col-lg-3 col-sm-4 border-left border-bottom">
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>المنطقة</strong>
+                                                                    <strong style="font-weight: bold">المنطقة</strong>
                                                                 </div>
                                                             </div>
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>العنوان</strong>
+                                                                    <strong style="font-weight: bold">العنوان</strong>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -344,7 +344,7 @@
                                                         <div class="col-lg-3 col-sm-4 border-left">
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>الشقة</strong>
+                                                                    <strong style="font-weight: bold">الشقة</strong>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -358,14 +358,14 @@
                                                         <div class="col-lg-3 col-sm-4 border-left">
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>الدور</strong>
+                                                                    <strong style="font-weight: bold">الدور</strong>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-12 col-sm-4 border-top">
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>الملاحظات</strong>
+                                                                    <strong style="font-weight: bold">الملاحظات</strong>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -389,7 +389,7 @@
                                                         <div class="col-lg-6 col-sm-4">
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>Order REF</strong>
+                                                                    <strong style="font-weight: bold">Order REF</strong>
                                                                 </div>
                                                             </div>
                                                             <div class="card-body">
@@ -401,7 +401,7 @@
                                                         <div class="col-lg-6 col-sm-4 border-left">
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>Created At</strong>
+                                                                    <strong style="font-weight: bold">Created At</strong>
                                                                 </div>
                                                             </div>
                                                             <div class="card-body">
@@ -433,19 +433,19 @@
                                                         <div class="col-lg-2 col-sm-4 border-left">
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>المدينة</strong>
+                                                                    <strong style="font-weight: bold">المدينة</strong>
                                                                 </div>
                                                             </div>
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>المنطقة</strong>
+                                                                    <strong style="font-weight: bold">المنطقة</strong>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-2 col-sm-4 border-left">
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>عنوان المرتجع</strong>
+                                                                    <strong style="font-weight: bold">عنوان المرتجع</strong>
                                                                 </div>
                                                             </div>
                                                            {{-- <div class="card-body">

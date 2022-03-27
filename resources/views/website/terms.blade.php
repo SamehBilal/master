@@ -31,8 +31,8 @@
             </div>
             <!-- End title -->
             <div class="col-12 content">
-                <p>Droplin is a delivery platform empowered by technology. Retailers large and small can depend on Bosta to deliver products by using an easy-to-use, easy-to-manage, customizable delivery service.</p>
-                <p>These Terms and conditions are made and entered into by and between the company <strong>“Business”</strong> and Bosta Technology for using Bosta delivery Service;</p>
+                <p>Droplin is a delivery platform empowered by technology. Retailers large and small can depend on Droplin to deliver products by using an easy-to-use, easy-to-manage, customizable delivery service.</p>
+                <p>These Terms and conditions are made and entered into by and between the company <strong>“Business”</strong> and Droplin for using Droplin delivery Service;</p>
             </div>
             <div class="title-text title-about">
                 <h2>Permitted Items:</h2>
@@ -65,31 +65,31 @@
             </div>
             <div class="col-12 content">
                 <ol>
-                    <li>The Business hereby authorizes Bosta to ship, collect or receive any and all packages addressed to Consignees until the Business notifies Bosta of its intent to terminate the Service.</li>
+                    <li>The Business hereby authorizes Droplin to ship, collect or receive any and all packages addressed to Consignees until the Business notifies Bosta of its intent to terminate the Service.</li>
                     <li>The Business will be charged on which is greater either the package weight in Kilograms or the dimensional weight. Calculate Dimensional weight of a package by: (Length x Width x Height)/ 3000</li>
                     <li>The Business undertakes not to use the Service for any illegal, immoral, obscene or fraudulent purpose or for any purposes prohibited by Bosta, or by the country or any other regulations. Business further undertakes that any use of the Service shall be in conformity with all local laws. Such laws include but are not limited to laws related to banking, money laundering, trade sanctions and terrorist activities. & Business is totally responsible for his shipments content.</li>
                 </ol>
             </div>
 
             <h5>Delivered packages due to the fact that the address on the shipment is not clear, consignee</h5>
-            <h5>The Business agrees that Bosta may cease to provide Service to the Customer for good cause shall include, but is not limited to:</h5>
+            <h5>The Business agrees that Droplin may cease to provide Service to the Customer for good cause shall include, but is not limited to:</h5>
             <div class="col-12 content">
                 <ol>
                     <li>Business’s use of the Service for an illegal, obscene, or fraudulent purpose or for any purpose prohibited by Bosta, the Country or any other regulation or law;</li>
-                    <li>Business’s failure to pay monies owed to Bosta when due; and</li>
+                    <li>Business’s failure to pay monies owed to Droplin when due; and</li>
                     <li>Business’s violation of any provision of these Terms and Conditions.</li>
                     <li>Business’s acknowledges that, for the purpose of determining the good cause as provided herein, the actions of any person authorized by Customer to use the Service will be attributed to Customer.</li>
                 </ol>
             </div>
 
-            <h5>The Business’s warrants not to ship bearer/ blank cheques with Bosta,</h5>
+            <h5>The Business’s warrants not to ship bearer/ blank cheques with Droplin,</h5>
             <div class="col-12 content">
                 <ol>
-                    <li>The Business is responsible to ensure that the content of shipment is packed correctly, Bosta will not be responsible for damage due to poor packing. Customer is responsible for obtaining its own insurance, upon customer’s request Bosta can arrange for insurance for the declared shipment value.</li>
+                    <li>The Business is responsible to ensure that the content of shipment is packed correctly, Droplin will not be responsible for damage due to poor packing. Customer is responsible for obtaining its own insurance, upon customer’s request Bosta can arrange for insurance for the declared shipment value.</li>
                 </ol>
             </div>
             <h5>These Terms and conditions shall be construed and interpreted in accordance with the laws of Egypt.</h5>
-            <h5>Bosta is not responsible for the package once the customer receives it and sign that he received the package.</h5>
+            <h5>Droplin is not responsible for the package once the customer receives it and sign that he received the package.</h5>
 
             <div class="title-text title-about">
                 <h2>Shipping Cancellation Policies:</h2>

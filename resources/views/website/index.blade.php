@@ -1,5 +1,6 @@
 @extends('layouts.website')
 
+@php $locale = session()->get('locale'); @endphp
 
 @section('content')
     <header id="header" class="header-v1">
@@ -166,7 +167,9 @@
                                         <a href="#">{{ __('content.Actions') }}</a>
                                         <ul class="menu-level-2">
                                             <li class="level3"><a href="{{ route('website.search') }}" title="{{ __('content.Search a package') }}">{{ __('content.Search a package') }}</a></li>
+{{--
                                             <li class="level3"><a href="{{ route('website.calculation') }}" title="{{ __('content.Calculate time & cost') }}">{{ __('content.Calculate time & cost') }}</a></li>
+--}}
                                             <li class="level3"><a href="{{ route('dashboard.orders.create') }}" title="{{ __('content.Create a shipment') }}">{{ __('content.Create a shipment') }}</a></li>
                                             <li class="level3"><a href="{{ route('dashboard.orders.index') }}" title="{{ __('content.Change my delivery') }}">{{ __('content.Change my delivery') }}</a></li>
                                             <li class="level3"><a href="{{ route('dashboard.pickups.create') }}" title="{{ __('content.Schedule a pickup') }}">{{ __('content.Schedule a pickup') }}</a></li>
@@ -190,7 +193,7 @@
                     </ul>
                 </nav>
                 <!-- End mega menu -->
-                <div class="search search-v2">
+               {{-- <div class="search search-v2">
                     <div class="search-form">
                         <form action="{{ route('website.search') }}" method="GET">
                             <div class="search-select dropdown">
@@ -203,7 +206,7 @@
                             </button>
                         </form>
                     </div>
-                </div>
+                </div>--}}
             </div>
             <!-- End container -->
         </div>
@@ -225,7 +228,7 @@
                             <!-- LAYER NR. 3 -->
 
                             <div class="tp-caption large_bold_orange weight-800 color-white skewfromleft customout size-123 text-shadow"
-                                 data-x="180"
+                                 data-x="{{ $locale == 'ar' ? '360':'180' }}"
                                  data-y="380"
                                  data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
                                  data-speed="800"
@@ -234,7 +237,7 @@
                                  data-endspeed="300"
                                  data-endeasing="Power1.easeIn"
                                  data-captionhidden="on"
-                                 style="z-index: 9">Fast Shipping
+                                 style="z-index: 9">{{ __('content.fast shipping') }}
                             </div>
                             <!-- LAYER NR. 4 -->
 
@@ -249,7 +252,7 @@
                                  data-endspeed="300"
                                  data-endeasing="Power1.easeIn"
                                  data-captionhidden="on"
-                                 style="z-index: 7">Deliver What You Love, On Time. We cover all of Egypt
+                                 style="z-index: 7">{{ __('content.cover all of Egypt') }}
                             </div>
 
 
@@ -264,11 +267,11 @@
                                  data-endspeed="300"
                                  data-endeasing="Power1.easeIn"
                                  data-captionhidden="on"
-                                 style="z-index: 8"><a href="#" title="Start Now">Start Now</a>
+                                 style="z-index: 8"><a href="#" title="Start Now">{{ __('content.Start Now') }}</a>
                             </div>
 
                             <div class="tp-caption skewfromleft customout link-1 link-2 icons height-50"
-                                 data-x="620"
+                                 data-x="500"
                                  data-y="673"
                                  data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
                                  data-speed="1000"
@@ -282,7 +285,7 @@
 
                             <!-- LAYER NR. 9 -->
                             <div class="tp-caption skewfromright customout"
-                                 data-x="300"
+                                 data-x="{{ $locale == 'ar' ? '900':'300' }}"
                                  data-y="320"
                                  data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
                                  data-speed="1000"
@@ -311,7 +314,7 @@
                                  data-endspeed="300"
                                  data-endeasing="Power1.easeIn"
                                  data-captionhidden="on"
-                                 style="z-index: 9">On Time
+                                 style="z-index: 9">{{ __('content.On Time') }}
                             </div>
                             <!-- LAYER NR. 4 -->
 
@@ -326,7 +329,7 @@
                                  data-endspeed="300"
                                  data-endeasing="Power1.easeIn"
                                  data-captionhidden="on"
-                                 style="z-index: 7">From documents to products, deliver shipments to any location in Egypt
+                                 style="z-index: 7">{{ __('content.any location in Egypt') }}
                             </div>
 
 
@@ -341,11 +344,11 @@
                                  data-endspeed="300"
                                  data-endeasing="Power1.easeIn"
                                  data-captionhidden="on"
-                                 style="z-index: 8"><a href="#" title="Start Now">Start Now</a>
+                                 style="z-index: 8"><a href="#" title="Start Now">{{ __('content.Start Now') }}</a>
                             </div>
 
                             <div class="tp-caption skewfromleft customout link-1 link-2 icons height-50"
-                                 data-x="620"
+                                 data-x="500"
                                  data-y="673"
                                  data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
                                  data-speed="1000"
@@ -359,7 +362,7 @@
 
                             <!-- LAYER NR. 9 -->
                             <div class="tp-caption skewfromright customout"
-                                 data-x="300"
+                                 data-x="{{ $locale == 'ar' ? '900':'300' }}"
                                  data-y="320"
                                  data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
                                  data-speed="1000"
@@ -545,15 +548,17 @@
         <div class="container">
             <div class="col-md-12 coupon">
                 <div class="title-ver2">
-                    <h3 style="color: #0A2B56">Search Package</h3>
+                    <h3 style="color: #0A2B56">{{ __('content.Search package') }}</h3>
                 </div>
-                <div class="contact-form" style="background-image: url({{ asset('frontend/assets/images/search_background.png') }})">
+                <div class="contact-form" style="background-image: url({{ $locale == 'ar' ? asset('frontend/assets/images/search_background1.png'):asset('frontend/assets/images/search_background.png') }})">
                     <form class="form-horizontal" action="{{ route('website.search') }}" method="GET">
                         <div class="form-group col-md-12">
-                            <input type="text" autocomplete="off" placeholder="Tracking no." required name="s" class="form-control" id="inputfname" >
+                            <input type="text" autocomplete="off" placeholder="{{ __('content.tracking No') }}" required name="s" class="form-control" id="inputfname" >
                         </div>
                         <div class="form-group col-md-12">
-                            <button value="Submit" class="btn link-button link-border-raidus" style="background: #FFAF00" type="submit">Search</button>
+                            <button value="Submit" class="btn link-button link-border-raidus" style="background: #FFAF00" type="submit">
+                                {{ __('content.search') }}
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -564,7 +569,7 @@
         <!-- End container -->
     </div>
 
-    <div class="shipping-total">
+   {{-- <div class="shipping-total">
         <div class="container">
             <div class="col-md-6 coupon">
                 <div class="title-ver2">
@@ -626,14 +631,18 @@
             <!-- End col-md-6 -->
         </div>
         <!-- End shipping-total -->
-    </div>
+    </div>--}}
     <!-- End conainer -->
 
     <div class="main-content">
         <div class="featured-product slider-product space-padding-tb-80" data-wow-delay="0.1s">
             <div class="container">
                 <div class="title-text size-64">
-                    <h3><span>D</span>roplin services</h3>
+                    @if($locale == 'ar')
+                        <h3><span>خ</span>دمات Droplin</h3>
+                    @else
+                        <h3><span>D</span>roplin {{ __('content.services') }}</h3>
+                    @endif
                 </div>
                 <div class="images">
                     <img src="{{ asset('frontend/assets/images/Dana-home2.bg-featured.png') }}" alt="Product-Featured">
@@ -647,11 +656,11 @@
                             <img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product-featured1.jpg') }}" alt="Product"/>
                         </a>
                         <div class="product-content">
-                            <p>Delivery </p>
-                            <p class="title">  Next Day Delivery</p>
+                            <p>{{ __('content.Delivery') }} </p>
+                            <p class="title"> {{ __('content.Next Day Delivery') }}</p>
                             <ul>
 
-                                <p>Our promise is to deliver the next day we receive the pickups, depending on the drop-off city location.</p>
+                                <p>{{ __('content.deliver the next day') }}</p>
                             </ul>
                         </div>
                         <!-- End product content -->
@@ -668,10 +677,10 @@
                             <img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product-featured2.jpg') }}" alt="Product"/>
                         </a>
                         <div class="product-content">
-                            <p>Exchange </p>
-                            <p class="title">Exchange Shipments</p>
+                            <p>{{ __('content.Exchange Shipments') }} </p>
+                            <p class="title"> {{ __('content.Exchange Shipments') }}</p>
                             <ul>
-                                <p>Exchange a shipment for another through our smart logistics system.</p>
+                                <p>{{ __('content.Exchange a shipment') }}</p>
                             </ul>
                         </div>
                         <!-- End product content -->
@@ -688,10 +697,10 @@
                             <img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product-featured4.jpg') }}" alt="Product"/>
                         </a>
                         <div class="product-content">
-                            <p>Returns </p>
-                            <p class="title"> Customer Returns</p>
+                            <p>{{ __('content.Customer Returns') }} </p>
+                            <p class="title"> {{ __('content.Customer Returns') }} </p>
                             <ul>
-                                <p>From second thoughts to total satisfaction, Bosta handles customer returns.</p>
+                                <p>{{ __('content.From second thoughts') }} </p>
                             </ul>
                         </div>
                         <!-- End product content -->
@@ -708,10 +717,10 @@
                             <img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product-featured3.jpg') }}" alt="Product"/>
                         </a>
                         <div class="product-content">
-                            <p>Cash Collection</p>
-                            <p class="title"> Cash Collection</p>
+                            <p>{{ __('content.Cash Collection') }}</p>
+                            <p class="title"> {{ __('content.Cash Collection') }}</p>
                             <ul>
-                                <p>Real-time insights on your cash collections through Bosta cash collection service.</p>
+                                <p>{{ __('content.Real-time insights') }}</p>
                             </ul>
                         </div>
                         <!-- End product content -->
@@ -726,8 +735,8 @@
                 <!-- End product -->
 
                 <div class="wrap-time">
-                    <h3>From documents to products</h3>
-                    <p>we deliver shipments to any location in Egypt.</p>
+                    <h3>{{ __('content.From documents to products') }}</h3>
+                    <p>{{ __('content.deliver shipments') }}</p>
                 </div>
                 <!-- End wrap-time -->
             </div>
@@ -743,7 +752,7 @@
 
                         <div class="item active">
                             <div class="row">
-                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="col-xs-6 col-sm-6 col-md-6" dir="ltr">
                                     <div class="product-images">
                                         <div class="slide-product-images">
                                             <div class="items" data-thumb='<img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product-featured2.jpg') }}" alt=""/>'>
@@ -768,15 +777,15 @@
                                     <div class="title-text color-white">
                                         <h3><span>F</span>irst time hot deals</h3>
                                     </div>
-                                    <p>Hot Deals</p>
-                                    <p><b>Join now and enjoy our deals</b></p>
+                                    <p>{{ __('content.This Week\'s Deals') }}</p>
+                                    <p><b>{{ __('content.Join now and') }}</b></p>
                                     <ul>
                                         <li>Your first orders are 10% less.</li>
                                         <li>Discount on your total orders </li>
                                         <li>Your first orders are 10% less. </li>
                                         <li>Discount on your total orders </li>
                                     </ul>
-                                    <p class="wrap-price">Start <span class="price">Now </span></p>
+                                    <p class="wrap-price">{{ __('content.Start') }} <span class="price">{{ __('content.Now') }} </span></p>
                                 </div>
                             </div>
                             <!--/row-fluid-->
@@ -784,7 +793,7 @@
                         <!--/item-->
                         <div class="item">
                             <div class="row">
-                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="col-xs-6 col-sm-6 col-md-6" dir="ltr">
                                     <div class="product-images">
                                         <div class="slide-product-images">
                                             <div class="items" data-thumb='<img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product-featured4.jpg') }}" alt=""/>'>
@@ -809,15 +818,15 @@
                                     <div class="title-text color-white">
                                         <h3><span>T</span>his week's hot deals</h3>
                                     </div>
-                                    <p>This Week's Deals</p>
-                                    <p><b>Join now and injoy this week's delas</b></p>
+                                    <p>{{ __('content.This Week\'s Deals') }}</p>
+                                    <p><b>{{ __('content.Join now and') }}</b></p>
                                     <ul>
                                         <li>Your orders will be 20% less.</li>
                                         <li>Discount 50% on any package less than 5 minutes.</li>
                                         <li>Your orders will be 20% less.  </li>
                                         <li>Discount 50% on any package less than 5 minutes. </li>
                                     </ul>
-                                    <p class="wrap-price">Start <span class="price">Now </span></p>
+                                    <p class="wrap-price">{{ __('content.Start') }} <span class="price">{{ __('content.Now') }} </span></p>
                                 </div>
                             </div>
                             <!--/row-fluid-->
@@ -873,7 +882,7 @@
     <!-- End product-footer -->
     <div class="brand-container space-50">
         <div class="container">
-            <div class="slider-brand">
+            <div class="slider-brand" dir="ltr">
                 <div class="item">
                     <a href="#" title="Brand">
                         <img src="{{ asset('frontend/assets/images/Dama-brand1.jpg') }}" alt="Brand" >

@@ -1,4 +1,5 @@
 @extends('layouts.website')
+@php $locale = session()->get('locale'); @endphp
 
 @section('about-us')
     active
@@ -30,21 +31,20 @@
         </div>
         <div class="col-md-6">
             <div class="text-about">
-                <div class="title-text title-about">
-                    <h3><span>A</span>bout</h3>
-                    <h4 style="color: #134E9E">us</h4>
+                <div class="title-text ">
+                    <h3><span>{{ $locale == 'ar' ? 'م':'A' }}</span>{{ __('content.bout') }} {{ $locale == 'ar' ? 'نحن ؟':'' }}</h3>
+                    @if($locale != 'ar')
+                        <h4 style="color: #134E9E">us</h4>
+                    @endif
                 </div>
                 <!-- End title -->
                 <div class="col-md-6">
-                    <h4>our vision</h4>
-                    <p>
-                        Di Cantina Valpolicella Negrar  la storia di uomini e donne dediti alla creazio Nullam dui  lum ante ipsum primis in faucibus orci luctus et ultrices Nulla mattis enim ut sagittis Curalum ante ipsum primis in faucibus orci luctus
-                    </p>
-                    <p>rutrum. Sed molestie justo et turpis placerat, blandit molestie ex condimentum. Phasellus et laoreet lacus, sed</p>
+                    <h4>{{ __('content.Our vision') }}</h4>
+                    <p>{{ __('content.vision') }}</p>
                 </div>
                 <div class="col-md-6">
-                    <h4>Our mission</h4>
-                    <p>Valpolicella Negrar la storia di uomini e donne dediti alla creazio Nullam dui dolor, sagittis ut ante eget Aliquam hendrerit vitae urna ornare semper. Ut congue condimentum nisl. Nam eu nulla libero. Curabitur lum ante ipsum primis in faucibus orci luctus et ultrices Nulla mattis enim </p>
+                    <h4>{{ __('content.Our mission') }}</h4>
+                    <p>{{ __('content.mission') }}</p>
                 </div>
             </div>
         </div>

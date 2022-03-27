@@ -316,7 +316,7 @@
                             <div id="specification" class="tab-content">
                                 <table class="table">
                                     <tr>
-                                        <td>Tracking No.</td>
+                                        <td>{{ __('content.tracking No') }}</td>
                                         <td><b>{{ $order->tracking_no }}</b></td>
                                     </tr>
                                     <tr>

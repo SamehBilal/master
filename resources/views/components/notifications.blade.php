@@ -20,6 +20,11 @@
             <div class="list-group list-group-flush mb-0">
                 @if(count($user->unreadnotifications) > 0)
                     @foreach($user->unreadnotifications as $note)
+                       {{-- @switch($note->type)
+                            @case('App\Notifications\NewBusiness')
+                            @break
+                            @default
+                        @endswitch--}}
                         @if($note->type == 'App\Notifications\NewBusiness')
                         @elseif($note->type == 'App\Notifications\NewContactForm')
                         @elseif($note->type == 'App\Notifications\NewOrder')
