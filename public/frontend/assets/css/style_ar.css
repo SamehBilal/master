@@ -82,6 +82,7 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800);
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700);
 @import url(https://fonts.googleapis.com/css?family=PT+Serif:400,700);
+@import url(https://fonts.googleapis.com/css?family=Cairo);
 /** 1.1.2.	Icon Fonts **/
 @import url("../sass/components/Vendor/font-awesome/font-awesome.min.css");
 @import url("../sass/components/Vendor/font-material/material-design-iconic-font.min.css");
@@ -662,12 +663,16 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Cairo", serif;
   font-size: 14px;
   display: inline-block;
   width: 100%;
   color: #161616;
   position: relative;
+}
+
+.open-sans{
+font-family: 'Open Sans', sans-serif!important;
 }
 
 body.ver-1 {
@@ -935,7 +940,7 @@ ul.tabs.title li.active, ul.tabs.title li:hover {
 }
 
 ul.tabs.title p {
-  font-family: "TXGR";
+    font-family: "Cairo", serif;
   font-size: 13px;
   color: #888888;
 }
@@ -962,7 +967,7 @@ ul.tabs.title p {
 }
 
 .title-ver3.title-ver4 h4 {
-  font: 600 18px/20px "Open Sans";
+  font: 600 18px/20px "Cairo";
   color: #aeaeae;
   text-transform: uppercase;
   margin-bottom: 20px;
@@ -971,12 +976,12 @@ ul.tabs.title p {
 
 .title-ver3.title-ver4 h3 {
   text-transform: uppercase;
-  font: 700 35px/30px "Open Sans";
+  font: 700 35px/30px "Cairo";
   margin-bottom: 40px;
 }
 
 .title-ver3.title-ver4 p {
-  font: 400 14px/30px "Open Sans";
+  font: 400 14px/30px "Cairo";
   color: #989898;
   font-style: italic;
   max-width: 775px;
@@ -998,18 +1003,18 @@ ul.tabs.title p {
 }
 
 .breadcrumb li:after {
-  content: "";
-  font-family: "Material-Design-Iconic-Font";
+  content: ">";
+  font-family: "Cairo", serif;
   line-height: 1;
-  right: 0px;
+  left: 0px;
   top: 0px;
   height: 20px;
   width: 20px;
-  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .breadcrumb li:first-child {
-  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .breadcrumb li:last-child:after {
@@ -1025,7 +1030,7 @@ ul.tabs.title p {
 }
 
 .return-home a:first-child {
-  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .banner-grid {
@@ -1077,7 +1082,7 @@ ul.tabs.title p {
 .link-button.link-button-fb i.fa {
   font-size: 17px;
   line-height: 20px;
-  margin-right: 10px;
+  margin-left: 10px;
   vertical-align: middle;
 }
 
@@ -1089,7 +1094,7 @@ ul.tabs.title p {
 .link-button.link-button-tw i.fa {
   font-size: 17px;
   vertical-align: middle;
-  margin-right: 10px;
+  margin-left: 10px;
   line-height: 20px;
 }
 
@@ -1111,21 +1116,21 @@ ul.tabs.title p {
   width: 100%;
   border-radius: 0px;
   text-transform: uppercase;
-  font: 800 16px/50px "Open Sans";
+  font: 800 16px/50px "Cairo";
   height: 50px;
 }
 
 .acc-login .form-group .btn:nth-child(2n+1) {
   width: 48%;
-  margin-right: 2%;
-  float: left;
+  margin-left: 2%;
+  float: right;
   padding: 5px;
 }
 
 .acc-login .form-group .btn:nth-child(2n) {
   margin-left: 2%;
   width: 48%;
-  float: left;
+  float: right;
   padding: 5px;
 }
 
@@ -1281,7 +1286,7 @@ ul.tabs.title p {
 }
 
 .shipping-container .col-md-4 .shipping-item .text p {
-  font-family: "Lora";
+  font-family: "Cairo", serif;
   font-style: italic;
   color: #aaa;
   line-height: 24px;
@@ -1390,6 +1395,7 @@ ul.tabs.title p {
   font-size: 16px;
   font-weight: 400;
   margin-top: 25px;
+  text-align: right;
 }
 
 .featured-product .wrap-time p.best-price span {
@@ -1434,7 +1440,7 @@ ul.tabs.title p {
 }
 
 .featured-product .products {
-  float: right;
+  float: left;
   width: 200px;
 }
 
@@ -1447,7 +1453,7 @@ ul.tabs.title p {
   -o-transition: all 0.6s ease 0s;
   transition: all 0.6s ease 0s;
   width: 100%;
-  float: right;
+  float: left;
   width: 200px;
   position: relative;
   box-shadow: 0px 3px 40px 0px rgba(0, 0, 0, 0.51);
@@ -1558,7 +1564,7 @@ ul.tabs.title p {
 
 .featured-product .images {
   position: absolute;
-  left: 0px;
+  right: 0px;
   top: 100px;
   max-width: 575px;
 }
@@ -1593,7 +1599,7 @@ ul.tabs.title p {
 }
 
 .featured-product.featured-product-home2 .products .product .wrap-title {
-  text-align: left;
+  text-align: right;
 }
 
 .featured-product.featured-product-home2 .products .product .product-images {
@@ -1614,7 +1620,7 @@ ul.tabs.title p {
 
 .featured-product.featured-product-home2 .wrap-time {
   bottom: 0px;
-  left: 0px;
+  right: 0px;
 }
 
 .featured-product.featured-product-home2 .images {
@@ -2574,7 +2580,7 @@ ul.tabs.title p {
 
 .newsletter h3 {
   text-transform: uppercase;
-  font-family: "Lato";
+    font-family: "Cairo", serif;
   color: #fff;
   font-size: 14px;
 }
@@ -2584,7 +2590,7 @@ ul.tabs.title p {
 }
 
 .newsletter p {
-  font-family: "Lato";
+    font-family: "Cairo", serif;
   font-size: 14px;
   color: #fff;
   margin-right: 20px;
@@ -2596,7 +2602,7 @@ ul.tabs.title p {
 }
 
 .newsletter form input {
-  font-family: "PT Serif";
+    font-family: "Cairo", serif;
   color: #FFAF00;
   letter-spacing: 1px;
   background: #134E9E;
@@ -2658,14 +2664,14 @@ ul.tabs.title p {
 }
 
 .newsletterpopup .newsletter-contetn h3 {
-  font: 700 22px/25px "Open Sans";
+  font: 700 22px/25px "Cairo";
   color: #fff;
   text-transform: uppercase;
   margin: 80px 0 20px;
 }
 
 .newsletterpopup .newsletter-contetn p {
-  font: 400 14px/20px "Open Sans";
+  font: 400 14px/20px "Cairo";
   color: #959595;
   max-width: 430px;
   margin: 0 auto;
@@ -2688,7 +2694,7 @@ ul.tabs.title p {
 }
 
 .newsletterpopup .newsletter-contetn .check {
-  font: 400 14px/20px "Open Sans";
+  font: 400 14px/20px "Cairo";
   color: #959595;
   font-style: italic;
   padding-left: 25px;
@@ -2866,7 +2872,7 @@ ul.tabs.title p {
 }
 
 [class*="feature-box-"] p {
-  font-family: "Lora";
+    font-family: "Cairo", serif;
   font-style: italic;
   color: #888888;
   line-height: 22px;
@@ -2993,7 +2999,7 @@ ul.tabs.title p {
 .contact-form h3 {
   font-size: 18px;
   font-style: normal;
-  font-family: "Montserrat";
+    font-family: "Cairo", serif;
   color: #555555;
   text-transform: uppercase;
   font-weight: 700;
@@ -3026,7 +3032,7 @@ ul.tabs.title p {
   font-weight: 400;
   margin-bottom: 10px;
   display: block;
-  text-align: left;
+  text-align: right;
   text-transform: uppercase;
 }
 
@@ -3126,7 +3132,7 @@ ul.tabs.title p {
 }
 
 .box-icon-adress .feature-box-v3 h4 {
-  font: 800 14px/20px "Open Sans";
+  font: 800 14px/20px "Cairo";
   color: #000;
   text-transform: uppercase;
   padding-bottom: 5px;
@@ -3134,7 +3140,7 @@ ul.tabs.title p {
 }
 
 .box-icon-adress .feature-box-v3 p {
-  font: 600 14px/20px "Open Sans";
+  font: 600 14px/20px "Cairo";
   color: #7b7b7b;
 }
 
@@ -3155,11 +3161,11 @@ ul.tabs.title p {
 
 .adress-info .col-md-3 .items {
   position: relative;
-  padding-left: 45px;
+  padding-right: 45px;
 }
 
 .adress-info .col-md-3 .items h3 {
-  font: 700 18px/20px "Open Sans";
+  font: 700 18px/20px "Cairo";
   color: #134E9E;
   padding-top: 5px;
   padding-bottom: 10px;
@@ -3184,10 +3190,10 @@ ul.tabs.title p {
   background: #134E9E;
   color: #fff;
   text-align: center;
-  font: 600 22px/33px "Open Sans";
+  font: 600 22px/33px "Cairo";
   position: absolute;
   top: 0px;
-  left: 0px;
+  right: 0px;
 }
 
 @media (max-width: 1024px) {
@@ -3470,18 +3476,18 @@ ul.tabs.title p {
   font-size: 18px;
   text-transform: uppercase;
   line-height: 30px;
-  font-family: "texgyreadventorbold";
+  font-family: "Cairo", serif;
 }
 
 .about-content .banner-title p {
-  font-family: "Lora";
+    font-family: "Cairo", serif;
   font-style: italic;
   color: #555555;
   line-height: 20px;
 }
 
 .our-skills h3 {
-  font-family: "texgyreadventorbold";
+    font-family: "Cairo", serif;
   color: #555555;
   text-transform: uppercase;
   font-size: 14px;
@@ -3502,7 +3508,7 @@ ul.tabs.title p {
   top: -30px;
   right: -15px;
   color: #555555;
-  font-family: "texgyreadventorbold";
+    font-family: "Cairo", serif;
   font-size: 14px;
 }
 
@@ -3535,7 +3541,7 @@ ul.tabs.title p {
 .content-about .text-about .title-about h3 {
   padding-left: 0px;
   letter-spacing: 50px;
-  font: 800 50px/50px "Open Sans";
+  font: 800 50px/50px "Cairo";
 }
 
 .content-about .text-about .title-about h3:after {
@@ -3543,7 +3549,7 @@ ul.tabs.title p {
 }
 
 .content-about .text-about .title-about h4 {
-  font: 800 50px/50px "Open Sans";
+  font: 800 50px/50px "Cairo";
   letter-spacing: 50px;
   text-transform: uppercase;
   margin: 20px 0px;
@@ -3555,14 +3561,14 @@ ul.tabs.title p {
 }
 
 .content-about .text-about .col-md-6 h4 {
-  font: 700 14px/20px "Open Sans";
+  font: 700 14px/20px "Cairo";
   color: #000;
   margin-bottom: 30px;
   text-transform: uppercase;
 }
 
 .content-about .text-about .col-md-6 p {
-  font: 400 14px/25px "Open Sans";
+  font: 400 14px/25px "Cairo";
   color: #a1a1a1;
   margin-bottom: 20px;
 }
@@ -3620,20 +3626,20 @@ ul.tabs.title p {
 }
 
 .blog-post-container .bottom-tag .tags {
-  float: right;
+  float: left;
   line-height: 45px;
 }
 
 .blog-post-container .bottom-tag .tags a {
-  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .blog-post-container .bottom-tag .tags a i {
-  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .blog-post-container .bottom-tag .tags a:first-child {
-  margin-left: 0px;
+    margin-right: 0px;
 }
 
 .blog-post-container .bottom-tag .tags a:hover {
@@ -3646,7 +3652,7 @@ ul.tabs.title p {
 
 .blog-post-container .blog-post-item .date {
   position: absolute;
-  left: 0px;
+  right: 0px;
   top: 0px;
   background: #0A2B56;
   text-align: center;
@@ -3674,20 +3680,20 @@ ul.tabs.title p {
 
 .blog-post-container.blog-post-columns-2 .blog-post-item {
   width: 50%;
-  float: left;
+  float: right;
   margin-bottom: 60px;
 }
 
 .blog-post-container.blog-post-columns-2 .blog-post-item:nth-child(2n+1) {
-  padding-right: 10px;
+    padding-left: 10px;
 }
 
 .blog-post-container.blog-post-columns-2 .blog-post-item:nth-child(2n) {
-  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .blog-post-container.blog-post-columns-2 .blog-post-item:nth-child(2n) .date {
-  left: 10px;
+  right: 10px;
 }
 
 .blog-post-container .blog-colum-left {
@@ -3706,8 +3712,8 @@ ul.tabs.title p {
 }
 
 .blog-post-container .share-tags .share {
-  float: right;
-  text-align: right;
+  float: left;
+  text-align: left;
   width: 100%;
 }
 
@@ -3776,7 +3782,7 @@ ul.tabs.title p {
 }
 
 .blog-post-container .profile .text {
-  font-family: "Lora";
+  font-family: "Cairo", serif;
   font-style: italic;
 }
 
@@ -3837,14 +3843,14 @@ ul.tabs.title p {
   border: 1px solid #d2d2d2;
   box-shadow: none;
   outline: none;
-  padding: 0px 30px 0 15px;
+  padding: 0px 15px 0 30px;
   height: 36px;
   line-height: 34px;
 }
 
 .blog-colum-right .search button {
   position: absolute;
-  right: 6px;
+  left: 6px;
   top: 6px;
   border: none;
   box-shadow: none;
@@ -3870,7 +3876,7 @@ ul.tabs.title p {
 
 .widget-area .menu-category a:after {
   position: absolute;
-  left: 0px;
+  right: 0px;
   top: 50%;
   height: 2px;
   width: 0px;
@@ -3884,7 +3890,7 @@ ul.tabs.title p {
 .widget-area .menu-category a:hover {
   font-weight: 800;
   color: #1a1a1a;
-  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .widget-area .menu-category a:hover:after {
@@ -3941,7 +3947,7 @@ ul.tabs.title p {
 }
 
 .coment-container h3 {
-  font-family: "Montserrat";
+  font-family: "Cairo", serif;
   font-weight: 700;
   color: #262626;
   text-transform: uppercase;
@@ -4440,7 +4446,7 @@ ul.tabs.title p {
 }
 
 .contruction .col-md-9 .text h3 {
-  font: 700 60px/80px "Open Sans";
+  font: 700 60px/80px "Cairo";
   color: #fff;
   letter-spacing: 15px;
   text-transform: uppercase;
@@ -4489,11 +4495,11 @@ ul.tabs.title p {
 }
 
 .contruction .time .countdown-times .distance .number b {
-  font: 400 52.6px/50px "Open Sans";
+  font: 400 52.6px/50px "Cairo";
 }
 
 .contruction .time .countdown-times .distance .text {
-  font: 700 16px/20px "Open Sans";
+  font: 700 16px/20px "Cairo";
   text-transform: capitalize;
 }
 
@@ -4657,7 +4663,7 @@ nav.pagination .next:hover i, nav.pagination .prev:hover i {
 }
 
 .products .product p.product-title, .products .product .description {
-  font-family: "Open Sans";
+  font-family: "Cairo", serif;
   font-size: 16px;
   color: #3a3a3a;
   line-height: 34px;
@@ -4695,7 +4701,7 @@ nav.pagination .next:hover i, nav.pagination .prev:hover i {
   color: #888;
   border-radius: 8px;
   margin-bottom: 20px;
-  font-family: "Montserrat";
+  font-family: "Cairo", serif;
   font-style: normal;
 }
 
@@ -4899,7 +4905,7 @@ h3.title-secondary {
 .widget ul.product-categories li a {
   text-transform: uppercase;
   color: #333;
-  font-family: "Montserrat";
+  font-family: "Cairo", serif;
   font-weight: 700;
   font-size: 13px;
   font-style: normal;
@@ -5058,7 +5064,7 @@ h3.title-secondary {
   border: 1px solid #d2d2d2;
   height: 35px;
   text-align: left;
-  font: 400 12px/33px "Open Sans";
+  font: 400 12px/33px "Cairo";
   margin-bottom: 10px;
   padding-left: 15px;
   color: #8c8c8c;
@@ -5068,7 +5074,7 @@ h3.title-secondary {
 .widget .discount-down button:after {
   position: absolute;
   content: "";
-  font-family: "Material-Design-Iconic-Font";
+  font-family: "Cairo", serif;
   font-size: 22px;
   top: 0px;
   right: 15px;
@@ -5093,7 +5099,7 @@ h3.title-secondary {
 }
 
 .ship-adress {
-  font: 700 14px/20px "Open Sans";
+  font: 700 14px/20px "Cairo";
   color: #000;
   padding-left: 20px;
   float: right;
@@ -5324,7 +5330,7 @@ h3.title-secondary {
 }
 
 .product-details-content .share-tags .share span {
-  font: 700 14px "Open Sans";
+  font: 700 14px "Cairo";
   color: #000;
   text-transform: uppercase;
   margin-right: 15px;
@@ -5345,7 +5351,7 @@ h3.title-secondary {
 .product-details-content .col-md-6:last-child {
   padding-right: 0px;
   display: inline-block;
-  font-family: "Montserrat";
+  font-family: "Cairo", serif;
 }
 
 .product-details-content p {
@@ -5362,7 +5368,7 @@ h3.title-secondary {
   margin-bottom: 10px;
   line-height: 40px;
   color: #fff;
-  font-family: "Montserrat";
+  font-family: "Cairo", serif;
   font-weight: 700;
   text-transform: uppercase;
   margin-top: 10px;
@@ -5404,7 +5410,7 @@ h3.title-secondary {
 }
 
 .product-details-content .wrap-price p {
-  font-family: "Montserrat";
+  font-family: "Cairo", serif;
   font-style: normal;
   font-weight: 700;
   color: #ffffff;
@@ -5414,7 +5420,7 @@ h3.title-secondary {
 
 .product-details-content .title-product {
   text-transform: capitalize;
-  font-family: "Montserrat";
+  font-family: "Cairo", serif;
   font-style: normal;
   font-weight: 700;
 }
@@ -5497,7 +5503,7 @@ h3.title-secondary {
 
 .product-details-content .options .size li a {
   color: #575757;
-  font-family: "Montserrat";
+  font-family: "Cairo", serif;
   font-weight: 700;
   text-transform: uppercase;
   height: 40px;
@@ -5572,7 +5578,7 @@ h3.title-secondary {
 .hoz-tab-container ul li {
   display: inline-block;
   cursor: pointer;
-  margin-right: 30px;
+  margin-left: 30px;
 }
 
 .hoz-tab-container ul li:hover, .hoz-tab-container ul li.active {
@@ -5685,7 +5691,7 @@ h3.title-secondary {
 }
 
 .hoz-tab-container .tab-container table tr td {
-  font-family: "Open Sans";
+  font-family: "Cairo", serif;
   font-style: normal;
   font-weight: 600;
   color: #262626;
@@ -5745,7 +5751,7 @@ h3.title-secondary {
 }
 
 .account p {
-  font-family: "Lora";
+  font-family: "Cairo", serif;
   font-style: italic;
   color: #888888;
 }
@@ -5772,7 +5778,7 @@ h3.title-secondary {
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
-  font-family: "Montserrat";
+  font-family: "Cairo", serif;
 }
 
 .icon {
@@ -5829,7 +5835,7 @@ h3.title-secondary {
 }
 
 .order-details .col-md-6 p {
-  font-family: "Lora";
+  font-family: "Cairo", serif;
   font-style: italic;
   color: #888888;
   margin: 4px 0px;
@@ -5927,7 +5933,7 @@ table.table td:first-child img {
 }
 
 table.table td:nth-child(4), table.table td:nth-child(6) {
-  font-family: "Montserrat";
+  font-family: "Cairo", serif;
   color: #555555;
   font-size: 18px;
   font-style: normal;
@@ -5962,7 +5968,7 @@ table.table.wishlist td:nth-child(5) {
   text-transform: uppercase;
   font-style: normal;
   font-weight: 700;
-  font-family: "Montserrat";
+  font-family: "Cairo", serif;
   font-size: 15px;
   color: #555555;
 }
@@ -6149,7 +6155,7 @@ table.table.wishlist td:nth-child(6) a:hover {
   content: "";
   top: 9px;
   right: 10px;
-  font-family: "Material-Design-Iconic-Font";
+  font-family: "Cairo", serif;
   line-height: 1;
   font-size: 16px;
   font-style: normal;
@@ -6174,7 +6180,7 @@ p.result-count {
   padding-bottom: 8px;
   border-bottom: 1px solid #b2b2b2;
   margin-top: 7px;
-  font-family: "Lora";
+  font-family: "Cairo", serif;
   font-style: italic;
   font-size: 13px;
 }
@@ -6188,7 +6194,7 @@ p.result-count {
 }
 
 .pagination .page-numbers {
-  font-family: "Montserrat";
+  font-family: "Cairo", serif;
   color: #0A2B56;
   width: 33px;
   height: 33px;
@@ -6214,7 +6220,7 @@ p.result-count {
 
 nav.pagination {
   margin-top: 30px;
-  font-family: "Montserrat";
+  font-family: "Cairo", serif;
   font-size: 16px;
   font-style: normal;
 }
@@ -6230,7 +6236,7 @@ nav.pagination {
 
 #topbar .topbar-left {
   display: inline-block;
-  float: right;
+  float: left;
   height: 40px;
 }
 
@@ -6283,7 +6289,7 @@ nav.pagination {
 
 #topbar .topbar-right {
   display: inline-block;
-  float: left;
+  float: right;
 }
 
 #topbar .topbar-right i {
@@ -6615,7 +6621,7 @@ nav.pagination {
   height: 30px;
   color: #474747;
   font-size: 14px;
-  font-family: "Material-Design-Iconic-Font";
+  font-family: "Cairo", serif;
   position: absolute;
   left: 0px;
   top: 19px;
@@ -7156,7 +7162,7 @@ nav.pagination {
   -o-transition: all 0.4s ease 0s;
   transition: all 0.4s ease 0s;
   font-weight: 400;
-  font-family: "Open Sans";
+  font-family: "Cairo", serif;
 }
 
 .mega-menu ul.navbar-nav ul.menu-level-1 li a:hover {
@@ -7241,7 +7247,7 @@ nav.pagination {
   -o-transition: all 0.5s ease 0s;
   transition: all 0.5s ease 0s;
   position: relative;
-  font-family: "Open Sans";
+  font-family: "Cairo", serif;
   line-height: 25px;
   margin: 5px 0px;
   margin-left: 15px;
@@ -7261,7 +7267,7 @@ nav.pagination {
 }
 
 .mega-menu ul.navbar-nav .sub-menu ul.menu-level-1 li.level3 a:hover {
-  padding-left: 30px;
+  padding-right: 30px;
   color: #FFAF00;
 }
 
@@ -7587,7 +7593,7 @@ nav.pagination {
     content: "";
   }
   .icon-menu-mobile {
-    float: left;
+    float: right;
     width: auto;
     margin-top: 13px;
     margin-right: 10px;
@@ -7627,7 +7633,7 @@ nav.pagination {
     margin-top: 8px;
   }
   #header .header-top .icon-menu-mobile {
-    float: left;
+    float: right;
     width: auto;
     margin-top: 3px;
     margin-right: 10px;
@@ -7656,7 +7662,7 @@ nav.pagination {
   text-transform: uppercase;
   margin-bottom: 20px;
   line-height: 24px;
-  font-family: "Montserrat";
+  font-family: "Cairo", serif;
   font-weight: 700;
   font-size: 18px;
 }
@@ -7773,7 +7779,7 @@ nav.pagination {
 
 .bottom-home1 p {
   color: #aaaaaa;
-  font-family: "TXGR";
+    font-family: "Cairo", serif;
   font-size: 13px;
   line-height: 20px;
 }
@@ -7802,7 +7808,7 @@ nav.pagination {
 }
 
 .bottom-home1 .products-item .product-content .product-name {
-  font-family: "TXGR";
+    font-family: "Cairo", serif;
   color: #888;
   margin-bottom: 5px;
   display: inline-block;
@@ -7811,7 +7817,7 @@ nav.pagination {
 .bottom-home1 .products-item .product-content .product-price {
   font-size: 16px;
   color: #ddd;
-  font-family: "TXGB";
+    font-family: "Cairo", serif;
   margin-bottom: 15px;
 }
 
@@ -7883,7 +7889,7 @@ nav.pagination {
 
 #footer.footer-v3 .footer-bottom .col-md-6:last-child a {
   color: #888888;
-  font-family: "TXGR";
+    font-family: "Cairo", serif;
 }
 
 #footer.footer-v3 .footer-bottom .col-md-6:last-child a:nth-child(1), #footer.footer-v3 .footer-bottom .col-md-6:last-child a:nth-child(2) {
@@ -7940,7 +7946,7 @@ nav.pagination {
 }
 
 #footer.footer-v4 .share a {
-  font-family: "TXGR";
+    font-family: "Cairo", serif;
   margin-right: 10px;
 }
 
@@ -8020,6 +8026,10 @@ nav.pagination {
   #footer .footer-bottom p {
     float: inherit;
   }
+
+    #header .header-top .logo {
+        float: left;
+    }
 }
 
 /** 6.6. Home pages **/
@@ -8082,7 +8092,7 @@ nav.pagination {
 .tp-banner-container span {
   display: inline-block;
   width: 100%;
-  font-family: "Montserrat";
+  font-family: "Cairo", serif;
   font-weight: 700;
   font-size: 16px;
   color: #666;
@@ -8206,7 +8216,7 @@ nav.pagination {
   -o-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
   box-shadow: 0px 0px 0px 5px rgba(245, 198, 21, 0.3);
-  font-family: "Material-Design-Iconic-Font";
+    font-family: "Cairo", serif;
   background: #FFAF00;
   color: #fff;
   border: none;
@@ -8268,25 +8278,25 @@ nav.pagination {
 }
 
 .tp-banner-container .font-op {
-  font-family: "Open Sans";
+    font-family: "Cairo", serif;
 }
 
 .tp-banner-container .font-re {
-  font-family: "TXGR";
+    font-family: "Cairo", serif;
   font-size: 36px;
 }
 
 .tp-banner-container .font-nel {
-  font-family: "NexaLight";
+    font-family: "Cairo", serif;
 }
 
 .tp-banner-container .font-mo {
-  font-family: "Montserrat";
+  font-family: "Cairo", serif;
   font-weight: 700;
 }
 
 .tp-banner-container .font-ar {
-  font-family: "Arial";
+    font-family: "Cairo", serif;
 }
 
 .tp-banner-container .color-blue {
@@ -8352,21 +8362,21 @@ nav.pagination {
 }
 
 .content-404 h3 {
-  font: 700 45px/50px "Open Sans";
+  font: 700 45px/50px "Cairo";
   margin-bottom: 50px;
   text-transform: uppercase;
   color: #202020;
 }
 
 .content-404 h4 {
-  font: 600 21px/30px "Open Sans";
+  font: 600 21px/30px "Cairo";
   color: #383838;
   margin-bottom: 20px;
 }
 
 .content-404 p {
   max-width: 710px;
-  font: 400 14px/20px "Open Sans";
+  font: 400 14px/20px "Cairo";
   color: #636363;
   margin: 0 auto 30px;
 }
@@ -8597,7 +8607,7 @@ nav.pagination {
     padding-bottom: 150px;
   }
   .featured-product.featured-product-home2 .images {
-    left: -60px;
+    right: -60px;
   }
   .featured-product {
     padding: 50px 0px;
@@ -8610,7 +8620,7 @@ nav.pagination {
     padding-top: 30px;
   }
   .content-about .text-about .title-about h3 {
-    font: 800 40px/40px "Open Sans";
+    font: 800 40px/40px "Cairo";
     letter-spacing: 40px;
   }
   .content-about .text-about .title-about h3:after {
@@ -8618,11 +8628,11 @@ nav.pagination {
     width: 35px;
   }
   .content-about .text-about .title-about h4 {
-    font: 800 40px/40px "Open Sans";
+    font: 800 40px/40px "Cairo";
     letter-spacing: 40px;
   }
   .contruction .col-md-9 .text h3 {
-    font: 700 40px/60px "Open Sans";
+    font: 700 40px/60px "Cairo";
     letter-spacing: 10px;
   }
   .contruction .col-md-3 .time .countdown-times .distance {
@@ -8635,6 +8645,10 @@ nav.pagination {
   .bottom-product-footer .col-md-4 {
     width: 33.33%;
   }
+    #header.header-v1 .cart .cart-list {
+        left: 0;
+        right: 0px;
+    }
 }
 
 @media (max-width: 1024px) {
@@ -8724,7 +8738,7 @@ nav.pagination {
     width: 375px;
     z-index: 999;
     position: fixed;
-    left: 0px;
+    right: 0px;
     top: 141px;
     height: calc(100vh - 141px);
     overflow-x: hidden;
@@ -8734,7 +8748,7 @@ nav.pagination {
     -webkit-transition: all 0.4s ease 0s;
     -o-transition: all 0.4s ease 0s;
     transition: all 0.4s ease 0s;
-    transform: translate(-375px, 0px);
+    transform: translate(375px, 0px);
     box-shadow: -6px 12px 40px 0 rgba(0, 0, 0, 0.41);
   }
   .menu-mobile.open {
@@ -8794,7 +8808,7 @@ nav.pagination {
     position: absolute;
     width: 30px;
     height: 30px;
-    right: 0px;
+    left: 0px;
     top: 8px;
     font-family: "FontAwesome";
     font-size: 18px;
@@ -8944,7 +8958,7 @@ nav.pagination {
     margin: 20px auto 0px;
   }
   #footer .footer-top .col-md-4 ul.menu:last-child {
-    text-align: left;
+    text-align: right;
   }
   #footer .footer-bottom {
     text-align: center;
@@ -9153,7 +9167,7 @@ nav.pagination {
     margin: 10% 0px;
   }
   .contruction .col-md-9 .text h3 {
-    font: 700 30px/60px "Open Sans";
+    font: 700 30px/60px "Cairo";
     letter-spacing: 10px;
   }
   .newsletterpopup .newsletter-contetn {
@@ -9414,7 +9428,7 @@ nav.pagination {
     padding-top: 30px;
   }
   .content-about .text-about .title-about h3, .content-about .text-about .title-about h4 {
-    font: 800 30px/30px "Open Sans";
+    font: 800 30px/30px "Cairo";
     letter-spacing: 30px;
   }
   .newsletterpopup .newsletter-contetn {
@@ -9657,7 +9671,7 @@ nav.pagination {
     height: 180px !important;
   }
   .contruction .col-md-9 .text h3 {
-    font: 700 15px/25px "Open Sans";
+    font: 700 15px/25px "Cairo";
     letter-spacing: 3px;
   }
   .contruction .time .countdown-times .distance {

@@ -4,6 +4,21 @@
     active
 @endsection
 
+@section('extra-scripts')
+    <style>
+        .title-text h3 {
+            padding-left: 70px;
+        }
+
+        .title-text h3:after {
+            position: absolute;
+            content: "";
+            left: 0px;
+            top: 50%;
+        }
+    </style>
+@endsection
+
 @section('content')
     <header id="header" class="header-v3">
         @include('website.components.main-navigation')
@@ -24,14 +39,14 @@
         </div>
         <!-- End container -->
     </div>
-    <div class="col-12 container">
+    <div class="col-12 container" dir="ltr">
         <div class="text-about">
             <div class="title-text title-about">
                 <h3><span>P</span>rivacy Policy:</h3>
             </div>
             <!-- End title -->
             <div class="title-text title-about">
-                <h2>We at Droplin LLC. know you care about how your personal information is used and shared, and we take your privacy seriously. Please read the following to learn more about our Privacy Policy. By using or accessing the Site in any manner, you acknowledge that you accept the practices and policies outlined in this Privacy Policy, and you hereby consent that we will collect, use, and share your information in the following ways:</h2>
+                <h4 style="font-weight: bold">We at Droplin LLC. know you care about how your personal information is used and shared, and we take your privacy seriously. Please read the following to learn more about our Privacy Policy. By using or accessing the Site in any manner, you acknowledge that you accept the practices and policies outlined in this Privacy Policy, and you hereby consent that we will collect, use, and share your information in the following ways:</h4>
             </div>
             <div class="col-12 content">
                 <ol>
@@ -94,6 +109,5 @@
             </div>
         </div>
     </div>
-
 
 @endsection

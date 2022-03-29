@@ -2,7 +2,7 @@
     <div class="container">
         <div class="inner-container">
             <p class="icon-menu-mobile"><span class="icon-bar"></span></p>
-            <div class="logo"><a href="{{ route('website.index') }}" title="Dana-Logo"><img src="{{ asset('frontend/assets/images/Dana-menu-logo.png') }}" alt="Dana-Logo"></a></div>
+            <div class="logo logo_ar"><a href="{{ route('website.index') }}" title="Dana-Logo"><img src="{{ asset('frontend/assets/images/Dana-menu-logo.png') }}" alt="Dana-Logo"></a></div>
             <div class="search">
                 <div class="search-form">
                     <form action="{{ route('website.search') }}" method="GET">

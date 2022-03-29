@@ -37,6 +37,7 @@ return [
     'Terms and Conditions'      => 'Terms and Conditions',
     'Customer Care'             => 'Customer Care',
     'Quick link'                => 'Quick link',
+    'Privacy'                   => 'Privacy Policy',
 
     /* Newsletter */
     'first shipping'            => 'and receive a coupon for first shipping',
@@ -47,8 +48,14 @@ return [
     /* Forms */
     'First Name'                => 'First Name',
     'Last name'                 => 'Last name',
+    'Full name'                 => 'Full Name',
     'Email'                     => 'Email',
     'Password'                  => 'Password',
+    'Phone'                     => 'Phone',
+    'Gender'                    => 'Gender',
+    'Male'                      => 'Male',
+    'Female'                    => 'Female',
+    'Birth date'                => 'Birth date',
     'Confirm Password'          => 'Confirm Password',
     'Login'                     => 'Login',
     'Logout'                    => 'Log Out',
@@ -58,6 +65,7 @@ return [
     'Forgot your password?'     => 'Forgot your password?',
     'Or register'               => 'Or register',
     'or register with'          => 'or register with',
+    'Submit'                    => 'Submit',
 
     /* Index */
     'fast shipping'             => 'Fast Shipping',
@@ -90,5 +98,53 @@ return [
     'vision'                    => 'We handle your business needs with fast and secure shipping services.
                                         We are keen on reliability, security and professionalism throughout our process, in order to provide you with the needed comfort to maintain a healthy business environment.',
     'mission'                   => 'We deliver your package anywhere possible in Egypt with the lowest shipping prices.
-                                        All you have to do is choose your destination drop off point and we will do the rest for you.'
+                                        All you have to do is choose your destination drop off point and we will do the rest for you.',
+
+    /* Countries */
+    'Cairo'                      => 'Cairo',
+    'Alex'                       => 'Alex',
+    'Delta'                      => 'Delta',
+    'Upper Egypt'                => 'Upper Egypt',
+    'Suez'                       => 'Suez',
+    'EGP'                        => 'EGP',
+    'Join Now'                   => 'Join Now',
+    'Prices vary'                => 'Prices vary according to business packages.',
+    'VAT exclusive'              => 'Aka \' no. of shipments/month \' ** Prices are VAT exclusive **',
+    'Please contact'             => 'Please contact sales at: sales@droplin.co',
+    'or 01060073643'             => 'or 01060073643 for personalized business packages and deals.',
+
+    /* Tracking */
+    'Track'                      => 'Track',
+    'Specification'              => 'Specification',
+    'Type'                       => 'Type',
+    'Cash on Delivery'           => 'Cash on Delivery',
+    'No of Items'                => 'No of Items',
+    'Customer'                   => 'Customer',
+    'Customer Phone'             => 'Customer Phone',
+    'Customer Other Phone'       => 'Customer Other Phone',
+    'Location'                   => 'Location',
+    'Street'                     => 'Street',
+    'Building'                   => 'Building',
+    'Floor'                      => 'Floor',
+    'Apartment'                  => 'Apartment',
+    'Open Package'               => 'Open Package',
+    'Delivery Notes'             => 'Delivery Notes',
+    'Timeline'                   => 'Timeline',
+
+    /* Account */
+    'My Packages'                => 'My Packages',
+    'Edit Account'               => 'Edit Account',
+
+    /* Contact */
+    'GET IN TOUCH'               => 'GET IN TOUCH',
+    'C'                          => 'C',
+    'ONTACT'                     => 'ONTACT',
+    'FROM'                       => 'FORM',
+    'MESSAGE'                    => 'MESSAGE',
+    'Send your message'          => 'Send your message',
+    'INFO'                       => 'INFO',
+    'OUR ADDRESS'                => 'OUR ADDRESS',
+    'PHONE NUMBER'               => 'PHONE NUMBER',
+    'EMAIL ADDRESS'              => 'EMAIL ADDRESS',
+    'Address'                    => 'Address',
 ];

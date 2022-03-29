@@ -1,4 +1,5 @@
 @extends('layouts.website')
+@php $locale = session()->get('locale'); @endphp
 
 @section('contact-us')
     active
@@ -28,8 +29,12 @@
     <div class="main-content">
         <div class="container">
             <div class="title-ver3 title-ver4">
-                <h4>Get in touch</h4>
-                <h3 style="color: #134E9E"><span>C</span>ontact from</h3>
+                <h4>{{ __('content.GET IN TOUCH') }}</h4>
+                @if($locale == 'ar')
+                    <h3 style="color: #134E9E"><span>ا</span>رسل لنا</h3>
+                @else
+                    <h3 style="color: #134E9E"><span>C</span>ONTACT FORM</h3>
+                @endif
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto</p>
             </div>
             <div class="contact-content">
@@ -37,27 +42,27 @@
                     <form class="form-horizontal" action="{{ route('contact-forms.store') }}" method="POST">
                         <div class="form-group col-md-6">
                             @csrf
-                            <label class=" control-label" for="inputName">Your name</label>
-                            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" id="inputName" placeholder="Name">
+                            <label class=" control-label" for="inputName">{{ __('content.Full name') }}</label>
+                            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" id="inputName" placeholder="{{ __('content.Full name') }}">
                             @error('name')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group col-md-6">
-                            <label class=" control-label" for="inputEmail">Your Mail</label>
-                            <input type="text" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" id="inputEmail" placeholder="Email">
+                            <label class=" control-label" for="inputEmail">{{ __('content.Email') }}</label>
+                            <input type="text" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" id="inputEmail" placeholder="{{ __('content.Email') }}">
                             @error('email')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group col-md-12">
-                            <label class=" control-label" for="message">massage</label>
-                            <textarea class="form-control @error('message') is-invalid @enderror" id="message" name="message" placeholder="Message">{{ old('message') }}</textarea>
+                            <label class=" control-label" for="message">{{ __('content.MESSAGE') }}</label>
+                            <textarea class="form-control @error('message') is-invalid @enderror" id="message" name="message" placeholder="{{ __('content.MESSAGE') }}">{{ old('message') }}</textarea>
                             @error('message')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                             @enderror
                             <div class="checkbox space-10"></div>
-                            <button class="btn link-button width-100" type="submit">Send your message</button>
+                            <button class="btn link-button width-100" type="submit">{{ __('content.Send your message') }}</button>
                         </div>
                     </form>
                 </div>
@@ -66,8 +71,12 @@
         </div>
         <!-- End container -->
         <div class="title-ver3 title-ver4">
-            <h4>Get in touch</h4>
-            <h3><span>C</span>ontact info</h3>
+            <h4>{{ __('content.GET IN TOUCH') }}</h4>
+            @if($locale == 'ar')
+                <h3 style="color: #134E9E"><span>م</span>علومات الاتصال</h3>
+            @else
+                <h3 style="color: #134E9E"><span>C</span>ONTACT INFO</h3>
+            @endif
             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto</p>
         </div>
         <!-- End contact content -->
@@ -82,8 +91,8 @@
                             <a href="#"><img src="{{ asset('frontend/assets/images/phone-book.png') }}" height="46" alt="icons"></a>
                         </div>
                         <div class="fbox-body">
-                            <h4>Our Address</h4>
-                            <p>Misr Al gadeda, Cairo, Egypt</p>
+                            <h4>{{ __('content.OUR ADDRESS') }}</h4>
+                            <p class="open-sans">Misr Al gadeda, Cairo, Egypt</p>
                         </div>
                     </div>
                 </div>
@@ -94,8 +103,8 @@
                             <a href="#"><img src="{{ asset('frontend/assets/images/address.png') }}" height="46" alt="icons"></a>
                         </div>
                         <div class="fbox-body">
-                            <h4>Phone number</h4>
-                            <p>+(20) 10 4568 7895</p>
+                            <h4>{{ __('content.PHONE NUMBER') }}</h4>
+                            <p class="open-sans">+(20) 10 4568 7895</p>
                         </div>
                     </div>
                 </div>
@@ -106,8 +115,8 @@
                             <a href="#"><img src="{{ asset('frontend/assets/images/email.png') }}" height="46" alt="icons"></a>
                         </div>
                         <div class="fbox-body">
-                            <h4>Email address</h4>
-                            <p>info@droplin.com</p>
+                            <h4>{{ __('content.EMAIL ADDRESS') }}</h4>
+                            <p class="open-sans">info@droplin.com</p>
                         </div>
                     </div>
                 </div>
@@ -121,42 +130,81 @@
         <!-- End box-icon-adress -->
         <div class="container">
             <div class="adress-info">
-                <div class="col-md-3">
-                    <div class="items">
-                        <span class="icon">1</span>
-                        <h3>Location 01</h3>
-                        <p><span>Address: </span>6 october, Cairo, Egypt</p>
-                        <p><span>Phone: </span> +(20) 10 4568 7895</p>
+                @if($locale == 'ar')
+                    <div class="col-md-3">
+                        <div class="items">
+                            <span class="icon open-sans">4</span>
+                            <h3 class="open-sans">{{ __('content.Location') }} 04</h3>
+                            <p><span>{{ __('content.Address') }}: </span>6 october, Cairo, Egypt</p>
+                            <p><span>{{ __('content.Phone') }}: </span> +(20) 10 4568 7895</p>
+                        </div>
                     </div>
-                </div>
-                <!-- End col-md-3 -->
-                <div class="col-md-3">
-                    <div class="items">
-                        <span class="icon">2</span>
-                        <h3>Location 02</h3>
-                        <p><span>Address: </span>Giza, Cairo, Egypt</p>
-                        <p><span>Phone: </span> +(20) 10 4568 7896</p>
+                    <!-- End col-md-3 -->
+                    <div class="col-md-3">
+                        <div class="items">
+                            <span class="icon open-sans">3</span>
+                            <h3 class="open-sans">{{ __('content.Location') }} 03</h3>
+                            <p><span>{{ __('content.Address') }}: </span>Giza, Cairo, Egypt</p>
+                            <p><span>{{ __('content.Phone') }}: </span> +(20) 10 4568 7896</p>
+                        </div>
                     </div>
-                </div>
-                <!-- End col-md-3 -->
-                <div class="col-md-3">
-                    <div class="items">
-                        <span class="icon">3</span>
-                        <h3>Location 03</h3>
-                        <p><span>Address: </span>5th District, Cairo, Egypt</p>
-                        <p><span>Phone: </span> +(20) 10 4568 7897</p>
+                    <!-- End col-md-3 -->
+                    <div class="col-md-3">
+                        <div class="items">
+                            <span class="icon open-sans">2</span>
+                            <h3 class="open-sans">{{ __('content.Location') }} 02</h3>
+                            <p><span>{{ __('content.Address') }}: </span>5th District, Cairo, Egypt</p>
+                            <p><span>{{ __('content.Phone') }}: </span> +(20) 10 4568 7897</p>
+                        </div>
                     </div>
-                </div>
-                <!-- End col-md-3 -->
-                <div class="col-md-3">
-                    <div class="items">
-                        <span class="icon">4</span>
-                        <h3>Location 04</h3>
-                        <p><span>Address: </span>Nasr City, Cairo, Egypt</p>
-                        <p><span>Phone: </span> +(20) 10 4568 7898</p>
+                    <!-- End col-md-3 -->
+                    <div class="col-md-3">
+                        <div class="items">
+                            <span class="icon open-sans">1</span>
+                            <h3 class="open-sans">{{ __('content.Location') }} 01</h3>
+                            <p><span>{{ __('content.Address') }}: </span>Nasr City, Cairo, Egypt</p>
+                            <p><span>{{ __('content.Phone') }}: </span> +(20) 10 4568 7898</p>
+                        </div>
                     </div>
-                </div>
-                <!-- End col-md-3 -->
+                    <!-- End col-md-3 -->
+                @else
+                    <div class="col-md-3">
+                        <div class="items">
+                            <span class="icon">1</span>
+                            <h3>{{ __('content.Location') }} 01</h3>
+                            <p><span>{{ __('content.Address') }}: </span>6 october, Cairo, Egypt</p>
+                            <p><span>{{ __('content.Phone') }}: </span> +(20) 10 4568 7895</p>
+                        </div>
+                    </div>
+                    <!-- End col-md-3 -->
+                    <div class="col-md-3">
+                        <div class="items">
+                            <span class="icon">2</span>
+                            <h3>{{ __('content.Location') }} 02</h3>
+                            <p><span>{{ __('content.Address') }}: </span>Giza, Cairo, Egypt</p>
+                            <p><span>{{ __('content.Phone') }}: </span> +(20) 10 4568 7896</p>
+                        </div>
+                    </div>
+                    <!-- End col-md-3 -->
+                    <div class="col-md-3">
+                        <div class="items">
+                            <span class="icon">3</span>
+                            <h3>{{ __('content.Location') }} 03</h3>
+                            <p><span>{{ __('content.Address') }}: </span>5th District, Cairo, Egypt</p>
+                            <p><span>{{ __('content.Phone') }}: </span> +(20) 10 4568 7897</p>
+                        </div>
+                    </div>
+                    <!-- End col-md-3 -->
+                    <div class="col-md-3">
+                        <div class="items">
+                            <span class="icon">4</span>
+                            <h3>{{ __('content.Location') }} 04</h3>
+                            <p><span>{{ __('content.Address') }}: </span>Nasr City, Cairo, Egypt</p>
+                            <p><span>{{ __('content.Phone') }}: </span> +(20) 10 4568 7898</p>
+                        </div>
+                    </div>
+                    <!-- End col-md-3 -->
+                @endif
             </div>
         </div>
         <!-- end adress Info -->

@@ -9,13 +9,14 @@
                         <li><a href="{{ route('website.account') }}" title="{{ __('content.my_account') }}">{{ __('content.my_account') }}</a></li>
                         <li><a href="{{ route('website.locations') }}" title="{{ __('content.locations') }}">{{ __('content.locations') }}</a></li>
                         <li><a href="{{ route('website.terms') }}" title="{{ __('content.Terms and Conditions') }}">{{ __('content.Terms and Conditions') }}</a></li>
+                        <li><a href="{{ route('website.privacy') }}" title="{{ __('content.Privacy') }}">{{ __('content.Privacy') }}</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
                     <h3>{{ __('content.Quick link') }}</h3>
                     <ul class="menu">
-                        <li><a href="{{ route('website.index') }}" title="{{ __('content.Home') }}">{{ __('content.Home') }}</a></li>
                         <li><a href="{{ route('website.search') }}" title="{{ __('content.Search a package') }}">{{ __('content.Search a package') }}</a></li>
+                        <li><a href="{{ route('website.index') }}" title="{{ __('content.Home') }}">{{ __('content.Home') }}</a></li>
                         <li><a href="{{ route('website.calculation') }}" title="{{ __('content.Calculate time & cost') }}">{{ __('content.Calculate time & cost') }}</a></li>
                         <li><a href="{{ route('website.about-us') }}" title="{{ __('content.About-us') }}">{{ __('content.About-us') }}</a></li>
                         <li><a href="{{ route('website.pricing') }}" title="{{ __('content.Pricing') }}">{{ __('content.Pricing') }}</a></li>
@@ -26,9 +27,9 @@
                     <a class="logo" href="{{ route('website.index') }}" title="logo"><img src="{{ asset('frontend/assets/images/Dana-menu-logo.png') }}" alt="Logo"></a>
                     <p class="italic">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
                     <div class="infomation">
-                        <p><i class="zmdi zmdi-pin"></i>Misr Al gadeda, Cairo, Egypt</p>
-                        <p><i class="zmdi zmdi-phone"></i>+(20) 10 4568 7895</p>
-                        <p><i class="zmdi zmdi-email"></i>info@droplin.com</p>
+                        <p class="open-sans"><i class="zmdi zmdi-pin"></i>Misr Al gadeda, Cairo, Egypt</p>
+                        <p class="open-sans"><i class="zmdi zmdi-phone"></i>+(20) 10 4568 7895</p>
+                        <p class="open-sans"><i class="zmdi zmdi-email"></i>info@droplin.com</p>
                     </div>
                 </div>
             @else
@@ -36,7 +37,7 @@
                     <a class="logo" href="{{ route('website.index') }}" title="logo"><img src="{{ asset('frontend/assets/images/Dana-menu-logo.png') }}" alt="Logo"></a>
                     <p class="italic">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
                     <div class="infomation">
-                        <p><i class="zmdi zmdi-pin"></i>Misr Al gadeda, Cairo, Egypt</p>
+                        <p><i class="zmdi zmdi-pin "></i>Misr Al gadeda, Cairo, Egypt</p>
                         <p><i class="zmdi zmdi-phone"></i>+(20) 10 4568 7895</p>
                         <p><i class="zmdi zmdi-email"></i>info@droplin.com</p>
                     </div>
@@ -58,6 +59,7 @@
                         <li><a href="{{ route('website.account') }}" title="{{ __('content.my_account') }}">{{ __('content.my_account') }}</a></li>
                         <li><a href="{{ route('website.locations') }}" title="{{ __('content.locations') }}">{{ __('content.locations') }}</a></li>
                         <li><a href="{{ route('website.terms') }}" title="{{ __('content.Terms and Conditions') }}">{{ __('content.Terms and Conditions') }}</a></li>
+                        <li><a href="{{ route('website.privacy') }}" title="{{ __('content.Privacy') }}">{{ __('content.Privacy') }}</a></li>
                     </ul>
                 </div>
             @endif

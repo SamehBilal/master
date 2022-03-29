@@ -58,6 +58,11 @@ class WebsiteRoutesController extends Controller
         return view('website.terms');
     }
 
+    public function privacy()
+    {
+        return view('website.privacy');
+    }
+
     public function track($order)
     {
         $order = Order::findOrFail($order);

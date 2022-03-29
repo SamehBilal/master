@@ -1389,6 +1389,7 @@ ul.tabs.title p {
   font-size: 16px;
   font-weight: 400;
   margin-top: 25px;
+  text-align: left;
 }
 
 .featured-product .wrap-time p.best-price span {
@@ -6718,7 +6719,7 @@ nav.pagination {
 }
 
 #header .header-top .logo {
-  float: left;
+  float: right;
 }
 
 #header .header-top .logo a {

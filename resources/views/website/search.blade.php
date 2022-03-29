@@ -72,7 +72,7 @@
             <!-- End blog-post-container -->
             <div class="widget-area col-xs-12 col-md-3 blog-colum-right">
                 <aside class="widget">
-                    <h4>Search Another Package</h4>
+                    <h4>{{ __('content.Search a package') }}</h4>
                     <div class="search">
                         <form action="{{ route('website.search') }}" method="GET">
                             <input type="text" autocomplete="off" placeholder="{{ __('content.tracking No') }}" value="" class="ajax_autosuggest_input ac_input" name="s">
@@ -83,7 +83,7 @@
                     </div>
                 </aside>
                 <aside class="widget">
-                    <h4>Links</h4>
+                    <h4>{{ __('content.Links') }}</h4>
                     <ul class="menu-category">
                         <li><a title="Home" href="{{ route('website.index') }}">{{ __('content.Home') }}</a></li>
                         <li><a title="Pricing" href="{{ route('website.pricing') }}">{{ __('content.Pricing') }}</a></li>

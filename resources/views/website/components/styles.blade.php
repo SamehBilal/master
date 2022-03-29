@@ -9,12 +9,16 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/vendor/owl-slider.css') }}"/>
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/vendor/settings.css') }}"/>
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/vendor/animate.css') }}"/>
-
+<link href="http://fonts.cdnfonts.com/css/cairo" rel="stylesheet">
 <style>
     @if($locale == 'ar')
-    * {
-        font-family: 'Cairo',Helvetica,Arial,Lucida,sans-serif;!important;
-    }
+    /** {
+        font-family: "Cairo", serif;!important;
+
+    }*/
     @else
+    #header .header-top .logo{
+        float: left;
+    }
     @endif
 </style>

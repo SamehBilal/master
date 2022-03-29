@@ -4,6 +4,21 @@
     active
 @endsection
 
+@section('extra-scripts')
+    <style>
+        .title-text h3 {
+            padding-left: 70px;
+        }
+
+        .title-text h3:after {
+            position: absolute;
+            content: "";
+            left: 0px;
+            top: 50%;
+        }
+    </style>
+@endsection
+
 @section('content')
     <header id="header" class="header-v3">
         @include('website.components.main-navigation')
@@ -24,7 +39,7 @@
         </div>
         <!-- End container -->
     </div>
-    <div class="col-12 container">
+    <div class="col-12 container" dir="ltr">
         <div class="text-about">
             <div class="title-text title-about">
                 <h3><span>s</span>hipping Terms and Conditions</h3>
