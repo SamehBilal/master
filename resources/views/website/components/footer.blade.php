@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-md-5">
                     <a class="logo" href="{{ route('website.index') }}" title="logo"><img src="{{ asset('frontend/assets/images/Dana-menu-logo.png') }}" alt="Logo"></a>
-                    <p class="italic">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+                    <p class="italic">{{ __('content.mission') }}</p>
                     <div class="infomation">
                         <p class="open-sans"><i class="zmdi zmdi-pin"></i>Misr Al gadeda, Cairo, Egypt</p>
                         <p class="open-sans"><i class="zmdi zmdi-phone"></i>+(20) 10 4568 7895</p>
@@ -35,7 +35,7 @@
             @else
                 <div class="col-md-5">
                     <a class="logo" href="{{ route('website.index') }}" title="logo"><img src="{{ asset('frontend/assets/images/Dana-menu-logo.png') }}" alt="Logo"></a>
-                    <p class="italic">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.</p>
+                    <p class="italic">{{ __('content.mission') }}</p>
                     <div class="infomation">
                         <p><i class="zmdi zmdi-pin "></i>Misr Al gadeda, Cairo, Egypt</p>
                         <p><i class="zmdi zmdi-phone"></i>+(20) 10 4568 7895</p>
@@ -68,7 +68,7 @@
     <div class="footer-bottom" dir="ltr">
         <div class="container">
             <div class="col-md-8">
-                <p>&copy; COPYRIGHT 2021 </p>
+                <p class="open-sans">&copy; COPYRIGHT 2021 </p>
                 <a href="#" title="facebook"><i class="zmdi zmdi-facebook"></i></a>
                 <a href="#" title="google"><i class="zmdi zmdi-google-plus"></i></a>
                 <a href="#" title="instagram"><i class="zmdi zmdi-instagram"></i></a>

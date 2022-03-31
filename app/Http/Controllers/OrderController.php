@@ -100,11 +100,6 @@ class OrderController extends Controller
         return view('orders.create',compact('pickups','cities', 'states','countries','locations','customers','contacts'));
     }
 
-    public function multi()
-    {
-        return view('orders.create-multi');
-    }
-
     /**
      * Store a newly created resource in storage.
      *

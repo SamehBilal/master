@@ -3874,7 +3874,7 @@ ul.tabs.title p {
   top: 50%;
   height: 2px;
   width: 0px;
-  background: #000;
+  background: #FFAF00;
   content: "";
   -webkit-transition: all 0.4s ease 0s;
   -o-transition: all 0.4s ease 0s;

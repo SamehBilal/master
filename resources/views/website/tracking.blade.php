@@ -343,7 +343,7 @@
         <div class="container">
             <ul>
                 <li><a href="{{ route('website.index') }}">{{ __('content.Home') }}</a></li>
-                <li class="active">{{ __('content.Track') }} #{{ $order->tracking_no }}</li>
+                <li class="active">{{ __('content.Track') }} <span class="open-sans">#{{ $order->tracking_no }}</span></li>
             </ul>
         </div>
         <!-- End container -->
@@ -376,7 +376,7 @@
                         <div class="hoz-tab-container space-padding-tb-40">
                             <ul class="tabs">
                                 {{--<li class="item" rel="overview">Overview</li>--}}
-                                <li class="item" rel="{{ __('content.Specification') }}">{{ __('content.Specification') }}</li>
+                                <li class="item" rel="Specification">{{ __('content.Specification') }}</li>
                             </ul>
                             <div class="tab-container">
                                 {{--<div id="overview" class="tab-content">
@@ -406,63 +406,87 @@
                                         </div>
                                     </div>
                                 </div>--}}
-                                <div id="specification" class="tab-content">
+                                <div id="Specification" class="tab-content">
                                     <table class="table">
                                         <tr>
                                             <td>{{ __('content.tracking No') }}</td>
-                                            <td><b>{{ $order->tracking_no }}</b></td>
+                                            <td class="open-sans"><b>{{ $order->tracking_no }}</b></td>
                                         </tr>
                                         <tr>
                                             <td>{{ __('content.Type') }}</td>
-                                            <td><b>{{ $order->type }}</b></td>
+                                            <td class="open-sans"><b>{{ $order->type }}</b></td>
                                         </tr>
                                         <tr>
-                                            <td>{{ __('content.Cash on Delivery') }}</td>
-                                            <td>{{ $order->cash_on_delivery }}</td>
+                                            @switch($order->type)
+                                                @case('Deliver')
+                                                    <td>{{ __('content.Cash on Delivery') }}</td>
+                                                    <td class="open-sans">
+                                                        {{ $order->cash_on_delivery }}
+                                                    </td>
+                                                @break
+                                                @case('Exchange')
+                                                    <td>{{ __('dashboard.Cash Exchange Amount') }}</td>
+                                                    <td class="open-sans">
+                                                        {{ $order->cash_exchange_amount }}
+                                                    </td>
+                                                @break
+                                                @case('Return')
+                                                    <td>{{ __('dashboard.Refund Amount') }}</td>
+                                                    <td class="open-sans">
+                                                        {{ $order->refund_amount }}
+                                                    </td>
+                                                @break
+                                                @case('Cash Collection')
+                                                    <td>{{ __('dashboard.Cash to Collect') }}</td>
+                                                    <td class="open-sans">
+                                                        {{ $order->cash_to_collect }}
+                                                    </td>
+                                                @break
+                                            @endswitch
                                         </tr>
                                         <tr>
                                             <td>{{ __('content.No of Items') }}</td>
-                                            <td><b>{{ $order->no_of_items }}</b></td>
+                                            <td class="open-sans"><b>{{ $order->no_of_items }}</b></td>
                                         </tr>
                                         <tr>
                                             <td>{{ __('content.Customer') }}</td>
-                                            <td><b>{{ $order->customer->user->full_name }}</b></td>
+                                            <td class="open-sans"><b>{{ $order->customer->user->full_name }}</b></td>
                                         </tr>
                                         <tr>
                                             <td>{{ __('content.Customer Phone') }}</td>
-                                            <td><b>{{ $order->customer->user->phone }}</b></td>
+                                            <td class="open-sans"><b>{{ $order->customer->user->phone }}</b></td>
                                         </tr>
                                         <tr>
                                             <td>{{ __('content.Customer Other Phone') }}</td>
-                                            <td><b>{{ $order->customer->user->other_phone }}</b></td>
+                                            <td class="open-sans"><b>{{ $order->customer->user->other_phone }}</b></td>
                                         </tr>
                                         <tr>
                                             <td>{{ __('content.Location') }}</td>
-                                            <td><b>{{ $order->location->name }}</b></td>
+                                            <td class="open-sans"><b>{{ $order->location->name }}</b></td>
                                         </tr>
                                         <tr>
                                             <td>{{ __('content.Street') }}</td>
-                                            <td><b>{{ $order->location->street }}</b></td>
+                                            <td class="open-sans"><b>{{ $order->location->street }}</b></td>
                                         </tr>
                                         <tr>
                                             <td>{{ __('content.Building') }}</td>
-                                            <td><b>{{ $order->location->building }}</b></td>
+                                            <td class="open-sans"><b>{{ $order->location->building }}</b></td>
                                         </tr>
                                         <tr>
                                             <td>{{ __('content.Floor') }}</td>
-                                            <td><b>{{ $order->location->floor }}</b></td>
+                                            <td class="open-sans"><b>{{ $order->location->floor }}</b></td>
                                         </tr>
                                         <tr>
                                             <td>{{ __('content.Apartment') }}</td>
-                                            <td><b>{{ $order->location->apartment }}</b></td>
+                                            <td class="open-sans"><b>{{ $order->location->apartment }}</b></td>
                                         </tr>
                                         <tr>
                                             <td>{{ __('content.Open Package') }}</td>
-                                            <td><b>{{ $order->open_package == 1 ? 'Allowed':'Not Allowed' }}</b></td>
+                                            <td class="open-sans"><b>{{ $order->open_package == 1 ? 'Allowed':'Not Allowed' }}</b></td>
                                         </tr>
                                         <tr>
                                             <td>{{ __('content.Delivery Notes') }}</td>
-                                            <td><b>{{ $order->delivery_notes }} </b></td>
+                                            <td class="open-sans"><b>{{ $order->delivery_notes }} </b></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -475,7 +499,7 @@
                         <div class="hoz-tab-container space-padding-tb-40">
                             <ul class="tabs">
                                 {{--<li class="item" rel="overview">Overview</li>--}}
-                                <li class="item" rel="{{ __('content.Specification') }}">{{ __('content.Specification') }}</li>
+                                <li class="item" rel="Specification">{{ __('content.Specification') }}</li>
                             </ul>
                             <div class="tab-container">
                                 {{--<div id="overview" class="tab-content">
@@ -505,7 +529,7 @@
                                         </div>
                                     </div>
                                 </div>--}}
-                                <div id="specification" class="tab-content">
+                                <div id="Specification" class="tab-content">
                                     <table class="table">
                                         <tr>
                                             <td>{{ __('content.tracking No') }}</td>

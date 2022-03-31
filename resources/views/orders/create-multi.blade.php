@@ -36,30 +36,41 @@
                     </div>
                    {{--  <p class="card-subtitle text-70 mb-16pt mb-lg-0">Drag and drop file uploads with image previews powered by Dropzone.js. Please read the <a href="http://www.dropzonejs.com/"                                                                                                                                        target="_blank">official plugin documentation</a> for a full list of options.</p>
                  --}}</div>
-                <div class="col-lg-8 d-flex align-items-center">
-                    <div class="flex"
-                         style="max-width: 100%">
 
-                        <div class="form-group m-0">
-                            <div class="custom-file">
-                                <input type="file"
-                                       id="file"
-                                       class="custom-file-input">
-                                <label for="file"
-                                       class="custom-file-label">{{ __('dashboard.Choose file') }}</label>
-                            </div>
+                    <div class="col-lg-8 d-flex align-items-center">
+                        <div class="flex"
+                             style="max-width: 100%">
+                            <form id="multi-form" action="{{ route('dashboard.orders.create.multi.store') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group m-0">
+                                    <div class="custom-file">
+                                        <input type="file"
+                                               id="file"
+                                               name="file"
+                                               class="custom-file-input">
+                                        <label for="file"
+                                               class="custom-file-label">{{ __('dashboard.Choose file') }}</label>
+                                        @foreach ($errors->all() as $error)
+
+                                            <div>{{ $error }}</div>
+
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-
-                         <code class="highlight html  bg-transparent">&lt;div&nbsp;<br />
-                            &nbsp;&nbsp;class=&quot;dropzone&nbsp;dropzone-multiple&nbsp;w-100&quot;&nbsp;<br />
-                            &nbsp;&nbsp;data-toggle=&quot;dropzone&quot;&nbsp;<br />
-                            &nbsp;&nbsp;data-dropzone-multiple&nbsp;<br />
-                            &nbsp;&nbsp;data-dropzone-url=&quot;http://&quot;<br />
-                            &nbsp;&nbsp;data-dropzone-files=&#39;[&quot;public/images/256_daniel-gaffey-1060698-unsplash.jpg&quot;,&nbsp;&quot;public/images/256_rsz_clem-onojeghuo-150467-unsplash.jpg&quot;,&nbsp;&quot;public/images/256_rsz_florian-perennes-594195-unsplash.jpg&quot;]&#39;&gt;...&lt;/div&gt;</code>
                     </div>
-                </div>
+
             </div>
 
         </div>
 
+@endsection
+
+@section('extra-scripts')
+    <script>
+        document.getElementById("file").onchange = function() {
+            document.getElementById("multi-form").submit();
+        };
+    </script>
 @endsection

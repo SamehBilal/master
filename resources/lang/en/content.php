@@ -147,4 +147,6 @@ return [
     'PHONE NUMBER'               => 'PHONE NUMBER',
     'EMAIL ADDRESS'              => 'EMAIL ADDRESS',
     'Address'                    => 'Address',
+    'There are no'               => 'There are no shipments with this tracking number.',
+    'packages yet'               => 'You don\'t have any packages yet.',
 ];

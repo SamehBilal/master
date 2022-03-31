@@ -47,9 +47,36 @@
                                 <div class="item-inner">
                                     <div class="product ">
                                         {{--<span class="new lable">New</span>--}}
-                                        <p class="product-title">#{{ $order->tracking_no }}</p>
-                                        <p class="product-price"><span>{{ __('content.Cash on Delivery') }}: </span>{{ $order->cash_on_delivery }}
-                                            {{ __('content.EGP') }}</p>
+                                        <p class="product-title open-sans">#{{ $order->tracking_no }}</p>
+                                        <p class="product-price">
+                                            @switch($order->type)
+                                                @case('Deliver')
+                                                <span>{{ __('content.Cash on Delivery') }}</span>
+                                                <span class="open-sans">
+                                                    {{ $order->cash_on_delivery }} {{ __('content.EGP') }}
+                                                </span>
+                                                @break
+                                                @case('Exchange')
+                                                <span>{{ __('dashboard.Cash Exchange Amount') }}</span>
+                                                <span class="open-sans">
+                                                    {{ $order->cash_exchange_amount }} {{ __('content.EGP') }}
+                                                </span>
+                                                @break
+                                                @case('Return')
+                                                <span>{{ __('dashboard.Refund Amount') }}</span>
+                                                <span class="open-sans">
+                                                    {{ $order->refund_amount }} {{ __('content.EGP') }}
+                                                </span>
+                                                @break
+                                                @case('Cash Collection')
+                                                <span>{{ __('dashboard.Cash to Collect') }}</span>
+                                                <span class="open-sans">
+                                                    {{ $order->cash_to_collect }} {{ __('content.EGP') }}
+                                                </span>
+                                                @break
+                                            @endswitch
+
+                                        </p>
                                         <a class="product-images" href="#" title="">
                                             <img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product1 copy1.png') }}" alt="images"/>
                                             <img class="secondary_image" src="{{ asset('frontend/assets/images/Dana-home1-product1 copy1.png') }}" alt="images"/>
@@ -61,6 +88,7 @@
                                     </div>
                                 </div>
                             @empty
+                                <h3>{{ __('content.packages yet') }}</h3>
                             @endforelse
                         </div>
                     </div>

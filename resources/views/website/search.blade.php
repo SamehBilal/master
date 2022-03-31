@@ -29,24 +29,43 @@
             <div class="blog-post-container blog-page blog-post-columns-2 col-md-9">
                 <div class="row margin-0">
                     @if(isset($_GET['s']) && !empty($_GET['s']))
-                    <div class="blog-post-item">
-                        <div class="blog-post-image effect-v6">
-                            <a href="{{ route('website.track',$order[0]['id']) }}" title="Post"><img src="{{ asset('frontend/assets/images/ImgBlog/12.png') }}" alt="images"></a>
-                        </div>
-                        <p class="date">
-                            <span class="COD">{{ $order[0]['cash_on_delivery'] }}</span>
-                            <span class="EGP">EGP</span>
-                        </p>
-                        <h3><a href="{{ route('website.track',$order[0]['id']) }}" title="#{{ $order[0]['tracking_no'] }}">#{{ $order[0]['tracking_no'] }}</a></h3>
-                        <p class="content"><i class="zmdi zmdi-map"></i> {{ $location->name }}</p>
-                        <div class="bottom-tag">
-                            <a class="read-more" href="{{ route('website.track',$order[0]['id']) }}" title="{{ __('content.Track Your Shipment') }}">{{ __('content.Track Your Shipment') }}</a>
-                            <p class="tags">
-                                <a class="user" href="#" title="Order Type"><i class="zmdi zmdi-shopping-cart"></i>{{ $order[0]['type'] }} </a>
-                                <a class="comment" href="#" title="Number of Items"><i class="zmdi zmdi-collection-item-9-plus"></i>{{ $order[0]['no_of_items'] }} item(s)</a>
-                            </p>
-                        </div>
-                    </div>
+                        @if($order)
+                            <div class="blog-post-item">
+                                <div class="blog-post-image effect-v6">
+                                    <a href="{{ route('website.track',$order->id) }}" title="Post"><img src="{{ asset('frontend/assets/images/ImgBlog/12.png') }}" alt="images"></a>
+                                </div>
+                                <p class="date">
+                                    <span class="COD open-sans">
+                                        @switch($order->type)
+                                            @case('Deliver')
+                                                {{ $order->cash_on_delivery }}
+                                            @break
+                                            @case('Exchange')
+                                                {{ $order->cash_exchange_amount }}
+                                            @break
+                                            @case('Return')
+                                                {{ $order->refund_amount }}
+                                            @break
+                                            @case('Cash Collection')
+                                                {{ $order->cash_to_collect }}
+                                            @break
+                                        @endswitch
+                                    </span>
+                                    <span class="EGP">{{ __('content.EGP') }}</span>
+                                </p>
+                                <h3 class="open-sans"><a href="{{ route('website.track',$order->id) }}" title="#{{ $order->tracking_no }}">#{{ $order->tracking_no }}</a></h3>
+                                <p class="content"><i class="zmdi zmdi-map"></i> {{ $order->location ? $order->location->name:'' }}</p>
+                                <div class="bottom-tag">
+                                    <a class="read-more" href="{{ route('website.track',$order->id) }}" title="{{ __('content.Track Your Shipment') }}">{{ __('content.Track Your Shipment') }}</a>
+                                    <p class="tags">
+                                        <a class="user" href="#" title="Order Type"><i class="zmdi zmdi-shopping-cart"></i>{{ $order->type }} </a>
+                                        {{--<a class="comment" href="#" title="Number of Items"><i class="zmdi zmdi-collection-item-9-plus"></i>{{ $order->no_of_items }} item(s)</a>--}}
+                                    </p>
+                                </div>
+                            </div>
+                        @else
+                            <h3>{{ __('content.There are no') }}</h3>
+                        @endif
                     <!-- End blog-item -->
                     @else
                         <div class="col-md-12 coupon">
@@ -87,7 +106,7 @@
                     <ul class="menu-category">
                         <li><a title="Home" href="{{ route('website.index') }}">{{ __('content.Home') }}</a></li>
                         <li><a title="Pricing" href="{{ route('website.pricing') }}">{{ __('content.Pricing') }}</a></li>
-                        <li><a title="Contact Us" href="{{ route('website.contact-us') }}">{{ __('content.Confirm Password') }}</a></li>
+                        <li><a title="Contact Us" href="{{ route('website.contact-us') }}">{{ __('content.Contact-us') }}</a></li>
                         <li><a title="My Account" href="{{ route('website.account') }}">{{ __('content.my_account') }}</a></li>
                         <li><a title="Terms & Conditions" href="{{ route('website.terms') }}">{{ __('content.Terms and Conditions') }}</a></li>
                         {{--<li><a href="{{ route('website.calculation') }}" title="Calculate time & cost">Calculate time & cost</a></li>--}}

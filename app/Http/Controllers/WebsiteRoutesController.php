@@ -72,19 +72,28 @@ class WebsiteRoutesController extends Controller
     public function search()
     {
         $order          = '';
-        $location       = '';
         if(request()->s)
         {
-            $order       = Order::where('tracking_no',request()->s)->get();
-            $location    = Location::findOrFail($order[0]['location_id']);
+            $order       = Order::where('tracking_no',request()->s)->first();
         }
-        return view('website.search',compact('order','location'));
+
+        return view('website.search',compact('order'));
     }
 
     public function account()
     {
         $user           = auth()->user();
-        $orders         = Auth::user()->customer->orders;
+        if(!$user)
+        {
+            abort(404);
+        }
+        if($user->customer)
+        {
+            $orders     = $user->customer->orders;
+        }else{
+            $orders = [];
+        }
+
         return view('website.account',compact('user','orders'));
     }
 

@@ -49,7 +49,7 @@
                         </div>
                         <!-- End wrap-title -->
                         <a title="" href="#" class="product-images">
-                            <h1 style="font-size: 8em;color: #3a3a3a">50</h1><small> {{ __('content.EGP') }}</small>
+                            <h1 style="font-size: 8em;color: #3a3a3a" class="open-sans">50</h1><small> {{ __('content.EGP') }}</small>
                         </a>
                         <div class="action">
                             <a href="#" class="link-button">{{ __('content.Join Now') }}</a>
@@ -64,7 +64,7 @@
                         </div>
                         <!-- End wrap-title -->
                         <a title="" href="#" class="product-images">
-                            <h1 style="font-size: 8em;color: #3a3a3a">55</h1><small> {{ __('content.EGP') }}</small>
+                            <h1 style="font-size: 8em;color: #3a3a3a" class="open-sans">55</h1><small> {{ __('content.EGP') }}</small>
                         </a>
                         <div class="action">
                             <a href="#" class="link-button">{{ __('content.Join Now') }}</a>
@@ -79,7 +79,7 @@
                         </div>
                         <!-- End wrap-title -->
                         <a title="" href="#" class="product-images">
-                            <h1 style="font-size: 8em;color: #3a3a3a">60</h1><small> {{ __('content.EGP') }}</small>
+                            <h1 style="font-size: 8em;color: #3a3a3a" class="open-sans">60</h1><small> {{ __('content.EGP') }}</small>
                         </a>
                         <div class="action">
                             <a href="#" class="link-button">{{ __('content.Join Now') }}</a>
@@ -94,7 +94,7 @@
                         </div>
                         <!-- End wrap-title -->
                         <a title="" href="#" class="product-images">
-                            <h1 style="font-size: 8em;color: #3a3a3a">65</h1><small> {{ __('content.EGP') }}</small>
+                            <h1 style="font-size: 8em;color: #3a3a3a" class="open-sans">65</h1><small> {{ __('content.EGP') }}</small>
                         </a>
                         <div class="action">
                             <a href="#" class="btn-sm link-button">{{ __('content.Join Now') }}</a>
@@ -109,7 +109,7 @@
                         </div>
                         <!-- End wrap-title -->
                         <a title="" href="#" class="product-images">
-                            <h1 style="font-size: 8em;color: #3a3a3a">60</h1><small> {{ __('content.EGP') }}</small>
+                            <h1 style="font-size: 8em;color: #3a3a3a" class="open-sans">60</h1><small> {{ __('content.EGP') }}</small>
                         </a>
                         <div class="action">
                             <a href="#" class="btn-sm link-button">{{ __('content.Join Now') }}</a>
