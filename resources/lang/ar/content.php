@@ -113,7 +113,8 @@ return [
 
     /* Tracking */
     'Track'                      => 'تتبع',
-    'Specification'              => 'التفاصيل',
+    'Tracking'                   => 'التتبع',
+    'Specification'              => 'الشحنة',
     'Type'                       => 'النوع',
     'Cash on Delivery'           => 'النقود عند التوصيل',
     'No of Items'                => 'عدد الأصناف',

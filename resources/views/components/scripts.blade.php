@@ -82,6 +82,7 @@
 
 <!-- Highlight.js -->
 <script src="{{ asset('backend/js/hljs.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
 <!-- custom -->
 <script src="{{ asset('backend/js/custom.js') }}"></script>
@@ -104,5 +105,19 @@
         });
 
     });
+
+    $('#details').summernote(
+        {
+            tabsize: 2,
+            height: 300,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+            ]
+        }
+    );
 </script>
 

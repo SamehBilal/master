@@ -118,6 +118,24 @@
                     </a>
                 </li>
                 @endcan
+                @can('create mission')
+                    <li class="sidebar-menu-item {{ set_active(['dashboard/mission*'])}}">
+                        <a class="sidebar-menu-button"
+                           href="{{ route('dashboard.mission.create') }}">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">remove_red_eye</span>
+                            {{ __('dashboard.mission') }}
+                        </a>
+                    </li>
+                @endcan
+                @can('create deals')
+                    <li class="sidebar-menu-item {{ set_active(['dashboard/deals*'])}}">
+                        <a class="sidebar-menu-button"
+                           href="{{ route('dashboard.deals.index') }}">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">local_offer</span>
+                            {{ __('dashboard.deals') }}
+                        </a>
+                    </li>
+                @endcan
             </ul>
             <div class="sidebar-heading">{{ __('dashboard.Users') }}</div>
             <ul class="sidebar-menu">

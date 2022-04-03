@@ -1,6 +1,8 @@
 <!DOCTYPE html>
+@php $locale = session()->get('locale'); @endphp
+
 <html lang="en"
-      dir="ltr">
+      dir="{{ $locale == 'ar' ? 'rtl':'ltr' }}">
 
 <head>
     @include('components.meta-tags')

@@ -64,9 +64,12 @@ Route::group(['middleware' => ['auth']], function () {
             Route::resource('user-categories',\App\Http\Controllers\UserCategoryController::class); //User Categories
             Route::resource('zones',\App\Http\Controllers\ZoneController::class); //Zone Categories
             Route::resource('locations',\App\Http\Controllers\LocationController::class); //Location
+            Route::resource('mission',\App\Http\Controllers\AboutController::class); //Mission
+            Route::resource('deals',\App\Http\Controllers\DealController::class); //Deal
             Route::resource('contact-forms',\App\Http\Controllers\ContactFormController::class)->except(['create', 'store',]); //Contact Forms
             Route::resource('subscribers',\App\Http\Controllers\SubscribeController::class)->except(['create', 'store',]); //Subscribes
             Route::resource('businesses',\App\Http\Controllers\BusinessController::class); //Business
+            Route::get('business',[\App\Http\Controllers\BusinessController::class,'create_front']); //Business
             Route::get('location-states',[\App\Http\Controllers\LocationController::class,'get_state'])->name('locations.states'); //Get States Ajax
             Route::get('location-cities',[\App\Http\Controllers\LocationController::class,'get_city'])->name('locations.cities'); //Get Cities Ajax
             Route::resource('contacts',\App\Http\Controllers\ManageUsers\ContactController::class); //Contact

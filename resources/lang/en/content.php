@@ -115,7 +115,8 @@ return [
 
     /* Tracking */
     'Track'                      => 'Track',
-    'Specification'              => 'Specification',
+    'Tracking'                   => 'Tracking',
+    'Specification'              => 'Shipment',
     'Type'                       => 'Type',
     'Cash on Delivery'           => 'Cash on Delivery',
     'No of Items'                => 'No of Items',

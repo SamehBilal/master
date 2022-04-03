@@ -178,7 +178,7 @@
                                                 <div class="d-flex flex-column">
                                                     <small class=""><strong>{{ $customer->UserCategory ? $customer->UserCategory->name:'' }}</strong></small>
                                                     <small class=" text-50">{{ $customer->UserCategory ? $customer->UserCategory->status:'' }}</small>
-                                                    <span class="indicator-line rounded {{ $customer->UserCategory->status == 'active' ? 'bg-success':'bg-danger' }}"></span>
+                                                    <span class="indicator-line rounded {{ ($customer->UserCategory) ? $customer->UserCategory->status == 'active' ? 'bg-success':'bg-danger':'' }}"></span>
                                                 </div>
                                             </div>
                                         </div>

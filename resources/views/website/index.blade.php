@@ -137,7 +137,7 @@
                     <div class="menu-top menu-top-v2">
                         <ul class="nav-top">
                             <li class="level1 active"><a href="{{ route('website.index') }}" title="{{ __('content.Home') }}">{{ __('content.Home') }}</a></li>
-                            <li class="level1"><a href="{{ route('website.search') }}" title="{{ __('content.search') }}">{{ __('content.search') }}</a></li>
+                            <li class="level1"><a href="{{ route('website.search') }}" title="{{ __('content.Tracking') }}">{{ __('content.Tracking') }}</a></li>
                             <li class="level1 "><a href="{{ route('website.pricing') }}" title="{{ __('content.Pricing') }}">{{ __('content.Pricing') }}</a></li>
                             <li class="level1 "><a href="{{ route('website.about-us') }}" title="{{ __('content.About-us') }}">{{ __('content.About-us') }}</a></li>
                         </ul>
@@ -164,7 +164,7 @@
                                         </ul>
                                     </li>
                                     <li class="level2">
-                                        <a href="#">{{ __('content.Actions') }}</a>
+                                        <a href="#">{{ __('content.Specification') }}</a>
                                         <ul class="menu-level-2">
                                             <li class="level3"><a href="{{ route('website.search') }}" title="{{ __('content.Search a package') }}">{{ __('content.Search a package') }}</a></li>
 {{--

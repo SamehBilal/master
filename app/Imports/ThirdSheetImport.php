@@ -92,7 +92,6 @@ class ThirdSheetImport implements ToCollection
                             'location_id'                           => $location->id,
                             'business_user_id'                      => auth()->user()->id,
                         ]);
-                        dd($order);
                         break;
                     case 'Exchange';
 

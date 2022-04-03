@@ -19,7 +19,7 @@
         <div class="container">
             <ul>
                 <li><a href="{{ route('website.index') }}">{{ __('content.Home') }}</a></li>
-                <li class="active">{{ __('content.search') }}</li>
+                <li class="active">{{ __('content.Tracking') }}</li>
             </ul>
         </div>
         <!-- End container -->

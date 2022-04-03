@@ -57,6 +57,32 @@ class BusinessController extends Controller
         return view('users.customers.business.create',compact('locations','countries','states','cities','categories'));
     }
 
+    public function create_front()
+    {
+        $categories = [
+            'Books, Arts and Media',
+            'Electronics',
+            'Cosmetics and personal care',
+            'Fashion',
+            'Furniture and appliances',
+            'Healthcare supplements',
+            'Home and living',
+            'Gifts',
+            'Jewelry and accessories',
+            'Leather',
+            'Mothers and babies',
+            'Medical supplies',
+            'Office equipment and supplies',
+            'Pet supplies',
+            'Sports wear and equipment',
+            'Toys',
+            'E-commerce',
+            'Food',
+            'Shoes',
+        ];
+        return view('users.customers.business.create_front',compact('categories'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *

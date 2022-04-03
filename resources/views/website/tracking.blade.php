@@ -204,6 +204,7 @@
             font-weight: 100;
             /*max-width: 30%;*/
         }
+
         .timeline h1 {
             font-family: 'Saira', sans-serif;
             letter-spacing: 1.5px;
@@ -253,6 +254,41 @@
             width: 11px;
             content: "";
             top: 5px;
+        }
+
+        .New:after{
+            box-shadow: 0 0 0 4px #FCAF00!important;
+        }
+        .New{
+            color: #FCAF00;
+        }
+
+        .Picked-up:after{
+            box-shadow: 0 0 0 4px #ea6710!important;
+        }
+        .Picked-up{
+            color: #ea6710;
+        }
+
+        .In-transit:after{
+            box-shadow: 0 0 0 4px #00f9dc!important;
+        }
+        .In-transit{
+            color: #00f9dc;
+        }
+
+        .Out-for-delivery:after{
+            box-shadow: 0 0 0 4px #00f981!important;
+        }
+        .Out-for-delivery{
+            color: #00f981;
+        }
+
+        .Delivered{
+            color: green;
+        }
+        .Delivered:after{
+            box-shadow: 0 0 0 4px green!important;
         }
         @else
              /* Timeline */
@@ -324,6 +360,41 @@
             content: "";
             top: 5px;
         }
+
+        .New:after{
+            box-shadow: 0 0 0 4px #FCAF00!important;
+        }
+        .New{
+            color: #FCAF00;
+        }
+
+        .Picked-up:after{
+            box-shadow: 0 0 0 4px #ea6710!important;
+        }
+        .Picked-up{
+            color: #ea6710;
+        }
+
+        .In-transit:after{
+            box-shadow: 0 0 0 4px #00f9dc!important;
+        }
+        .In-transit{
+            color: #00f9dc;
+        }
+
+        .Out-for-delivery:after{
+            box-shadow: 0 0 0 4px #00f981!important;
+        }
+        .Out-for-delivery{
+            color: #00f981;
+        }
+
+        .Delivered{
+            color: green;
+        }
+        .Delivered:after{
+            box-shadow: 0 0 0 4px green!important;
+        }
         @endif
     </style>
 @endsection
@@ -359,11 +430,11 @@
 
                                 <ul class="timeline">
                                     @foreach($order->log as $log)
-                                        <li class="event" data-date="2005">
+                                        <li class="event {{ str_replace(' ', '-', $log->status ) }}" data-date="2005">
                                             <h3>{{ date("F j, Y g:i A", strtotime($log->created_at)) }}</h3>
                                             <p>"{{ $log->notes }}" 📣</p>
                                             <p><i class="zmdi zmdi-info"></i>
-                                                <a href="#">{{ $log->status }}</a></p>
+                                                <a href="#" class="{{ str_replace(' ', '-', $log->status ) }}">{{ $log->status }}</a></p>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -421,25 +492,25 @@
                                                 @case('Deliver')
                                                     <td>{{ __('content.Cash on Delivery') }}</td>
                                                     <td class="open-sans">
-                                                        {{ $order->cash_on_delivery }}
+                                                        {{ $order->cash_on_delivery }} {{ __('content.EGP') }}
                                                     </td>
                                                 @break
                                                 @case('Exchange')
                                                     <td>{{ __('dashboard.Cash Exchange Amount') }}</td>
                                                     <td class="open-sans">
-                                                        {{ $order->cash_exchange_amount }}
+                                                        {{ $order->cash_exchange_amount }} {{ __('content.EGP') }}
                                                     </td>
                                                 @break
                                                 @case('Return')
                                                     <td>{{ __('dashboard.Refund Amount') }}</td>
                                                     <td class="open-sans">
-                                                        {{ $order->refund_amount }}
+                                                        {{ $order->refund_amount }} {{ __('content.EGP') }}
                                                     </td>
                                                 @break
                                                 @case('Cash Collection')
                                                     <td>{{ __('dashboard.Cash to Collect') }}</td>
                                                     <td class="open-sans">
-                                                        {{ $order->cash_to_collect }}
+                                                        {{ $order->cash_to_collect }} {{ __('content.EGP') }}
                                                     </td>
                                                 @break
                                             @endswitch
@@ -540,8 +611,32 @@
                                             <td><b>{{ $order->type }}</b></td>
                                         </tr>
                                         <tr>
-                                            <td>{{ __('content.Cash on Delivery') }}</td>
-                                            <td>{{ $order->cash_on_delivery }}</td>
+                                            @switch($order->type)
+                                                @case('Deliver')
+                                                <td>{{ __('content.Cash on Delivery') }}</td>
+                                                <td class="open-sans">
+                                                    {{ $order->cash_on_delivery }} {{ __('content.EGP') }}
+                                                </td>
+                                                @break
+                                                @case('Exchange')
+                                                <td>{{ __('dashboard.Cash Exchange Amount') }}</td>
+                                                <td class="open-sans">
+                                                    {{ $order->cash_exchange_amount }} {{ __('content.EGP') }}
+                                                </td>
+                                                @break
+                                                @case('Return')
+                                                <td>{{ __('dashboard.Refund Amount') }}</td>
+                                                <td class="open-sans">
+                                                    {{ $order->refund_amount }} {{ __('content.EGP') }}
+                                                </td>
+                                                @break
+                                                @case('Cash Collection')
+                                                <td>{{ __('dashboard.Cash to Collect') }}</td>
+                                                <td class="open-sans">
+                                                    {{ $order->cash_to_collect }} {{ __('content.EGP') }}
+                                                </td>
+                                                @break
+                                            @endswitch
                                         </tr>
                                         <tr>
                                             <td>{{ __('content.No of Items') }}</td>
@@ -600,11 +695,11 @@
 
                                 <ul class="timeline">
                                     @foreach($order->log as $log)
-                                        <li class="event" data-date="2005">
+                                        <li class="event {{ str_replace(' ', '-', $log->status ) }}" data-date="2005">
                                             <h3>{{ date("F j, Y g:i A", strtotime($log->created_at)) }}</h3>
-                                            <p>"{{ $log->notes }}" 📣</p>
+                                            <p>"{{ $log->description }}" 📣</p>
                                             <p><i class="zmdi zmdi-info"></i>
-                                                <a href="#">{{ $log->status }}</a></p>
+                                                <a href="#" class="{{ str_replace(' ', '-', $log->status ) }}">{{ $log->status }}</a></p>
                                         </li>
                                     @endforeach
                                 </ul>

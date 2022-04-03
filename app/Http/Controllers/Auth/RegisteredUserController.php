@@ -37,7 +37,7 @@ class RegisteredUserController extends Controller
         {
             $name = explode(" ", $request->full_name);
             $request['first_name']  = $name[0];
-            $request['last_name']   = $name[count($name-1)];
+            $request['last_name']   = $name[1];
         }
         $request->validate([
             'first_name'    => ['required', 'string', 'max:255'],

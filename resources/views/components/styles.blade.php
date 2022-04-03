@@ -1,7 +1,12 @@
+@php $locale = session()->get('locale'); @endphp
+
 <link rel="shortcut icon" href="{{ asset('frontend/assets/images/favicon.png') }}"/>
 
 <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CRoboto:400,500%7CExo+2:600&display=swap"
       rel="stylesheet">
+
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 
 <!-- Datatables -->
 <link type="text/css"
@@ -91,3 +96,14 @@
 <link type="text/css"
       href="{{ asset('backend/css/custom.css') }}"
       rel="stylesheet">
+<style>
+    @if($locale == 'ar')
+    @import url(https://fonts.googleapis.com/css?family=Cairo);
+    *,.sidebar-heading,.card-title,.table thead th,.page-separator__text,.form-label {
+        font-family: "Cairo", serif;!important;
+
+    }
+    @else
+
+    @endif
+</style>
