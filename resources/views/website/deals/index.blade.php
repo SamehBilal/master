@@ -91,7 +91,7 @@
                                                     <div class="media-body">
 
                                                         <div class="d-flex flex-column">
-                                                            <p class="mb-0"><strong class="js-lists-values-title">{{ $deal->title }}</strong></p>
+                                                            <p class="mb-0"><strong class="js-lists-values-title">{{ $deal->en_title }}</strong></p>
                                                             {{--<small class="js-lists-values-rate text-50">{{ $deal->rate }}</small>--}}
                                                         </div>
 
@@ -104,7 +104,7 @@
 
                                             <td class=" js-lists-values-created small">
                                                 <div class="d-flex flex-column">
-                                                    <small class=""><strong>{{--{{ date("F j, Y, g:i a", strtotime($customer->created_at)) }}--}}{{ date("F j, Y", strtotime($deal->created_at)) }}</strong></small>
+                                                    <small class=""><strong>{{ date("F j, Y", strtotime($deal->created_at)) }}</strong></small>
                                                     <small class="text-50">{{ $deal->created_at->diffForHumans() }}</small>
                                                 </div>
                                             </td>

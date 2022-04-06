@@ -13,9 +13,12 @@ class About extends Model
     public static function rules($update = false, $id = null)
     {
         $common = [
-            'mission'               => "required",
-            'vision'                => "required",
-            'footer_description'    => "required",
+            'en_mission'               => "required",
+            'ar_mission'               => "required",
+            'en_vision'                => "required",
+            'ar_vision'                => "required",
+            'en_footer_description'    => "required",
+            'ar_footer_description'    => "required",
         ];
 
         if ($update) {

@@ -59,6 +59,9 @@ class BusinessController extends Controller
 
     public function create_front()
     {
+        $countries  = Country::all();
+        $states     = State::where('country_id',64)->get();
+        $cities     = City::where('state_id',1500)->get();
         $categories = [
             'Books, Arts and Media',
             'Electronics',
@@ -80,7 +83,7 @@ class BusinessController extends Controller
             'Food',
             'Shoes',
         ];
-        return view('users.customers.business.create_front',compact('categories'));
+        return view('users.customers.business.create_front',compact('categories','states','cities'));
     }
 
     /**
@@ -108,7 +111,7 @@ class BusinessController extends Controller
                 'country_id'            => $request->country_id,
                 'state_id'              => $request->state_id,
                 'city_id'               => $request->city_id,
-                'business_user_id'      => auth()->user()->id,
+                'business_user_id'      => $user_id,
             ]);
         }
 

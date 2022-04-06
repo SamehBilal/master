@@ -10,7 +10,47 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function __invoke()
+    public function __invoke(Request $request)
+    {
+        if(auth()->user()->hasRole('Super Admin'))
+        {
+            return $this->admin();
+
+        }elseif(auth()->user()->hasRole('admin')){
+
+            return $this->admin();
+
+        }elseif(auth()->user()->hasRole('sales')){
+
+            return $this->sales();
+
+        }elseif(auth()->user()->hasRole('finance')){
+
+            return $this->finance();
+
+        }elseif(auth()->user()->hasRole('operation admin')){
+
+            return $this->operation_admin();
+
+        }elseif(auth()->user()->hasRole('operation logistics')){
+
+            return $this->operation_logistics();
+
+        }elseif(auth()->user()->hasRole('operation courier')){
+
+            return $this->operation_courier();
+
+        }elseif(auth()->user()->hasRole('customer')){
+
+            return $this->customer();
+
+        }else{
+            return "";
+        }
+
+    }
+
+    public function admin()
     {
         // orders
         $ordersCount = Order::count();
@@ -44,7 +84,7 @@ class DashboardController extends Controller
                         $query->whereNotIn('name',['Super Admin', 'admin', 'staff']);
                     });
         });
-        
+
         $customersCount = $usersQueryFilter->count();
 
         $current_month_customers = $usersQueryFilter->whereYear('created_at', Carbon::now()->year)
@@ -62,12 +102,47 @@ class DashboardController extends Controller
         $before_4_month_customers = $usersQueryFilter->whereYear('created_at', Carbon::now()->year)
                 ->whereMonth('created_at', Carbon::now()->subMonth(4))
                 ->count();
-        $customersStatistics = array($current_month_customers, $before_1_month_customers, $before_2_month_customers, $before_3_month_customers, $before_4_month_customers);        
+        $customersStatistics = array($current_month_customers, $before_1_month_customers, $before_2_month_customers, $before_3_month_customers, $before_4_month_customers);
 
 
         return view('dashboard.admin',compact('ordersCount','ordersAVG','orders','ordersStatistics','ordersAVGStatistics'
                                             , 'openTicketsCount', 'closedTicketsCount'
                                             , 'customersCount', 'customersStatistics'));
     }
-    
+
+    public function sales()
+    {
+        $orders = Order::all();
+        return view('dashboard.sales',compact('orders'));
+    }
+
+    public function customer()
+    {
+        $orders = Order::all();
+        return view('dashboard.customer',compact('orders'));
+    }
+
+    public function finance()
+    {
+        $orders = Order::all();
+        return view('dashboard.finance',compact('orders'));
+    }
+
+    public function operation_admin()
+    {
+        $orders = Order::all();
+        return view('dashboard.operation_admin',compact('orders'));
+    }
+
+    public function operation_logistics()
+    {
+        $orders = Order::all();
+        return view('dashboard.operation_logistics',compact('orders'));
+    }
+
+    public function operation_courier()
+    {
+        $orders = Order::all();
+        return view('dashboard.operation_courier',compact('orders'));
+    }
 }

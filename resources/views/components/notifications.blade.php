@@ -62,46 +62,243 @@
                                         </span>
                                         <span class="flex d-flex flex-column">
 
-                                            <span class="text-black-70">{{ $note['data']['name'] }}Your profile information has not been synced correctly.</span>
+                                            <span class="text-black-70">A new contact form from {{ $note['data']['name'] }}</span>
+                                        </span>
+                                    </span>
+                                </a>
+                            @break
+                            @case('App\Notifications\NewOrder')
+                                <a href="javascript:void(0);"
+                                    class="list-group-item list-group-item-action unread notification">
+                                    <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
+                                    <span class="d-flex align-items-center mb-1">
+                                        <small class="text-black-50">{{ $note->created_at->diffForHumans() }}</small>
+
+                                        <span class="ml-auto unread-indicator bg-accent"></span>
+
+                                    </span>
+                                    <span class="d-flex">
+                                        <span class="avatar avatar-xs mr-2">
+                                            <span class="avatar-title rounded-circle bg-light">
+                                                <i class="material-icons font-size-16pt text-accent">account_circle</i>
+                                            </span>
+                                        </span>
+                                        <span class="flex d-flex flex-column">
+
+                                            <span class="text-black-70">A new order from {{ $note['data']['customer_full_name'] }}</span>
+                                        </span>
+                                    </span>
+                                </a>
+                            @break
+                            @case('App\Notifications\NewPickup')
+                                <a href="javascript:void(0);"
+                                    class="list-group-item list-group-item-action unread notification">
+                                    <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
+                                    <span class="d-flex align-items-center mb-1">
+                                        <small class="text-black-50">{{ $note->created_at->diffForHumans() }}</small>
+
+                                        <span class="ml-auto unread-indicator bg-accent"></span>
+
+                                    </span>
+                                    <span class="d-flex">
+                                        <span class="avatar avatar-xs mr-2">
+                                            <span class="avatar-title rounded-circle bg-light">
+                                                <i class="material-icons font-size-16pt text-accent">account_circle</i>
+                                            </span>
+                                        </span>
+                                        <span class="flex d-flex flex-column">
+
+                                            <span class="text-black-70">A new pickup from {{ DB::table('users')->where('id',$note['data']['business_user_id'])->value('full_name') }}</span>
+                                        </span>
+                                    </span>
+                                </a>
+                            @break
+                            @case('App\Notifications\NewSubscriber')
+                                <a href="javascript:void(0);"
+                                    class="list-group-item list-group-item-action unread notification">
+                                    <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
+                                    <span class="d-flex align-items-center mb-1">
+                                        <small class="text-black-50">{{ $note->created_at->diffForHumans() }}</small>
+
+                                        <span class="ml-auto unread-indicator bg-accent"></span>
+
+                                    </span>
+                                    <span class="d-flex">
+                                        <span class="avatar avatar-xs mr-2">
+                                            <span class="avatar-title rounded-circle bg-light">
+                                                <i class="material-icons font-size-16pt text-accent">account_circle</i>
+                                            </span>
+                                        </span>
+                                        <span class="flex d-flex flex-column">
+
+                                            <span class="text-black-70">A new subscribe from {{ $note['data']['email'] }}</span>
+                                        </span>
+                                    </span>
+                                </a>
+                            @break
+                            @case('App\Notifications\NewTicket')
+                                <a href="javascript:void(0);"
+                                    class="list-group-item list-group-item-action unread notification">
+                                    <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
+                                    <span class="d-flex align-items-center mb-1">
+                                        <small class="text-black-50">{{ $note->created_at->diffForHumans() }}</small>
+
+                                        <span class="ml-auto unread-indicator bg-accent"></span>
+
+                                    </span>
+                                    <span class="d-flex">
+                                        <span class="avatar avatar-xs mr-2">
+                                            <span class="avatar-title rounded-circle bg-light">
+                                                <i class="material-icons font-size-16pt text-accent">account_circle</i>
+                                            </span>
+                                        </span>
+                                        <span class="flex d-flex flex-column">
+
+                                            <span class="text-black-70">A new ticket from {{ $note['data']['user_full_name'] }}</span>
+                                        </span>
+                                    </span>
+                                </a>
+                            @break
+                            @case('App\Notifications\NewTicketChat')
+                                <a href="javascript:void(0);"
+                                    class="list-group-item list-group-item-action unread notification">
+                                    <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
+                                    <span class="d-flex align-items-center mb-1">
+                                        <small class="text-black-50">{{ $note->created_at->diffForHumans() }}</small>
+
+                                        <span class="ml-auto unread-indicator bg-accent"></span>
+
+                                    </span>
+                                    <span class="d-flex">
+                                        <span class="avatar avatar-xs mr-2">
+                                            <span class="avatar-title rounded-circle bg-light">
+                                                <i class="material-icons font-size-16pt text-accent">account_circle</i>
+                                            </span>
+                                        </span>
+                                        <span class="flex d-flex flex-column">
+
+                                            <span class="text-black-70">A new ticket message from {{ DB::table('users')->where('id',$note['data']['user_id'])->value('full_name') }}</span>
+                                        </span>
+                                    </span>
+                                </a>
+                            @break
+                            @case('App\Notifications\NewUser')
+                                <a href="javascript:void(0);"
+                                    class="list-group-item list-group-item-action unread notification">
+                                    <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
+                                    <span class="d-flex align-items-center mb-1">
+                                        <small class="text-black-50">{{ $note->created_at->diffForHumans() }}</small>
+
+                                        <span class="ml-auto unread-indicator bg-accent"></span>
+
+                                    </span>
+                                    <span class="d-flex">
+                                        <span class="avatar avatar-xs mr-2">
+                                            <span class="avatar-title rounded-circle bg-light">
+                                                <i class="material-icons font-size-16pt text-accent">account_circle</i>
+                                            </span>
+                                        </span>
+                                        <span class="flex d-flex flex-column">
+
+                                            <span class="text-black-70">A new user has been created with the email of ({{ $note['data']['email'] }})</span>
+                                        </span>
+                                    </span>
+                                </a>
+                            @break
+                            @case('App\Notifications\OrderLog')
+                                <a href="javascript:void(0);"
+                                    class="list-group-item list-group-item-action unread notification">
+                                    <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
+                                    <span class="d-flex align-items-center mb-1">
+                                        <small class="text-black-50">{{ $note->created_at->diffForHumans() }}</small>
+
+                                        <span class="ml-auto unread-indicator bg-accent"></span>
+
+                                    </span>
+                                    <span class="d-flex">
+                                        <span class="avatar avatar-xs mr-2">
+                                            <span class="avatar-title rounded-circle bg-light">
+                                                <i class="material-icons font-size-16pt text-accent">account_circle</i>
+                                            </span>
+                                        </span>
+                                        <span class="flex d-flex flex-column">
+
+                                            <span class="text-black-70">A new order log for ({{ $note['data']['tracking_no'] }})</span>
+                                        </span>
+                                    </span>
+                                </a>
+                            @break
+                            @case('App\Notifications\UpdatedOrder')
+                                <a href="javascript:void(0);"
+                                    class="list-group-item list-group-item-action unread notification">
+                                    <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
+                                    <span class="d-flex align-items-center mb-1">
+                                        <small class="text-black-50">{{ $note->created_at->diffForHumans() }}</small>
+
+                                        <span class="ml-auto unread-indicator bg-accent"></span>
+
+                                    </span>
+                                    <span class="d-flex">
+                                        <span class="avatar avatar-xs mr-2">
+                                            <span class="avatar-title rounded-circle bg-light">
+                                                <i class="material-icons font-size-16pt text-accent">account_circle</i>
+                                            </span>
+                                        </span>
+                                        <span class="flex d-flex flex-column">
+
+                                            <span class="text-black-70">Order with tracking No. ({{ $note['data']['tracking_no'] }}) has been updated</span>
+                                        </span>
+                                    </span>
+                                </a>
+                            @break
+                            @case('App\Notifications\UpdatedPickup')
+                                <a href="javascript:void(0);"
+                                    class="list-group-item list-group-item-action unread notification">
+                                    <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
+                                    <span class="d-flex align-items-center mb-1">
+                                        <small class="text-black-50">{{ $note->created_at->diffForHumans() }}</small>
+
+                                        <span class="ml-auto unread-indicator bg-accent"></span>
+
+                                    </span>
+                                    <span class="d-flex">
+                                        <span class="avatar avatar-xs mr-2">
+                                            <span class="avatar-title rounded-circle bg-light">
+                                                <i class="material-icons font-size-16pt text-accent">account_circle</i>
+                                            </span>
+                                        </span>
+                                        <span class="flex d-flex flex-column">
+
+                                            <span class="text-black-70">Pickup with tracking No. ({{ $note['data']['pickup_id'] }}) has been updated</span>
+                                        </span>
+                                    </span>
+                                </a>
+                            @break
+                            @case('App\Notifications\UpdatedTicket')
+                                <a href="javascript:void(0);"
+                                    class="list-group-item list-group-item-action unread notification">
+                                    <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
+                                    <span class="d-flex align-items-center mb-1">
+                                        <small class="text-black-50">{{ $note->created_at->diffForHumans() }}</small>
+
+                                        <span class="ml-auto unread-indicator bg-accent"></span>
+
+                                    </span>
+                                    <span class="d-flex">
+                                        <span class="avatar avatar-xs mr-2">
+                                            <span class="avatar-title rounded-circle bg-light">
+                                                <i class="material-icons font-size-16pt text-accent">account_circle</i>
+                                            </span>
+                                        </span>
+                                        <span class="flex d-flex flex-column">
+
+                                            <span class="text-black-70">Ticket with tracking No. ({{ $note['data']['tracking_number'] }}) has been updated</span>
                                         </span>
                                     </span>
                                 </a>
                             @break
                             @default
                         @endswitch
-
-                        {{--@elseif($note->type == 'App\Notifications\NewOrder')
-                        @elseif($note->type == 'App\Notifications\NewPickup')
-                        @elseif($note->type == 'App\Notifications\NewSubscriber')
-                        @elseif($note->type == 'App\Notifications\NewTicket')
-                        @elseif($note->type == 'App\Notifications\NewTicketChat')
-                        @elseif($note->type == 'App\Notifications\NewUser')
-                        @elseif($note->type == 'App\Notifications\OrderLog')
-                        @elseif($note->type == 'App\Notifications\UpdatedOrder')
-                        @elseif($note->type == 'App\Notifications\UpdatedPickup')
-                        @elseif($note->type == 'App\Notifications\UpdatedTicket')
-                            <a href="javascript:void(0);"
-                               class="list-group-item list-group-item-action unread notification">
-                                <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
-                                <span class="d-flex align-items-center mb-1">
-                                    <small class="text-black-50">{{ $note->created_at->diffForHumans() }}</small>
-
-                                    <span class="ml-auto unread-indicator bg-accent"></span>
-
-                                </span>
-                                <span class="d-flex">
-                                    <span class="avatar avatar-xs mr-2">
-                                        <span class="avatar-title rounded-circle bg-light">
-                                            <i class="material-icons font-size-16pt text-accent">account_circle</i>
-                                        </span>
-                                    </span>
-                                    <span class="flex d-flex flex-column">
-
-                                        <span class="text-black-70">{{ $note['data']['name'] }}Your profile information has not been synced correctly.</span>
-                                    </span>
-                                </span>
-                            </a>
-                        @endif--}}
                     @endforeach
                 @else
                     <a href="javascript:void(0);"

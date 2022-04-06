@@ -70,6 +70,7 @@ class NewTicket extends Notification
         return [
             'id'                => $this->ticket->id,
             'user_id'           => $this->ticket->user_id,
+            'user_full_name'    => $this->ticket->user->full_name,
             'status'            => $this->ticket->status,
             'tracking_number'   => $this->ticket->tracking_number,
             'ticket_issue_id'   => $this->ticket->ticket_issue_id,

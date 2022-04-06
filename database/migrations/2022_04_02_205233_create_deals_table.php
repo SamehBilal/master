@@ -15,9 +15,12 @@ class CreateDealsTable extends Migration
     {
         Schema::create('deals', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('description');
-            $table->longText('details');
+            $table->string('en_title');
+            $table->string('ar_title');
+            $table->string('en_description');
+            $table->string('ar_description');
+            $table->longText('en_details');
+            $table->longText('ar_details');
             $table->longText('images')->nullable();
             $table->set('status',['Public','Private'])->nullable();
             $table->timestamps();

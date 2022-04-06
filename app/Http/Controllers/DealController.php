@@ -40,10 +40,13 @@ class DealController extends Controller
         $this->validate($request, Deal::rules());
 
         $deal = Deal::create([
-            'title'                  => $request->title,
-            'description'            => $request->description,
-            'details'                => $request->details,
-            'status'                 => $request->status,
+            'en_title'                  => $request->en_title,
+            'ar_title'                  => $request->ar_title,
+            'en_description'            => $request->en_description,
+            'ar_description'            => $request->ar_description,
+            'en_details'                => $request->en_details,
+            'ar_details'                => $request->ar_details,
+            'status'                    => $request->status,
         ]);
 
         if(request()->hasFile('images'))
@@ -94,10 +97,13 @@ class DealController extends Controller
         $this->validate($request, Deal::rules($update = true, $deal->id));
 
         $deal->update([
-            'title'                  => $request->title,
-            'description'            => $request->description,
-            'details'                => $request->details,
-            'status'                 => $request->status,
+            'en_title'                  => $request->en_title,
+            'ar_title'                  => $request->ar_title,
+            'en_description'            => $request->en_description,
+            'ar_description'            => $request->ar_description,
+            'en_details'                => $request->en_details,
+            'ar_details'                => $request->ar_details,
+            'status'                    => $request->status,
         ]);
 
         if(request()->hasFile('images'))

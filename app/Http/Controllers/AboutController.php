@@ -39,9 +39,12 @@ class AboutController extends Controller
         $this->validate($request, About::rules());
 
         About::create([
-            'mission'                   => $request->mission,
-            'vision'                    => $request->vision,
-            'footer_description'        => $request->footer_description,
+            'en_mission'                   => $request->en_mission,
+            'ar_mission'                   => $request->ar_mission,
+            'en_vision'                    => $request->en_vision,
+            'ar_vision'                    => $request->ar_vision,
+            'en_footer_description'        => $request->en_footer_description,
+            'ar_footer_description'        => $request->ar_footer_description,
         ]);
 
         return redirect()->back()->with('success','Data created successfully');
@@ -81,9 +84,12 @@ class AboutController extends Controller
         $this->validate($request, About::rules($update = true, $about->id));
 
         $about->update([
-            'mission'                   => $request->mission,
-            'vision'                    => $request->vision,
-            'footer_description'        => $request->footer_description,
+            'en_mission'                   => $request->en_mission,
+            'ar_mission'                   => $request->ar_mission,
+            'en_vision'                    => $request->en_vision,
+            'ar_vision'                    => $request->ar_vision,
+            'en_footer_description'        => $request->en_footer_description,
+            'ar_footer_description'        => $request->ar_footer_description,
         ]);
 
         return redirect()->back()->with('success','Data updated successfully');

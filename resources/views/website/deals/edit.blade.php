@@ -1,7 +1,7 @@
 @extends('layouts.backend')
 
 @section('title')
-    {{ $deal->title }}
+    {{ $deal->en_title }}
 @endsection
 
 @section('links')
@@ -9,7 +9,7 @@
         <a href="{{ route('dashboard.deals.index') }}">{{ __('dashboard.deals') }}</a>
     </li>
     <li class="breadcrumb-item ">
-        <a href="{{ route('dashboard.deals.show',$deal->id) }}">{{ $deal->title }}</a>
+        <a href="{{ route('dashboard.deals.show',$deal->id) }}">{{ $deal->en_title }}</a>
     </li>
     <li class="breadcrumb-item active">
         {{ __('dashboard.edit') }}
@@ -48,35 +48,69 @@
                             <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.Basic details of the deals') }}</p>
                         </div>
                         <div class="col-lg-9 row p-2">
-                            <div class="col-lg-12">
+                            <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="title">{{ __('dashboard.Title') }}:</label>
+                                           for="en_title">{{ __('dashboard.en_title') }}:</label>
                                     <input type="text"
-                                           class="form-control @error('title') is-invalid @enderror"
-                                           value="{{ old('title',$deal->title) }}"
-                                           id="title"
-                                           name="title"
+                                           class="form-control @error('en_title') is-invalid @enderror"
+                                           value="{{ old('en_title',$deal->en_title) }}"
+                                           id="en_title"
+                                           name="en_title"
                                            required="required"
-                                           autocomplete="title"
-                                           placeholder="{{ __('dashboard.Title') }} ..."
+                                           autocomplete="en_title"
+                                           placeholder="{{ __('dashboard.en_title') }} ..."
                                            autofocus>
-                                    @error('title')
+                                    @error('en_title')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="description">{{ __('dashboard.Description') }}:</label>
+                                           for="ar_title">{{ __('dashboard.ar_title') }}:</label>
+                                    <input type="text"
+                                           class="form-control @error('ar_title') is-invalid @enderror"
+                                           value="{{ old('ar_title',$deal->ar_title) }}"
+                                           id="ar_title"
+                                           name="ar_title"
+                                           required="required"
+                                           autocomplete="ar_title"
+                                           placeholder="{{ __('dashboard.ar_title') }} ..."
+                                           autofocus>
+                                    @error('ar_title')
+                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                    @enderror
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="en_description">{{ __('dashboard.en_description') }}:</label>
                                     <textarea type="text"
-                                              class="form-control @error('description') is-invalid @enderror"
-                                              id="description"
-                                              name="description"
-                                              placeholder="{{ __('dashboard.Description') }} ...">{{ old('description',$deal->description) }}</textarea>
-                                    @error('rate')
+                                           class="form-control @error('en_description') is-invalid @enderror"
+                                           id="en_description"
+                                           name="en_description"
+                                           placeholder="{{ __('dashboard.en_description') }} ...">{{ old('en_description',$deal->en_description) }}</textarea>
+                                    @error('en_description')
+                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                    @enderror
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="ar_description">{{ __('dashboard.ar_description') }}:</label>
+                                    <textarea type="text"
+                                           class="form-control @error('ar_description') is-invalid @enderror"
+                                           id="ar_description"
+                                           name="ar_description"
+                                           placeholder="{{ __('dashboard.ar_description') }} ...">{{ old('ar_description',$deal->ar_description) }}</textarea>
+                                    @error('ar_description')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
                                     <div class="valid-feedback">Looks good!</div>
@@ -84,8 +118,14 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label class="form-label" for="status">{{ __('dashboard.Details') }}:</label><br>
-                                    <textarea id="details" name="details" rows="5"  class="form-control">{{ old('details',$deal->details) }}</textarea>
+                                    <label class="form-label" for="en_details">{{ __('dashboard.en_details') }}:</label><br>
+                                    <textarea id="en_details" name="en_details" rows="5"  class="details form-control">{{ old('en_details',$deal->en_details) }}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="ar_details">{{ __('dashboard.ar_details') }}:</label><br>
+                                    <textarea id="ar_details" name="ar_details" rows="5"  class="details form-control">{{ old('ar_details',$deal->ar_details) }}</textarea>
                                 </div>
                             </div>
                             <div class="col-lg-12">

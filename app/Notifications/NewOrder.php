@@ -72,6 +72,7 @@ class NewOrder extends Notification
             'tracking_no'       => $this->order->tracking_no,
             'status'            => $this->order->status,
             'customer_id'       => $this->order->customer_id,
+            'customer_full_name'=> $this->order->customer->full_name,
             'pickup_id'         => $this->order->pickup_id,
             'business_user_id'  => $this->order->business_user_id,
             'user'              => $notifiable,
