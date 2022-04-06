@@ -70,7 +70,7 @@
                             @default
                         @endswitch
 
-                        @elseif($note->type == 'App\Notifications\NewOrder')
+                        {{--@elseif($note->type == 'App\Notifications\NewOrder')
                         @elseif($note->type == 'App\Notifications\NewPickup')
                         @elseif($note->type == 'App\Notifications\NewSubscriber')
                         @elseif($note->type == 'App\Notifications\NewTicket')
@@ -101,7 +101,7 @@
                                     </span>
                                 </span>
                             </a>
-                        @endif
+                        @endif--}}
                     @endforeach
                 @else
                     <a href="javascript:void(0);"

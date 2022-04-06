@@ -17,14 +17,14 @@ class RolesAndPermissionsSeeder extends Seeder
     public function run()
     {
         //create roles
-        Role::create(['name' => 'Super Admin']);
-        $admin              = Role::create(['name' => 'admin']);
-        $sales              = Role::create(['name' => 'sales']);
-        $finance            = Role::create(['name' => 'finance']);
-        $operation_admin    = Role::create(['name' => 'operation admin']);
-        $operation_logistics= Role::create(['name' => 'operation logistics']);
-        $operation_courier  = Role::create(['name' => 'operation courier']);
-        $customer           = Role::create(['name' => 'customer']);
+        $super_admin            = Role::create(['name' => 'Super Admin']);
+        $admin                  = Role::create(['name' => 'admin']);
+        $sales                  = Role::create(['name' => 'sales']);
+        $finance                = Role::create(['name' => 'finance']);
+        $operation_admin        = Role::create(['name' => 'operation admin']);
+        $operation_logistics    = Role::create(['name' => 'operation logistics']);
+        $operation_courier      = Role::create(['name' => 'operation courier']);
+        $customer               = Role::create(['name' => 'customer']);
 
 
         // roles permissions
@@ -190,6 +190,17 @@ class RolesAndPermissionsSeeder extends Seeder
             'edit orders',
         );
 
+        $customer->givePermissionTo(
+        // pickups permissions
+            'view pickups',
+            'show pickups',
+            // orders permissions
+            'view orders',
+            'show orders',
+            'create orders',
+            'edit orders',
+        );
+
         $finance->givePermissionTo(
             // orders permissions
             'view orders',
@@ -222,6 +233,17 @@ class RolesAndPermissionsSeeder extends Seeder
             'view locations',
             'show locations',
         );
-    }
 
+        $operation_courier->givePermissionTo(
+            // orders permissions
+            'view orders',
+            'show orders',
+            // pickups permissions
+            'view pickups',
+            'show pickups',
+            // locations permissions
+            'view locations',
+            'show locations',
+        );
+    }
 }
