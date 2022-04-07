@@ -26,7 +26,7 @@ class ContactFactory extends Factory
             'contact_job_title'     => $this->faker->name(),
             'contact_email'         => $this->faker->email(),
             'contact_phone'         => $this->faker->numerify('###########'),
-            'business_user_id'      => 2,
+            'business_user_id'      => 3,
         ];
     }
 }

@@ -8,8 +8,12 @@ use App\Models\Country;
 use App\Models\Location;
 use App\Models\Pickup;
 use App\Models\State;
+use App\Models\User;
+use App\Notifications\NewPickup;
+use App\Notifications\UpdatedPickup;
 use App\Traits\AjaxSelect;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class PickupController extends Controller
 {
@@ -22,6 +26,12 @@ class PickupController extends Controller
     public function index()
     {
         $pickups = Pickup::orderBy('updated_at','desc');
+
+        $user = User::find(auth()->user()->id);
+        if($user->hasRole('customer'))
+        {
+            $pickups = $pickups->where('business_user_id', $user->id);
+        }
 
         if(request()->pickup_id)
         {
@@ -113,6 +123,9 @@ class PickupController extends Controller
             'business_user_id'      => auth()->user()->id,
         ]);
 
+        $users = User::find(1);
+        Notification::send($users, new NewPickup($pickup));
+
         return redirect()->route('dashboard.pickups.show',$pickup->id)->with('success','Data created successfully');
     }
 
@@ -168,16 +181,49 @@ class PickupController extends Controller
     {
         $this->validate($request, Pickup::rules($update = true, $pickup->id));
 
+        if($request->location_id == null)
+        {
+            $this->validate($request, Location::rules());
+            $location = Location::create([
+                'name'                  => $request->name,
+                'street'                => $request->street,
+                'building'              => $request->building,
+                'floor'                 => $request->floor,
+                'apartment'             => $request->apartment,
+                'landmarks'             => $request->landmarks,
+                'country_id'            => $request->country_id,
+                'state_id'              => $request->state_id,
+                'city_id'               => $request->city_id,
+                'business_user_id'      => auth()->user()->id,
+            ]);
+        }
+
+        if($request->contact_id == null)
+        {
+            $this->validate($request, Contact::rules());
+            $contact = Contact::create([
+                'contact_name'                  => $request->contact_name,
+                'contact_job_title'             => $request->contact_job_title,
+                'contact_email'                 => $request->contact_email,
+                'contact_phone'                 => $request->contact_phone,
+                'business_user_id'              => auth()->user()->id,
+            ]);
+        }
         $pickup->update([
             'pickup_id'             => $request->pickup_id,
-            'type'                  => $request->type,
+            'type'                  => ($request->date_in == null) ? $request->type:'One Time',
             'scheduled_date'        => $request->scheduled_date,
+            'start_date'            => $request->start_date,
             'status'                => $request->status,
-            'notes'                 => $request->notes,
             'repeat_days'           => $request->repeat_days,
-            'contact_id'            => $request->contact_id,
-            'location_id'           => $request->location_id,
+            'notes'                 => $request->notes,
+            'contact_id'            => ($request->contact_id == null) ? $contact->id:$request->contact_id,
+            'location_id'           => ($request->location_id == null) ? $location->id:$request->location_id,
+            'business_user_id'      => auth()->user()->id,
         ]);
+
+        $users = User::find(1);
+        Notification::send($users, new UpdatedPickup($pickup));
 
         return redirect()->route('dashboard.pickups.index')->with('success','Data updated successfully');
     }

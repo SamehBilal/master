@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\OrderLog;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class OrderLogController extends Controller
 {
@@ -87,7 +89,11 @@ class OrderLogController extends Controller
             'order_id'               => $order,
         ]);
 
-        return redirect('dashboard.order-logs.index',$order)->with('success','Data created successfully');
+        $users = User::find(1);
+        Notification::send($users, new \App\Notifications\OrderLog($orderLog));
+        return redirect()->back();
+
+        //return redirect('dashboard.order-logs.index',$order)->with('success','Data created successfully');
     }
 
     /**

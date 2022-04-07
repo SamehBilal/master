@@ -6,6 +6,7 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\Location;
 use App\Models\State;
+use App\Models\User;
 use App\Traits\AjaxSelect;
 use Illuminate\Http\Request;
 
@@ -19,9 +20,17 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $locations = Location::where('business_user_id',auth()->user()->id)
-                                ->orderBy('updated_at','desc')
-                                ->get();
+        $user = User::find(auth()->user()->id);
+        if($user->hasRole('customer'))
+        {
+            $locations = Location::where('business_user_id',$user->id)
+                ->orderBy('updated_at','desc')
+                ->get();
+        }else{
+            $locations = Location::orderBy('updated_at','desc')
+                ->get();
+        }
+
         return view('setup.locations.index',compact('locations'));
     }
 

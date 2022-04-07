@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Notifications\NewContactForm;
+use App\Notifications\NewOrder;
+use App\Notifications\UpdatedOrder;
+use Illuminate\Support\Facades\Notification;
 use PDF;
 use App\Models\City;
 use App\Models\Order;
@@ -30,6 +35,16 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::orderBy('updated_at','desc');
+        $user = User::find(auth()->user()->id);
+        if($user->hasRole('customer'))
+        {
+            $orders = $orders->where('business_user_id', $user->id);
+        }
+
+        if($user->hasRole('operation courier'))
+        {
+            $orders = $orders->where('courier_user_id', $user->id);
+        }
 
         if(request()->tracking_no)
         {
@@ -315,6 +330,9 @@ class OrderController extends Controller
                 'notes'                   => NULL,
             ]);
             DB::commit();
+
+            $users = User::find(1);
+            Notification::send($users, new NewOrder($order));
             return redirect()->route('dashboard.orders.show',$order->id)->with('success','Data created successfully');
 
         } catch (\Exception $ex) {
@@ -331,9 +349,9 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $qr     = QrCode::generate(route('dashboard.orders.show',$order->id));
+        $qr     = QrCode::generate(route('dashboard.orders.create.qr',$order->id));
         $log    = $order->log()->first();
-        $logs  = [
+        $logs   = [
             0 => [
                 'type' => 'New',
                 'icon' => 'new_releases',
@@ -356,6 +374,20 @@ class OrderController extends Controller
             ],
         ];
         return view('orders.show',compact('order','qr','logs','log'));
+    }
+
+    public function qr(Order $order)
+    {
+        $user = User::find(auth()->user()->id);
+        if($user->hasRole('operation courier'))
+        {
+            $orderLog  = OrderLog::create([
+                'status'                 => 'Delivered',
+                'description'            => 'Your order has been delivered to customer.',
+                'order_id'               => $order->id,
+            ]);
+        }
+        return redirect()->route('dashboard.orders.show',$order->id)->with('success','Data updated successfully');
     }
 
     public function airwaybell(Order $order)
@@ -612,12 +644,30 @@ class OrderController extends Controller
                 'notes'                   => NULL,
             ]);
             DB::commit();
+            $users = User::find(1);
+            Notification::send($users, new UpdatedOrder($order));
             return redirect()->route('dashboard.index')->with('success','Data updated successfully');
 
         } catch (\Exception $ex) {
             DB::rollback();
             return redirect()->back()->withErrors($ex->getMessage());
         }
+    }
+
+    public function courier_index(Order $order)
+    {
+        $users = User::whereHas("roles", function($q){ $q->where("name", "operation courier"); })->get();
+
+        return view('orders.courier',compact('order','users'));
+    }
+
+    public function courier(Request $request, Order $order)
+    {
+        $order->update([
+            'courier_user_id'            => $request->courier_user_id,
+        ]);
+
+        return redirect()->route('dashboard.orders.show',$order->id)->with('success','Data updated successfully');
     }
 
     /**

@@ -34,8 +34,12 @@
                     <div class="page-separator">
                         <div class="page-separator__text">{{ __('dashboard.Upload Multiple Orders') }}</div>
                     </div>
-                   {{--  <p class="card-subtitle text-70 mb-16pt mb-lg-0">Drag and drop file uploads with image previews powered by Dropzone.js. Please read the <a href="http://www.dropzonejs.com/"                                                                                                                                        target="_blank">official plugin documentation</a> for a full list of options.</p>
-                 --}}</div>
+                    <p class="card-subtitle text-70 mb-16pt mb-lg-0">Follow these steps to upload your oders:</p>
+                    <ol>
+                        <li><a href="{{ asset('backend/files/Droplin Upload Template.xlsx') }}">Download</a> the mass upload template.</li>
+                        <li>Learn how to fill-in the template with your orders.</li>
+                    </ol>
+                </div>
 
                     <div class="col-lg-8 d-flex align-items-center">
                         <div class="flex"

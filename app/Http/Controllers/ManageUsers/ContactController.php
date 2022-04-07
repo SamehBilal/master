@@ -20,10 +20,20 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::where('business_user_id',auth()->user()->id)
-                            ->orderBy('updated_at','desc')
-                            ->get();
-        $categories = UserCategory::where([['model','App\Models\Contact'],['status','active'],['business_user_id',auth()->user()->id]])->get();
+        $user = User::find(auth()->user()->id);
+        if($user->hasRole('customer'))
+        {
+            $contacts = Contact::where('business_user_id',$user->id)
+                ->orderBy('updated_at','desc')
+                ->get();
+            $categories = UserCategory::where([['model','App\Models\Contact'],['status','active'],['business_user_id',$user->id]])->get();
+        }else{
+            $contacts = Contact::orderBy('updated_at','desc')
+                ->get();
+            $categories = UserCategory::orderBy('updated_at','desc')
+                ->get();
+        }
+
         return view('users.contacts.index',compact('contacts','categories'));
     }
 
@@ -61,6 +71,7 @@ class ContactController extends Controller
         $data['other_email']    = null;
         $data['date_of_birth']  = null;
         $data['phone']          = $request->contact_phone;
+        $data['secondary_phone']    = null;
         $data['other_phone']    = null;
         $data['religion']       = null;
         $data['gender']         = null;

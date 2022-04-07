@@ -19,12 +19,12 @@ class RolesAndPermissionsSeeder extends Seeder
         //create roles
         $super_admin            = Role::create(['name' => 'Super Admin']);
         $admin                  = Role::create(['name' => 'admin']);
+        $customer               = Role::create(['name' => 'customer']);
         $sales                  = Role::create(['name' => 'sales']);
         $finance                = Role::create(['name' => 'finance']);
         $operation_admin        = Role::create(['name' => 'operation admin']);
         $operation_logistics    = Role::create(['name' => 'operation logistics']);
         $operation_courier      = Role::create(['name' => 'operation courier']);
-        $customer               = Role::create(['name' => 'customer']);
 
 
         // roles permissions
@@ -89,7 +89,7 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'create users', "order" => 12]);
         Permission::create(['name' => 'edit users', "order" => 12]);
         Permission::create(['name' => 'delete users', "order" => 12]);
-        // currenies permissions
+        // currencies permissions
         Permission::create(['name' => 'view currencies', "order" => 13]);
         Permission::create(['name' => 'show currencies', "order" => 13]);
         Permission::create(['name' => 'create currencies', "order" => 13]);
@@ -101,7 +101,21 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'create locations', "order" => 14]);
         Permission::create(['name' => 'edit locations', "order" => 14]);
         Permission::create(['name' => 'delete locations', "order" => 14]);
-
+        // deals permissions
+        Permission::create(['name' => 'view deals', "order" => 15]);
+        Permission::create(['name' => 'show deals', "order" => 15]);
+        Permission::create(['name' => 'create deals', "order" => 15]);
+        Permission::create(['name' => 'edit deals', "order" => 15]);
+        Permission::create(['name' => 'delete deals', "order" => 15]);
+        // mission permissions
+        Permission::create(['name' => 'view mission', "order" => 16]);
+        Permission::create(['name' => 'show mission', "order" => 16]);
+        Permission::create(['name' => 'create mission', "order" => 16]);
+        Permission::create(['name' => 'edit mission', "order" => 16]);
+        Permission::create(['name' => 'delete mission', "order" => 16]);
+        // courier
+        Permission::create(['name' => 'edit courier', "order" => 17]);
+        Permission::create(['name' => 'edit log', "order" => 17]);
 
 
         $admin->givePermissionTo(
@@ -177,7 +191,21 @@ class RolesAndPermissionsSeeder extends Seeder
             'show locations',
             'create locations',
             'edit locations',
-            'delete locations');
+            'delete locations',
+            // deals permissions
+            'view deals',
+            'show deals',
+            'create deals',
+            'edit deals',
+            'delete deals',
+            // deals mission
+            'view mission',
+            'show mission',
+            'create mission',
+            'edit mission',
+            'delete mission',
+            'edit courier',
+            'edit log');
 
         $sales->givePermissionTo(
             // pickups permissions
@@ -188,17 +216,56 @@ class RolesAndPermissionsSeeder extends Seeder
             'show orders',
             'create orders',
             'edit orders',
+            'delete orders',
+            'create multi orders',
+            'edit courier',
+            'edit log'
         );
 
         $customer->givePermissionTo(
-        // pickups permissions
-            'view pickups',
-            'show pickups',
-            // orders permissions
+        // orders permissions
             'view orders',
             'show orders',
             'create orders',
             'edit orders',
+            'delete orders',
+            'create multi orders',
+            // pickups permissions
+            'view pickups',
+            'show pickups',
+            'create pickups',
+            'edit pickups',
+            'delete pickups',
+            // customers permissions
+            'view customers',
+            'show customers',
+            'create customers',
+            'edit customers',
+            'delete customers',
+            // contacts permissions
+            'view contacts',
+            'show contacts',
+            'create contacts',
+            'edit contacts',
+            'delete contacts',
+            // user categories permissions
+            'view user categories',
+            'show user categories',
+            'create user categories',
+            'edit user categories',
+            'delete user categories',
+            // locations permissions
+            'view locations',
+            'show locations',
+            'create locations',
+            'edit locations',
+            'delete locations',
+            // tickets permissions
+            'view tickets',
+            'show tickets',
+            'create tickets',
+            'edit tickets',
+            'delete tickets'
         );
 
         $finance->givePermissionTo(
@@ -207,25 +274,29 @@ class RolesAndPermissionsSeeder extends Seeder
             'show orders',
             // customers permissions
             'view customers',
-            'show customers',
+            'show customers'
         );
 
         $operation_admin->givePermissionTo(
             // orders permissions
             'view orders',
             'show orders',
+            'edit courier',
+            'edit log',
             // pickups permissions
             'view pickups',
             'show pickups',
             // locations permissions
             'view locations',
-            'show locations',
+            'show locations'
         );
 
         $operation_logistics->givePermissionTo(
             // orders permissions
             'view orders',
             'show orders',
+            'edit courier',
+            'edit log',
             // pickups permissions
             'view pickups',
             'show pickups',
@@ -238,11 +309,11 @@ class RolesAndPermissionsSeeder extends Seeder
             // orders permissions
             'view orders',
             'show orders',
+            'edit courier',
+            'edit log',
             // pickups permissions
-            'view pickups',
             'show pickups',
             // locations permissions
-            'view locations',
             'show locations',
         );
     }

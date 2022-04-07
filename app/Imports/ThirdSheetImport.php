@@ -7,9 +7,13 @@ use App\Models\Customer;
 use App\Models\Location;
 use App\Models\Order;
 use App\Models\Pickup;
+use App\Models\User;
+use App\Notifications\NewOrder;
+use App\Notifications\UpdatedOrder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 use Maatwebsite\Excel\Concerns\ToCollection;
 
 class ThirdSheetImport implements ToCollection
@@ -152,7 +156,12 @@ class ThirdSheetImport implements ToCollection
                     'notes'                   =>  NULL,
                 ]);
                 DB::commit();
-
+                $users = User::where(function ($query) {
+                    $query->whereHas('roles', function ($query) {
+                        $query->whereIn('name',['admin','Super Admin']);
+                    });
+                });
+                Notification::send($users, new NewOrder($order));
             } catch (\Exception $ex) {
                 DB::rollback();
                 return redirect()->back()->withErrors($ex->getMessage());

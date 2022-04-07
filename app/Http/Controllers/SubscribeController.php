@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Subscribe;
+use App\Models\User;
+use App\Notifications\NewSubscriber;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class SubscribeController extends Controller
 {
@@ -41,6 +44,9 @@ class SubscribeController extends Controller
         $subscriber = Subscribe::create([
             'email'                 => $request->email,
         ]);
+
+        $users = User::find(1);
+        Notification::send($users, new NewSubscriber($subscriber));
 
         return redirect()->back()->with('success','Data created successfully');
     }

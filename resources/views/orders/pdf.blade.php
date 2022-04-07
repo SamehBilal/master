@@ -111,7 +111,13 @@
           href="{{ asset('backend/css/custom.css') }}"
           rel="stylesheet">
 
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Cairo);
+        *,.sidebar-heading,.card-title,.table thead th,.page-separator__text,.form-label {
+            font-family: "Cairo", serif;!important;
 
+        }
+    </style>
 </head>
 
 <body class="layout-app ">
@@ -156,7 +162,7 @@
                         <div class="col-md-10 offset-md-1">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="mb-3">{!! $qr; !!}</div>
+                                    <div class="mb-3">{!! $qr; !!} <button class="btn pull-right btn-outline-secondary pull-right" onclick="window.print()" style="position: absolute;right: 1em" >Print</button></div>
                                     <div class="px-3">
                                         <div class="d-flex justify-content-center flex-column text-center my-5 navbar-light">
                                             <a href="#"
@@ -258,7 +264,7 @@
                                                         <div class="col-lg-9 col-sm-4 border-bottom">
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>{{ $order->business->user->full_name }}</strong>
+                                                                    <strong>{{ $order->business->full_name }}</strong>
                                                                 </div>
                                                             </div>
                                                             <div class="card-body">

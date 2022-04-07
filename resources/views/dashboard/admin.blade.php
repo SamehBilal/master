@@ -85,7 +85,7 @@
                     <div class="card card-group-row__card">
                         <div class="card-body d-flex align-items-center">
                             <div class="flex d-flex align-items-center">
-                                <div class="h2 mb-0 mr-3">3</div>
+                                <div class="h2 mb-0 mr-3">{{ $openTicketsCount }}</div>
                                 <div class="flex">
                                     <div class="card-title">{{ __('dashboard.Tickets') }}</div>
                                     <p class="card-subtitle text-50 d-flex align-items-center">
@@ -102,7 +102,7 @@
                     <div class="card card-group-row__card">
                         <div class="card-body d-flex align-items-center">
                             <div class="flex d-flex align-items-center">
-                                <div class="h2 mb-0 mr-3">40</div>
+                                <div class="h2 mb-0 mr-3">{{ $ordersCount }}</div>
                                 <div class="flex">
                                     <div class="card-title">{{ __('dashboard.Orders') }}</div>
                                     <p class="card-subtitle text-50 d-flex align-items-center">
@@ -119,7 +119,7 @@
                     <div class="card card-group-row__card">
                         <div class="card-body d-flex align-items-center">
                             <div class="flex d-flex align-items-center">
-                                <div class="h2 mb-0 mr-3">78</div>
+                                <div class="h2 mb-0 mr-3">{{ $customersCount }}</div>
                                 <div class="flex">
                                     <div class="card-title">{{ __('dashboard.Customers') }}</div>
                                     <p class="card-subtitle text-50 d-flex align-items-center">
@@ -269,7 +269,7 @@
                 <div class="col-lg-4 col-md-6 card-group-row__col">
                     <div class="card card-group-row__card">
                         <div class="card-body d-flex flex-row align-items-center flex-0">
-                            <div class="h2 mb-0 mr-3">40</div>
+                            <div class="h2 mb-0 mr-3">{{ $ordersCount }}</div>
                             <div class="flex">
                                 <div class="card-title">{{ __('dashboard.Total_orders') }}</div>
                                 <div class="card-subtitle text-50 d-flex align-items-center">92% <i class="material-icons text-accent icon-16pt ml-4pt">keyboard_arrow_up</i></div>
@@ -306,7 +306,7 @@
                 <div class="col-lg-4 col-md-12 card-group-row__col">
                     <div class="card card-group-row__card">
                         <div class="card-body d-flex flex-row align-items-center flex-0">
-                            <div class="h2 mb-0 mr-3">25 {{ __('dashboard.EGP')}}</div>
+                            <div class="h2 mb-0 mr-3">{{ $ordersAVG }} {{ __('dashboard.EGP')}}</div>
                             <div class="flex">
                                 <div class="card-title">{{ __('dashboard.Average_order') }}</div>
                                 <div class="card-subtitle text-50 d-flex align-items-center">6.7% <i class="material-icons text-accent icon-16pt ml-4pt">keyboard_arrow_up</i></div>
@@ -344,7 +344,7 @@
                 <div class="col-lg-4 col-md-12 card-group-row__col">
                     <div class="card card-group-row__card">
                         <div class="card-body d-flex flex-row align-items-center flex-0">
-                            <div class="h2 mb-0 mr-3">10</div>
+                            <div class="h2 mb-0 mr-3">{{ $openTicketsCount }}</div>
                             <div class="flex">
                                 <div class="card-title">{{ __('dashboard.Tickets') }}</div>
                                 <div class="card-subtitle text-50 d-flex align-items-center">56.7% <i class="material-icons text-accent icon-16pt ml-4pt">keyboard_arrow_up</i></div>
@@ -382,12 +382,12 @@
                         <div class="card-body flex-0">
                             <small class="d-flex align-items-center font-weight-bold text-muted mb-1">
                                 <span class="flex text-body">{{ __('dashboard.Open') }}</span>
-                                <span class="mx-3">267</span>
+                                <span class="mx-3">{{ $openTicketsCount }}</span>
                                 <span class="d-flex align-items-center"><i class="material-icons text-success icon-16pt mr-1">keyboard_arrow_up</i> 2.1%</span>
                             </small>
                             <small class="d-flex align-items-center font-weight-bold text-muted mb-1">
                                 <span class="flex text-body">{{ __('dashboard.Close') }}</span>
-                                <span class="mx-3">184</span>
+                                <span class="mx-3">{{ $closedTicketsCount }}</span>
                                 <span class="d-flex align-items-center"><i class="material-icons text-danger icon-16pt mr-1">keyboard_arrow_down</i> 4.8%</span>
                             </small>
                             <!-- <small class="d-flex align-items-center font-weight-bold text-muted">
@@ -426,13 +426,15 @@
                             <th>
                                 <a href="javascript:void(0)"
                                    class="sort"
-                                   data-sort="js-lists-values-employee-name"></a>
+                                   data-sort="js-lists-values-employee-name">
+                                    {{ __('dashboard.Customer_Info') }}
+                                </a>
                             </th>
 
                             <th style="width: 150px;">
                                 <a href="javascript:void(0)"
                                    class="sort"
-                                   data-sort="js-lists-values-employer-name">{{ __('dashboard.Package_No') }}</a>
+                                   data-sort="js-lists-values-employer-name">{{ __('dashboard.Tracking_No') }}</a>
                             </th>
 
                             <th style="width: 37px;">{{ __('dashboard.Status') }}</th>
@@ -440,7 +442,7 @@
                             <th style="width: 120px;">
                                 <a href="javascript:void(0)"
                                    class="sort"
-                                   data-sort="js-lists-values-activity">{{ __('dashboard.Earnings') }}</a>
+                                   data-sort="js-lists-values-activity">{{ __('dashboard.Type') }}</a>
                             </th>
                             <th style="width: 51px;">
                                 <a href="javascript:void(0)"
@@ -453,256 +455,103 @@
                         </thead>
                         <tbody class="list"
                                id="users">
+                        @foreach($orders as $order)
+                            <tr>
 
-                        <tr>
+                                <td class="pr-0">
+                                   1
+                                </td>
 
-                            <td class="pr-0">
-                               1
-                            </td>
+                                <td>
 
-                            <td>
+                                    <div class="media flex-nowrap align-items-center"
+                                         style="white-space: nowrap;">
+                                        <div class="avatar avatar-sm mr-8pt">
 
-                                <div class="media flex-nowrap align-items-center"
-                                     style="white-space: nowrap;">
-                                    <div class="avatar avatar-sm mr-8pt">
+                                            <span class="avatar-title rounded-circle">{{ initials($order->customer->user->full_name) }}</span>
 
-                                        <img src="{{ asset('backend/images/people/110/guy-1.jpg') }}"
-                                             alt="Avatar"
-                                             class="avatar-img rounded-circle">
-
-                                    </div>
-                                    <div class="media-body">
-
-                                        <div class="d-flex flex-column">
-                                            <p class="mb-0"><strong class="js-lists-values-employee-name">Michael Smith</strong></p>
-                                            <small class="js-lists-values-employee-email text-50"></small>
                                         </div>
+                                        <div class="media-body">
 
-                                    </div>
-                                </div>
+                                            <div class="d-flex flex-column">
+                                                <p class="mb-0"><strong class="js-lists-values-employee-name">{{ $order->customer->user->full_name }}</strong></p>
+                                                <small class="js-lists-values-employee-email text-50"></small>
+                                            </div>
 
-                            </td>
-
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <a href="#"
-                                       class="text-warning"><i class="material-icons mr-8pt">cases</i></a>
-                                    <a href=""
-                                       class="text-70"><span class="js-lists-values-employer-name">#H86955</span></a>
-                                </div>
-                            </td>
-
-                            <td>
-                                <div class="d-flex flex-column">
-                                    <small class="js-lists-values-status text-50 mb-4pt">pending</small>
-                                    <span class="indicator-line rounded bg-warning"></span>
-                                </div>
-                            </td>
-
-                            <td class="js-lists-values-earnings small">12,402 {{ __('dashboard.EGP')}}</td>
-                            <td class="text-50 js-lists-values-activity small">3 days ago</td>
-                            <td class="text-right pl-0">
-                                <a href=""
-                                   class="text-50"><i class="material-icons">more_vert</i></a>
-                            </td>
-                        </tr>
-
-                        <tr>
-
-                            <td class="pr-0">
-                               2
-                            </td>
-
-                            <td>
-
-                                <div class="media flex-nowrap align-items-center"
-                                     style="white-space: nowrap;">
-                                    <div class="avatar avatar-sm mr-8pt">
-
-                                        <span class="avatar-title rounded-circle">CS</span>
-
-                                    </div>
-                                    <div class="media-body">
-
-                                        <div class="d-flex flex-column">
-                                            <p class="mb-0"><strong class="js-lists-values-employee-name">Connie Smith</strong></p>
-                                            <small class="js-lists-values-employee-email text-50"></small>
                                         </div>
-
                                     </div>
-                                </div>
 
-                            </td>
+                                </td>
 
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <a href="#"
-                                       class="text-warning"><i class="material-icons mr-8pt">cases</i></a>
-                                    <a href=""
-                                       class="text-70"><span class="js-lists-values-employer-name">#H98955</span></a>
-                                </div>
-                            </td>
-
-                            <td>
-                                <div class="d-flex flex-column">
-                                    <small class="js-lists-values-status text-50 mb-4pt">Active</small>
-                                    <span class="indicator-line rounded bg-success"></span>
-                                </div>
-                            </td>
-
-                            <td class="js-lists-values-earnings small">1,943 {{ __('dashboard.EGP')}}</td>
-                            <td class="text-50 js-lists-values-activity small">1 week ago</td>
-                            <td class="text-right pl-0">
-                                <a href=""
-                                   class="text-50"><i class="material-icons">more_vert</i></a>
-                            </td>
-                        </tr>
-
-                        <tr>
-
-                            <td class="pr-0">
-                                3
-                            </td>
-
-                            <td>
-
-                                <div class="media flex-nowrap align-items-center"
-                                     style="white-space: nowrap;">
-                                    <div class="avatar avatar-sm mr-8pt">
-
-                                        <img src="{{ asset('backend/images/people/110/guy-2.jpg') }}"
-                                             alt="Avatar"
-                                             class="avatar-img rounded-circle">
-
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <a href="#"
+                                           class="text-warning"><i class="material-icons mr-8pt">cases</i></a>
+                                        <a href=""
+                                           class="text-70"><span class="js-lists-values-employer-name">{{ $order->tracking_no }}</span></a>
                                     </div>
-                                    <div class="media-body">
+                                </td>
 
-                                        <div class="d-flex flex-column">
-                                            <p class="mb-0"><strong class="js-lists-values-employee-name">John Connor</strong></p>
-                                            <small class="js-lists-values-employee-email text-50"></small>
+                                <td>
+                                    <div class="d-flex flex-column">
+                                        <small class="badge badge-{{ random_color() }}">{{ __("dashboard.{$order->status}")  }}</small>
+                                    </div>
+                                </td>
+
+                                <td class="js-lists-values-earnings small">
+                                    <div class="media flex-nowrap align-items-center"
+                                         style="white-space: nowrap;">
+                                        <div class="avatar avatar-sm mr-8pt">
+                                                <span class="avatar-title rounded bg-primary text-black-100">
+                                                     <img src="{{ asset('backend/images/icon/'.$types[$order->type]['image']) }}"
+                                                          alt="Avatar"
+                                                          class="avatar-img ">
+                                                </span>
                                         </div>
-
-                                    </div>
-                                </div>
-
-                            </td>
-
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <a href="#"
-                                       class="text-warning"><i class="material-icons mr-8pt">cases</i></a>
-                                    <a href=""
-                                       class="text-70"><span class="js-lists-values-employer-name">#H86989</span></a>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex flex-column">
-                                    <small class="js-lists-values-status text-50 mb-4pt">Active</small>
-                                    <span class="indicator-line rounded bg-success"></span>
-                                </div>
-                            </td>
-
-                            <td class="js-lists-values-earnings small">1,401 {{ __('dashboard.EGP')}}</td>
-                            <td class="text-50 js-lists-values-activity small">2 weeks ago</td>
-                            <td class="text-right pl-0">
-                                <a href=""
-                                   class="text-50"><i class="material-icons">more_vert</i></a>
-                            </td>
-                        </tr>
-
-                        <tr>
-
-                            <td class="pr-0">
-                                4
-                            </td>
-
-                            <td>
-
-                                <div class="media flex-nowrap align-items-center"
-                                     style="white-space: nowrap;">
-                                    <div class="avatar avatar-sm mr-8pt">
-
-                                        <span class="avatar-title rounded-circle">LB</span>
-
-                                    </div>
-                                    <div class="media-body">
-
-                                        <div class="d-flex flex-column">
-                                            <p class="mb-0"><strong class="js-lists-values-employee-name">Laza Bogdan</strong></p>
-                                            <small class="js-lists-values-employee-email text-50"></small>
+                                        <div class="media-body">
+                                            <div class="d-flex flex-column">
+                                                <small class=""><strong>{{ __("dashboard.{$order->type}")  }}</strong></small>
+                                                <span class="indicator-line rounded bg-{{ $types[$order->type]['color'] }}"></span>
+                                            </div>
                                         </div>
-
                                     </div>
-                                </div>
+                                </td>
+                                <td class="text-50 js-lists-values-activity small">
+                                    <div class="d-flex flex-column">
+                                        <small class=""><strong>{{ date("F j, Y", strtotime($order->created_at)) }}</strong></small>
+                                        <small class="text-50">{{ $order->created_at->diffForHumans() }}</small>
+                                    </div>
+                                </td>
+                                <td class="text-right">
+                                    <a href="#" data-toggle="dropdown"
+                                       class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="{{ route('dashboard.orders.create.airwaybell',$order->id) }}" class="dropdown-item active"><i class="material-icons ">receipt</i> Print Airwaybell</a>
+                                        @can('show orders')
+                                            <a href="{{ route('dashboard.orders.show',$order->id) }}" class="dropdown-item"><i class="material-icons ">visibility</i> View</a>
+                                        @endcan
+                                        @can('edit orders')
+                                            <a href="{{ route('dashboard.orders.edit',$order->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> Edit</a>
+                                        @endcan
+                                        @can('delete orders')
+                                            <div class="dropdown-divider"></div>
+                                            <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $order->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
+                                            <form id="delete-form{{ $order->id }}" action="{{ route('dashboard.orders.destroy',$order->id) }}" method="POST" class="d-none">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                        @endcan
+                                    </div>
+                                </td>
+                            </tr>
 
-                            </td>
-
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <a href="#"
-                                       class="text-warning"><i class="material-icons mr-8pt">cases</i></a>
-                                    <a href=""
-                                       class="text-70"><span class="js-lists-values-employer-name">#H86761</span></a>
-                                </div>
-                            </td>
-
-                            <td>
-                                <div class="d-flex flex-column">
-                                    <small class="js-lists-values-status text-50 mb-4pt">Active</small>
-                                    <span class="indicator-line rounded bg-success"></span>
-                                </div>
-                            </td>
-
-                            <td class="js-lists-values-earnings small">22,402 {{ __('dashboard.EGP')}}</td>
-                            <td class="text-50 js-lists-values-activity small">3 weeks ago</td>
-                            <td class="text-right pl-0">
-                                <a href=""
-                                   class="text-50"><i class="material-icons">more_vert</i></a>
-                            </td>
-                        </tr>
+                        @endforeach
 
                         </tbody>
                     </table>
                 </div>
 
-                <div class="card-footer p-8pt">
 
-                    <ul class="pagination justify-content-start pagination-xsm m-0">
-                        <li class="page-item disabled">
-                            <a class="page-link"
-                               href="#"
-                               aria-label="Previous">
-                                        <span aria-hidden="true"
-                                              class="material-icons">chevron_left</span>
-                                <span>Prev</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link"
-                               href="#"
-                               aria-label="Page 1">
-                                <span>1</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link"
-                               href="#"
-                               aria-label="Page 2">
-                                <span>2</span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link"
-                               href="#"
-                               aria-label="Next">
-                                <span>Next</span>
-                                <span aria-hidden="true"
-                                      class="material-icons">chevron_right</span>
-                            </a>
-                        </li>
-                    </ul>
-
-                </div>
 
             </div>
 

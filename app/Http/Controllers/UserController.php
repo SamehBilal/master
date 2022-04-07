@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\UserCategory;
+use App\Notifications\NewUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -26,7 +29,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $roles = Role::all();
+        return view('users.create',compact('roles'));
     }
 
     /**
@@ -63,6 +67,9 @@ class UserController extends Controller
             $user->auth()->user()->update(['avatar' =>  $image]);
         }
 
+        $users = User::find(1);
+        Notification::send($users, new NewUser($user));
+
         return redirect()->route('dashboard.users.index')->with('success','Data created successfully');
     }
 
@@ -74,7 +81,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.edit',compact('user'));
+        $roles = Role::all();
+        return view('users.edit',compact('user','roles'));
     }
 
     /**
@@ -85,7 +93,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit',compact('user'));
+        $roles = Role::all();
+        return view('users.edit',compact('user','roles'));
     }
 
     /**
@@ -121,6 +130,12 @@ class UserController extends Controller
             $image = time() . '_' . request()->file('avatar')->getClientOriginalName();
             request()->file('avatar')->storeAs('/', "/user/{$user->id}/{$image}", '');
             $user->auth()->user()->update(['avatar' =>  $image]);
+        }
+
+        if($request->role)
+        {
+            $user->roles()->detach();
+            $user->assignRole($request->role);
         }
 
         return redirect()->route('dashboard.users.index')->with('success','Data updated successfully');

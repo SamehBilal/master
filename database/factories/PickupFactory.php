@@ -22,11 +22,11 @@ class PickupFactory extends Factory
     public function definition()
     {
         return [
-            'pickup_id'          => $this->faker->numerify('######'),
-            'scheduled_date'     => now(),
-            'contact_id'         => $this->faker->randomElement([1,2,3,4,5]),
-            'location_id'        => $this->faker->randomElement([1,2,3,4,5]),
-            'business_user_id'      => 2,
+            'pickup_id'             => $this->faker->numerify('######'),
+            'scheduled_date'        => now(),
+            'contact_id'            => $this->faker->randomElement([1,2,3,4,5]),
+            'location_id'           => $this->faker->randomElement([1,2,3,4,5]),
+            'business_user_id'      => 3,
         ];
     }
 }

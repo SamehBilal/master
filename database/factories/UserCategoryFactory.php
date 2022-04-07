@@ -22,10 +22,10 @@ class UserCategoryFactory extends Factory
     public function definition()
     {
         return [
-            'name'          => $this->faker->word,
-            'model'         => 'App\Models\UserCategory',
-            'status'        => $this->faker->randomElement(['active','inactive']),
-            'business_user_id'      => 2,
+            'name'                  => $this->faker->word,
+            'model'                 => 'App\Models\UserCategory',
+            'status'                => $this->faker->randomElement(['active','inactive']),
+            'business_user_id'      => 3,
         ];
     }
 }

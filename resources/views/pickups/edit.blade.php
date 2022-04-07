@@ -388,12 +388,12 @@
                                             name="repeat_days"
                                             multiple
                                             class="form-control">
-                                            <option value="Saturday"    {{ in_array('Saturday', $pickup->repeat_days)  ? 'selected':'' }}>Saturday</option>
-                                            <option value="Sunday"      {{ in_array('Sunday', $pickup->repeat_days) == 'Sunday' ? 'selected':'' }}>Sunday</option>
-                                            <option value="Monday"      {{ in_array('Monday', $pickup->repeat_days) == 'Monday' ? 'selected':'' }}>Monday</option>
-                                            <option value="Tuesday"     {{ in_array('Tuesday', $pickup->repeat_days) == 'Tuesday' ? 'selected':'' }}>Tuesday</option>
-                                            <option value="Wednesday"   {{ in_array('Wednesday', $pickup->repeat_days) == 'Wednesday' ? 'selected':'' }}>Wednesday</option>
-                                            <option value="Thursday"    {{ in_array('Thursday', $pickup->repeat_days) == 'Thursday' ? 'selected':'' }}>Thursday</option>
+                                            <option value="Saturday"  @if($pickup->repeat_days){{ in_array('Saturday', $pickup->repeat_days)  ? 'selected':'' }}@endif>Saturday</option>
+                                            <option value="Sunday"    @if($pickup->repeat_days){{ in_array('Sunday', $pickup->repeat_days) == 'Sunday' ? 'selected':'' }}@endif>Sunday</option>
+                                            <option value="Monday"    @if($pickup->repeat_days){{ in_array('Monday', $pickup->repeat_days) == 'Monday' ? 'selected':'' }}@endif>Monday</option>
+                                            <option value="Tuesday"   @if($pickup->repeat_days){{ in_array('Tuesday', $pickup->repeat_days) == 'Tuesday' ? 'selected':'' }}@endif>Tuesday</option>
+                                            <option value="Wednesday" @if($pickup->repeat_days){{ in_array('Wednesday', $pickup->repeat_days) == 'Wednesday' ? 'selected':'' }}@endif>Wednesday</option>
+                                            <option value="Thursday"  @if($pickup->repeat_days){{ in_array('Thursday', $pickup->repeat_days) == 'Thursday' ? 'selected':'' }}@endif>Thursday</option>
                                     </select>
                                 </div>
                             </div>
@@ -579,6 +579,50 @@
                     </div>
                 </div>
             </div>
+            <div class="page-separator">
+                <div class="page-separator__text" style="line-height: 30px;">
+                    <button type="button" class="btn btn-sm rounded-circle btn-dark">
+                        &nbsp;  5 &nbsp;
+                    </button>
+                    &nbsp; Pickup Status
+                </div>
+            </div>
+            <div class="card ">
+                <div class="row card-body mb-32pt">
+                    <div class="col-lg-3 bg-light">
+                        <div class="page-separator">
+                            <div class="page-separator__text">Pickup Status</div>
+                        </div>
+                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">
+                            Update your pickup's status.
+                        </p>
+                    </div>
+                    <div class="col-lg-9 row ">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="form-label"
+                                       for="select02">Pickup Status:</label>
+                                <select id="select02"
+                                        data-toggle="select"
+                                        name="status"
+                                        class="form-control form-control-sm @error('status') is-invalid @enderror">
+                                    <option value="">Select status</option>
+                                    <option value="Created" @if(old('status')) {{ old('status') == 'Created' ? 'selected':'' }} @else {{ $pickup->status == 'Created' ? 'selected':'' }} @endif >Created</option>
+                                    <option value="Out for pickup" @if(old('status')) {{ old('status') == 'Out for pickup' ? 'selected':'' }} @else {{ $pickup->status == 'Out for pickup' ? 'selected':'' }} @endif >Out for pickup</option>
+                                    <option value="Picked up" @if(old('status')) {{ old('status') == 'Picked up' ? 'selected':'' }} @else {{ $pickup->status == 'Picked up' ? 'selected':'' }} @endif >Picked up</option>
+
+                                </select>
+                                @error('status')
+                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                @enderror
+                                <div class="valid-feedback">Looks good!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="pickup_id" value="{{ $pickup->pickup_id }}">
+
             <button type="submit"
                     class="btn pull-right btn-primary">Submit</button>
         </form>

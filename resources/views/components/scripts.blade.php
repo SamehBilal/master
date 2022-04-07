@@ -43,6 +43,9 @@
 <script src="{{ asset('backend/js/page.ecommerce.js') }}"></script>
 <script src="{{ asset('backend/js/page.hr-dashboard.js') }}"></script>
 <script src="{{ asset('backend/js/page.employees.js') }}"></script>
+<script src="{{ asset('backend/js/page.staff.js') }}"></script>
+<script src="{{ asset('backend/js/page.projects.js') }}"></script>
+
 
 <!-- List.js -->
 <script src="{{ asset('backend/vendor/list.min.js') }}"></script>

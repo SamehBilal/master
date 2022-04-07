@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
+use App\Models\Deal;
 use App\Models\Location;
 use App\Models\Order;
 use App\Models\User;
@@ -12,21 +14,14 @@ class WebsiteRoutesController extends Controller
 {
     public function index()
     {
-        $subtotal   =   '';
-        $tax        =   '';
-        $total      =   '';
-        if(request()->from && request()->to)
-        {
-            $subtotal   =   1990;
-            $tax        =   50;
-            $total      =   2040;
-        }
-        return view('website.index',compact('subtotal','total','tax'));
+        $deals = Deal::all();
+        return view('website.index',compact('deals'));
     }
 
     public function about()
     {
-        return view('website.about');
+        $info = About::find(1);
+        return view('website.about',compact('info'));
     }
 
     public function contact()

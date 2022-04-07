@@ -7,7 +7,11 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\Location;
 use App\Models\State;
+use App\Models\User;
+use App\Notifications\NewBusiness;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 
 class BusinessController extends Controller
 {
@@ -22,6 +26,37 @@ class BusinessController extends Controller
         return view('users.customers.business.index',compact('business'));
     }
 
+    public function settings()
+    {
+        $business_id = DB::table('businesses')->where('business_user_id',auth()->user()->id)->value('id');
+        $business = Business::find($business_id);
+        $locations  = Location::all();
+        $countries  = Country::all();
+        $states     = State::where('country_id',64)->get();
+        $cities     = City::all();
+        $categories = [
+            'Books, Arts and Media',
+            'Electronics',
+            'Cosmetics and personal care',
+            'Fashion',
+            'Furniture and appliances',
+            'Healthcare supplements',
+            'Home and living',
+            'Gifts',
+            'Jewelry and accessories',
+            'Leather',
+            'Mothers and babies',
+            'Medical supplies',
+            'Office equipment and supplies',
+            'Pet supplies',
+            'Sports wear and equipment',
+            'Toys',
+            'E-commerce',
+            'Food',
+            'Shoes',
+        ];
+        return view('setup.settings.business',compact('business','locations','countries','states','cities','categories'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -59,6 +94,11 @@ class BusinessController extends Controller
 
     public function create_front()
     {
+        $user = User::find(auth()->user()->id);
+        if($user->hasRole('customer'))
+        {
+            return redirect()->route('dashboard');
+        }
         $countries  = Country::all();
         $states     = State::where('country_id',64)->get();
         $cities     = City::where('state_id',1500)->get();
@@ -102,7 +142,7 @@ class BusinessController extends Controller
         {
             $this->validate($request, Location::rules());
             $location = Location::create([
-                'name'                  => $request->name,
+                'name'                  => $request->apartment.$request->building.$request->street,
                 'street'                => $request->street,
                 'building'              => $request->building,
                 'floor'                 => $request->floor,
@@ -124,8 +164,15 @@ class BusinessController extends Controller
             'location_id'             => ($request->location_in = null) ? $location:$request->location_id,
             'business_user_id'        => $user_id,
         ]);
-
-        return redirect()->route('dashboard.businesses.index')->with('success','Data created successfully');
+        $users = User::find(1);
+        Notification::send($users, new NewBusiness($business));
+        $user = User::find(auth()->user()->id);
+        if(!$user->hasRole('customer'))
+        {
+            $user->assignRole('customer');
+            return redirect()->route('dashboard');
+        }
+        return redirect()->back()->with('success','Data created successfully');
     }
 
     /**
@@ -240,7 +287,7 @@ class BusinessController extends Controller
             'business_user_id'        => $user_id,
         ]);
 
-        return redirect()->route('dashboard.businesses.index')->with('success','Data updated successfully');
+        return redirect()->back()->with('success','Data updated successfully');
     }
 
     /**

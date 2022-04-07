@@ -49,6 +49,9 @@ return [
     'ar_footer_description' => 'Footer Description (Arabic)',
     'deals'                 => 'Deals',
     'new deal'              => 'New Deal',
+    'courier'               => 'Courier',
+    'Update Courier for the order'               => 'Update Courier for the order',
+    'Select courier'        => 'Select courier',
 
     /* Content */
     'Name'                  => 'Name',

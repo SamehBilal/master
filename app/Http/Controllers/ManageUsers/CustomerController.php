@@ -24,12 +24,22 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::where('business_user_id',auth()->user()->id)
-                                ->orderBy('updated_at','desc')
-                                ->get();
-        $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Customer'],['status','active']])
-                                    ->orderBy('updated_at','desc')
-                                    ->get();
+        $user = User::find(auth()->user()->id);
+        if($user->hasRole('customer'))
+        {
+            $customers = Customer::where('business_user_id',auth()->user()->id)
+                ->orderBy('updated_at','desc')
+                ->get();
+            $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Customer'],['status','active']])
+                ->orderBy('updated_at','desc')
+                ->get();
+        }else{
+            $customers = Customer::orderBy('updated_at','desc')
+                ->get();
+            $categories = UserCategory::orderBy('updated_at','desc')
+                ->get();
+        }
+
         return view('users.customers.index',compact('customers','categories'));
     }
 

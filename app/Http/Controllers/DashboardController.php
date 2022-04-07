@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pickup;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
@@ -56,6 +57,32 @@ class DashboardController extends Controller
         $ordersCount = Order::count();
         $ordersAVG = Order::avg('cash_on_delivery');
         $orders = Order::orderBy('created_at','desc')->paginate(5);
+        $types  = [
+            'Deliver' => [
+                'name'          => 'Deliver',
+                'image'         => 'fast-delivery.png',
+                'description'   => 'Deliver a package',
+                'color'         => 'danger',
+            ],
+            'Exchange' =>  [
+                'name'          => 'Exchange',
+                'image'         => 'transfer.png',
+                'description'   => 'Exchange a package',
+                'color'         => 'dark',
+            ],
+            'Return' => [
+                'name'          => 'Return',
+                'image'         => 'return-on-investment.png',
+                'description'   => 'Pickup from customer',
+                'color'         => 'warning',
+            ],
+            'Cash Collection' => [
+                'name'          => 'Cash Collection',
+                'image'         => 'money.png',
+                'description'   => 'Collect or refund',
+                'color'         => 'accent',
+            ],
+        ];
 
         $ordersQueryFilter = Order::whereYear('created_at', Carbon::now()->year);
 
@@ -79,9 +106,8 @@ class DashboardController extends Controller
 
         // customers
         $usersQueryFilter = User::where(function ($query) {
-            $query->whereDoesntHave('roles')
-                    ->orWhereHas('roles', function ($query) {
-                        $query->whereNotIn('name',['Super Admin', 'admin', 'staff']);
+            $query->whereHas('roles', function ($query) {
+                        $query->whereIn('name',['customer']);
                     });
         });
 
@@ -107,42 +133,204 @@ class DashboardController extends Controller
 
         return view('dashboard.admin',compact('ordersCount','ordersAVG','orders','ordersStatistics','ordersAVGStatistics'
                                             , 'openTicketsCount', 'closedTicketsCount'
-                                            , 'customersCount', 'customersStatistics'));
+                                            , 'customersCount', 'customersStatistics','types'));
     }
 
     public function sales()
     {
-        $orders = Order::all();
-        return view('dashboard.sales',compact('orders'));
+        $orders  = Order::all();
+        $pickups = Pickup::all();
+        $types  = [
+            'Deliver' => [
+                'name'          => 'Deliver',
+                'image'         => 'fast-delivery.png',
+                'description'   => 'Deliver a package',
+                'color'         => 'danger',
+            ],
+            'Exchange' =>  [
+                'name'          => 'Exchange',
+                'image'         => 'transfer.png',
+                'description'   => 'Exchange a package',
+                'color'         => 'dark',
+            ],
+            'Return' => [
+                'name'          => 'Return',
+                'image'         => 'return-on-investment.png',
+                'description'   => 'Pickup from customer',
+                'color'         => 'warning',
+            ],
+            'Cash Collection' => [
+                'name'          => 'Cash Collection',
+                'image'         => 'money.png',
+                'description'   => 'Collect or refund',
+                'color'         => 'accent',
+            ],
+        ];
+        return view('dashboard.sales',compact('orders','pickups','types'));
     }
 
     public function customer()
     {
-        $orders = Order::all();
-        return view('dashboard.customer',compact('orders'));
+        $user = User::find(auth()->user()->id);
+        if($user->hasRole('customer'))
+        {
+            $orders = Order::where('business_user_id', $user->id)->orderBy('created_at','desc')->paginate(10);
+        }
+        $types  = [
+            'Deliver' => [
+                'name'          => 'Deliver',
+                'image'         => 'fast-delivery.png',
+                'description'   => 'Deliver a package',
+                'color'         => 'danger',
+            ],
+            'Exchange' =>  [
+                'name'          => 'Exchange',
+                'image'         => 'transfer.png',
+                'description'   => 'Exchange a package',
+                'color'         => 'dark',
+            ],
+            'Return' => [
+                'name'          => 'Return',
+                'image'         => 'return-on-investment.png',
+                'description'   => 'Pickup from customer',
+                'color'         => 'warning',
+            ],
+            'Cash Collection' => [
+                'name'          => 'Cash Collection',
+                'image'         => 'money.png',
+                'description'   => 'Collect or refund',
+                'color'         => 'accent',
+            ],
+        ];
+        return view('dashboard.customer',compact('orders','types'));
     }
 
     public function finance()
     {
         $orders = Order::all();
-        return view('dashboard.finance',compact('orders'));
+        $types  = [
+            'Deliver' => [
+                'name'          => 'Deliver',
+                'image'         => 'fast-delivery.png',
+                'description'   => 'Deliver a package',
+                'color'         => 'danger',
+            ],
+            'Exchange' =>  [
+                'name'          => 'Exchange',
+                'image'         => 'transfer.png',
+                'description'   => 'Exchange a package',
+                'color'         => 'dark',
+            ],
+            'Return' => [
+                'name'          => 'Return',
+                'image'         => 'return-on-investment.png',
+                'description'   => 'Pickup from customer',
+                'color'         => 'warning',
+            ],
+            'Cash Collection' => [
+                'name'          => 'Cash Collection',
+                'image'         => 'money.png',
+                'description'   => 'Collect or refund',
+                'color'         => 'accent',
+            ],
+        ];
+        return view('dashboard.finance',compact('orders','types'));
     }
 
     public function operation_admin()
     {
+        $types  = [
+            'Deliver' => [
+                'name'          => 'Deliver',
+                'image'         => 'fast-delivery.png',
+                'description'   => 'Deliver a package',
+                'color'         => 'danger',
+            ],
+            'Exchange' =>  [
+                'name'          => 'Exchange',
+                'image'         => 'transfer.png',
+                'description'   => 'Exchange a package',
+                'color'         => 'dark',
+            ],
+            'Return' => [
+                'name'          => 'Return',
+                'image'         => 'return-on-investment.png',
+                'description'   => 'Pickup from customer',
+                'color'         => 'warning',
+            ],
+            'Cash Collection' => [
+                'name'          => 'Cash Collection',
+                'image'         => 'money.png',
+                'description'   => 'Collect or refund',
+                'color'         => 'accent',
+            ],
+        ];
         $orders = Order::all();
-        return view('dashboard.operation_admin',compact('orders'));
+        return view('dashboard.operation_admin',compact('orders','types'));
     }
 
     public function operation_logistics()
     {
         $orders = Order::all();
-        return view('dashboard.operation_logistics',compact('orders'));
+        $types  = [
+            'Deliver' => [
+                'name'          => 'Deliver',
+                'image'         => 'fast-delivery.png',
+                'description'   => 'Deliver a package',
+                'color'         => 'danger',
+            ],
+            'Exchange' =>  [
+                'name'          => 'Exchange',
+                'image'         => 'transfer.png',
+                'description'   => 'Exchange a package',
+                'color'         => 'dark',
+            ],
+            'Return' => [
+                'name'          => 'Return',
+                'image'         => 'return-on-investment.png',
+                'description'   => 'Pickup from customer',
+                'color'         => 'warning',
+            ],
+            'Cash Collection' => [
+                'name'          => 'Cash Collection',
+                'image'         => 'money.png',
+                'description'   => 'Collect or refund',
+                'color'         => 'accent',
+            ],
+        ];
+        return view('dashboard.operation_logistics',compact('orders','types'));
     }
 
     public function operation_courier()
     {
-        $orders = Order::all();
-        return view('dashboard.operation_courier',compact('orders'));
+        $types  = [
+            'Deliver' => [
+                'name'          => 'Deliver',
+                'image'         => 'fast-delivery.png',
+                'description'   => 'Deliver a package',
+                'color'         => 'danger',
+            ],
+            'Exchange' =>  [
+                'name'          => 'Exchange',
+                'image'         => 'transfer.png',
+                'description'   => 'Exchange a package',
+                'color'         => 'dark',
+            ],
+            'Return' => [
+                'name'          => 'Return',
+                'image'         => 'return-on-investment.png',
+                'description'   => 'Pickup from customer',
+                'color'         => 'warning',
+            ],
+            'Cash Collection' => [
+                'name'          => 'Cash Collection',
+                'image'         => 'money.png',
+                'description'   => 'Collect or refund',
+                'color'         => 'accent',
+            ],
+        ];
+        $orders = Order::all()->where('courier_user_id',auth()->user()->id);
+        $porders = Order::where('courier_user_id',auth()->user()->id)->paginate(5);
+        return view('dashboard.operation_courier',compact('orders','porders','types'));
     }
 }

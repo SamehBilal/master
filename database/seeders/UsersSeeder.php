@@ -14,7 +14,8 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        $superadmin1 = User::create([
+        // create super admin
+        $superadmin = User::create([
             'first_name'        => 'Super',
             'last_name'         => 'Admin',
             'full_name'         => 'Super Admin',
@@ -22,77 +23,85 @@ class UsersSeeder extends Seeder
             'email_verified_at' => now(),
             'password'          => '$2y$10$Tz8KW1vWlv6yyyBSFNnZLup0H3om2N24BvAR29sGSeQT5XmX8MbFK', // 123456789
         ]);
-        $superadmin1->assignRole('Super Admin');
+        $superadmin->assignRole('Super Admin');
 
-        $superadmin2 = User::create([
-            'first_name'         => 'Osama',
-            'last_name'          => 'Fathy',
-            'full_name'          => 'Osama Fathy',
-            'email'             => 'osama.fathy@droplin.com',
+        // create admin
+        $admin = User::create([
+            'first_name'        => 'Admin',
+            'last_name'         => 'Droplin',
+            'full_name'         => 'Admin Droplin',
+            'email'             => 'admin@droplin.com',
             'email_verified_at' => now(),
             'password'          => '$2y$10$Tz8KW1vWlv6yyyBSFNnZLup0H3om2N24BvAR29sGSeQT5XmX8MbFK', // 123456789
         ]);
-        $superadmin2->assignRole('Super Admin');
+        $admin->assignRole('admin');
 
-        // create admins
-        $admin1 = User::create([
-            'first_name'         => 'Ahmed',
-            'last_name'          => 'Osama',
-            'full_name'          => 'Ahmed Osama',
-            'email'             => 'ahmedo.fathy@droplin.com',
+        // create customer
+        $admin = User::create([
+            'first_name'        => 'Customer',
+            'last_name'         => 'Droplin',
+            'full_name'         => 'Customer Droplin',
+            'email'             => 'customer@droplin.com',
             'email_verified_at' => now(),
             'password'          => '$2y$10$Tz8KW1vWlv6yyyBSFNnZLup0H3om2N24BvAR29sGSeQT5XmX8MbFK', // 123456789
         ]);
-        $admin1->assignRole('admin');
+        $admin->assignRole('customer');
+
+        // create sales
+        $admin = User::create([
+            'first_name'        => 'Sales',
+            'last_name'         => 'Droplin',
+            'full_name'         => 'Sales Droplin',
+            'email'             => 'sales@droplin.com',
+            'email_verified_at' => now(),
+            'password'          => '$2y$10$Tz8KW1vWlv6yyyBSFNnZLup0H3om2N24BvAR29sGSeQT5XmX8MbFK', // 123456789
+        ]);
+        $admin->assignRole('sales');
+
+        // create finance
+        $admin = User::create([
+            'first_name'        => 'Finance',
+            'last_name'         => 'Droplin',
+            'full_name'         => 'Finance Droplin',
+            'email'             => 'finance@droplin.com',
+            'email_verified_at' => now(),
+            'password'          => '$2y$10$Tz8KW1vWlv6yyyBSFNnZLup0H3om2N24BvAR29sGSeQT5XmX8MbFK', // 123456789
+        ]);
+        $admin->assignRole('finance');
+
+        // create operation admin
+        $admin = User::create([
+            'first_name'        => 'Operation',
+            'last_name'         => 'Admin',
+            'full_name'         => 'Operation Admin',
+            'email'             => 'operation_admin@droplin.com',
+            'email_verified_at' => now(),
+            'password'          => '$2y$10$Tz8KW1vWlv6yyyBSFNnZLup0H3om2N24BvAR29sGSeQT5XmX8MbFK', // 123456789
+        ]);
+        $admin->assignRole('operation admin');
+
+        // create operation logistics
+        $admin = User::create([
+            'first_name'        => 'Operation',
+            'last_name'         => 'Logistics',
+            'full_name'         => 'Operation Logistics',
+            'email'             => 'operation_logistics@droplin.com',
+            'email_verified_at' => now(),
+            'password'          => '$2y$10$Tz8KW1vWlv6yyyBSFNnZLup0H3om2N24BvAR29sGSeQT5XmX8MbFK', // 123456789
+        ]);
+        $admin->assignRole('operation logistics');
+
+        // create operation courier
+        $admin = User::create([
+            'first_name'        => 'Operation',
+            'last_name'         => 'Courier',
+            'full_name'         => 'Operation Courier',
+            'email'             => 'operation_courier@droplin.com',
+            'email_verified_at' => now(),
+            'password'          => '$2y$10$Tz8KW1vWlv6yyyBSFNnZLup0H3om2N24BvAR29sGSeQT5XmX8MbFK', // 123456789
+        ]);
+        $admin->assignRole('operation courier');
 
         User::factory()->count(18)->create();
-        /*$staff_json = File::get("database/data/meisStaff.json");
-        $staffData = json_decode($staff_json);
-
-        foreach ($staffData as $obj) {
-            $nameArr = explode(' ',$obj->Name);
-            $user = User::create([
-                'firstname'         => $nameArr[0],
-                'lastname'          => $nameArr[1],
-                'fullname'          => $obj->Name,
-                'email'             => $obj->Mail,
-                'email_verified_at' => now(),
-                'password'          => '$2y$10$Tz8KW1vWlv6yyyBSFNnZLup0H3om2N24BvAR29sGSeQT5XmX8MbFK', // 123456789
-            ]);
-            if (in_array($obj->Title, ['School Coordinator','HOD','Admission','HR','Accountant'])) {
-                $user->assignRole('staff');
-
-                if ($obj->Title == 'School Coordinator') {
-                    $position = 'School Coordinator';
-                    $user->assignRole('School Coordinator');
-
-                }elseif ($obj->Title == 'HOD') {
-                    $position = 'HOD';
-                    $user->assignRole('HOD');
-
-                }elseif ($obj->Title == 'Admission') {
-                    $position = 'Admission';
-                    $user->assignRole('Admission');
-
-                }elseif ($obj->Title == 'HR') {
-                    $position = 'H.R';
-                    $user->assignRole('H.R');
-
-                }elseif ($obj->Title == 'Accountant') {
-                    $position = 'Accounting';
-                    $user->assignRole('Accounting');
-                }
-                Staff::create([
-                    'user_id'   => $user->id,
-                    'position'  => $position
-                ]);
-            }else{
-                Teacher::create([
-                    'user_id'           => $user->id,
-                ]);
-                $user->assignRole('teacher');
-            }
-
-        }*/
     }
 }

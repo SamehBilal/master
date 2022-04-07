@@ -40,11 +40,19 @@
                 <!-- End title -->
                 <div class="col-md-6">
                     <h4>{{ __('content.Our vision') }}</h4>
-                    <p>{{ __('content.vision') }}</p>
+                    @if($locale == 'ar')
+                        <p>{{ $info != '' ? $info->ar_vision:__('content.vision') }}</p>
+                    @else
+                        <p>{{ $info != '' ? $info->en_vision:__('content.vision') }}</p>
+                    @endif
                 </div>
                 <div class="col-md-6">
                     <h4>{{ __('content.Our mission') }}</h4>
-                    <p>{{ __('content.mission') }}</p>
+                    @if($locale == 'ar')
+                        <p>{{ $info ? $info->ar_mission:__('content.mission') }}</p>
+                    @else
+                        <p>{{ $info ? $info->en_mission:__('content.mission') }}</p>
+                    @endif
                 </div>
             </div>
         </div>

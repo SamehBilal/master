@@ -17,7 +17,12 @@ class Order extends Model
 
     public function business()
     {
-        return $this->hasOne(Customer::class  , "id" , "business_user_id");
+        return $this->hasOne(User::class  , "id" , "business_user_id");
+    }
+
+    public function courier()
+    {
+        return $this->hasOne(User::class  , "id" , "courier_user_id");
     }
 
     public function location()

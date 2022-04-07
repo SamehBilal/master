@@ -95,10 +95,10 @@
                                     <button type="submit" class="link-button">{{ __('content.Register') }}</button>
                                 </form>
                                 <h4>{{ __('content.or register with') }}</h4>
-                                <div class="social">
+                                {{--<div class="social">
                                     <a class="facebook" href="#" title="facebook"><i class="zmdi zmdi-facebook"></i></a>
                                     <a class="google" href="#" title="google"><i class="zmdi zmdi-google-glass"></i></a>
-                                </div>
+                                </div>--}}
                             </div>
                         @endauth
                     </div>
@@ -170,9 +170,24 @@
 {{--
                                             <li class="level3"><a href="{{ route('website.calculation') }}" title="{{ __('content.Calculate time & cost') }}">{{ __('content.Calculate time & cost') }}</a></li>
 --}}
-                                            <li class="level3"><a href="{{ route('dashboard.orders.create') }}" title="{{ __('content.Create a shipment') }}">{{ __('content.Create a shipment') }}</a></li>
-                                            <li class="level3"><a href="{{ route('dashboard.orders.index') }}" title="{{ __('content.Change my delivery') }}">{{ __('content.Change my delivery') }}</a></li>
-                                            <li class="level3"><a href="{{ route('dashboard.pickups.create') }}" title="{{ __('content.Schedule a pickup') }}">{{ __('content.Schedule a pickup') }}</a></li>
+                                            @auth()
+                                                @php
+                                                    $user = \App\Models\User::find(auth()->user()->id);
+                                                @endphp
+                                                @if($user->hasRole('customer'))
+                                                    <li class="level3"><a href="{{ route('dashboard.orders.create') }}" title="{{ __('content.Create a shipment') }}">{{ __('content.Create a shipment') }}</a></li>
+                                                    <li class="level3"><a href="{{ route('dashboard.orders.index') }}" title="{{ __('content.Change my delivery') }}">{{ __('content.Change my delivery') }}</a></li>
+                                                    <li class="level3"><a href="{{ route('dashboard.pickups.create') }}" title="{{ __('content.Schedule a pickup') }}">{{ __('content.Schedule a pickup') }}</a></li>
+                                                @else
+                                                    <li class="level3"><a href="{{ route('dashboard.business.create_front') }}" title="{{ __('content.Create a shipment') }}">{{ __('content.Create a shipment') }}</a></li>
+                                                    <li class="level3"><a href="{{ route('dashboard.business.create_front') }}" title="{{ __('content.Change my delivery') }}">{{ __('content.Change my delivery') }}</a></li>
+                                                    <li class="level3"><a href="{{ route('dashboard.business.create_front') }}" title="{{ __('content.Schedule a pickup') }}">{{ __('content.Schedule a pickup') }}</a></li>
+                                                @endif
+                                            @else
+                                                <li class="level3"><a href="{{ route('dashboard.business.create_front') }}" title="{{ __('content.Create a shipment') }}">{{ __('content.Create a shipment') }}</a></li>
+                                                <li class="level3"><a href="{{ route('dashboard.business.create_front') }}" title="{{ __('content.Change my delivery') }}">{{ __('content.Change my delivery') }}</a></li>
+                                                <li class="level3"><a href="{{ route('dashboard.business.create_front') }}" title="{{ __('content.Schedule a pickup') }}">{{ __('content.Schedule a pickup') }}</a></li>
+                                            @endauth
                                         </ul>
                                     </li>
                                     <li class="level2">

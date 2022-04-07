@@ -44,6 +44,9 @@ return [
     'ar_footer_description' => 'وصف الفوتر (Arabic)',
     'deals'                 => 'العروض',
     'new deal'              => 'عرض جديد',
+    'courier'               => 'المرسول',
+    'Update Courier for the order'               => 'تحديث مرسول الطلب',
+    'Select courier'        => 'اختر مرسول',
 
     /* Content */
     'Name'                  => 'الاسم',

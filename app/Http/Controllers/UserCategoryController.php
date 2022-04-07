@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\UserCategory;
 use Illuminate\Http\Request;
 
@@ -14,9 +15,16 @@ class UserCategoryController extends Controller
      */
     public function index()
     {
-        $categories = UserCategory::where('business_user_id',auth()->user()->id)
-                                    ->orderBy('updated_at','desc')
-                                    ->get();
+        $user = User::find(auth()->user()->id);
+        if($user->hasRole('customer'))
+        {
+            $categories = UserCategory::where('business_user_id',$user->id)
+                ->orderBy('updated_at','desc')
+                ->get();
+        }else{
+            $categories = UserCategory::orderBy('updated_at','desc')
+                ->get();
+        }
         return view('users.categories.index',compact('categories'));
     }
 

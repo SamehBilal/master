@@ -32,7 +32,7 @@ class LocationFactory extends Factory
             'country_id'         => $this->faker->randomElement([1,2,3,4,5]),
             'state_id'           => $this->faker->randomElement([1,2,3,4,5]),
             'city_id'            => $this->faker->randomElement([1,2,3,4,5]),
-            'business_user_id'   => 2,
+            'business_user_id'   => 3,
         ];
     }
 }

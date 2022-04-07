@@ -97,8 +97,9 @@
                 </li>
                 @endcan
             </ul>
-
+            @can('view subscribers')
             <div class="sidebar-heading">{{ __('dashboard.Website') }}</div>
+
             <ul class="sidebar-menu">
                 @can('view subscribers')
                 <li class="sidebar-menu-item {{ set_active(['dashboard/subscribers*'])}}">
@@ -137,7 +138,10 @@
                     </li>
                 @endcan
             </ul>
+            @endcan
+            @can('view customers')
             <div class="sidebar-heading">{{ __('dashboard.Users') }}</div>
+
             <ul class="sidebar-menu">
                 @can('view customers')
                     <li class="sidebar-menu-item {{ set_active(['dashboard/customers*'])}}">
@@ -185,6 +189,7 @@
                     </li>
                 @endcan
             </ul>
+            @endcan
 
             <div class="sidebar-heading">{{ __('dashboard.Setup') }}</div>
             <ul class="sidebar-menu">
@@ -260,6 +265,14 @@
                                 <span class="sidebar-menu-text">{{ __('dashboard.Language') }}</span>
                             </a>
                         </li>
+                        @hasanyrole('customer')
+                        <li class="sidebar-menu-item {{ set_active(['dashboard/settings/business'])}}">
+                            <a class="sidebar-menu-button"
+                               href="{{ route('dashboard.settings.business') }}">
+                                <span class="sidebar-menu-text">Business</span>
+                            </a>
+                        </li>
+                        @endhasanyrole
                     </ul>
                 </li>
             </ul>

@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\ContactForm;
+use App\Models\User;
+use App\Notifications\NewBusiness;
+use App\Notifications\NewContactForm;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class ContactFormController extends Controller
 {
@@ -43,6 +47,9 @@ class ContactFormController extends Controller
             'email'                 => $request->email,
             'message'               => $request->message,
         ]);
+
+        $users = User::find(1);
+        Notification::send($users, new NewContactForm($contactForm));
 
         return redirect()->back()->with('success','Data created successfully');
     }

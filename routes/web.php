@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('settings/profile',[\App\Http\Controllers\ProfileController::class,'index'])->name('settings.profile');
             Route::post('settings/profile/{id}',[\App\Http\Controllers\ProfileController::class,'update'])->name('settings.profile.edit');
             Route::get('settings/language',[\App\Http\Controllers\ConfigController::class,'index'])->name('settings.language');
+            Route::get('settings/business',[\App\Http\Controllers\BusinessController::class,'settings'])->name('settings.business');
 
             Route::resource('customers',\App\Http\Controllers\ManageUsers\CustomerController::class); //Customers
             Route::resource('users',\App\Http\Controllers\UserController::class); //Users
@@ -57,6 +58,9 @@ Route::group(['middleware' => ['auth']], function () {
             Route::resource('orders/{order}/order-logs',\App\Http\Controllers\OrderLogController::class); //Order logs
             Route::get('orders/create/multi',[\App\Http\Controllers\OrderMultiController::class,'index'])->name('orders.create.multi'); //Multi Orders
             Route::post('orders/create/multi',[\App\Http\Controllers\OrderMultiController::class,'store'])->name('orders.create.multi.store'); //Multi Orders
+            Route::get('orders/{order}/courier/',[\App\Http\Controllers\OrderController::class,'courier_index'])->name('orders.courier'); //Courier
+            Route::post('orders/{order}/courier',[\App\Http\Controllers\OrderController::class,'courier'])->name('orders.create.courier'); //Multi Orders
+            Route::get('orders/{order}/qr',[\App\Http\Controllers\OrderController::class,'qr'])->name('orders.create.qr'); //Qr
             Route::get('orders/{order}/airwaybell',[\App\Http\Controllers\OrderController::class,'airwaybell'])->name('orders.create.airwaybell'); //Airway bell Orders
             Route::post('ticketchat/{ticket_id}',[\App\Http\Controllers\TicketController::class,'sendTicketMessage'])->name('tickets.sendmessage'); //send ticket message
             Route::resource('tickets',\App\Http\Controllers\TicketController::class); //Tickets
@@ -69,7 +73,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::resource('contact-forms',\App\Http\Controllers\ContactFormController::class)->except(['create', 'store',]); //Contact Forms
             Route::resource('subscribers',\App\Http\Controllers\SubscribeController::class)->except(['create', 'store',]); //Subscribes
             Route::resource('businesses',\App\Http\Controllers\BusinessController::class); //Business
-            Route::get('business',[\App\Http\Controllers\BusinessController::class,'create_front']); //Business
+            Route::get('business',[\App\Http\Controllers\BusinessController::class,'create_front'])->name('business.create_front'); //Business
             Route::get('location-states',[\App\Http\Controllers\LocationController::class,'get_state'])->name('locations.states'); //Get States Ajax
             Route::get('location-cities',[\App\Http\Controllers\LocationController::class,'get_city'])->name('locations.cities'); //Get Cities Ajax
             Route::resource('contacts',\App\Http\Controllers\ManageUsers\ContactController::class); //Contact

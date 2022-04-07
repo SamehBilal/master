@@ -1,4 +1,5 @@
-@php $locale = session()->get('locale'); @endphp
+@php $locale = session()->get('locale');
+$info = \App\Models\About::find(1); @endphp
 <footer id="footer">
     <div class="container">
         <div class="row footer-top" >
@@ -25,7 +26,7 @@
                 </div>
                 <div class="col-md-5">
                     <a class="logo" href="{{ route('website.index') }}" title="logo"><img src="{{ asset('frontend/assets/images/Dana-menu-logo.png') }}" alt="Logo"></a>
-                    <p class="italic">{{ __('content.mission') }}</p>
+                    <p class="italic">{{ $info ? $info->ar_footer_description:__('content.mission') }}</p>
                     <div class="infomation">
                         <p class="open-sans"><i class="zmdi zmdi-pin"></i>Misr Al gadeda, Cairo, Egypt</p>
                         <p class="open-sans"><i class="zmdi zmdi-phone"></i>+(20) 10 4568 7895</p>
@@ -35,7 +36,7 @@
             @else
                 <div class="col-md-5">
                     <a class="logo" href="{{ route('website.index') }}" title="logo"><img src="{{ asset('frontend/assets/images/Dana-menu-logo.png') }}" alt="Logo"></a>
-                    <p class="italic">{{ __('content.mission') }}</p>
+                    <p class="italic">{{ $info ? $info->en_footer_description:__('content.mission') }}</p>
                     <div class="infomation">
                         <p><i class="zmdi zmdi-pin "></i>Misr Al gadeda, Cairo, Egypt</p>
                         <p><i class="zmdi zmdi-phone"></i>+(20) 10 4568 7895</p>

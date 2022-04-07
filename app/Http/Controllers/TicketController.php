@@ -5,7 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Ticket;
 use App\Models\TicketIssue;
 use App\Models\TicketChat;
+use App\Models\User;
+use App\Notifications\NewTicket;
+use App\Notifications\NewTicketChat;
+use App\Notifications\UpdatedTicket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class TicketController extends Controller
 {
@@ -79,6 +84,9 @@ class TicketController extends Controller
             'files'             => $files
         ]);
 
+       /* $users = User::find(1);
+        Notification::send($users, new NewTicket($ticket));*/
+
         return redirect()->route('dashboard.tickets.index')->with('success','Ticket Submited successfully');
 
     }
@@ -120,6 +128,9 @@ class TicketController extends Controller
 
         $message = $request->status == '3' ? 'Ticket Closed Successfully' : 'Ticket Reopened Successfully';
 
+        /*$users = User::find(1);
+        Notification::send($users, new UpdatedTicket($ticket));*/
+
         return redirect()->back()->with('success',$message);
     }
 
@@ -149,12 +160,15 @@ class TicketController extends Controller
             $files  = implode(',',$file_data);
         }
 
-        TicketChat::create([
+        $ticket_chat = TicketChat::create([
             'user_id'   => auth()->user()->id,
             'ticket_id' => $ticket_id,
             'message'   => $request->message,
             'files'     => $files
         ]);
+
+        /*$users = User::find(1);
+        Notification::send($users, new NewTicketChat($ticket_chat));*/
 
         return redirect()->back()->with('success', 'Message Submitted Successfully');
     }
