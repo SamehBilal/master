@@ -113,9 +113,15 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'create mission', "order" => 16]);
         Permission::create(['name' => 'edit mission', "order" => 16]);
         Permission::create(['name' => 'delete mission', "order" => 16]);
+        // mission hubs
+        Permission::create(['name' => 'view hubs', "order" => 17]);
+        Permission::create(['name' => 'show hubs', "order" => 17]);
+        Permission::create(['name' => 'create hubs', "order" => 17]);
+        Permission::create(['name' => 'edit hubs', "order" => 17]);
+        Permission::create(['name' => 'delete hubs', "order" => 17]);
         // courier
-        Permission::create(['name' => 'edit courier', "order" => 17]);
-        Permission::create(['name' => 'edit log', "order" => 17]);
+        Permission::create(['name' => 'edit courier', "order" => 18]);
+        Permission::create(['name' => 'edit log', "order" => 18]);
 
 
         $admin->givePermissionTo(
@@ -204,6 +210,12 @@ class RolesAndPermissionsSeeder extends Seeder
             'create mission',
             'edit mission',
             'delete mission',
+            // hubs mission
+            'view hubs',
+            'show hubs',
+            'create hubs',
+            'edit hubs',
+            'delete hubs',
             'edit courier',
             'edit log');
 

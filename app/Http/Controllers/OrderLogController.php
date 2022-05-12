@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hub;
 use App\Models\Order;
 use App\Models\OrderLog;
 use App\Models\User;
@@ -29,6 +30,7 @@ class OrderLogController extends Controller
     public function create($order)
     {
         $order  = Order::findOrFail($order);
+        $hubs   = Hub::all();
         $logs  = [
             0 => [
                 'type' => 'New',
@@ -51,7 +53,7 @@ class OrderLogController extends Controller
                 'icon' => 'check',
             ],
         ];
-        return view('orders.log.create',compact('order','logs'));
+        return view('orders.log.create',compact('order','logs','hubs'));
     }
 
     /**
@@ -87,6 +89,7 @@ class OrderLogController extends Controller
             'description'            => $request->description,
             'notes'                  => $request->notes,
             'order_id'               => $order,
+            'hub_id'                 => $request->hub_id,
         ]);
 
         $users = User::find(1);
@@ -134,6 +137,7 @@ class OrderLogController extends Controller
             'description'            => $request->description,
             'notes'                  => $request->notes,
             'order_id'               => $request->order_id,
+            'hub_id'                 => $request->hub_id,
         ]);
 
         return redirect()->route('dashboard.index')->with('success','Data updated successfully');

@@ -66,6 +66,7 @@ class OrderLog extends Notification
         return [
             'id'                => $this->order_log->id,
             'order_id'          => $this->order_log->order_id,
+            'hub_id'            => $this->order_log->hub_id,
             'order_tracking_no' => $this->order_log->order->tracking_no,
             'description'       => $this->order_log->description,
             'status'            => $this->order_log->status,

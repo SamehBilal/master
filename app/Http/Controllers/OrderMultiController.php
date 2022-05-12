@@ -25,7 +25,7 @@ class OrderMultiController extends Controller
             ],
             [
                 'file'          => 'required',
-                'extension'      => 'required|in:doc,csv,xlsx,xls,docx,ppt,odt,ods,odp',
+                'extension'     => 'required|in:doc,csv,xlsx,xls,docx,ppt,odt,ods,odp',
             ]
         );
 

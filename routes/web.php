@@ -73,6 +73,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::resource('contact-forms',\App\Http\Controllers\ContactFormController::class)->except(['create', 'store',]); //Contact Forms
             Route::resource('subscribers',\App\Http\Controllers\SubscribeController::class)->except(['create', 'store',]); //Subscribes
             Route::resource('businesses',\App\Http\Controllers\BusinessController::class); //Business
+            Route::resource('hubs',\App\Http\Controllers\HubController::class); //Hub
             Route::get('business',[\App\Http\Controllers\BusinessController::class,'create_front'])->name('business.create_front'); //Business
             Route::get('location-states',[\App\Http\Controllers\LocationController::class,'get_state'])->name('locations.states'); //Get States Ajax
             Route::get('location-cities',[\App\Http\Controllers\LocationController::class,'get_city'])->name('locations.cities'); //Get Cities Ajax

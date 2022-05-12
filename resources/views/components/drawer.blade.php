@@ -209,6 +209,15 @@
                     </a>
                 </li>
                 @endcan
+                @can('view hubs')
+                    <li class="sidebar-menu-item {{ set_active(['dashboard/hubs*'])}}">
+                        <a class="sidebar-menu-button"
+                           href="{{ route('dashboard.hubs.index') }}">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">map</span>
+                            {{ __('dashboard.hubs') }}
+                        </a>
+                    </li>
+                @endcan
                 @can('view roles','view permissions')
                 <li class="sidebar-menu-item {{ set_active(['dashboard/roles*','dashboard/permissions*'],'active open')}}">
                     <a class="sidebar-menu-button js-sidebar-collapse"

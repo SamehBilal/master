@@ -16,7 +16,8 @@ class CreateOrderLogsTable extends Migration
         Schema::create('order_logs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('order_id')->nullable();
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('SET NULL');
+            $table->unsignedBigInteger('hub_id')->nullable();
+            $table->foreign('hub_id')->references('id')->on('hubs')->onDelete('SET NULL');
             $table->set('status',['New','Picked up','In transit','Out for delivery','Delivered'])->nullable();
             $table->set('description',
                 ['It is expected to be pickup your order at pickup date.',

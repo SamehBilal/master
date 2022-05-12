@@ -55,7 +55,6 @@ return [
 
     /* Content */
     'Name'                  => 'Name',
-    'Name'                  => 'Name',
     'Title'                 => 'Title',
     'en_title'              => 'Title (English)',
     'ar_title'              => 'Title (Arabic)',
@@ -83,6 +82,14 @@ return [
     'Close'                 => 'Close',
     'EGP'                   => 'EGP',
     'Website'               => 'Website',
+    'New Hub'               => 'New Hub',
+    'hubs'                  => 'Hubs',
+    'ar_Name'               => 'Name (Arabic)',
+    'en_Name'               => 'Name (English)',
+    'All hubs'              => 'All Hubs',
+    'Hubs Information'      => 'Hubs Information',
+    'Basic details of the hub'      => 'Basic details of the hub',
+    'All the hubs listed in the app'     => 'All the hubs listed in the app',
 
     //orders
     'Tracking_No'           => 'Tracking No.',

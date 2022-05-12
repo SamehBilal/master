@@ -80,6 +80,14 @@ return [
     'English'               => 'اللإنجليزية',
     'Change Language'       => 'تغيير اللغة',
     'Change the language of the system'    => 'قم بتغيير لغة النظام',
+    'New Hub'               => 'مستودع جديد',
+    'hubs'                  => 'المستودعات',
+    'ar_Name'               => 'الاسم بالعربي',
+    'en_Name'               => 'الاسم باللإنجليزية',
+    'All hubs'              => 'كل المستودعات',
+    'Hubs Information'      => 'معلومات المستودعات',
+    'Basic details of the hub'      => 'المعلومات الأساسية عن المستودع',
+    'All the hubs listed in the app'        => 'كل المستودعات المدرجة في التطبيق',
 
     //orders
     'Tracking_No'           => 'رقم التتبع',

@@ -83,7 +83,27 @@
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
                             </div>
-
+                            <div class="col-12 col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="select02">Hub</label>
+                                    <select id="select02"
+                                            data-toggle="select"
+                                            data-minimum-results-for-search="-1"
+                                            class="form-control form-control-sm @error('hub_id') is-invalid @enderror"
+                                            name="hub_id">
+                                        @foreach($hubs as $hub)
+                                            <option value="{{ $hub->id }}" {{ old('hub_id') == $hub->id ? 'selected':'' }}>
+                                                {{ $hub->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('hub_id')
+                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                    @enderror
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
