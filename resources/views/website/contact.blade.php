@@ -80,8 +80,8 @@
             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto</p>
         </div>
         <!-- End contact content -->
-        <div id="googleMap2" style="z-index: 0">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3451.341359188153!2d31.340813384586312!3d30.113044122282954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145815c3b5ce2d21%3A0x2189d1a95462a8ca!2z2KzYp9mF2Lkg2KfZhNmB2KrYrQ!5e0!3m2!1sar!2seg!4v1639064650425!5m2!1sar!2seg" width="100%" height="640" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <div {{--id="googleMap2"--}} style="z-index: 0">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3451.341359188153!2d31.340813384586312!3d30.113044122282954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145815c3b5ce2d21%3A0x2189d1a95462a8ca!2z2KzYp9mF2Lkg2KfZhNmB2KrYrQ!5e0!3m2!1sar!2seg!4v1639064650425!5m2!1sar!2seg" width="100%" height="640" style="border:0;" loading="lazy"></iframe>
         </div>
         <div class="container">
             <div class="box-icon-adress">

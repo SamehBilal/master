@@ -764,7 +764,7 @@
 @endsection
 
 @section('extra-scripts')
-    <script src="{{  asset('backend/js/locations_ajax.js') }}"></script>
+    @include('components.locations_ajax')
     <script>
         function doubling()
         {

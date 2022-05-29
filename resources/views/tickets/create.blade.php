@@ -47,7 +47,7 @@
                             <div class="col-12 col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="name">{{ __('dashboard.Tracking_No') }}:</label> <small class="badge badge-secondary">{{ __('dashboard.optional') }}</small>
+                                           for="name">{{ __('dashboard.Tracking_No') }}:</label> {{--<small class="badge badge-secondary">{{ __('dashboard.optional') }}</small>--}}
                                     <input type="text"
                                            class="form-control @error('tracking_number') is-invalid @enderror"
                                            value="{{ old('tracking_number') }}"
@@ -97,7 +97,7 @@
                                            required="required"
                                            autocomplete="Ticket subject"
                                            placeholder="{{ __('dashboard.Ticket subject') }} ..."
-                                           required>
+                                           >
                                     @error('subject')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
@@ -107,10 +107,11 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="description">{{ __('dashboard.Description') }}:</label> <small class="badge badge-secondary">{{ __('dashboard.optional') }}</small>
+                                           for="description">{{ __('dashboard.Description') }}:</label> {{--<small class="badge badge-secondary">{{ __('dashboard.optional') }}</small>--}}
                                     <textarea rows="8"
                                               id="description"
                                               name="description"
+                                              required="required"
                                               class="form-control @error('description') is-invalid @enderror"
                                               placeholder="{{ __('dashboard.Description') }}">{{ old('description') }}</textarea>
                                     @error('description')

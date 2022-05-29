@@ -151,7 +151,8 @@
 
                         <small class="flex d-flex flex-column">
                             <strong class="navbar-text-100">{{ __('dashboard.Orders') }}</strong>
-                            <span class="navbar-text-50">{{ \App\Models\Order::count() }}</span>
+                            @php $user = \App\Models\User::find(auth()->user()->id); @endphp
+                            <span class="navbar-text-50">{{ \App\Models\Order::where('business_user_id', $user->id)->count() }}</span>
                         </small>
                     </span>
     <span class="d-none d-md-flex align-items-center mr-16pt">
@@ -164,7 +165,7 @@
 
                         <small class="flex d-flex flex-column">
                             <strong class="navbar-text-100">{{ __('dashboard.Customers') }}</strong>
-                            <span class="navbar-text-50">{{ \App\Models\Customer::count() }}</span>
+                            <span class="navbar-text-50">{{ \App\Models\Customer::where('business_user_id', $user->id)->count() }}</span>
                         </small>
                     </span>
 

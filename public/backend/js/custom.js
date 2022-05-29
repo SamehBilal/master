@@ -412,3 +412,6 @@ $('.language-change').on('change',function () {
     var action = 'http://localhost:8000/lang/';
     $('#form_change').attr('action',action+value)
 })
+
+$('.select05').select2();
+

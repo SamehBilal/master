@@ -733,7 +733,7 @@ a:hover {
   background-color: #0A2B56;
   border-radius: 0px;
   box-shadow: none;
-  margin-top: 10px;
+  /*margin-top: 10px;*/
   padding: 0px;
 }
 
@@ -6230,7 +6230,7 @@ nav.pagination {
 /** 6.2. Header **/
 /** 6.2.1. General **/
 #topbar {
-  background: #0a2b56;
+  background: #ffaf00;
   height: 40px;
 }
 
@@ -6241,7 +6241,7 @@ nav.pagination {
 }
 
 #topbar .topbar-left i {
-  color: #fff;
+  color: #0A2B56;
   font-size: 20px;
 }
 
@@ -6293,7 +6293,7 @@ nav.pagination {
 }
 
 #topbar .topbar-right i {
-  color: #fff;
+  color: #0A2B56;
   font-size: 18px;
   vertical-align: -3px;
   margin-right: 10px;
@@ -6303,7 +6303,7 @@ nav.pagination {
   display: inline-block;
   height: 40px;
   line-height: 40px;
-  color: #fff;
+  color: #0A2B56;
   font-weight: 600;
   margin-right: 35px;
 }

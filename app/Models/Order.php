@@ -10,6 +10,32 @@ class Order extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
+    public function getStatusColorAttribute()
+    {
+        switch($this->attributes['status']){
+            case 'New':
+                return "badge-primary";
+            case 'Awaiting your action':
+                return "badge-warning";
+            case 'On hold':
+                return "badge-info";
+            case 'Canceled':
+                return "badge-secondary";
+            case 'Rescheduled':
+                return "badge-accent";
+            case 'Out for delivery':
+                return "badge-dark";
+            case 'Completed':
+                return "badge-success";
+            case 'Return to origin':
+                return "badge-secondary";
+            case 'Cannot be delivered':
+                return "badge-danger";
+            default:
+                return "badge-danger";
+        }
+    }
+
     public function customer()
     {
         return $this->hasOne(Customer::class  , "id" , "customer_id");

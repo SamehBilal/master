@@ -1,7 +1,7 @@
 $('.select05').on('change',function () {
     var id = $(this).val();
     $.ajax({
-        url: 'http://localhost:8000/dashboard/location-states',
+        url: 'http://localhost:8000/dashboard/location-states/',
         method: 'GET',
         dataType: 'json',
         data:{

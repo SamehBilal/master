@@ -14,7 +14,7 @@ class WebsiteRoutesController extends Controller
 {
     public function index()
     {
-        $deals = Deal::all();
+        $deals = Deal::all()->where('status','Public');
         return view('website.index',compact('deals'));
     }
 

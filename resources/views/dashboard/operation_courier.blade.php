@@ -137,19 +137,19 @@
 
         <div class="posts-cards mb-24pt">
             @foreach($porders as $order)
-                <div class="card posts-card">
+                <div class="card posts-card" >
                     <div class="posts-card__content d-flex align-items-center flex-wrap">
-                        <div class="avatar avatar-lg mr-3">
-                            <a href=""><img src="{{ asset('backend/images/icon/'.$types[$order->type]['image']) }}"
+                        <div class="avatar avatar-lg mr-3" style="cursor: pointer">
+                            <a href="{{ route('dashboard.orders.show',$order->id) }}"><img src="{{ asset('backend/images/icon/'.$types[$order->type]['image']) }}"
                                             alt="avatar"
                                             class="avatar-img rounded"></a>
                         </div>
-                        <div class="posts-card__title flex d-flex flex-column">
-                            <a href=""
+                        <div class="posts-card__title flex d-flex flex-column" style="cursor: pointer">
+                            <a href="{{ route('dashboard.orders.show',$order->id) }}"
                                class="card-title mr-3">{{ $order->tracking_no }}</a>
                             <small class="text-50">{{ $order->created_at->diffForHumans() }}</small>
                         </div>
-                        <div class="d-flex align-items-center flex-column flex-sm-row posts-card__meta">
+                        <div class="d-flex align-items-center flex-column flex-sm-row posts-card__meta" onclick="location.href='{{ route('dashboard.orders.show',$order->id) }}'" style="cursor: pointer">
                             <div class="mr-3 text-50 text-uppercase posts-card__tag d-flex align-items-center">
                                 <i class="material-icons text-muted-light mr-1">folder_open</i> {{ $order->type }}
                             </div>
@@ -200,7 +200,7 @@
                 </div>
             @endforeach
         </div>
-
+        @if($porders->count() == 5)
         <div class="card p-8pt mb-0 d-inline-block">
             {!! $porders->render() !!}
             {{--<ul class="pagination justify-content-start pagination-xsm m-0">
@@ -239,6 +239,7 @@
             </ul>--}}
 
         </div>
+            @endif
 
     </div>
 

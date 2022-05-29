@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="wrap-sign-in cart dropdown">
-                        <a class="sign-in" href="{{ route('website.account') }}" title="{{ __('content.my_account') }}"><i class="zmdi zmdi-account"></i>{{ __('content.my_account') }}</a>
+                        <a class="sign-in" href="@auth{{ route('website.account') }} @else # @endauth" title="{{ __('content.my_account') }}"><i class="zmdi zmdi-account"></i>{{ __('content.my_account') }}</a>
                         @auth
                             <div class="register-list cart-list dropdown-menu ">
                                 <h3>{{ __('content.my_account') }}</h3>
@@ -764,89 +764,46 @@
                     <span class="btn-vertical-slider zmdi zmdi-favorite-outline next" data-slide="next"></span>
                     <!-- Carousel items -->
                     <div class="carousel-inner">
-
-                        <div class="item active">
-                            <div class="row">
-                                <div class="col-xs-6 col-sm-6 col-md-6" dir="ltr">
-                                    <div class="product-images">
-                                        <div class="slide-product-images">
-                                            <div class="items" data-thumb='<img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product-featured2.jpg') }}" alt=""/>'>
-                                                <a href="#" title="products">
-                                                    <img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product-featured2.jpg') }}" alt=""/>
-                                                </a>
-                                            </div>
-                                            <div class="items" data-thumb='<img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product-featured3.jpg') }}" alt=""/>'>
-                                                <a href="#" title="products">
-                                                    <img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product-featured3.jpg') }}" alt=""/>
-                                                </a>
-                                            </div>
-                                            <div class="items" data-thumb='<img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product-featured4.jpg') }}" alt=""/>'>
-                                                <a href="#" title="products">
-                                                    <img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product-featured4.jpg') }}" alt=""/>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="title-text color-white">
-                                        <h3><span>F</span>irst time hot deals</h3>
-                                    </div>
-                                    <p>{{ __('content.This Week\'s Deals') }}</p>
-                                    <p><b>{{ __('content.Join now and') }}</b></p>
-                                    <ul>
-                                        <li>Your first orders are 10% less.</li>
-                                        <li>Discount on your total orders </li>
-                                        <li>Your first orders are 10% less. </li>
-                                        <li>Discount on your total orders </li>
-                                    </ul>
-                                    <p class="wrap-price">{{ __('content.Start') }} <span class="price">{{ __('content.Now') }} </span></p>
-                                </div>
-                            </div>
-                            <!--/row-fluid-->
-                        </div>
-                        <!--/item-->
-                        <div class="item">
-                            <div class="row">
-                                <div class="col-xs-6 col-sm-6 col-md-6" dir="ltr">
-                                    <div class="product-images">
-                                        <div class="slide-product-images">
-                                            <div class="items" data-thumb='<img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product-featured4.jpg') }}" alt=""/>'>
-                                                <a href="#" title="products">
-                                                    <img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product-featured4.jpg') }}" alt=""/>
-                                                </a>
-                                            </div>
-                                            <div class="items" data-thumb='<img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product-featured2.jpg') }}" alt=""/>'>
-                                                <a href="#" title="products">
-                                                    <img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product-featured2.jpg') }}" alt=""/>
-                                                </a>
-                                            </div>
-                                            <div class="items" data-thumb='<img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product-featured3.jpg') }}" alt=""/>'>
-                                                <a href="#" title="products">
-                                                    <img class="primary_image" src="{{ asset('frontend/assets/images/Dana-home1-product-featured3.jpg') }}" alt=""/>
-                                                </a>
+                        @php $count = 0; @endphp
+                        @foreach($deals as $deal)
+                            <div class="item {{ $count == 0 ? 'active':'' }}">
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6" dir="ltr">
+                                        <div class="product-images">
+                                            <div class="slide-product-images">
+                                                @php
+                                                    $lastChar = substr($deal->images, -1);
+                                                    if($lastChar == '/'){
+                                                        $images = substr_replace($deal->images ,"", -1);
+                                                    }
+                                                @endphp
+                                                @foreach(explode("/",$images) as $image)
+                                                    <div class="items" data-thumb='<img class="primary_image" src="{{ asset("storage/deals/{$deal->id}/{$image}") }}" alt=""/>'>
+                                                        <a href="#" title="products">
+                                                            <img class="primary_image" src="{{ asset("storage/deals/{$deal->id}/{$image}") }}" alt=""/>
+                                                        </a>
+                                                    </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="title-text color-white">
-                                        <h3><span>T</span>his week's hot deals</h3>
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="title-text color-white">
+                                            <h3><span>{{ $locale == 'ar' ? $deal->ar_title[0]:$deal->en_title[0]  }}</span>{{ $locale == 'ar' ? substr($deal->ar_title, 1):substr($deal->en_title, 1)  }}</h3>
+                                        </div>
+                                        <p>{{ $locale == 'ar' ? $deal->ar_description:$deal->en_description  }}</p>
+                                        @if($locale == 'ar')
+                                            {!! $deal->ar_details !!}
+                                        @else
+                                            {!! $deal->en_details !!}
+                                        @endif
+                                        <p class="wrap-price">{{ __('content.Start') }} <span class="price">{{ __('content.Now') }} </span></p>
                                     </div>
-                                    <p>{{ __('content.This Week\'s Deals') }}</p>
-                                    <p><b>{{ __('content.Join now and') }}</b></p>
-                                    <ul>
-                                        <li>Your orders will be 20% less.</li>
-                                        <li>Discount 50% on any package less than 5 minutes.</li>
-                                        <li>Your orders will be 20% less.  </li>
-                                        <li>Discount 50% on any package less than 5 minutes. </li>
-                                    </ul>
-                                    <p class="wrap-price">{{ __('content.Start') }} <span class="price">{{ __('content.Now') }} </span></p>
                                 </div>
+                                <!--/row-fluid-->
                             </div>
-                            <!--/row-fluid-->
-                        </div>
-                        <!--/item-->
+                            @php $count++ @endphp
+                        @endforeach
                     </div>
                     <span class="btn-vertical-slider zmdi zmdi-favorite-outline prev" data-slide="prev"></span>
                 </div>

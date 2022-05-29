@@ -160,7 +160,7 @@
                                                                    type="radio"
                                                                    class="custom-control-input"
                                                                    value="with cash collection"
-                                                                   checked="">
+                                                                   @if(old('with_cash_collection') == 'with cash collection' && old('with_cash_collection') != null) checked="checked" @else checked="checked" @endif >
                                                             <label for="with_cash_collection"
                                                                    class="custom-control-label">{{ __('dashboard.With cash collection') }}</label>
                                                         </div>
@@ -169,7 +169,8 @@
                                                                    name="with_cash_collection"
                                                                    type="radio"
                                                                    value="without cash collection"
-                                                                   class="custom-control-input">
+                                                                   class="custom-control-input"
+                                                                   @if(old('with_cash_collection') == 'without cash collection') checked="checked" @endif>
                                                             <label for="without_cash_collection"
                                                                    class="custom-control-label">{{ __('dashboard.Without cash collection') }}</label>
                                                         </div>
@@ -182,9 +183,9 @@
                                                            for="cash_on_delivery">{{ __('dashboard.Cash on Delivery') }}:</label>
                                                     <input type="number"
                                                            class="form-control @error('cash_on_delivery') is-invalid @enderror"
-                                                           value=""
+                                                           value="{{ old('cash_on_delivery') }}"
                                                            min="0"
-                                                           step="0.01"
+                                                           step="1"
                                                            id="cash_on_delivery"
                                                            name="cash_on_delivery"
                                                            autocomplete="cash_on_delivery"
@@ -212,7 +213,7 @@
                                                                    type="radio"
                                                                    value="parcel"
                                                                    class="custom-control-input"
-                                                                   checked="">
+                                                                   @if(old('radio_stacked') == 'parcel' && old('radio_stacked') != null) checked="checked" @else checked="checked" @endif>
                                                             <label for="radioStacked1"
                                                                    class="custom-control-label">{{ __('dashboard.Parcel') }}</label>
                                                         </div>
@@ -221,7 +222,8 @@
                                                                    name="radio_stacked"
                                                                    type="radio"
                                                                    value="document"
-                                                                   class="custom-control-input">
+                                                                   class="custom-control-input"
+                                                                   @if(old('radio_stacked') == 'document') checked="checked" @endif>
                                                             <label for="radioStacked2"
                                                                    class="custom-control-label">{{ __('dashboard.Document') }}</label>
                                                         </div>
@@ -230,7 +232,8 @@
                                                                    name="radio_stacked"
                                                                    type="radio"
                                                                    value="bulky"
-                                                                   class="custom-control-input">
+                                                                   class="custom-control-input"
+                                                                   @if(old('radio_stacked') == 'bulky') checked="checked" @endif>
                                                             <label for="radioStacked3"
                                                                    class="custom-control-label">{{ __('dashboard.Bulky') }}</label>
                                                         </div>
@@ -247,7 +250,7 @@
                                                                    type="radio"
                                                                    value="light bulky"
                                                                    class="custom-control-input"
-                                                                   checked="">
+                                                                   @if(old('light_bulky') == 'light bulky' && old('light_bulky') != null) checked="checked" @else checked="checked" @endif>
                                                             <label for="light_bulky"
                                                                    class="custom-control-label">Light Bulky</label>
                                                         </div>
@@ -256,7 +259,8 @@
                                                                    name="light_bulky"
                                                                    value="heavy bulky"
                                                                    type="radio"
-                                                                   class="custom-control-input">
+                                                                   class="custom-control-input"
+                                                                   @if(old('light_bulky') == 'heavy bulky') checked="checked" @endif>
                                                             <label for="heavy_bulky"
                                                                    class="custom-control-label">Heavy Bulky</label>
                                                         </div>
@@ -284,7 +288,7 @@
                                                            for="no_of_items">{{ __('dashboard.Number of Items') }}:</label>
                                                     <input type="number"
                                                            class="form-control @error('no_of_items') is-invalid @enderror"
-                                                           value=""
+                                                           value="{{ old('no_of_items') }}"
                                                            min="0"
                                                            step="1"
                                                            id="no_of_items"
@@ -305,7 +309,7 @@
                                                            for="no_of_items">{{ __('dashboard.Order Reference') }}:</label>
                                                     <input type="text"
                                                            class="form-control @error('order_reference') is-invalid @enderror"
-                                                           value=""
+                                                           value="{{ old('order_reference') }}"
                                                            id="order_reference"
                                                            name="order_reference"
                                                            autocomplete="order_reference"
@@ -324,7 +328,8 @@
                                                         <input type="checkbox"
                                                                class="custom-control-input"
                                                                name="open_package"
-                                                               id="customCheck1">
+                                                               id="customCheck1"
+                                                            {{ old('open_package') ?? "checked='checked'" }}>
                                                         <label class="custom-control-label"
                                                                for="customCheck1">{{ __('dashboard.Allow customers to open packages ?') }}</label>
                                                         <small class="form-text text-muted">{{ __('dashboard.Allowing customers to open package allows them to refuse taking it. In this case Bosta will return it back to you. Return fees will be applied') }}</small>
@@ -357,7 +362,7 @@
                                                                    type="radio"
                                                                    class="custom-control-input"
                                                                    value="with cash difference"
-                                                                   checked="">
+                                                                   @if(old('with_cash_difference') == 'with cash difference' && old('with_cash_difference') != null) checked="checked" @else checked="checked" @endif>
                                                             <label for="with_cash_difference"
                                                                    class="custom-control-label">{{ __('dashboard.With cash difference') }}</label>
                                                         </div>
@@ -366,7 +371,8 @@
                                                                    name="with_cash_difference"
                                                                    value="without cash difference"
                                                                    type="radio"
-                                                                   class="custom-control-input">
+                                                                   class="custom-control-input"
+                                                                   @if(old('with_cash_difference') == 'without cash difference') checked="checked" @endif>
                                                             <label for="without_cash_difference"
                                                                    class="custom-control-label">{{ __('dashboard.Without cash difference') }}</label>
                                                         </div>
@@ -379,9 +385,9 @@
                                                            for="cash_exchange_amount">{{ __('dashboard.Cash Exchange Amount') }}:</label>
                                                     <input type="number"
                                                            class="form-control @error('cash_exchange_amount') is-invalid @enderror"
-                                                           value=""
+                                                           value="{{ old('cash_exchange_amount') }}"
                                                            min="0"
-                                                           step="0.01"
+                                                           step="1"
                                                            id="cash_exchange_amount"
                                                            name="cash_exchange_amount"
                                                            autocomplete="cash_exchange_amount"
@@ -406,7 +412,7 @@
                                                            for="no_of_items">{{ __('dashboard.Number of Items') }}:</label>
                                                     <input type="number"
                                                            class="form-control @error('no_of_items_exchange') is-invalid @enderror"
-                                                           value="1"
+                                                           value="{{ old('no_of_items_exchange',1) }}"
                                                            min="0"
                                                            step="1"
                                                            id="no_of_items_exchange"
@@ -442,7 +448,7 @@
                                                            for="order_reference_exchange">{{ __('dashboard.Order Reference') }}:</label>
                                                     <input type="text"
                                                            class="form-control @error('order_reference_exchange') is-invalid @enderror"
-                                                           value=""
+                                                           value="{{ old('order_reference_exchange') }}"
                                                            id="order_reference_exchange"
                                                            name="order_reference_exchange"
                                                            autocomplete="order_reference_exchange"
@@ -461,7 +467,8 @@
                                                         <input type="checkbox"
                                                                class="custom-control-input"
                                                                name="allow_opening"
-                                                               id="customCheck1_allow">
+                                                               id="customCheck1_allow"
+                                                            {{ old('allow_opening') ?? 'checked="checked"' }}>
                                                         <label class="custom-control-label"
                                                                for="customCheck1_allow">{{ __('dashboard.Allow customers to open packages ?') }}</label>
                                                         <small class="form-text text-muted">{{ __('dashboard.Allowing customers to open package allows them to refuse taking it. In this case Bosta will return it back to you. Return fees will be applied') }}</small>
@@ -479,7 +486,7 @@
                                                            for="no_of_items_of_return_package_exchange">{{ __('dashboard.Number of Items') }}:</label>
                                                     <input type="number"
                                                            class="form-control @error('no_of_items_of_return_package_exchange') is-invalid @enderror"
-                                                           value="1"
+                                                           value="{{ old('no_of_items_of_return_package_exchange',1) }}"
                                                            min="0"
                                                            step="1"
                                                            id="no_of_items_of_return_package_exchange"
@@ -726,7 +733,8 @@
                                                         <input type="checkbox"
                                                                class="custom-control-input"
                                                                name="working_hours_exchange"
-                                                               id="customCheck1_exchange">
+                                                               id="customCheck1_exchange"
+                                                                {{ old('working_hours_exchange') ?? 'checked="checked"' }}>
                                                         <label class="custom-control-label"
                                                                for="customCheck1_exchange">{{ __('dashboard.This is a work address') }}</label>
                                                         <small class="form-text text-muted">{{ __('dashboard.Mark it to deliver it within business days and working hours') }}</small>
@@ -760,9 +768,9 @@
                                                            for="refund_amount">{{ __('dashboard.Refund Amount') }} :</label>
                                                     <input type="number"
                                                            class="form-control @error('refund_amount') is-invalid @enderror"
-                                                           value=""
+                                                           value="{{ old('refund_amount') }}"
                                                            min="0"
-                                                           step="0.01"
+                                                           step="1"
                                                            id="refund_amount"
                                                            name="refund_amount"
                                                            autocomplete="refund_amount"
@@ -784,7 +792,7 @@
                                                                    type="radio"
                                                                    class="custom-control-input"
                                                                    value="with refund"
-                                                                   checked="">
+                                                                   @if(old('with_refund') == 'with refund' && old('with_refund') != null) checked="checked" @else checked="checked" @endif>
                                                             <label for="with_refund"
                                                                    class="custom-control-label">{{ __('dashboard.With refund') }}</label>
                                                         </div>
@@ -793,7 +801,8 @@
                                                                    name="with_refund"
                                                                    type="radio"
                                                                    value="without refund"
-                                                                   class="custom-control-input">
+                                                                   class="custom-control-input"
+                                                                   @if(old('with_refund') == 'without refund') checked="checked" @endif>
                                                             <label for="without_refund"
                                                                    class="custom-control-label">{{ __('dashboard.Without refund') }}</label>
                                                         </div>
@@ -812,7 +821,7 @@
                                                            for="no_of_items_return">{{ __('dashboard.Number of Items') }}:</label>
                                                     <input type="number"
                                                            class="form-control @error('no_of_items_return') is-invalid @enderror"
-                                                           value="1"
+                                                           value="{{ old('no_of_items_return',1) }}"
                                                            min="0"
                                                            step="1"
                                                            id="no_of_items_return"
@@ -848,7 +857,7 @@
                                                            for="order_reference_return">{{ __('dashboard.Order Reference') }}:</label>
                                                     <input type="text"
                                                            class="form-control @error('order_reference_return') is-invalid @enderror"
-                                                           value=""
+                                                           value="{{ old('order_reference_return') }}"
                                                            id="order_reference_return"
                                                            name="order_reference_return"
                                                            autocomplete="order_reference_return"
@@ -1078,7 +1087,8 @@
                                                         <input type="checkbox"
                                                                class="custom-control-input"
                                                                name="working_hours_return"
-                                                               id="customCheck1_return">
+                                                               id="customCheck1_return"
+                                                            {{ old('working_hours_return' ?? 'checked="checked"') }}>
                                                         <label class="custom-control-label"
                                                                for="customCheck1_return">{{ __('dashboard.This is a work address') }}</label>
                                                         <small class="form-text text-muted">{{ __('dashboard.Mark it to deliver it within business days and working hours') }}</small>
@@ -1112,9 +1122,9 @@
                                                            for="cash_to_collect">{{ __('dashboard.Cash to Collect') }}:</label>
                                                     <input type="number"
                                                            class="form-control @error('cash_to_collect') is-invalid @enderror"
-                                                           value=""
+                                                           value="{{ old('cash_to_collect') }}"
                                                            min="0"
-                                                           step="0.01"
+                                                           step="1"
                                                            id="cash_to_collect"
                                                            name="cash_to_collect"
                                                            autocomplete="cash_to_collect"
@@ -1136,7 +1146,7 @@
                                                                    type="radio"
                                                                    class="custom-control-input"
                                                                    value="collect cash"
-                                                                   checked="">
+                                                                   @if(old('collect_cash') == 'collect cash' && old('collect_cash') != null) checked="checked" @else checked="checked" @endif>
                                                             <label for="collect_cash"
                                                                    class="custom-control-label">{{ __('dashboard.Collect cash from customer') }}</label>
                                                         </div>
@@ -1145,7 +1155,8 @@
                                                                    name="collect_cash"
                                                                    type="radio"
                                                                    value="refund cash"
-                                                                   class="custom-control-input">
+                                                                   class="custom-control-input"
+                                                                   @if(old('collect_cash') == 'refund cash') checked="checked" @endif>
                                                             <label for="refund_cash"
                                                                    class="custom-control-label">{{ __('dashboard.Refund cash to customer') }}</label>
                                                         </div>
@@ -1164,7 +1175,7 @@
                                                            for="no_of_items">{{ __('dashboard.Order Reference') }}:</label>
                                                     <input type="text"
                                                            class="form-control @error('order_reference_cash_collection') is-invalid @enderror"
-                                                           value=""
+                                                           value="{{ old('order_reference_cash_collection') }}"
                                                            id="order_reference_cash_collection"
                                                            name="order_reference_cash_collection"
                                                            autocomplete="order_reference_cash_collection"
@@ -1237,7 +1248,7 @@
                                            for="name">{{ __('dashboard.Name') }}:</label>
                                     <input type="text"
                                            class="form-control @error('name') is-invalid @enderror"
-                                           value=""
+                                           value="{{ old('name') }}"
                                            id="name"
                                            name="name"
                                            autocomplete="name"
@@ -1256,7 +1267,7 @@
                                     <input type="email"
                                            id="email"
                                            class="form-control @error('email') is-invalid @enderror"
-                                           value=""
+                                           value="{{ old('email') }}"
                                            name="email"
                                            autocomplete="email"
                                            placeholder="{{ __('dashboard.Your email address') }} ...">
@@ -1272,7 +1283,7 @@
                                            for="phone">{{ __('dashboard.Phone') }}:</label>
                                     <input type="text"
                                            class="form-control @error('phone') is-invalid @enderror"
-                                           value=""
+                                           value="{{ old('phone') }}"
                                            id="phone"
                                            name="phone"
                                            data-mask="00000000000"
@@ -1289,7 +1300,7 @@
                                            for="secondary_phone">{{ __('dashboard.Secondary Phone') }}:</label>
                                     <input type="text"
                                            class="form-control @error('secondary_phone') is-invalid @enderror"
-                                           value=""
+                                           value="{{ old('secondary_phone') }}"
                                            id="secondary_phone"
                                            name="secondary_phone"
                                            data-mask="00000000000"
@@ -1312,7 +1323,7 @@
                                               id="delivery_notes"
                                               name="delivery_notes"
                                               class="form-control @error('delivery_notes') is-invalid @enderror"
-                                              placeholder="{{ __('dashboard.Delivery Notes') }} ..."></textarea>
+                                              placeholder="{{ __('dashboard.Delivery Notes') }} ...">{{ old('delivery_notes') }}</textarea>
                                     @error('delivery_notes')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
@@ -1458,7 +1469,6 @@
                                 </div>
                             </div>
 
-
                             <div class="col-12 hidden locations col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
@@ -1540,7 +1550,8 @@
                                         <input type="checkbox"
                                                class="custom-control-input"
                                                name="working_hours"
-                                               id="customCheck1">
+                                               id="customCheck1"
+                                                {{ old('working_hours') ?? 'checked="checked"' }}>
                                         <label class="custom-control-label"
                                                for="customCheck1">{{ __('dashboard.This is a work address') }}</label>
                                         <small class="form-text text-muted">{{ __('dashboard.Mark it to deliver it within business days and working hours') }}</small>
@@ -1600,7 +1611,7 @@
                                     <select id="select06"
                                             data-toggle="select"
                                             name="pickup_id"
-                                            class="form-control form-control-sm @error('pickup_id') is-invalid @enderror">
+                                            class="form-control select05 form-control-sm @error('pickup_id') is-invalid @enderror">
                                         <option value="">Choose pickup</option>
                                         @foreach($pickups as $pickup)
                                             <option value="{{ $pickup->id }}" {{ old('pickup_id') == $pickup->id ? 'selected':'' }}>{{ $pickup->pickup_id }}</option>
@@ -1614,7 +1625,7 @@
                             </div>
                             <div class="col-lg-12 invert pickup">
                                 <a href="#" class="text-dark" onclick="event.preventDefault();
-                                                        display(module='pickup')">+ {{ __('dashboard.Pickup') }}</a>
+                                                        display(module='pickup')">+ {{ __('dashboard.New Pickup') }}</a>
                             </div>
                             <div class="col-md-12 hidden pickups">
                                 <div class="form-group">
@@ -1640,7 +1651,7 @@
                                     <select id="select06"
                                             data-toggle="select"
                                             name="contact_id"
-                                            class="form-control form-control-sm @error('contact_id') is-invalid @enderror">
+                                            class="form-control select05 form-control-sm @error('contact_id') is-invalid @enderror">
                                         <option value="">{{ __('dashboard.Select Contact') }}</option>
                                         @foreach($contacts as $contact)
                                             <option value="{{ $contact->id }}" {{ old('contact_id') == $contact->id ? 'selected':'' }}>{{ $contact->contact_name }}</option>
@@ -1661,7 +1672,7 @@
                 </div>
             </div>
             <div id="hidden_inputs">
-                <input type="hidden" name="type" value="Deliver">
+                <input type="hidden" name="type" value="{{ old('type','Deliver') }}">
                 {{--<input type="hidden" name="location_in" value="full">
                 <input type="hidden" name="contact_in" value="full">
                 <input type="hidden" name="date_in" value="full">--}}
@@ -1674,5 +1685,5 @@
 @endsection
 
 @section('extra-scripts')
-    <script src="{{  asset('backend/js/locations_ajax.js') }}"></script>
+    @include('components.locations_ajax')
 @endsection

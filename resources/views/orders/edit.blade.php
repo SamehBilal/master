@@ -185,7 +185,7 @@
                                                            class="form-control @error('cash_on_delivery') is-invalid @enderror"
                                                            value="{{ old('cash_on_delivery',$order->cash_on_delivery) }}"
                                                            min="0"
-                                                           step="0.01"
+                                                           step="1"
                                                            id="cash_on_delivery"
                                                            name="cash_on_delivery"
                                                            autocomplete="cash_on_delivery"
@@ -387,7 +387,7 @@
                                                            class="form-control @error('cash_exchange_amount') is-invalid @enderror"
                                                            value="{{ old('cash_exchange_amount',$order->cash_exchange_amount) }}"
                                                            min="0"
-                                                           step="0.01"
+                                                           step="1"
                                                            id="cash_exchange_amount"
                                                            name="cash_exchange_amount"
                                                            autocomplete="cash_exchange_amount"
@@ -770,7 +770,7 @@
                                                            class="form-control @error('refund_amount') is-invalid @enderror"
                                                            value="{{ old('refund_amount',$order->refund_amount) }}"
                                                            min="0"
-                                                           step="0.01"
+                                                           step="1"
                                                            id="refund_amount"
                                                            name="refund_amount"
                                                            autocomplete="refund_amount"
@@ -1124,7 +1124,7 @@
                                                            class="form-control @error('cash_to_collect') is-invalid @enderror"
                                                            value="{{ old('cash_to_collect',$order->cash_to_collect) }}"
                                                            min="0"
-                                                           step="0.01"
+                                                           step="1"
                                                            id="cash_to_collect"
                                                            name="cash_to_collect"
                                                            autocomplete="cash_to_collect"
@@ -1686,5 +1686,5 @@
 @endsection
 
 @section('extra-scripts')
-    <script src="{{  asset('backend/js/locations_ajax.js') }}"></script>
+    @include('components.locations_ajax')
 @endsection

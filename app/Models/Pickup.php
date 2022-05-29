@@ -13,6 +13,20 @@ class Pickup extends Model
         'repeat_days' => 'array',
     ];
 
+    public function getStatusColorAttribute()
+    {
+        switch($this->attributes['status']){
+            case 'Created':
+                return "badge-primary";
+            case 'Out for pickup':
+                return "badge-warning";
+            case 'Picked up':
+                return "badge-success";
+            default:
+                return "badge-danger";
+        }
+    }
+
     public function contact()
     {
         return $this->hasOne(Contact::class  , "id" , "contact_id");

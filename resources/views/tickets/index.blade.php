@@ -23,6 +23,7 @@
 @endsection
 
 @section('main_content')
+    @php header("Refresh:15"); @endphp
 <div class="mdk-drawer-layout js-mdk-drawer-layout">
     <div class="mdk-drawer-layout__content"
         data-perfect-scrollbar>

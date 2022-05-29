@@ -12,3 +12,9 @@
 .dropdown-item{
     cursor: pointer;
 }
+
+
+.select2-dropdown, .select2-dropdown--below{
+    height: 200px;!important;
+    overflow-y: scroll;!important;
+}

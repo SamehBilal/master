@@ -214,7 +214,7 @@
 
                                 <td>
                                     <div class="d-flex flex-column">
-                                        <small class="badge badge-{{ random_color() }}">{{ $pickup->status }}</small>
+                                        <small class="badge {{$pickup->status_color}}">{{ $pickup->status }}</small>
                                     </div>
                                 </td>
 

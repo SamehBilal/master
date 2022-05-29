@@ -68,7 +68,7 @@
                                 <div class="row">
 
                                     @foreach($permissions as $chunk)
-                                    
+
                                     <div class="col-xl-4">
                                         <!--begin::List Widget 4-->
                                         <div class="card card-custom card-stretch gutter-b">
@@ -98,14 +98,14 @@
                                                     <!--end::Text-->
                                                 </div>
                                                 <!--end:Item-->
-                                                @endforeach 
+                                                @endforeach
                                             </div>
                                             <!--end::Body-->
                                         </div>
                                         <!--end:List Widget 4-->
                                     </div>
-                                    @endforeach 
-                                </div>                            
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -119,5 +119,5 @@
 @endsection
 
 @section('extra-scripts')
-    <script src="{{  asset('backend/js/locations_ajax.js') }}"></script>
+    @include('components.locations_ajax')
 @endsection

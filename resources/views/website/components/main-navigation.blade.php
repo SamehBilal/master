@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="wrap-sign-in cart dropdown">
-                <a class="sign-in" href="{{ route('website.account') }}" title="{{ __('content.my_account') }}"><i class="zmdi zmdi-account"></i>{{ __('content.my_account') }}</a>
+                <a class="sign-in" href="@auth{{ route('website.account') }} @else # @endauth" title="{{ __('content.my_account') }}"><i class="zmdi zmdi-account"></i>{{ __('content.my_account') }}</a>
                 @auth
                     <div class="register-list cart-list dropdown-menu ">
                         <h3>{{ __('content.my_account') }}</h3>

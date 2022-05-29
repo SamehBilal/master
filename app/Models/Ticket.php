@@ -55,10 +55,10 @@ class Ticket extends Model
     {
         $common = [
             'status'            => Rule::in(['Open','Resolved','Closed']),
-            'tracking_number'   => "nullable|max:255",
+            'tracking_number'   => "required|max:255",
             'ticket_issue_id'   => 'required|exists:ticket_issues,id',
             'subject'           => "required|max:255",
-            'description'       => "nullable",
+            'description'       => "required",
             'files.*'           => 'nullable|max:10000',
             'order_id'          => 'nullable|exists:orders,id',
         ];
