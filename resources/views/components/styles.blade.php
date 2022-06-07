@@ -96,6 +96,12 @@
 <link type="text/css"
       href="{{ asset('backend/css/custom.css') }}"
       rel="stylesheet">
+
+<!-- Custom -->
+<link type="text/css"
+      href="{{ asset('backend/css/sweetalert.css') }}"
+      rel="stylesheet">
+
 <style>
     @if($locale == 'ar')
     @import url(https://fonts.googleapis.com/css?family=Cairo);

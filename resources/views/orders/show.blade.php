@@ -275,11 +275,30 @@
                         </div>
 
                         <div class="row mb-lg-8pt">
-                            <div class="col-md-6 col-lg-6">
+                            <div class="col-md-4 col-lg-4">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center">
-                                            <div class="position-relative mr-16pt">
+                                            <div class="position-relative mr-16pt" style="cursor: pointer" onclick="location.href='{{ route('dashboard.users.index') }}'">
+                                                <div class="text-center fullbleed d-flex align-items-center justify-content-center flex-column z-0">
+                                                    <i class="material-icons ">person</i>
+                                                </div>
+                                                <canvas width="48"
+                                                        height="48">
+                                                </canvas>
+                                            </div>
+                                            <div class="flex">
+                                                <strong>{{ $order->business->full_name }}</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-lg-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="position-relative mr-16pt" style="cursor: pointer" onclick="location.href='{{ route('dashboard.orders.create.airwaybell',$order->id) }}'">
                                                 <div class="text-center fullbleed d-flex align-items-center justify-content-center flex-column z-0">
                                                     <i class="material-icons ">receipt</i>
                                                 </div>
@@ -290,18 +309,16 @@
                                             <div class="flex">
                                                 <strong>Airway bell</strong>
                                             </div>
-                                            <div class="text-50">
-                                                <a href="{{ route('dashboard.orders.create.airwaybell',$order->id) }}"><i class="material-icons ">visibility</i></a></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             @can('edit orders')
-                            <div class="col-md-6 col-lg-6">
+                            <div class="col-md-4 col-lg-4">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center">
-                                            <div class="position-relative mr-16pt">
+                                            <div class="position-relative mr-16pt" style="cursor: pointer" onclick="location.href='{{ route('dashboard.orders.edit',$order->id) }}'">
                                                 <div class="text-center fullbleed d-flex align-items-center justify-content-center flex-column z-0">
                                                     <i class="material-icons ">edit</i>
                                                 </div>
@@ -311,10 +328,6 @@
                                             </div>
                                             <div class="flex">
                                                 <strong>Edit Order</strong>
-                                            </div>
-                                            <div class="text-50">
-                                                <a href="{{ route('dashboard.orders.edit',$order->id) }}" ><i class="material-icons ">edit</i> </a>
-
                                             </div>
                                         </div>
                                     </div>

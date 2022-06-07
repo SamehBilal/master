@@ -1687,4 +1687,10 @@
 
 @section('extra-scripts')
     @include('components.locations_ajax')
+
+    <script>
+        $("#scheduled_date").flatpickr({
+            minDate: "today",
+        });
+    </script>
 @endsection

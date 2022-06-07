@@ -10,7 +10,7 @@
          data-toastr-progress-bar="true"
          data-toastr-close-button="true">
     </div>
-@section('extra-scripts')
+@section('extra-scripts-alerts')
 
     <!-- Toastr -->
     <script src="{{ asset('backend/vendor/toastr.min.js') }}"></script>
@@ -120,7 +120,7 @@
          data-toastr-progress-bar="true"
          data-toastr-close-button="true">
     </div>
-@section('extra-scripts')
+@section('extra-scripts-alerts')
 
     <!-- Toastr -->
     <script src="{{ asset('backend/vendor/toastr.min.js') }}"></script>
@@ -237,7 +237,7 @@
     {{--data-toastr-time-out="0"
     data-toastr-extended-time-out="0"
     data-toastr-progress-bar="false"--}}
-@section('extra-scripts')
+@section('extra-scripts-alerts')
 
     <!-- Toastr -->
     <script src="{{ asset('backend/vendor/toastr.min.js') }}"></script>

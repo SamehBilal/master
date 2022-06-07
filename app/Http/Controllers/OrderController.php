@@ -7,6 +7,7 @@ use App\Notifications\NewContactForm;
 use App\Notifications\NewOrder;
 use App\Notifications\UpdatedOrder;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Validator;
 use PDF;
 use App\Models\City;
 use App\Models\Order;
@@ -125,7 +126,7 @@ class OrderController extends Controller
     {
         DB::beginTransaction();
         $request['tracking_no'] = random_int(100000, 999999);
-        $this->validate($request, Order::rules());
+
         try {
             if($request->customer_id == null)
             {
@@ -181,6 +182,8 @@ class OrderController extends Controller
                     'business_user_id'      => auth()->user()->id,
                 ]);
             }
+
+            $this->validate($request, Order::rules(),[],Order::attrs());
 
             switch($request->type)
             {
@@ -436,11 +439,11 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        $this->validate($request, Order::rules($update = true, $order->id));
+
 
         DB::beginTransaction();
         $request['tracking_no'] = $order->tracking_no;
-        $this->validate($request, Order::rules());
+        $this->validate($request, Order::rules($update = true, $order->id),[],Order::attrs());
         try {
             if($request->customer_id == null)
             {

@@ -413,5 +413,5 @@ $('.language-change').on('change',function () {
     $('#form_change').attr('action',action+value)
 })
 
-$('.select05').select2();
+
 

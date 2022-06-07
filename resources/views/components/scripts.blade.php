@@ -87,6 +87,9 @@
 <script src="{{ asset('backend/js/hljs.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
+<script src="{{ asset('backend/vendor/sweetalert.min.js') }}"></script>
+<script src="{{ asset('backend/js/sweetalert.js') }}"></script>
+
 <!-- custom -->
 <script src="{{ asset('backend/js/custom.js') }}"></script>
 

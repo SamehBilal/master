@@ -339,15 +339,15 @@
                             <div class="col-md-12 hidden dates">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="scheduled_date">Start Pickup Date:</label>
+                                           for="start_date">Start Pickup Date:</label>
                                     <input type="hidden"
                                            class="form-control @error('scheduled_date') is-invalid @enderror flatpickr-input"
                                            value="{{ old('scheduled_date') ? old('scheduled_date'):$pickup->scheduled_date }}"
-                                           id="scheduled_date"
+                                           id="start_date"
                                            name="scheduled_date"
                                            data-toggle="flatpickr"
                                            placeholder="Pickup Date...">
-                                    @error('scheduled_date')
+                                    @error('start_date')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
                                     <div class="valid-feedback">Looks good!</div>
@@ -631,4 +631,10 @@
 
 @section('extra-scripts')
     @include('components.locations_ajax')
+
+    <script>
+        $("#start_date,#scheduled_date").flatpickr({
+            minDate: "today",
+        });
+    </script>
 @endsection

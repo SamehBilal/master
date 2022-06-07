@@ -14,6 +14,7 @@ use App\Notifications\UpdatedPickup;
 use App\Traits\AjaxSelect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class PickupController extends Controller
 {
@@ -137,6 +138,7 @@ class PickupController extends Controller
      */
     public function show(Pickup $pickup)
     {
+        $qr     = QrCode::generate(route('dashboard.pickups.create.qr',$pickup->id));
         $logs  = [
             0 => [
                 'type' => 'Created',
@@ -151,7 +153,22 @@ class PickupController extends Controller
                 'icon' => 'check',
             ],
         ];
-        return view('pickups.show',compact('pickup','logs'));
+        return view('pickups.show',compact('pickup','logs','qr'));
+    }
+
+    public function qr(Pickup $pickup)
+    {
+        $user = User::find(auth()->user()->id);
+        /*if($user->hasRole('operation courier'))
+        {
+            $orderLog  = OrderLog::create([
+                'status'                 => 'Delivered',
+                'description'            => 'Your order has been delivered to customer.',
+                'order_id'               => $pickup->id,
+                'hub_id'                 => 1,
+            ]);
+        }*/
+        return redirect()->route('dashboard.pickups.show',$pickup->id)->with('success','Data updated successfully');
     }
 
     /**

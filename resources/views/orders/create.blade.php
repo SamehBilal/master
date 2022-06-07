@@ -27,6 +27,18 @@
 
 @section('main_content')
     <div class="container page__container page-section">
+
+        @if($errors->any())
+        <div class="card overlay--show card-lg overlay--primary-dodger-blue stack stack--1 card-group-row__card">
+
+            <div class="card-body d-flex flex-column">
+                <!-- Validation Errors -->
+                <x-auth-validation-errors class="mt-16pt text-70 flex" :errors="$errors" />
+
+            </div>
+        </div>
+        @endif
+
         <form method="POST" action="{{ route('dashboard.orders.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="page-separator">
@@ -52,7 +64,7 @@
                                            role="tab"
                                            data-info="Deliver"
                                            aria-selected="true"
-                                           class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start active">
+                                           class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start {{ old('type') ? (old('type') == 'Deliver' ? 'active':''):'active' }}">
                                             <span class="h2 mb-0 mr-3">
                                                 <div class="avatar mr-8pt">
 
@@ -74,7 +86,7 @@
                                            role="tab"
                                            data-info="Exchange"
                                            aria-selected="false"
-                                           class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start">
+                                           class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start {{ old('type') == 'Exchange' ? 'active':'' }}">
                                             <span class="h2 mb-0 mr-3">
                                                 <div class="avatar mr-8pt">
 
@@ -96,7 +108,7 @@
                                            role="tab"
                                            data-info="Return"
                                            aria-selected="false"
-                                           class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start">
+                                           class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start {{ old('type') == 'Return' ? 'active':'' }}">
                                             <span class="h2 mb-0 mr-3">
                                                 <div class="avatar mr-8pt">
 
@@ -118,7 +130,7 @@
                                            role="tab"
                                            data-info="Cash Collection"
                                            aria-selected="false"
-                                           class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start">
+                                           class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start {{ old('type') == 'Cash Collection' ? 'active':'' }}">
                                             <span class="h2 mb-0 mr-3">
                                                   <div class="avatar  mr-8pt">
 
@@ -137,7 +149,7 @@
                                 </div>
                             </div>
                             <div class="card-body tab-content">
-                                <div class="tab-pane text-70  fade show active" id="deliver" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div class="tab-pane text-70  fade {{ old('type') ? (old('type') == 'Deliver' ? 'show active':''):'show active' }}" id="deliver" role="tabpanel" aria-labelledby="nav-home-tab">
                                     <div class="row">
                                         <div class="col-lg-3 bg-light">
                                             <div class="page-separator">
@@ -339,7 +351,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane text-70  fade " id="exchange" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div class="tab-pane text-70  fade {{ old('type') == 'Exchange' ? 'show active':'' }}" id="exchange" role="tabpanel" aria-labelledby="nav-home-tab">
                                     <div class="row">
                                         <div class="col-lg-3 bg-light">
                                             <div class="page-separator">
@@ -519,11 +531,11 @@
                                             <div class="col-lg-12 invert exchangelocation">
                                                 <div class="form-group">
                                                     <label class="form-label"
-                                                           for="select02">{{ __('dashboard.Return Location') }}:</label>
-                                                    <select id="select02"
+                                                           for="return_location_exchange">{{ __('dashboard.Return Location') }}:</label>
+                                                    <select id="return_location_exchange"
                                                             data-toggle="select"
                                                             name="return_location_exchange"
-                                                            class="form-control form-control-sm @error('return_location_exchange') is-invalid @enderror">
+                                                            class="form-control select05 form-control-sm @error('return_location_exchange') is-invalid @enderror">
                                                         <option value="">{{ __('dashboard.Select location') }}</option>
                                                         @foreach($locations as $location)
                                                             <option value="{{ $location->id }}" {{ old('return_location_exchange') == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
@@ -543,8 +555,8 @@
                                             <div class="col-12 hidden exchangelocations col-md-6 mb-3">
                                                 <div class="form-group">
                                                     <label class="form-label"
-                                                           for="select05">{{ __('dashboard.Country') }}</label>
-                                                    <select id="select05"
+                                                           for="country_id_exchange">{{ __('dashboard.Country') }}</label>
+                                                    <select id="country_id_exchange"
                                                             data-toggle="select"
                                                             class="form-control select05 form-control-sm @error('country_id_exchange') is-invalid @enderror"
                                                             name="country_id_exchange">
@@ -563,11 +575,10 @@
                                             <div class="col-12 hidden exchangelocations col-md-6 mb-3">
                                                 <div class="form-group">
                                                     <label class="form-label"
-                                                           for="select01">{{ __('dashboard.State') }}</label>
-                                                    <select id="select01"
+                                                           for="state_id_exchange">{{ __('dashboard.State') }}</label>
+                                                    <select id="state_id_exchange"
                                                             data-toggle="select"
-                                                            data-minimum-results-for-search="-1"
-                                                            class="form-control select01 form-control-sm @error('state_id_exchange') is-invalid @enderror"
+                                                            class="form-control select01 select05 form-control-sm @error('state_id_exchange') is-invalid @enderror"
                                                             name="state_id_exchange">
                                                         @foreach($states as $state)
                                                             <option value="{{ $state->id }}" {{ old('state_id_exchange') == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -584,12 +595,11 @@
                                             <div class="col-12 hidden exchangelocations col-md-6 mb-3">
                                                 <div class="form-group">
                                                     <label class="form-label"
-                                                           for="select03">{{ __('dashboard.City') }}</label>
-                                                    <select id="select03"
+                                                           for="city_id_exchange">{{ __('dashboard.City') }}</label>
+                                                    <select id="city_id_exchange"
                                                             data-toggle="select"
                                                             disabled
-                                                            data-minimum-results-for-search="-1"
-                                                            class="form-control select03 form-control-sm @error('city_id_exchange') is-invalid @enderror"
+                                                            class="form-control select03 select05 form-control-sm @error('city_id_exchange') is-invalid @enderror"
                                                             name="city_id_exchange">
                                                     </select>
                                                     @error('city_id_exchange')
@@ -748,7 +758,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane text-70  fade " id="return" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div class="tab-pane text-70  fade {{ old('type') == 'Return' ? 'show active':'' }}" id="return" role="tabpanel" aria-labelledby="nav-home-tab">
                                     <div class="row">
                                         <div class="col-lg-3 bg-light">
                                             <div class="page-separator">
@@ -873,11 +883,11 @@
                                             <div class="col-lg-12 invert returnlocation">
                                                 <div class="form-group">
                                                     <label class="form-label"
-                                                           for="select02">{{ __('dashboard.Return Location') }}:</label>
-                                                    <select id="select02"
+                                                           for="return_location">{{ __('dashboard.Return Location') }}:</label>
+                                                    <select id="return_location"
                                                             data-toggle="select"
                                                             name="return_location"
-                                                            class="form-control form-control-sm @error('return_location') is-invalid @enderror">
+                                                            class="form-control select05 form-control-sm @error('return_location') is-invalid @enderror">
                                                         <option value="">{{ __('dashboard.Select location') }}</option>
                                                         @foreach($locations as $location)
                                                             <option value="{{ $location->id }}" {{ old('return_location') == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
@@ -897,8 +907,8 @@
                                             <div class="col-12 hidden returnlocations col-md-6 mb-3">
                                                 <div class="form-group">
                                                     <label class="form-label"
-                                                           for="select05">{{ __('dashboard.Country') }}</label>
-                                                    <select id="select05"
+                                                           for="country_id_return">{{ __('dashboard.Country') }}</label>
+                                                    <select id="country_id_return"
                                                             data-toggle="select"
                                                             class="form-control select05 form-control-sm @error('country_id_return') is-invalid @enderror"
                                                             name="country_id_return">
@@ -917,11 +927,10 @@
                                             <div class="col-12 hidden returnlocations col-md-6 mb-3">
                                                 <div class="form-group">
                                                     <label class="form-label"
-                                                           for="select01">{{ __('dashboard.State') }}</label>
-                                                    <select id="select01"
+                                                           for="state_id_return">{{ __('dashboard.State') }}</label>
+                                                    <select id="state_id_return"
                                                             data-toggle="select"
-                                                            data-minimum-results-for-search="-1"
-                                                            class="form-control select01 form-control-sm @error('state_id_return') is-invalid @enderror"
+                                                            class="form-control select05 select01 form-control-sm @error('state_id_return') is-invalid @enderror"
                                                             name="state_id_return">
                                                         @foreach($states as $state)
                                                             <option value="{{ $state->id }}" {{ old('state_id_return') == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -938,12 +947,11 @@
                                             <div class="col-12 hidden returnlocations col-md-6 mb-3">
                                                 <div class="form-group">
                                                     <label class="form-label"
-                                                           for="select03">{{ __('dashboard.City') }}</label>
-                                                    <select id="select03"
+                                                           for="city_id_return">{{ __('dashboard.City') }}</label>
+                                                    <select id="city_id_return"
                                                             data-toggle="select"
                                                             disabled
-                                                            data-minimum-results-for-search="-1"
-                                                            class="form-control select03 form-control-sm @error('city_id_return') is-invalid @enderror"
+                                                            class="form-control select05 select03 form-control-sm @error('city_id_return') is-invalid @enderror"
                                                             name="city_id_return">
                                                     </select>
                                                     @error('city_id_return')
@@ -1102,7 +1110,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane text-70  fade " id="cash_collection" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div class="tab-pane text-70  fade {{ old('type') == 'Cash Collection' ? 'show active':'' }}" id="cash_collection" role="tabpanel" aria-labelledby="nav-home-tab">
                                     <div class="row">
                                         <div class="col-lg-3 bg-light">
                                             <div class="page-separator">
@@ -1222,11 +1230,11 @@
                             <div class="col-lg-12 invert customer">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select04">{{ __('dashboard.Customer') }}:</label>
-                                    <select id="select04"
+                                           for="customer_id">{{ __('dashboard.Customer') }}:</label>
+                                    <select id="customer_id"
                                             data-toggle="select"
                                             name="customer_id"
-                                            class="form-control form-control-sm @error('customer_id') is-invalid @enderror">
+                                            class="form-control select05 form-control-sm @error('customer_id') is-invalid @enderror">
                                         <option value="">{{ __('dashboard.Select customer') }}</option>
                                         @foreach($customers as $customer)
                                             <option value="{{ $customer->id }}" {{ old('customer_id') == $customer->id ? 'selected':'' }}>{{ $customer->user->full_name }}</option>
@@ -1338,11 +1346,11 @@
                             <div class="col-lg-12 invert location">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select02">{{ __("dashboard.Customer's Locations") }}:</label>
-                                    <select id="select02"
+                                           for="location_id">{{ __("dashboard.Customer's Locations") }}:</label>
+                                    <select id="location_id"
                                             data-toggle="select"
                                             name="location_id"
-                                            class="form-control form-control-sm @error('location_id') is-invalid @enderror">
+                                            class="form-control select05 form-control-sm @error('location_id') is-invalid @enderror">
                                         <option value="">{{ __('dashboard.Select location') }}</option>
                                         @foreach($locations as $location)
                                             <option value="{{ $location->id }}" {{ old('location_id') == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
@@ -1361,8 +1369,8 @@
                             <div class="col-12 hidden locations col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select05">Country</label>
-                                    <select id="select05"
+                                           for="country_id">Country</label>
+                                    <select id="country_id"
                                             data-toggle="select"
                                             class="form-control select05 form-control-sm @error('country_id') is-invalid @enderror"
                                             name="country_id">
@@ -1381,11 +1389,10 @@
                             <div class="col-12 hidden locations col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select01">{{ __('dashboard.State') }}</label>
-                                    <select id="select01"
+                                           for="state_id">{{ __('dashboard.State') }}</label>
+                                    <select id="state_id"
                                             data-toggle="select"
-                                            data-minimum-results-for-search="-1"
-                                            class="form-control select01 form-control-sm @error('state_id') is-invalid @enderror"
+                                            class="form-control select05 select01 form-control-sm @error('state_id') is-invalid @enderror"
                                             name="state_id">
                                         @foreach($states as $state)
                                             <option value="{{ $state->id }}" {{ old('state_id') == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -1393,7 +1400,7 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                    @error('city_id')
+                                    @error('state_id')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
                                     <div class="valid-feedback">Looks good!</div>
@@ -1402,12 +1409,11 @@
                             <div class="col-12 hidden locations col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select03">{{ __('dashboard.City') }}</label>
-                                    <select id="select03"
+                                           for="city_id">{{ __('dashboard.City') }}</label>
+                                    <select id="city_id"
                                             data-toggle="select"
                                             disabled
-                                            data-minimum-results-for-search="-1"
-                                            class="form-control select03 form-control-sm @error('city_id') is-invalid @enderror"
+                                            class="form-control select05 select03 form-control-sm @error('city_id') is-invalid @enderror"
                                             name="city_id">
                                     </select>
                                     @error('city_id')
@@ -1567,7 +1573,7 @@
                     </div>
                 </div>
             </div>
-            <div class="page-separator pickups_card">
+            <div class="page-separator pickups_card {{ old('type') == 'Return' || old('type') == 'Cash Collection' ? 'hidden':'' }}">
                 <div class="page-separator__text" style="line-height: 30px;">
                     <button type="button" class="btn btn-sm rounded-circle btn-dark">
                         &nbsp;  3 &nbsp;
@@ -1575,7 +1581,7 @@
                     &nbsp; {{ __('dashboard.Request Pickup') }} &nbsp; <small class="badge badge-secondary">{{ __('dashboard.optional') }}</small>
                 </div>
             </div>
-            <div class="card pickups_card">
+            <div class="card pickups_card {{ old('type') == 'Return' || old('type') == 'Cash Collection' ? 'hidden':'' }}">
                 <div class="card-body ">
                     <div class="row">
                         <div class="col-lg-3 bg-light">
@@ -1588,11 +1594,11 @@
                             <div class="col-lg-12 invert ">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select02">{{ __('dashboard.Pickup Locations') }}:</label>
-                                    <select id="select02"
+                                           for="pickup_location_id">{{ __('dashboard.Pickup Locations') }}:</label>
+                                    <select id="pickup_location_id"
                                             data-toggle="select"
                                             name="pickup_location_id"
-                                            class="form-control form-control-sm @error('pickup_location_id') is-invalid @enderror">
+                                            class="form-control select05 form-control-sm @error('pickup_location_id') is-invalid @enderror">
                                         <option value="">{{ __('dashboard.Select location') }}</option>
                                         @foreach($locations as $location)
                                             <option value="{{ $location->id }}" {{ old('pickup_location_id') == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
@@ -1607,8 +1613,8 @@
                             <div class="col-lg-12 invert pickup">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select06">{{ __('dashboard.Scheduled Pickups') }}:</label>
-                                    <select id="select06"
+                                    for="pickup_id">{{ __('dashboard.Scheduled Pickups') }}:</label>
+                                    <select id="pickup_id"
                                             data-toggle="select"
                                             name="pickup_id"
                                             class="form-control select05 form-control-sm @error('pickup_id') is-invalid @enderror">
@@ -1647,8 +1653,8 @@
                             <div class="col-lg-12 hidden pickups">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select06">{{ __('dashboard.Contacts') }}:</label>
-                                    <select id="select06"
+                                           for="contact_id">{{ __('dashboard.Contacts') }}:</label>
+                                    <select id="contact_id"
                                             data-toggle="select"
                                             name="contact_id"
                                             class="form-control select05 form-control-sm @error('contact_id') is-invalid @enderror">
@@ -1680,10 +1686,75 @@
 
             <button type="submit"
                     class="btn pull-right btn-primary">{{ __('dashboard.Submit') }}</button>
+
+            <a id="btn-confirm"
+                class="btn btn-danger"
+                data-toggle="swal"
+                data-swal-title="Are you sure?"
+                data-swal-text="You will not be able to recover this imaginary file!"
+                data-swal-type="warning"
+                data-swal-confirm-button-text="Yes, Confirm!"
+                data-swal-confirm-cb="#swal-confirm-delete"
+                data-swal-show-cancel-button="true"
+                data-swal-cancel-button-text="No, cancel please!"
+                data-swal-cancel-cb="#swal-cancel-delete"
+                data-swal-close-on-confirm="false"
+                data-swal-close-on-cancel="false">
+                Confirm
+            </a>
+
+            <div
+                id="swal-cancel-delete"
+                class="d-none"
+                data-swal-type="error"
+                data-swal-title="Cancelled"
+                data-swal-text="Your imaginary file is safe :)">
+            </div>
+
+            <div
+                id="swal-confirm-delete"
+                class="d-none"
+                data-swal-type="success"
+                data-swal-title="Deleted!"
+                data-swal-text="Your imaginary file has been deleted.">
+            </div>
         </form>
     </div>
 @endsection
 
 @section('extra-scripts')
     @include('components.locations_ajax')
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            $("#scheduled_date").flatpickr({
+                minDate: "today",
+            });
+            $('.select05').select2();
+
+            $('#btn-confirm').on('click',function () {
+                swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover this imaginary file!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            swal("Poof! Your imaginary file has been deleted!", {
+                                icon: "success",
+                            });
+                        } else {
+                            swal("Your imaginary file is safe!", {
+                                icon: "danger",
+                            });
+                        }
+                    });
+            })
+        });
+
+    </script>
 @endsection

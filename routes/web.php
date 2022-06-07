@@ -61,6 +61,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('orders/{order}/courier/',[\App\Http\Controllers\OrderController::class,'courier_index'])->name('orders.courier'); //Courier
             Route::post('orders/{order}/courier',[\App\Http\Controllers\OrderController::class,'courier'])->name('orders.create.courier'); //Multi Orders
             Route::get('orders/{order}/qr',[\App\Http\Controllers\OrderController::class,'qr'])->name('orders.create.qr'); //Qr
+            Route::get('pickups/{pickup}/qr',[\App\Http\Controllers\PickupController::class,'qr'])->name('pickups.create.qr'); //Qr
             Route::get('orders/{order}/airwaybell',[\App\Http\Controllers\OrderController::class,'airwaybell'])->name('orders.create.airwaybell'); //Airway bell Orders
             Route::post('ticketchat/{ticket_id}',[\App\Http\Controllers\TicketController::class,'sendTicketMessage'])->name('tickets.sendmessage'); //send ticket message
             Route::resource('tickets',\App\Http\Controllers\TicketController::class); //Tickets

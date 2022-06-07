@@ -72,6 +72,8 @@
 
 @include('components.scripts')
 
+@yield('extra-scripts-alerts')
+
 @yield('extra-scripts')
 
 </body>

@@ -19,6 +19,10 @@ class CreateOrdersTable extends Migration
             $table->longText('delivery_notes')->nullable();
             $table->unsignedBigInteger('tracking_no');
             $table->set('status', ['New','Awaiting your action','On hold','Canceled','Rescheduled','Out for delivery','Completed','Return to origin','Cannot be delivered'])->default('New');
+            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('pickup_id')->nullable();
+            $table->unsignedBigInteger('business_user_id')->nullable();
+            $table->unsignedBigInteger('location_id')->nullable();
 
             /* Deliver */
             $table->string('with_cash_collection')->nullable();
@@ -53,12 +57,9 @@ class CreateOrdersTable extends Migration
             $table->string('collect_cash')->nullable();
             $table->string('order_reference_cash_collection')->nullable();
 
-            $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('pickup_id')->nullable();
-            $table->unsignedBigInteger('location_id')->nullable();
+
             $table->unsignedBigInteger('return_location')->nullable();
             $table->unsignedBigInteger('return_location_exchange')->nullable();
-            $table->unsignedBigInteger('business_user_id')->nullable();
             $table->unsignedBigInteger('courier_user_id')->nullable();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->foreign('pickup_id')->references('id')->on('pickups')->onDelete('SET NULL');
