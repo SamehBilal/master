@@ -56,10 +56,13 @@ Route::group(['middleware' => ['auth']], function () {
             Route::resource('pickups',\App\Http\Controllers\PickupController::class); //Pickups
             Route::resource('orders',\App\Http\Controllers\OrderController::class); //Orders
             Route::resource('orders/{order}/order-logs',\App\Http\Controllers\OrderLogController::class); //Order logs
+            Route::resource('pickups/{pickup}/pickup-logs',\App\Http\Controllers\PickupLogController::class); //Pickup logs
             Route::get('orders/create/multi',[\App\Http\Controllers\OrderMultiController::class,'index'])->name('orders.create.multi'); //Multi Orders
             Route::post('orders/create/multi',[\App\Http\Controllers\OrderMultiController::class,'store'])->name('orders.create.multi.store'); //Multi Orders
-            Route::get('orders/{order}/courier/',[\App\Http\Controllers\OrderController::class,'courier_index'])->name('orders.courier'); //Courier
-            Route::post('orders/{order}/courier',[\App\Http\Controllers\OrderController::class,'courier'])->name('orders.create.courier'); //Multi Orders
+            Route::get('orders/{order}/courier/',[\App\Http\Controllers\CourierLogsController::class,'create_order'])->name('orders.courier'); //Courier
+            Route::post('orders/{order}/courier',[\App\Http\Controllers\CourierLogsController::class,'store_order'])->name('orders.create.courier'); //Multi Orders
+            Route::get('pickups/{pickup}/courier/',[\App\Http\Controllers\CourierLogsController::class,'create_pickup'])->name('pickups.courier'); //Courier
+            Route::post('pickups/{pickup}/courier',[\App\Http\Controllers\CourierLogsController::class,'store_pickup'])->name('pickups.create.courier'); //Multi Orders
             Route::get('orders/{order}/qr',[\App\Http\Controllers\OrderController::class,'qr'])->name('orders.create.qr'); //Qr
             Route::get('pickups/{pickup}/qr',[\App\Http\Controllers\PickupController::class,'qr'])->name('pickups.create.qr'); //Qr
             Route::get('orders/{order}/airwaybell',[\App\Http\Controllers\OrderController::class,'airwaybell'])->name('orders.create.airwaybell'); //Airway bell Orders

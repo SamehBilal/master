@@ -32,10 +32,12 @@
             <div class="row">
                 <div class="col-lg-5 mb-24pt mb-lg-0">
                     <div class="border-left-3 border-left-primary pl-24pt pl-md-32pt">
-                        <h4 class="mb-8pt">{{ $pickup->status }}</h4>
-                        <p class="text-70 mb-24pt">Edit pickup details from here</p>
-                        <a href="{{ route("dashboard.pickups.edit",$pickup->id) }}"
-                           class="btn btn-primary">Edit Pickup</a>
+                        <h4 class="mb-8pt">{{ $log ? $log->status:'' }}</h4>
+                        <p class="text-70 mb-24pt">{{ $log ? $log->description:'' }}</p>
+                        @can('edit log')
+                            <a href="{{ route("dashboard.pickup-logs.index",$pickup->id) }}"
+                               class="btn btn-primary">Order Logs</a>
+                        @endcan
                     </div>
                 </div>
                 <div class="col-lg-7 d-flex align-items-center">
@@ -45,7 +47,7 @@
                                data-toggle="tooltip"
                                data-placement="top"
                                data-title="{{ $icon['type'] }}"
-                               class="page-num-timeline__item {{ $icon['type'] ==  $pickup->status  ? 'page-num-timeline__item-current':''}}">
+                               class="page-num-timeline__item {{ $icon['type'] ==  ($log ? $log->status:'')  ? 'page-num-timeline__item-current':''}}">
                                 <span class="page-num-timeline__item-tip"></span>
                                 <span class="page-num"><i class="material-icons">{{ $icon['icon'] }}</i></span>
                             </a>
@@ -97,9 +99,9 @@
                                             <div class="d-flex">
                                                 <div class="flex">
                                                     <a class="card-title mb-4pt"
-                                                       href="#">Edit the courier</a>
+                                                       href="{{ route('dashboard.pickups.courier',$pickup->id) }}">Edit the courier</a>
                                                 </div>
-                                                <a href="#"
+                                                <a href="{{ route('dashboard.pickups.courier',$pickup->id) }}"
                                                    class="ml-4pt material-icons text-20 card-course__icon-favorite">edit</a>
                                             </div>
                                         </div>
@@ -165,7 +167,7 @@
                                             </div>--}}
                                         </div>
                                         <div class="col text-right">
-                                            <a href="{{ route('dashboard.orders.courier',$pickup->id) }}"
+                                            <a href="{{ route('dashboard.pickups.courier',$pickup->id) }}"
                                                class="btn btn-primary">Edit Courier</a>
                                         </div>
                                     </div>
@@ -202,10 +204,10 @@
                                                         </div>
                                                         <div class="flex">
                                                             <div class="card-title">{{ $pickup->courier ? $pickup->courier->full_name:'' }}</div>
-                                                            <p class="flex text-50 lh-1 mb-0"><small>{{ $pickup->courier ? $count_order = \App\Models\Order::where('courier_user_id',$pickup->courier_user_id)->count(): $count_order ='' }} order(s)</small></p>
+                                                            <p class="flex text-50 lh-1 mb-0"><small>{{ $pickup->courier ? $count_pickup = \App\Models\Pickup::where('courier_user_id',$pickup->courier_user_id)->count(): $count_pickup ='' }} pickup(s)</small></p>
                                                         </div>
                                                     @else
-                                                        <a href="{{ route('dashboard.orders.courier',$pickup->id) }}"
+                                                        <a href="{{ route('dashboard.pickups.courier',$pickup->id) }}"
                                                            class="btn btn-primary">Edit Courier</a>
                                                     @endif
 
@@ -235,7 +237,7 @@
                                             </div>
                                             <div class="media-body">
                                                 <div class="card-title">{{ $pickup->courier ? $pickup->courier->full_name:'' }}</div>
-                                                <p class="text-50 d-flex lh-1 mb-0 small">{{ $count_order }} order(s)</p>
+                                                <p class="text-50 d-flex lh-1 mb-0 small">{{ $count_pickup }} pickup(s)</p>
                                             </div>
                                         </div>
                                         {{--<p class="mt-16pt text-70">Learn the fundamentals of working with Figma and how to create basic applications.</p>
@@ -275,7 +277,7 @@
                             </div>
 
                             <div class="row mb-lg-8pt">
-                                <div class="col-md-4 col-lg-4">
+                                <div class="col-md-6 col-lg-6">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="d-flex align-items-center">
@@ -294,31 +296,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-lg-4">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="d-flex align-items-center">
-                                                <div class="position-relative mr-16pt" style="cursor: pointer" onclick="location.href='{{ route('dashboard.orders.create.airwaybell',$pickup->id) }}'">
-                                                    <div class="text-center fullbleed d-flex align-items-center justify-content-center flex-column z-0">
-                                                        <i class="material-icons ">receipt</i>
-                                                    </div>
-                                                    <canvas width="48"
-                                                            height="48">
-                                                    </canvas>
-                                                </div>
-                                                <div class="flex">
-                                                    <strong>Airway bell</strong>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                @can('edit orders')
-                                    <div class="col-md-4 col-lg-4">
+
+                                @can('edit pickups')
+                                    <div class="col-md-6 col-lg-6">
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="d-flex align-items-center">
-                                                    <div class="position-relative mr-16pt" style="cursor: pointer" onclick="location.href='{{ route('dashboard.orders.edit',$pickup->id) }}'">
+                                                    <div class="position-relative mr-16pt" style="cursor: pointer" onclick="location.href='{{ route('dashboard.pickups.edit',$pickup->id) }}'">
                                                         <div class="text-center fullbleed d-flex align-items-center justify-content-center flex-column z-0">
                                                             <i class="material-icons ">edit</i>
                                                         </div>
@@ -327,7 +311,7 @@
                                                         </canvas>
                                                     </div>
                                                     <div class="flex">
-                                                        <strong>Edit Order</strong>
+                                                        <strong>Edit Pickup</strong>
                                                     </div>
                                                 </div>
                                             </div>
@@ -522,8 +506,125 @@
                                             </div>
                                         </div>
                                         <div class="col text-right">
-                                            <a href="{{ route('dashboard.locations.show',$pickup->location->id) }}"
-                                               class="btn btn-outline-secondary">View Location</a>
+                                            <!-- Button trigger modal -->
+                                            <button id="view_modal" type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter">
+                                                View Location
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLongTitle">Location Information</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="card-body d-flex flex-column">
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="flex">
+                                                                        <div class="d-flex align-items-center">
+                                                                            <div class="rounded mr-12pt z-0 o-hidden">
+                                                                                <div class="overlay">
+                                                                                    <img src="{{ asset('backend/images/icon/map.png') }}"
+                                                                                         width="40"
+                                                                                         height="40"
+                                                                                         alt="Angular"
+                                                                                         class="rounded">
+                                                                                    {{--<span class="overlay__content overlay__content-transparent">
+                                                                                            <span class="overlay__action d-flex flex-column text-center lh-1">
+                                                                                                <small class="h6 small text-white mb-0"
+                                                                                                       style="font-weight: 500;">80%</small>
+                                                                                            </span>
+                                                                                        </span>--}}
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="flex">
+                                                                                <div class="card-title">{{ $pickup->location->name }}</div>
+                                                                                <p class="flex text-50 lh-1 mb-0"><small>{{ $pickup->location->state->name }}</small></p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    {{--<a href="undefinedstudent-path.html"
+                                                                       data-toggle="tooltip"
+                                                                       data-title="Add Favorite"
+                                                                       data-placement="top"
+                                                                       data-boundary="window"
+                                                                       class="ml-4pt material-icons text-20 card-course__icon-favorite">favorite_border</a>--}}
+
+                                                                </div>
+
+                                                                {{--<div class="rating mt-8pt">
+                                                                    <span class="rating__item"><span class="material-icons">star</span></span>
+                                                                    <span class="rating__item"><span class="material-icons">star</span></span>
+                                                                    <span class="rating__item"><span class="material-icons">star</span></span>
+                                                                    <span class="rating__item"><span class="material-icons">star</span></span>
+                                                                    <span class="rating__item"><span class="material-icons">star_border</span></span>
+                                                                </div>--}}
+
+                                                                <p class="mt-16pt text-70 flex">{{ $pickup->location->apartment }} {{ $pickup->location->building }}, {{ $pickup->location->street }}, {{ $pickup->location->state->name }}, {{ $pickup->location->country->name }}</p>
+
+                                                                <div class="mb-16pt d-none">
+                                                                    <div class="d-flex align-items-center">
+                                                                        <span class="material-icons icon-16pt text-50 mr-8pt">check</span>
+                                                                        <p class="flex text-50 lh-1 mb-0"><small>Fundamentals of working with WordPress</small></p>
+                                                                    </div>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <span class="material-icons icon-16pt text-50 mr-8pt">check</span>
+                                                                        <p class="flex text-50 lh-1 mb-0"><small>Create complete WordPress applications</small></p>
+                                                                    </div>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <span class="material-icons icon-16pt text-50 mr-8pt">check</span>
+                                                                        <p class="flex text-50 lh-1 mb-0"><small>Working with the WordPress CLI</small></p>
+                                                                    </div>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <span class="material-icons icon-16pt text-50 mr-8pt">check</span>
+                                                                        <p class="flex text-50 lh-1 mb-0"><small>Understanding Dependency Injection</small></p>
+                                                                    </div>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <span class="material-icons icon-16pt text-50 mr-8pt">check</span>
+                                                                        <p class="flex text-50 lh-1 mb-0"><small>Testing with WordPress</small></p>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row align-items-center">
+                                                                    <div class="col-auto">
+                                                                        <div class="d-flex align-items-center mb-4pt">
+                                                                            <span class="material-icons icon-16pt text-50 mr-4pt">apartment</span>
+                                                                            <p class="flex text-50 lh-1 mb-0"><small>Apartment: {{ $pickup->location->apartment }}</small></p>
+                                                                        </div>
+                                                                        <div class="d-flex align-items-center mb-4pt">
+                                                                            <span class="material-icons icon-16pt text-50 mr-4pt">home_work</span>
+                                                                            <p class="flex text-50 lh-1 mb-0"><small>Home: {{ $pickup->location->building }}</small></p>
+                                                                        </div>
+                                                                        <div class="d-flex align-items-center mb-4pt">
+                                                                            <span class="material-icons icon-16pt text-50 mr-4pt">local_convenience_store</span>
+                                                                            <p class="flex text-50 lh-1 mb-0"><small>Floor: {{ $pickup->location->floor }}</small></p>
+                                                                        </div>
+                                                                        <div class="d-flex align-items-center mb-4pt">
+                                                                            <span class="material-icons icon-16pt text-50 mr-4pt">car_repair</span>
+                                                                            <p class="flex text-50 lh-1 mb-0"><small>Street: {{ $pickup->location->street }}</small></p>
+                                                                        </div>
+                                                                        <div class="d-flex align-items-center mb-4pt">
+                                                                            <span class="material-icons icon-16pt text-50 mr-4pt">landscape</span>
+                                                                            <p class="flex text-50 lh-1 mb-0"><small>landmarks: {{ $pickup->location->landmarks }}</small></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col text-right"></div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="button" onclick="location.href='{{ route('dashboard.locations.show',$pickup->location->id).'?pickup='.$pickup->id }}'" class="btn btn-primary"> <i class="material-icons icon--left">edit</i> Edit Location</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 

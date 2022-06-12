@@ -94,9 +94,8 @@ class OrderLogController extends Controller
 
         $users = User::find(1);
         Notification::send($users, new \App\Notifications\OrderLog($orderLog));
-        return redirect()->back();
 
-        //return redirect('dashboard.order-logs.index',$order)->with('success','Data created successfully');
+        return redirect('dashboard/orders/'.$order.'/order-logs')->with('success','Data created successfully');
     }
 
     /**

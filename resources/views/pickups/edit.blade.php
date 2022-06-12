@@ -30,6 +30,18 @@
 
 @section('main_content')
     <div class="container page__container page-section">
+
+        @if($errors->any())
+            <div class="card overlay--show card-lg overlay--primary-dodger-blue stack stack--1 card-group-row__card">
+
+                <div class="card-body d-flex flex-column">
+                    <!-- Validation Errors -->
+                    <x-auth-validation-errors class="mt-16pt text-70 flex" :errors="$errors" />
+
+                </div>
+            </div>
+        @endif
+
         <form method="POST" action="{{ route('dashboard.pickups.update',$pickup->id) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -59,11 +71,11 @@
                             <div class="col-lg-12 invert location">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select02">Pickup Locations:</label>
-                                    <select id="select02"
+                                           for="location_id">Pickup Locations:</label>
+                                    <select id="location_id"
                                             data-toggle="select"
                                             name="location_id"
-                                            class="form-control form-control-sm @error('location_id') is-invalid @enderror">
+                                            class="form-control select005 form-control-sm @error('location_id') is-invalid @enderror">
                                         <option value="">Select location</option>
                                         @foreach($locations as $location)
                                             <option value="{{ $location->id }}" @if(old('location_id')) {{ old('location_id') == $location->id ? 'selected':'' }} @else {{ $pickup->location_id == $location->id ? 'selected':'' }} @endif >{{ $location->name }}</option>
@@ -82,10 +94,10 @@
                             <div class="col-12 hidden locations col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select05">Country</label>
-                                    <select id="select05"
+                                           for="country_id">Country</label>
+                                    <select id="country_id"
                                             data-toggle="select"
-                                            class="form-control form-control-sm @error('country_id') is-invalid @enderror"
+                                            class="form-control select05 select005 form-control-sm @error('country_id') is-invalid @enderror"
                                             name="country_id">
                                         @foreach($countries as $country)
                                             <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -102,11 +114,10 @@
                             <div class="col-12 hidden locations col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select01">State</label>
-                                    <select id="select01"
+                                           for="state_id">State</label>
+                                    <select id="state_id"
                                             data-toggle="select"
-                                            data-minimum-results-for-search="-1"
-                                            class="form-control form-control-sm @error('state_id') is-invalid @enderror"
+                                            class="form-control select01 select005 form-control-sm @error('state_id') is-invalid @enderror"
                                             name="state_id">
                                         @foreach($states as $state)
                                             <option value="{{ $state->id }}" {{ old('state_id') == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -114,7 +125,7 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                    @error('city_id')
+                                    @error('state_id')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
                                     <div class="valid-feedback">Looks good!</div>
@@ -123,18 +134,12 @@
                             <div class="col-12 hidden locations col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select03">City</label>
-                                    <select id="select03"
+                                           for="city_id">City</label>
+                                    <select id="city_id"
                                             data-toggle="select"
                                             disabled
-                                            data-minimum-results-for-search="-1"
-                                            class="form-control form-control-sm @error('city_id') is-invalid @enderror"
+                                            class="form-control select03 select005 form-control-sm @error('city_id') is-invalid @enderror"
                                             name="city_id">
-                                        {{-- @foreach($cities as $city)
-                                            <option value="{{ $city->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
-                                                {{ $city->name }}
-                                            </option>
-                                        @endforeach --}}
                                     </select>
                                     @error('city_id')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -277,7 +282,8 @@
                                         <input type="checkbox"
                                                class="custom-control-input"
                                                name="working_hours"
-                                               id="customCheck1">
+                                               id="customCheck1"
+                                            {{ old('working_hours') ?? 'checked="checked"' }}>
                                         <label class="custom-control-label"
                                                for="customCheck1">This is a work address</label>
                                         <small class="form-text text-muted">Mark it to deliver it within business days and working hours.</small>
@@ -324,7 +330,6 @@
                                            value="{{ old('scheduled_date') ? old('scheduled_date'):$pickup->scheduled_date }}"
                                            id="scheduled_date"
                                            name="scheduled_date"
-                                           data-toggle="flatpickr"
                                            placeholder="Pickup Date...">
                                     @error('scheduled_date')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -336,7 +341,7 @@
                                 <a href="#" class="text-dark" onclick="event.preventDefault();
                                                     display(module='date')">Do you want to repeat the pickup?</a>
                             </div>
-                            <div class="col-md-12 hidden dates">
+                            <div class="col-md-12 {{ $pickup->type == 'One Time' ? 'hidden dates':'' }}">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="start_date">Start Pickup Date:</label>
@@ -345,7 +350,6 @@
                                            value="{{ old('scheduled_date') ? old('scheduled_date'):$pickup->scheduled_date }}"
                                            id="start_date"
                                            name="scheduled_date"
-                                           data-toggle="flatpickr"
                                            placeholder="Pickup Date...">
                                     @error('start_date')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -353,7 +357,7 @@
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
                             </div>
-                            <div class="col-12 hidden dates">
+                            <div class="col-12 {{ $pickup->type == 'One Time' ? 'hidden dates':'' }}">
                                 <div class="form-group">
                                     <div class="custom-controls-stacked">
                                         <div class="custom-control custom-radio"  onclick="handleClick1();">
@@ -379,7 +383,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12 hidden multiple-select">
+                            <div class="col-md-12 {{ $pickup->type == 'One Time' ? 'hidden dates':'' }} multiple-select ">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="select03">Multiple</label>
@@ -395,9 +399,12 @@
                                             <option value="Wednesday" @if($pickup->repeat_days){{ in_array('Wednesday', $pickup->repeat_days) == 'Wednesday' ? 'selected':'' }}@endif>Wednesday</option>
                                             <option value="Thursday"  @if($pickup->repeat_days){{ in_array('Thursday', $pickup->repeat_days) == 'Thursday' ? 'selected':'' }}@endif>Thursday</option>
                                     </select>
+                                    @error('repeat_days')
+                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
-                            <div class="col-md-12 hidden dates">
+                            <div class="col-md-12 {{ $pickup->type == 'One Time' ? 'hidden dates':'' }}">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="end_date">End At:</label>
@@ -406,7 +413,6 @@
                                            value="{{ old('end_date') ? old('end_date'):$pickup->end_date }}"
                                            id="end_date"
                                            name="end_date"
-                                           data-toggle="flatpickr"
                                            placeholder="Pickup End Date...">
                                     @error('end_date')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -414,7 +420,7 @@
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 hidden dates">
+                            <div class="col-lg-12 {{ $pickup->type == 'One Time' ? 'hidden dates':'' }}">
                                 <a href="#" class="text-dark" onclick="event.preventDefault();
                                                     displayInvert(module='date')">- Stop recurring pickup</a>
                             </div>
@@ -444,11 +450,11 @@
                         <div class="col-lg-12 invert contact">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="select06">Contacts:</label>
-                                <select id="select06"
+                                       for="contact_id">Contacts:</label>
+                                <select id="contact_id"
                                         data-toggle="select"
                                         name="contact_id"
-                                        class="form-control form-control-sm @error('contact_id') is-invalid @enderror">
+                                        class="form-control select005 form-control-sm @error('contact_id') is-invalid @enderror">
                                     <option value="">Select Contact</option>
                                     @foreach($contacts as $contact)
                                         <option value="{{ $contact->id }}" @if(old('contact_id')) {{ old('contact_id') == $contact->id ? 'selected':'' }} @else {{ $pickup->contact_id == $contact->id ? 'selected':'' }} @endif>{{ $contact->contact_name }}</option>
@@ -601,11 +607,11 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="select02">Pickup Status:</label>
-                                <select id="select02"
+                                       for="status">Pickup Status:</label>
+                                <select id="status"
                                         data-toggle="select"
                                         name="status"
-                                        class="form-control form-control-sm @error('status') is-invalid @enderror">
+                                        class="form-control select005 form-control-sm @error('status') is-invalid @enderror">
                                     <option value="">Select status</option>
                                     <option value="Created" @if(old('status')) {{ old('status') == 'Created' ? 'selected':'' }} @else {{ $pickup->status == 'Created' ? 'selected':'' }} @endif >Created</option>
                                     <option value="Out for pickup" @if(old('status')) {{ old('status') == 'Out for pickup' ? 'selected':'' }} @else {{ $pickup->status == 'Out for pickup' ? 'selected':'' }} @endif >Out for pickup</option>
@@ -622,7 +628,7 @@
                 </div>
             </div>
             <input type="hidden" name="pickup_id" value="{{ $pickup->pickup_id }}">
-
+            <input type="hidden" name="date_in" value="full">
             <button type="submit"
                     class="btn pull-right btn-primary">Submit</button>
         </form>
@@ -633,8 +639,12 @@
     @include('components.locations_ajax')
 
     <script>
-        $("#start_date,#scheduled_date").flatpickr({
-            minDate: "today",
+        $(document).ready(function() {
+            $("#start_date,#scheduled_date,#end_date").flatpickr({
+                minDate: "today",
+            });
+
+            $('.select005').select2();
         });
     </script>
 @endsection

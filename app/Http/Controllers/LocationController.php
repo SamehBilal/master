@@ -135,7 +135,11 @@ class LocationController extends Controller
             'business_user_id'      => $user_id,
         ]);
 
-        return redirect()->route('dashboard.locations.index')->with('success','Data updated successfully');
+        if($request->pickup_id != ''){
+            return redirect()->route('dashboard.pickups.show',$request->pickup_id)->with('success','Data updated successfully');
+        }else{
+            return redirect()->route('dashboard.locations.index')->with('success','Data updated successfully');
+        }
     }
 
     /**

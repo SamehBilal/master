@@ -70,10 +70,10 @@
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select05">{{ __('dashboard.Country') }}</label>
-                                    <select id="select05"
+                                           for="country_id">{{ __('dashboard.Country') }}</label>
+                                    <select id="country_id"
                                             data-toggle="select"
-                                            class="form-control select05 form-control-sm @error('country_id') is-invalid @enderror"
+                                            class="form-control select05 select005 form-control-sm @error('country_id') is-invalid @enderror"
                                             name="country_id">
                                         @foreach($countries as $country)
                                             <option value="{{ $country->id }}" {{ $country->id == $location->country_id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -90,11 +90,10 @@
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select01">{{ __('dashboard.State') }}</label>
-                                    <select id="select01"
+                                           for="state_id">{{ __('dashboard.State') }}</label>
+                                    <select id="state_id"
                                             data-toggle="select"
-                                            data-minimum-results-for-search="-1"
-                                            class="form-control select01 form-control-sm @error('state_id') is-invalid @enderror"
+                                            class="form-control select01 select005 form-control-sm @error('state_id') is-invalid @enderror"
                                             name="state_id">
                                         @foreach($states as $state)
                                             <option value="{{ $state->id }}" {{ $state->id == $location->state_id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -102,7 +101,7 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                    @error('city_id')
+                                    @error('state_id')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
                                     <div class="valid-feedback">Looks good!</div>
@@ -111,11 +110,10 @@
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select03">{{ __('dashboard.City') }}</label>
-                                    <select id="select03"
+                                           for="city_id">{{ __('dashboard.City') }}</label>
+                                    <select id="city_id"
                                             data-toggle="select"
-                                            data-minimum-results-for-search="-1"
-                                            class="form-control select03 form-control-sm @error('city_id') is-invalid @enderror"
+                                            class="form-control select03 select005 form-control-sm @error('city_id') is-invalid @enderror"
                                             name="city_id">
                                         @foreach($cities as $city)
                                             <option value="{{ $city->id }}" {{ $city->id == $location->city_id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -262,7 +260,7 @@
                     </div>
                 </div>
             </div>
-
+            <input type="hidden" name="pickup_id" value="{{ isset($_GET['pickup']) ? $_GET['pickup']:'' }}">
             <button type="submit"
                     class="btn pull-right btn-primary">{{ __('dashboard.Submit') }}</button>
         </form>
@@ -271,4 +269,11 @@
 
 @section('extra-scripts')
     @include('components.locations_ajax')
+
+    <script>
+        $(document).ready(function() {
+
+            $('.select005').select2();
+        });
+    </script>
 @endsection

@@ -27,6 +27,18 @@
 
 @section('main_content')
     <div class="container page__container page-section">
+
+        @if($errors->any())
+            <div class="card overlay--show card-lg overlay--primary-dodger-blue stack stack--1 card-group-row__card">
+
+                <div class="card-body d-flex flex-column">
+                    <!-- Validation Errors -->
+                    <x-auth-validation-errors class="mt-16pt text-70 flex" :errors="$errors" />
+
+                </div>
+            </div>
+        @endif
+
         <form method="POST" action="{{ route('dashboard.pickups.index') }}" enctype="multipart/form-data">
             @csrf
             <div class="page-separator">
@@ -55,11 +67,11 @@
                             <div class="col-lg-12 invert location">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select02">{{ __('dashboard.Pickup Locations') }}:</label>
-                                    <select id="select02"
+                                           for="location_id">{{ __('dashboard.Pickup Locations') }}:</label>
+                                    <select id="location_id"
                                             data-toggle="select"
                                             name="location_id"
-                                            class="form-control form-control-sm @error('location_id') is-invalid @enderror">
+                                            class="form-control select005 form-control-sm @error('location_id') is-invalid @enderror">
                                         <option value="">{{ __('dashboard.Select location') }}</option>
                                         @foreach($locations as $location)
                                             <option value="{{ $location->id }}" {{ old('location_id') == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
@@ -103,10 +115,10 @@
                             <div class="col-12 hidden locations col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select05">{{ __('dashboard.Country') }}</label>
-                                    <select id="select05"
+                                           for="country_id">{{ __('dashboard.Country') }}</label>
+                                    <select id="country_id"
                                             data-toggle="select"
-                                            class="form-control select05 form-control-sm @error('country_id') is-invalid @enderror"
+                                            class="form-control select05 select005 form-control-sm @error('country_id') is-invalid @enderror"
                                             name="country_id">
                                         @foreach($countries as $country)
                                             <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -123,11 +135,10 @@
                             <div class="col-12 hidden locations col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select01">{{ __('dashboard.State') }}</label>
-                                    <select id="select01"
+                                           for="state_id">{{ __('dashboard.State') }}</label>
+                                    <select id="state_id"
                                             data-toggle="select"
-                                            data-minimum-results-for-search="-1"
-                                            class="form-control select01 form-control-sm @error('state_id') is-invalid @enderror"
+                                            class="form-control select01 select005 form-control-sm @error('state_id') is-invalid @enderror"
                                             name="state_id">
                                         @foreach($states as $state)
                                             <option value="{{ $state->id }}" {{ old('state_id') == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -135,7 +146,7 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                    @error('city_id')
+                                    @error('state_id')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
                                     <div class="valid-feedback">Looks good!</div>
@@ -144,18 +155,12 @@
                             <div class="col-12 hidden locations col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select03">{{ __('dashboard.City') }}</label>
-                                    <select id="select03"
+                                           for="city_id">{{ __('dashboard.City') }}</label>
+                                    <select id="city_id"
                                             data-toggle="select"
                                             disabled
-                                            data-minimum-results-for-search="-1"
-                                            class="form-control select03 form-control-sm @error('city_id') is-invalid @enderror"
+                                            class="form-control select03 select005 form-control-sm @error('city_id') is-invalid @enderror"
                                             name="city_id">
-                                        {{-- @foreach($cities as $city)
-                                            <option value="{{ $city->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
-                                                {{ $city->name }}
-                                            </option>
-                                        @endforeach --}}
                                     </select>
                                     @error('city_id')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -298,7 +303,8 @@
                                         <input type="checkbox"
                                                class="custom-control-input"
                                                name="working_hours"
-                                               id="customCheck1">
+                                               id="customCheck1"
+                                            {{ old('working_hours') ?? 'checked="checked"' }}>
                                         <label class="custom-control-label"
                                                for="customCheck1">{{ __('dashboard.This is a work address') }}</label>
                                         <small class="form-text text-muted">{{ __('dashboard.Mark it to deliver it within business days and working hours') }}</small>
@@ -399,7 +405,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12 hidden multiple-select">
+                            <div class="col-md-12 hidden multiple-select dates">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="select03">{{ __('dashboard.Multiple') }}</label>
@@ -407,7 +413,7 @@
                                             data-toggle="select"
                                             name="repeat_days"
                                             multiple
-                                            class="form-control">
+                                            class="form-control ">
                                         <option value="Saturday">{{ __('dashboard.Saturday') }}</option>
                                         <option value="Sunday">{{ __('dashboard.Sunday') }}</option>
                                         <option value="Monday">{{ __('dashboard.Monday') }}</option>
@@ -464,11 +470,11 @@
                         <div class="col-lg-12 invert contact">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select06">{{ __('dashboard.Contacts') }}:</label>
-                                    <select id="select06"
+                                           for="contact_id">{{ __('dashboard.Contacts') }}:</label>
+                                    <select id="contact_id"
                                             data-toggle="select"
                                             name="contact_id"
-                                            class="form-control form-control-sm @error('contact_id') is-invalid @enderror">
+                                            class="form-control select005 form-control-sm @error('contact_id') is-invalid @enderror">
                                         <option value="">{{ __('dashboard.Select Contact') }}</option>
                                         @foreach($contacts as $contact)
                                             <option value="{{ $contact->id }}" {{ old('contact_id') == $contact->id ? 'selected':'' }}>{{ $contact->contact_name }}</option>
@@ -612,8 +618,12 @@
     @include('components.locations_ajax')
 
     <script>
-        $("#start_date,#scheduled_date").flatpickr({
-            minDate: "today",
+        $(document).ready(function() {
+            $("#start_date,#scheduled_date,#end_date").flatpickr({
+                minDate: "today",
+            });
+
+            $('.select005').select2();
         });
     </script>
 @endsection

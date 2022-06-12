@@ -7,12 +7,14 @@ use App\Models\Contact;
 use App\Models\Country;
 use App\Models\Location;
 use App\Models\Pickup;
+use App\Models\PickupLog;
 use App\Models\State;
 use App\Models\User;
 use App\Notifications\NewPickup;
 use App\Notifications\UpdatedPickup;
 use App\Traits\AjaxSelect;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -26,12 +28,14 @@ class PickupController extends Controller
      */
     public function index()
     {
-        $pickups = Pickup::orderBy('updated_at','desc');
+        $pickups    = Pickup::orderBy('updated_at','desc');
+        $locations  = Location::orderBy('updated_at','desc');
 
         $user = User::find(auth()->user()->id);
         if($user->hasRole('customer'))
         {
-            $pickups = $pickups->where('business_user_id', $user->id);
+            $pickups    = $pickups->where('business_user_id', $user->id);
+            $locations  = $locations->where('business_user_id',$user);
         }
 
         if(request()->pickup_id)
@@ -51,8 +55,8 @@ class PickupController extends Controller
             $pickups = $pickups->where('type', request()->type);
         }
         $pickups    = $pickups->get();
-        $status     = ['Created','Out for pickup'];
-        $locations  = Location::all();
+        $status     = ['Created','Out for pickup','Picked up'];
+        $locations  = $locations->get();
         return view('pickups.index',compact('pickups','status','locations'));
     }
 
@@ -63,8 +67,16 @@ class PickupController extends Controller
      */
     public function create()
     {
-        $locations  = Location::all();
-        $contacts   = Contact::all();
+        $user = User::find(auth()->user()->id);
+        $locations = Location::orderBy('updated_at','desc');
+        $contacts  = Contact::orderBy('updated_at','desc');
+        if($user->hasRole('customer'))
+        {
+            $locations  = $locations->where('business_user_id',$user);
+            $contacts   = $contacts->where('business_user_id',$user);
+        }
+        $locations  = $locations->get();
+        $contacts   = $contacts->get();
         $countries  = Country::all();
         $states     = State::where('country_id',64)->get();
         $cities     = City::all();
@@ -100,7 +112,7 @@ class PickupController extends Controller
             ]);
         }
 
-        if($request->contact_id == null)
+        if($request->contact_in == null)
         {
             $this->validate($request, Contact::rules());
             $contact = Contact::create([
@@ -124,6 +136,11 @@ class PickupController extends Controller
             'business_user_id'      => auth()->user()->id,
         ]);
 
+        $pickup->log()->create([
+            'status'                 => 'Picked up',
+            'description'            => 'Your order has been picked up and is expected to be delivered to customer soon.',
+        ]);
+
         $users = User::find(1);
         Notification::send($users, new NewPickup($pickup));
 
@@ -139,6 +156,7 @@ class PickupController extends Controller
     public function show(Pickup $pickup)
     {
         $qr     = QrCode::generate(route('dashboard.pickups.create.qr',$pickup->id));
+        $log    = $pickup->log()->orderByDesc('updated_at')->first();
         $logs  = [
             0 => [
                 'type' => 'Created',
@@ -153,21 +171,21 @@ class PickupController extends Controller
                 'icon' => 'check',
             ],
         ];
-        return view('pickups.show',compact('pickup','logs','qr'));
+
+        return view('pickups.show',compact('pickup','logs','qr','log'));
     }
 
     public function qr(Pickup $pickup)
     {
         $user = User::find(auth()->user()->id);
-        /*if($user->hasRole('operation courier'))
+        if($user->hasRole('operation courier'))
         {
-            $orderLog  = OrderLog::create([
-                'status'                 => 'Delivered',
-                'description'            => 'Your order has been delivered to customer.',
-                'order_id'               => $pickup->id,
-                'hub_id'                 => 1,
+            $pickupLog  = PickupLog::create([
+                'status'                 => 'Picked up',
+                'description'            => 'Your order has been picked up and is expected to be delivered to customer soon.',
+                'pickup_id'              => $pickup->id,
             ]);
-        }*/
+        }
         return redirect()->route('dashboard.pickups.show',$pickup->id)->with('success','Data updated successfully');
     }
 
@@ -179,8 +197,16 @@ class PickupController extends Controller
      */
     public function edit(Pickup $pickup)
     {
-        $locations  = Location::all();
-        $contacts   = Contact::all();
+        $user = User::find(auth()->user()->id);
+        $locations = Location::orderBy('updated_at','desc');
+        $contacts  = Contact::orderBy('updated_at','desc');
+        if($user->hasRole('customer'))
+        {
+            $locations  = $locations->where('business_user_id',$user);
+            $contacts   = $contacts->where('business_user_id',$user);
+        }
+        $locations  = $locations->get();
+        $contacts   = $contacts->get();
         $countries  = Country::all();
         $states     = State::where('country_id',64)->get();
         $cities     = City::all();

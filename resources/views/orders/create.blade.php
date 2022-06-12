@@ -1732,7 +1732,7 @@
             $("#scheduled_date").flatpickr({
                 minDate: "today",
             });
-            $('.select05').select2();
+           c
 
             $('#btn-confirm').on('click',function () {
                 swal({

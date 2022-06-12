@@ -353,7 +353,7 @@ class OrderController extends Controller
     public function show(Order $order)
     {
         $qr     = QrCode::generate(route('dashboard.orders.create.qr',$order->id));
-        $log    = $order->log()->first();
+        $log    = $order->log()->orderByDesc('updated_at')->first();
         $logs   = [
             0 => [
                 'type' => 'New',
@@ -656,22 +656,6 @@ class OrderController extends Controller
             DB::rollback();
             return redirect()->back()->withErrors($ex->getMessage());
         }
-    }
-
-    public function courier_index(Order $order)
-    {
-        $users = User::whereHas("roles", function($q){ $q->where("name", "operation courier"); })->get();
-
-        return view('orders.courier',compact('order','users'));
-    }
-
-    public function courier(Request $request, Order $order)
-    {
-        $order->update([
-            'courier_user_id'            => $request->courier_user_id,
-        ]);
-
-        return redirect()->route('dashboard.orders.show',$order->id)->with('success','Data updated successfully');
     }
 
     /**

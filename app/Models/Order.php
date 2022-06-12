@@ -47,9 +47,9 @@ class Order extends Model
         return $this->hasOne(User::class  , "id" , "business_user_id");
     }
 
-    public function courier()
+    public function couriers()
     {
-        return $this->hasOne(User::class  , "id" , "courier_user_id");
+        return $this->hasMany(OrdersCouriers::class)->orderByDesc('updated_at');
     }
 
     public function location()
@@ -91,7 +91,6 @@ class Order extends Model
 
             'return_location'                               => "Return Location",
             'return_location_exchange'                      => "Exchange Location",
-            'courier_user_id'                               => "Courier",
 
             // Deliver
             'with_cash_collection'                          => "With Cash Collection",
@@ -150,7 +149,6 @@ class Order extends Model
 
             'return_location'                               => "nullable",
             'return_location_exchange'                      => "nullable",
-            'courier_user_id'                               => "nullable",
 
             // Deliver
             'with_cash_collection'                          => "required_if:type,Deliver",
