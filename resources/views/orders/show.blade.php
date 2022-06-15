@@ -68,15 +68,157 @@
                     <div class="col-lg-7">
 
                         <div class="page-separator">
-                            <div class="page-separator__text">Overview</div>
+                            <div class="page-separator__text">Couriers</div>
                         </div>
 
-                        <div class="">
+                        <div class="row card-group-row mb-lg-8pt">
 
-                            <div class="card card-sm card--elevated p-relative o-hidden {{--overlay overlay--primary--}} js-overlay mdk-reveal js-mdk-reveal "
-                                 {{--data-overlay-onload-show
+                            @foreach($order->couriers as $courier)
+                                <div class="col-sm-12 card-group-row__col">
+
+                                    <div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1 card-group-row__card"
+                                         data-toggle="popover"
+                                         data-trigger="click">
+
+                                        <div class="card-body d-flex flex-column">
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="rounded mr-12pt z-0 o-hidden">
+                                                            <div class="overlay">
+                                                                <img src="../../public/images/paths/react_40x40@2x.png"
+                                                                     width="40"
+                                                                     height="40"
+                                                                     alt="Angular"
+                                                                     class="rounded">
+                                                                <span class="overlay__content overlay__content-transparent">
+                                                                <span class="overlay__action d-flex flex-column text-center lh-1">
+                                                                    <small class="h6 small text-white mb-0"
+                                                                           style="font-weight: 500;">80%</small>
+                                                                </span>
+                                                            </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex">
+                                                            <div class="card-title">{{ $courier->courier->full_name }}</div>
+                                                            <p class="flex text-50 lh-1 mb-0"><small>18 courses</small></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <a href="student-path.html"
+                                                   data-toggle="tooltip"
+                                                   data-title="Add Favorite"
+                                                   data-placement="top"
+                                                   data-boundary="window"
+                                                   class="ml-4pt material-icons text-20 card-course__icon-favorite">favorite_border</a>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="popoverContainer d-none">
+                                        <div class="media">
+                                            <div class="media-left mr-12pt">
+                                                <img src="../../public/images/paths/react_40x40@2x.png"
+                                                     width="40"
+                                                     height="40"
+                                                     alt="Angular"
+                                                     class="rounded">
+                                            </div>
+                                            <div class="media-body">
+                                                <div class="card-title">React Native</div>
+                                                <p class="text-50 d-flex lh-1 mb-0 small">18 courses</p>
+                                            </div>
+                                        </div>
+
+                                        <p class="mt-16pt text-70">Learn the fundamentals of working with React Native and how to create basic applications.</p>
+
+                                        <div class="my-32pt">
+                                            <div class="d-flex align-items-center mb-8pt justify-content-center">
+                                                <div class="d-flex align-items-center mr-8pt">
+                                                    <span class="material-icons icon-16pt text-50 mr-4pt">access_time</span>
+                                                    <p class="flex text-50 lh-1 mb-0"><small>50 minutes left</small></p>
+                                                </div>
+                                                <div class="d-flex align-items-center">
+                                                    <span class="material-icons icon-16pt text-50 mr-4pt">play_circle_outline</span>
+                                                    <p class="flex text-50 lh-1 mb-0"><small>12 lessons</small></p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-center">
+                                                <a href="student-path.html"
+                                                   class="btn btn-primary mr-8pt">Resume</a>
+                                                <a href="student-path.html"
+                                                   class="btn btn-outline-secondary ml-0">Start over</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex align-items-center">
+                                            <small class="text-50 mr-8pt">Your rating</small>
+                                            <div class="rating mr-8pt">
+                                                <span class="rating__item"><span class="material-icons text-primary">star</span></span>
+                                                <span class="rating__item"><span class="material-icons text-primary">star</span></span>
+                                                <span class="rating__item"><span class="material-icons text-primary">star</span></span>
+                                                <span class="rating__item"><span class="material-icons text-primary">star</span></span>
+                                                <span class="rating__item"><span class="material-icons text-primary">star_border</span></span>
+                                            </div>
+                                            <small class="text-50">4/5</small>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            @endforeach
+                        </div>
+
+                        @if($order->couriers->count() > 1)
+                            @php $couriers = $order->with('couriers')->paginate(1); @endphp
+                            {!! $couriers->links() !!}
+                            <div class="mb-32pt">
+
+                                <ul class="pagination justify-content-start pagination-xsm m-0">
+                                    <li class="page-item disabled">
+                                        <a class="page-link"
+                                           href="#"
+                                           aria-label="Previous">
+                                        <span aria-hidden="true"
+                                              class="material-icons">chevron_left</span>
+                                            <span>Prev</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link"
+                                           href="#"
+                                           aria-label="Page 1">
+                                            <span>1</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link"
+                                           href="#"
+                                           aria-label="Page 2">
+                                            <span>2</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link"
+                                           href="#"
+                                           aria-label="Next">
+                                            <span>Next</span>
+                                            <span aria-hidden="true"
+                                                  class="material-icons">chevron_right</span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        @endif
+                        {{--<div class="">
+
+                            <div class="card card-sm card--elevated p-relative o-hidden --}}{{--overlay overlay--primary--}}{{-- js-overlay mdk-reveal js-mdk-reveal "
+                                 --}}{{--data-overlay-onload-show
                                  data-popover-onload-show
-                                 data-force-reveal--}}
+                                 data-force-reveal--}}{{--
                                  data-partial-height="44"
                                  data-toggle="popover"
                                  data-trigger="click">
@@ -124,7 +266,7 @@
                                     </div>
                                 </div>
                                 @endif
-                               {{-- <p class="my-16pt text-70">Learn the fundamentals of working with Angular and how to create basic applications.</p>
+                               --}}{{-- <p class="my-16pt text-70">Learn the fundamentals of working with Angular and how to create basic applications.</p>
 
                                 <div class="mb-16pt">
                                     <div class="d-flex align-items-center">
@@ -147,22 +289,22 @@
                                         <span class="material-icons icon-16pt text-50 mr-8pt">check</span>
                                         <p class="flex text-50 lh-1 mb-0"><small>Testing with Angular</small></p>
                                     </div>
-                                </div>--}}
+                                </div>--}}{{--
 
                                 <div class="row align-items-center">
                                     <div class="col-auto">
-                                        {{--<div class="d-flex align-items-center mb-4pt">
+                                        --}}{{--<div class="d-flex align-items-center mb-4pt">
                                             <span class="material-icons icon-16pt text-50 mr-4pt">access_time</span>
                                             <p class="flex text-50 lh-1 mb-0"><small>6 hours</small></p>
                                         </div>
                                         <div class="d-flex align-items-center mb-4pt">
                                             <span class="material-icons icon-16pt text-50 mr-4pt">play_circle_outline</span>
                                             <p class="flex text-50 lh-1 mb-0"><small>12 lessons</small></p>
-                                        </div>--}}
-                                        {{--<div class="d-flex align-items-center">
+                                        </div>--}}{{--
+                                        --}}{{--<div class="d-flex align-items-center">
                                             <span class="material-icons icon-16pt text-50 mr-4pt">assessment</span>
                                             <p class="flex text-50 lh-1 mb-0"><small>Beginner</small></p>
-                                        </div>--}}
+                                        </div>--}}{{--
                                     </div>
                                     <div class="col text-right">
                                         <a href="{{ route('dashboard.orders.courier',$order->id) }}"
@@ -172,7 +314,7 @@
 
                             </div>
 
-                        </div>
+                        </div>--}}
 
                         <div class=" card-group-row__col">
 

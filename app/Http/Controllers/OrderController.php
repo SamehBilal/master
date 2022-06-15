@@ -388,6 +388,7 @@ class OrderController extends Controller
                 'status'                 => 'Delivered',
                 'description'            => 'Your order has been delivered to customer.',
                 'order_id'               => $order->id,
+                'courier_id'             => $user,
                 'hub_id'                 => 1,
             ]);
         }

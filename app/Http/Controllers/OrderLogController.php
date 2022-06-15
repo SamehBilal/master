@@ -90,6 +90,7 @@ class OrderLogController extends Controller
             'notes'                  => $request->notes,
             'order_id'               => $order,
             'hub_id'                 => $request->hub_id,
+            'courier_id'             => $request->courier_id,
         ]);
 
         $users = User::find(1);
@@ -137,6 +138,7 @@ class OrderLogController extends Controller
             'notes'                  => $request->notes,
             'order_id'               => $request->order_id,
             'hub_id'                 => $request->hub_id,
+            'courier_id'             => $request->courier_id,
         ]);
 
         return redirect()->route('dashboard.index')->with('success','Data updated successfully');
