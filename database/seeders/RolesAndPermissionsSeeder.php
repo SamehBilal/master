@@ -321,10 +321,11 @@ class RolesAndPermissionsSeeder extends Seeder
             // orders permissions
             'view orders',
             'show orders',
-            'edit courier',
             'edit log',
             // pickups permissions
+            'view pickups',
             'show pickups',
+            'edit log',
             // locations permissions
             'show locations',
         );

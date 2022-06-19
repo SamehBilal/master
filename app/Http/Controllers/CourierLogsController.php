@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CourierLog;
 use App\Models\Order;
+use App\Models\OrdersCouriers;
 use App\Models\Pickup;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class CourierLogsController extends Controller
 {
@@ -46,18 +49,28 @@ class CourierLogsController extends Controller
      */
     public function store_order(Request $request,Order $order)
     {
-        $order->couriers()->create([
-            'courier_id'            => $request->courier_id,
+        $log  = CourierLog::create([
+            'courier_id'             => $request->courier_id,
+            'pickup_id'              => $request->pickup_id,
+            'order_id'               => $order->id,
         ]);
+
+        $users = User::find($request->courier_id);
+        Notification::send($users, new \App\Notifications\NewCourier($log));
 
         return redirect()->route('dashboard.orders.show',$order->id)->with('success','Data updated successfully');
     }
 
     public function store_pickup(Request $request,Pickup $pickup)
     {
-        $pickup->couriers()->create([
-            'courier_id'            => $request->courier_id,
+        $log  = CourierLog::create([
+            'courier_id'             => $request->courier_id,
+            'order_id'               => $request->order_id,
+            'pickup_id'              => $pickup->id,
         ]);
+
+        $users = User::find($request->courier_id);
+        Notification::send($users, new \App\Notifications\NewCourier($log));
 
         return redirect()->route('dashboard.pickups.show',$pickup->id)->with('success','Data updated successfully');
     }
@@ -79,18 +92,18 @@ class CourierLogsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit_order(Order $order,$id)
+    public function edit_order(Order $order, OrdersCouriers $log)
     {
         $users = User::whereHas("roles", function($q){ $q->where("name", "operation courier"); })->get();
 
-        return view('users.couriers.edit-courier-order',compact('order','users'));
+        return view('users.couriers.edit-courier-order',compact('order','users','log'));
     }
 
-    public function edit_pickup(Pickup $pickup,$id)
+    public function edit_pickup(Pickup $pickup, OrdersCouriers $log)
     {
         $users = User::whereHas("roles", function($q){ $q->where("name", "operation courier"); })->get();
 
-        return view('users.couriers.edit-courier-pickup',compact('pickup','users'));
+        return view('users.couriers.edit-courier-pickup',compact('pickup','users','log'));
     }
 
     /**
@@ -100,9 +113,22 @@ class CourierLogsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update_order(Request $request, Order $order, OrdersCouriers $log)
     {
-        //
+        $log->update([
+            'courier_id'            => $request->courier_id,
+        ]);
+
+        return redirect()->route('dashboard.orders.show',$order->id)->with('success','Data updated successfully');
+    }
+
+    public function update_pickup(Request $request,Pickup $pickup, OrdersCouriers $log)
+    {
+        $log->update([
+            'courier_id'            => $request->courier_id,
+        ]);
+
+        return redirect()->route('dashboard.pickups.show',$pickup->id)->with('success','Data updated successfully');
     }
 
     /**
@@ -111,8 +137,15 @@ class CourierLogsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete_order(Order $order, OrdersCouriers $log)
     {
-        //
+        OrdersCouriers::destroy($log->id);
+        return redirect()->route('dashboard.orders.show',$order->id)->with('success','Data deleted successfully');
+    }
+
+    public function delete_pickup(Pickup $pickup, OrdersCouriers $log)
+    {
+        OrdersCouriers::destroy($log->id);
+        return redirect()->route('dashboard.pickups.show',$pickup->id)->with('success','Data deleted successfully');
     }
 }

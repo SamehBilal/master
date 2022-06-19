@@ -12,7 +12,10 @@
         <a href="{{ route('dashboard.orders.show',$order->id) }}">{{ $order->tracking_no }}</a>
     </li>
     <li class="breadcrumb-item active">
-        {{ __('dashboard.courier') }}
+        {{ $log->courier->full_name }}
+    </li>
+    <li class="breadcrumb-item active">
+        {{ __('dashboard.edit') }}
     </li>
 @endsection
 
@@ -42,34 +45,38 @@
             <div class="col-lg-8 d-flex align-items-center">
                 <div class="flex"
                      style="max-width: 100%">
-                    <form id="multi-form" action="{{ route('dashboard.orders.create.courier',$order->id) }}" method="POST" enctype="multipart/form-data">
+                    <form id="multi-form" action="{{ route('dashboard.orders.update.courier',[$order->id,$log->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
 
                         <div class="form-group">
                             <label class="form-label"
                                    for="select04">{{ __('dashboard.courier') }}:</label>
                             <select id="select04"
                                     data-toggle="select"
-                                    name="courier_user_id"
-                                    class="form-control form-control-sm @error('courier_user_id') is-invalid @enderror">
+                                    name="courier_id"
+                                    class="form-control form-control-sm @error('courier_id') is-invalid @enderror">
                                 <option value="">{{ __('dashboard.Select courier') }}</option>
                                 @foreach($users as $user)
-                                    <option value="{{ $user->id }}" @if(old('courier_user_id')) {{ old('courier_user_id') == $order->courier_user_id ? 'selected':'' }} @else {{ $order->courier_user_id == $user->id ? 'selected':'' }} @endif>{{ $user->full_name }}</option>
+                                    <option value="{{ $user->id }}" @if(old('courier_id')) {{ old('courier_id') == $user->id ? 'selected':'' }} @else {{ $log->courier_id == $user->id ? 'selected':'' }} @endif>{{ $user->full_name }}</option>
                                 @endforeach
                             </select>
-                            @error('courier_user_id')
+                            @error('courier_id')
                             <div class="invalid-feedback" role="alert">{{ $message }}</div>
                             @enderror
                             <div class="valid-feedback">Looks good!</div>
                         </div>
                         <button type="submit"
                                 class="btn pull-right btn-primary">Submit</button>
+                        <a onclick="event.preventDefault(); document.getElementById('delete-form').submit();" class="btn btn-danger ml-0">Delete</a>
+
+                    </form>
+                    <form id="delete-form" action="{{ route('dashboard.orders.delete.courier',[$order->id,$log->id]) }}" method="POST" class="d-none">
+                        @csrf
+                        @method('DELETE')
                     </form>
                 </div>
             </div>
-
         </div>
-
     </div>
-
 @endsection

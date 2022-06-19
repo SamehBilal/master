@@ -339,7 +339,7 @@
                         <div class="col-lg-9 row ">
                             <div class="page-separator col-lg-12">
                                 <div class="page-separator__text" >
-                                    &nbsp; {{ __('dashboard.Pickup location') }}
+                                    &nbsp; {{ __('dashboard.Pickup Date') }}
                                 </div>
                             </div>
                             <div class="col-md-12 ">

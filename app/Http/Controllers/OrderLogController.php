@@ -93,10 +93,18 @@ class OrderLogController extends Controller
             'courier_id'             => $request->courier_id,
         ]);
 
-        $users = User::find(1);
+        $users = User::whereHas("roles", function($q){
+            $q->where("name", "Super Admin")
+                ->orWhere("name", "admin")
+                ->orWhere("name", "operation logistics")
+                ->orWhere("name", "operation admin");
+        })->get();
+        $order = Order::find($order);
+        $nuser = User::find($order->business_user_id);
+        $nuser->notify(new \App\Notifications\OrderLog($orderLog));
         Notification::send($users, new \App\Notifications\OrderLog($orderLog));
 
-        return redirect('dashboard/orders/'.$order.'/order-logs')->with('success','Data created successfully');
+        return redirect('dashboard/orders/'.$order->id.'/order-logs')->with('success','Data created successfully');
     }
 
     /**

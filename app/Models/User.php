@@ -84,6 +84,21 @@ class User extends Authenticatable
         return $this->hasOne(UserCategory::class , "id" , "user_category_id");
     }
 
+    public function log()
+    {
+        return $this->hasMany(OrderLog::class)->orderByDesc('updated_at');
+    }
+
+    public function order()
+    {
+        return $this->hasMany(CourierLog::class,'courier_id','id')->where('pickup_id','=',NULL);
+    }
+
+    public function pickup()
+    {
+        return $this->hasMany(CourierLog::class,'courier_id','id')->where('order_id','=',NULL);
+    }
+
     public function getAvatarlinkAttribute()
     {
         return "/storage/users/{$this->id}/{$this->avatar}";

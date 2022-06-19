@@ -84,8 +84,12 @@ class TicketController extends Controller
             'files'             => $files
         ]);
 
-       /* $users = User::find(1);
-        Notification::send($users, new NewTicket($ticket));*/
+        $users = User::whereHas("roles", function($q){
+            $q->where("name", "Super Admin")
+                ->orWhere("name", "admin")
+                ->orWhere("name", "sales");
+        })->get();
+        Notification::send($users, new NewTicket($ticket));
 
         return redirect()->route('dashboard.tickets.index')->with('success','Ticket Submited successfully');
 
@@ -128,8 +132,13 @@ class TicketController extends Controller
 
         $message = $request->status == '3' ? 'Ticket Closed Successfully' : 'Ticket Reopened Successfully';
 
-        /*$users = User::find(1);
-        Notification::send($users, new UpdatedTicket($ticket));*/
+        $users = User::whereHas("roles", function($q){
+            $q->where("name", "Super Admin")
+                ->orWhere("name", "admin")
+                ->orWhere("name", "sales");
+        })->get();
+
+        Notification::send($users, new UpdatedTicket($ticket));
 
         return redirect()->back()->with('success',$message);
     }
@@ -167,8 +176,20 @@ class TicketController extends Controller
             'files'     => $files
         ]);
 
-        /*$users = User::find(1);
-        Notification::send($users, new NewTicketChat($ticket_chat));*/
+        $user = User::find(auth()->user()->id);
+        if($user->hasRole('customer'))
+        {
+            $users = User::whereHas("roles", function($q){
+                $q->where("name", "Super Admin")
+                    ->orWhere("name", "admin")
+                    ->orWhere("name", "sales");
+            })->get();
+            Notification::send($users, new NewTicketChat($ticket_chat));
+        }else{
+            $ticket = Ticket::find($ticket_id);
+            $users = User::find($ticket->user_id);
+            Notification::send($users, new NewTicketChat($ticket_chat));
+        }
 
         return redirect()->back()->with('success', 'Message Submitted Successfully');
     }

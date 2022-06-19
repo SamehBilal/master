@@ -7,6 +7,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\DB;
 
 class NewOrder extends Notification
 {
@@ -31,7 +32,7 @@ class NewOrder extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'/*,'mail'*/];
+        return ['database','mail'];
     }
 
     /**
@@ -45,7 +46,7 @@ class NewOrder extends Notification
         return (new MailMessage)
             ->from('noreply@droplin.com', 'Droplin')
             ->subject('New Order')
-            ->line('A new order from '.$this->order->customer->full_name.'.')
+            ->line('A new order from '.DB::table('users')->where('id',$this->order->business_user_id)->value('full_name').'.')
             ->action('New Order ('.$this->order->tracking_no.')', route('dashboard.orders.show',$this->order->id))
             ->line('Thank you for using our application!');
     }
@@ -72,7 +73,6 @@ class NewOrder extends Notification
             'tracking_no'       => $this->order->tracking_no,
             'status'            => $this->order->status,
             'customer_id'       => $this->order->customer_id,
-            'customer_full_name'=> $this->order->customer->full_name,
             'pickup_id'         => $this->order->pickup_id,
             'business_user_id'  => $this->order->business_user_id,
             'user'              => $notifiable,

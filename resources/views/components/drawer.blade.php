@@ -46,9 +46,18 @@
                        href="#student_menu">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">shopping_cart</span>
                         {{ __('dashboard.Orders') }}
-                        {{--<span class="sidebar-menu-badge badge badge-accent badge-notifications ml-auto">2</span>
-                        <span class="sidebar-menu-toggle-icon"></span>--}}
-                        <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                        @php $user = Auth::user();
+                             $count_order_notifications             = $user->unreadnotifications->where('type','App\Notifications\NewOrder')->count();
+                             $count_order_customer_notifications    = $user->unreadnotifications->where('type','App\Notifications\NewOrderCustomer')->count();
+                             $count_pickup_customer_notifications   = $user->unreadnotifications->where('type','App\Notifications\NewPickupCustomer')->count();
+                             /*$count_courier_notifications           = $user->unreadnotifications->where('type','App\Notifications\NewCourier')->count();*/
+                             $count_pickup_notifications            = $user->unreadnotifications->where('type','App\Notifications\NewPickup')->count(); @endphp
+                        @if($count_order_notifications)
+                            <span class="sidebar-menu-badge badge badge-accent badge-notifications ml-auto">{{ $count_order_notifications+$count_order_customer_notifications }}</span>
+                            <span class="sidebar-menu-toggle-icon"></span>
+                        @else
+                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                        @endif
                     </a>
                     <ul class="sidebar-submenu collapse {{ set_active(['dashboard/orders*'],'show')}} sm-indent"
                         id="student_menu">
@@ -57,6 +66,9 @@
                             <a class="sidebar-menu-button"
                                href="{{ route('dashboard.orders.index') }}">
                                 <span class="sidebar-menu-text">{{ __('dashboard.All_orders') }}</span>
+                                @if($count_order_notifications)
+                                    <span class="sidebar-menu-badge badge badge-accent badge-notifications ml-auto">{{ $count_order_notifications+$count_order_customer_notifications }}</span>
+                                @endif
                             </a>
                         </li>
                         @endcan
@@ -84,6 +96,9 @@
                        href="{{ route('dashboard.pickups.index') }}">
                         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">map</span>
                         {{ __('dashboard.Pickups') }}
+                        @if($count_pickup_notifications)
+                            <span class="sidebar-menu-badge badge badge-accent badge-notifications ml-auto">{{ $count_pickup_notifications+$count_pickup_customer_notifications }}</span>
+                        @endif
                     </a>
                 </li>
                 @endcan
@@ -213,7 +228,7 @@
                     <li class="sidebar-menu-item {{ set_active(['dashboard/hubs*'])}}">
                         <a class="sidebar-menu-button"
                            href="{{ route('dashboard.hubs.index') }}">
-                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">map</span>
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">store</span>
                             {{ __('dashboard.hubs') }}
                         </a>
                     </li>

@@ -52,6 +52,11 @@ class Order extends Model
         return $this->hasMany(OrdersCouriers::class)->orderByDesc('updated_at');
     }
 
+    public function courier()
+    {
+        return $this->belongsToMany(User::class,'courier_logs','order_id','courier_id');
+    }
+
     public function location()
     {
         return $this->hasOne(Location::class  , "id" , "location_id");
@@ -74,7 +79,7 @@ class Order extends Model
 
     public function log()
     {
-        return $this->hasMany(OrderLog::class)->orderByDesc('created_at');
+        return $this->hasMany(OrderLog::class)->orderByDesc('updated_at');
     }
 
     public static function attrs()

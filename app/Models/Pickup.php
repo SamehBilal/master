@@ -54,6 +54,11 @@ class Pickup extends Model
         return $this->hasMany(OrdersCouriers::class)->orderByDesc('updated_at');
     }
 
+    public function courier()
+    {
+        return $this->belongsToMany(User::class,'courier_logs','pickup_id','courier_id');
+    }
+
     public static function attrs()
     {
         return [
@@ -88,7 +93,7 @@ class Pickup extends Model
             'notes'                     => "nullable",
             'contact_id'                => "required",
             'location_id'               => "required",
-            'business_user_id'          => "required",
+            'business_user_id'          => "nullable",
         ]);
     }
 }

@@ -67,7 +67,11 @@ class UserController extends Controller
             $user->auth()->user()->update(['avatar' =>  $image]);
         }
 
-        $users = User::find(1);
+        $users = User::whereHas("roles", function($q){
+            $q->where("name", "Super Admin")
+                ->orWhere("name", "admin")
+                ->orWhere("name", "sales");
+        })->get();
         Notification::send($users, new NewUser($user));
 
         return redirect()->route('dashboard.users.index')->with('success','Data created successfully');

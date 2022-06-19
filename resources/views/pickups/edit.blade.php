@@ -303,7 +303,7 @@
                     <button type="button" class="btn btn-sm rounded-circle btn-dark">
                         &nbsp;  2 &nbsp;
                     </button>
-                    &nbsp; Pickup Date
+                    &nbsp; {{ __('dashboard.Pickup Date') }}
                 </div>
             </div>
             <div class="card">
@@ -318,13 +318,13 @@
                         <div class="col-lg-9 row ">
                             <div class="page-separator col-lg-12">
                                 <div class="page-separator__text" >
-                                    &nbsp; Pickup Location
+                                    &nbsp; {{ __('dashboard.Pickup Date') }}
                                 </div>
                             </div>
                             <div class="col-md-12 ">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="scheduled_date">Pickup Date:</label>
+                                           for="scheduled_date">{{ __('dashboard.Pickup Date') }}:</label>
                                     <input type="hidden"
                                            class="form-control @error('scheduled_date') is-invalid @enderror flatpickr-input"
                                            value="{{ old('scheduled_date') ? old('scheduled_date'):$pickup->scheduled_date }}"

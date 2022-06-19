@@ -50,14 +50,14 @@
                                    for="select04">{{ __('dashboard.courier') }}:</label>
                             <select id="select04"
                                     data-toggle="select"
-                                    name="courier_user_id"
-                                    class="form-control form-control-sm @error('courier_user_id') is-invalid @enderror">
+                                    name="courier_id"
+                                    class="form-control form-control-sm @error('courier_id') is-invalid @enderror">
                                 <option value="">{{ __('dashboard.Select courier') }}</option>
                                 @foreach($users as $user)
-                                    <option value="{{ $user->id }}" @if(old('courier_user_id')) {{ old('courier_user_id') == $pickup->courier_user_id ? 'selected':'' }} @else {{ $pickup->courier_user_id == $user->id ? 'selected':'' }} @endif>{{ $user->full_name }}</option>
+                                    <option value="{{ $user->id }}" {{ old('courier_id') == $user->id ? 'selected':'' }} >{{ $user->full_name }}</option>
                                 @endforeach
                             </select>
-                            @error('courier_user_id')
+                            @error('courier_id')
                             <div class="invalid-feedback" role="alert">{{ $message }}</div>
                             @enderror
                             <div class="valid-feedback">Looks good!</div>

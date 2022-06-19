@@ -11,6 +11,7 @@ use App\Models\PickupLog;
 use App\Models\State;
 use App\Models\User;
 use App\Notifications\NewPickup;
+use App\Notifications\NewPickupCustomer;
 use App\Notifications\UpdatedPickup;
 use App\Traits\AjaxSelect;
 use Illuminate\Http\Request;
@@ -36,6 +37,10 @@ class PickupController extends Controller
         {
             $pickups    = $pickups->where('business_user_id', $user->id);
             $locations  = $locations->where('business_user_id',$user);
+        }
+        if($user->hasRole('operation courier'))
+        {
+            $pickups    = Pickup::whereHas("courier", function($q){ $q->where("courier_id", auth()->user()->id); });
         }
 
         if(request()->pickup_id)
@@ -141,7 +146,15 @@ class PickupController extends Controller
             'description'            => 'Your order has been picked up and is expected to be delivered to customer soon.',
         ]);
 
-        $users = User::find(1);
+        $users = User::whereHas("roles", function($q){
+            $q->where("name", "Super Admin")
+                ->orWhere("name", "admin")
+                ->orWhere("name", "sales")
+                ->orWhere("name", "operation logistics")
+                ->orWhere("name", "operation admin");
+        })->get();
+        $nuser = User::find(auth()->user()->id);
+        $nuser->notify(new NewPickupCustomer($pickup));
         Notification::send($users, new NewPickup($pickup));
 
         return redirect()->route('dashboard.pickups.show',$pickup->id)->with('success','Data created successfully');
@@ -265,8 +278,16 @@ class PickupController extends Controller
             'business_user_id'      => auth()->user()->id,
         ]);
 
-        $users = User::find(1);
+        $users = User::whereHas("roles", function($q){
+            $q->where("name", "Super Admin")
+                ->orWhere("name", "admin")
+                ->orWhere("name", "sales")
+                ->orWhere("name", "operation logistics")
+                ->orWhere("name", "operation admin");
+        })->get();
+        $user = User::find(auth()->user()->id);
         Notification::send($users, new UpdatedPickup($pickup));
+        $user->notify(new UpdatedPickup($pickup));
 
         return redirect()->route('dashboard.pickups.index')->with('success','Data updated successfully');
     }

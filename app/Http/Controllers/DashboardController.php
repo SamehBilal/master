@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OrderLog;
+use App\Models\OrdersCouriers;
 use App\Models\Pickup;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -328,9 +331,30 @@ class DashboardController extends Controller
                 'description'   => 'Collect or refund',
                 'color'         => 'accent',
             ],
+            'One Time' => [
+                'name'          => 'One Time',
+                'image'         => 'one_time.png',
+                'description'   => 'One Time',
+                'color'         => 'success',
+            ],
+            'Daily' => [
+                'name'          => 'Daily',
+                'image'         => 'daily.png',
+                'description'   => 'Daily',
+                'color'         => 'info',
+            ],
+            'Weekly' => [
+                'name'          => 'Weekly',
+                'image'         => 'weekly.png',
+                'description'   => 'Weekly',
+                'color'         => 'accent',
+            ],
         ];
-        $orders = Order::all()->where('courier_user_id',auth()->user()->id);
-        $porders = Order::where('courier_user_id',auth()->user()->id)->paginate(5);
-        return view('dashboard.operation_courier',compact('orders','porders','types'));
+
+        $orders     = Order::whereHas("courier", function($q){ $q->where("courier_id", auth()->user()->id); });
+        $porders    = Order::whereHas("courier", function($q){ $q->where("courier_id", auth()->user()->id); })->paginate(5);
+        $pickups    = Pickup::whereHas("courier", function($q){ $q->where("courier_id", auth()->user()->id); });
+        $ppickups   = Pickup::whereHas("courier", function($q){ $q->where("courier_id", auth()->user()->id); })->paginate(5);
+        return view('dashboard.operation_courier',compact('orders','porders','types','pickups','ppickups'));
     }
 }

@@ -164,8 +164,14 @@ class BusinessController extends Controller
             'location_id'             => ($request->location_in = null) ? $location:$request->location_id,
             'business_user_id'        => $user_id,
         ]);
-        $users = User::find(1);
+
+        $users = User::whereHas("roles", function($q){
+            $q->where("name", "Super Admin")
+                ->orWhere("name", "admin")
+                ->orWhere("name", "sales");
+        })->get();
         Notification::send($users, new NewBusiness($business));
+
         $user = User::find(auth()->user()->id);
         if(!$user->hasRole('customer'))
         {

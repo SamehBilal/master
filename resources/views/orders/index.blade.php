@@ -279,7 +279,7 @@
 
                                     <td>
                                         <div href="#"
-                                           class="chip chip-outline-secondary ">{{ $order->cash_on_delivery }} {{ __('dashboard.EGP')}}</div>
+                                           class="chip chip-outline-secondary ">{{ $order->cash_on_delivery ? $order->cash_on_delivery:0 }} {{ __('dashboard.EGP')}}</div>
                                     </td>
 
                                     <td>
@@ -299,12 +299,18 @@
                                         <a href="#" data-toggle="dropdown"
                                            class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="{{ route('dashboard.orders.create.airwaybell',$order->id) }}" class="dropdown-item active"><i class="material-icons ">receipt</i> Print Airwaybell</a>
+                                            <a href="{{ route('dashboard.orders.create.airwaybell',$order->id) }}" class="dropdown-item active"><i class="material-icons ">receipt</i> Airwaybell</a>
                                             @can('show orders')
                                                 <a href="{{ route('dashboard.orders.show',$order->id) }}" class="dropdown-item"><i class="material-icons ">visibility</i> View</a>
                                             @endcan
                                             @can('edit orders')
-                                                <a href="{{ route('dashboard.orders.edit',$order->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> Edit</a>
+                                                @if($order->log->first() && $customer == 1)
+                                                    @if($order->log->first()->status == 'New')
+                                                        <a href="{{ route('dashboard.orders.edit',$order->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> Edit</a>
+                                                    @endif
+                                                @else
+                                                    <a href="{{ route('dashboard.orders.edit',$order->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> Edit</a>
+                                                @endif
                                             @endcan
                                             @can('delete orders')
                                                 <div class="dropdown-divider"></div>

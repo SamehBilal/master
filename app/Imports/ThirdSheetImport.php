@@ -25,7 +25,6 @@ class ThirdSheetImport implements ToCollection
     {
         foreach ($collection->skip(2) as $row)
         {
-            //dd($row);
             DB::beginTransaction();
             try {
                 $data                               = [];
@@ -63,6 +62,8 @@ class ThirdSheetImport implements ToCollection
                     'floor'                 => $row[7],
                     'apartment'             => $row[8],
                     'country_id'            => 64,
+                    'state_id'              => 1200,
+                    'city_id'               => 1300,
                     /*'state_id'              => $row[3],
                     'city_id'               => $row[4],*/
                     'business_user_id'      => auth()->user()->id,
@@ -96,6 +97,7 @@ class ThirdSheetImport implements ToCollection
                             'location_id'                           => $location->id,
                             'business_user_id'                      => auth()->user()->id,
                         ]);
+
                         break;
                     case 'Exchange';
 
@@ -150,19 +152,19 @@ class ThirdSheetImport implements ToCollection
                         break;
                 }
 
-                $order->log()->create([
+                $log = $order->log()->create([
                     'status'                  => 'New',
                     'description'             => 'It is expected to be pickup your order at pickup date.',
                     'notes'                   =>  NULL,
                 ]);
+
                 DB::commit();
-                $users = User::where(function ($query) {
-                    $query->whereHas('roles', function ($query) {
-                        $query->whereIn('name',['admin','Super Admin']);
-                    });
-                });
+
+                $users = User::whereHas("roles", function($q){ $q->where("name", "customer")->orWhere("name", "admin"); })->get();
                 Notification::send($users, new NewOrder($order));
+
             } catch (\Exception $ex) {
+
                 DB::rollback();
                 return redirect()->back()->withErrors($ex->getMessage());
             }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Notifications\NewContactForm;
 use App\Notifications\NewOrder;
+use App\Notifications\NewOrderCustomer;
 use App\Notifications\UpdatedOrder;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
@@ -37,14 +38,17 @@ class OrderController extends Controller
     {
         $orders = Order::orderBy('updated_at','desc');
         $user = User::find(auth()->user()->id);
+        $customer = 0;
+
         if($user->hasRole('customer'))
         {
             $orders = $orders->where('business_user_id', $user->id);
+            $customer = 1;
         }
 
         if($user->hasRole('operation courier'))
         {
-            $orders = $orders->where('courier_user_id', $user->id);
+            $orders = $orders->whereHas("courier", function($q){ $q->where("courier_id", auth()->user()->id); });
         }
 
         if(request()->tracking_no)
@@ -96,7 +100,7 @@ class OrderController extends Controller
                 'color'         => 'accent',
                 ],
         ];
-        return view('orders.index',compact('orders','status','types','max_order'));
+        return view('orders.index',compact('orders','status','types','max_order','customer'));
     }
 
     /**
@@ -334,7 +338,14 @@ class OrderController extends Controller
             ]);
             DB::commit();
 
-            $users = User::find(1);
+            $users = User::whereHas("roles", function($q){
+                $q->where("name", "Super Admin")
+                    ->orWhere("name", "admin")
+                    ->orWhere("name", "operation logistics")
+                    ->orWhere("name", "operation admin");
+            })->get();
+            $nuser = User::find(auth()->user()->id);
+            $nuser->notify(new NewOrderCustomer($pickup));
             Notification::send($users, new NewOrder($order));
             return redirect()->route('dashboard.orders.show',$order->id)->with('success','Data created successfully');
 
@@ -352,8 +363,17 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $qr     = QrCode::generate(route('dashboard.orders.create.qr',$order->id));
-        $log    = $order->log()->orderByDesc('updated_at')->first();
+        $qr         = QrCode::generate(route('dashboard.orders.create.qr',$order->id));
+        $log        = $order->log()->orderByDesc('updated_at')->first();
+        $user       = User::find(auth()->user()->id);
+        $no_edit    = 0;
+        if($user->hasRole('customer'))
+        {
+            if($log->status != 'New'){
+                $no_edit = 1;
+            }
+        }
+
         $logs   = [
             0 => [
                 'type' => 'New',
@@ -376,7 +396,7 @@ class OrderController extends Controller
                 'icon' => 'check',
             ],
         ];
-        return view('orders.show',compact('order','qr','logs','log'));
+        return view('orders.show',compact('order','qr','logs','log','no_edit'));
     }
 
     public function qr(Order $order)
@@ -421,6 +441,15 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
+        $user       = User::find(auth()->user()->id);
+        if($user->hasRole('customer'))
+        {
+            $log        = $order->log()->orderByDesc('updated_at')->first();
+            if($log->status != 'New'){
+                return back()->withErrors('Order Can\'t be updated after it has been picked up.');
+            }
+        }
+
         $pickups    = Pickup::all();
         $states     = State::where('country_id',64)->get();
         $cities     = City::all();
@@ -643,14 +672,17 @@ class OrderController extends Controller
                     break;
             }
 
-            $order->log()->create([
-                'status'                  => 'New',
-                'description'             => 'It is expected to be pickup your order at pickup date.',
-                'notes'                   => NULL,
-            ]);
             DB::commit();
-            $users = User::find(1);
+            $users = User::whereHas("roles", function($q){
+                $q->where("name", "Super Admin")
+                    ->orWhere("name", "admin")
+                    ->orWhere("name", "operation logistics")
+                    ->orWhere("name", "operation admin");
+            })->get();
+            $nuser = User::find(auth()->user()->id);
+            $nuser->notify(new UpdatedOrder($pickup));
             Notification::send($users, new UpdatedOrder($order));
+
             return redirect()->route('dashboard.index')->with('success','Data updated successfully');
 
         } catch (\Exception $ex) {

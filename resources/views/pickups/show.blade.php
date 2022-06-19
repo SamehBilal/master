@@ -36,7 +36,7 @@
                         <p class="text-70 mb-24pt">{{ $log ? $log->description:'' }}</p>
                         @can('edit log')
                             <a href="{{ route("dashboard.pickup-logs.index",$pickup->id) }}"
-                               class="btn btn-primary">Order Logs</a>
+                               class="btn btn-primary">Pickup Logs</a>
                         @endcan
                     </div>
                 </div>
@@ -70,15 +70,15 @@
                         <div class="col-lg-7">
 
                             <div class="page-separator">
-                                <div class="page-separator__text">Overview</div>
+                                <div class="page-separator__text">Couriers</div>
                             </div>
 
                             <div class="">
 
-                                <div class="card card-sm card--elevated p-relative o-hidden {{--overlay overlay--primary--}} js-overlay mdk-reveal js-mdk-reveal "
-                                     {{--data-overlay-onload-show
+                                <div class="card card-sm card--elevated p-relative o-hidden overlay overlay--primary js-overlay mdk-reveal js-mdk-reveal "
+                                     data-overlay-onload-show
                                      data-popover-onload-show
-                                     data-force-reveal--}}
+                                     data-force-reveal
                                      data-partial-height="44"
                                      data-toggle="popover"
                                      data-trigger="click">
@@ -87,193 +87,79 @@
                                        data-position="">
                                         <img src="{{ asset('backend/images/paths/angular_430x168 copy.png') }}"
                                              alt="course">
-                                        <span class="overlay__content align-items-start justify-content-start">
-                                            <span class="overlay__action card-body d-flex align-items-center">
-                                                <i class="material-icons mr-4pt">edit</i>
-                                                <span class="card-title text-white">Edit</span>
-                                            </span>
-                                        </span>
                                     </a>
                                     <div class="mdk-reveal__content">
                                         <div class="card-body">
                                             <div class="d-flex">
                                                 <div class="flex">
                                                     <a class="card-title mb-4pt"
-                                                       href="{{ route('dashboard.pickups.courier',$pickup->id) }}">Edit the courier</a>
+                                                       href="#">Couriers</a>
                                                 </div>
-                                                <a href="{{ route('dashboard.pickups.courier',$pickup->id) }}"
-                                                   class="ml-4pt material-icons text-20 card-course__icon-favorite">edit</a>
+                                                <a href="#"
+                                                   class="ml-4pt material-icons text-20 card-course__icon-favorite">arrow_forward</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="popoverContainer d-none">
-                                    @if($pickup->courier)
-                                        <div class="media">
-                                            <div class="media-left mr-12pt">
-                                                <img src="{{ asset('backend/images/icon/client.png') }}"
-                                                     width="40"
-                                                     height="40"
-                                                     alt="Angular"
-                                                     class="rounded">
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="card-title mb-0">{{ $pickup->courier ? $pickup->courier->full_name:'' }}</div>
-                                                <p class="lh-1">
-                                                    <span class="text-50 small">created</span>
-                                                    <span class="text-50 small font-weight-bold">{{ $pickup->updated_at }}</span>
-                                                </p>
+
+                                    @forelse($pickup->couriers as $courier)
+                                        <div class="col-sm-12 card-group-row__col">
+
+                                            <div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1 card-group-row__card"
+                                                 data-toggle="popover"
+                                                 data-trigger="click">
+
+                                                <div class="card-body d-flex flex-column">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="flex">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="rounded mr-12pt z-0 o-hidden">
+                                                                    <div class="overlay">
+                                                                        <img src="{{ $courier->courier->avatar ? asset("storage/user/{$courier->courier_id}/{$courier->courier->avatar}"):asset('backend/images/icon/client.png') }}"
+                                                                             width="40"
+                                                                             height="40"
+                                                                             alt="Angular"
+                                                                             class="rounded">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flex">
+                                                                    <div class="card-title">{{ $courier->courier->full_name }}</div>
+                                                                    @if($courier->courier->phone)
+                                                                        <p class="flex text-50 lh-1 mb-0"><small>Phone: {{ $courier->courier->phone }}</small></p>
+                                                                    @endif
+                                                                    <p class="flex text-50 lh-1 mb-0"><small>Assigned: {{ date("F j, Y g:i A", strtotime($courier->updated_at)) }}</small></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <a href="{{ route('dashboard.pickups.courier.edit',[$pickup->id,$courier->id]) }}"
+                                                           data-toggle="tooltip"
+                                                           data-title="Edit"
+                                                           data-placement="top"
+                                                           data-boundary="window"
+                                                           class="ml-4pt material-icons text-20 card-course__icon-favorite">arrow_forward</a>
+
+                                                    </div>
+
+                                                </div>
                                             </div>
                                         </div>
-                                    @endif
-                                    {{-- <p class="my-16pt text-70">Learn the fundamentals of working with Angular and how to create basic applications.</p>
-
-                                     <div class="mb-16pt">
-                                         <div class="d-flex align-items-center">
-                                             <span class="material-icons icon-16pt text-50 mr-8pt">check</span>
-                                             <p class="flex text-50 lh-1 mb-0"><small>Fundamentals of working with Angular</small></p>
-                                         </div>
-                                         <div class="d-flex align-items-center">
-                                             <span class="material-icons icon-16pt text-50 mr-8pt">check</span>
-                                             <p class="flex text-50 lh-1 mb-0"><small>Create complete Angular applications</small></p>
-                                         </div>
-                                         <div class="d-flex align-items-center">
-                                             <span class="material-icons icon-16pt text-50 mr-8pt">check</span>
-                                             <p class="flex text-50 lh-1 mb-0"><small>Working with the Angular CLI</small></p>
-                                         </div>
-                                         <div class="d-flex align-items-center">
-                                             <span class="material-icons icon-16pt text-50 mr-8pt">check</span>
-                                             <p class="flex text-50 lh-1 mb-0"><small>Understanding Dependency Injection</small></p>
-                                         </div>
-                                         <div class="d-flex align-items-center">
-                                             <span class="material-icons icon-16pt text-50 mr-8pt">check</span>
-                                             <p class="flex text-50 lh-1 mb-0"><small>Testing with Angular</small></p>
-                                         </div>
-                                     </div>--}}
-
-                                    <div class="row align-items-center">
-                                        <div class="col-auto">
-                                            {{--<div class="d-flex align-items-center mb-4pt">
-                                                <span class="material-icons icon-16pt text-50 mr-4pt">access_time</span>
-                                                <p class="flex text-50 lh-1 mb-0"><small>6 hours</small></p>
-                                            </div>
-                                            <div class="d-flex align-items-center mb-4pt">
-                                                <span class="material-icons icon-16pt text-50 mr-4pt">play_circle_outline</span>
-                                                <p class="flex text-50 lh-1 mb-0"><small>12 lessons</small></p>
-                                            </div>--}}
-                                            {{--<div class="d-flex align-items-center">
-                                                <span class="material-icons icon-16pt text-50 mr-4pt">assessment</span>
-                                                <p class="flex text-50 lh-1 mb-0"><small>Beginner</small></p>
-                                            </div>--}}
-                                        </div>
-                                        <div class="col text-right">
+                                    @empty
+                                        <div class=" mb-lg-16pt">
                                             <a href="{{ route('dashboard.pickups.courier',$pickup->id) }}"
-                                               class="btn btn-primary">Edit Courier</a>
+                                               class="btn btn-primary"><i class="material-icons icon--left">add</i> Add Courier</a>
+                                            <br>
                                         </div>
-                                    </div>
-
+                                    @endforelse
                                 </div>
 
                             </div>
 
-                            <div class=" card-group-row__col">
-
-                                <div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1 card-group-row__card"
-                                     data-toggle="popover"
-                                     data-trigger="click">
-
-                                    <div class="card-body d-flex flex-column">
-                                        <div class="d-flex align-items-center">
-                                            <div class="flex">
-                                                <div class="d-flex align-items-center">
-                                                    @if($pickup->courier)
-                                                        <div class="rounded mr-12pt z-0 o-hidden">
-                                                            <div class="overlay">
-                                                                <img src="{{ asset('backend/images/icon/client.png') }}"
-                                                                     width="40"
-                                                                     height="40"
-                                                                     alt="Angular"
-                                                                     class="rounded">
-                                                                <span class="overlay__content overlay__content-transparent">
-                                                                    <span class="overlay__action d-flex flex-column text-center lh-1">
-                                                                        <small class="h6 small text-white mb-0"
-                                                                               style="font-weight: 500;">100%</small>
-                                                                    </span>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="flex">
-                                                            <div class="card-title">{{ $pickup->courier ? $pickup->courier->full_name:'' }}</div>
-                                                            <p class="flex text-50 lh-1 mb-0"><small>{{ $pickup->courier ? $count_pickup = \App\Models\Pickup::where('courier_user_id',$pickup->courier_user_id)->count(): $count_pickup ='' }} pickup(s)</small></p>
-                                                        </div>
-                                                    @else
-                                                        <a href="{{ route('dashboard.pickups.courier',$pickup->id) }}"
-                                                           class="btn btn-primary">Edit Courier</a>
-                                                    @endif
-
-                                                </div>
-                                            </div>
-
-                                            {{--   <a href="#"
-                                                  data-toggle="tooltip"
-                                                  data-title="Add Favorite"
-                                                  data-placement="top"
-                                                  data-boundary="window"
-                                                  class="ml-4pt material-icons text-20 card-course__icon-favorite">favorite_border</a>--}}
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                @if($pickup->courier)
-                                    <div class="popoverContainer d-none">
-                                        <div class="media">
-                                            <div class="media-left mr-12pt">
-                                                <img src="{{ asset('backend/images/icon/client.png') }}"
-                                                     width="40"
-                                                     height="40"
-                                                     alt="Angular"
-                                                     class="rounded">
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="card-title">{{ $pickup->courier ? $pickup->courier->full_name:'' }}</div>
-                                                <p class="text-50 d-flex lh-1 mb-0 small">{{ $count_pickup }} pickup(s)</p>
-                                            </div>
-                                        </div>
-                                        {{--<p class="mt-16pt text-70">Learn the fundamentals of working with Figma and how to create basic applications.</p>
-
-                                        <div class="my-32pt">
-                                            <div class="d-flex align-items-center mb-8pt justify-content-center">
-                                                <div class="d-flex align-items-center mr-8pt">
-                                                    <span class="material-icons icon-16pt text-50 mr-4pt">access_time</span>
-                                                    <p class="flex text-50 lh-1 mb-0"><small>50 minutes left</small></p>
-                                                </div>
-                                                <div class="d-flex align-items-center">
-                                                    <span class="material-icons icon-16pt text-50 mr-4pt">play_circle_outline</span>
-                                                    <p class="flex text-50 lh-1 mb-0"><small>12 lessons</small></p>
-                                                </div>
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-center">
-                                                <a href="#"
-                                                   class="btn btn-primary mr-8pt">Resume</a>
-                                                <a href="#"
-                                                   class="btn btn-outline-secondary ml-0">Start over</a>
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex align-items-center">
-                                            <small class="text-50 mr-8pt">Your rating</small>
-                                            <div class="rating mr-8pt">
-                                                <span class="rating__item"><span class="material-icons text-primary">star</span></span>
-                                                <span class="rating__item"><span class="material-icons text-primary">star</span></span>
-                                                <span class="rating__item"><span class="material-icons text-primary">star</span></span>
-                                                <span class="rating__item"><span class="material-icons text-primary">star</span></span>
-                                                <span class="rating__item"><span class="material-icons text-primary">star_border</span></span>
-                                            </div>
-                                            <small class="text-50">4/5</small>
-                                        </div>--}}
-                                    </div>
-                                @endif
+                            <div class=" mb-lg-16pt">
+                                <a href="{{ route('dashboard.pickups.courier',$pickup->id) }}"
+                                   class="btn btn-primary"><i class="material-icons icon--left">add</i> Add Courier</a>
+                                <br>
                             </div>
 
                             <div class="row mb-lg-8pt">
@@ -319,7 +205,6 @@
                                     </div>
                                 @endcan
                             </div>
-
                         </div>
                         <div class="col-lg-5">
 
@@ -352,6 +237,7 @@
                         </div>
                     </div>
                 @endcan
+
                 <div class="page-separator">
                     <div class="page-separator__text">Pickup Details</div>
                 </div>
@@ -507,7 +393,7 @@
                                         </div>
                                         <div class="col text-right">
                                             <!-- Button trigger modal -->
-                                            <button id="view_modal" type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter">
+                                            <button type="button" class="btn view_modal btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter">
                                                 View Location
                                             </button>
 
@@ -621,6 +507,7 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                             <button type="button" onclick="location.href='{{ route('dashboard.locations.show',$pickup->location->id).'?pickup='.$pickup->id }}'" class="btn btn-primary"> <i class="material-icons icon--left">edit</i> Edit Location</button>
+                                                            <button type="button" onclick="location.href='{{ route('dashboard.pickups.edit',$pickup->id) }}'" class="btn btn-success"> <i class="material-icons icon--left">edit</i> Change Location</button>
                                                         </div>
                                                     </div>
                                                 </div>

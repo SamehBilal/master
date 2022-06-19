@@ -45,7 +45,7 @@ class SubscribeController extends Controller
             'email'                 => $request->email,
         ]);
 
-        $users = User::find(1);
+        $users = User::whereHas("roles", function($q){ $q->where("name", "Super Admin")->orWhere("name", "admin"); })->get();
         Notification::send($users, new NewSubscriber($subscriber));
 
         return redirect()->back()->with('success','Data created successfully');

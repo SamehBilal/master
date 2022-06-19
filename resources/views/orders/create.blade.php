@@ -1591,25 +1591,7 @@
                             <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.You can skip requesting a pickup now but make sure to request a pickup when you have packages ready to be shipped') }}</p>
                         </div>
                         <div class="col-lg-9 row p-2">
-                            <div class="col-lg-12 invert ">
-                                <div class="form-group">
-                                    <label class="form-label"
-                                           for="pickup_location_id">{{ __('dashboard.Pickup Locations') }}:</label>
-                                    <select id="pickup_location_id"
-                                            data-toggle="select"
-                                            name="pickup_location_id"
-                                            class="form-control select05 form-control-sm @error('pickup_location_id') is-invalid @enderror">
-                                        <option value="">{{ __('dashboard.Select location') }}</option>
-                                        @foreach($locations as $location)
-                                            <option value="{{ $location->id }}" {{ old('pickup_location_id') == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('pickup_location_id')
-                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                    @enderror
-                                    <div class="valid-feedback">Looks good!</div>
-                                </div>
-                            </div>
+
                             <div class="col-lg-12 invert pickup">
                                 <div class="form-group">
                                     <label class="form-label"
@@ -1664,6 +1646,30 @@
                                         @endforeach
                                     </select>
                                     @error('contact_id')
+                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                    @enderror
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                            <div class="page-separator hidden pickups  col-lg-12">
+                                <div class="page-separator__text" >
+                                    &nbsp; {{ __('dashboard.Location Information') }}
+                                </div>
+                            </div>
+                            <div class="col-lg-12 hidden pickups ">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="pickup_location_id">{{ __('dashboard.Pickup Locations') }}:</label>
+                                    <select id="pickup_location_id"
+                                            data-toggle="select"
+                                            name="pickup_location_id"
+                                            class="form-control select05 form-control-sm @error('pickup_location_id') is-invalid @enderror">
+                                        <option value="">{{ __('dashboard.Select location') }}</option>
+                                        @foreach($locations as $location)
+                                            <option value="{{ $location->id }}" {{ old('pickup_location_id') == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('pickup_location_id')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
                                     <div class="valid-feedback">Looks good!</div>

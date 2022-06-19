@@ -30,7 +30,7 @@ class OrderLog extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'/*,'mail'*/];
+        return ['database','mail'];
     }
 
     /**
@@ -43,8 +43,8 @@ class OrderLog extends Notification
     {
         return (new MailMessage)
             ->from('noreply@droplin.com', 'Droplin')
-            ->subject('New Order Log')
-            ->line('A new order log for ('.$this->order_log->order->tracking_no.').')
+            ->subject('New Order Status')
+            ->line('The order of tracking no. ('.$this->order_log->order->tracking_no.') is '.$this->order_log->status)
             ->action('New Order Log ('.$this->order_log->order->tracking_no.')', route("dashboard.order-logs.index",$this->order_log->order_id))
             ->line('Thank you for using our application!');
     }

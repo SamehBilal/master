@@ -261,6 +261,7 @@
                 </div>
             </div>
             <input type="hidden" name="pickup_id" value="{{ isset($_GET['pickup']) ? $_GET['pickup']:'' }}">
+            <input type="hidden" name="order_id" value="{{ isset($_GET['order']) ? $_GET['order']:'' }}">
             <button type="submit"
                     class="btn pull-right btn-primary">{{ __('dashboard.Submit') }}</button>
         </form>

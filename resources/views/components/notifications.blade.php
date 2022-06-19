@@ -85,7 +85,7 @@
                                         </span>
                                         <span class="flex d-flex flex-column">
 
-                                            <span class="text-black-70">A new order from {{ $note['data']['customer_full_name'] }}</span>
+                                            <span class="text-black-70">A new order from {{ DB::table('users')->where('id',$note['data']['business_user_id'])->value('full_name') }}</span>
                                         </span>
                                     </span>
                                 </a>
@@ -223,7 +223,7 @@
                                         </span>
                                         <span class="flex d-flex flex-column">
 
-                                            <span class="text-black-70">A new order log for ({{ $note['data']['tracking_no'] }})</span>
+                                            <span class="text-black-70">A new order log for ({{ $note['data']['order_tracking_no'] }})</span>
                                         </span>
                                     </span>
                                 </a>

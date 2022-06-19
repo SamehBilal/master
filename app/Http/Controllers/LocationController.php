@@ -137,6 +137,8 @@ class LocationController extends Controller
 
         if($request->pickup_id != ''){
             return redirect()->route('dashboard.pickups.show',$request->pickup_id)->with('success','Data updated successfully');
+        }elseif($request->order_id != ''){
+            return redirect()->route('dashboard.orders.show',$request->order_id)->with('success','Data updated successfully');
         }else{
             return redirect()->route('dashboard.locations.index')->with('success','Data updated successfully');
         }

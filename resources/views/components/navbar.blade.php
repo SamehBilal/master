@@ -145,17 +145,30 @@
 
                         <span class="avatar avatar-sm mr-12pt">
 
-                            <span class="avatar-title rounded navbar-avatar"><i class="material-icons">{{--trending_up--}}shopping_cart</i></span>
+                            <span class="avatar-title rounded navbar-avatar"><i class="material-icons">shopping_cart</i></span>
 
                         </span>
 
                         <small class="flex d-flex flex-column">
                             <strong class="navbar-text-100">{{ __('dashboard.Orders') }}</strong>
-                            @php $user = \App\Models\User::find(auth()->user()->id); @endphp
-                            <span class="navbar-text-50">{{ \App\Models\Order::where('business_user_id', $user->id)->count() }}</span>
+                            @php $user = \App\Models\User::find(auth()->user()->id);
+                            foreach($user->roles as $role){
+                                $role = $role->name;
+                            }
+                            @endphp
+                            @switch($role)
+                                @case('customer')
+                                    <span class="navbar-text-50">{{ \App\Models\Order::where('business_user_id', $user->id)->count() }}</span>
+                                @break
+                                @case('admin')
+                                    <span class="navbar-text-50">{{ \App\Models\Order::count() }}</span>
+                                @break
+                                    <span class="navbar-text-50">{{ \App\Models\Order::count() }}</span>
+                                @default
+                            @endswitch
                         </small>
                     </span>
-    <span class="d-none d-md-flex align-items-center mr-16pt">
+                    <span class="d-none d-md-flex align-items-center mr-16pt">
 
                         <span class="avatar avatar-sm mr-12pt">
 

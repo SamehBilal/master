@@ -63,6 +63,12 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('orders/{order}/courier',[\App\Http\Controllers\CourierLogsController::class,'store_order'])->name('orders.create.courier'); //Multi Orders
             Route::get('pickups/{pickup}/courier/',[\App\Http\Controllers\CourierLogsController::class,'create_pickup'])->name('pickups.courier'); //Courier
             Route::post('pickups/{pickup}/courier',[\App\Http\Controllers\CourierLogsController::class,'store_pickup'])->name('pickups.create.courier'); //Multi Orders
+            Route::get('orders/{order}/courier/{log}/edit',[\App\Http\Controllers\CourierLogsController::class,'edit_order'])->name('orders.courier.edit'); //Courier
+            Route::put('orders/{order}/courier/{log}/edit',[\App\Http\Controllers\CourierLogsController::class,'update_order'])->name('orders.update.courier'); //Multi Orders
+            Route::get('pickups/{pickup}/courier/{log}/edit',[\App\Http\Controllers\CourierLogsController::class,'edit_pickup'])->name('pickups.courier.edit'); //Courier
+            Route::put('pickups/{pickup}/courier/{log}/edit',[\App\Http\Controllers\CourierLogsController::class,'update_pickup'])->name('pickups.update.courier'); //Multi Orders
+            Route::delete('orders/{order}/courier/{log}/delete',[\App\Http\Controllers\CourierLogsController::class,'delete_order'])->name('orders.delete.courier'); //Multi Orders
+            Route::delete('pickups/{pickup}/courier/{log}/delete',[\App\Http\Controllers\CourierLogsController::class,'delete_pickup'])->name('pickups.delete.courier'); //Multi Orders
             Route::get('orders/{order}/qr',[\App\Http\Controllers\OrderController::class,'qr'])->name('orders.create.qr'); //Qr
             Route::get('pickups/{pickup}/qr',[\App\Http\Controllers\PickupController::class,'qr'])->name('pickups.create.qr'); //Qr
             Route::get('orders/{order}/airwaybell',[\App\Http\Controllers\OrderController::class,'airwaybell'])->name('orders.create.airwaybell'); //Airway bell Orders
