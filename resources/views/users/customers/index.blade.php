@@ -121,6 +121,12 @@
 
                                 <th>{{ __('dashboard.Phone') }}</th>
 
+                                @hasrole('finance')
+                                    <th>Total COD</th>
+                                @else
+
+                                @endhasrole
+
                                 <th>{{ __('dashboard.Status') }}</th>
 
                                 <th>{{ __('dashboard.Created_At') }}</th>
@@ -192,6 +198,17 @@
 
                                     </td>
 
+                                    @hasrole('finance')
+                                        <td>
+
+                                            <a href="#"
+                                            class="chip ">{{ $customer->orders ? $customer->orders->sum('cash_on_delivery'):0 }} {{ __('dashboard.EGP') }}</a>
+
+                                        </td>
+                                    @else
+
+                                    @endhasrole
+
                                     <td>
                                         <div class="d-flex flex-column">
                                             <button class="btn btn-sm {{ $customer->status == 'active' ? 'btn-success':'btn-danger' }}">{{ $customer->status }}</button>
@@ -253,6 +270,13 @@
                                 <th>{{ __('dashboard.Category') }}</th>
 
                                 <th>{{ __('dashboard.Phone') }}</th>
+
+                                @hasrole('finance')
+                                    <th>Total COD</th>
+                                @else
+
+                                @endhasrole
+
 
                                 <th>{{ __('dashboard.Status') }}</th>
 

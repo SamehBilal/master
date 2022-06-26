@@ -54,6 +54,11 @@ class Pickup extends Model
         return $this->hasMany(OrdersCouriers::class)->orderByDesc('updated_at');
     }
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class)->orderByDesc('updated_at');
+    }
+
     public function courier()
     {
         return $this->belongsToMany(User::class,'courier_logs','pickup_id','courier_id');

@@ -145,6 +145,8 @@
 
                             <th>{{ __('dashboard.Scheduled date') }}</th>
 
+                            <th>{{ __('dashboard.Orders') }}</th>
+
                             <th>{{ __('dashboard.Pickup type') }}</th>
 
                             <th>{{ __('dashboard.Status') }}</th>
@@ -205,6 +207,11 @@
                                             </div>
                                         </div>
                                     </div>
+                                </td>
+
+                                <td>
+                                    <div href="#"
+                                         class="chip chip-info ">{{ $pickup->orders ? $pickup->orders->count():0 }}</div>
                                 </td>
 
                                 <td>
@@ -270,6 +277,8 @@
                             <th>{{ __('dashboard.Pickup location') }}</th>
 
                             <th>{{ __('dashboard.Scheduled date') }}</th>
+
+                            <th>{{ __('dashboard.Orders') }}</th>
 
                             <th>{{ __('dashboard.Pickup type') }}</th>
 
