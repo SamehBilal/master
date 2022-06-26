@@ -15,6 +15,11 @@ class OrderLog extends Model
         return $this->hasOne(Order::class  , "id" , "order_id");
     }
 
+    public function hub()
+    {
+        return $this->hasOne(Hub::class  , "id" , "hub_id");
+    }
+
     public function courier()
     {
         return $this->hasOne(User::class  , "id" , "courier_id");

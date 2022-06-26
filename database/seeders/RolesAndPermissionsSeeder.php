@@ -89,6 +89,9 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'create users', "order" => 12]);
         Permission::create(['name' => 'edit users', "order" => 12]);
         Permission::create(['name' => 'delete users', "order" => 12]);
+        Permission::create(['name' => 'view operation_admins', "order" => 12]);
+        Permission::create(['name' => 'view operation_logistics', "order" => 12]);
+        Permission::create(['name' => 'view couriers', "order" => 12]);
         // currencies permissions
         Permission::create(['name' => 'view currencies', "order" => 13]);
         Permission::create(['name' => 'show currencies', "order" => 13]);
@@ -286,7 +289,8 @@ class RolesAndPermissionsSeeder extends Seeder
             'show orders',
             // customers permissions
             'view customers',
-            'show customers'
+            'show customers',
+            'view operation_admins'
         );
 
         $operation_admin->givePermissionTo(
@@ -300,7 +304,8 @@ class RolesAndPermissionsSeeder extends Seeder
             'show pickups',
             // locations permissions
             'view locations',
-            'show locations'
+            'show locations',
+            'view operation_logistics'
         );
 
         $operation_logistics->givePermissionTo(
@@ -315,6 +320,7 @@ class RolesAndPermissionsSeeder extends Seeder
             // locations permissions
             'view locations',
             'show locations',
+            'view couriers'
         );
 
         $operation_courier->givePermissionTo(
@@ -327,7 +333,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'show pickups',
             'edit log',
             // locations permissions
-            'show locations',
+            'show locations'
         );
     }
 }

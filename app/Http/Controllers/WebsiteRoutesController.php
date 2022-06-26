@@ -94,6 +94,7 @@ class WebsiteRoutesController extends Controller
 
     public function locations()
     {
+        return redirect()->back();
         return view('website.locations');
     }
 

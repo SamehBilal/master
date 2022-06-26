@@ -93,6 +93,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('settings',[\App\Http\Controllers\SettingsController::class,'index'])->name('settings'); //settings
             Route::resource('permissions',\App\Http\Controllers\PermissionController::class)->except(['show']); //permissions
             Route::resource('roles',\App\Http\Controllers\RoleController::class)->except(['show']); //roles
+            Route::resource('problems',\App\Http\Controllers\ProblemsController::class); //problems
 
         //});
     });

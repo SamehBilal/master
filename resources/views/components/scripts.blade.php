@@ -1,3 +1,6 @@
+@php
+    $user = \Illuminate\Support\Facades\Auth::user();
+@endphp
 <!-- jQuery -->
 <script src="{{ asset('backend/vendor/jquery.min.js') }}"></script>
 
@@ -87,8 +90,9 @@
 <script src="{{ asset('backend/js/hljs.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
-<script src="{{ asset('backend/vendor/sweetalert.min.js') }}"></script>
-<script src="{{ asset('backend/js/sweetalert.js') }}"></script>
+{{--<script src="{{ asset('backend/vendor/sweetalert.min.js') }}"></script>--}}
+{{--<script src="{{ asset('backend/js/sweetalert.js') }}"></script>--}}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <!-- custom -->
 <script src="{{ asset('backend/js/custom.js') }}"></script>
@@ -109,7 +113,6 @@
 
             }
         });
-
     });
 
     $('.details').summernote(
@@ -125,5 +128,39 @@
             ]
         }
     );
+
+    @if(!$user->hasRole('admin'))
+        $('#sendMessage').on('click',function () {
+            var subject = $('#subject').val();
+            var details = $('#details').val();
+            let _token   = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url:'{{ route('dashboard.problems.store') }}',
+                method:'POST',
+                data: {
+                    subject:subject,
+                    details:details,
+                    _token: _token
+                },
+                success:function (result) {
+                    if(!subject && !details){
+                        return false;
+                    }
+                    closeElement();
+                    swal({
+                        title: "Success!",
+                        text: "Your problem has been sent successfully!",
+                        icon: "success",
+                        button: "Confirm!",
+                    });
+                    $('#subject').val('');
+                    $('#details').val('');
+                },
+                error: function(result) {
+                    alert('Something went wrong!')
+                }
+            });
+        })
+    @endif
 </script>
 

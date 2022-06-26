@@ -39,7 +39,7 @@
         </div>
         @endif
 
-        <form method="POST" action="{{ route('dashboard.orders.store') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('dashboard.orders.store') }}" enctype="multipart/form-data" id="order_form">
             @csrf
             <div class="page-separator">
                 <div class="page-separator__text" style="line-height: 30px;">
@@ -318,7 +318,7 @@
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label class="form-label"
-                                                           for="no_of_items">{{ __('dashboard.Order Reference') }}:</label>
+                                                           for="order_reference">{{ __('dashboard.Order Reference') }}:</label>
                                                     <input type="text"
                                                            class="form-control @error('order_reference') is-invalid @enderror"
                                                            value="{{ old('order_reference') }}"
@@ -535,7 +535,7 @@
                                                     <select id="return_location_exchange"
                                                             data-toggle="select"
                                                             name="return_location_exchange"
-                                                            class="form-control select05 form-control-sm @error('return_location_exchange') is-invalid @enderror">
+                                                            class="form-control select005 form-control-sm @error('return_location_exchange') is-invalid @enderror">
                                                         <option value="">{{ __('dashboard.Select location') }}</option>
                                                         @foreach($locations as $location)
                                                             <option value="{{ $location->id }}" {{ old('return_location_exchange') == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
@@ -558,7 +558,7 @@
                                                            for="country_id_exchange">{{ __('dashboard.Country') }}</label>
                                                     <select id="country_id_exchange"
                                                             data-toggle="select"
-                                                            class="form-control select05 form-control-sm @error('country_id_exchange') is-invalid @enderror"
+                                                            class="form-control select005 select05 form-control-sm @error('country_id_exchange') is-invalid @enderror"
                                                             name="country_id_exchange">
                                                         @foreach($countries as $country)
                                                             <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -578,7 +578,7 @@
                                                            for="state_id_exchange">{{ __('dashboard.State') }}</label>
                                                     <select id="state_id_exchange"
                                                             data-toggle="select"
-                                                            class="form-control select01 select05 form-control-sm @error('state_id_exchange') is-invalid @enderror"
+                                                            class="form-control select01 select005 form-control-sm @error('state_id_exchange') is-invalid @enderror"
                                                             name="state_id_exchange">
                                                         @foreach($states as $state)
                                                             <option value="{{ $state->id }}" {{ old('state_id_exchange') == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -599,7 +599,7 @@
                                                     <select id="city_id_exchange"
                                                             data-toggle="select"
                                                             disabled
-                                                            class="form-control select03 select05 form-control-sm @error('city_id_exchange') is-invalid @enderror"
+                                                            class="form-control select03 select005 form-control-sm @error('city_id_exchange') is-invalid @enderror"
                                                             name="city_id_exchange">
                                                     </select>
                                                     @error('city_id_exchange')
@@ -887,7 +887,7 @@
                                                     <select id="return_location"
                                                             data-toggle="select"
                                                             name="return_location"
-                                                            class="form-control select05 form-control-sm @error('return_location') is-invalid @enderror">
+                                                            class="form-control select005 form-control-sm @error('return_location') is-invalid @enderror">
                                                         <option value="">{{ __('dashboard.Select location') }}</option>
                                                         @foreach($locations as $location)
                                                             <option value="{{ $location->id }}" {{ old('return_location') == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
@@ -910,7 +910,7 @@
                                                            for="country_id_return">{{ __('dashboard.Country') }}</label>
                                                     <select id="country_id_return"
                                                             data-toggle="select"
-                                                            class="form-control select05 form-control-sm @error('country_id_return') is-invalid @enderror"
+                                                            class="form-control select005 select05 form-control-sm @error('country_id_return') is-invalid @enderror"
                                                             name="country_id_return">
                                                         @foreach($countries as $country)
                                                             <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -930,7 +930,7 @@
                                                            for="state_id_return">{{ __('dashboard.State') }}</label>
                                                     <select id="state_id_return"
                                                             data-toggle="select"
-                                                            class="form-control select05 select01 form-control-sm @error('state_id_return') is-invalid @enderror"
+                                                            class="form-control select005 select01 form-control-sm @error('state_id_return') is-invalid @enderror"
                                                             name="state_id_return">
                                                         @foreach($states as $state)
                                                             <option value="{{ $state->id }}" {{ old('state_id_return') == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -951,7 +951,7 @@
                                                     <select id="city_id_return"
                                                             data-toggle="select"
                                                             disabled
-                                                            class="form-control select05 select03 form-control-sm @error('city_id_return') is-invalid @enderror"
+                                                            class="form-control select005 select03 form-control-sm @error('city_id_return') is-invalid @enderror"
                                                             name="city_id_return">
                                                     </select>
                                                     @error('city_id_return')
@@ -1234,7 +1234,7 @@
                                     <select id="customer_id"
                                             data-toggle="select"
                                             name="customer_id"
-                                            class="form-control select05 form-control-sm @error('customer_id') is-invalid @enderror">
+                                            class="form-control select005 form-control-sm @error('customer_id') is-invalid @enderror">
                                         <option value="">{{ __('dashboard.Select customer') }}</option>
                                         @foreach($customers as $customer)
                                             <option value="{{ $customer->id }}" {{ old('customer_id') == $customer->id ? 'selected':'' }}>{{ $customer->user->full_name }}</option>
@@ -1350,7 +1350,7 @@
                                     <select id="location_id"
                                             data-toggle="select"
                                             name="location_id"
-                                            class="form-control select05 form-control-sm @error('location_id') is-invalid @enderror">
+                                            class="form-control select005 form-control-sm @error('location_id') is-invalid @enderror">
                                         <option value="">{{ __('dashboard.Select location') }}</option>
                                         @foreach($locations as $location)
                                             <option value="{{ $location->id }}" {{ old('location_id') == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
@@ -1372,10 +1372,10 @@
                                            for="country_id">Country</label>
                                     <select id="country_id"
                                             data-toggle="select"
-                                            class="form-control select05 form-control-sm @error('country_id') is-invalid @enderror"
+                                            class="form-control select005 select05 form-control-sm @error('country_id') is-invalid @enderror"
                                             name="country_id">
                                         @foreach($countries as $country)
-                                            <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                            <option value="{{ $country->id }}" data-closest-select="state_id" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
                                                 {{ $country->name }}
                                             </option>
                                         @endforeach
@@ -1392,7 +1392,7 @@
                                            for="state_id">{{ __('dashboard.State') }}</label>
                                     <select id="state_id"
                                             data-toggle="select"
-                                            class="form-control select05 select01 form-control-sm @error('state_id') is-invalid @enderror"
+                                            class="form-control select005 select01 form-control-sm @error('state_id') is-invalid @enderror"
                                             name="state_id">
                                         @foreach($states as $state)
                                             <option value="{{ $state->id }}" {{ old('state_id') == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -1413,7 +1413,7 @@
                                     <select id="city_id"
                                             data-toggle="select"
                                             disabled
-                                            class="form-control select05 select03 form-control-sm @error('city_id') is-invalid @enderror"
+                                            class="form-control select005 select03 form-control-sm @error('city_id') is-invalid @enderror"
                                             name="city_id">
                                     </select>
                                     @error('city_id')
@@ -1599,7 +1599,7 @@
                                     <select id="pickup_id"
                                             data-toggle="select"
                                             name="pickup_id"
-                                            class="form-control select05 form-control-sm @error('pickup_id') is-invalid @enderror">
+                                            class="form-control select005 form-control-sm @error('pickup_id') is-invalid @enderror">
                                         <option value="">Choose pickup</option>
                                         @foreach($pickups as $pickup)
                                             <option value="{{ $pickup->id }}" {{ old('pickup_id') == $pickup->id ? 'selected':'' }}>{{ $pickup->pickup_id }}</option>
@@ -1639,7 +1639,7 @@
                                     <select id="contact_id"
                                             data-toggle="select"
                                             name="contact_id"
-                                            class="form-control select05 form-control-sm @error('contact_id') is-invalid @enderror">
+                                            class="form-control select005 form-control-sm @error('contact_id') is-invalid @enderror">
                                         <option value="">{{ __('dashboard.Select Contact') }}</option>
                                         @foreach($contacts as $contact)
                                             <option value="{{ $contact->id }}" {{ old('contact_id') == $contact->id ? 'selected':'' }}>{{ $contact->contact_name }}</option>
@@ -1663,7 +1663,7 @@
                                     <select id="pickup_location_id"
                                             data-toggle="select"
                                             name="pickup_location_id"
-                                            class="form-control select05 form-control-sm @error('pickup_location_id') is-invalid @enderror">
+                                            class="form-control select005 form-control-sm @error('pickup_location_id') is-invalid @enderror">
                                         <option value="">{{ __('dashboard.Select location') }}</option>
                                         @foreach($locations as $location)
                                             <option value="{{ $location->id }}" {{ old('pickup_location_id') == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
@@ -1690,40 +1690,14 @@
                 <input type="hidden" name="date_in" value="full">--}}
             </div>
 
-            <button type="submit"
+            <button id="btn-confirm"
+                    type="submit"
                     class="btn pull-right btn-primary">{{ __('dashboard.Submit') }}</button>
 
-            <a id="btn-confirm"
-                class="btn btn-danger"
-                data-toggle="swal"
-                data-swal-title="Are you sure?"
-                data-swal-text="You will not be able to recover this imaginary file!"
-                data-swal-type="warning"
-                data-swal-confirm-button-text="Yes, Confirm!"
-                data-swal-confirm-cb="#swal-confirm-delete"
-                data-swal-show-cancel-button="true"
-                data-swal-cancel-button-text="No, cancel please!"
-                data-swal-cancel-cb="#swal-cancel-delete"
-                data-swal-close-on-confirm="false"
-                data-swal-close-on-cancel="false">
+            {{--<a id="btn-confirm"
+                class="btn btn-danger">
                 Confirm
-            </a>
-
-            <div
-                id="swal-cancel-delete"
-                class="d-none"
-                data-swal-type="error"
-                data-swal-title="Cancelled"
-                data-swal-text="Your imaginary file is safe :)">
-            </div>
-
-            <div
-                id="swal-confirm-delete"
-                class="d-none"
-                data-swal-type="success"
-                data-swal-title="Deleted!"
-                data-swal-text="Your imaginary file has been deleted.">
-            </div>
+            </a>--}}
         </form>
     </div>
 @endsection
@@ -1732,33 +1706,237 @@
     @include('components.locations_ajax')
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-
     <script>
         $(document).ready(function() {
             $("#scheduled_date").flatpickr({
                 minDate: "today",
             });
-           c
 
-            $('#btn-confirm').on('click',function () {
+            $('.select005').select2();
+
+            $('#btn-confirm').on('click',function (e) {
+                e.preventDefault();
+                var type                                        = $("input[name='type']").val();
+
+                /* Customer */
+                var customer                                    = $('#customer_id').val();
+                var customer_div                                = '';
+
+                var name                                        = $('#name').val();
+                var email                                       = $('#email').val();
+                var phone                                       = $('#phone').val();
+                var secondary_phone                             = $('#secondary_phone').val();
+                var delivery_notes                              = $('#delivery_notes').val();
+
+                var location_id                                 = $('#location_id').val();
+                var location_div                                = '';
+                var country_id                                  = $('#country_id').val();
+                var state_id                                    = $('#state_id').val();
+                var city_id                                     = $('#city_id').val();
+                var street                                      = $('#street').val();
+                var building                                    = $('#building').val();
+                var floor                                       = $('#floor').val();
+                var apartment                                   = $('#apartment').val();
+                var landmarks                                   = $('#landmarks').val();
+                var working_hours                               = $("input[name='working_hours']").val();
+
+                /* Pickup */
+                var pickup_id                                   = $('#pickup_id').val();
+                var pickup_div                                  = '';
+
+                var scheduled_date                              = $('#scheduled_date').val();
+                var contact_id                                  = $('#contact_id').val();
+                var pickup_location_id                          = $('#pickup_location_id').val();
+
+                /* Cash Collection */
+                var cash_to_collect                             = $("#cash_to_collect").val();
+                var collect_cash                                = $("input[name='collect_cash']").val();//
+                var order_reference_cash_collection             = $("#order_reference_cash_collection").val();
+
+                /* Return */
+                var refund_amount                               = $('#refund_amount').val();
+                var with_refund                                 = $('input[name="with_refund"]').val();//
+                var no_of_items_return                          = $('#no_of_items_return').val();
+                var package_description_return                  = $('#package_description_return').val();
+                var order_reference_return                      = $('#order_reference_return').val();
+                var return_location                             = $('#return_location').val();
+                var return_location_div                         = '';
+
+                var country_id_return                           = $('#country_id_return').val();
+                var state_id_return                             = $('#state_id_return').val();
+                var city_id_return                              = $('#city_id_return').val();
+                var street_return                               = $('#street_return').val();
+                var building_return                             = $('#building_return').val();
+                var floor_return                                = $('#floor_return').val();
+                var apartment_return                            = $('#apartment_return').val();
+                var landmarks_return                            = $('#landmarks_return').val();
+                var working_hours_return                        = $('#working_hours_return').val();
+
+                /* Exchange */
+                var with_cash_difference                        = $('input[name="with_cash_difference"]').val();//
+                var cash_exchange_amount                        = $('#cash_exchange_amount').val();
+                var no_of_items_exchange                        = $('#no_of_items_exchange').val();
+                var package_description_exchange                = $('#package_description_exchange').val();
+                var order_reference_exchange                    = $('#order_reference_exchange').val();
+                var customCheck1_allow                          = $('#customCheck1_allow').val();
+                var no_of_items_of_return_package_exchange      = $('#no_of_items_of_return_package_exchange').val();
+                var package_description_return_package_exchange = $('#package_description_return_package_exchange').val();
+                var return_location_exchange                    = $('#return_location_exchange').val();
+                var exchange_location_div                       = '';
+
+                var country_id_exchange                         = $('#country_id_exchange').val();
+                var state_id_exchange                           = $('#state_id_exchange').val();
+                var city_id_exchange                            = $('#city_id_exchange').val();
+                var street_exchange                             = $('#street_exchange').val();
+                var building_exchange                           = $('#building_exchange').val();
+                var floor_exchange                              = $('#floor_exchange').val();
+                var apartment_exchange                          = $('#apartment_exchange').val();
+                var landmarks_exchange                          = $('#landmarks_exchange').val();
+                var working_hours_exchange                      = $('#working_hours_exchange').val();
+
+                /* Deliver */
+                var with_cash_collection                        = $('input[name="with_cash_collection"]').val();//
+                var cash_on_delivery                            = $('#cash_on_delivery').val();
+                var radio_stacked                               = $('input[name="radio_stacked"]').val();//
+                var light_bulky                                 = $('input[name="light_bulky"]').val();//
+                var package_description                         = $('#package_description').val();
+                var no_of_items                                 = $('#no_of_items').val();
+                var order_reference                             = $('#order_reference').val();
+                var open_package                                = $('input[name="open_package"]').val();
+
+                if(!pickup_id)
+                {
+                    pickup_div = 'Scheduled date: '+scheduled_date+'\n'+
+                        'Contact id: '+contact_id+'\n'+
+                        'Pickup location id: '+pickup_location_id+'\n';
+                }else{
+                    pickup_div = 'Pickup location id: '+pickup_location_id+'\n';
+                }
+
+                if(!customer)
+                {
+                    customer_div = 'Name: '+name+'\n'+
+                        'Email: '+email+'\n'+
+                        'Phone: '+phone+'\n'+
+                        'Secondary phone: '+secondary_phone+'\n'+
+                        'Delivery notes: '+delivery_notes+'\n';
+                }else{
+                    customer_div = 'Customer: '+customer+'\n'+
+                        'Delivery notes: '+delivery_notes+'\n';
+                }
+
+                if(!return_location)
+                {
+                    return_location_div =  'Country: '+country_id_return+'\n'+
+                        'State: '+state_id_return+'\n'+
+                        'City: '+city_id_return+'\n'+
+                        'Street: '+street_return+'\n'+
+                        'Building: '+building_return+'\n'+
+                        'Floor: '+floor_return+'\n'+
+                        'Apartment: '+apartment_return+'\n'+
+                        'Landmarks: '+landmarks_return+'\n'+
+                        'Working Hours: '+working_hours_return+'\n';
+                }else{
+                    return_location_div =  'Location: '+return_location+'\n';
+                }
+
+                if(!return_location_exchange)
+                {
+                    exchange_location_div =    'Country: '+country_id_exchange+'\n'+
+                        'State: '+state_id_exchange+'\n'+
+                        'City: '+city_id_exchange+'\n'+
+                        'Street: '+street_exchange+'\n'+
+                        'Building: '+building_exchange+'\n'+
+                        'Floor: '+floor_exchange+'\n'+
+                        'Apartment: '+apartment_exchange+'\n'+
+                        'Landmarks: '+landmarks_exchange+'\n'+
+                        'Working Hours: '+working_hours_exchange+'\n';
+                }else{
+                    exchange_location_div =  'Location: '+return_location_exchange+'\n';
+                }
+
+                if(!location_id)
+                {
+                    location_div = 'Country: '+country_id+'\n'+
+                        'State: '+state_id+'\n'+
+                        'City: '+city_id+'\n'+
+                        'Street: '+street+'\n'+
+                        'Building: '+building+'\n'+
+                        'Floor: '+floor+'\n'+
+                        'Apartment: '+apartment+'\n'+
+                        'Landmarks: '+landmarks+'\n'+
+                        'Working Hours: '+working_hours+'\n';
+                }else{
+                    location_div = 'Location: '+location_id+'\n';
+                }
+
+                var div = '';
+                switch(type) {
+                    case 'Deliver':
+                        div = 'Type: '+type+'\n'+
+                            'Cash on delivery: '+cash_on_delivery+'\n'+
+                            'With/without cash collection: '+with_cash_collection+'\n'+
+                            'Package type: '+radio_stacked+'\n'+
+                            'Light or Heavy bulky: '+light_bulky+'\n'+
+                            'Package description: '+package_description+'\n'+
+                            'Number of items: '+no_of_items+'\n'+
+                            'Order reference: '+order_reference+'\n'+
+                            'Open package: '+open_package+'\n';
+                        break;
+                    case 'Exchange':
+                        div = 'Type: '+type+'\n'+
+                            'Cash exchange amount: '+cash_exchange_amount+'\n'+
+                            'With/without cash difference: '+with_cash_difference+'\n'+
+                            'Number of items: '+no_of_items_exchange+'\n'+
+                            'Delivery package description: '+package_description_exchange+'\n'+
+                            'Order reference: '+order_reference_exchange+'\n'+
+                            'Allow to open package: '+customCheck1_allow+'\n'+
+                            'Number of return items: '+no_of_items_of_return_package_exchange+'\n'+
+                            'Open package: '+package_description_return_package_exchange+'\n';
+                        break;
+                    case 'Return':
+                        div = 'Type: '+type+'\n'+
+                            'Refund amount: '+refund_amount+'\n'+
+                            'With/without refund: '+with_refund+'\n'+
+                            'Number of return items: '+no_of_items_return+'\n'+
+                            'Package description: '+package_description_return+'\n'+
+                            'Order reference: '+order_reference_return+'\n';
+                        break;
+                    case 'Cash Collection':
+                        div = 'Type: '+type+'\n'+
+                            'Cash to collect: '+cash_to_collect+'\n'+
+                            'Collect cash or refund: '+collect_cash+'\n'+
+                            'Order reference: '+order_reference_cash_collection+'\n';
+                        break;
+                    default:
+                        div = '';
+                }
+                if(!customer && !name)
+                {
+                    return false;
+                }
                 swal({
                     title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this imaginary file!",
+                    text:'Order Details \n'+
+                        div+'\n'+
+                        return_location_div+'\n'+
+                        exchange_location_div+'\n'+
+                        'Customer Details \n'+
+                        customer_div+'\n'+
+                        'Customer\'s Location \n'+
+                        location_div+'\n'+
+                        pickup_div+'\n',
                     icon: "warning",
                     buttons: true,
-                    dangerMode: true,
-                })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            swal("Poof! Your imaginary file has been deleted!", {
-                                icon: "success",
-                            });
-                        } else {
-                            swal("Your imaginary file is safe!", {
-                                icon: "danger",
-                            });
-                        }
-                    });
+                    /*dangerMode: true,*/
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        swal("Poof! Your has successfully submitted!", {
+                            icon: "success",
+                        });
+                        $('#order_form').submit();
+                    }
+                });
             })
         });
 

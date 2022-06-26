@@ -155,8 +155,8 @@
             </ul>
             @endcan
             @can('view customers')
-            <div class="sidebar-heading">{{ __('dashboard.Users') }}</div>
-
+                <div class="sidebar-heading">{{ __('dashboard.Users') }}</div>
+            @endcan
             <ul class="sidebar-menu">
                 @can('view customers')
                     <li class="sidebar-menu-item {{ set_active(['dashboard/customers*'])}}">
@@ -173,6 +173,33 @@
                         href="{{ route('dashboard.businesses.index') }}">
                             <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">business</span>
                             Business
+                        </a>
+                    </li>
+                @endcan
+                @can('view operation_admins')
+                    <li class="sidebar-menu-item {{ set_active(['dashboard/users*'])}}">
+                        <a class="sidebar-menu-button"
+                           href="{{ route('dashboard.users.index') }}">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">group</span>
+                            Operation Admins
+                        </a>
+                    </li>
+                @endcan
+                @can('view operation_logistics')
+                    <li class="sidebar-menu-item {{ set_active(['dashboard/users*'])}}">
+                        <a class="sidebar-menu-button"
+                           href="{{ route('dashboard.users.index') }}">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">group</span>
+                            Operation Logistics
+                        </a>
+                    </li>
+                @endcan
+                @can('view couriers')
+                    <li class="sidebar-menu-item {{ set_active(['dashboard/users*'])}}">
+                        <a class="sidebar-menu-button"
+                           href="{{ route('dashboard.users.index') }}">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">group</span>
+                            Couriers
                         </a>
                     </li>
                 @endcan
@@ -204,7 +231,7 @@
                     </li>
                 @endcan
             </ul>
-            @endcan
+
 
             <div class="sidebar-heading">{{ __('dashboard.Setup') }}</div>
             <ul class="sidebar-menu">

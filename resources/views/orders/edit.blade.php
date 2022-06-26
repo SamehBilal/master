@@ -523,7 +523,7 @@
                                                     <select id="select02"
                                                             data-toggle="select"
                                                             name="return_location_exchange"
-                                                            class="form-control form-control-sm @error('return_location_exchange') is-invalid @enderror">
+                                                            class="form-control select005 form-control-sm @error('return_location_exchange') is-invalid @enderror">
                                                         <option value="">{{ __('dashboard.Select location') }}</option>
                                                         @foreach($locations as $location)
                                                             <option value="{{ $location->id }}" {{ $order->return_location_exchange == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
@@ -546,7 +546,7 @@
                                                            for="select05">{{ __('dashboard.Country') }}</label>
                                                     <select id="select05"
                                                             data-toggle="select"
-                                                            class="form-control select05 form-control-sm @error('country_id_exchange') is-invalid @enderror"
+                                                            class="form-control select005 select05 form-control-sm @error('country_id_exchange') is-invalid @enderror"
                                                             name="country_id_exchange">
                                                         @foreach($countries as $country)
                                                             <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -567,7 +567,7 @@
                                                     <select id="select01"
                                                             data-toggle="select"
                                                             data-minimum-results-for-search="-1"
-                                                            class="form-control select01 form-control-sm @error('state_id_exchange') is-invalid @enderror"
+                                                            class="form-control select005 select01 form-control-sm @error('state_id_exchange') is-invalid @enderror"
                                                             name="state_id_exchange">
                                                         @foreach($states as $state)
                                                             <option value="{{ $state->id }}" {{ ($order->return_locations_exchange) ? $order->return_locations_exchange->state_id == $state->id ? 'selected':'':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -589,7 +589,7 @@
                                                             data-toggle="select"
                                                             disabled
                                                             data-minimum-results-for-search="-1"
-                                                            class="form-control select03 form-control-sm @error('city_id_exchange') is-invalid @enderror"
+                                                            class="form-control select005 select03 form-control-sm @error('city_id_exchange') is-invalid @enderror"
                                                             name="city_id_exchange">
                                                     </select>
                                                     @error('city_id_exchange')
@@ -877,7 +877,7 @@
                                                     <select id="select02"
                                                             data-toggle="select"
                                                             name="return_location"
-                                                            class="form-control form-control-sm @error('return_location') is-invalid @enderror">
+                                                            class="form-control select005 form-control-sm @error('return_location') is-invalid @enderror">
                                                         <option value="">{{ __('dashboard.Select location') }}</option>
                                                         @foreach($locations as $location)
                                                             <option value="{{ $location->id }}" {{ $order->return_location == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
@@ -900,7 +900,7 @@
                                                            for="select05">{{ __('dashboard.Country') }}</label>
                                                     <select id="select05"
                                                             data-toggle="select"
-                                                            class="form-control select05 form-control-sm @error('country_id_return') is-invalid @enderror"
+                                                            class="form-control select005 select05 form-control-sm @error('country_id_return') is-invalid @enderror"
                                                             name="country_id_return">
                                                         @foreach($countries as $country)
                                                             <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -920,8 +920,7 @@
                                                            for="select01">{{ __('dashboard.State') }}</label>
                                                     <select id="select01"
                                                             data-toggle="select"
-                                                            data-minimum-results-for-search="-1"
-                                                            class="form-control select01 form-control-sm @error('state_id_return') is-invalid @enderror"
+                                                            class="form-control select005 select01 form-control-sm @error('state_id_return') is-invalid @enderror"
                                                             name="state_id_return">
                                                         @foreach($states as $state)
                                                             <option value="{{ $state->id }}" {{ ($order->return_locations) ? $order->return_locations->state_id == $state->id ? 'selected':'':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -942,8 +941,7 @@
                                                     <select id="select03"
                                                             data-toggle="select"
                                                             disabled
-                                                            data-minimum-results-for-search="-1"
-                                                            class="form-control select03 form-control-sm @error('city_id_return') is-invalid @enderror"
+                                                            class="form-control select005 select03 form-control-sm @error('city_id_return') is-invalid @enderror"
                                                             name="city_id_return">
                                                     </select>
                                                     @error('city_id_return')
@@ -1226,7 +1224,7 @@
                                     <select id="select04"
                                             data-toggle="select"
                                             name="customer_id"
-                                            class="form-control form-control-sm @error('customer_id') is-invalid @enderror">
+                                            class="form-control select005 form-control-sm @error('customer_id') is-invalid @enderror">
                                         <option value="">{{ __('dashboard.Select customer') }}</option>
                                         @foreach($customers as $customer)
                                             <option value="{{ $customer->id }}" {{ $order->customer_id == $customer->id ? 'selected':'' }}>{{ $customer->user->full_name }}</option>
@@ -1342,7 +1340,7 @@
                                     <select id="select02"
                                             data-toggle="select"
                                             name="location_id"
-                                            class="form-control form-control-sm @error('location_id') is-invalid @enderror">
+                                            class="form-control select005 form-control-sm @error('location_id') is-invalid @enderror">
                                         <option value="">{{ __('dashboard.Select location') }}</option>
                                         @foreach($locations as $location)
                                             <option value="{{ $location->id }}" {{ $order->location_id == $location->id ? 'selected':'' }}>{{ $location->name }}</option>
@@ -1364,7 +1362,7 @@
                                            for="select05">Country</label>
                                     <select id="select05"
                                             data-toggle="select"
-                                            class="form-control select05 form-control-sm @error('country_id') is-invalid @enderror"
+                                            class="form-control select005 select05 form-control-sm @error('country_id') is-invalid @enderror"
                                             name="country_id">
                                         @foreach($countries as $country)
                                             <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -1384,8 +1382,7 @@
                                            for="select01">{{ __('dashboard.State') }}</label>
                                     <select id="select01"
                                             data-toggle="select"
-                                            data-minimum-results-for-search="-1"
-                                            class="form-control select01 form-control-sm @error('state_id') is-invalid @enderror"
+                                            class="form-control select005 select01 form-control-sm @error('state_id') is-invalid @enderror"
                                             name="state_id">
                                         @foreach($states as $state)
                                             <option value="{{ $state->id }}" {{ $order->location->state_id == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -1406,8 +1403,7 @@
                                     <select id="select03"
                                             data-toggle="select"
                                             disabled
-                                            data-minimum-results-for-search="-1"
-                                            class="form-control select03 form-control-sm @error('city_id') is-invalid @enderror"
+                                            class="form-control select005 select03 form-control-sm @error('city_id') is-invalid @enderror"
                                             name="city_id">
                                     </select>
                                     @error('city_id')
@@ -1594,7 +1590,7 @@
                                     <select id="select06"
                                             data-toggle="select"
                                             name="pickup_id"
-                                            class="form-control form-control-sm @error('pickup_id') is-invalid @enderror">
+                                            class="form-control select005 form-control-sm @error('pickup_id') is-invalid @enderror">
                                         <option value="">Choose pickup</option>
                                         @foreach($pickups as $pickup)
                                             <option value="{{ $pickup->id }}" {{ $order->pickup_id == $pickup->id ? 'selected':'' }}>{{ $pickup->pickup_id }}</option>
@@ -1634,7 +1630,7 @@
                                     <select id="select06"
                                             data-toggle="select"
                                             name="contact_id"
-                                            class="form-control form-control-sm @error('contact_id') is-invalid @enderror">
+                                            class="form-control select005 form-control-sm @error('contact_id') is-invalid @enderror">
                                         <option value="">{{ __('dashboard.Select Contact') }}</option>
                                         @foreach($contacts as $contact)
                                             <option value="{{ $contact->id }}" {{ ($order->pickup) ? $order->pickup->contact_id == $contact->id ? 'selected':'':'' }}>{{ $contact->contact_name }}</option>
@@ -1658,7 +1654,7 @@
                                     <select id="select02"
                                             data-toggle="select"
                                             name="pickup_location_id"
-                                            class="form-control form-control-sm @error('pickup_location_id') is-invalid @enderror">
+                                            class="form-control select005 form-control-sm @error('pickup_location_id') is-invalid @enderror">
                                         <option value="">{{ __('dashboard.Select location') }}</option>
                                         @foreach($locations as $location)
                                             <option value="{{ $location->id }}" {{ ($order->pickup) ? $order->pickup_location_id == $location->id ? 'selected':'':'' }}>{{ $location->name }}</option>
@@ -1695,8 +1691,11 @@
     @include('components.locations_ajax')
 
     <script>
-        $("#scheduled_date").flatpickr({
-            minDate: "today",
+        $(document).ready(function() {
+            $("#scheduled_date").flatpickr({
+                minDate: "today",
+            });
+            $('.select005').select2();
         });
     </script>
 @endsection

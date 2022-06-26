@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\UserCategory;
 use App\Notifications\NewUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use Spatie\Permission\Models\Role;
 
@@ -18,7 +19,22 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('updated_at','desc')->get();
+        $user = Auth::user();
+        $users = User::orderBy('updated_at','desc');
+        if($user->hasRole('finance'))
+        {
+            $users = $users->whereHas("roles", function($q){ $q->where("name", "operation admin"); });
+        }
+        if($user->hasRole('operation admin'))
+        {
+            $users = $users->whereHas("roles", function($q){ $q->where("name", "operation logistics"); });
+        }
+        if($user->hasRole('operation logistics'))
+        {
+            $users = $users->whereHas("roles", function($q){ $q->where("name", "operation courier"); });
+        }
+
+        $users = $users->get();
         return view('users.index',compact('users'));
     }
 

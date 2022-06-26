@@ -433,6 +433,7 @@
                                         <li class="event {{ str_replace(' ', '-', $log->status ) }}" data-date="2005">
                                             <h3>{{ date("F j, Y g:i A", strtotime($log->created_at)) }}</h3>
                                             <p>"{{ $log->notes }}" 📣</p>
+                                            <p>{{ $log->hub ? $log->hub->ar_name.'🏪':'' }} </p>
                                             <p><i class="zmdi zmdi-info"></i>
                                                 <a href="#" class="{{ str_replace(' ', '-', $log->status ) }}">{{ $log->status }}</a></p>
                                         </li>
@@ -698,6 +699,7 @@
                                         <li class="event {{ str_replace(' ', '-', $log->status ) }}" data-date="2005">
                                             <h3>{{ date("F j, Y g:i A", strtotime($log->created_at)) }}</h3>
                                             <p>"{{ $log->description }}" 📣</p>
+                                            <p>{{ $log->hub ? $log->hub->en_name.'🏪':'' }} </p>
                                             <p><i class="zmdi zmdi-info"></i>
                                                 <a href="#" class="{{ str_replace(' ', '-', $log->status ) }}">{{ $log->status }}</a></p>
                                         </li>

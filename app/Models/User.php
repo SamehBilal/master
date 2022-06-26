@@ -74,6 +74,21 @@ class User extends Authenticatable
         return $this->hasMany(address::class);
     }
 
+    public function state()
+    {
+        return $this->hasOne(State::class  , "id" , "state_id");
+    }
+
+    public function city()
+    {
+        return $this->hasOne(City::class  , "id" , "city_id");
+    }
+
+    public function country()
+    {
+        return $this->hasOne(Country::class  , "id" , "country_id");
+    }
+
     public function location()
     {
         return $this->hasMany(Location::class);

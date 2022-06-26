@@ -112,4 +112,7 @@
     @else
 
     @endif
+    .swal-modal .swal-text {
+        text-align: center;
+    }
 </style>

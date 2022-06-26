@@ -68,6 +68,8 @@
 
 </div>
 
+@include('components.intercom')
+
 <!-- // END Drawer Layout -->
 
 @include('components.scripts')

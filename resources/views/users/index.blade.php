@@ -55,6 +55,9 @@
                                     </span>
                             </a>
                         </div>
+                        @hasanyrole('finance|operation admin|operation logistics')
+
+                        @else
                         <div class="col-auto border-left border-right">
                             <a href="#"
                                data-toggle="tab"
@@ -118,6 +121,7 @@
                                 </span>
                             </a>
                         </div>
+                        @endhasanyrole
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -161,7 +165,12 @@
 
                             <th>{{ __('dashboard.Category') }}</th>
 
-                            <th>{{ __('dashboard.Role') }}</th>
+                            @hasrole('operation logistics')
+                                <th>Orders</th>
+                                <th>Pickups</th>
+                            @else
+                                <th>{{ __('dashboard.Role') }}</th>
+                            @endhasrole
 
                             <th>{{ __('dashboard.Status') }}</th>
 
@@ -216,10 +225,13 @@
                                 </td>
 
                                 <td>
-                                    @foreach($user->roles as $role)
-                                        <a href="#"
-                                           class="chip chip-outline-secondary">{{ $role->name }}</a>
-                                    @endforeach
+                                    <a href="#"
+                                           class="chip chip-info">{{ $user->order->count() }}</a>
+                                </td>
+
+                                <td>
+                                    <a href="#"
+                                           class="chip chip-dark">{{ $user->pickup->count() }}</a>
                                 </td>
 
                                 <td>
@@ -262,7 +274,12 @@
 
                             <th>{{ __('dashboard.Category') }}</th>
 
-                            <th>{{ __('dashboard.Role') }}</th>
+                            @hasrole('operation logistics')
+                                <th>Orders</th>
+                                <th>Pickups</th>
+                            @else
+                                <th>{{ __('dashboard.Role') }}</th>
+                            @endhasrole
 
                             <th>{{ __('dashboard.Status') }}</th>
 

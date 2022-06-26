@@ -33,6 +33,12 @@ class CreateUsersTable extends Migration
             $table->bigInteger('other_phone')->nullable();
             $table->boolean('status')->default(1);
             $table->longText('bio')->nullable();
+            $table->unsignedBigInteger('country_id')->nullable();
+            $table->unsignedBigInteger('state_id')->nullable();
+            $table->unsignedBigInteger('city_id')->nullable();
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('SET NULL');
+            $table->foreign('state_id')->references('id')->on('states')->onDelete('SET NULL');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('SET NULL');
             $table->rememberToken();
             $table->timestamps();
             $table->index(['id']);

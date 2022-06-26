@@ -14,7 +14,7 @@ function swap(image) {
 
 function slider_owl(slider_id, visible1, visible2, visible3, visible4, visible) {
     $(slider_id).owlCarousel({
-        navigation: true, // Show next and prev buttons   
+        navigation: true, // Show next and prev buttons
         slideSpeed: 500,
         singleItem: true,
         pagination: true,
@@ -93,7 +93,7 @@ $(document).ready(function() {
             // Center
             var center = new google.maps.LatLng(21.0311448, 105.7640188);
 
-            // Map Options      
+            // Map Options
             var mapOptions = {
                 zoom: 15,
                 center: center,
@@ -199,7 +199,7 @@ $(document).ready(function() {
             // Center
             var center = new google.maps.LatLng(21.0311448, 105.7640188);
 
-            // Map Options      
+            // Map Options
             var mapOptions = {
                 zoom: 15,
                 center: center,
@@ -388,7 +388,7 @@ $(document).ready(function() {
         "width": $(".container").width() + "px"
     });
     $(".slide-product-tab").owlCarousel({
-        navigation: true, // Show next and prev buttons   
+        navigation: true, // Show next and prev buttons
         slideSpeed: 500,
         singleItem: true,
         pagination: true,
@@ -402,7 +402,7 @@ $(document).ready(function() {
         items: 1,
     });
     $(".slide-product-tab1").owlCarousel({
-        navigation: true, // Show next and prev buttons   
+        navigation: true, // Show next and prev buttons
         slideSpeed: 500,
         singleItem: true,
         pagination: true,
@@ -436,7 +436,7 @@ $(document).ready(function() {
     slider_owl(".blog-post-inner", 1, 2, 2, 3, false);
     slider_owl(".slider-brand", 2, 3, 4, 6, false);
     $(".upsell-product").owlCarousel({
-        navigation: true, // Show next and prev buttons   
+        navigation: true, // Show next and prev buttons
         slideSpeed: 500,
         singleItem: true,
         pagination: true,
@@ -486,9 +486,11 @@ $(document).ready(function() {
     $('.dropdown').hover(function() {
         $(this).find('.dropdown-menu').stop(true, true).fadeIn().toggleClass("hover");
         $(this).toggleClass("active");
-    }, function() {
-        $(this).find('.dropdown-menu').stop(true, true).fadeOut().toggleClass("hover");
-        $(this).toggleClass("active");
+    }, function(e) {
+        if (!$(e.target).is('form')) {
+            $(this).find('.dropdown-menu').stop(true, true).fadeOut().toggleClass("hover");
+            $(this).toggleClass("active");
+        }
     });
     // click to zoom
     $(".product-img-box .thumb-content li:first-child").addClass("active");
@@ -558,10 +560,10 @@ $(document).ready(function() {
         $(this).next(".menu").slideToggle();
     });
     $(".check").click(function() {
-       $(this).toggleClass("active"); 
+       $(this).toggleClass("active");
     });
     $(".close-popup").click(function() {
-       $('.newsletterpopup').hide(); 
+       $('.newsletterpopup').hide();
     });
 
     $("ul.product-categories li.hassub a").after('<i class="fa fa-plus"></i>');
