@@ -207,6 +207,11 @@ class OrderController extends Controller
                             'location_id'           => $request->pickup_location_id,
                             'business_user_id'      => auth()->user()->id,
                         ]);
+
+                        $pickup->log()->create([
+                            'status'                 => 'Picked up',
+                            'description'            => 'Your order has been picked up and is expected to be delivered to customer soon.',
+                        ]);
                     }
                     $order = Order::create([
                         'type'                                  => $request->type,
@@ -242,6 +247,11 @@ class OrderController extends Controller
                             'contact_id'            => $request->contact_id,
                             'location_id'           => $request->pickup_location_id,
                             'business_user_id'      => auth()->user()->id,
+                        ]);
+
+                        $pickup->log()->create([
+                            'status'                 => 'Picked up',
+                            'description'            => 'Your order has been picked up and is expected to be delivered to customer soon.',
                         ]);
                     }
 

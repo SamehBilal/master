@@ -154,7 +154,7 @@
                                         </span>
                                         <span class="flex d-flex flex-column">
 
-                                            <span class="text-black-70">A new ticket from {{ $note['data']['user_full_name'] }}</span>
+                                            <span class="text-black-70">A new ticket from {{ DB::table('users')->where('id',$note['data']['user_id'])->value('full_name') }} </span>
                                         </span>
                                     </span>
                                 </a>

@@ -79,7 +79,7 @@ class PickupLogController extends Controller
             'hub_id'                 => $request->hub_id,
         ]);
 
-        $users = User::find(1);
+        //$users = User::find(1);
         //Notification::send($users, new \App\Notifications\OrderLog($pickupLog));
 
         return redirect('dashboard/pickups/'.$pickup.'/pickup-logs')->with('success','Data created successfully');
