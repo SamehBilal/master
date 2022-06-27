@@ -178,7 +178,17 @@
 
                         <small class="flex d-flex flex-column">
                             <strong class="navbar-text-100">{{ __('dashboard.Customers') }}</strong>
-                            <span class="navbar-text-50">{{ \App\Models\Customer::where('business_user_id', $user->id)->count() }}</span>
+                            @switch($role)
+                                @case('customer')
+                                    <span class="navbar-text-50">{{ \App\Models\Customer::where('business_user_id', $user->id)->count() }}</span>
+                                @break
+                                @case('admin')
+                                    <span class="navbar-text-50">{{ \App\Models\Customer::count() }}</span>
+                                @break
+                                    <span class="navbar-text-50">{{ \App\Models\Customer::count() }}</span>
+                                @default
+                            @endswitch
+
                         </small>
                     </span>
 

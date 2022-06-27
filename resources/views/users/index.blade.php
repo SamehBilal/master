@@ -224,15 +224,24 @@
                                     </div>
                                 </td>
 
-                                <td>
-                                    <a href="#"
-                                           class="chip chip-info">{{ $user->order->count() }}</a>
-                                </td>
+                                @hasrole('operation logistics')
+                                    <td>
+                                        <a href="#"
+                                            class="chip chip-info">{{ $user->order->count() }}</a>
+                                    </td>
 
-                                <td>
-                                    <a href="#"
-                                           class="chip chip-dark">{{ $user->pickup->count() }}</a>
-                                </td>
+                                    <td>
+                                        <a href="#"
+                                            class="chip chip-dark">{{ $user->pickup->count() }}</a>
+                                    </td>
+                                @else
+                                    <td>
+                                        @foreach($user->roles as $role)
+                                            <a href="#"
+                                            class="chip chip-outline-secondary">{{ $role->name }}</a>
+                                        @endforeach
+                                    </td>
+                                @endhasrole
 
                                 <td>
                                     <div class="d-flex flex-column">
