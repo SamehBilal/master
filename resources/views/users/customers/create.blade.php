@@ -226,7 +226,7 @@
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 mb-3">
+                                {{-- <div class="col-12 col-md-6 mb-3">
                                     <div class="form-group">
                                         <label class="form-label"
                                                for="select03">{{ __('dashboard.Currency') }}</label>
@@ -246,7 +246,7 @@
                                         @enderror
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

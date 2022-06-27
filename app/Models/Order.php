@@ -147,10 +147,10 @@ class Order extends Model
             'type'                                          => 'required',Rule::in(['Deliver','Exchange','Return','Cash Collection']),
             'delivery_notes'                                => "nullable",
             'status'                                        => 'nullable',Rule::in(['New','Awaiting your action','On hold','Canceled','Rescheduled','Out for delivery','Completed','Return to origin','Cannot be delivered',]),
-            'customer_id'                                   => "required",
+            'customer_id'                                   => "nullable",
             'pickup_id'                                     => "nullable",
             'business_user_id'                              => "nullable",
-            'location_id'                                   => "required",
+            'location_id'                                   => "nullable",
 
             'return_location'                               => "nullable",
             'return_location_exchange'                      => "nullable",

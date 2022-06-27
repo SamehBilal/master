@@ -96,8 +96,8 @@ class Pickup extends Model
             'status'                    => 'nullable',Rule::in(['Created','Out for pickup','Picked up']),
             'repeat_days'               => "nullable",
             'notes'                     => "nullable",
-            'contact_id'                => "required",
-            'location_id'               => "required",
+            'contact_id'                => "nullable",
+            'location_id'               => "nullable",
             'business_user_id'          => "nullable",
         ]);
     }

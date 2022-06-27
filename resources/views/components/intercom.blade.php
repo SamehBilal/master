@@ -18,7 +18,7 @@
     <div class="chat">
         <div class="header">
             <span class="title">
-                {{ $user->hasRole('admin') ? 'All Problems':'Tell a Problem' }}
+                {{ $user->hasRole('admin') ? 'All Problems':'Report a Problem' }}
             </span>
             <button>
                 <i class="fa fa-times" aria-hidden="true"></i>

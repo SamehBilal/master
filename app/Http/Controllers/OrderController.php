@@ -110,13 +110,26 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $pickups    = Pickup::all();
+        $user = User::find(auth()->user()->id);
+        $pickups    = Pickup::orderBy('updated_at','desc');
         $states     = State::where('country_id',64)->get();
         $cities     = City::all();
         $countries  = Country::all();
-        $locations  = Location::all();
-        $customers  = Customer::all();
-        $contacts   = Contact::all();
+        $locations  = Location::orderBy('updated_at','desc');
+        $contacts   = Contact::orderBy('updated_at','desc');
+        $customers  = Customer::orderBy('updated_at','desc');
+        if($user->hasRole('customer'))
+        {
+            $locations  = $locations->where('business_user_id',$user->id);
+            $pickups    = $pickups->where('business_user_id',$user->id);
+            $contacts   = $contacts->where('business_user_id',$user->id);
+            $customers  = $customers->where('business_user_id',$user->id);
+        }
+        $locations  = $locations->get();
+        $contacts   = $contacts->get();
+        $pickups    = $pickups->get();
+        $customers  = $customers->get();
+
         return view('orders.create',compact('pickups','cities', 'states','countries','locations','customers','contacts'));
     }
 
@@ -209,8 +222,8 @@ class OrderController extends Controller
                         ]);
 
                         $pickup->log()->create([
-                            'status'                 => 'Picked up',
-                            'description'            => 'Your order has been picked up and is expected to be delivered to customer soon.',
+                            'status'                 => 'Created',
+                            'description'            => 'It is expected to pickup your order at pickup date.',
                         ]);
                     }
                     $order = Order::create([
@@ -250,8 +263,8 @@ class OrderController extends Controller
                         ]);
 
                         $pickup->log()->create([
-                            'status'                 => 'Picked up',
-                            'description'            => 'Your order has been picked up and is expected to be delivered to customer soon.',
+                            'status'                 => 'Created',
+                            'description'            => 'It is expected to pickup your order at pickup date.',
                         ]);
                     }
 
@@ -355,7 +368,7 @@ class OrderController extends Controller
                     ->orWhere("name", "operation admin");
             })->get();
             $nuser = User::find(auth()->user()->id);
-            $nuser->notify(new NewOrderCustomer($pickup));
+            $nuser->notify(new NewOrderCustomer($order));
             Notification::send($users, new NewOrder($order));
             return redirect()->route('dashboard.orders.show',$order->id)->with('success','Data created successfully');
 
@@ -452,21 +465,30 @@ class OrderController extends Controller
     public function edit(Order $order)
     {
         $user       = User::find(auth()->user()->id);
+        $pickups    = Pickup::orderBy('updated_at','desc');
+        $locations  = Location::orderBy('updated_at','desc');
+        $contacts   = Contact::orderBy('updated_at','desc');
+        $customers  = Customer::orderBy('updated_at','desc');
         if($user->hasRole('customer'))
         {
             $log        = $order->log()->orderByDesc('updated_at')->first();
             if($log->status != 'New'){
                 return back()->withErrors('Order Can\'t be updated after it has been picked up.');
             }
-        }
 
-        $pickups    = Pickup::all();
+            $locations  = $locations->where('business_user_id',$user->id);
+            $pickups    = $pickups->where('business_user_id',$user->id);
+            $contacts   = $contacts->where('business_user_id',$user->id);
+            $customers  = $customers->where('business_user_id',$user->id);
+        }
         $states     = State::where('country_id',64)->get();
         $cities     = City::all();
         $countries  = Country::all();
-        $locations  = Location::all();
-        $customers  = Customer::all();
-        $contacts   = Contact::all();
+        $locations  = $locations->get();
+        $contacts   = $contacts->get();
+        $pickups    = $pickups->get();
+        $customers  = $customers->get();
+
         return view('orders.edit',compact('order','pickups','cities','states','countries','locations','customers','contacts'));
     }
 
@@ -558,6 +580,11 @@ class OrderController extends Controller
                             'location_id'           => $request->pickup_location_id,
                             'business_user_id'      => auth()->user()->id,
                         ]);
+
+                        $pickup->log()->create([
+                            'status'                 => 'Created',
+                            'description'            => 'It is expected to pickup your order at pickup date.',
+                        ]);
                     }
                     $order->update([
                         'type'                                  => $request->type,
@@ -593,6 +620,11 @@ class OrderController extends Controller
                             'contact_id'            => $request->contact_id,
                             'location_id'           => $request->pickup_location_id,
                             'business_user_id'      => auth()->user()->id,
+                        ]);
+
+                        $pickup->log()->create([
+                            'status'                 => 'Created',
+                            'description'            => 'It is expected to pickup your order at pickup date.',
                         ]);
                     }
 

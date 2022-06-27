@@ -190,18 +190,18 @@
                             <div class="page-separator">
                                 <div class="page-separator__text">Location Details</div>
                             </div>
-                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of the Location of the pickup.</p>
+                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of the Location of the business.</p>
                         </div>
                         <div class="col-lg-9 row ">
                             <div class="page-separator col-lg-12">
                                 <div class="page-separator__text" >
-                                    &nbsp; {{ __('dashboard.Pickup location') }}
+                                    &nbsp; {{ __('dashboard.location') }}
                                 </div>
                             </div>
                             <div class="col-lg-12 invert location">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select02">{{ __('dashboard.Pickup Locations') }}:</label>
+                                           for="select02">{{ __('dashboard.Locations') }}:</label>
                                     <select id="select02"
                                             data-toggle="select"
                                             name="location_id"
