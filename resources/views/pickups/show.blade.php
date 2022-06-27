@@ -64,9 +64,9 @@
 
 
             @if(isset($pickup))
-                @can('edit courier')
+                
                     <div class="row mb-lg-8pt">
-
+                        @can('edit courier')
                         <div class="col-lg-7">
 
                             <div class="page-separator">
@@ -206,7 +206,9 @@
                                 @endcan
                             </div>
                         </div>
-                        <div class="col-lg-5">
+                        @endcan
+                        @hasanyrole('operation courier|admin')
+                        <div class=" @can('edit courier') col-lg-5 @else col-lg-12 @endcan">
 
                             <div class="page-separator">
                                 <div class="page-separator__text">Codes</div>
@@ -235,8 +237,9 @@
                             </div>
 
                         </div>
+                        @endhasanyrole
                     </div>
-                @endcan
+
 
                 <div class="page-separator">
                     <div class="page-separator__text">Pickup Details</div>
