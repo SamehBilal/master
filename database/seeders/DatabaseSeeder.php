@@ -28,5 +28,19 @@ class DatabaseSeeder extends Seeder
             OrderSeeder::class,
             OrderLogSeeder::class,
         ]);
+
+        $business = [
+            [
+                'ar_name' => 'دروبلين',
+                'en_name' => 'Droplin',
+                'industry' => 'Transportation',
+                'store_url' => '',
+                'location_id' => 1,
+                'business_user_id' => 3,
+                'created_at' => now()
+            ],
+        ];
+
+        \Illuminate\Support\Facades\DB::table('businesses')->insert($business);
     }
 }
