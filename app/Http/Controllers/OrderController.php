@@ -148,13 +148,18 @@ class OrderController extends Controller
                 $data['date_of_birth']          = null;
                 $data['bio']                    = null;
                 $full_name= explode(" ",$request->name);
+
                 $first_name = $full_name[0];
-                $last_name = $full_name[1];
+                if(count($full_name) > 1){
+                    $last_name = $full_name[1];
+                }else{
+                    $last_name = '';
+                }
                 $data['first_name']             = $first_name;
                 $data['last_name']              = $last_name;
                 $data['full_name']              = $data['name'];
-                $user                           = null;
 
+                $user                           = null;
                 $userhelperController = new UserHelperController();
                 $user = $userhelperController->createuser($data);
                 $customer = Customer::create([
@@ -173,6 +178,7 @@ class OrderController extends Controller
 
             if($request->location_id == null)
             {
+
                 $location = $customer->location()->create([
                     'name'                  => $request->apartment.', '.$request->building.', '.$request->street,
                     'street'                => $request->street,
@@ -183,6 +189,7 @@ class OrderController extends Controller
                     'country_id'            => $request->country_id,
                     'state_id'              => $request->state_id,
                     'city_id'               => $request->city_id,
+                    'working_address'       => $request->working_hours,
                     'business_user_id'      => auth()->user()->id,
                 ]);
             }
@@ -193,7 +200,7 @@ class OrderController extends Controller
             {
                 case 'Deliver';
 
-                    if($request->pickup_id == null)
+                    if($request->pickup_id == null && $request->contact_id != null)
                     {
                         $request['pickup_no'] = random_int(100000, 999999);
                         $request['status'] = 'Created';
@@ -208,6 +215,7 @@ class OrderController extends Controller
                             'business_user_id'      => auth()->user()->id,
                         ]);
                     }
+
                     $order = Order::create([
                         'type'                                  => $request->type,
                         'tracking_no'                           => $request->tracking_no,
@@ -222,14 +230,14 @@ class OrderController extends Controller
                         'delivery_notes'                        => $request->delivery_notes,
                         'customer_id'                           => $request->customer_id == null ? $customer->id:$request->customer_id,
                         'location_id'                           => $request->location_id == null ? $location->id:$request->location_id,
-                        'pickup_id'                             => $request->pickup_id   == null ? $pickup->id:$request->pickup_id,
+                        'pickup_id'                             => ($request->pickup_id   == null && $request->contact_id != null) ? $pickup->id:$request->pickup_id,
                         'business_user_id'                      => auth()->user()->id,
                     ]);
 
                     break;
                 case 'Exchange';
 
-                    if($request->pickup_id == null)
+                    if($request->pickup_id == null && $request->contact_id != null)
                     {
                         $request['pickup_no'] = random_int(100000, 999999);
                         $request['status'] = 'Created';
@@ -277,7 +285,7 @@ class OrderController extends Controller
                         'delivery_notes'                                => $request->delivery_notes,
                         'customer_id'                                   => $request->customer_id == null ? $customer->id:$request->customer_id,
                         'location_id'                                   => $request->location_id == null ? $location->id:$request->location_id,
-                        'pickup_id'                                     => $request->pickup_id   == null ? $pickup->id:$request->pickup_id,
+                        'pickup_id'                                     => ($request->pickup_id   == null && $request->contact_id != null) ? $pickup->id:$request->pickup_id,
                         'business_user_id'                              => auth()->user()->id,
                     ]);
 
@@ -336,6 +344,7 @@ class OrderController extends Controller
                 'description'             => 'It is expected to be pickup your order at pickup date.',
                 'notes'                   => NULL,
             ]);
+
             DB::commit();
 
             $users = User::whereHas("roles", function($q){
@@ -345,7 +354,7 @@ class OrderController extends Controller
                     ->orWhere("name", "operation admin");
             })->get();
             $nuser = User::find(auth()->user()->id);
-            $nuser->notify(new NewOrderCustomer($pickup));
+            $nuser->notify(new NewOrderCustomer($order));
             Notification::send($users, new NewOrder($order));
             return redirect()->route('dashboard.orders.show',$order->id)->with('success','Data created successfully');
 
@@ -492,7 +501,11 @@ class OrderController extends Controller
                 $data['bio']                    = null;
                 $full_name= explode(" ",$request->name);
                 $first_name = $full_name[0];
-                $last_name = $full_name[1];
+                if(count($full_name) > 1){
+                    $last_name = $full_name[1];
+                }else{
+                    $last_name = '';
+                }
                 $data['first_name']             = $first_name;
                 $data['last_name']              = $last_name;
                 $data['full_name']              = $data['name'];
@@ -680,7 +693,7 @@ class OrderController extends Controller
                     ->orWhere("name", "operation admin");
             })->get();
             $nuser = User::find(auth()->user()->id);
-            $nuser->notify(new UpdatedOrder($pickup));
+            $nuser->notify(new UpdatedOrder($order));
             Notification::send($users, new UpdatedOrder($order));
 
             return redirect()->route('dashboard.index')->with('success','Data updated successfully');

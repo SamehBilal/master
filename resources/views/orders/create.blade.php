@@ -1556,10 +1556,10 @@
                                         <input type="checkbox"
                                                class="custom-control-input"
                                                name="working_hours"
-                                               id="customCheck1"
+                                               id="customCheck1_customer"
                                                 {{ old('working_hours') ?? 'checked="checked"' }}>
                                         <label class="custom-control-label"
-                                               for="customCheck1">{{ __('dashboard.This is a work address') }}</label>
+                                               for="customCheck1_customer">{{ __('dashboard.This is a work address') }}</label>
                                         <small class="form-text text-muted">{{ __('dashboard.Mark it to deliver it within business days and working hours') }}</small>
                                     </div>
                                 </div>
@@ -1738,7 +1738,7 @@
                 var floor                                       = $('#floor').val();
                 var apartment                                   = $('#apartment').val();
                 var landmarks                                   = $('#landmarks').val();
-                var working_hours                               = $("input[name='working_hours']").val();
+                var working_hours                               = $("#customCheck1_customer").val();
 
                 /* Pickup */
                 var pickup_id                                   = $('#pickup_id').val();

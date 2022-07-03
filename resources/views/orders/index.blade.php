@@ -279,7 +279,7 @@
 
                                     <td>
                                         <div href="#"
-                                           class="chip chip-outline-secondary ">{{ $order->cash_on_delivery ? $order->cash_on_delivery:0 }} {{ __('dashboard.EGP')}}</div>
+                                           class="chip chip-outline-secondary ">{{ $order->cash_on_delivery ? $order->cash_on_delivery:0 }}{{--{{ __('dashboard.EGP')}}--}}</div>
                                     </td>
 
                                     <td>

@@ -43,7 +43,11 @@ class ThirdSheetImport implements ToCollection
                 $data['bio']                        = null;
                 $full_name                          = explode(" ",$row[0]);
                 $data['first_name']                 = $full_name[0];
-                $data['last_name']                  = $full_name[1];
+                if(count($full_name) > 1){
+                    $data['last_name'] = $full_name[1];
+                }else{
+                    $data['last_name'] = '';
+                }
                 $data['email']                      = $full_name[0].$tracking_no.'@droplin.com';
                 $data['full_name']                  = $row[0];
                 $user                               = null;

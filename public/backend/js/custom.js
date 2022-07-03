@@ -123,6 +123,13 @@ $.extend( true, $.fn.dataTable.defaults, {
             "targets":   1
         },
         {
+            "searchable": true,
+            "orderable": true,
+            "visible": true,
+            "type": "html-num",
+            "targets": 5 ,
+        },
+        {
             "searchable": false,
             "orderable": false,
             "visible": true,
@@ -409,7 +416,7 @@ $('input[name="light_bulky"]').on('change',function () {
 
 $('.language-change').on('change',function () {
     var value = $(this).val();
-    var action = 'http://localhost:8000/lang/';
+    var action = window.location.protocol + '//' + window.location.host+'/lang/';
     $('#form_change').attr('action',action+value)
 })
 
