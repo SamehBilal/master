@@ -7,6 +7,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\DB;
 
 class NewTicket extends Notification
 {
@@ -45,7 +46,7 @@ class NewTicket extends Notification
         return (new MailMessage)
             ->from('noreply@droplin.com', 'Droplin')
             ->subject('New Ticket')
-            ->line('A new ticket from '.$this->ticket->user->full_name.'.')
+            ->line('A new ticket from '.DB::table('users')->where('id',$this->ticket->user_id)->value('full_name').'.')
             ->action('New Ticket ('.$this->ticket->tracking_number.')', route('dashboard.tickets.show',$this->ticket->id))
             ->line('Thank you for using our application!');
     }
@@ -70,7 +71,7 @@ class NewTicket extends Notification
         return [
             'id'                => $this->ticket->id,
             'user_id'           => $this->ticket->user_id,
-            'user_full_name'    => $this->ticket->user->full_name,
+            /* 'user_full_name'    => $this->ticket->user->full_name, */
             'status'            => $this->ticket->status,
             'tracking_number'   => $this->ticket->tracking_number,
             'ticket_issue_id'   => $this->ticket->ticket_issue_id,

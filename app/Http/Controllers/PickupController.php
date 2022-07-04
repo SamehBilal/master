@@ -36,7 +36,7 @@ class PickupController extends Controller
         if($user->hasRole('customer'))
         {
             $pickups    = $pickups->where('business_user_id', $user->id);
-            $locations  = $locations->where('business_user_id',$user);
+            $locations  = $locations->where('business_user_id',$user->id);
         }
         if($user->hasRole('operation courier'))
         {
@@ -77,8 +77,8 @@ class PickupController extends Controller
         $contacts  = Contact::orderBy('updated_at','desc');
         if($user->hasRole('customer'))
         {
-            $locations  = $locations->where('business_user_id',$user);
-            $contacts   = $contacts->where('business_user_id',$user);
+            $locations  = $locations->where('business_user_id',$user->id);
+            $contacts   = $contacts->where('business_user_id',$user->id);
         }
         $locations  = $locations->get();
         $contacts   = $contacts->get();
@@ -142,8 +142,8 @@ class PickupController extends Controller
         ]);
 
         $pickup->log()->create([
-            'status'                 => 'Picked up',
-            'description'            => 'Your order has been picked up and is expected to be delivered to customer soon.',
+            'status'                 => 'Created',
+            'description'            => 'It is expected to pickup your order at pickup date.',
         ]);
 
         $users = User::whereHas("roles", function($q){
@@ -215,8 +215,8 @@ class PickupController extends Controller
         $contacts  = Contact::orderBy('updated_at','desc');
         if($user->hasRole('customer'))
         {
-            $locations  = $locations->where('business_user_id',$user);
-            $contacts   = $contacts->where('business_user_id',$user);
+            $locations  = $locations->where('business_user_id',$user->id);
+            $contacts   = $contacts->where('business_user_id',$user->id);
         }
         $locations  = $locations->get();
         $contacts   = $contacts->get();

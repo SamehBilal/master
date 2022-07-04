@@ -151,7 +151,7 @@ class CustomerController extends Controller
         $states     = State::all();
         $cities     = City::all();
         $countries  = Country::all();
-        return view('users.customers.edit',compact('customer','categories','currencies','cities','states','countries'));
+        return view('users.customers.show',compact('customer','categories','currencies','cities','states','countries'));
     }
 
     /**

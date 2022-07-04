@@ -163,22 +163,44 @@
                                 @case('admin')
                                     <span class="navbar-text-50">{{ \App\Models\Order::count() }}</span>
                                 @break
-                                    <span class="navbar-text-50">{{ \App\Models\Order::count() }}</span>
+                                @case('operation courier')
+                                    <span class="navbar-text-50">{{ \App\Models\Order::whereHas("courier", function($q){ $q->where("courier_id", auth()->user()->id); })->count() }}</span>
+                                @break
                                 @default
+                                    <span class="navbar-text-50">{{ \App\Models\Order::count() }}</span>
                             @endswitch
                         </small>
                     </span>
                     <span class="d-none d-md-flex align-items-center mr-16pt">
 
                         <span class="avatar avatar-sm mr-12pt">
-
-                            <span class="avatar-title rounded navbar-avatar"><i class="material-icons">people</i></span>
-
+                            @hasrole('operation courier')
+                                <span class="avatar-title rounded navbar-avatar"><i class="material-icons">hail</i></span>
+                            @else
+                                <span class="avatar-title rounded navbar-avatar"><i class="material-icons">people</i></span>
+                            @endhasrole
                         </span>
 
                         <small class="flex d-flex flex-column">
-                            <strong class="navbar-text-100">{{ __('dashboard.Customers') }}</strong>
-                            <span class="navbar-text-50">{{ \App\Models\Customer::where('business_user_id', $user->id)->count() }}</span>
+                            @hasrole('operation courier')
+                                <strong class="navbar-text-100">{{ __('dashboard.Pickups') }}</strong>
+                            @else
+                                <strong class="navbar-text-100">{{ __('dashboard.Customers') }}</strong>
+                            @endhasrole
+                            @switch($role)
+                                @case('customer')
+                                    <span class="navbar-text-50">{{ \App\Models\Customer::where('business_user_id', $user->id)->count() }}</span>
+                                @break
+                                @case('admin')
+                                    <span class="navbar-text-50">{{ \App\Models\Customer::count() }}</span>
+                                @break
+                                @case('operation courier')
+                                    <span class="navbar-text-50">{{ \App\Models\Pickup::whereHas("courier", function($q){ $q->where("courier_id", auth()->user()->id); })->count() }}</span>
+                                @break
+                                @default
+                                <span class="navbar-text-50">{{ \App\Models\Customer::count() }}</span>
+                            @endswitch
+
                         </small>
                     </span>
 
