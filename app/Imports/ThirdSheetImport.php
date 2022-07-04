@@ -162,6 +162,12 @@ class ThirdSheetImport implements ToCollection
                     'notes'                   =>  NULL,
                 ]);
 
+                $order->customerlog()->create([
+                    'status'                  => 'New',
+                    'description'             => 'It is expected to be pickup your order at pickup date.',
+                    'notes'                   => NULL,
+                ]);
+
                 DB::commit();
 
                 $users = User::whereHas("roles", function($q){ $q->where("name", "customer")->orWhere("name", "admin"); })->get();

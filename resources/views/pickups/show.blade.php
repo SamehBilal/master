@@ -64,7 +64,7 @@
 
 
             @if(isset($pickup))
-                
+
                     <div class="row mb-lg-8pt">
                         @can('edit courier')
                         <div class="col-lg-7">
@@ -239,6 +239,46 @@
                         </div>
                         @endhasanyrole
                     </div>
+
+        </div>
+    </div>
+    @hasanyrole('operation admin|admin')
+    <div class="page-section bg-white mt-4 border-bottom-2 ">
+        <div class="container page__container">
+            <div class="row">
+                <div class="col-lg-5 mb-24pt mb-lg-0">
+                    <div class="border-left-3 border-left-primary pl-24pt pl-md-32pt">
+                        <h4 class="mb-8pt text-secondary">Customer Pickup log</h4>
+                        <h4 class="mb-8pt">{{ $customerlog ? $customerlog->status:'' }}</h4>
+                        <p class="text-70 mb-24pt">{{ $customerlog ? $customerlog->description:'' }}</p>
+                        @can('edit log')
+                            <a href="{{ route("dashboard.pickup-customer-logs.index",$pickup->id) }}"
+                               class="btn btn-primary">Pickup Logs</a>
+                        @endcan
+                    </div>
+                </div>
+                <div class="col-lg-7 d-flex align-items-center">
+                    <div class="page-num-timeline d-flex flex-column flex-sm-row align-items-center justify-content-center flex">
+                        @foreach($logs as $icon)
+                            <a href="#"
+                               data-toggle="tooltip"
+                               data-placement="top"
+                               data-title="{{ $icon['type'] }}"
+                               class="page-num-timeline__item {{ $icon['type'] ==  ($customerlog ? $customerlog->status:'')  ? 'page-num-timeline__item-current':''}}">
+                                <span class="page-num-timeline__item-tip"></span>
+                                <span class="page-num"><i class="material-icons">{{ $icon['icon'] }}</i></span>
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endhasanyrole
+
+    <div class="container page__container">
+
+        <div class="page-section">
 
 
                 <div class="page-separator">

@@ -1688,7 +1688,7 @@
 @endsection
 
 @section('extra-scripts')
-    @include('components.locations_ajax')
+    @include('components.locations_ajax_order')
 
     <script>
         $(document).ready(function() {

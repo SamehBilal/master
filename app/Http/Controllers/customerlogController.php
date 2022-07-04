@@ -66,19 +66,19 @@ class customerlogController extends Controller
     {
         switch ($request->status){
             case 'New';
-                $request['description'] == 'It is expected to be pickup your order at pickup date.';
+                $request['description'] = 'It is expected to be pickup your order at pickup date.';
                 break;
             case 'Picked up';
-                $request['description'] == 'Your order has been picked up and is expected to be in transit soon.';
+                $request['description'] = 'Your order has been picked up and is expected to be in transit soon.';
                 break;
             case 'In transit';
-                $request['description'] == 'Your order has been in transit and is expected to be delivered to customer soon.';
+                $request['description'] = 'Your order has been in transit and is expected to be delivered to customer soon.';
                 break;
             case 'Out for delivery';
-                $request['description'] == 'Your order is out for delivery and is expected to be delivered to customer soon.';
+                $request['description'] = 'Your order is out for delivery and is expected to be delivered to customer soon.';
                 break;
             case 'Delivered';
-                $request['description'] == 'Your order has been delivered to customer.';
+                $request['description'] = 'Your order has been delivered to customer.';
                 break;
         }
 
@@ -94,7 +94,7 @@ class customerlogController extends Controller
 
         $order = Order::find($order);
         $nuser = User::find($order->business_user_id);
-        $nuser->notify(new \App\Notifications\OrderLog($orderLog));
+       // $nuser->notify(new \App\Notifications\OrderLog($orderLog));
 
 
         return redirect('dashboard/orders/'.$order->id.'/order-customer-logs')->with('success','Data created successfully');

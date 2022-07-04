@@ -410,8 +410,10 @@ class OrderController extends Controller
             if($log->status != 'New'){
                 $no_edit = 1;
             }
+            $customerlog = '';
         }else{
             $log            = $order->log()->orderByDesc('updated_at')->first();
+            $customerlog    = $order->customerlog()->orderByDesc('updated_at')->first();
         }
 
         $logs   = [
@@ -436,7 +438,7 @@ class OrderController extends Controller
                 'icon' => 'check',
             ],
         ];
-        return view('orders.show',compact('order','qr','logs','log','no_edit'));
+        return view('orders.show',compact('order','qr','logs','log','no_edit','customerlog'));
     }
 
     public function qr(Order $order)

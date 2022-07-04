@@ -146,6 +146,11 @@ class PickupController extends Controller
             'description'            => 'It is expected to pickup your order at pickup date.',
         ]);
 
+        $pickup->customerlog()->create([
+            'status'                 => 'Created',
+            'description'            => 'It is expected to pickup your order at pickup date.',
+        ]);
+
         $users = User::whereHas("roles", function($q){
             $q->where("name", "Super Admin")
                 ->orWhere("name", "admin")
@@ -169,7 +174,20 @@ class PickupController extends Controller
     public function show(Pickup $pickup)
     {
         $qr     = QrCode::generate(route('dashboard.pickups.create.qr',$pickup->id));
-        $log    = $pickup->log()->orderByDesc('updated_at')->first();
+        $user   = User::find(auth()->user()->id);
+        if($user->hasRole('customer'))
+        {
+            $log            = $pickup->customerlog()->orderByDesc('updated_at')->first();
+            if($log->status != 'New'){
+                $no_edit = 1;
+            }
+            $customerlog = '';
+        }else{
+            $log            = $pickup->log()->orderByDesc('updated_at')->first();
+            $customerlog    = $pickup->customerlog()->orderByDesc('updated_at')->first();
+        }
+
+
         $logs  = [
             0 => [
                 'type' => 'Created',
@@ -185,7 +203,7 @@ class PickupController extends Controller
             ],
         ];
 
-        return view('pickups.show',compact('pickup','logs','qr','log'));
+        return view('pickups.show',compact('pickup','logs','qr','log','customerlog'));
     }
 
     public function qr(Pickup $pickup)

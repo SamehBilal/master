@@ -13,7 +13,7 @@
             <span class="badge badge-notifications badge-accent">{{ $user->unreadnotifications->count() }}</span>
         @endif
     </button>
-    <div class="dropdown-menu dropdown-menu-right">
+    <div class="dropdown-menu dropdown-menu-right" style="overflow-y: scroll; height:400px;">
         <div data-perfect-scrollbar
              class="position-relative">
             <div class="dropdown-header"><strong>{{ __('dashboard.System_notifications') }}</strong></div>

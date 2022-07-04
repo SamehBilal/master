@@ -48,6 +48,11 @@ class Pickup extends Model
         return $this->hasMany(PickupLog::class)->orderByDesc('created_at');
     }
 
+    public function customerlog()
+    {
+        return $this->hasMany(PickupCustomerLog::class)->orderByDesc('created_at');
+    }
+
 
     public function couriers()
     {
