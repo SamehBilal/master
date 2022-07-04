@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customerlog;
 use App\Models\Hub;
 use App\Models\Order;
-use App\Models\OrderLog;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 
-class OrderLogController extends Controller
+class customerlogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class OrderLogController extends Controller
     public function index($order)
     {
         $order  = Order::findOrFail($order);
-        return view('orders.log.index',compact('order'));
+        return view('orders.customerlog.index',compact('order'));
     }
 
     /**
@@ -53,7 +53,7 @@ class OrderLogController extends Controller
                 'icon' => 'check',
             ],
         ];
-        return view('orders.log.create',compact('order','logs','hubs'));
+        return view('orders.customerlog.create',compact('order','logs','hubs'));
     }
 
     /**
@@ -64,8 +64,6 @@ class OrderLogController extends Controller
      */
     public function store($order,Request $request)
     {
-        //$this->validate($request, OrderLog::rules());
-
         switch ($request->status){
             case 'New';
                 $request['description'] == 'It is expected to be pickup your order at pickup date.';
@@ -84,7 +82,7 @@ class OrderLogController extends Controller
                 break;
         }
 
-        $orderLog  = OrderLog::create([
+        $orderLog  = Customerlog::create([
             'status'                 => $request->status,
             'description'            => $request->description,
             'notes'                  => $request->notes,
@@ -93,25 +91,22 @@ class OrderLogController extends Controller
             'courier_id'             => $request->courier_id,
         ]);
 
-        $users = User::whereHas("roles", function($q){
-            $q->where("name", "Super Admin")
-                ->orWhere("name", "admin")
-                ->orWhere("name", "operation logistics")
-                ->orWhere("name", "operation admin");
-        })->get();
-        $order = Order::find($order);
-        Notification::send($users, new \App\Notifications\OrderLog($orderLog));
 
-        return redirect('dashboard/orders/'.$order->id.'/order-logs')->with('success','Data created successfully');
+        $order = Order::find($order);
+        $nuser = User::find($order->business_user_id);
+        $nuser->notify(new \App\Notifications\OrderLog($orderLog));
+
+
+        return redirect('dashboard/orders/'.$order->id.'/order-customer-logs')->with('success','Data created successfully');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\OrderLog  $orderLog
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(OrderLog $orderLog)
+    public function show($id)
     {
         //
     }
@@ -119,10 +114,10 @@ class OrderLogController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\OrderLog  $orderLog
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(OrderLog $orderLog)
+    public function edit($id)
     {
         //
     }
@@ -131,13 +126,11 @@ class OrderLogController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\OrderLog  $orderLog
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OrderLog $orderLog)
+    public function update(Request $request,Customerlog $orderLog)
     {
-        $this->validate($request, OrderLog::rules($update = true, $orderLog->id));
-
         $orderLog->update([
             'status'                 => $request->status,
             'description'            => $request->description,
@@ -153,12 +146,12 @@ class OrderLogController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\OrderLog  $orderLog
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($order,OrderLog $orderLog)
+    public function destroy($order,Customerlog $orderLog)
     {
-        OrderLog::destroy($orderLog->id);
+        Customerlog::destroy($orderLog->id);
         return redirect()->back()->with('success','Data deleted successfully');
     }
 }

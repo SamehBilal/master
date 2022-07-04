@@ -82,6 +82,11 @@ class Order extends Model
         return $this->hasMany(OrderLog::class)->orderByDesc('updated_at');
     }
 
+    public function customerlog()
+    {
+        return $this->hasMany(Customerlog::class)->orderByDesc('updated_at');
+    }
+
     public static function attrs()
     {
         return [

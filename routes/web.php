@@ -56,6 +56,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::resource('pickups',\App\Http\Controllers\PickupController::class); //Pickups
             Route::resource('orders',\App\Http\Controllers\OrderController::class); //Orders
             Route::resource('orders/{order}/order-logs',\App\Http\Controllers\OrderLogController::class); //Order logs
+            Route::resource('orders/{order}/order-customer-logs',\App\Http\Controllers\customerlogController::class); //Order logs
             Route::resource('pickups/{pickup}/pickup-logs',\App\Http\Controllers\PickupLogController::class); //Pickup logs
             Route::get('orders/create/multi',[\App\Http\Controllers\OrderMultiController::class,'index'])->name('orders.create.multi'); //Multi Orders
             Route::post('orders/create/multi',[\App\Http\Controllers\OrderMultiController::class,'store'])->name('orders.create.multi.store'); //Multi Orders

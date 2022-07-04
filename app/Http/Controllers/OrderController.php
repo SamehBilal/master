@@ -345,6 +345,12 @@ class OrderController extends Controller
                 'notes'                   => NULL,
             ]);
 
+            $order->customerlog()->create([
+                'status'                  => 'New',
+                'description'             => 'It is expected to be pickup your order at pickup date.',
+                'notes'                   => NULL,
+            ]);
+
             DB::commit();
 
             $users = User::whereHas("roles", function($q){
@@ -372,15 +378,17 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $qr         = QrCode::generate(route('dashboard.orders.create.qr',$order->id));
-        $log        = $order->log()->orderByDesc('updated_at')->first();
-        $user       = User::find(auth()->user()->id);
-        $no_edit    = 0;
+        $qr             = QrCode::generate(route('dashboard.orders.create.qr',$order->id));
+        $user           = User::find(auth()->user()->id);
+        $no_edit        = 0;
         if($user->hasRole('customer'))
         {
+            $log            = $order->customerlog()->orderByDesc('updated_at')->first();
             if($log->status != 'New'){
                 $no_edit = 1;
             }
+        }else{
+            $log            = $order->log()->orderByDesc('updated_at')->first();
         }
 
         $logs   = [
