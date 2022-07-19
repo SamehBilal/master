@@ -218,13 +218,31 @@ class OrderController extends Controller
                         $request['pickup_no'] = random_int(100000, 999999);
                         $request['status'] = 'Created';
                         //$this->validate($request, Pickup::rules());
+
+                        if($request->pickup_location_id == null)
+                        {
+                            //$this->validate($request, Location::rules());
+                            $pickup_location = Location::create([
+                                'name'                  => $request->pickup_name,
+                                'street'                => $request->pickup_street,
+                                'building'              => $request->pickup_building,
+                                'floor'                 => $request->pickup_floor,
+                                'apartment'             => $request->pickup_apartment,
+                                'landmarks'             => $request->pickup_landmarks,
+                                'country_id'            => $request->pickup_country_id,
+                                'state_id'              => $request->pickup_state_id,
+                                'city_id'               => $request->pickup_city_id,
+                                'business_user_id'      => auth()->user()->id,
+                            ]);
+                        }
+
                         $pickup = Pickup::create([
                             'pickup_id'             => $request->pickup_no,
                             'scheduled_date'        => $request->scheduled_date,
                             'start_date'            => $request->scheduled_date,
                             'status'                => $request->status,
                             'contact_id'            => $request->contact_id,
-                            'location_id'           => $request->pickup_location_id,
+                            'location_id'           => ($request->pickup_location_id == null) ? $pickup_location->id:$request->pickup_location_id,
                             'business_user_id'      => auth()->user()->id,
                         ]);
 
@@ -260,13 +278,31 @@ class OrderController extends Controller
                         $request['pickup_no'] = random_int(100000, 999999);
                         $request['status'] = 'Created';
                         //$this->validate($request, Pickup::rules());
+
+                        if($request->pickup_location_id == null)
+                        {
+                            //$this->validate($request, Location::rules());
+                            $pickup_location = Location::create([
+                                'name'                  => $request->pickup_name,
+                                'street'                => $request->pickup_street,
+                                'building'              => $request->pickup_building,
+                                'floor'                 => $request->pickup_floor,
+                                'apartment'             => $request->pickup_apartment,
+                                'landmarks'             => $request->pickup_landmarks,
+                                'country_id'            => $request->pickup_country_id,
+                                'state_id'              => $request->pickup_state_id,
+                                'city_id'               => $request->pickup_city_id,
+                                'business_user_id'      => auth()->user()->id,
+                            ]);
+                        }
+
                         $pickup = Pickup::create([
                             'pickup_id'             => $request->pickup_no,
                             'scheduled_date'        => $request->scheduled_date,
                             'start_date'            => $request->scheduled_date,
                             'status'                => $request->status,
                             'contact_id'            => $request->contact_id,
-                            'location_id'           => $request->pickup_location_id,
+                            'location_id'           => ($request->pickup_location_id == null) ? $pickup_location->id:$request->pickup_location_id,
                             'business_user_id'      => auth()->user()->id,
                         ]);
 
@@ -401,6 +437,15 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
+        if(!$order->customerlog()->count())
+        {
+            $order->customerlog()->create([
+                'status'                  => 'New',
+                'description'             => 'It is expected to be pickup your order at pickup date.',
+                'notes'                   => NULL,
+            ]);
+        }
+
         $qr             = QrCode::generate(route('dashboard.orders.create.qr',$order->id));
         $user           = User::find(auth()->user()->id);
         $no_edit        = 0;
@@ -594,13 +639,31 @@ class OrderController extends Controller
                         $request['pickup_no'] = random_int(100000, 999999);
                         $request['status'] = 'Created';
                         //$this->validate($request, Pickup::rules());
+
+                        if($request->pickup_location_id == null)
+                        {
+                            //$this->validate($request, Location::rules());
+                            $pickup_location = Location::create([
+                                'name'                  => $request->pickup_name,
+                                'street'                => $request->pickup_street,
+                                'building'              => $request->pickup_building,
+                                'floor'                 => $request->pickup_floor,
+                                'apartment'             => $request->pickup_apartment,
+                                'landmarks'             => $request->pickup_landmarks,
+                                'country_id'            => $request->pickup_country_id,
+                                'state_id'              => $request->pickup_state_id,
+                                'city_id'               => $request->pickup_city_id,
+                                'business_user_id'      => auth()->user()->id,
+                            ]);
+                        }
+
                         $pickup = Pickup::create([
                             'pickup_id'             => $request->pickup_no,
                             'scheduled_date'        => $request->scheduled_date,
                             'start_date'            => $request->scheduled_date,
                             'status'                => $request->status,
                             'contact_id'            => $request->contact_id,
-                            'location_id'           => $request->pickup_location_id,
+                            'location_id'           => ($request->pickup_location_id == null) ? $pickup_location->id:$request->pickup_location_id,
                             'business_user_id'      => auth()->user()->id,
                         ]);
 
@@ -635,13 +698,31 @@ class OrderController extends Controller
                         $request['pickup_no'] = random_int(100000, 999999);
                         $request['status'] = 'Created';
                         //$this->validate($request, Pickup::rules());
+
+                        if($request->pickup_location_id == null)
+                        {
+                            //$this->validate($request, Location::rules());
+                            $pickup_location = Location::create([
+                                'name'                  => $request->pickup_name,
+                                'street'                => $request->pickup_street,
+                                'building'              => $request->pickup_building,
+                                'floor'                 => $request->pickup_floor,
+                                'apartment'             => $request->pickup_apartment,
+                                'landmarks'             => $request->pickup_landmarks,
+                                'country_id'            => $request->pickup_country_id,
+                                'state_id'              => $request->pickup_state_id,
+                                'city_id'               => $request->pickup_city_id,
+                                'business_user_id'      => auth()->user()->id,
+                            ]);
+                        }
+
                         $pickup = Pickup::create([
                             'pickup_id'             => $request->pickup_no,
                             'scheduled_date'        => $request->scheduled_date,
                             'start_date'            => $request->scheduled_date,
                             'status'                => $request->status,
                             'contact_id'            => $request->contact_id,
-                            'location_id'           => $request->pickup_location_id,
+                            'location_id'           => ($request->pickup_location_id == null) ? $pickup_location->id:$request->pickup_location_id,
                             'business_user_id'      => auth()->user()->id,
                         ]);
 

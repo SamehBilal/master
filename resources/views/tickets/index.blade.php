@@ -23,7 +23,7 @@
 @endsection
 
 @section('main_content')
-    @php header("Refresh:15"); @endphp
+    {{--@php header("Refresh:15"); @endphp--}}
 
         @if (request()->ticket_id || $tickets->first())
             @php
@@ -114,7 +114,7 @@
                                 </div>
                             </div>
                         </div>
-                        <ul class="d-flex flex-column list-unstyled">
+                        <ul class="d-flex flex-column list-unstyled" id="refresh_div">
                             <li>
                                 <div class="card-body d-flex align-items-center" style="text-align: center;border-bottom:1px solid #ebedf0">
                                     <div class="flex">
@@ -270,4 +270,33 @@
         @endif
 
 
+@endsection
+
+@section('extra-scripts')
+    <script>
+        @php $id = 0; empty($_GET) ? $id = 1: $id = $_GET['ticket_id']; @endphp
+        $(document).ready(function(){
+            setInterval(
+                function(){
+                    $.ajax({
+                        url: "{{ route('dashboard.tickets.update.chat',$id) }}",
+                        data: {
+                            id: {{ $id }},
+                        },
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('#refresh_div').html(data.html);
+                        },
+                        error: function (xhr, status) {
+                            alert("Sorry, there was a problem!");
+                        },
+                        complete: function (xhr, status) {
+                            //$('#showresults').slideDown('slow')
+                        }
+                    });
+                    }, 15000
+            );
+        });
+    </script>
 @endsection

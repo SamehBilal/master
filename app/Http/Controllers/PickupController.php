@@ -173,6 +173,14 @@ class PickupController extends Controller
      */
     public function show(Pickup $pickup)
     {
+        if(!$pickup->customerlog()->count())
+        {
+            $pickup->customerlog()->create([
+                'status'                 => 'Created',
+                'description'            => 'It is expected to pickup your order at pickup date.',
+            ]);
+        }
+
         $qr     = QrCode::generate(route('dashboard.pickups.create.qr',$pickup->id));
         $user   = User::find(auth()->user()->id);
         if($user->hasRole('customer'))

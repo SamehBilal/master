@@ -95,6 +95,148 @@ class TicketController extends Controller
 
     }
 
+    public function ajax($id,Request $request)
+    {
+        if($request->ajax())
+        {
+            $ticket = Ticket::find($id);
+            $files = '';
+            if ($ticket->files != ''){
+                $files_array = explode(",",$ticket->files);
+                foreach ($files_array as $file)
+                {
+                    $files .= '<a href="'.asset("storage/tickets/{$file}").'" target="_blank" class="align-items-center mt-2 text-decoration-0 px-3">
+                                                    <img src="'.asset("storage/tickets/{$file}").'" style="width:100px;height: 100px">
+                                                </a>';
+                }
+            }else{
+                $files = 'N/A';
+            }
+
+            $chat_li = '';
+            $chat_files1 = '';
+            $chat_files2 = '';
+
+            foreach ($ticket->TicketChats as $chat)
+            {
+                if ($chat->user_id == $ticket->user_id)
+                {
+                    if ($chat->files)
+                    {
+                        $files_array = explode(",",$chat->files);
+                        foreach ($files_array as$file)
+                        {
+                            $chat_files1 .= '<a href="'.asset("storage/tickets/messages/{$file}").'" target="_blank" class="media align-items-center mt-2 text-decoration-0 px-3">
+                                            <span class="avatar mr-12pt">
+                                                <span class="avatar-title rounded-circle">
+                                                    <i class="material-icons font-size-24pt">attach_file</i>
+                                                </span>
+                                            </span>
+                                                    <span class="media-body"
+                                                          style="line-height: 1.5">
+                                                <span class="text-primary">'.$file.'</span><br>
+                                                <!-- <span class="text-50">5 MB</span> -->
+                                            </span>
+                                                </a>';
+                        }
+                    }
+
+                    $chat_li .= '<li class="d-inline-flex" style="margin-left: auto">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex mr-3">
+                                                <a href="#"
+                                                   class="text-body"><strong>'.$chat->user->full_name.'</strong></a>
+                                            </div>
+                                            <div>
+                                                <small class="text-50">'.$chat->created_at->diffForHumans().'</small>
+                                            </div>
+                                        </div>
+                                        <span class="text-70">'.$chat->message.'</span>
+                                        '.$chat_files1.'
+                                    </div>
+                                </div>
+                                <div style="margin-left: 1rem;">
+                                    <a href="#"
+                                       class="avatar avatar-sm">
+                                        <img src="'.asset('backend/images/people/110/guy-6.jpg').'"
+                                             alt="people"
+                                             class="avatar-img rounded-circle">
+                                    </a>
+                                </div>
+                            </li>';
+                }else{
+                    if ($chat->files){
+                        $files_array = explode(",",$chat->files);
+
+                        foreach ($files_array as $file){
+                            $chat_files1 .= '<a href="'.asset("storage/tickets/messages/{$file}").'" target="_blank" class="media align-items-center mt-2 text-decoration-0 px-3">
+                                            <span class="avatar mr-12pt">
+                                                <span class="avatar-title rounded-circle">
+                                                    <i class="material-icons font-size-24pt">attach_file</i>
+                                                </span>
+                                            </span>
+                                                    <span class="media-body"
+                                                          style="line-height: 1.5">
+                                                <span class="text-primary">'.$file.'</span><br>
+                                                <!-- <span class="text-50">5 MB</span> -->
+                                            </span>
+                                                </a>';
+                        }
+                    }
+
+                    $chat_li .= '<li class="d-inline-flex">
+                                <div style="margin-right: 1rem;">
+                                    <a href="profile.html"
+                                       class="avatar avatar-sm">
+                                        <img src="{{asset(\'backend/images/people/110/guy-6.jpg\')}}"
+                                             alt="people"
+                                             class="avatar-img rounded-circle">
+                                    </a>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex mr-3">
+                                                <a href="profile.html"
+                                                   class="text-body"><strong>'.$chat->user->full_name.'</strong></a>
+                                            </div>
+                                            <div>
+                                                <small class="text-50">'.$chat->created_at->diffForHumans().'</small>
+                                            </div>
+                                        </div>
+                                        <span class="text-70">'.$chat->message.'</span>
+                                        '.$chat_files2.'
+                                    </div>
+                                </div>
+                            </li>';
+                }
+            }
+
+            $html = '<li>
+                        <div class="card-body d-flex align-items-center" style="text-align: center;border-bottom:1px solid #ebedf0">
+                            <div class="flex">
+                                <p class="text-50 mb-0">'.__('dashboard.Tracking Number').'</p>
+                                <p class="mb-0">'.$ticket->tracking_number.'</p>
+                                <p class="text-50 mb-0">'.__('dashboard.Description').'</p>
+                                <p class="mb-0">'.$ticket->description.'</p>
+                                <p class="text-50 mb-0">'.__('dashboard.Attachments').'</p>
+                                <p class="mb-0">
+                                    '.$files.'
+                                </p>
+                            </div>
+                        </div>
+                    </li>'.$chat_li.'
+                    ';
+
+            $data = array(
+                'html' => $html,
+            );
+            echo json_encode($data);
+        }
+    }
+
     /**
      * Display the specified resource.
      *

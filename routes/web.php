@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('settings/profile/{id}',[\App\Http\Controllers\ProfileController::class,'update'])->name('settings.profile.edit');
             Route::get('settings/language',[\App\Http\Controllers\ConfigController::class,'index'])->name('settings.language');
             Route::get('settings/business',[\App\Http\Controllers\BusinessController::class,'settings'])->name('settings.business');
+            Route::get('tickets/update-chat/{id}',[\App\Http\Controllers\TicketController::class,'ajax'])->name('tickets.update.chat');
 
             Route::resource('customers',\App\Http\Controllers\ManageUsers\CustomerController::class); //Customers
             Route::resource('users',\App\Http\Controllers\UserController::class); //Users

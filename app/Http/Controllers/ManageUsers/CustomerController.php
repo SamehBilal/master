@@ -75,6 +75,7 @@ class CustomerController extends Controller
         $data['password']       = Hash::make($request->password);
         $data['other_email']    = null;
         $data['religion']       = null;
+        $data['secondary_phone']= $request->other_phone;
 
         if($request->status == 'on')
         {
@@ -179,6 +180,7 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
+        $data['secondary_phone']= $request->other_phone;
         $this->validate($request, Customer::rules($update = true, $customer->id));
         $this->validate($request, User::rules($update = true, $customer->user_id));
         $data                   = $request->all();

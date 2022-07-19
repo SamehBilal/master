@@ -69,11 +69,6 @@ class User extends Authenticatable
         return $this->hasOne(Contact::class);
     }
 
-    public function address()
-    {
-        return $this->hasMany(address::class);
-    }
-
     public function state()
     {
         return $this->hasOne(State::class  , "id" , "state_id");

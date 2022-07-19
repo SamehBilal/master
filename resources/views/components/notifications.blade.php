@@ -22,7 +22,7 @@
                     @foreach($user->unreadnotifications as $note)
                        @switch($note->type)
                             @case('App\Notifications\NewBusiness')
-                                <a href="javascript:void(0);"
+                                <a href="{{ route('dashboard.business.index') }}"
                                     class="list-group-item list-group-item-action unread notification">
                                     <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
                                     <span class="d-flex align-items-center mb-1">
@@ -45,7 +45,7 @@
                                 </a>
                             @break
                             @case('App\Notifications\NewContactForm')
-                                <a href="javascript:void(0);"
+                                <a href="{{ route('dashboard.contact-forms.index') }}"
                                     class="list-group-item list-group-item-action unread notification">
                                     <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
                                     <span class="d-flex align-items-center mb-1">
@@ -68,7 +68,7 @@
                                 </a>
                             @break
                             @case('App\Notifications\NewOrder')
-                                <a href="javascript:void(0);"
+                                <a href="{{ route('dashboard.orders.show',$note['data']['id']) }}"
                                     class="list-group-item list-group-item-action unread notification">
                                     <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
                                     <span class="d-flex align-items-center mb-1">
@@ -91,7 +91,7 @@
                                 </a>
                             @break
                             @case('App\Notifications\NewPickup')
-                                <a href="javascript:void(0);"
+                                <a href="{{ route('dashboard.pickups.show',$note['data']['id']) }}"
                                     class="list-group-item list-group-item-action unread notification">
                                     <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
                                     <span class="d-flex align-items-center mb-1">
@@ -114,7 +114,7 @@
                                 </a>
                             @break
                             @case('App\Notifications\NewSubscriber')
-                                <a href="javascript:void(0);"
+                                <a href="{{ route('dashboard.subscribers.index') }}"
                                     class="list-group-item list-group-item-action unread notification">
                                     <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
                                     <span class="d-flex align-items-center mb-1">
@@ -137,7 +137,7 @@
                                 </a>
                             @break
                             @case('App\Notifications\NewTicket')
-                                <a href="javascript:void(0);"
+                                <a href="{{ route('dashboard.tickets.index') }}"
                                     class="list-group-item list-group-item-action unread notification">
                                     <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
                                     <span class="d-flex align-items-center mb-1">
@@ -160,7 +160,7 @@
                                 </a>
                             @break
                             @case('App\Notifications\NewTicketChat')
-                                <a href="javascript:void(0);"
+                                <a href="{{ route('dashboard.tickets.sendmessage',$note['data']['ticket_id']) }}"
                                     class="list-group-item list-group-item-action unread notification">
                                     <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
                                     <span class="d-flex align-items-center mb-1">
@@ -183,7 +183,7 @@
                                 </a>
                             @break
                             @case('App\Notifications\NewUser')
-                                <a href="javascript:void(0);"
+                                <a href="{{ route('dashboard.users.index') }}"
                                     class="list-group-item list-group-item-action unread notification">
                                     <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
                                     <span class="d-flex align-items-center mb-1">
@@ -206,7 +206,7 @@
                                 </a>
                             @break
                             @case('App\Notifications\OrderLog')
-                                <a href="javascript:void(0);"
+                                <a href="{{--javascript:void(0);--}}{{ route('dashboard.orders.show',$note['data']['id']) }}"
                                     class="list-group-item list-group-item-action unread notification">
                                     <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
                                     <span class="d-flex align-items-center mb-1">
@@ -229,7 +229,7 @@
                                 </a>
                             @break
                             @case('App\Notifications\UpdatedOrder')
-                                <a href="javascript:void(0);"
+                                <a href="{{ route('dashboard.orders.show',$note['data']['id']) }}"
                                     class="list-group-item list-group-item-action unread notification">
                                     <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
                                     <span class="d-flex align-items-center mb-1">
@@ -252,7 +252,7 @@
                                 </a>
                             @break
                             @case('App\Notifications\UpdatedPickup')
-                                <a href="javascript:void(0);"
+                                <a href="{{ route('dashboard.pickups.show',$note['data']['id']) }}"
                                     class="list-group-item list-group-item-action unread notification">
                                     <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
                                     <span class="d-flex align-items-center mb-1">
@@ -275,7 +275,7 @@
                                 </a>
                             @break
                             @case('App\Notifications\UpdatedTicket')
-                                <a href="javascript:void(0);"
+                                <a href="{{ route('dashboard.tickets.index') }}"
                                     class="list-group-item list-group-item-action unread notification">
                                     <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
                                     <span class="d-flex align-items-center mb-1">

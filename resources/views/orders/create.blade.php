@@ -1656,7 +1656,7 @@
                                     &nbsp; {{ __('dashboard.Location Information') }}
                                 </div>
                             </div>
-                            <div class="col-lg-12 hidden pickups ">
+                            <div class="col-lg-12 hidden pickups invert pickup-location ">
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="pickup_location_id">{{ __('dashboard.Pickup Locations') }}:</label>
@@ -1674,6 +1674,213 @@
                                     @enderror
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
+                            </div>
+                            <div class="col-lg-12 hidden invert pickups pickup-location">
+                                <a href="#" class="text-dark" onclick="event.preventDefault();
+                                                    display(module='pickup-location')">+ {{ __('dashboard.Create new Location') }}</a>
+                            </div>
+                            <div class="col-12 hidden  pickup-locations col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="pickup_country_id">{{ __('dashboard.Country') }}</label>
+                                    <select id="pickup_country_id"
+                                            data-toggle="select"
+                                            class="form-control select05 select005 form-control-sm @error('pickup_country_id') is-invalid @enderror"
+                                            name="pickup_country_id">
+                                        @foreach($countries as $country)
+                                            <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                                {{ $country->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('pickup_country_id')
+                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                    @enderror
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                            <div class="col-12 hidden pickup-locations col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="pickup_state_id">{{ __('dashboard.State') }}</label>
+                                    <select id="pickup_state_id"
+                                            data-toggle="select"
+                                            class="form-control select01 select005 form-control-sm @error('pickup_state_id') is-invalid @enderror"
+                                            name="pickup_state_id">
+                                        @foreach($states as $state)
+                                            <option value="{{ $state->id }}" {{ old('pickup_state_id') == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                                {{ $state->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('pickup_state_id')
+                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                    @enderror
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                            <div class="col-12 hidden  pickup-locations col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="pickup_city_id">{{ __('dashboard.City') }}</label>
+                                    <select id="pickup_city_id"
+                                            data-toggle="select"
+                                            disabled
+                                            class="form-control select03 select005 form-control-sm @error('pickup_city_id') is-invalid @enderror"
+                                            name="pickup_city_id">
+                                    </select>
+                                    @error('pickup_city_id')
+                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                    @enderror
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-12 hidden  pickup-locations col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="street">{{ __('dashboard.Street') }}:</label>
+                                    <div class="input-group input-group-merge">
+                                        <input type="text"
+                                               class="form-control @error('pickup_street') is-invalid @enderror"
+                                               value="{{ old('pickup_street') }}"
+                                               autocomplete="pickup_street"
+                                               name="pickup_street"
+                                               id="pickup_street"
+                                               placeholder="{{ __('dashboard.Enter your street') }} .."
+                                               autofocus>
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="material-icons">home_work</span>
+                                            </div>
+                                        </div>
+                                        @error('pickup_street')
+                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                        @enderror
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 hidden  pickup-locations col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="pickup_building">{{ __('dashboard.Building') }}:</label>
+                                    <div class="input-group input-group-merge">
+                                        <input type="text"
+                                               class="form-control @error('pickup_building') is-invalid @enderror"
+                                               value="{{ old('pickup_building') }}"
+                                               autocomplete="pickup_building"
+                                               name="pickup_building"
+                                               id="pickup_building"
+                                               placeholder="{{ __('dashboard.Enter your building') }} .."
+                                               autofocus>
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="material-icons">home</span>
+                                            </div>
+                                        </div>
+                                        @error('pickup_building')
+                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                        @enderror
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-12 hidden  pickup-locations col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="pickup_floor">{{ __('dashboard.Floor') }}:</label>
+                                    <div class="input-group input-group-merge">
+                                        <input type="text"
+                                               class="form-control @error('pickup_floor') is-invalid @enderror"
+                                               value="{{ old('pickup_floor') }}"
+                                               autocomplete="pickup_floor"
+                                               name="pickup_floor"
+                                               id="pickup_floor"
+                                               placeholder="{{ __('dashboard.Enter your floor') }} .."
+                                               autofocus>
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="material-icons">local_convenience_store</span>
+                                            </div>
+                                        </div>
+                                        @error('pickup_floor')
+                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                        @enderror
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 hidden  pickup-locations col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="pickup_apartment">{{ __('dashboard.Apartment') }}:</label>
+                                    <div class="input-group input-group-merge">
+                                        <input type="text"
+                                               class="form-control @error('pickup_apartment') is-invalid @enderror"
+                                               value="{{ old('pickup_apartment') }}"
+                                               autocomplete="pickup_apartment"
+                                               name="pickup_apartment"
+                                               id="pickup_apartment"
+                                               placeholder="{{ __('dashboard.Enter your apartment') }} .."
+                                               autofocus>
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="material-icons">apartment</span>
+                                            </div>
+                                        </div>
+                                        @error('pickup_apartment')
+                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                        @enderror
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 hidden  pickup-locations col-md-12 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="pickup_landmarks">{{ __('dashboard.Landmarks') }}:</label>
+                                    <div class="input-group input-group-merge">
+                                        <input type="text"
+                                               class="form-control @error('pickup_landmarks') is-invalid @enderror"
+                                               value="{{ old('pickup_landmarks') }}"
+                                               autocomplete="pickup_landmarks"
+                                               name="pickup_landmarks"
+                                               id="pickup_landmarks"
+                                               placeholder="{{ __('dashboard.Enter your landmarks') }} .."
+                                               autofocus>
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="material-icons">apartment</span>
+                                            </div>
+                                        </div>
+                                        @error('pickup_landmarks')
+                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                        @enderror
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 hidden  pickup-locations mb-3">
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox"
+                                               class="custom-control-input"
+                                               name="pickup_working_hours"
+                                               id="pickup_working_hours"
+                                            {{ old('pickup_working_hours') ?? 'checked="checked"' }}>
+                                        <label class="custom-control-label"
+                                               for="pickup_working_hours">{{ __('dashboard.This is a work address') }}</label>
+                                        <small class="form-text text-muted">{{ __('dashboard.Mark it to deliver it within business days and working hours') }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 hidden pickup-locations">
+                                <a href="#" class="text-dark" onclick="event.preventDefault();
+                                                    displayInvert(module='pickup-location')">- {{ __('dashboard.Select from existed locations') }}</a>
                             </div>
                             <div class="col-lg-12 hidden pickups">
                                 <a href="#" class="text-dark" onclick="event.preventDefault();

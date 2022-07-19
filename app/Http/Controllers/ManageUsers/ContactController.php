@@ -71,7 +71,7 @@ class ContactController extends Controller
         $data['other_email']    = null;
         $data['date_of_birth']  = null;
         $data['phone']          = $request->contact_phone;
-        $data['secondary_phone']    = null;
+        $data['secondary_phone']= null;
         $data['other_phone']    = null;
         $data['religion']       = null;
         $data['gender']         = null;
