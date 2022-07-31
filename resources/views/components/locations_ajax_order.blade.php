@@ -114,6 +114,45 @@
         });
     })
 
+    /* Pickup Location in Orders */
+    $('#pickup_country_id').on('change',function () {
+        var id = $(this).val();
+        $.ajax({
+            url: '{{ route('dashboard.locations.states') }}',
+            method: 'GET',
+            dataType: 'json',
+            data:{
+                id:id
+            },
+            success:function(data){
+                $('#pickup_state_id').html(data.html).attr('disabled',false);
+                $('#pickup_city_id').attr('disabled',true);
+            },
+            error:function () {
+                alert('something went wrong');
+            }
+        });
+    })
+
+    /* Pickup Location in Orders */
+    $('#pickup_state_id').on('change',function () {
+        var id = $(this).val();
+        $.ajax({
+            url: '{{ route('dashboard.locations.cities') }}',
+            method: 'GET',
+            dataType: 'json',
+            data:{
+                id:id
+            },
+            success:function(data){
+                $('#pickup_city_id').html(data.html).attr('disabled',false);
+            },
+            error:function () {
+                alert('something went wrong');
+            }
+        });
+    })
+
     /* Pickup */
     $('#country_pickup').on('change',function () {
         var id = $(this).val();

@@ -13,9 +13,9 @@
             <span class="badge badge-notifications badge-accent">{{ $user->unreadnotifications->count() }}</span>
         @endif
     </button>
-    <div class="dropdown-menu dropdown-menu-right" style="overflow-y: scroll; height:400px;">
+    <div class="dropdown-menu dropdown-menu-right" >
         <div data-perfect-scrollbar
-             class="position-relative">
+             class="position-relative" style="height:320px;">
             <div class="dropdown-header"><strong>{{ __('dashboard.System_notifications') }}</strong></div>
             <div class="list-group list-group-flush mb-0">
                 @if(count($user->unreadnotifications) > 0)

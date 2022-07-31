@@ -33,6 +33,14 @@ class PickupController extends Controller
         $locations  = Location::orderBy('updated_at','desc');
 
         $user = User::find(auth()->user()->id);
+        if($user->unreadnotifications->count()){
+            $notifications = $user->unreadnotifications()->where('type','App\Notifications\NewPickup')->orWhere('type','App\Notifications\NewPickupCustomer')->get();
+            foreach ($notifications as $note)
+            {
+                $note->markAsRead();
+            }
+        }
+
         if($user->hasRole('customer'))
         {
             $pickups    = $pickups->where('business_user_id', $user->id);

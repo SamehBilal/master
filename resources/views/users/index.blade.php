@@ -11,15 +11,15 @@
 @endsection
 
 @section('button-link')
-    {{ route('dashboard') }}
+    {{ route('dashboard.users.create') }}
 @endsection
 
 @section('button-icon')
-    dashboard
+    add
 @endsection
 
 @section('button-title')
-{{ __('dashboard.Dashboard') }}
+{{ __('dashboard.New user') }}
 @endsection
 
 @section('main_content')

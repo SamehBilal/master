@@ -30,8 +30,9 @@
 
 @section('main_content')
     <div class="container page__container page-section">
-        <form method="POST" action="{{ route('dashboard.customers.index') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('dashboard.customers.update',$customer->id) }}" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="card">
                 <div class="row card-body mb-32pt">
                     <div class="col-lg-4 bg-light">

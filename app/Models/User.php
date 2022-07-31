@@ -121,7 +121,7 @@ class User extends Authenticatable
             'full_name'     => "nullable|max:40",
             'email'         => "nullable|email|regex:/(.+)@(.+)\.(.+)/i|unique:users,email,$id",
             'password'      => 'nullable|confirmed',
-            'other_email'   => "nullable|email|regex:/(.+)@(.+)\.(.+)/i|unique:users,email,$id",
+            'other_email'   => "nullable|email|regex:/(.+)@(.+)\.(.+)/i|unique:users,other_email,$id",
             'phone'         => "nullable|numeric|digits_between:1,16",
             'other_phone'   => "nullable|numeric|digits_between:1,16",
             'gender'        => 'nullable',Rule::in(['Male','Female']),

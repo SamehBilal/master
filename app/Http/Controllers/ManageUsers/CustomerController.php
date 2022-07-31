@@ -200,30 +200,36 @@ class CustomerController extends Controller
                     'business_user_id'          => auth()->user()->id,
                 ]);
 
-                for($i=0;$i < $request->contact_name;$i++){
-                    $customer->contact()->update([
-                        'contact_name'          => $request->contact_name[$i],
-                        'contact_job_title'     => $request->contact_job_title[$i],
-                        'contact_email'         => $request->contact_email[$i],
-                        'contact_phone'         => $request->contact_phone[$i],
-                        'business_user_id'      => auth()->user()->id,
-                    ]);
+                if($request->contact_name){
+                    for($i=0;$i < $request->contact_name;$i++){
+                        $customer->contact()->update([
+                            'contact_name'          => $request->contact_name[$i],
+                            'contact_job_title'     => $request->contact_job_title[$i],
+                            'contact_email'         => $request->contact_email[$i],
+                            'contact_phone'         => $request->contact_phone[$i],
+                            'business_user_id'      => auth()->user()->id,
+                        ]);
+                    }
                 }
 
-                for($j=0;$j < $request->street;$j++){
-                    $user->location()->update([
-                        'name'                  => $request->location_name[$j],
-                        'street'                => $request->street[$j],
-                        'building'              => $request->building[$j],
-                        'floor'                 => $request->floor[$j],
-                        'apartment'             => $request->apartment[$j],
-                        'landmarks'             => $request->landmarks[$j],
-                        'country_id'            => $request->country_id[$j],
-                        'state_id'              => $request->state_id[$j],
-                        'city_id'               => $request->city_id[$j],
-                        'business_user_id'      => auth()->user()->id,
-                    ]);
+                if($request->street)
+                {
+                    for($j=0;$j < $request->street;$j++){
+                        $user->location()->update([
+                            'name'                  => $request->location_name[$j],
+                            'street'                => $request->street[$j],
+                            'building'              => $request->building[$j],
+                            'floor'                 => $request->floor[$j],
+                            'apartment'             => $request->apartment[$j],
+                            'landmarks'             => $request->landmarks[$j],
+                            'country_id'            => $request->country_id[$j],
+                            'state_id'              => $request->state_id[$j],
+                            'city_id'               => $request->city_id[$j],
+                            'business_user_id'      => auth()->user()->id,
+                        ]);
+                    }
                 }
+
 
                 if(request()->hasFile('avatar'))
                 {

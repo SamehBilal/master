@@ -40,6 +40,15 @@ class OrderController extends Controller
         $user = User::find(auth()->user()->id);
         $customer = 0;
 
+        $user = User::find(auth()->user()->id);
+        if($user->unreadnotifications->count()){
+            $notifications = $user->unreadnotifications()->where('type','App\Notifications\NewOrder')->orWhere('type','App\Notifications\NewOrderCustomer')->get();
+            foreach ($notifications as $note)
+            {
+                $note->markAsRead();
+            }
+        }
+
         if($user->hasRole('customer'))
         {
             $orders = $orders->where('business_user_id', $user->id);

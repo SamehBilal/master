@@ -376,6 +376,7 @@ return [
     'industry'              =>  'Industry',
     'Store URL '            =>  'Store URL',
     'Enter your Store URL'  =>  'Enter your Store URL',
+    'New user'              =>  'New user',
 
     // roles and permissions
     'Roles'                 => 'Roles',

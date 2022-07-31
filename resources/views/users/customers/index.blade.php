@@ -232,9 +232,11 @@
                                         <a href="#" data-toggle="dropdown"
                                            class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            {{--<a href="{{ route('dashboard.customers.show',$customer->id) }}" class="dropdown-item active"><i class="material-icons ">visibility</i> View</a>--}}
+                                            @can('show customers')
+                                            <a href="{{ route('dashboard.customers.show',$customer->id) }}" class="dropdown-item active"><i class="material-icons ">visibility</i> View</a>
+                                            @endcan
                                             @can('edit customers')
-                                                <a href="{{ route('dashboard.customers.edit',$customer->id) }}" class="dropdown-item active"><i class="material-icons ">edit</i> Edit</a>
+                                                <a href="{{ route('dashboard.customers.edit',$customer->id) }}" class="dropdown-item "><i class="material-icons ">edit</i> Edit</a>
                                             @endcan
                                             @can('delete customers')
                                                 <div class="dropdown-divider"></div>

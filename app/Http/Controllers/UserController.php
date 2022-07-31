@@ -83,6 +83,11 @@ class UserController extends Controller
             $user->auth()->user()->update(['avatar' =>  $image]);
         }
 
+        if($request->role)
+        {
+            $user->assignRole($request->role);
+        }
+
         $users = User::whereHas("roles", function($q){
             $q->where("name", "Super Admin")
                 ->orWhere("name", "admin")

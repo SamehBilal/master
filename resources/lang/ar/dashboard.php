@@ -371,6 +371,7 @@ return [
     'industry'              =>  'الصناعة',
     'Store URL '            =>  'رابط التسوق',
     'Enter your Store URL'  =>  'ادخل رابط التسوق',
+    'New user'              =>  'مستخدم جديد',
 
     // roles and permissions
     'Roles'                 => 'الادوار',

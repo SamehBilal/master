@@ -28,7 +28,7 @@
 @section('main_content')
 <div class="page-section mt-2 bg-primary">
     <div class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-md-left">
-        <img src="{{ asset('backend/images/illustration/teacher/128/white.svg') }}"
+        <img src="{{ $customer->user->gender == 'Female' ? asset('backend/images/illustration/teacher/128/woman.png'):asset('backend/images/illustration/teacher/128/man.png') }}"
              width="104"
              class="mr-md-32pt mb-32pt mb-md-0"
              alt="instructor">
@@ -107,7 +107,7 @@
                                     </div>
                                 </div>
 
-                                <a href="student-path.html"
+                                <a href="#"
                                 class="ml-4pt btn btn-sm btn-link text-secondary border-1 border-secondary">Details</a>
 
                             </div>
@@ -133,7 +133,7 @@
                         <p class="mt-16pt text-70">{{-- Angular is a platform for building mobile and desktop web applications. --}}</p>
 
                         <div class="my-32pt">
-                            <div class="d-flex align-items-center mb-8pt justify-content-center">
+                            {{--<div class="d-flex align-items-center mb-8pt justify-content-center">
                                 <div class="d-flex align-items-center mr-8pt">
                                     <span class="material-icons icon-16pt text-50 mr-4pt">access_time</span>
                                     <p class="flex text-50 lh-1 mb-0"><small>50 minutes left</small></p>
@@ -142,11 +142,11 @@
                                     <span class="material-icons icon-16pt text-50 mr-4pt">play_circle_outline</span>
                                     <p class="flex text-50 lh-1 mb-0"><small>12 lessons</small></p>
                                 </div>
-                            </div>
+                            </div>--}}
                             <div class="d-flex align-items-center justify-content-center">
-                                <a href="#"
+                                <a href="{{ route('dashboard.orders.show',$order->id) }}"
                                 class="btn btn-primary mr-8pt">View</a>
-                                <a href="#"
+                                <a href="{{ route('dashboard.orders.edit',$order->id) }}"
                                 class="btn btn-outline-secondary ml-0">Edit</a>
                             </div>
                         </div>
