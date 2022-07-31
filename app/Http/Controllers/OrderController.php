@@ -323,7 +323,7 @@ class OrderController extends Controller
 
                     if($request->return_location == null)
                     {
-                        $return_location = Location::create([
+                        $return_location = $customer->location()->create([
                             'name_exchange'                  => $request->apartment_exchange.', '.$request->building_exchange.', '.$request->street_exchange,
                             'street_exchange'                => $request->street_exchange,
                             'building_exchange'              => $request->building_exchange,
@@ -362,7 +362,7 @@ class OrderController extends Controller
 
                     if($request->return_location == null)
                     {
-                        $return_location = Location::create([
+                        $return_location = $customer->location()->create([
                             'name_return'                  => $request->apartment_return.', '.$request->building_return.', '.$request->street_return,
                             'street_return'                => $request->street_return,
                             'building_return'              => $request->building_return,
@@ -743,7 +743,7 @@ class OrderController extends Controller
 
                     if($request->return_location == null)
                     {
-                        $return_location = Location::create([
+                        $return_location = $customer->location()->create([
                             'name_exchange'                  => $request->apartment_exchange.', '.$request->building_exchange.', '.$request->street_exchange,
                             'street_exchange'                => $request->street_exchange,
                             'building_exchange'              => $request->building_exchange,
@@ -782,7 +782,7 @@ class OrderController extends Controller
 
                     if($request->return_location == null)
                     {
-                        $return_location = Location::create([
+                        $return_location = $customer->location()->create([
                             'name_return'                  => $request->apartment_return.', '.$request->building_return.', '.$request->street_return,
                             'street_return'                => $request->street_return,
                             'building_return'              => $request->building_return,

@@ -114,6 +114,25 @@
             }
         });
     });
+    @if($user->hasRole('admin'))
+
+    $('.floating-chat').on('click',function () {
+        var notification = 0;
+        $.ajax({
+            url:'{{ url('floating-chat') }}',
+            method:'GET',
+            data: {
+                notification:notification,
+            },
+            success:function (result) {
+                $('#count_floating_chat').remove();
+            },
+            error: function(result) {
+                alert('no')
+            }
+        });
+    });
+    @endif
 
     $('.details').summernote(
         {

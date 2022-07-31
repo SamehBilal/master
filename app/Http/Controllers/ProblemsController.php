@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Problem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProblemsController extends Controller
 {
@@ -44,6 +45,18 @@ class ProblemsController extends Controller
         ]);
 
         return response()->json(['success'=>'Problem submitted successfully']);
+    }
+
+
+    public function markasreadajax(Request $request){
+        if ($request->ajax()) {
+            $all_problems    = \App\Models\Problem::where('read_at',null)->get();
+            foreach ($all_problems as $problem)
+            {
+                $problem->update(['read_at' => now()]);
+            }
+        }
+
     }
 
     /**

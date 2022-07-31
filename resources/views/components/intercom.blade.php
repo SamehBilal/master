@@ -11,7 +11,7 @@
     <i class="fa fa-comments" aria-hidden="true"></i>
     @if($user->hasRole('admin'))
         @if($unreadproblems)
-            <i class="badge badge-notifications badge-accent" aria-hidden="true">{{ $unreadproblems }}</i>
+            <i class="badge badge-notifications badge-accent" id="count_floating_chat" aria-hidden="true">{{ $unreadproblems }}</i>
         @endif
     @endif
 
@@ -23,8 +23,10 @@
             <button>
                 <i class="fa fa-times" aria-hidden="true"></i>
             </button>
-
         </div>
+        <ul class="messages">
+            <li class="self">sd<br>ahkjsgd</li>
+        </ul>
         @if($user->hasRole('admin'))
             <ul class="messages">
                 @foreach($problems as $problem)

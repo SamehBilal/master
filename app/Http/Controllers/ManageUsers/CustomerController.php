@@ -8,6 +8,7 @@ use App\Models\Contact;
 use App\Models\Country;
 use App\Models\Currency;
 use App\Models\Customer;
+use App\Models\Location;
 use App\Models\State;
 use App\Models\User;
 use App\Models\UserCategory;
@@ -99,29 +100,33 @@ class CustomerController extends Controller
                     'business_user_id'          => auth()->user()->id,
                 ]);
 
-                for($i=0;$i < count($request->contact_name);$i++){
-                    $customer->contact()->create([
-                        'contact_name'          => $request->contact_name[$i],
-                        'contact_job_title'     => $request->contact_job_title[$i],
-                        'contact_email'         => $request->contact_email[$i],
-                        'contact_phone'         => $request->contact_phone[$i],
-                        'business_user_id'      => auth()->user()->id,
-                    ]);
+                if($request->contact_name){
+                    for($i=0;$i < count($request->contact_name);$i++){
+                        $customer->contact()->create([
+                            'contact_name'          => $request->contact_name[$i],
+                            'contact_job_title'     => $request->contact_job_title[$i],
+                            'contact_email'         => $request->contact_email[$i],
+                            'contact_phone'         => $request->contact_phone[$i],
+                            'business_user_id'      => auth()->user()->id,
+                        ]);
+                    }
                 }
 
-                for($j=0;$j < count($request->street);$j++){
-                    $customer->location()->create([
-                        'name'                  => $request->location_name[$j],
-                        'street'                => $request->street[$j],
-                        'building'              => $request->building[$j],
-                        'floor'                 => $request->floor[$j],
-                        'apartment'             => $request->apartment[$j],
-                        'landmarks'             => $request->landmarks[$j],
-                        'country_id'            => $request->country_id[$j],
-                        'state_id'              => $request->state_id[$j],
-                        'city_id'               => $request->city_id[$j],
-                        'business_user_id'      => auth()->user()->id,
-                    ]);
+                if($request->street){
+                    for($j=0;$j < count($request->street);$j++){
+                        $customer->location()->create([
+                            'name'                  => $request->location_name[$j],
+                            'street'                => $request->street[$j],
+                            'building'              => $request->building[$j],
+                            'floor'                 => $request->floor[$j],
+                            'apartment'             => $request->apartment[$j],
+                            'landmarks'             => $request->landmarks[$j],
+                            'country_id'            => $request->country_id[$j],
+                            'state_id'              => $request->state_id[$j],
+                            'city_id'               => $request->city_id[$j],
+                            'business_user_id'      => auth()->user()->id,
+                        ]);
+                    }
                 }
 
                 if(request()->hasFile('avatar'))
@@ -149,7 +154,7 @@ class CustomerController extends Controller
     {
         $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Customer'],['status','active']])->get();
         $currencies = Currency::where('business_user_id',auth()->user()->id)->get();
-        $states     = State::all();
+        $states     = State::where('country_id',64)->get();
         $cities     = City::all();
         $countries  = Country::all();
         return view('users.customers.show',compact('customer','categories','currencies','cities','states','countries'));
@@ -165,10 +170,11 @@ class CustomerController extends Controller
     {
         $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Customer'],['status','active']])->get();
         $currencies = Currency::where('business_user_id',auth()->user()->id)->get();
-        $states     = State::all();
+        $states     = State::where('country_id',64)->get();
         $cities     = City::all();
         $countries  = Country::all();
-        return view('users.customers.edit',compact('customer','categories','currencies','cities','states','countries'));
+        $locations  = Location::where('customer_id',$customer->id)->get();
+        return view('users.customers.edit',compact('customer','categories','currencies','cities','states','countries','locations'));
     }
 
     /**

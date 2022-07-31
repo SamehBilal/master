@@ -188,7 +188,7 @@
 }
 .floating-chat .chat .messages li.self:before {
     left: -45px;
-    background-image: url(https://github.com/ortichon.png);
+    background-image: url('../images/ask.png');
 }
 .floating-chat .chat .messages li.self:after {
     border-left: 10px solid transparent;

@@ -420,11 +420,11 @@ $('.language-change').on('change',function () {
     $('#form_change').attr('action',action+value)
 })
 
-$('.view_modal').on('click',function () {
+/*$('.view_modal').on('click',function () {
     setTimeout(function() {
         $('.modal-backdrop').fadeOut();
         }, 10);
-})
+})*/
 
 
 var element = $('.floating-chat');

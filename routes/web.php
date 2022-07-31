@@ -34,6 +34,7 @@ Route::post('my-account/{id}',[\App\Http\Controllers\WebsiteRoutesController::cl
 
 /* Notifications */
 Route::get('/notification',[\App\Http\Controllers\NotificationsController::class,'markasreadajax']);
+Route::get('/floating-chat',[\App\Http\Controllers\ProblemsController::class,'markasreadajax']);
 
 /* Route::get('/', function () {
     return view('coming-soon');

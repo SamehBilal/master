@@ -215,7 +215,7 @@
                                                 class="form-control form-control-sm @error('user_category_id') is-invalid @enderror"
                                                 name="user_category_id">
                                             @foreach($categories as $category)
-                                                <option value="{{ $category->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                                                <option value="{{ $category->id }}" {{ old('user_category_id') == $category->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
                                                     {{ $category->name }}
                                                 </option>
                                             @endforeach
@@ -252,14 +252,14 @@
                     </div>
                 </div>
             </div>
-            <div class="page-separator">
+            {{--<div class="page-separator">
                 <div class="page-separator__text col-auto">
                     <a href="javascript:void(0)" onclick="doubling_address()"
                        class="btn btn-outline-secondary">
                         <i class="material-icons icon--left">add</i> {{ __('dashboard.New address') }}
                     </a>
                 </div>
-            </div>
+            </div>--}}
             <div class="card address_card">
                 <div class="row card-body mb-32pt">
                     <div class="col-lg-4 bg-light">
@@ -293,13 +293,13 @@
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 mb-3">
+                                <div class="col-12  col-md-6 mb-3">
                                     <div class="form-group">
                                         <label class="form-label"
-                                               for="select05">{{ __('dashboard.Country') }}</label>
-                                        <select id="select05"
+                                               for="country_id">{{ __('dashboard.Country') }}</label>
+                                        <select id="country_id"
                                                 data-toggle="select"
-                                                class="form-control select05 form-control-sm @error('country_id') is-invalid @enderror"
+                                                class="form-control select05 select005 form-control-sm @error('country_id') is-invalid @enderror"
                                                 name="country_id[]">
                                             @foreach($countries as $country)
                                                 <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -313,14 +313,13 @@
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 mb-3">
+                                <div class="col-12  col-md-6 mb-3">
                                     <div class="form-group">
                                         <label class="form-label"
-                                               for="select01">{{ __('dashboard.State') }}</label>
-                                        <select id="select01"
+                                               for="state_id">{{ __('dashboard.State') }}</label>
+                                        <select id="state_id"
                                                 data-toggle="select"
-                                                data-minimum-results-for-search="-1"
-                                                class="form-control select01 form-control-sm @error('state_id') is-invalid @enderror"
+                                                class="form-control select01 select005 form-control-sm @error('state_id') is-invalid @enderror"
                                                 name="state_id[]">
                                             @foreach($states as $state)
                                                 <option value="{{ $state->id }}" {{ old('state_id') == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -337,12 +336,11 @@
                                 <div class="col-12 col-md-6 mb-3">
                                     <div class="form-group">
                                         <label class="form-label"
-                                               for="select03">{{ __('dashboard.City') }}</label>
-                                        <select id="select03"
+                                               for="city_id">{{ __('dashboard.City') }}</label>
+                                        <select id="city_id"
                                                 data-toggle="select"
                                                 disabled
-                                                data-minimum-results-for-search="-1"
-                                                class="form-control select03 form-control-sm @error('city_id') is-invalid @enderror"
+                                                class="form-control select03 select005 form-control-sm @error('city_id') is-invalid @enderror"
                                                 name="city_id[]">
                                         </select>
                                         @error('city_id')
@@ -360,7 +358,7 @@
                                         <div class="input-group input-group-merge">
                                             <input type="text"
                                                    class="form-control @error('street') is-invalid @enderror"
-                                                   value="{{ old('street[]') }}"
+                                                   value="{{ old('street') }}"
                                                    autocomplete="street"
                                                    name="street[]"
                                                    id="street"
@@ -380,7 +378,7 @@
                                         <div class="input-group input-group-merge">
                                             <input type="text"
                                                    class="form-control @error('building') is-invalid @enderror"
-                                                   value="{{ old('building[]') }}"
+                                                   value="{{ old('building') }}"
                                                    autocomplete="building"
                                                    name="building[]"
                                                    id="building"
@@ -407,7 +405,7 @@
                                         <div class="input-group input-group-merge">
                                             <input type="text"
                                                    class="form-control @error('floor') is-invalid @enderror"
-                                                   value="{{ old('floor[]') }}"
+                                                   value="{{ old('floor') }}"
                                                    autocomplete="floor"
                                                    name="floor[]"
                                                    id="floor"
@@ -432,7 +430,7 @@
                                         <div class="input-group input-group-merge">
                                             <input type="text"
                                                    class="form-control @error('apartment') is-invalid @enderror"
-                                                   value="{{ old('apartment[]') }}"
+                                                   value="{{ old('apartment') }}"
                                                    autocomplete="apartment"
                                                    name="apartment[]"
                                                    id="apartment"
@@ -765,6 +763,7 @@
 
 @section('extra-scripts')
     @include('components.locations_ajax')
+
     <script>
         function doubling()
         {
@@ -1092,6 +1091,8 @@
             //$('#email').val(val);
             $('#full_name').val(full_name);
         })
+
+        $('.select005').select2();
 
     </script>
 @endsection
