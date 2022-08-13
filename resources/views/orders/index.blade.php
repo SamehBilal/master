@@ -279,7 +279,24 @@
 
                                     <td>
                                         <div href="#"
-                                           class="chip chip-outline-secondary ">{{ $order->cash_on_delivery ? $order->cash_on_delivery:0 }}{{--{{ __('dashboard.EGP')}}--}}</div>
+                                           class="chip chip-outline-secondary ">
+                                            @switch($order->type)
+                                                @case ('Deliver')
+                                                    {{ $order->cash_on_delivery ? $order->cash_on_delivery:0 }}
+                                                    @break
+                                                @case ('Exchange')
+                                                    {{ $order->cash_exchange_amount ? $order->cash_exchange_amount:0 }}
+                                                    @break
+                                                @case ('Return')
+                                                    {{ $order->refund_amount ? $order->refund_amount:0 }}
+                                                    @break
+                                                @case ('Cash Collection')
+                                                    {{ $order->cash_to_collect ? $order->cash_to_collect:0 }}
+                                                    @break
+                                                @default
+                                                    {{ $order->cash_on_delivery ? $order->cash_on_delivery:0 }}
+                                            @endswitch
+                                        </div>
                                     </td>
 
                                     <td>
@@ -290,7 +307,7 @@
 
                                     <td>
                                         <div class="d-flex flex-column">
-                                            <small class=""><strong>{{ date("F j, Y", strtotime($order->created_at)) }}</strong></small>
+                                            <small class=""><strong>{{ date("F j, Y g:i A", strtotime($order->created_at)) }}</strong></small>
                                             <small class="text-50">{{ $order->created_at->diffForHumans() }}</small>
                                         </div>
                                     </td>

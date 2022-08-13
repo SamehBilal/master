@@ -243,24 +243,25 @@
                                            autofocus=""
                                            required
                                            placeholder="{{ __('dashboard.Type message') }}">
-                                    <div class="input-group-append" >
-                                        <div class="input-group-text pl-0">
-                                            <div class="custom-file custom-file-naked d-flex"
-                                                 style="width: 24px; overflow: hidden;">
-                                                <input type="file"
-                                                       class="custom-file-input"
-                                                       name="files[]"
-                                                       multiple
-                                                       id="customFile">
-                                                <label {{--class="custom-file-label"--}}
-                                                       style="color: inherit;"
-                                                       for="customFile">
-                                                    <i class="material-icons">attach_file</i>
-                                                </label>
-                                            </div>
+                                    <button class="btn btn-primary" type="submit"> <i class="material-icons {{--icon--right--}}">send</i></button>
+                                </div>
+                                <br>
+                                <div class="{{--input-group-append--}}" >
+                                    <div class="{{--input-group-text--}} pl-0">
+                                        <div class="{{--custom-file custom-file-naked d-flex--}}"
+                                            {{--style="width: 24px; overflow: hidden;"--}}>
+                                            <input type="file"
+                                                   {{--class="custom-file-input"--}}
+                                                   name="files[]"
+                                                   multiple
+                                                   id="customFile">
+                                            {{--<label class="custom-file-label"
+                                                   style="color: inherit;"
+                                                   for="customFile">
+                                                <i class="material-icons">attach_file</i>
+                                            </label>--}}
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary" type="submit"><i class="material-icons">send</i></button>
                                 </div>
                             </form>
                         @endif

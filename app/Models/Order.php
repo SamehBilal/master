@@ -161,8 +161,8 @@ class Order extends Model
             'return_location_exchange'                      => "nullable",
 
             // Deliver
-            'with_cash_collection'                          => "required_if:type,Deliver",
-            'cash_on_delivery'                              => "required_if:type,Deliver",
+            /*'with_cash_collection'                          => "required_if:type,Deliver",*/
+            /*'cash_on_delivery'                              => "required_if:type,Deliver",*/
             /*'package_type'                                  => "required_if:type,Deliver",
             'light_bulky'                                   => "required_if:type,Deliver",
             'package_description'                           => "required_if:type,Deliver",

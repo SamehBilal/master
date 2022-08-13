@@ -1,4 +1,5 @@
 @extends('layouts.backend')
+@php $locale = session()->get('locale'); @endphp
 
 @section('title')
     Tracking No. {{ $order->tracking_no }}
@@ -32,7 +33,7 @@
             <div class="row">
                 <div class="col-lg-5 mb-24pt mb-lg-0">
                     <div class="border-left-3 border-left-primary pl-24pt pl-md-32pt">
-                        <h4 class="mb-8pt">{{ $log ? $log->status:'' }}</h4>
+                        <h4 class="mb-8pt">{{ $log ? $log->status:'' }} {{ $log->hub ? ($locale == 'ar' ? '('.$log->hub->ar_name.')':'('.$log->hub->en_name.')'):'' }}</h4>
                         <p class="text-70 mb-24pt">{{ $log ? $log->description:'' }}</p>
                         @can('edit log')
                         <a href="{{ route("dashboard.order-logs.index",$order->id) }}"
@@ -603,7 +604,7 @@
                         <div class="col-lg-5 mb-24pt mb-lg-0">
                             <div class="border-left-3 border-left-primary pl-24pt pl-md-32pt">
                                 <h4 class="mb-8pt text-secondary">Customer Order log</h4>
-                                <h4 class="mb-8pt">{{ $customerlog ? $customerlog->status:'' }}</h4>
+                                <h4 class="mb-8pt">{{ $customerlog ? $customerlog->status:'' }} {{ $customerlog->hub ? ($locale == 'ar' ? '('.$customerlog->hub->ar_name.')':'('.$customerlog->hub->en_name.')'):'' }}</h4>
                                 <p class="text-70 mb-24pt">{{ $customerlog ? $customerlog->description:'' }}</p>
                                 @can('edit log')
                                 <a href="{{ route("dashboard.order-customer-logs.index",$order->id) }}"
@@ -842,7 +843,7 @@
                                         </div>
                                         <div class="col text-right">
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn view_modal btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter1">
+                                            <button type="button" id="view_location1" class="btn view_modal btn-outline-secondary" {{--data-toggle="modal" data-target="#exampleModalCenter1"--}}>
                                                 View Location
                                             </button>
 
@@ -1127,125 +1128,9 @@
                                     </div>
                                     <div class="col text-right">
                                         <!-- Button trigger modal -->
-                                        <button  type="button" class="btn view_modal btn-outline-secondary" data-toggle="modal" data-target="#exampleModalCenter">
+                                        <button  type="button" id="view_location" class="btn view_modal btn-outline-secondary" {{--data-toggle="modal" data-target="#exampleModalCenter"--}}>
                                             View Location
                                         </button>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLongTitle">Location Information</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="card-body d-flex flex-column">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="flex">
-                                                                    <div class="d-flex align-items-center">
-                                                                        <div class="rounded mr-12pt z-0 o-hidden">
-                                                                            <div class="overlay">
-                                                                                <img src="{{ asset('backend/images/icon/map.png') }}"
-                                                                                     width="40"
-                                                                                     height="40"
-                                                                                     alt="Angular"
-                                                                                     class="rounded">
-                                                                                {{--<span class="overlay__content overlay__content-transparent">
-                                                                                        <span class="overlay__action d-flex flex-column text-center lh-1">
-                                                                                            <small class="h6 small text-white mb-0"
-                                                                                                   style="font-weight: 500;">80%</small>
-                                                                                        </span>
-                                                                                    </span>--}}
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="flex">
-                                                                            <div class="card-title">{{ $order->pickup->location->name }}</div>
-                                                                            <p class="flex text-50 lh-1 mb-0"><small>{{ $order->pickup->location->state->name }}</small></p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                {{--<a href="undefinedstudent-path.html"
-                                                                   data-toggle="tooltip"
-                                                                   data-title="Add Favorite"
-                                                                   data-placement="top"
-                                                                   data-boundary="window"
-                                                                   class="ml-4pt material-icons text-20 card-course__icon-favorite">favorite_border</a>--}}
-
-                                                            </div>
-
-                                                            {{--<div class="rating mt-8pt">
-                                                                <span class="rating__item"><span class="material-icons">star</span></span>
-                                                                <span class="rating__item"><span class="material-icons">star</span></span>
-                                                                <span class="rating__item"><span class="material-icons">star</span></span>
-                                                                <span class="rating__item"><span class="material-icons">star</span></span>
-                                                                <span class="rating__item"><span class="material-icons">star_border</span></span>
-                                                            </div>--}}
-
-                                                            <p class="mt-16pt text-70 flex">{{ $order->pickup->location->apartment }} {{ $order->pickup->location->building }}, {{ $order->pickup->location->street }}, {{ $order->pickup->location->state->name }}, {{ $order->pickup->location->country->name }}</p>
-
-                                                            <div class="mb-16pt d-none">
-                                                                <div class="d-flex align-items-center">
-                                                                    <span class="material-icons icon-16pt text-50 mr-8pt">check</span>
-                                                                    <p class="flex text-50 lh-1 mb-0"><small>Fundamentals of working with WordPress</small></p>
-                                                                </div>
-                                                                <div class="d-flex align-items-center">
-                                                                    <span class="material-icons icon-16pt text-50 mr-8pt">check</span>
-                                                                    <p class="flex text-50 lh-1 mb-0"><small>Create complete WordPress applications</small></p>
-                                                                </div>
-                                                                <div class="d-flex align-items-center">
-                                                                    <span class="material-icons icon-16pt text-50 mr-8pt">check</span>
-                                                                    <p class="flex text-50 lh-1 mb-0"><small>Working with the WordPress CLI</small></p>
-                                                                </div>
-                                                                <div class="d-flex align-items-center">
-                                                                    <span class="material-icons icon-16pt text-50 mr-8pt">check</span>
-                                                                    <p class="flex text-50 lh-1 mb-0"><small>Understanding Dependency Injection</small></p>
-                                                                </div>
-                                                                <div class="d-flex align-items-center">
-                                                                    <span class="material-icons icon-16pt text-50 mr-8pt">check</span>
-                                                                    <p class="flex text-50 lh-1 mb-0"><small>Testing with WordPress</small></p>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="row align-items-center">
-                                                                <div class="col-auto">
-                                                                    <div class="d-flex align-items-center mb-4pt">
-                                                                        <span class="material-icons icon-16pt text-50 mr-4pt">apartment</span>
-                                                                        <p class="flex text-50 lh-1 mb-0"><small>Apartment: {{ $order->pickup->location->apartment }}</small></p>
-                                                                    </div>
-                                                                    <div class="d-flex align-items-center mb-4pt">
-                                                                        <span class="material-icons icon-16pt text-50 mr-4pt">home_work</span>
-                                                                        <p class="flex text-50 lh-1 mb-0"><small>Home: {{ $order->pickup->location->building }}</small></p>
-                                                                    </div>
-                                                                    <div class="d-flex align-items-center mb-4pt">
-                                                                        <span class="material-icons icon-16pt text-50 mr-4pt">local_convenience_store</span>
-                                                                        <p class="flex text-50 lh-1 mb-0"><small>Floor: {{ $order->pickup->location->floor }}</small></p>
-                                                                    </div>
-                                                                    <div class="d-flex align-items-center mb-4pt">
-                                                                        <span class="material-icons icon-16pt text-50 mr-4pt">car_repair</span>
-                                                                        <p class="flex text-50 lh-1 mb-0"><small>Street: {{ $order->pickup->location->street }}</small></p>
-                                                                    </div>
-                                                                    <div class="d-flex align-items-center mb-4pt">
-                                                                        <span class="material-icons icon-16pt text-50 mr-4pt">landscape</span>
-                                                                        <p class="flex text-50 lh-1 mb-0"><small>landmarks: {{ $order->pickup->location->landmarks }}</small></p>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col text-right"></div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="button" onclick="location.href='{{ route('dashboard.locations.show',$order->pickup->location->id).'?order='.$order->id }}'" class="btn btn-primary"> <i class="material-icons icon--left">edit</i> Edit Location</button>
-                                                        <button type="button" onclick="location.href='{{ route('dashboard.pickups.edit',$order->pickup->id) }}'" class="btn btn-success"> <i class="material-icons icon--left">edit</i> Change Pickup Location</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
 
@@ -1258,4 +1143,188 @@
             @endif
         </div>
     </div>
+@endsection
+
+@section('extra-scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function() {
+            var div = '<div class="card-body d-flex flex-column">'+
+                '  <p class="mt-16pt text-70 flex">{{ $order->pickup->location->apartment }} {{ $order->pickup->location->building }}, {{ $order->pickup->location->street }}, {{ $order->pickup->location->state->name }}, {{ $order->pickup->location->country->name }}</p>'+
+                '  <div class="mb-16pt d-none">'+
+                ' <div class="d-flex align-items-center">'+
+                '      <span class="material-icons icon-16pt text-50 mr-8pt">check</span>'+
+                '      <p class="flex text-50 lh-1 mb-0"><small>Fundamentals of working with WordPress</small></p>'+
+                '   </div>'+
+                '   <div class="d-flex align-items-center">'+
+                '       <span class="material-icons icon-16pt text-50 mr-8pt">check</span>'+
+                '       <p class="flex text-50 lh-1 mb-0"><small>Create complete WordPress applications</small></p>'+
+                '  </div>'+
+                '  <div class="d-flex align-items-center">'+
+                '      <span class="material-icons icon-16pt text-50 mr-8pt">check</span>'+
+                '      <p class="flex text-50 lh-1 mb-0"><small>Working with the WordPress CLI</small></p>'+
+                '   </div>'+
+                ' <div class="d-flex align-items-center">'+
+                '    <span class="material-icons icon-16pt text-50 mr-8pt">check</span>'+
+                '     <p class="flex text-50 lh-1 mb-0"><small>Understanding Dependency Injection</small></p>'+
+                '  </div>'+
+                '  <div class="d-flex align-items-center">'+
+                '    <span class="material-icons icon-16pt text-50 mr-8pt">check</span>'+
+                '    <p class="flex text-50 lh-1 mb-0"><small>Testing with WordPress</small></p>'+
+                '  </div>'+
+                '  </div>'+
+                '  <div class="row align-items-center">'+
+                '   <div class="col-auto">'+
+                '      <div class="d-flex align-items-center mb-4pt">'+
+                '          <span class="material-icons icon-16pt text-50 mr-4pt">apartment</span>'+
+                '          <p class="flex text-50 lh-1 mb-0"><small>Apartment: {{ $order->pickup->location->apartment }}</small></p>'+
+                '  </div>'+
+                '    <div class="d-flex align-items-center mb-4pt">'+
+                '      <span class="material-icons icon-16pt text-50 mr-4pt">home_work</span>'+
+                '       <p class="flex text-50 lh-1 mb-0"><small>Home: {{ $order->pickup->location->building }}</small></p>'+
+                '    </div>'+
+                '    <div class="d-flex align-items-center mb-4pt">'+
+                '        <span class="material-icons icon-16pt text-50 mr-4pt">local_convenience_store</span>'+
+                '        <p class="flex text-50 lh-1 mb-0"><small>Floor: {{ $order->pickup->location->floor }}</small></p>'+
+                '   </div>'+
+                '   <div class="d-flex align-items-center mb-4pt">'+
+                '      <span class="material-icons icon-16pt text-50 mr-4pt">car_repair</span>'+
+                '       <p class="flex text-50 lh-1 mb-0"><small>Street: {{ $order->pickup->location->street }}</small></p>'+
+                '    </div>'+
+                '    <div class="d-flex align-items-center mb-4pt">'+
+                '        <span class="material-icons icon-16pt text-50 mr-4pt">landscape</span>'+
+                '       <p class="flex text-50 lh-1 mb-0"><small>landmarks: {{ $order->pickup->location->landmarks }}</small></p>'+
+                ' </div>'+
+                ' </div>'+
+                ' <div class="col text-right"></div>'+
+                '</div>'+
+                '</div>';
+            $('#view_location').on('click',function () {
+
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-danger'
+                    },
+                    buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                    title: "{{ $order->pickup->location->name }}",
+                    html: div,
+                    imageUrl: '{{ asset('backend/images/icon/map.png') }}',
+                    imageWidth: 64,
+                    imageHeight: 64,
+                    imageAlt: 'Custom image',
+                    showCancelButton: true,
+                    confirmButtonText: '<i class="material-icons icon--left">edit</i> Change Location',
+                    cancelButtonText: '<i class="material-icons icon--left">edit</i> Edit Location',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = '{{ route('dashboard.pickups.edit',$order->pickup->id) }}';
+                    } else if (
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        window.location = '{{ route('dashboard.locations.show',$order->pickup->location->id).'?order='.$order->id }}';
+                    }
+                })
+
+                $('.swal2-cancel').css('margin-right','1rem')
+
+            })
+        });
+
+
+
+
+        $(document).ready(function() {
+            var div = '<div class="card-body d-flex flex-column">'+
+                '  <p class="mt-16pt text-70 flex">{{ $order->location->apartment }} {{ $order->location->building }}, {{ $order->location->street }}, {{ $order->location->state->name }}, {{ $order->location->country->name }}</p>'+
+                '  <div class="mb-16pt d-none">'+
+                ' <div class="d-flex align-items-center">'+
+                '      <span class="material-icons icon-16pt text-50 mr-8pt">check</span>'+
+                '      <p class="flex text-50 lh-1 mb-0"><small>Fundamentals of working with WordPress</small></p>'+
+                '   </div>'+
+                '   <div class="d-flex align-items-center">'+
+                '       <span class="material-icons icon-16pt text-50 mr-8pt">check</span>'+
+                '       <p class="flex text-50 lh-1 mb-0"><small>Create complete WordPress applications</small></p>'+
+                '  </div>'+
+                '  <div class="d-flex align-items-center">'+
+                '      <span class="material-icons icon-16pt text-50 mr-8pt">check</span>'+
+                '      <p class="flex text-50 lh-1 mb-0"><small>Working with the WordPress CLI</small></p>'+
+                '   </div>'+
+                ' <div class="d-flex align-items-center">'+
+                '    <span class="material-icons icon-16pt text-50 mr-8pt">check</span>'+
+                '     <p class="flex text-50 lh-1 mb-0"><small>Understanding Dependency Injection</small></p>'+
+                '  </div>'+
+                '  <div class="d-flex align-items-center">'+
+                '    <span class="material-icons icon-16pt text-50 mr-8pt">check</span>'+
+                '    <p class="flex text-50 lh-1 mb-0"><small>Testing with WordPress</small></p>'+
+                '  </div>'+
+                '  </div>'+
+                '  <div class="row align-items-center">'+
+                '   <div class="col-auto">'+
+                '      <div class="d-flex align-items-center mb-4pt">'+
+                '          <span class="material-icons icon-16pt text-50 mr-4pt">apartment</span>'+
+                '          <p class="flex text-50 lh-1 mb-0"><small>Apartment: {{ $order->location->apartment }}</small></p>'+
+                '  </div>'+
+                '    <div class="d-flex align-items-center mb-4pt">'+
+                '      <span class="material-icons icon-16pt text-50 mr-4pt">home_work</span>'+
+                '       <p class="flex text-50 lh-1 mb-0"><small>Home: {{ $order->location->building }}</small></p>'+
+                '    </div>'+
+                '    <div class="d-flex align-items-center mb-4pt">'+
+                '        <span class="material-icons icon-16pt text-50 mr-4pt">local_convenience_store</span>'+
+                '        <p class="flex text-50 lh-1 mb-0"><small>Floor: {{ $order->location->floor }}</small></p>'+
+                '   </div>'+
+                '   <div class="d-flex align-items-center mb-4pt">'+
+                '      <span class="material-icons icon-16pt text-50 mr-4pt">car_repair</span>'+
+                '       <p class="flex text-50 lh-1 mb-0"><small>Street: {{ $order->location->street }}</small></p>'+
+                '    </div>'+
+                '    <div class="d-flex align-items-center mb-4pt">'+
+                '        <span class="material-icons icon-16pt text-50 mr-4pt">landscape</span>'+
+                '       <p class="flex text-50 lh-1 mb-0"><small>landmarks: {{ $order->location->landmarks }}</small></p>'+
+                ' </div>'+
+                ' </div>'+
+                ' <div class="col text-right"></div>'+
+                '</div>'+
+                '</div>';
+            $('#view_location1').on('click',function () {
+
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-danger'
+                    },
+                    buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                    title: "{{ $order->location->name }}",
+                    html: div,
+                    imageUrl: '{{ asset('backend/images/icon/map.png') }}',
+                    imageWidth: 64,
+                    imageHeight: 64,
+                    imageAlt: 'Custom image',
+                    showCancelButton: true,
+                    confirmButtonText: '<i class="material-icons icon--left">edit</i> Change Location',
+                    cancelButtonText: '<i class="material-icons icon--left">edit</i> Edit Location',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = '{{ route('dashboard.orders.edit',$order->id) }}';
+                    } else if (
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        window.location = '{{ route('dashboard.locations.show',$order->location->id).'?order='.$order->id }}';
+                    }
+                })
+
+                $('.swal2-cancel').css('margin-right','1rem')
+
+            })
+        });
+
+    </script>
 @endsection

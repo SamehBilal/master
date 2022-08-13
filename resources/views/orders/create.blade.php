@@ -1907,11 +1907,12 @@
             </a>--}}
         </form>
     </div>
+
 @endsection
 
 @section('extra-scripts')
     @include('components.locations_ajax_order')
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         $(document).ready(function() {
@@ -1930,10 +1931,6 @@
                 var customer_div                                = '';
 
                 var name                                        = $('#name').val();
-                var email                                       = $('#email').val();
-                var phone                                       = $('#phone').val();
-                var secondary_phone                             = $('#secondary_phone').val();
-                var delivery_notes                              = $('#delivery_notes').val();
 
                 var location_id                                 = $('#location_id').val();
                 var location_div                                = '';
@@ -1947,25 +1944,13 @@
                 var landmarks                                   = $('#landmarks').val();
                 var working_hours                               = $("#customCheck1_customer").val();
 
-                /* Pickup */
-                var pickup_id                                   = $('#pickup_id').val();
-                var pickup_div                                  = '';
-
-                var scheduled_date                              = $('#scheduled_date').val();
-                var contact_id                                  = $('#contact_id').val();
-                var pickup_location_id                          = $('#pickup_location_id').val();
 
                 /* Cash Collection */
                 var cash_to_collect                             = $("#cash_to_collect").val();
-                var collect_cash                                = $("input[name='collect_cash']").val();//
-                var order_reference_cash_collection             = $("#order_reference_cash_collection").val();
 
                 /* Return */
                 var refund_amount                               = $('#refund_amount').val();
-                var with_refund                                 = $('input[name="with_refund"]').val();//
                 var no_of_items_return                          = $('#no_of_items_return').val();
-                var package_description_return                  = $('#package_description_return').val();
-                var order_reference_return                      = $('#order_reference_return').val();
                 var return_location                             = $('#return_location').val();
                 var return_location_div                         = '';
 
@@ -1980,14 +1965,9 @@
                 var working_hours_return                        = $('#working_hours_return').val();
 
                 /* Exchange */
-                var with_cash_difference                        = $('input[name="with_cash_difference"]').val();//
                 var cash_exchange_amount                        = $('#cash_exchange_amount').val();
                 var no_of_items_exchange                        = $('#no_of_items_exchange').val();
-                var package_description_exchange                = $('#package_description_exchange').val();
-                var order_reference_exchange                    = $('#order_reference_exchange').val();
-                var customCheck1_allow                          = $('#customCheck1_allow').val();
                 var no_of_items_of_return_package_exchange      = $('#no_of_items_of_return_package_exchange').val();
-                var package_description_return_package_exchange = $('#package_description_return_package_exchange').val();
                 var return_location_exchange                    = $('#return_location_exchange').val();
                 var exchange_location_div                       = '';
 
@@ -2002,35 +1982,8 @@
                 var working_hours_exchange                      = $('#working_hours_exchange').val();
 
                 /* Deliver */
-                var with_cash_collection                        = $('input[name="with_cash_collection"]').val();//
                 var cash_on_delivery                            = $('#cash_on_delivery').val();
-                var radio_stacked                               = $('input[name="radio_stacked"]').val();//
-                var light_bulky                                 = $('input[name="light_bulky"]').val();//
-                var package_description                         = $('#package_description').val();
                 var no_of_items                                 = $('#no_of_items').val();
-                var order_reference                             = $('#order_reference').val();
-                var open_package                                = $('input[name="open_package"]').val();
-
-                if(!pickup_id)
-                {
-                    pickup_div = 'Scheduled date: '+scheduled_date+'\n'+
-                        'Contact id: '+contact_id+'\n'+
-                        'Pickup location id: '+pickup_location_id+'\n';
-                }else{
-                    pickup_div = 'Pickup location id: '+pickup_location_id+'\n';
-                }
-
-                if(!customer)
-                {
-                    customer_div = 'Name: '+name+'\n'+
-                        'Email: '+email+'\n'+
-                        'Phone: '+phone+'\n'+
-                        'Secondary phone: '+secondary_phone+'\n'+
-                        'Delivery notes: '+delivery_notes+'\n';
-                }else{
-                    customer_div = 'Customer: '+customer+'\n'+
-                        'Delivery notes: '+delivery_notes+'\n';
-                }
 
                 if(!return_location)
                 {
@@ -2077,73 +2030,136 @@
                     location_div = 'Location: '+location_id+'\n';
                 }
 
+                /*var customer_name = 'd';
+                $.ajax({
+                    url:'{{ route('dashboard.get.customer') }}',
+                    method:'GET',
+                    data: {
+                        customer:customer,
+                    },
+                    success:function (data) {
+                        customer_name = data.name;
+                    },
+                    error: function(result) {
+                        //
+                    }
+                });*/
+
+                if(!customer)
+                {
+                    customer_div = name;
+                }else{
+                    customer_div = customer;
+                }
+
                 var div = '';
+                var order_name = '{{ \Illuminate\Support\Facades\Auth::user()->full_name }}';
                 switch(type) {
                     case 'Deliver':
-                        div = 'Type: '+type+'\n'+
-                            'Cash on delivery: '+cash_on_delivery+'\n'+
-                            'With/without cash collection: '+with_cash_collection+'\n'+
-                            'Package type: '+radio_stacked+'\n'+
-                            'Light or Heavy bulky: '+light_bulky+'\n'+
-                            'Package description: '+package_description+'\n'+
-                            'Number of items: '+no_of_items+'\n'+
-                            'Order reference: '+order_reference+'\n'+
-                            'Open package: '+open_package+'\n';
+
+                        div = "<table class='container text-center border' style='text-align: center'>" +
+                            "<tr class='border'> <td class='border'>Type</td> <td class='border'>"+type+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>From:</td> <td class='border'>"+order_name+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>To:</td> <td class='border'>"+customer_div+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>State:</td> <td class='border'>"+state_id+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>City:</td> <td class='border'>"+city_id+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>Address:</td> <td class='border'>"+apartment+","+floor+","+building+","+street+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>COD:</td> <td class='border'>"+cash_on_delivery+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>No of items:</td> <td class='border'>"+no_of_items+"</td> </tr> " +
+                            "</table>";
                         break;
                     case 'Exchange':
-                        div = 'Type: '+type+'\n'+
-                            'Cash exchange amount: '+cash_exchange_amount+'\n'+
-                            'With/without cash difference: '+with_cash_difference+'\n'+
-                            'Number of items: '+no_of_items_exchange+'\n'+
-                            'Delivery package description: '+package_description_exchange+'\n'+
-                            'Order reference: '+order_reference_exchange+'\n'+
-                            'Allow to open package: '+customCheck1_allow+'\n'+
-                            'Number of return items: '+no_of_items_of_return_package_exchange+'\n'+
-                            'Open package: '+package_description_return_package_exchange+'\n';
+
+                        div = "<table class='container text-center border' style='text-align: center'>" +
+                            "<tr class='border'> <td class='border'>Type</td> <td class='border'>"+type+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>From:</td> <td class='border'>"+order_name+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>To:</td> <td class='border'>"+customer_div+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>State:</td> <td class='border'>"+state_id+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>City:</td> <td class='border'>"+city_id+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>Address:</td> <td class='border'>"+apartment+","+floor+","+building+","+street+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>COD:</td> <td class='border'>"+cash_exchange_amount+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>No of items:</td> <td class='border'>"+no_of_items_exchange+"</td> </tr> " +
+                            "</table>";
                         break;
                     case 'Return':
-                        div = 'Type: '+type+'\n'+
-                            'Refund amount: '+refund_amount+'\n'+
-                            'With/without refund: '+with_refund+'\n'+
-                            'Number of return items: '+no_of_items_return+'\n'+
-                            'Package description: '+package_description_return+'\n'+
-                            'Order reference: '+order_reference_return+'\n';
+
+                        div = "<table class='container text-center border' style='text-align: center'>" +
+                            "<tr class='border'> <td class='border'>Type</td> <td class='border'>"+type+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>From:</td> <td class='border'>"+order_name+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>To:</td> <td class='border'>"+customer_div+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>State:</td> <td class='border'>"+state_id+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>City:</td> <td class='border'>"+city_id+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>Address:</td> <td class='border'>"+apartment+","+floor+","+building+","+street+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>COD:</td> <td class='border'>"+refund_amount+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>No of items:</td> <td class='border'>"+no_of_items_return+"</td> </tr> " +
+                            "</table>";
                         break;
                     case 'Cash Collection':
-                        div = 'Type: '+type+'\n'+
-                            'Cash to collect: '+cash_to_collect+'\n'+
-                            'Collect cash or refund: '+collect_cash+'\n'+
-                            'Order reference: '+order_reference_cash_collection+'\n';
+
+                        div = "<table class='container text-center border' style='text-align: center'>" +
+                            "<tr class='border'> <td class='border'>Type</td> <td class='border'>"+type+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>From:</td> <td class='border'>"+order_name+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>To:</td> <td class='border'>"+customer_div+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>State:</td> <td class='border'>"+state_id+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>City:</td> <td class='border'>"+city_id+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>Address:</td> <td class='border'>"+apartment+","+floor+","+building+","+street+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>COD:</td> <td class='border'>"+cash_to_collect+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>No of items:</td> <td class='border'>"+no_of_items_exchange+"</td> </tr> " +
+                            "</table>";
                         break;
                     default:
-                        div = '';
+                        div = "<table class='container text-center border' style='text-align: center'>" +
+                            "<tr class='border'> <td class='border'>Type</td> <td class='border'>"+type+"</td> </tr>" +
+                            "<tr class='border'> <td class='border'>From:</td> <td class='border'>Sameh</td> </tr>" +
+                            "<tr class='border'> <td class='border'>To:</td> <td class='border'>Mohamed</td> </tr>" +
+                            "<tr class='border'> <td class='border'>State:</td> <td class='border'>Cairo</td> </tr>" +
+                            "<tr class='border'> <td class='border'>City:</td> <td class='border'>Ataba</td> </tr>" +
+                            "<tr class='border'> <td class='border'>Address:</td> <td class='border'>12 mah st, jskdjahsd</td> </tr>" +
+                            "<tr class='border'> <td class='border'>COD:</td> <td class='border'>145</td> </tr>" +
+                            "<tr class='border'> <td class='border'>No of items:</td> <td class='border'>4</td> </tr> " +
+                            "</table>";
                 }
                 if(!customer && !name)
                 {
                     return false;
                 }
-                swal({
-                    title: "Are you sure?",
-                    text:'Order Details \n'+
-                        div+'\n'+
-                        return_location_div+'\n'+
-                        exchange_location_div+'\n'+
-                        'Customer Details \n'+
-                        customer_div+'\n'+
-                        'Customer\'s Location \n'+
-                        location_div+'\n'+
-                        pickup_div+'\n',
-                    icon: "warning",
-                    buttons: true,
-                    /*dangerMode: true,*/
-                }).then((willDelete) => {
-                    if (willDelete) {
-                        swal("Poof! Your has successfully submitted!", {
-                            icon: "success",
-                        });
+
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-danger'
+                    },
+                    buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                    title: "Order Details",
+                    html: div,
+                    imageUrl: '{{ asset('backend/images/paths/angular_430x168 copy.png') }}',
+                    imageWidth: 430,
+                    imageHeight: 168,
+                    imageAlt: 'Custom image',
+                    showCancelButton: true,
+                    confirmButtonText: 'Confirm!',
+                    cancelButtonText: 'Keep editing',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        swalWithBootstrapButtons.fire(
+                            'Confirmed!',
+                            'Your order has successfully submitted!".',
+                            'success'
+                        )
                         $('#order_form').submit();
+                    } else if (
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        //
                     }
-                });
+                })
+
+                $('.swal2-cancel').css('margin-right','1rem')
+
             })
         });
 

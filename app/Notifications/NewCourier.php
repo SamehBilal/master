@@ -39,7 +39,7 @@ class NewCourier extends Notification
      */
     public function via($notifiable)
     {
-        return ['database','mail'];
+        return ['database'/*,'mail'*/];
     }
 
     /**
@@ -66,6 +66,7 @@ class NewCourier extends Notification
             'order_id'          => $this->log->order_id,
             'pickup_id'         => $this->log->pickup_id,
             'courier_id'        => $this->log->courier_id,
+            'url'               => $this->url,
             'user'              => $notifiable,
         ];
     }

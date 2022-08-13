@@ -203,7 +203,7 @@
                                         <div class="media-body">
                                             <div class="d-flex flex-column">
                                                 <small class=""><strong>{{ date("F j, Y", strtotime($pickup->scheduled_date)) }}</strong></small>
-                                                <span class="">{{ date("g:i a", strtotime($pickup->scheduled_date)) }}</span>
+                                                <span class="">{{ date("g:i A", strtotime($pickup->scheduled_date)) }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -228,7 +228,7 @@
 
                                 <td>
                                     <div class="d-flex flex-column">
-                                        <small class=""><strong>{{ date("F j, Y", strtotime($pickup->created_at)) }}</strong></small>
+                                        <small class=""><strong>{{ date("F j, Y g:i A", strtotime($pickup->created_at)) }}</strong></small>
                                         <small class="text-50">{{ $pickup->created_at->diffForHumans() }}</small>
                                     </div>
                                 </td>

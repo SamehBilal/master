@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-@php $locale = session()->get('locale'); @endphp
+@php $locale = session()->get('locale');
+$user = \Illuminate\Support\Facades\Auth::user();
+   @endphp
 
 <html lang="en"
       dir="{{ $locale == 'ar' ? 'rtl':'ltr' }}">
@@ -67,8 +69,11 @@
     <!-- // END Drawer -->
 
 </div>
+@if($user->hasRole('customer'))
 
-@include('components.intercom')
+@else
+    @include('components.intercom')
+@endif
 
 <!-- // END Drawer Layout -->
 
