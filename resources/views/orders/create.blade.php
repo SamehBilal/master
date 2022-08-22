@@ -2030,27 +2030,15 @@
                     location_div = 'Location: '+location_id+'\n';
                 }
 
-                /*var customer_name = 'd';
-                $.ajax({
-                    url:'{{ route('dashboard.get.customer') }}',
-                    method:'GET',
-                    data: {
-                        customer:customer,
-                    },
-                    success:function (data) {
-                        customer_name = data.name;
-                    },
-                    error: function(result) {
-                        //
-                    }
-                });*/
 
-                if(!customer)
+               /* if(!customer)
                 {
                     customer_div = name;
-                }else{
-                    customer_div = customer;
-                }
+                }else{*/
+
+                /*}*/
+
+                alert(customer_div)
 
                 var div = '';
                 var order_name = '{{ \Illuminate\Support\Facades\Auth::user()->full_name }}';

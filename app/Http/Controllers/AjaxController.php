@@ -11,16 +11,15 @@ class AjaxController extends Controller
     public function customer(Request $request)
     {
         if ($request->ajax()) {
-            /*$id = $request->get('customer');
+            $id = $request->get('customer');
             $customer = Customer::find($id);
-            $name = $customer->user->full_name;*/
-            $name = 'sameh';
+            $name = $customer->user->full_name;
 
             $data = array(
                 'name' => $name,
             );
 
-            echo json_encode($data);
+            return json_encode($data);
         }
     }
 }

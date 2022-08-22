@@ -99,34 +99,38 @@ class TicketController extends Controller
     {
         if($request->ajax())
         {
-            $ticket = Ticket::find($id);
-            $files = '';
-            if ($ticket->files != ''){
-                $files_array = explode(",",$ticket->files);
-                foreach ($files_array as $file)
-                {
-                    $files .= '<a href="'.asset("storage/tickets/{$file}").'" target="_blank" class="align-items-center mt-2 text-decoration-0 px-3">
+            if($id){
+                $ticket = Ticket::find($id);
+                $files = '';
+                if ($ticket->files != ''){
+                    $files_array = explode(",",$ticket->files);
+                    foreach ($files_array as $file)
+                    {
+                        $files .= '<a href="'.asset("storage/tickets/{$file}").'" target="_blank" class="align-items-center mt-2 text-decoration-0 px-3">
                                                     <img src="'.asset("storage/tickets/{$file}").'" style="width:100px;height: 100px">
                                                 </a>';
+                    }
+                }else{
+                    $files = 'N/A';
                 }
-            }else{
-                $files = 'N/A';
-            }
 
-            $chat_li = '';
-            $chat_files1 = '';
-            $chat_files2 = '';
+                $chat_li = '';
+                $chat_files1 = '';
+                $chat_files2 = '';
+                $previousId1 = '';
+                $previousId2 = '';
 
-            foreach ($ticket->TicketChats as $chat)
-            {
-                if ($chat->user_id == $ticket->user_id)
+                foreach ($ticket->TicketChats as $chat)
                 {
-                    if ($chat->files)
+                    if ($chat->user_id == $ticket->user_id)
                     {
-                        $files_array = explode(",",$chat->files);
-                        foreach ($files_array as$file)
+                        if ($chat->files)
                         {
-                            $chat_files1 .= '<a href="'.asset("storage/tickets/messages/{$file}").'" target="_blank" class="media align-items-center mt-2 text-decoration-0 px-3">
+                            $files_array = explode(",",$chat->files);
+                            foreach ($files_array as $file)
+                            {
+                                if ($previousId2 != '' && $previousId2 != $chat->id) {
+                                    $chat_files1 = '<a href="'.asset("storage/tickets/messages/{$file}").'" target="_blank" class="media align-items-center mt-2 text-decoration-0 px-3">
                                             <span class="avatar mr-12pt">
                                                 <span class="avatar-title rounded-circle">
                                                     <i class="material-icons font-size-24pt">attach_file</i>
@@ -138,10 +142,26 @@ class TicketController extends Controller
                                                 <!-- <span class="text-50">5 MB</span> -->
                                             </span>
                                                 </a>';
-                        }
-                    }
+                                }else{
+                                    $chat_files1 .= '<a href="'.asset("storage/tickets/messages/{$file}").'" target="_blank" class="media align-items-center mt-2 text-decoration-0 px-3">
+                                            <span class="avatar mr-12pt">
+                                                <span class="avatar-title rounded-circle">
+                                                    <i class="material-icons font-size-24pt">attach_file</i>
+                                                </span>
+                                            </span>
+                                                    <span class="media-body"
+                                                          style="line-height: 1.5">
+                                                <span class="text-primary">'.$file.'</span><br>
+                                                <!-- <span class="text-50">5 MB</span> -->
+                                            </span>
+                                                </a>';
+                                }
 
-                    $chat_li .= '<li class="d-inline-flex" style="margin-left: auto">
+                            }
+                            $previousId2 = $chat->id;
+                        }
+
+                        $chat_li .= '<li class="d-inline-flex" style="margin-left: auto">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center">
@@ -166,12 +186,13 @@ class TicketController extends Controller
                                     </a>
                                 </div>
                             </li>';
-                }else{
-                    if ($chat->files){
-                        $files_array = explode(",",$chat->files);
+                    }else{
+                        if ($chat->files){
+                            $files_array = explode(",",$chat->files);
 
-                        foreach ($files_array as $file){
-                            $chat_files1 .= '<a href="'.asset("storage/tickets/messages/{$file}").'" target="_blank" class="media align-items-center mt-2 text-decoration-0 px-3">
+                            foreach ($files_array as $file){
+                                if ($previousId1 != '' && $previousId1 != $chat->id) {
+                                    $chat_files2 = '<a href="'.asset("storage/tickets/messages/{$file}").'" target="_blank" class="media align-items-center mt-2 text-decoration-0 px-3">
                                             <span class="avatar mr-12pt">
                                                 <span class="avatar-title rounded-circle">
                                                     <i class="material-icons font-size-24pt">attach_file</i>
@@ -183,14 +204,30 @@ class TicketController extends Controller
                                                 <!-- <span class="text-50">5 MB</span> -->
                                             </span>
                                                 </a>';
-                        }
-                    }
+                                }else{
+                                    $chat_files2 .= '<a href="'.asset("storage/tickets/messages/{$file}").'" target="_blank" class="media align-items-center mt-2 text-decoration-0 px-3">
+                                            <span class="avatar mr-12pt">
+                                                <span class="avatar-title rounded-circle">
+                                                    <i class="material-icons font-size-24pt">attach_file</i>
+                                                </span>
+                                            </span>
+                                                    <span class="media-body"
+                                                          style="line-height: 1.5">
+                                                <span class="text-primary">'.$file.'</span><br>
+                                                <!-- <span class="text-50">5 MB</span> -->
+                                            </span>
+                                                </a>';
+                                }
 
-                    $chat_li .= '<li class="d-inline-flex">
+                            }
+                            $previousId1 = $chat->id;
+                        }
+
+                        $chat_li .= '<li class="d-inline-flex">
                                 <div style="margin-right: 1rem;">
                                     <a href="profile.html"
                                        class="avatar avatar-sm">
-                                        <img src="{{asset(\'backend/images/people/110/guy-6.jpg\')}}"
+                                        <img src="'.asset("backend/images/people/110/guy-6.jpg").'"
                                              alt="people"
                                              class="avatar-img rounded-circle">
                                     </a>
@@ -211,10 +248,10 @@ class TicketController extends Controller
                                     </div>
                                 </div>
                             </li>';
+                    }
                 }
-            }
 
-            $html = '<li>
+                $html = '<li>
                         <div class="card-body d-flex align-items-center" style="text-align: center;border-bottom:1px solid #ebedf0">
                             <div class="flex">
                                 <p class="text-50 mb-0">'.__('dashboard.Tracking Number').'</p>
@@ -230,10 +267,11 @@ class TicketController extends Controller
                     </li>'.$chat_li.'
                     ';
 
-            $data = array(
-                'html' => $html,
-            );
-            echo json_encode($data);
+                $data = array(
+                    'html' => $html,
+                );
+                echo json_encode($data);
+            }
         }
     }
 

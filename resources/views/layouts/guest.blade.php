@@ -17,8 +17,32 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body>
-        <div class="font-sans text-gray-900 antialiased">
+        <div class="font-sans text-gray-900 antialiased " >
             {{ $slot }}
         </div>
+
+        <!-- jQuery -->
+        <script src="{{ asset('backend/vendor/jquery.min.js') }}"></script>
+
+        <script>
+            /* Exchange */
+            $('#select03').on('change',function () {
+                var id = $(this).val();
+                $.ajax({
+                    url: '{{ route('dashboard.locations.cities') }}',
+                    method: 'GET',
+                    dataType: 'json',
+                    data:{
+                        id:id
+                    },
+                    success:function(data){
+                        $('#select02').html(data.html).attr('disabled',false);
+                    },
+                    error:function () {
+                        alert('something went wrong');
+                    }
+                });
+            })
+        </script>
     </body>
 </html>

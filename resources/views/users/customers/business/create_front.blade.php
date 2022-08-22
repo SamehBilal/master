@@ -1,6 +1,7 @@
 <x-guest-layout>
-    <x-auth-card>
+    <x-auth-card >
         <x-slot name="logo">
+            <br><br>
             <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
             </a>
@@ -43,7 +44,7 @@
                             class="rounded-md shadow-sm border-gray-300  form-control form-control-sm @error('industry') is-invalid @enderror"
                             name="industry">
                         @foreach($categories as $category)
-                            <option value="{{ $category }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                            <option value="{{ $category }}" >
                                 {{ $category }}
                             </option>
                         @endforeach
@@ -61,16 +62,16 @@
                             data-minimum-results-for-search="-1"
                             class="rounded-md shadow-sm border-gray-300  form-control form-control-sm @error('sales_channel') is-invalid @enderror"
                             name="sales_channel">
-                        <option value="Facebook" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                        <option value="Facebook" >
                             Facebook
                         </option>
-                        <option value="Instagram" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                        <option value="Instagram" >
                             Instagram
                         </option>
-                        <option value="Website" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                        <option value="Website" >
                             Website
                         </option>
-                        <option value="Marketplace" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                        <option value="Marketplace" >
                             Marketplace
                         </option>
                     </select>
@@ -114,15 +115,15 @@
 
             <!-- Store URL -->
             <div class="mt-4">
-                <x-label for="select05" :value=" __('dashboard.Sates') " />
+                <x-label for="select03" :value=" __('dashboard.State') " />
 
-                <select id="select05"
+                <select id="select03"
                         data-toggle="select"
                         data-minimum-results-for-search="-1"
                         class="rounded-md shadow-sm border-gray-300  form-control form-control-sm @error('state_id') is-invalid @enderror"
                         name="state_id">
                     @foreach($states as $state)
-                        <option value="{{ $state->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                        <option value="{{ $state->id }}">
                             {{ $state->name }}
                         </option>
                     @endforeach
@@ -131,15 +132,15 @@
 
             <!-- Store URL -->
             <div class="mt-4">
-                <x-label for="select05" :value=" __('dashboard.Cities') " />
+                <x-label for="select02" :value=" __('dashboard.City') " />
 
-                <select id="select05"
+                <select id="select02"
                         data-toggle="select"
                         data-minimum-results-for-search="-1"
                         class="rounded-md shadow-sm border-gray-300  form-control form-control-sm @error('city_id') is-invalid @enderror"
                         name="city_id">
                     @foreach($cities as $city)
-                        <option value="{{ $city->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
+                        <option value="{{ $city->id }}" >
                             {{ $city->name }}
                         </option>
                     @endforeach
