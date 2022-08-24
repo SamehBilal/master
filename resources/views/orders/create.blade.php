@@ -2031,14 +2031,26 @@
                 }
 
 
-               /* if(!customer)
+                if(!customer)
                 {
                     customer_div = name;
-                }else{*/
+                }else{
+                    $.ajax({
+                        url:'{{ route('dashboard.get.customer') }}',
+                        method:'GET',
+                        dataType: 'json',
+                        data: {
+                            customer:customer,
+                        },
+                        success:function (data) {
+                            customer_div = data.name;
+                        },
+                        error: function(result) {
+                            //
+                        }
+                    });
+                }
 
-                /*}*/
-
-                alert(customer_div)
 
                 var div = '';
                 var order_name = '{{ \Illuminate\Support\Facades\Auth::user()->full_name }}';

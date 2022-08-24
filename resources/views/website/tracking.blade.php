@@ -429,7 +429,7 @@
                                 <h1>{{ __('content.Timeline') }}</h1>
 
                                 <ul class="timeline">
-                                    @foreach($order->log as $log)
+                                    @foreach($order->customerlog as $log)
                                         <li class="event {{ str_replace(' ', '-', $log->status ) }}" data-date="2005">
                                             <h3>{{ date("F j, Y g:i A", strtotime($log->created_at)) }}</h3>
                                             <p>"{{ $log->notes }}" 📣</p>
@@ -695,7 +695,7 @@
                                 <h1>{{ __('content.Timeline') }}</h1>
 
                                 <ul class="timeline">
-                                    @foreach($order->log as $log)
+                                    @foreach($order->customerlog as $log)
                                         <li class="event {{ str_replace(' ', '-', $log->status ) }}" data-date="2005">
                                             <h3>{{ date("F j, Y g:i A", strtotime($log->created_at)) }}</h3>
                                             <p>"{{ $log->description }}" 📣</p>

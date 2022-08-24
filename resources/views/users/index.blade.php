@@ -256,8 +256,12 @@
                                 </td>
                                 <td class="text-right">
                                     @can('edit users')
-                                        <a href="{{ route('dashboard.users.edit',$user->id) }}" {{--data-toggle="dropdown"--}}
-                                            class="btn text-50  text-70"><i class="material-icons ">edit</i> </a>
+                                        <a href="{{ route('dashboard.users.edit',$user->id) }}" title="Edit" {{--data-toggle="dropdown"--}}
+                                            class="btn text-50  text-70" style="padding: 0!important;"><i class="material-icons ">edit</i> </a>
+                                    @endcan
+                                    @can('edit users')
+                                        <a href="{{ route('dashboard.users.login',$user->id) }}" title="Login as" {{--data-toggle="dropdown"--}}
+                                            class="btn text-50  text-70" style="padding: 0!important;"><i class="material-icons">exit_to_app</i> </a>
                                     @endcan
                                 </td>
                             </tr>

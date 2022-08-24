@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::resource('orders/{order}/order-customer-logs',\App\Http\Controllers\customerlogController::class); //Order logs
             Route::resource('pickups/{pickup}/pickup-logs',\App\Http\Controllers\PickupLogController::class); //Pickup logs
             Route::resource('pickups/{pickup}/pickup-customer-logs',\App\Http\Controllers\PickupCustomerLogController::class); //Pickup logs
+            Route::get('users/login-as/{id}',[\App\Http\Controllers\UserController::class,'login'])->name('users.login'); //Login
             Route::get('orders/create/multi',[\App\Http\Controllers\OrderMultiController::class,'index'])->name('orders.create.multi'); //Multi Orders
             Route::post('orders/create/multi',[\App\Http\Controllers\OrderMultiController::class,'store'])->name('orders.create.multi.store'); //Multi Orders
             Route::get('orders/{order}/courier/',[\App\Http\Controllers\CourierLogsController::class,'create_order'])->name('orders.courier'); //Courier

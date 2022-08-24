@@ -177,4 +177,23 @@ class UserController extends Controller
         User::destroy($user->id);
         return redirect()->route('dashboard.users.index')->with('success','Data deleted successfully');
     }
+
+    public function login($id)
+    {
+        $user = User::find($id);
+        $user->loadCount('roles');
+
+        if($user->roles_count < 1)
+        {
+            return redirect()->back();
+        }
+        if($id == Auth::user()->id)
+        {
+            return redirect()->back();
+        }
+        Auth::logout();
+        Auth::loginUsingId($id, true);
+
+        return redirect('dashboard');
+    }
 }
