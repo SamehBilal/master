@@ -469,7 +469,7 @@
                                         <div class="mb-3">{!! DNS1D::getBarcodeHTML($order->tracking_no, 'C128') !!} <h5 class="text-spacing">{{ $order->tracking_no }}</h5></div>
 
                                         {{--<div class="text-label">Notes</div>--}}
-                                        <p class="text-muted">We appreciate your business. Should you need us to add VAT or extra notes let us know!</p>
+                                        <p class="text-muted">{{ __('dashboard.We appreciate your business. Should you need us to add VAT or extra notes let us know!') }}</p>
                                     </div>
                                 </div>
                             </div>

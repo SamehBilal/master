@@ -2,12 +2,12 @@
 @php $locale = session()->get('locale'); @endphp
 
 @section('title')
-    Tracking No. {{ $order->tracking_no }}
+    {{ __('dashboard.Tracking_No') }} {{ $order->tracking_no }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('dashboard.orders.index') }}">Orders</a>
+        <a href="{{ route('dashboard.orders.index') }}">{{ __('dashboard.Orders') }}</a>
     </li>
     <li class="breadcrumb-item active">
         {{ $order->tracking_no }}
@@ -23,7 +23,7 @@
 @endsection
 
 @section('button-title')
-    All Orders
+    {{ __('dashboard.All_orders') }}
 @endsection
 
 @section('main_content')
@@ -37,7 +37,7 @@
                         <p class="text-70 mb-24pt">{{ $log ? $log->description:'' }}</p>
                         @can('edit log')
                         <a href="{{ route("dashboard.order-logs.index",$order->id) }}"
-                           class="btn btn-primary">Order Logs</a>
+                           class="btn btn-primary">{{ __('dashboard.Order Logs') }}</a>
                         @endcan
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                     <div class="col-lg-7">
 
                         <div class="page-separator">
-                            <div class="page-separator__text">Couriers</div>
+                            <div class="page-separator__text">{{ __('dashboard.Couriers') }}</div>
                         </div>
 
                         <div class="">
@@ -92,7 +92,7 @@
                                         <div class="d-flex">
                                             <div class="flex">
                                                 <a class="card-title mb-4pt"
-                                                   href="#">Couriers</a>
+                                                   href="#">{{ __('dashboard.Couriers') }}</a>
                                             </div>
                                             <a href="#"
                                                class="ml-4pt material-icons text-20 card-course__icon-favorite">arrow_forward</a>
@@ -231,14 +231,14 @@
                     <div class=" @can('edit courier') col-lg-5 @else col-lg-12 @endcan">
 
                         <div class="page-separator">
-                            <div class="page-separator__text">Codes</div>
+                            <div class="page-separator__text">{{ __('dashboard.Codes') }}</div>
                         </div>
 
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex align-items-center">
                                     <div class="flex">
-                                        <strong class="card-title">Codes</strong>
+                                        <strong class="card-title">{{ __('dashboard.Codes') }}</strong>
                                     </div>
                                 </div>
                             </div>

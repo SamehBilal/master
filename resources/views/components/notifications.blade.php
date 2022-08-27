@@ -39,7 +39,7 @@
                                         </span>
                                         <span class="flex d-flex flex-column">
 
-                                            <span class="text-black-70">A new business from {{ DB::table('users')->where('id',$note['data']['business_user_id'])->value('full_name') }}</span>
+                                            <span class="text-black-70">{{ __('dashboard.A new business from') }} {{ DB::table('users')->where('id',$note['data']['business_user_id'])->value('full_name') }}</span>
                                         </span>
                                     </span>
                                 </a>
@@ -62,7 +62,7 @@
                                         </span>
                                         <span class="flex d-flex flex-column">
 
-                                            <span class="text-black-70">A new contact form from {{ $note['data']['name'] }}</span>
+                                            <span class="text-black-70">{{ __('dashboard.A new contact form from') }}{{ $note['data']['name'] }}</span>
                                         </span>
                                     </span>
                                 </a>
@@ -84,8 +84,12 @@
                                             </span>
                                         </span>
                                         <span class="flex d-flex flex-column">
-
-                                            <span class="text-black-70">A new <a href="{{ $note['data']['url'] }}">order/pickup</a> has been assigned to you.</span>
+                                            @php $locale = session()->get('locale'); @endphp
+                                            @if($locale == 'ar')
+                                                <span class="text-black-70"> <a href="{{ $note['data']['url'] }}">طلب/طلب التقاط</a>  جديد تم تعيينه لك</span>
+                                            @else
+                                                <span class="text-black-70">A new <a href="{{ $note['data']['url'] }}">order/pickup</a> has been assigned to you.</span>
+                                            @endif
                                         </span>
                                     </span>
                                 </a>
@@ -108,7 +112,7 @@
                                         </span>
                                         <span class="flex d-flex flex-column">
 
-                                            <span class="text-black-70">A new order from {{ DB::table('users')->where('id',$note['data']['business_user_id'])->value('full_name') }}</span>
+                                            <span class="text-black-70">{{ __('dashboard.A new order from') }} {{ DB::table('users')->where('id',$note['data']['business_user_id'])->value('full_name') }}</span>
                                         </span>
                                     </span>
                                 </a>
@@ -131,7 +135,7 @@
                                         </span>
                                         <span class="flex d-flex flex-column">
 
-                                            <span class="text-black-70">Your order has been created successfully with the tracking no. of ({{ $note['data']['tracking_no'] }})</span>
+                                            <span class="text-black-70">{{ __('dashboard.Your order has been created') }} ({{ $note['data']['tracking_no'] }})</span>
                                         </span>
                                     </span>
                                 </a>
@@ -154,7 +158,7 @@
                                         </span>
                                         <span class="flex d-flex flex-column">
 
-                                            <span class="text-black-70">A new pickup from {{ DB::table('users')->where('id',$note['data']['business_user_id'])->value('full_name') }}</span>
+                                            <span class="text-black-70">{{ __('dashboard.A new pickup from') }} {{ DB::table('users')->where('id',$note['data']['business_user_id'])->value('full_name') }}</span>
                                         </span>
                                     </span>
                                 </a>
@@ -177,7 +181,7 @@
                                         </span>
                                         <span class="flex d-flex flex-column">
 
-                                            <span class="text-black-70">Your pickup has been created successfully with the tracking no. of ({{ $note['data']['pickup_id'] }})</span>
+                                            <span class="text-black-70">{{ __('dashboard.Your pickup has been created') }} ({{ $note['data']['pickup_id'] }})</span>
                                         </span>
                                     </span>
                                 </a>
@@ -200,7 +204,7 @@
                                         </span>
                                         <span class="flex d-flex flex-column">
 
-                                            <span class="text-black-70">A new subscribe from {{ $note['data']['email'] }}</span>
+                                            <span class="text-black-70">{{ __('dashboard.A new subscribe from') }} {{ $note['data']['email'] }}</span>
                                         </span>
                                     </span>
                                 </a>
@@ -223,7 +227,7 @@
                                         </span>
                                         <span class="flex d-flex flex-column">
 
-                                            <span class="text-black-70">A new ticket from {{ DB::table('users')->where('id',$note['data']['user_id'])->value('full_name') }} </span>
+                                            <span class="text-black-70">{{ __('dashboard.A new ticket from') }} {{ DB::table('users')->where('id',$note['data']['user_id'])->value('full_name') }} </span>
                                         </span>
                                     </span>
                                 </a>
@@ -246,7 +250,7 @@
                                         </span>
                                         <span class="flex d-flex flex-column">
 
-                                            <span class="text-black-70">A new ticket message from {{ DB::table('users')->where('id',$note['data']['user_id'])->value('full_name') }}</span>
+                                            <span class="text-black-70">{{ __('dashboard.A new ticket message from') }} {{ DB::table('users')->where('id',$note['data']['user_id'])->value('full_name') }}</span>
                                         </span>
                                     </span>
                                 </a>
@@ -269,7 +273,7 @@
                                         </span>
                                         <span class="flex d-flex flex-column">
 
-                                            <span class="text-black-70">A new user has been created with the email of ({{ $note['data']['email'] }})</span>
+                                            <span class="text-black-70">{{ __('dashboard.A new user has been created with the email of') }} ({{ $note['data']['email'] }})</span>
                                         </span>
                                     </span>
                                 </a>
@@ -292,7 +296,7 @@
                                         </span>
                                         <span class="flex d-flex flex-column">
 
-                                            <span class="text-black-70">A new order log for ({{ $note['data']['order_tracking_no'] }})</span>
+                                            <span class="text-black-70">{{ __('dashboard.A new order log for') }} ({{ $note['data']['order_tracking_no'] }})</span>
                                         </span>
                                     </span>
                                 </a>
@@ -315,7 +319,7 @@
                                         </span>
                                         <span class="flex d-flex flex-column">
 
-                                            <span class="text-black-70">Order with tracking No. ({{ $note['data']['tracking_no'] }}) has been updated</span>
+                                            <span class="text-black-70">{{ __('Order with tracking No.') }} ({{ $note['data']['tracking_no'] }}) {{ __('dashboard.has been updated') }}</span>
                                         </span>
                                     </span>
                                 </a>
@@ -338,7 +342,7 @@
                                         </span>
                                         <span class="flex d-flex flex-column">
 
-                                            <span class="text-black-70">Pickup with tracking No. ({{ $note['data']['pickup_id'] }}) has been updated</span>
+                                            <span class="text-black-70">{{ __('Pickup with tracking No.') }} ({{ $note['data']['pickup_id'] }}) {{ __('dashboard.has been updated') }}</span>
                                         </span>
                                     </span>
                                 </a>
@@ -361,7 +365,7 @@
                                         </span>
                                         <span class="flex d-flex flex-column">
 
-                                            <span class="text-black-70">Ticket with tracking No. ({{ $note['data']['tracking_number'] }}) has been updated</span>
+                                            <span class="text-black-70">{{ __('Ticket with tracking No.') }} ({{ $note['data']['tracking_number'] }}) {{ __('dashboard.has been updated') }}</span>
                                         </span>
                                     </span>
                                 </a>

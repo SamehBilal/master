@@ -15,11 +15,11 @@
 @endsection
 
 @section('button-icon')
-    format_list_bulleted
+    dashboard
 @endsection
 
 @section('button-title')
-{{ __('dashboard.All Contact Form') }}
+{{ __('dashboard.Dashboard') }}
 @endsection
 
 @section('main_content')

@@ -25,7 +25,7 @@
 
                         </span>
 
-        <span class="d-none d-lg-block">{{ config('app.name', 'Laravel') }}</span>
+        <span class="d-none d-lg-block">{{ config('app.name', 'Droplin') }}</span>
     </a>
 
     {{--<ul class="nav navbar-nav d-none d-sm-flex flex justify-content-start ml-8pt">

@@ -28,7 +28,7 @@
 
                             </span>
 
-                <span>{{ config('app.name', 'Laravel') }}</span>
+                <span>{{ config('app.name', 'Droplin') }}</span>
             </a>
 
             <div class="sidebar-heading">{{ __('dashboard.Application') }}</div>

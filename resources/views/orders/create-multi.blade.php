@@ -34,10 +34,10 @@
                     <div class="page-separator">
                         <div class="page-separator__text">{{ __('dashboard.Upload Multiple Orders') }}</div>
                     </div>
-                    <p class="card-subtitle text-70 mb-16pt mb-lg-0">Follow these steps to upload your oders:</p>
+                    <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.Follow these steps to upload your orders') }}:</p>
                     <ol>
-                        <li><a href="{{ asset('backend/files/Droplin Upload Template.xlsx') }}">Download</a> the mass upload template.</li>
-                        <li>Learn how to fill-in the template with your orders.</li>
+                        <li><a href="{{ asset('backend/files/Droplin Upload Template.xlsx') }}">{{ __('dashboard.Download') }}</a> {{ __('dashboard.the mass upload template.') }}</li>
+                        <li>{{ __('dashboard.Learn how to fill-in the template with your orders.') }}</li>
                     </ol>
                 </div>
 

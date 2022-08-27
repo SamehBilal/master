@@ -109,8 +109,16 @@
         font-family: "Cairo", serif;!important;
 
     }
-    @else
 
+    #DataTables_Table_0_info{
+        position: absolute;
+        left: 0!important;
+    }
+    @else
+    #DataTables_Table_0_info{
+        position: absolute;
+        right: 0!important;
+    }
     @endif
     .swal-modal .swal-text {
         text-align: center;
