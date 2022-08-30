@@ -1,4 +1,5 @@
 @extends('layouts.backend')
+@php $locale = session()->get('locale'); @endphp
 
 @section('title')
 {{ __('dashboard.deals') }}
@@ -91,7 +92,7 @@
                                                     <div class="media-body">
 
                                                         <div class="d-flex flex-column">
-                                                            <p class="mb-0"><strong class="js-lists-values-title">{{ $deal->en_title }}</strong></p>
+                                                            <p class="mb-0"><strong class="js-lists-values-title">{{ $locale == 'ar' ? $deal->ar_title:$deal->en_title }}</strong></p>
                                                             {{--<small class="js-lists-values-rate text-50">{{ $deal->rate }}</small>--}}
                                                         </div>
 
@@ -100,7 +101,7 @@
 
                                             </td>
 
-                                            <td class="js-lists-values-available small">{{ $deal->status }}</td>
+                                            <td class="js-lists-values-available small">{{ ($deal->status == 'Public' ? ($locale == 'ar' ? 'عام':'Public'):($locale == 'ar' ? 'خاص':'Private')) }}</td>
 
                                             <td class=" js-lists-values-created small">
                                                 <div class="d-flex flex-column">
@@ -113,11 +114,11 @@
                                                    class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     @can('edit deals')
-                                                        <a href="{{ route('dashboard.deals.edit',$deal->id) }}" class="dropdown-item active"><i class="material-icons ">edit</i> Edit</a>
+                                                        <a href="{{ route('dashboard.deals.edit',$deal->id) }}" class="dropdown-item active"><i class="material-icons ">edit</i> {{ __('dashboard.Edit') }}</a>
                                                     @endcan
                                                     @can('delete deals')
                                                         <div class="dropdown-divider"></div>
-                                                        <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $deal->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
+                                                        <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $deal->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> {{ __('dashboard.Delete') }}</a>
                                                         <form id="delete-form{{ $deal->id }}" action="{{ route('dashboard.deals.destroy',$deal->id) }}" method="POST" class="d-none">
                                                             @csrf
                                                             @method('DELETE')

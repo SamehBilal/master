@@ -1,7 +1,8 @@
 @extends('layouts.backend')
+@php $locale = session()->get('locale'); @endphp
 
 @section('title')
-    {{ $deal->en_title }}
+    {{ $locale == 'ar' ? $deal->ar_title:$deal->en_title }}
 @endsection
 
 @section('links')
@@ -9,7 +10,7 @@
         <a href="{{ route('dashboard.deals.index') }}">{{ __('dashboard.deals') }}</a>
     </li>
     <li class="breadcrumb-item ">
-        <a href="{{ route('dashboard.deals.show',$deal->id) }}">{{ $deal->en_title }}</a>
+        <a href="{{ route('dashboard.deals.show',$deal->id) }}">{{ $locale == 'ar' ? $deal->ar_title:$deal->en_title }}</a>
     </li>
     <li class="breadcrumb-item active">
         {{ __('dashboard.edit') }}

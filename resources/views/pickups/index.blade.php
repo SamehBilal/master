@@ -238,14 +238,15 @@
                                        class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         @can('show pickups')
-                                            <a href="{{ route('dashboard.pickups.show',$pickup->id) }}" class="dropdown-item"><i class="material-icons ">visibility</i> View</a>
+                                            <a href="{{ route('dashboard.pickups.show',$pickup->id) }}" class="dropdown-item"><i class="material-icons ">visibility</i> {{ __('dashboard.View') }}</a>
                                         @endcan
                                         @can('edit pickups')
-                                            <a href="{{ route('dashboard.pickups.edit',$pickup->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> Edit</a>
+                                            <a href="{{ route('dashboard.pickups.edit',$pickup->id) }}" class="dropdown-item"><i class="material-icons ">edit</i>
+                                                {{ __('dashboard.Edit') }}</a>
                                         @endcan
                                         @can('delete pickups')
                                             <div class="dropdown-divider"></div>
-                                            <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $pickup->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
+                                            <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $pickup->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> {{ __('dashboard.Delete') }}</a>
                                             <form id="delete-form{{ $pickup->id }}" action="{{ route('dashboard.pickups.destroy',$pickup->id) }}" method="POST" class="d-none">
                                                 @csrf
                                                 @method('DELETE')

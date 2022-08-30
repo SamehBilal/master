@@ -125,9 +125,9 @@
                                                             <div class="flex">
                                                                 <div class="card-title">{{ $courier->courier->full_name }}</div>
                                                                 @if($courier->courier->phone)
-                                                                    <p class="flex text-50 lh-1 mb-0"><small>Phone: {{ $courier->courier->phone }}</small></p>
+                                                                    <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Phone') }}: {{ $courier->courier->phone }}</small></p>
                                                                 @endif
-                                                                <p class="flex text-50 lh-1 mb-0"><small>Assigned: {{ date("F j, Y g:i A", strtotime($courier->updated_at)) }}</small></p>
+                                                                <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Assigned') }}: {{ date("F j, Y g:i A", strtotime($courier->updated_at)) }}</small></p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -147,7 +147,7 @@
                                 @empty
                                     <div class=" mb-lg-16pt">
                                         <a href="{{ route('dashboard.orders.courier',$order->id) }}"
-                                           class="btn btn-primary"><i class="material-icons icon--left">add</i> Add Courier</a>
+                                           class="btn btn-primary"><i class="material-icons icon--left">add</i> {{ __('dashboard.Add Courier') }}</a>
                                         <br>
                                     </div>
                                 @endforelse
@@ -157,7 +157,7 @@
 
                         <div class=" mb-lg-16pt">
                             <a href="{{ route('dashboard.orders.courier',$order->id) }}"
-                               class="btn btn-primary"><i class="material-icons icon--left">add</i> Add Courier</a>
+                               class="btn btn-primary"><i class="material-icons icon--left">add</i> {{ __('dashboard.Add Courier') }}</a>
                             <br>
                         </div>
 
@@ -194,7 +194,7 @@
                                                 </canvas>
                                             </div>
                                             <div class="flex">
-                                                <strong>Airway bell</strong>
+                                                <strong>{{ __('dashboard.Airwaybell') }}</strong>
                                             </div>
                                         </div>
                                     </div>
@@ -215,7 +215,7 @@
                                                         </canvas>
                                                     </div>
                                                     <div class="flex">
-                                                        <strong>Edit Order</strong>
+                                                        <strong>{{ __('dashboard.Edit_Order') }}</strong>
                                                     </div>
                                                 </div>
                                             </div>
@@ -261,7 +261,7 @@
                 </div>
 
             <div class="page-separator">
-                <div class="page-separator__text">Order Details</div>
+                <div class="page-separator__text">{{ __('dashboard.Order Details') }}</div>
             </div>
 
             <div class="row card-group-row mb-lg-8pt">
@@ -271,7 +271,7 @@
                         <div class="row no-gutters flex">
                             <div class="{{ $order->type == 'Cash Collection' ? 'col-lg-4':'col-lg-2' }} col-sm-4">
                                 <div class="card-body">
-                                    <h6 class="text-50">Type</h6>
+                                    <h6 class="text-50">{{ __('dashboard.Type') }}</h6>
 
                                     <div class="h2 mb-0">{{ $order->type }}</div>
                                     {{--<div class="d-flex flex-column">
@@ -282,7 +282,7 @@
                                 <div class="card-body">
                                     <div class="h2 mb-0"></div>
                                     <div class="d-flex flex-column">
-                                        <small class="text-50">Last update date</small>
+                                        <small class="text-50">{{ __('dashboard.Last updated date') }}</small>
                                         <strong>{{ $order->updated_at }}</strong>
                                     </div>
                                 </div>
@@ -291,7 +291,7 @@
                                 @case('Deliver')
                                 <div class="col-lg-2 col-sm-4 border-left">
                                     <div class="card-body">
-                                        <h6 class="text-50">Order reference</h6>
+                                        <h6 class="text-50">{{ __('dashboard.Order reference') }}</h6>
 
                                         <div class="h2 mb-0">{{ $order->order_reference ? $order->order_reference:'None' }}</div>
                                         {{--<div class="d-flex flex-column">
@@ -301,15 +301,15 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="h2 mb-0"></div>
-                                        <small class="text-50">Package description</small>
+                                        <small class="text-50">{{ __('dashboard.Package Description') }}</small>
                                         <strong>{{ $order->package_description }}</strong>
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-sm-4 border-left">
                                     <div class="card-body">
-                                        <h6 class="text-50">Cash on delivery</h6>
+                                        <h6 class="text-50">{{ __('dashboard.Cash on Delivery') }}</h6>
 
-                                        <div class="h2 mb-0">{{ $order->cash_on_delivery }} <small>EGP</small></div>
+                                        <div class="h2 mb-0">{{ $order->cash_on_delivery }} <small>{{ __('dashboard.EGP') }}</small></div>
                                         {{--<div class="d-flex flex-column">
                                             <strong>Total Views</strong>
                                             <small class="text-50">1.3k today</small>
@@ -317,13 +317,13 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="h2 mb-0"></div>
-                                        <small class="text-50">Delivery notes</small>
+                                        <small class="text-50">{{ __('dashboard.Delivery Notes') }}</small>
                                         <strong>{{ $order->delivery_notes }}</strong>
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-sm-4 border-left">
                                     <div class="card-body">
-                                        <h6 class="text-50">Package Type</h6>
+                                        <h6 class="text-50">{{ __('dashboard.Package Type') }}</h6>
 
                                         <div class="h2 mb-0">{{ $order->package_type }}</div>
                                         {{--<div class="d-flex flex-column">
@@ -338,7 +338,7 @@
                                 </div>
                                 <div class="col-lg-2 col-sm-4 border-left">
                                     <div class="card-body">
-                                        <h6 class="text-50">No. of items</h6>
+                                        <h6 class="text-50">{{ __('dashboard.Number of Items') }}</h6>
 
                                         <div class="h2 mb-0">{{ $order->no_of_items > 1 ? $order->no_of_items:1 }}</div>
                                         {{--<div class="d-flex flex-column">
@@ -353,9 +353,9 @@
                                 </div>
                                 <div class="col-lg-2 col-sm-4 border-left">
                                     <div class="card-body">
-                                        <h6 class="text-50">Opening Package</h6>
+                                        <h6 class="text-50">{{ __('dashboard.Opening Package') }}</h6>
 
-                                        <div class="h2 mb-0">{{ $order->open_package == 1 ? 'Yes':'No' }}</div>
+                                        <div class="h2 mb-0">{{ $order->open_package == 1 ? ($locale == 'ar' ?'نعم':'Yes'):($locale == 'ar' ?'لا':'No') }}</div>
                                         {{--<div class="d-flex flex-column">
                                             <strong>Total Views</strong>
                                             <small class="text-50">1.3k today</small>
@@ -370,7 +370,7 @@
                                 @case('Exchange')
                                 <div class="col-lg-2 col-sm-4 border-left">
                                     <div class="card-body">
-                                        <h6 class="text-50">Order reference</h6>
+                                        <h6 class="text-50">{{ __('dashboard.Order reference') }}</h6>
 
                                         <div class="h2 mb-0">{{ $order->order_reference_exchange ? $order->order_reference_exchange:'None' }}</div>
                                         {{--<div class="d-flex flex-column">
@@ -380,15 +380,15 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="h2 mb-0"></div>
-                                        <small class="text-50">Package description</small>
+                                        <small class="text-50">{{ __('dashboard.Package Description') }}</small>
                                         <strong>{{ $order->package_description_exchange }}</strong>
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-sm-4 border-left">
                                     <div class="card-body">
-                                        <h6 class="text-50">Cash exchange amount</h6>
+                                        <h6 class="text-50">{{ __('dashboard.Cash Exchange Amount') }}</h6>
 
-                                        <div class="h2 mb-0">{{ $order->cash_exchange_amount }} <small>EGP</small></div>
+                                        <div class="h2 mb-0">{{ $order->cash_exchange_amount }} <small>{{ __('dashboard.EGP') }}</small></div>
                                         {{--<div class="d-flex flex-column">
                                             <strong>Total Views</strong>
                                             <small class="text-50">1.3k today</small>
@@ -396,13 +396,13 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="h2 mb-0"></div>
-                                        <small class="text-50">Delivery notes</small>
+                                        <small class="text-50">{{ __('dashboard.Delivery Notes') }}</small>
                                         <strong>{{ $order->delivery_notes }}</strong>
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-sm-4 border-left">
                                     <div class="card-body">
-                                        <h6 class="text-50">No. of items</h6>
+                                        <h6 class="text-50">{{ __('dashboard.Number of Items') }}</h6>
 
                                         <div class="h2 mb-0">{{ $order->no_of_items > 1 ? $order->no_of_items:1 }}</div>
                                         {{--<div class="d-flex flex-column">
@@ -417,7 +417,7 @@
                                 </div>
                                 <div class="col-lg-2 col-sm-4 border-left">
                                     <div class="card-body">
-                                        <h6 class="text-50">No. of items to return</h6>
+                                        <h6 class="text-50">{{ __('dashboard.No. of items to return') }}</h6>
 
                                         <div class="h2 mb-0">{{ $order->no_of_items_of_return_package_exchange }}</div>
                                         {{--<div class="d-flex flex-column">
@@ -432,9 +432,9 @@
                                 </div>
                                 <div class="col-lg-2 col-sm-4 border-left">
                                     <div class="card-body">
-                                        <h6 class="text-50">Opening Package</h6>
+                                        <h6 class="text-50">{{ __('dashboard.Opening Package') }}</h6>
 
-                                        <div class="h2 mb-0">{{ $order->allow_opening == 1 ? 'Yes':'No' }}</div>
+                                        <div class="h2 mb-0">{{ $order->allow_opening == 1 ? ($locale == 'ar' ?'نعم':'Yes'):($locale == 'ar' ?'لا':'No') }}</div>
                                         {{--<div class="d-flex flex-column">
                                             <strong>Total Views</strong>
                                             <small class="text-50">1.3k today</small>
@@ -449,7 +449,7 @@
                                 @case('Return')
                                 <div class="col-lg-4 col-sm-4 border-left">
                                     <div class="card-body">
-                                        <h6 class="text-50">Order reference</h6>
+                                        <h6 class="text-50">{{ __('dashboard.Order reference') }}</h6>
 
                                         <div class="h2 mb-0">{{ $order->order_reference_return ? $order->order_reference_return:'None' }}</div>
                                         {{--<div class="d-flex flex-column">
@@ -459,15 +459,15 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="h2 mb-0"></div>
-                                        <small class="text-50">Package description</small>
+                                        <small class="text-50">{{ __('dashboard.Package Description') }}</small>
                                         <strong>{{ $order->package_description_return }}</strong>
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-sm-4 border-left">
                                     <div class="card-body">
-                                        <h6 class="text-50">Refund amount</h6>
+                                        <h6 class="text-50">{{ __('dashboard.Refund amount') }}</h6>
 
-                                        <div class="h2 mb-0">{{ $order->refund_amount }} <small>EGP</small></div>
+                                        <div class="h2 mb-0">{{ $order->refund_amount }} <small>{{ __('dashboard.EGP') }}</small></div>
                                         {{--<div class="d-flex flex-column">
                                             <strong>Total Views</strong>
                                             <small class="text-50">1.3k today</small>
@@ -475,13 +475,13 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="h2 mb-0"></div>
-                                        <small class="text-50">Delivery notes</small>
+                                        <small class="text-50">{{ __('dashboard.Delivery Notes') }}</small>
                                         <strong>{{ $order->delivery_notes }}</strong>
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-sm-4 border-left">
                                     <div class="card-body">
-                                        <h6 class="text-50">No. of items to return</h6>
+                                        <h6 class="text-50">{{ __('dashboard.No. of items to return') }}</h6>
 
                                         <div class="h2 mb-0">{{ $order->no_of_items_return > 1 ? $order->no_of_items_return:1 }}</div>
                                         {{--<div class="d-flex flex-column">
@@ -496,9 +496,9 @@
                                 </div>
                                 <div class="col-lg-2 col-sm-4 border-left">
                                     <div class="card-body">
-                                        <h6 class="text-50">Opening Package</h6>
+                                        <h6 class="text-50">{{ __('dashboard.Opening Package') }}</h6>
 
-                                        <div class="h2 mb-0">{{ $order->open_package == 1 ? 'Yes':'No' }}</div>
+                                        <div class="h2 mb-0">{{ $order->open_package == 1 ? ($locale == 'ar' ?'نعم':'Yes'):($locale == 'ar' ?'لا':'No') }}</div>
                                         {{--<div class="d-flex flex-column">
                                             <strong>Total Views</strong>
                                             <small class="text-50">1.3k today</small>
@@ -513,7 +513,7 @@
                                 @case('Cash Collection')
                                 <div class="col-lg-2 col-sm-4 border-left">
                                     <div class="card-body">
-                                        <h6 class="text-50">Order reference</h6>
+                                        <h6 class="text-50">{{ __('dashboard.Order reference') }}</h6>
 
                                         <div class="h2 mb-0">{{ $order->order_reference_cash_collection ? $order->order_reference_cash_collection:'None' }}</div>
                                         {{--<div class="d-flex flex-column">
@@ -529,9 +529,9 @@
                                 </div>
                                 <div class="col-lg-4 col-sm-4 border-left">
                                     <div class="card-body">
-                                        <h6 class="text-50">Cash to delivery</h6>
+                                        <h6 class="text-50">{{ __('dashboard.Cash on Delivery') }}</h6>
 
-                                        <div class="h2 mb-0">{{ $order->cash_to_collect }} <small>EGP</small></div>
+                                        <div class="h2 mb-0">{{ $order->cash_to_collect }} <small>{{ __('EGP') }}</small></div>
                                         {{--<div class="d-flex flex-column">
                                             <strong>Total Views</strong>
                                             <small class="text-50">1.3k today</small>
@@ -539,7 +539,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="h2 mb-0"></div>
-                                        <small class="text-50">Delivery notes</small>
+                                        <small class="text-50">{{ __('dashboard.Delivery Notes') }}</small>
                                         <strong>{{ $order->delivery_notes }}</strong>
                                     </div>
                                 </div>
@@ -560,7 +560,7 @@
                                 </div>--}}
                                 <div class="col-lg-2 col-sm-4 border-left">
                                     <div class="card-body">
-                                        <h6 class="text-50">No. of items</h6>
+                                        <h6 class="text-50">{{ __('dashboard.Number of Items') }}</h6>
 
                                         <div class="h2 mb-0">{{ $order->no_of_items > 1 ? $order->no_of_items:1 }}</div>
                                         {{--<div class="d-flex flex-column">
@@ -603,12 +603,12 @@
                     <div class="row">
                         <div class="col-lg-5 mb-24pt mb-lg-0">
                             <div class="border-left-3 border-left-primary pl-24pt pl-md-32pt">
-                                <h4 class="mb-8pt text-secondary">Customer Order log</h4>
+                                <h4 class="mb-8pt text-secondary">{{ __('dashboard.Customer Order log') }}</h4>
                                 <h4 class="mb-8pt">{{ $customerlog ? $customerlog->status:'' }} {{ $customerlog->hub ? ($locale == 'ar' ? '('.$customerlog->hub->ar_name.')':'('.$customerlog->hub->en_name.')'):'' }}</h4>
                                 <p class="text-70 mb-24pt">{{ $customerlog ? $customerlog->description:'' }}</p>
                                 @can('edit log')
                                 <a href="{{ route("dashboard.order-customer-logs.index",$order->id) }}"
-                                   class="btn btn-primary">Customer Order Logs</a>
+                                   class="btn btn-primary">{{ __('dashboard.Customer Order log') }}</a>
                                 @endcan
                             </div>
                         </div>
@@ -641,7 +641,7 @@
                 <div class="col-lg-6">
 
                     <div class="page-separator">
-                        <div class="page-separator__text">Customer Info</div>
+                        <div class="page-separator__text">{{ __('dashboard.Customer_Info') }}</div>
                     </div>
 
                     <div class=" card-group-row__col">
@@ -726,20 +726,20 @@
                                     <div class="col-auto">
                                         <div class="d-flex align-items-center mb-4pt">
                                             <span class="material-icons icon-16pt text-50 mr-4pt">phone</span>
-                                            <p class="flex text-50 lh-1 mb-0"><small>Phone: {{ $order->customer->user->phone }}</small></p>
+                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Phone') }}: {{ $order->customer->user->phone }}</small></p>
                                         </div>
                                         <div class="d-flex align-items-center mb-4pt">
                                             <span class="material-icons icon-16pt text-50 mr-4pt">phone</span>
-                                            <p class="flex text-50 lh-1 mb-0"><small>Other phone: {{ $order->customer->user->other_phone }}</small></p>
+                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Other Phone') }}: {{ $order->customer->user->other_phone }}</small></p>
                                         </div>
                                         <div class="d-flex align-items-center">
                                             <span class="material-icons icon-16pt text-50 mr-4pt">event</span>
-                                            <p class="flex text-50 lh-1 mb-0"><small>Joined: {{ $order->customer->user->created_at }}</small></p>
+                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Joined') }}: {{ $order->customer->user->created_at }}</small></p>
                                         </div>
                                     </div>
                                     <div class="col text-right">
                                         <a href="{{ route('dashboard.customers.show',$order->customer->id) }}"
-                                           class="btn btn-outline-secondary">View Customer</a>
+                                           class="btn btn-outline-secondary">{{ __('dashboard.View Customer') }}</a>
                                     </div>
                                 </div>
 
@@ -751,7 +751,7 @@
                 @if($order->location)
                     <div class="col-lg-6">
                         <div class="page-separator">
-                            <div class="page-separator__text">Customer Location</div>
+                            <div class="page-separator__text">{{ __('dashboard.Customer Location') }}</div>
                         </div>
 
                         <div class=" card-group-row__col">
@@ -830,21 +830,21 @@
                                         <div class="col-auto">
                                             <div class="d-flex align-items-center mb-4pt">
                                                 <span class="material-icons icon-16pt text-50 mr-4pt">apartment</span>
-                                                <p class="flex text-50 lh-1 mb-0"><small>Apartment: {{ $order->location->apartment }}</small></p>
+                                                <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Apartment') }}: {{ $order->location->apartment }}</small></p>
                                             </div>
                                             <div class="d-flex align-items-center mb-4pt">
                                                 <span class="material-icons icon-16pt text-50 mr-4pt">home_work</span>
-                                                <p class="flex text-50 lh-1 mb-0"><small>Home: {{ $order->location->building }}</small></p>
+                                                <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Home') }}: {{ $order->location->building }}</small></p>
                                             </div>
                                             <div class="d-flex align-items-center">
                                                 <span class="material-icons icon-16pt text-50 mr-4pt">local_convenience_store</span>
-                                                <p class="flex text-50 lh-1 mb-0"><small>Floor: {{ $order->location->floor }}</small></p>
+                                                <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Floor') }}: {{ $order->location->floor }}</small></p>
                                             </div>
                                         </div>
                                         <div class="col text-right">
                                             <!-- Button trigger modal -->
                                             <button type="button" id="view_location1" class="btn view_modal btn-outline-secondary" {{--data-toggle="modal" data-target="#exampleModalCenter1"--}}>
-                                                View Location
+                                                {{ __('dashboard.View Location') }}
                                             </button>
 
                                             <!-- Modal -->
@@ -930,23 +930,23 @@
                                                                     <div class="col-auto">
                                                                         <div class="d-flex align-items-center mb-4pt">
                                                                             <span class="material-icons icon-16pt text-50 mr-4pt">apartment</span>
-                                                                            <p class="flex text-50 lh-1 mb-0"><small>Apartment: {{ $order->location->apartment }}</small></p>
+                                                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Apartment') }}: {{ $order->location->apartment }}</small></p>
                                                                         </div>
                                                                         <div class="d-flex align-items-center mb-4pt">
                                                                             <span class="material-icons icon-16pt text-50 mr-4pt">home_work</span>
-                                                                            <p class="flex text-50 lh-1 mb-0"><small>Home: {{ $order->location->building }}</small></p>
+                                                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Home') }}: {{ $order->location->building }}</small></p>
                                                                         </div>
                                                                         <div class="d-flex align-items-center mb-4pt">
                                                                             <span class="material-icons icon-16pt text-50 mr-4pt">local_convenience_store</span>
-                                                                            <p class="flex text-50 lh-1 mb-0"><small>Floor: {{ $order->location->floor }}</small></p>
+                                                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Floor') }}: {{ $order->location->floor }}</small></p>
                                                                         </div>
                                                                         <div class="d-flex align-items-center mb-4pt">
                                                                             <span class="material-icons icon-16pt text-50 mr-4pt">car_repair</span>
-                                                                            <p class="flex text-50 lh-1 mb-0"><small>Street: {{ $order->location->street }}</small></p>
+                                                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Street') }}: {{ $order->location->street }}</small></p>
                                                                         </div>
                                                                         <div class="d-flex align-items-center mb-4pt">
                                                                             <span class="material-icons icon-16pt text-50 mr-4pt">landscape</span>
-                                                                            <p class="flex text-50 lh-1 mb-0"><small>landmarks: {{ $order->location->landmarks }}</small></p>
+                                                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Landmarks') }}: {{ $order->location->landmarks }}</small></p>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col text-right"></div>
@@ -974,7 +974,7 @@
             </div>
             @if(isset($order->pickup))
             <div class="page-separator">
-                <div class="page-separator__text">Pickup Details</div>
+                <div class="page-separator__text">{{ __('dashboard.Pickup Details') }}</div>
             </div>
 
             <div class="row card-group-row mb-lg-8pt">
@@ -984,7 +984,7 @@
                         <div class="row no-gutters flex">
                             <div class="col-lg-4 col-sm-4">
                                 <div class="card-body">
-                                    <h6 class="text-50">Pickup Id</h6>
+                                    <h6 class="text-50">{{ __('dashboard.Pickup ID') }}</h6>
 
                                     <div class="h2 mb-0">{{ $order->pickup->pickup_id }}</div>
                                     {{--<div class="d-flex flex-column">
@@ -995,14 +995,14 @@
                                 <div class="card-body">
                                     <div class="h2 mb-0"></div>
                                     <div class="d-flex flex-column">
-                                        <small class="text-50">Scheduled date</small>
+                                        <small class="text-50">{{ __('dashboard.Scheduled date') }}</small>
                                         <strong>{{  $order->pickup->scheduled_date }}</strong>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-sm-4 border-left">
                                 <div class="card-body">
-                                    <h6 class="text-50">Pickup type</h6>
+                                    <h6 class="text-50">{{ __('dashboard.Pickup type') }}</h6>
 
                                     <div class="h2 mb-0">{{ $order->pickup->type }}</div>
                                     {{--<div class="d-flex flex-column">
@@ -1012,13 +1012,13 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="h2 mb-0"></div>
-                                    <small class="text-50">Status</small>
+                                    <small class="text-50">{{ __('dashboard.Status') }}</small>
                                     <strong>{{ $order->pickup->status }}</strong>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-sm-4 border-left">
                                 <div class="card-body">
-                                    <h6 class="text-50">Contact person</h6>
+                                    <h6 class="text-50">{{ __('dashboard.Contact person') }}</h6>
 
                                     <div class="h2 mb-0">{{ $order->pickup->contact->contact_name }} </div>
                                     <div class="d-flex flex-column">
@@ -1028,7 +1028,7 @@
                                 </div>
                                 {{--<div class="card-body">
                                     <div class="h2 mb-0"></div>
-                                    <small class="text-50">Delivery notes</small>
+                                    <small class="text-50">Delivery Notes</small>
                                     <strong>{{ $order->delivery_notes }}</strong>
                                 </div>--}}
                             </div>
@@ -1115,21 +1115,21 @@
                                     <div class="col-auto">
                                         <div class="d-flex align-items-center mb-4pt">
                                             <span class="material-icons icon-16pt text-50 mr-4pt">apartment</span>
-                                            <p class="flex text-50 lh-1 mb-0"><small>Apartment: {{ $order->pickup->location->apartment }}</small></p>
+                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Apartment') }}: {{ $order->pickup->location->apartment }}</small></p>
                                         </div>
                                         <div class="d-flex align-items-center mb-4pt">
                                             <span class="material-icons icon-16pt text-50 mr-4pt">home_work</span>
-                                            <p class="flex text-50 lh-1 mb-0"><small>Home: {{ $order->pickup->location->building }}</small></p>
+                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Home') }}: {{ $order->pickup->location->building }}</small></p>
                                         </div>
                                         <div class="d-flex align-items-center">
                                             <span class="material-icons icon-16pt text-50 mr-4pt">local_convenience_store</span>
-                                            <p class="flex text-50 lh-1 mb-0"><small>Floor: {{ $order->pickup->location->floor }}</small></p>
+                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Floor') }}: {{ $order->pickup->location->floor }}</small></p>
                                         </div>
                                     </div>
                                     <div class="col text-right">
                                         <!-- Button trigger modal -->
                                         <button  type="button" id="view_location" class="btn view_modal btn-outline-secondary" {{--data-toggle="modal" data-target="#exampleModalCenter"--}}>
-                                            View Location
+                                            {{ __('dashboard.View Location') }}
                                         </button>
                                     </div>
                                 </div>
@@ -1178,23 +1178,23 @@
                 '   <div class="col-auto">'+
                 '      <div class="d-flex align-items-center mb-4pt">'+
                 '          <span class="material-icons icon-16pt text-50 mr-4pt">apartment</span>'+
-                '          <p class="flex text-50 lh-1 mb-0"><small>Apartment: {{ $order->pickup->location->apartment }}</small></p>'+
+                '          <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Apartment') }}: {{ $order->pickup->location->apartment }}</small></p>'+
                 '  </div>'+
                 '    <div class="d-flex align-items-center mb-4pt">'+
                 '      <span class="material-icons icon-16pt text-50 mr-4pt">home_work</span>'+
-                '       <p class="flex text-50 lh-1 mb-0"><small>Home: {{ $order->pickup->location->building }}</small></p>'+
+                '       <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Home') }}: {{ $order->pickup->location->building }}</small></p>'+
                 '    </div>'+
                 '    <div class="d-flex align-items-center mb-4pt">'+
                 '        <span class="material-icons icon-16pt text-50 mr-4pt">local_convenience_store</span>'+
-                '        <p class="flex text-50 lh-1 mb-0"><small>Floor: {{ $order->pickup->location->floor }}</small></p>'+
+                '        <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Floor') }}: {{ $order->pickup->location->floor }}</small></p>'+
                 '   </div>'+
                 '   <div class="d-flex align-items-center mb-4pt">'+
                 '      <span class="material-icons icon-16pt text-50 mr-4pt">car_repair</span>'+
-                '       <p class="flex text-50 lh-1 mb-0"><small>Street: {{ $order->pickup->location->street }}</small></p>'+
+                '       <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Street') }}: {{ $order->pickup->location->street }}</small></p>'+
                 '    </div>'+
                 '    <div class="d-flex align-items-center mb-4pt">'+
                 '        <span class="material-icons icon-16pt text-50 mr-4pt">landscape</span>'+
-                '       <p class="flex text-50 lh-1 mb-0"><small>landmarks: {{ $order->pickup->location->landmarks }}</small></p>'+
+                '       <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Landmarks') }}: {{ $order->pickup->location->landmarks }}</small></p>'+
                 ' </div>'+
                 ' </div>'+
                 ' <div class="col text-right"></div>'+
@@ -1218,8 +1218,8 @@
                     imageHeight: 64,
                     imageAlt: 'Custom image',
                     showCancelButton: true,
-                    confirmButtonText: '<i class="material-icons icon--left">edit</i> Change Location',
-                    cancelButtonText: '<i class="material-icons icon--left">edit</i> Edit Location',
+                    confirmButtonText: '<i class="material-icons icon--left">edit</i> {{ __('dashboard.Change Location') }}',
+                    cancelButtonText: '<i class="material-icons icon--left">edit</i> {{ __('dashboard.Edit Location') }}',
                     reverseButtons: true
                 }).then((result) => {
                     if (result.isConfirmed) {
@@ -1268,23 +1268,23 @@
                 '   <div class="col-auto">'+
                 '      <div class="d-flex align-items-center mb-4pt">'+
                 '          <span class="material-icons icon-16pt text-50 mr-4pt">apartment</span>'+
-                '          <p class="flex text-50 lh-1 mb-0"><small>Apartment: {{ $order->location->apartment }}</small></p>'+
+                '          <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Apartment') }}: {{ $order->location->apartment }}</small></p>'+
                 '  </div>'+
                 '    <div class="d-flex align-items-center mb-4pt">'+
                 '      <span class="material-icons icon-16pt text-50 mr-4pt">home_work</span>'+
-                '       <p class="flex text-50 lh-1 mb-0"><small>Home: {{ $order->location->building }}</small></p>'+
+                '       <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Home') }}: {{ $order->location->building }}</small></p>'+
                 '    </div>'+
                 '    <div class="d-flex align-items-center mb-4pt">'+
                 '        <span class="material-icons icon-16pt text-50 mr-4pt">local_convenience_store</span>'+
-                '        <p class="flex text-50 lh-1 mb-0"><small>Floor: {{ $order->location->floor }}</small></p>'+
+                '        <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Floor') }}: {{ $order->location->floor }}</small></p>'+
                 '   </div>'+
                 '   <div class="d-flex align-items-center mb-4pt">'+
                 '      <span class="material-icons icon-16pt text-50 mr-4pt">car_repair</span>'+
-                '       <p class="flex text-50 lh-1 mb-0"><small>Street: {{ $order->location->street }}</small></p>'+
+                '       <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Street') }}: {{ $order->location->street }}</small></p>'+
                 '    </div>'+
                 '    <div class="d-flex align-items-center mb-4pt">'+
                 '        <span class="material-icons icon-16pt text-50 mr-4pt">landscape</span>'+
-                '       <p class="flex text-50 lh-1 mb-0"><small>landmarks: {{ $order->location->landmarks }}</small></p>'+
+                '       <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Landmarks') }}: {{ $order->location->landmarks }}</small></p>'+
                 ' </div>'+
                 ' </div>'+
                 ' <div class="col text-right"></div>'+
@@ -1308,8 +1308,8 @@
                     imageHeight: 64,
                     imageAlt: 'Custom image',
                     showCancelButton: true,
-                    confirmButtonText: '<i class="material-icons icon--left">edit</i> Change Location',
-                    cancelButtonText: '<i class="material-icons icon--left">edit</i> Edit Location',
+                    confirmButtonText: '<i class="material-icons icon--left">edit</i> {{ __('dashboard.Change Location') }}',
+                    cancelButtonText: '<i class="material-icons icon--left">edit</i> {{ __('dashboard.Edit Location') }}',
                     reverseButtons: true
                 }).then((result) => {
                     if (result.isConfirmed) {
