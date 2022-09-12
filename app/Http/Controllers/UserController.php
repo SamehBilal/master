@@ -7,6 +7,7 @@ use App\Models\UserCategory;
 use App\Notifications\NewUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Spatie\Permission\Models\Role;
 
@@ -66,7 +67,7 @@ class UserController extends Controller
             'email'                 => $request->email,
             'other_email'           => $request->other_email,
             'username'              => $request->username,
-            'password'              => $request->password,
+            'password'              => Hash::make($request->password),
             'gender'                => $request->gender,
             'religion'              => $request->religion,
             'date_of_birth'         => $request->date_of_birth,
@@ -140,7 +141,7 @@ class UserController extends Controller
             'email'                 => $request->email,
             'other_email'           => $request->other_email,
             'username'              => $request->username,
-            'password'              => $request->password == '' ? $user->password:$request->password,
+            'password'              => $request->password == '' ? $user->password:Hash::make($request->password),
             'gender'                => $request->gender,
             'religion'              => $request->religion,
             'date_of_birth'         => $request->date_of_birth,

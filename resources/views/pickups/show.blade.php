@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-
+@php $locale = session()->get('locale'); @endphp
 @section('title')
     Tracking No. {{ $pickup->pickup_id }}
 @endsection
@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-lg-5 mb-24pt mb-lg-0">
                     <div class="border-left-3 border-left-primary pl-24pt pl-md-32pt">
-                        <h4 class="mb-8pt">{{ $log ? $log->status:'' }}</h4>
+                        <h4 class="mb-8pt">{{ $log ? $log->status:'' }} {{ $log->hub ? ($locale == 'ar' ? '('.$log->hub->ar_name.')':'('.$log->hub->en_name.')'):'' }}</h4>
                         <p class="text-70 mb-24pt">{{ $log ? $log->description:'' }}</p>
                         @can('edit log')
                             <a href="{{ route("dashboard.pickup-logs.index",$pickup->id) }}"
@@ -249,7 +249,7 @@
                 <div class="col-lg-5 mb-24pt mb-lg-0">
                     <div class="border-left-3 border-left-primary pl-24pt pl-md-32pt">
                         <h4 class="mb-8pt text-secondary">Customer Pickup log</h4>
-                        <h4 class="mb-8pt">{{ $customerlog ? $customerlog->status:'' }}</h4>
+                        <h4 class="mb-8pt">{{ $customerlog ? $customerlog->status:'' }} {{ $customerlog->hub ? ($locale == 'ar' ? '('.$customerlog->hub->ar_name.')':'('.$customerlog->hub->en_name.')'):'' }}</h4>
                         <p class="text-70 mb-24pt">{{ $customerlog ? $customerlog->description:'' }}</p>
                         @can('edit log')
                             <a href="{{ route("dashboard.pickup-customer-logs.index",$pickup->id) }}"

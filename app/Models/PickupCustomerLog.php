@@ -14,4 +14,9 @@ class PickupCustomerLog extends Model
     {
         return $this->hasOne(Pickup::class  , "id" , "pickup_id");
     }
+
+    public function hub()
+    {
+        return $this->hasOne(Hub::class  , "id" , "hub_id");
+    }
 }

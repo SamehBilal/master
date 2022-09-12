@@ -509,11 +509,12 @@
                             <div class="form-group">
                                 <label class="form-label"
                                        for="contact_phone">Phone:</label>
-                                <input type="text"
+                                <input type="tel"
                                        class="form-control @error('contact_phone') is-invalid @enderror"
                                        value="{{ old('contact_phone') }}"
                                        autocomplete="contact_phone"
                                        name="contact_phone"
+                                       pattern="[0][1][1-5]{9}"
                                        id="contact_phone"
                                        placeholder="EG phone: +(20)10 0000 0000)"
                                        data-mask="01000000000">

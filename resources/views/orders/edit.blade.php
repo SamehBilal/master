@@ -1279,11 +1279,12 @@
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="phone">{{ __('dashboard.Phone') }}:</label>
-                                    <input type="text"
+                                    <input type="tel"
                                            class="form-control @error('phone') is-invalid @enderror"
                                            value="{{ old('phone') ? old('phone'): $order->customer->user->phone }}"
                                            id="phone"
                                            name="phone"
+                                           pattern="[0][1][1-5]{9}"
                                            data-mask="00000000000"
                                            placeholder="{{ __('dashboard.Your mobile phone') }} ...">
                                     @error('phone')
@@ -1296,10 +1297,11 @@
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="secondary_phone">{{ __('dashboard.Secondary Phone') }}:</label>
-                                    <input type="text"
+                                    <input type="tel"
                                            class="form-control @error('secondary_phone') is-invalid @enderror"
                                            value="{{ old('secondary_phone') ? old('secondary_phone'): $order->customer->user->other_phone }}"
                                            id="secondary_phone"
+                                           pattern="[0][1][1-5]{9}"
                                            name="secondary_phone"
                                            data-mask="00000000000"
                                            placeholder="{{ __('dashboard.Your secondary phone') }} ...">

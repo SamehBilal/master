@@ -22,6 +22,10 @@ $info = \App\Models\About::find(1); @endphp
                         <li><a href="{{ route('website.about-us') }}" title="{{ __('content.About-us') }}">{{ __('content.About-us') }}</a></li>
                         <li><a href="{{ route('website.pricing') }}" title="{{ __('content.Pricing') }}">{{ __('content.Pricing') }}</a></li>
                         <li><a href="{{ route('website.contact-us') }}" title="{{ __('content.Contact-us') }}">{{ __('content.Contact-us') }}</a></li>
+                        @auth
+                            <li><a href="{{ route('dashboard') }}" title="{{ __('dashboard.Dashboard') }}">{{ __('dashboard.Dashboard') }}</a></li>
+                        @else
+                        @endauth
                     </ul>
                 </div>
                 <div class="col-md-5">
@@ -52,6 +56,10 @@ $info = \App\Models\About::find(1); @endphp
                         <li><a href="{{ route('website.about-us') }}" title="{{ __('content.About-us') }}">{{ __('content.About-us') }}</a></li>
                         <li><a href="{{ route('website.pricing') }}" title="{{ __('content.Pricing') }}">{{ __('content.Pricing') }}</a></li>
                         <li><a href="{{ route('website.contact-us') }}" title="{{ __('content.Contact-us') }}">{{ __('content.Contact-us') }}</a></li>
+                        @auth
+                            <li><a href="{{ route('dashboard') }}" title="{{ __('dashboard.Dashboard') }}">{{ __('dashboard.Dashboard') }}</a></li>
+                        @else
+                        @endauth
                     </ul>
                 </div>
                 <div class="col-md-3">

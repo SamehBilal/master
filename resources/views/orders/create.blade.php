@@ -1289,10 +1289,11 @@
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="phone">{{ __('dashboard.Phone') }}:</label>
-                                    <input type="text"
+                                    <input type="tel"
                                            class="form-control @error('phone') is-invalid @enderror"
                                            value="{{ old('phone') }}"
                                            id="phone"
+                                           pattern="[0][1][1-5]{9}"
                                            name="phone"
                                            data-mask="00000000000"
                                            placeholder="{{ __('dashboard.Your mobile phone') }} ...">
@@ -1306,10 +1307,11 @@
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="secondary_phone">{{ __('dashboard.Secondary Phone') }}:</label>
-                                    <input type="text"
+                                    <input type="tel"
                                            class="form-control @error('secondary_phone') is-invalid @enderror"
                                            value="{{ old('secondary_phone') }}"
                                            id="secondary_phone"
+                                           pattern="[0][1][1-5]{9}"
                                            name="secondary_phone"
                                            data-mask="00000000000"
                                            placeholder="{{ __('dashboard.Your secondary phone') }} ...">
@@ -1985,49 +1987,46 @@
                 var cash_on_delivery                            = $('#cash_on_delivery').val();
                 var no_of_items                                 = $('#no_of_items').val();
 
-                if(!return_location)
-                {
-                    return_location_div =  'Country: '+country_id_return+'\n'+
-                        'State: '+state_id_return+'\n'+
-                        'City: '+city_id_return+'\n'+
-                        'Street: '+street_return+'\n'+
-                        'Building: '+building_return+'\n'+
-                        'Floor: '+floor_return+'\n'+
-                        'Apartment: '+apartment_return+'\n'+
-                        'Landmarks: '+landmarks_return+'\n'+
-                        'Working Hours: '+working_hours_return+'\n';
-                }else{
-                    return_location_div =  'Location: '+return_location+'\n';
-                }
-
-                if(!return_location_exchange)
-                {
-                    exchange_location_div =    'Country: '+country_id_exchange+'\n'+
-                        'State: '+state_id_exchange+'\n'+
-                        'City: '+city_id_exchange+'\n'+
-                        'Street: '+street_exchange+'\n'+
-                        'Building: '+building_exchange+'\n'+
-                        'Floor: '+floor_exchange+'\n'+
-                        'Apartment: '+apartment_exchange+'\n'+
-                        'Landmarks: '+landmarks_exchange+'\n'+
-                        'Working Hours: '+working_hours_exchange+'\n';
-                }else{
-                    exchange_location_div =  'Location: '+return_location_exchange+'\n';
-                }
-
                 if(!location_id)
                 {
-                    location_div = 'Country: '+country_id+'\n'+
-                        'State: '+state_id+'\n'+
-                        'City: '+city_id+'\n'+
-                        'Street: '+street+'\n'+
-                        'Building: '+building+'\n'+
-                        'Floor: '+floor+'\n'+
-                        'Apartment: '+apartment+'\n'+
-                        'Landmarks: '+landmarks+'\n'+
-                        'Working Hours: '+working_hours+'\n';
+                    $.ajax({
+                        url:'{{ route('dashboard.get.city') }}',
+                        method:'GET',
+                        dataType: 'json',
+                        data: {
+                            state:state_id,
+                            city:city_id,
+                        },
+                        success:function (data) {
+                            state_id = data.state;
+                            city_id = data.city;
+                        },
+                        error: function(result) {
+                            //
+                        }
+                    });
+
                 }else{
-                    location_div = 'Location: '+location_id+'\n';
+                    $.ajax({
+                        url:'{{ route('dashboard.get.location') }}',
+                        method:'GET',
+                        dataType: 'json',
+                        data: {
+                            location:location_id,
+                        },
+                        success:function (data) {
+                            state_id = data.state;
+                            city_id = data.city;
+                            apartment = data.apartment;
+                            floor = data.floor;
+                            building = data.building;
+                            street = data.street;
+                        },
+                        error: function(result) {
+                            //
+                        }
+                    });
+
                 }
 
 
@@ -2070,6 +2069,46 @@
                         break;
                     case 'Exchange':
 
+                        if(!return_location_exchange)
+                        {
+                            $.ajax({
+                                url:'{{ route('dashboard.get.city') }}',
+                                method:'GET',
+                                dataType: 'json',
+                                data: {
+                                    state:state_id_exchange,
+                                    city:city_id_exchange,
+                                },
+                                success:function (data) {
+                                    state_id_exchange = data.state;
+                                    city_id_exchange = data.city;
+                                },
+                                error: function(result) {
+                                    //
+                                }
+                            });
+                        }else{
+                            $.ajax({
+                                url:'{{ route('dashboard.get.location') }}',
+                                method:'GET',
+                                dataType: 'json',
+                                data: {
+                                    location:location_id,
+                                },
+                                success:function (data) {
+                                    state_id_exchange = data.state;
+                                    city_id_exchange = data.city;
+                                    apartment_exchange = data.apartment;
+                                    floor_exchange = data.floor;
+                                    building_exchange = data.building;
+                                    street_exchange = data.street;
+                                },
+                                error: function(result) {
+                                    //
+                                }
+                            });
+                        }
+
                         div = "<table class='container text-center border' style='text-align: center'>" +
                             "<tr class='border'> <td class='border'>Type</td> <td class='border'>"+type+"</td> </tr>" +
                             "<tr class='border'> <td class='border'>From:</td> <td class='border'>"+order_name+"</td> </tr>" +
@@ -2082,6 +2121,47 @@
                             "</table>";
                         break;
                     case 'Return':
+
+                        if(!return_location)
+                        {
+                            $.ajax({
+                                url:'{{ route('dashboard.get.city') }}',
+                                method:'GET',
+                                dataType: 'json',
+                                data: {
+                                    state:state_id_return,
+                                    city:city_id_return,
+                                },
+                                success:function (data) {
+                                    state_id_return = data.state;
+                                    city_id_return = data.city;
+                                },
+                                error: function(result) {
+                                    //
+                                }
+                            });
+
+                        }else{
+                            $.ajax({
+                                url:'{{ route('dashboard.get.location') }}',
+                                method:'GET',
+                                dataType: 'json',
+                                data: {
+                                    location:location_id,
+                                },
+                                success:function (data) {
+                                    state_id_return = data.state;
+                                    city_id_return = data.city;
+                                    apartment_return = data.apartment;
+                                    floor_return = data.floor;
+                                    building_return = data.building;
+                                    street_return = data.street;
+                                },
+                                error: function(result) {
+                                    //
+                                }
+                            });
+                        }
 
                         div = "<table class='container text-center border' style='text-align: center'>" +
                             "<tr class='border'> <td class='border'>Type</td> <td class='border'>"+type+"</td> </tr>" +

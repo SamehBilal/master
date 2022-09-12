@@ -160,13 +160,14 @@
                                         <label class="form-label"
                                                for="phone">Phone:</label>
                                         <div class="input-group input-group-merge">
-                                            <input type="text"
+                                            <input type="tel"
                                                    class="form-control @error('phone') is-invalid @enderror"
                                                    value="{{ old('phone') ? old('phone'):$customer->user->phone }}"
                                                    required="required"
                                                    autocomplete="phone"
                                                    name="phone"
                                                    id="phone"
+                                                   pattern="[0][1][1-5]{9}"
                                                    placeholder="EG phone: +(20)10 0000 0000)"
                                                    data-mask="01000000000"
                                                    autofocus>
@@ -568,12 +569,13 @@
                                             <label class="form-label"
                                                    for="contact_phone">Phone:</label>
                                             <div class="input-group input-group-merge">
-                                                <input type="text"
+                                                <input type="tel"
                                                        class="form-control @error('contact_phone') is-invalid @enderror"
                                                        value="{{ old('contact_phone[]') ? old('contact_phone[]'):$contact->contact_phone }}"
                                                        autocomplete="contact_phone"
                                                        name="contact_phone[]"
                                                        id="contact_phone"
+                                                       pattern="[0][1][1-5]{9}"
                                                        placeholder="EG phone: +(20)10 0000 0000)"
                                                        data-mask="01000000000"
                                                 >
@@ -691,11 +693,12 @@
                                             <label class="form-label"
                                                    for="contact_phone">Phone:</label>
                                             <div class="input-group input-group-merge">
-                                                <input type="text"
+                                                <input type="tel"
                                                        class="form-control @error('contact_phone') is-invalid @enderror"
                                                        value="{{ old('contact_phone[]') }}"
                                                        autocomplete="contact_phone"
                                                        name="contact_phone[]"
+                                                       pattern="[0][1][1-5]{9}"
                                                        id="contact_phone"
                                                        placeholder="EG phone: +(20)10 0000 0000)"
                                                        data-mask="01000000000"
@@ -800,11 +803,12 @@
                             <div class="form-group">
                                 <label class="form-label"
                                        for="other_phone">Other Phone:</label><small>(Optional)</small>
-                                <input type="text"
+                                <input type="tel"
                                        class="form-control @error('other_phone') is-invalid @enderror"
                                        value="{{ old('other_phone') ? old('other_phone'):$customer->user->other_phone }}"
                                        id="other_phone"
                                        name="other_phone"
+                                       pattern="[0][1][1-5]{9}"
                                        data-mask="00000000000"
                                        placeholder="Your other mobile phone ...">
                                 @error('other_phone')
@@ -973,12 +977,13 @@
                 '                                        <label class="form-label"\n' +
                 '                                               for="contact_phone">Phone:</label>\n' +
                 '                                        <div class="input-group input-group-merge">\n' +
-                '                                            <input type="text"\n' +
+                '                                            <input type="tel"\n' +
                 '                                                   class="form-control @error('contact_phone') is-invalid @enderror"\n' +
                 '                                                   value="{{ old('contact_phone[]') }}"\n' +
                 '                                                   autocomplete="contact_phone"\n' +
                 '                                                   name="contact_phone[]"\n' +
                 '                                                   id="contact_phone"\n' +
+                '                                                   pattern="[0][1][1-5]{9}"\n' +
                 '                                                   placeholder="EG phone: +(20)10 0000 0000)"\n' +
                 '                                                   data-mask="01000000000"\n' +
                 '                                                   >\n' +

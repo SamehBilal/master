@@ -11,6 +11,10 @@
         </div>
         <!-- End topBar-left -->
         <div class="topbar-right">
+            @auth
+                <a href="{{ route('dashboard') }}" title="{{ __('dashboard.Dashboard') }}"><i class="zmdi zmdi-view-dashboard"></i>{{ __('dashboard.Dashboard') }}</a>
+            @else
+            @endauth
             <a href="{{ route('website.locations') }}" title="{{ __('content.locations') }}"><i class="zmdi zmdi-pin"></i>{{ __('content.locations') }}</a>
             <div class="wrap-dollar-box dropdown">
                 <a href="#" title="{{ __('content.Language') }}"><i class="zmdi zmdi-money-box"></i>{{ __('content.Language') }}<i class="zmdi zmdi-chevron-down"></i></a>
@@ -44,6 +48,7 @@
                             @endif
                             @break
                         @endforeach
+                        <a class="checkout" href="{{ route('dashboard') }}" title="{{ __('dashboard.Dashboard') }}">{{ __('dashboard.Dashboard') }}</a>
                         <a class="checkout" href="{{ route('website.account') }}" title="{{ __('content.my_account') }}">{{ __('content.my_account') }}</a>
                         <a class="checkout bg-black" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                 $('#logout-form').submit();" title="{{ __('content.Logout') }}">{{ __('content.Logout') }}</a>
@@ -54,13 +59,20 @@
                 @else
                     <div class="register-list cart-list dropdown-menu ">
                         <h3>{{ __('content.my_account') }}</h3>
+
                         <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="acc-name">
-                                <input class="form-control" value="{{ old('email') }}" type="email" placeholder="{{ __('content.Email') }}" name="email" id="email" required autofocus>
+                                <input class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" type="email" placeholder="{{ __('content.Email') }}" name="email" id="email" required autofocus>
+                                @error('email')
+                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="acc-pass">
-                                <input class="form-control" type="password" placeholder="{{ __('content.Password') }}" name="password" id="inputpass" required autocomplete="current-password">
+                                <input class="form-control @error('password') is-invalid @enderror" type="password" placeholder="{{ __('content.Password') }}" name="password" id="inputpass" required autocomplete="current-password">
+                                @error('password')
+                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="remember">
                                 <input type="checkbox" id="me" name="remember" />

@@ -232,7 +232,7 @@ class OrderController extends Controller
                         {
                             //$this->validate($request, Location::rules());
                             $pickup_location = Location::create([
-                                'name'                  => $request->pickup_name,
+                                'name'                  => $request->pickup_apartment.', '.$request->pickup_building.', '.$request->pickup_street,
                                 'street'                => $request->pickup_street,
                                 'building'              => $request->pickup_building,
                                 'floor'                 => $request->pickup_floor,
@@ -292,7 +292,7 @@ class OrderController extends Controller
                         {
                             //$this->validate($request, Location::rules());
                             $pickup_location = Location::create([
-                                'name'                  => $request->pickup_name,
+                                'name'                  => $request->pickup_apartment.', '.$request->pickup_building.', '.$request->pickup_street,
                                 'street'                => $request->pickup_street,
                                 'building'              => $request->pickup_building,
                                 'floor'                 => $request->pickup_floor,
@@ -653,7 +653,7 @@ class OrderController extends Controller
                         {
                             //$this->validate($request, Location::rules());
                             $pickup_location = Location::create([
-                                'name'                  => $request->pickup_name,
+                                'name'                  => $request->pickup_apartment.', '.$request->pickup_building.', '.$request->pickup_street,
                                 'street'                => $request->pickup_street,
                                 'building'              => $request->pickup_building,
                                 'floor'                 => $request->pickup_floor,
@@ -712,7 +712,7 @@ class OrderController extends Controller
                         {
                             //$this->validate($request, Location::rules());
                             $pickup_location = Location::create([
-                                'name'                  => $request->pickup_name,
+                                'name'                  => $request->pickup_apartment.', '.$request->pickup_building.', '.$request->pickup_street,
                                 'street'                => $request->pickup_street,
                                 'building'              => $request->pickup_building,
                                 'floor'                 => $request->pickup_floor,

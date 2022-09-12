@@ -278,11 +278,12 @@
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="phone">Phone:</label>
-                                    <input type="text"
+                                    <input type="tel"
                                            class="form-control @error('phone') is-invalid @enderror"
                                            value="{{ old('phone') ? old('phone'):$user->phone }}"
                                            id="phone"
                                            name="phone"
+                                           pattern="[0][1][1-5]{9}"
                                            data-mask="00000000000"
                                            placeholder="Your mobile phone ...">
                                     @error('phone')
@@ -295,11 +296,12 @@
                                 <div class="form-group">
                                     <label class="form-label"
                                            for="other_phone">Other Phone:</label>
-                                    <input type="text"
+                                    <input type="tel"
                                            class="form-control @error('other_phone') is-invalid @enderror"
                                            value="{{ old('other_phone') ? old('other_phone'):$user->other_phone }}"
                                            id="other_phone"
                                            name="other_phone"
+                                           pattern="[0][1][1-5]{9}"
                                            data-mask="00000000000"
                                            placeholder="Your other mobile phone ...">
                                     @error('other_phone')

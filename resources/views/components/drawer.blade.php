@@ -17,7 +17,7 @@
                 </form>
             </div>--}}
 
-            <a href="{{ route('dashboard') }}"
+            <a href="{{ route('website.index') }}"
                class="sidebar-brand ">
                {{-- <img class="sidebar-brand-icon" src="{{ asset('backend/images/illustration/student/128/white.svg') }}" alt="Luma">--}}
 

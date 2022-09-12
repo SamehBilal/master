@@ -1,6 +1,8 @@
 @php $locale = session()->get('locale'); @endphp
 <link rel="shortcut icon" href="{{ asset('frontend/assets/images/favicon.png') }}"/>
+{{--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">--}}
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/css/bootstrap.css') }}"/>
+
 @if($locale == 'ar')
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/css/style_ar.css') }}"/>
 @else

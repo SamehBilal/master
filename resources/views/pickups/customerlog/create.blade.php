@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-
+@php $locale = session()->get('locale'); @endphp
 @section('title')
     Pickup Customer Logs
 @endsection
@@ -93,7 +93,7 @@
                                             name="hub_id">
                                         @foreach($hubs as $hub)
                                             <option value="{{ $hub->id }}" {{ old('hub_id') == $hub->id ? 'selected':'' }}>
-                                                {{ $hub->name }}
+                                                {{ $locale == 'ar' ? $hub->ar_name:$hub->en_name }}
                                             </option>
                                         @endforeach
                                     </select>
