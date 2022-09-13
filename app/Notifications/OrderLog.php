@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class OrderLog extends Notification
+class OrderLog extends Notification implements ShouldQueue
 {
     use Queueable;
     private $order_log;
@@ -30,7 +30,7 @@ class OrderLog extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'/*,'mail'*/];
+        return ['database','mail'];
     }
 
     /**

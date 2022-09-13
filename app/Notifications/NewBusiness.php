@@ -9,7 +9,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\DB;
 
-class NewBusiness extends Notification
+class NewBusiness extends Notification implements ShouldQueue
 {
     use Queueable;
     private $business;
@@ -32,7 +32,7 @@ class NewBusiness extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'/*,'mail'*/];
+        return ['database','mail'];
     }
 
     /**

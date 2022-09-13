@@ -9,7 +9,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\DB;
 
-class NewOrder extends Notification
+class NewOrder extends Notification implements ShouldQueue
 {
     use Queueable;
     private $order;
@@ -32,7 +32,7 @@ class NewOrder extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'/*,'mail'*/];
+        return ['database','mail'];
     }
 
     /**

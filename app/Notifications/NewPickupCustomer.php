@@ -9,7 +9,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\DB;
 
-class NewPickupCustomer extends Notification
+class NewPickupCustomer extends Notification implements ShouldQueue
 {
     use Queueable;
     private $pickup;
@@ -32,7 +32,7 @@ class NewPickupCustomer extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'/*,'mail'*/];
+        return ['database','mail'];
     }
 
     /**

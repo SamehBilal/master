@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewContactForm extends Notification
+class NewContactForm extends Notification implements ShouldQueue
 {
     use Queueable;
     private $contactForm;
@@ -31,7 +31,7 @@ class NewContactForm extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'/*,'mail'*/];
+        return ['database','mail'];
     }
 
     /**

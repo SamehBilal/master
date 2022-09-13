@@ -9,7 +9,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\DB;
 
-class NewCourier extends Notification
+class NewCourier extends Notification implements ShouldQueue
 {
     use Queueable;
     private $log;
@@ -39,7 +39,7 @@ class NewCourier extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'/*,'mail'*/];
+        return ['database','mail'];
     }
 
     /**

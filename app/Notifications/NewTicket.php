@@ -9,7 +9,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\DB;
 
-class NewTicket extends Notification
+class NewTicket extends Notification implements ShouldQueue
 {
     use Queueable;
     private $ticket;
@@ -32,7 +32,7 @@ class NewTicket extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'/*,'mail'*/];
+        return ['database','mail'];
     }
 
     /**
