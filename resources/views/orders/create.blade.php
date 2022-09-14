@@ -1894,6 +1894,29 @@
             </div>
             <div id="hidden_inputs">
                 <input type="hidden" name="type" value="{{ old('type','Deliver') }}">
+
+                <input type="hidden" id="sweet_state" name="sweet_state">
+                <input type="hidden" id="sweet_city" name="sweet_city">
+                <input type="hidden" id="sweet_street" name="sweet_street">
+                <input type="hidden" id="sweet_floor" name="sweet_floor">
+                <input type="hidden" id="sweet_apartment" name="sweet_apartment">
+                <input type="hidden" id="sweet_building" name="sweet_building">
+
+                <input type="hidden" id="sweet_state_exchange" name="sweet_state_exchange">
+                <input type="hidden" id="sweet_city_exchange" name="sweet_city_exchange">
+                <input type="hidden" id="sweet_street_exchange" name="sweet_street_exchange">
+                <input type="hidden" id="sweet_floor_exchange" name="sweet_floor_exchange">
+                <input type="hidden" id="sweet_apartment_exchange" name="sweet_apartment_exchange">
+                <input type="hidden" id="sweet_building_exchange" name="sweet_building_exchange">
+
+                <input type="hidden" id="sweet_state_return" name="sweet_state_return">
+                <input type="hidden" id="sweet_city_return" name="sweet_city_return">
+                <input type="hidden" id="sweet_street_return" name="sweet_street_return">
+                <input type="hidden" id="sweet_floor_return" name="sweet_floor_return">
+                <input type="hidden" id="sweet_apartment_return" name="sweet_apartment_return">
+                <input type="hidden" id="sweet_building_return" name="sweet_building_return">
+
+                <input type="hidden" id="sweet_customer" name="sweet_customer">
                 {{--<input type="hidden" name="location_in" value="full">
                 <input type="hidden" name="contact_in" value="full">
                 <input type="hidden" name="date_in" value="full">--}}
@@ -1989,43 +2012,16 @@
 
                 if(!location_id)
                 {
-                    $.ajax({
-                        url:'{{ route('dashboard.get.city') }}',
-                        method:'GET',
-                        dataType: 'json',
-                        data: {
-                            state:state_id,
-                            city:city_id,
-                        },
-                        success:function (data) {
-                            state_id = data.state;
-                            city_id = data.city;
-                        },
-                        error: function(result) {
-                            //
-                        }
-                    });
+                    state_id    = $('#sweet_state').val();
+                    city_id     = $('#sweet_city').val();
 
                 }else{
-                    $.ajax({
-                        url:'{{ route('dashboard.get.location') }}',
-                        method:'GET',
-                        dataType: 'json',
-                        data: {
-                            location:location_id,
-                        },
-                        success:function (data) {
-                            state_id = data.state;
-                            city_id = data.city;
-                            apartment = data.apartment;
-                            floor = data.floor;
-                            building = data.building;
-                            street = data.street;
-                        },
-                        error: function(result) {
-                            //
-                        }
-                    });
+                    state_id    = $('#sweet_state').val();
+                    city_id     = $('#sweet_city').val();
+                    apartment   = $('#sweet_apartment').val();
+                    floor       = $('#sweet_floor').val();
+                    building    = $('#sweet_building').val();
+                    street      = $('#sweet_street').val();
 
                 }
 
@@ -2034,20 +2030,7 @@
                 {
                     customer_div = name;
                 }else{
-                    $.ajax({
-                        url:'{{ route('dashboard.get.customer') }}',
-                        method:'GET',
-                        dataType: 'json',
-                        data: {
-                            customer:customer,
-                        },
-                        success:function (data) {
-                            customer_div = data.name;
-                        },
-                        error: function(result) {
-                            //
-                        }
-                    });
+                    customer_div = $('#sweet_customer').val();
                 }
 
 
@@ -2071,42 +2054,15 @@
 
                         if(!return_location_exchange)
                         {
-                            $.ajax({
-                                url:'{{ route('dashboard.get.city') }}',
-                                method:'GET',
-                                dataType: 'json',
-                                data: {
-                                    state:state_id_exchange,
-                                    city:city_id_exchange,
-                                },
-                                success:function (data) {
-                                    state_id_exchange = data.state;
-                                    city_id_exchange = data.city;
-                                },
-                                error: function(result) {
-                                    //
-                                }
-                            });
+                            state_id_exchange   = $('#sweet_state_exchange').val();
+                            city_id_exchange    = $('#sweet_city_exchange').val();
                         }else{
-                            $.ajax({
-                                url:'{{ route('dashboard.get.location') }}',
-                                method:'GET',
-                                dataType: 'json',
-                                data: {
-                                    location:location_id,
-                                },
-                                success:function (data) {
-                                    state_id_exchange = data.state;
-                                    city_id_exchange = data.city;
-                                    apartment_exchange = data.apartment;
-                                    floor_exchange = data.floor;
-                                    building_exchange = data.building;
-                                    street_exchange = data.street;
-                                },
-                                error: function(result) {
-                                    //
-                                }
-                            });
+                            state_id_exchange   = $('#sweet_state_exchange').val();
+                            city_id_exchange    = $('#sweet_city_exchange').val();
+                            apartment_exchange  = $('#sweet_apartment_exchange').val();
+                            floor_exchange      = $('#sweet_floor_exchange').val();
+                            building_exchange   = $('#sweet_building_exchange').val();
+                            street_exchange     = $('#sweet_street_exchange').val();
                         }
 
                         div = "<table class='container text-center border' style='text-align: center'>" +
@@ -2124,43 +2080,16 @@
 
                         if(!return_location)
                         {
-                            $.ajax({
-                                url:'{{ route('dashboard.get.city') }}',
-                                method:'GET',
-                                dataType: 'json',
-                                data: {
-                                    state:state_id_return,
-                                    city:city_id_return,
-                                },
-                                success:function (data) {
-                                    state_id_return = data.state;
-                                    city_id_return = data.city;
-                                },
-                                error: function(result) {
-                                    //
-                                }
-                            });
+                            state_id_return     = $('#sweet_state_return').val();
+                            city_id_return      = $('#sweet_city_return').val();
 
                         }else{
-                            $.ajax({
-                                url:'{{ route('dashboard.get.location') }}',
-                                method:'GET',
-                                dataType: 'json',
-                                data: {
-                                    location:location_id,
-                                },
-                                success:function (data) {
-                                    state_id_return = data.state;
-                                    city_id_return = data.city;
-                                    apartment_return = data.apartment;
-                                    floor_return = data.floor;
-                                    building_return = data.building;
-                                    street_return = data.street;
-                                },
-                                error: function(result) {
-                                    //
-                                }
-                            });
+                            state_id_return     = $('#sweet_state_return').val();
+                            city_id_return      = $('#sweet_city_return').val();
+                            apartment_return    = $('#sweet_apartment_return').val();
+                            floor_return        = $('#sweet_floor_return').val();
+                            building_return     = $('#sweet_building_return').val();
+                            street_return       = $('#sweet_street_return').val();
                         }
 
                         div = "<table class='container text-center border' style='text-align: center'>" +

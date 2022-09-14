@@ -14,7 +14,7 @@ class AjaxController extends Controller
     public function customer(Request $request)
     {
         if ($request->ajax()) {
-            $id = $request->get('customer');
+            $id = $request->get('id');
             $customer = Customer::find($id);
             $name = $customer->user->full_name;
 
@@ -26,40 +26,21 @@ class AjaxController extends Controller
         }
     }
 
-    public function city(Request $request)
-    {
-        if ($request->ajax()) {
-            $state = $request->get('state');
-            $city = $request->get('city');
-            $city_name = City::find($city);
-            $state_name = State::find($state);
-            $name_city = $city_name->name;
-            $name_state = $state_name->name;
-
-            $data = array(
-                'city' => $name_city,
-                'state' => $name_state,
-            );
-
-            return json_encode($data);
-        }
-    }
-
     public function location(Request $request)
     {
         if ($request->ajax()) {
-            $id = $request->get('location');
-            $location = Location::find($id);
-            $state = State::find($id);
-            $city = City::find($id);
+            $id         = $request->get('id');
+            $location   = Location::find($id);
+            $state      = State::find($location->state_id);
+            $city       = City::find($location->city_id);
 
             $data = array(
-                'state' => $state->name,
-                'city' => $city->name,
+                'state'     => $state->name,
+                'city'      => $city->name,
                 'apartment' => $location->apartment,
-                'floor' => $location->floor,
-                'building' => $location->building,
-                'street' => $location->street,
+                'floor'     => $location->floor,
+                'building'  => $location->building,
+                'street'    => $location->street,
             );
 
             return json_encode($data);

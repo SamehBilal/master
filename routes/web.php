@@ -54,7 +54,6 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('tickets/update-chat/{id}',[\App\Http\Controllers\TicketController::class,'ajax'])->name('tickets.update.chat');
             Route::get('get-customer-data',[\App\Http\Controllers\AjaxController::class,'customer'])->name('get.customer');
             Route::get('get-location-data',[\App\Http\Controllers\AjaxController::class,'location'])->name('get.location');
-            Route::get('get-city-data',[\App\Http\Controllers\AjaxController::class,'city'])->name('get.city');
 
             Route::resource('customers',\App\Http\Controllers\ManageUsers\CustomerController::class); //Customers
             Route::resource('users',\App\Http\Controllers\UserController::class); //Users
@@ -95,6 +94,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('business',[\App\Http\Controllers\BusinessController::class,'create_front'])->name('business.create_front'); //Business
             Route::get('location-states',[\App\Http\Controllers\LocationController::class,'get_state'])->name('locations.states'); //Get States Ajax
             Route::get('location-cities',[\App\Http\Controllers\LocationController::class,'get_city'])->name('locations.cities'); //Get Cities Ajax
+            Route::get('location-city-name',[\App\Http\Controllers\LocationController::class,'get_cityname'])->name('locations.cities.names'); //Get Cities Ajax
             Route::resource('contacts',\App\Http\Controllers\ManageUsers\ContactController::class); //Contact
             Route::get('import',[\App\Http\Controllers\ExcelController::class,'import'])->name('import'); //import
             Route::get('export',[\App\Http\Controllers\ExcelController::class,'export'])->name('export'); //export
