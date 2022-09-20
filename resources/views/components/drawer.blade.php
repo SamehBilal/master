@@ -172,7 +172,7 @@
                         <a class="sidebar-menu-button"
                         href="{{ route('dashboard.businesses.index') }}">
                             <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">business</span>
-                            Business
+                            {{ __('dashboard.Business') }}
                         </a>
                     </li>
                 @endcan

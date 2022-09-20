@@ -6,13 +6,13 @@
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('dashboard.users.index') }}">Users</a>
+        <a href="{{ route('dashboard.users.index') }}">{{ __('dashboard.Users') }}</a>
     </li>
     <li class="breadcrumb-item ">
         <a href="{{ route('dashboard.users.show',$user->id) }}">{{ $user->full_name }}</a>
     </li>
     <li class="breadcrumb-item active">
-        edit
+        {{ __('dashboard.edit') }}
     </li>
 @endsection
 
@@ -25,14 +25,14 @@
 @endsection
 
 @section('button-title')
-    All Users
+    {{ __('dashboard.All_Users') }}
 @endsection
 
 @section('main_content')
     <div class="container page__container page-section">
         <div class="page-separator">
             <div class="page-separator__text" >
-                Users Information
+                {{ __('dashboard.Users Information') }}
             </div>
         </div>
         <form method="POST" action="{{ route('dashboard.users.update',$user->id) }}" enctype="multipart/form-data">
@@ -43,15 +43,15 @@
                     <div class="row">
                         <div class="col-lg-3 bg-light">
                             <div class="page-separator">
-                                <div class="page-separator__text">Basic Details</div>
+                                <div class="page-separator__text">{{ __('dashboard.Basic Details') }}</div>
                             </div>
-                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of the user categories listed.</p>
+                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.Basic details of the user information listed.') }}</p>
                         </div>
                         <div class="col-lg-9 row p-2">
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="first_name">First Name:</label>
+                                           for="first_name">{{ __('dashboard.First name') }}:</label>
                                     <input type="text"
                                            class="form-control @error('first_name') is-invalid @enderror"
                                            value="{{ old('first_name') ? old('first_name'):$user->first_name }}"
@@ -59,7 +59,7 @@
                                            name="first_name"
                                            required="required"
                                            autocomplete="first_name"
-                                           placeholder="First Name ..."
+                                           placeholder="{{ __('dashboard.First name') }} ..."
                                            autofocus>
                                     @error('first_name')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -70,7 +70,7 @@
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="last_name">Last Name:</label>
+                                           for="last_name">{{ __('dashboard.Last name') }}:</label>
                                     <input type="text"
                                            class="form-control @error('last_name') is-invalid @enderror"
                                            value="{{ old('last_name') ? old('last_name'):$user->last_name }}"
@@ -78,7 +78,7 @@
                                            name="last_name"
                                            required="required"
                                            autocomplete="last_name"
-                                           placeholder="Last Name ..."
+                                           placeholder="{{ __('dashboard.Last name') }} ..."
                                            autofocus>
                                     @error('last_name')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -89,7 +89,7 @@
                             <div class="col-12 col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="full_name">Full Name:</label>
+                                           for="full_name">{{ __('dashboard.Full name') }}:</label>
                                     <input type="text"
                                            class="form-control @error('full_name') is-invalid @enderror"
                                            value="{{ old('full_name') ? old('full_name'):$user->full_name }}"
@@ -97,7 +97,7 @@
                                            name="full_name"
                                            required="required"
                                            autocomplete="full_name"
-                                           placeholder="Full Name ..."
+                                           placeholder="{{ __('dashboard.Full name') }} ..."
                                            autofocus>
                                     @error('full_name')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -108,7 +108,7 @@
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="email">Email address:</label>
+                                           for="email">{{ __('dashboard.Email address') }}:</label>
                                     <input type="email"
                                            id="email"
                                            class="form-control @error('email') is-invalid @enderror"
@@ -116,7 +116,7 @@
                                            required="required"
                                            name="email"
                                            autocomplete="email"
-                                           placeholder="Your email address ...">
+                                           placeholder="{{ __('dashboard.Your email address') }} ...">
                                     @error('email')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
@@ -126,14 +126,14 @@
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="other_email">Other Email address:</label>
+                                           for="other_email">{{ __('dashboard.Other Email address') }}:</label>
                                     <input type="email"
                                            id="other_email"
                                            class="form-control @error('other_email') is-invalid @enderror"
                                            value="{{ old('other_email') ? old('other_email'):$user->other_email }}"
                                            name="other_email"
                                            autocomplete="other_email"
-                                           placeholder="Your other email address ...">
+                                           placeholder="{{ __('dashboard.Your other email address') }} ...">
                                     @error('other_email')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
@@ -143,16 +143,16 @@
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select04">Status</label>
+                                           for="select04">{{ __('dashboard.Status') }}</label>
                                     <select id="select04"
                                             data-toggle="select"
                                             data-minimum-results-for-search="-1"
                                             class="form-control form-control-sm @error('status') is-invalid @enderror"
                                             name="status">
                                         <option value="1" @if(old('status')) {{ old('status') == '1' ? 'selected':'' }} @else {{ $user->status == '1' ? 'selected':'' }} @endif>
-                                            active
+                                            {{ __('dashboard.active') }}
                                         <option value="0" @if(old('status')) {{ old('status') == '0' ? 'selected':'' }} @else {{ $user->status == '0' ? 'selected':'' }} @endif>
-                                            inactive
+                                            {{ __('dashboard.inactive') }}
                                         </option>
                                     </select>
                                     @error('status')
@@ -166,26 +166,26 @@
                 </div>
             </div>
             <div class="page-separator">
-                <div class="page-separator__text">Change password</div>
+                <div class="page-separator__text">{{ __('dashboard.Change password') }}</div>
             </div>
             <div class="card">
                 <div class="card-body ">
                     <div class="row">
                         <div class="col-lg-3 bg-light">
                             <div class="page-separator">
-                                <div class="page-separator__text">Password & Security</div>
+                                <div class="page-separator__text">{{ __('dashboard.Password & Security') }}</div>
                             </div>
-                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">Security details of user.</p>
+                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.Security details of user.') }}</p>
                         </div>
                         <div class="col-lg-9 row p-2">
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="password">New password:</label>
+                                           for="password">{{ __('dashboard.New password') }}:</label>
                                     <input type="password"
                                            id="password"
                                            class="form-control @error('password') is-invalid @enderror"
-                                           placeholder="Password ..."
+                                           placeholder="{{ __('dashboard.Password') }} ..."
                                            name="password"
                                            autocomplete="new-password">
                                     @error('password')
@@ -197,13 +197,13 @@
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="password-confirm">Confirm password:</label>
+                                           for="password-confirm">{{ __('dashboard.Confirm password') }}:</label>
                                     <input type="password"
                                            id="password-confirm"
                                            name="password_confirmation"
                                            autocomplete="new-password"
                                            class="form-control"
-                                           placeholder="Confirm password ...">
+                                           placeholder="{{ __('dashboard.Confirm password') }} ...">
                                     @error('password_confirmation')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
@@ -215,21 +215,21 @@
                 </div>
             </div>
             <div class="page-separator">
-                <div class="page-separator__text">Profile &amp; Privacy</div>
+                <div class="page-separator__text">{{ __('dashboard.Profile & Privacy') }}</div>
             </div>
             <div class="card">
                 <div class="card-body ">
                     <div class="row">
                         <div class="col-lg-3 bg-light">
                             <div class="page-separator">
-                                <div class="page-separator__text">PROFILE & PRIVACY</div>
+                                <div class="page-separator__text">{{ __('dashboard.Profile & Privacy') }}</div>
                             </div>
-                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">Upload your photo and the remaining data.</p>
+                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.Upload your photo and the remaining data') }}</p>
                         </div>
                         <div class="col-lg-9 row p-2">
                             <div class="col-12 col-md-12 mb-3">
                                 <div class="form-group">
-                                    <label class="form-label">Your photo:</label>
+                                    <label class="form-label">{{ __('dashboard.Your photo') }}:</label>
                                     <div class="media align-items-center">
                                         <a href="#"
                                            class="media-left mr-16pt">
@@ -247,7 +247,7 @@
                                                        onchange="readURL(this);"
                                                 >
                                                 <label class="custom-file-label"
-                                                       for="avatar">Choose file</label>
+                                                       for="avatar">{{ __('dashboard.Choose file') }}</label>
                                                 @error('avatar')
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
@@ -260,24 +260,24 @@
                             <div class="col-12 col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="username">Profile name:</label>
+                                           for="username">{{ __('dashboard.Profile name') }}:</label>
                                     <input type="text"
                                            id="username"
                                            class="form-control @error('username') is-invalid @enderror"
                                            value="{{ old('username') ? old('username'):$user->username }}"
                                            name="username"
-                                           placeholder="Your profile name ...">
+                                           placeholder="{{ __('dashboard.Your profile name') }} ...">
                                     @error('username')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
                                     <div class="valid-feedback">Looks good!</div>
-                                    {{--<small class="form-text text-muted">Your profile name will be used as part of your public profile URL address.</small>--}}
+                                    {{--<small class="form-text text-muted">{{ __('dashboard.Your profile name will be used as part of your public profile URL address.') }}</small>--}}
                                 </div>
                             </div>
                             <div class="col-12 col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="phone">Phone:</label>
+                                           for="phone">{{ __('dashboard.Phone') }}:</label>
                                     <input type="tel"
                                            class="form-control @error('phone') is-invalid @enderror"
                                            value="{{ old('phone') ? old('phone'):$user->phone }}"
@@ -285,7 +285,7 @@
                                            name="phone"
                                            pattern="[0][1][1-5]{9}"
                                            data-mask="00000000000"
-                                           placeholder="Your mobile phone ...">
+                                           placeholder="{{ __('dashboard.Your mobile phone') }} ...">
                                     @error('phone')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
@@ -295,7 +295,7 @@
                             <div class="col-12 col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="other_phone">Other Phone:</label>
+                                           for="other_phone">{{ __('dashboard.Other Phone') }}:</label>
                                     <input type="tel"
                                            class="form-control @error('other_phone') is-invalid @enderror"
                                            value="{{ old('other_phone') ? old('other_phone'):$user->other_phone }}"
@@ -303,7 +303,7 @@
                                            name="other_phone"
                                            pattern="[0][1][1-5]{9}"
                                            data-mask="00000000000"
-                                           placeholder="Your other mobile phone ...">
+                                           placeholder="{{ __('dashboard.Your other mobile phone') }} ...">
                                     @error('other_phone')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
@@ -313,13 +313,13 @@
                             <div class="col-12 col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select05">Gender:</label>
+                                           for="select05">{{ __('dashboard.Gender') }}:</label>
                                     <select id="select05"
                                             data-toggle="select"
                                             name="gender"
                                             class="form-control form-control-sm @error('gender') is-invalid @enderror">
-                                        <option value="Male" @if($user->gender == 'Male') selected @endif>Male</option>
-                                        <option value="Female" @if($user->gender == 'Female') selected @endif>Female</option>
+                                        <option value="Male" @if($user->gender == 'Male') selected @endif>{{ __('dashboard.Male') }}</option>
+                                        <option value="Female" @if($user->gender == 'Female') selected @endif>{{ __('dashboard.Female') }}</option>
                                     </select>
                                     @error('gender')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -330,14 +330,14 @@
                             <div class="col-12 col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="date_of_birth">Date of Birth:</label>
+                                           for="date_of_birth">{{ __('dashboard.Date of Birth') }}:</label>
                                     <input type="hidden"
                                            class="form-control @error('date_of_birth') is-invalid @enderror flatpickr-input"
                                            value="{{ old('date_of_birth') ? old('date_of_birth'):$user->date_of_birth }}"
                                            id="date_of_birth"
                                            name="date_of_birth"
                                            data-toggle="flatpickr"
-                                           placeholder="Your Birth date ...">
+                                           placeholder="{{ __('dashboard.Your Birth date') }} ...">
                                     @error('date_of_birth')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
@@ -347,12 +347,12 @@
                             <div class="col-12 col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="bio">About you:</label> <small class="badge badge-secondary">optional</small>
+                                           for="bio">{{ __('dashboard.About you') }}:</label> <small class="badge badge-secondary">{{ __('dashboard.optional') }}</small>
                                     <textarea rows="3"
                                               id="bio"
                                               name="bio"
                                               class="form-control @error('bio') is-invalid @enderror"
-                                              placeholder="About you ...">{{ old('bio') ? old('bio'):$user->bio }}</textarea>
+                                              placeholder="{{ __('dashboard.About you') }} ...">{{ old('bio') ? old('bio'):$user->bio }}</textarea>
                                     @error('bio')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
@@ -365,25 +365,24 @@
             </div>
 
             <div class="page-separator">
-                <div class="page-separator__text">Roles</div>
+                <div class="page-separator__text">{{ __('dashboard.Roles') }}</div>
             </div>
             <div class="card">
                 <div class="card-body ">
                     <div class="row">
                         <div class="col-lg-3 bg-light">
                             <div class="page-separator">
-                                <div class="page-separator__text">Roles</div>
+                                <div class="page-separator__text">{{ __('dashboard.Roles') }}</div>
                             </div>
-                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">Edit the role of this user to manage what he can do in the app.</p>
+                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.Edit the role of this user to manage what he can do in the app.') }}</p>
                         </div>
                         <div class="col-lg-9 row p-2">
                             <div class="col-12 col-md-12 mb-12">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select04">Roles</label>
+                                           for="select04">{{ __('dashboard.Roles') }}</label>
                                     <select id="select04"
                                             data-toggle="select"
-                                            data-minimum-results-for-search="-1"
                                             class="form-control form-control-sm @error('role') is-invalid @enderror"
                                             name="role">
                                         @foreach($roles as $role)
@@ -404,7 +403,7 @@
             </div>
 
             <button type="submit"
-                    class="btn pull-right btn-primary">Submit</button>
+                    class="btn pull-right btn-primary">{{ __('dashboard.Submit') }}</button>
         </form>
     </div>
 @endsection

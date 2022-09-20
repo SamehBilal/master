@@ -59,7 +59,7 @@ class PickupCustomerLogController extends Controller
                 $request['description'] = 'It is expected to pickup your order at pickup date.';
                 break;
             case 'Out for pickup';
-                $request['description'] = 'Your is out for pickup soon.';
+                $request['description'] = 'Your order is out for pickup soon.';
                 break;
             case 'Picked up';
                 $request['description'] = 'Your order has been picked up and is expected to be delivered to customer soon.';

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@php $locale = session()->get('locale'); @endphp
+
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,6 +17,16 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+
+        <style>
+            @if($locale == 'ar')
+                @import url(https://fonts.googleapis.com/css?family=Cairo);
+                    *,.sidebar-heading,.card-title,.table thead th,.page-separator__text,.form-label {
+                            font-family: "Cairo", serif;!important;
+                        }
+            @endif
+
+        </style>
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased " >

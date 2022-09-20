@@ -1,12 +1,12 @@
 @extends('layouts.backend')
 
 @section('title')
-    Businesses
+    {{ __('dashboard.Businesses') }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item active">
-        Businesses
+        {{ __('dashboard.Businesses') }}
     </li>
 @endsection
 @can('create businesses')
@@ -20,7 +20,7 @@
 @endsection
 
 @section('button-title')
-    New Business
+    {{ __('dashboard.New Business') }}
 @endsection
 
 @section('main_content')
@@ -28,7 +28,7 @@
         <div class="page-section">
 
             <div class="page-separator">
-                <div class="page-separator__text">Businesses</div>
+                <div class="page-separator__text">{{ __('dashboard.Businesses') }}</div>
             </div>
 
             <div class="card dashboard-area-tabs p-relative o-hidden mb-32pt">
@@ -37,11 +37,11 @@
                     <div class="card-header">
                         <form class="form-inline">
                             <label class="mr-sm-2 form-label"
-                                   for="myInputTextField">Filter by:</label>
+                                   for="myInputTextField">{{ __('dashboard.Filter by') }}:</label>
                             <input type="text"
                                    class="form-control search mb-2 mr-sm-2 mb-sm-0"
                                    id="myInputTextField"
-                                   placeholder="Search ...">
+                                   placeholder="{{ __('dashboard.Search') }} ...">
 
                             <div class="col-lg d-flex flex-wrap buttons-datatable-add">
                                 <div class="ml-lg-auto dropdown select-datatable-add">
@@ -72,17 +72,17 @@
 
                             <th>#</th>
 
-                            <th>Name <small>(Arabic)</small></th>
+                            <th>{{ __('dashboard.Name') }} <small>({{ __('dashboard.Arabic') }})</small></th>
 
-                            <th>Name <small>(English)</small></th>
+                            <th>{{ __('dashboard.Name') }} <small>({{ __('dashboard.English') }})</small></th>
 
-                            <th>Sales Channel</th>
+                            <th>{{ __('dashboard.Sales Channel') }}</th>
 
-                            <th>Industry</th>
+                            <th>{{ __('dashboard.industry') }}</th>
 
-                            <th>Location</th>
+                            <th>{{ __('dashboard.Location') }}</th>
 
-                            <th>Created</th>
+                            <th>{{ __('dashboard.Created_At') }}</th>
 
                             <th></th>
                         </tr>
@@ -154,14 +154,14 @@
                                        class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         @can('show businesses')
-                                            <a href="{{ route('dashboard.businesses.show',$item->id) }}" class="dropdown-item"><i class="material-icons ">visibility</i> View</a>
+                                            <a href="{{ route('dashboard.businesses.show',$item->id) }}" class="dropdown-item"><i class="material-icons ">visibility</i> {{ __('dashboard.View') }}</a>
                                         @endcan
                                         @can('edit businesses')
-                                            <a href="{{ route('dashboard.businesses.edit',$item->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> Edit</a>
+                                            <a href="{{ route('dashboard.businesses.edit',$item->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> {{ __('dashboard.Edit') }}</a>
                                         @endcan
                                         @can('delete businesses')
                                             <div class="dropdown-divider"></div>
-                                            <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $item->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
+                                            <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $item->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> {{ __('dashboard.Delete') }}</a>
                                             <form id="delete-form{{ $item->id }}" action="{{ route('dashboard.businesses.destroy',$item->id) }}" method="POST" class="d-none">
                                                 @csrf
                                                 @method('DELETE')
@@ -188,17 +188,17 @@
 
                             <th>#</th>
 
-                            <th>Name <small>(Arabic)</small></th>
+                            <th>{{ __('dashboard.Name') }} <small>({{ __('dashboard.Arabic') }})</small></th>
 
-                            <th>Name <small>(English)</small></th>
+                            <th>{{ __('dashboard.Name') }} <small>({{ __('dashboard.English') }})</small></th>
 
-                            <th>Sales Channel</th>
+                            <th>{{ __('dashboard.Sales Channel') }}</th>
 
-                            <th>Industry</th>
+                            <th>{{ __('dashboard.industry') }}</th>
 
-                            <th>Location</th>
+                            <th>{{ __('dashboard.Location') }}</th>
 
-                            <th>Created</th>
+                            <th>{{ __('dashboard.Created_At') }}</th>
 
                             <th></th>
                         </tr>

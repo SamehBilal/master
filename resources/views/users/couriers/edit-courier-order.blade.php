@@ -67,8 +67,8 @@
                             <div class="valid-feedback">Looks good!</div>
                         </div>
                         <button type="submit"
-                                class="btn pull-right btn-primary">Submit</button>
-                        <a onclick="event.preventDefault(); document.getElementById('delete-form').submit();" class="btn btn-danger ml-0">Delete</a>
+                                class="btn pull-right btn-primary">{{ __('dashboard.Submit') }}</button>
+                        <a onclick="event.preventDefault(); document.getElementById('delete-form').submit();" class="btn btn-danger ml-0">{{ __('dashboard.Delete') }}</a>
 
                     </form>
                     <form id="delete-form" action="{{ route('dashboard.orders.delete.courier',[$order->id,$log->id]) }}" method="POST" class="d-none">

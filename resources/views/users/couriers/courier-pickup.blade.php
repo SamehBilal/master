@@ -1,12 +1,12 @@
 @extends('layouts.backend')
 
 @section('title')
-    {{ __('dashboard.pickups') }}
+    {{ __('dashboard.Pickups') }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('dashboard.pickups.index') }}">{{ __('dashboard.pickups') }}</a>
+        <a href="{{ route('dashboard.pickups.index') }}">{{ __('dashboard.Pickups') }}</a>
     </li>
     <li class="breadcrumb-item">
         <a href="{{ route('dashboard.pickups.show',$pickup->id) }}">{{ $pickup->pickup_id }}</a>
@@ -25,7 +25,7 @@
 @endsection
 
 @section('button-title')
-    {{ __('dashboard.All_pickups') }}
+    {{ __('dashboard.Pickups') }}
 @endsection
 
 @section('main_content')
@@ -63,7 +63,7 @@
                             <div class="valid-feedback">Looks good!</div>
                         </div>
                         <button type="submit"
-                                class="btn pull-right btn-primary">Submit</button>
+                                class="btn pull-right btn-primary">{{ __('dashboard.Submit') }}</button>
                     </form>
                 </div>
             </div>

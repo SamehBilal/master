@@ -1,12 +1,12 @@
 @extends('layouts.backend')
 
 @section('title')
-    {{ __('dashboard.pickups') }}
+    {{ __('dashboard.Pickups') }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('dashboard.pickups.index') }}">{{ __('dashboard.pickups') }}</a>
+        <a href="{{ route('dashboard.pickups.index') }}">{{ __('dashboard.Pickups') }}</a>
     </li>
     <li class="breadcrumb-item">
         <a href="{{ route('dashboard.pickups.show',$pickup->id) }}">{{ $pickup->pickup_id }}</a>
@@ -25,7 +25,7 @@
 @endsection
 
 @section('button-title')
-    {{ __('dashboard.All_pickups') }}
+    {{ __('dashboard.Pickups') }}
 @endsection
 
 @section('main_content')
@@ -64,8 +64,8 @@
                             <div class="valid-feedback">Looks good!</div>
                         </div>
                         <button type="submit"
-                                class="btn pull-right btn-primary">Submit</button>
-                        <a onclick="event.preventDefault(); document.getElementById('delete-form').submit();" class="btn btn-danger ml-0">Delete</a>
+                                class="btn pull-right btn-primary">{{ __('dashboard.Submit') }}</button>
+                        <a onclick="event.preventDefault(); document.getElementById('delete-form').submit();" class="btn btn-danger ml-0">{{ __('dashboard.Delete') }}</a>
 
                     </form>
                     <form id="delete-form" action="{{ route('dashboard.pickups.delete.courier',[$pickup->id,$log->id]) }}" method="POST" class="d-none">

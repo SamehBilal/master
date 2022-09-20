@@ -33,8 +33,8 @@
             <div class="row">
                 <div class="col-lg-5 mb-24pt mb-lg-0">
                     <div class="border-left-3 border-left-primary pl-24pt pl-md-32pt">
-                        <h4 class="mb-8pt">{{ $log ? $log->status:'' }} {{ $log->hub ? ($locale == 'ar' ? '('.$log->hub->ar_name.')':'('.$log->hub->en_name.')'):'' }}</h4>
-                        <p class="text-70 mb-24pt">{{ $log ? $log->description:'' }}</p>
+                        <h4 class="mb-8pt">{{ $log ? __('dashboard.'.$log->status):'' }} {{ $log->hub ? ($locale == 'ar' ? '('.$log->hub->ar_name.')':'('.$log->hub->en_name.')'):'' }}</h4>
+                        <p class="text-70 mb-24pt">{{ $log ? __('dashboard.'.$log->description):'' }}</p>
                         @can('edit log')
                         <a href="{{ route("dashboard.order-logs.index",$order->id) }}"
                            class="btn btn-primary">{{ __('dashboard.Order Logs') }}</a>
@@ -47,7 +47,7 @@
                             <a href="#"
                                data-toggle="tooltip"
                                data-placement="top"
-                               data-title="{{ $icon['type'] }}"
+                               data-title="{{ __('dashboard.'.$icon['type']) }}"
                                class="page-num-timeline__item {{ $icon['type'] ==  ($log ? $log->status:'')  ? 'page-num-timeline__item-current':''}}">
                                 <span class="page-num-timeline__item-tip"></span>
                                 <span class="page-num"><i class="material-icons">{{ $icon['icon'] }}</i></span>
@@ -604,8 +604,8 @@
                         <div class="col-lg-5 mb-24pt mb-lg-0">
                             <div class="border-left-3 border-left-primary pl-24pt pl-md-32pt">
                                 <h4 class="mb-8pt text-secondary">{{ __('dashboard.Customer Order log') }}</h4>
-                                <h4 class="mb-8pt">{{ $customerlog ? $customerlog->status:'' }} {{ $customerlog->hub ? ($locale == 'ar' ? '('.$customerlog->hub->ar_name.')':'('.$customerlog->hub->en_name.')'):'' }}</h4>
-                                <p class="text-70 mb-24pt">{{ $customerlog ? $customerlog->description:'' }}</p>
+                                <h4 class="mb-8pt">{{ $customerlog ? __('dashboard.'.$customerlog->status):'' }} {{ $customerlog->hub ? ($locale == 'ar' ? '('.$customerlog->hub->ar_name.')':'('.$customerlog->hub->en_name.')'):'' }}</h4>
+                                <p class="text-70 mb-24pt">{{ $customerlog ? __('dashboard.'.$customerlog->description):'' }}</p>
                                 @can('edit log')
                                 <a href="{{ route("dashboard.order-customer-logs.index",$order->id) }}"
                                    class="btn btn-primary">{{ __('dashboard.Customer Order log') }}</a>
@@ -618,7 +618,7 @@
                                     <a href="#"
                                        data-toggle="tooltip"
                                        data-placement="top"
-                                       data-title="{{ $icon['type'] }}"
+                                       data-title="{{ __('dashboard.'.$icon['type']) }}"
                                        class="page-num-timeline__item {{ $icon['type'] ==  ($customerlog ? $customerlog->status:'')  ? 'page-num-timeline__item-current':''}}">
                                         <span class="page-num-timeline__item-tip"></span>
                                         <span class="page-num"><i class="material-icons">{{ $icon['icon'] }}</i></span>
@@ -1063,8 +1063,8 @@
                                                 </div>
                                             </div>
                                             <div class="flex">
-                                                <div class="card-title">{{ $order->pickup->location->name }}</div>
-                                                <p class="flex text-50 lh-1 mb-0"><small>{{ $order->pickup->location->state->name }}</small></p>
+                                                <div class="card-title">{{ $order->pickup ? $order->pickup->location->name:'' }}</div>
+                                                <p class="flex text-50 lh-1 mb-0"><small>{{ $order->pickup ? $order->pickup->location->state->name:'' }}</small></p>
                                             </div>
                                         </div>
                                     </div>
@@ -1086,7 +1086,7 @@
                                     <span class="rating__item"><span class="material-icons">star_border</span></span>
                                 </div>--}}
 
-                                <p class="mt-16pt text-70 flex">{{ $order->pickup->location->apartment }} {{ $order->pickup->location->building }}, {{ $order->pickup->location->street }}, {{ $order->pickup->location->state->name }}, {{ $order->pickup->location->country->name }}</p>
+                                <p class="mt-16pt text-70 flex">{{ $order->pickup ? $order->pickup->location->apartment:'' }} {{ $order->pickup ? $order->pickup->location->building:'' }}, {{ $order->pickup ? $order->pickup->location->street:'' }}, {{ $order->pickup ? $order->pickup->location->state->name:'' }}, {{ $order->pickup ? $order->pickup->location->country->name:'' }}</p>
 
                                 <div class="mb-16pt d-none">
                                     <div class="d-flex align-items-center">
@@ -1115,15 +1115,15 @@
                                     <div class="col-auto">
                                         <div class="d-flex align-items-center mb-4pt">
                                             <span class="material-icons icon-16pt text-50 mr-4pt">apartment</span>
-                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Apartment') }}: {{ $order->pickup->location->apartment }}</small></p>
+                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Apartment') }}: {{ $order->pickup ? $order->pickup->location->apartment:'' }}</small></p>
                                         </div>
                                         <div class="d-flex align-items-center mb-4pt">
                                             <span class="material-icons icon-16pt text-50 mr-4pt">home_work</span>
-                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Home') }}: {{ $order->pickup->location->building }}</small></p>
+                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Home') }}: {{ $order->pickup ? $order->pickup->location->building:'' }}</small></p>
                                         </div>
                                         <div class="d-flex align-items-center">
                                             <span class="material-icons icon-16pt text-50 mr-4pt">local_convenience_store</span>
-                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Floor') }}: {{ $order->pickup->location->floor }}</small></p>
+                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Floor') }}: {{ $order->pickup ? $order->pickup->location->floor:'' }}</small></p>
                                         </div>
                                     </div>
                                     <div class="col text-right">
@@ -1151,7 +1151,7 @@
     <script>
         $(document).ready(function() {
             var div = '<div class="card-body d-flex flex-column">'+
-                '  <p class="mt-16pt text-70 flex">{{ $order->pickup->location->apartment }} {{ $order->pickup->location->building }}, {{ $order->pickup->location->street }}, {{ $order->pickup->location->state->name }}, {{ $order->pickup->location->country->name }}</p>'+
+                '  <p class="mt-16pt text-70 flex">{{ $order->pickup ? $order->pickup->location->apartment:'' }} {{ $order->pickup ? $order->pickup->location->building:'' }}, {{ $order->pickup ? $order->pickup->location->street:'' }}, {{ $order->pickup ? $order->pickup->location->state->name:'' }}, {{ $order->pickup ? $order->pickup->location->country->name:'' }}</p>'+
                 '  <div class="mb-16pt d-none">'+
                 ' <div class="d-flex align-items-center">'+
                 '      <span class="material-icons icon-16pt text-50 mr-8pt">check</span>'+
@@ -1178,23 +1178,23 @@
                 '   <div class="col-auto">'+
                 '      <div class="d-flex align-items-center mb-4pt">'+
                 '          <span class="material-icons icon-16pt text-50 mr-4pt">apartment</span>'+
-                '          <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Apartment') }}: {{ $order->pickup->location->apartment }}</small></p>'+
+                '          <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Apartment') }}: {{ $order->pickup ? $order->pickup->location->apartment:'' }}</small></p>'+
                 '  </div>'+
                 '    <div class="d-flex align-items-center mb-4pt">'+
                 '      <span class="material-icons icon-16pt text-50 mr-4pt">home_work</span>'+
-                '       <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Home') }}: {{ $order->pickup->location->building }}</small></p>'+
+                '       <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Home') }}: {{ $order->pickup ? $order->pickup->location->building:'' }}</small></p>'+
                 '    </div>'+
                 '    <div class="d-flex align-items-center mb-4pt">'+
                 '        <span class="material-icons icon-16pt text-50 mr-4pt">local_convenience_store</span>'+
-                '        <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Floor') }}: {{ $order->pickup->location->floor }}</small></p>'+
+                '        <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Floor') }}: {{ $order->pickup ? $order->pickup->location->floor:'' }}</small></p>'+
                 '   </div>'+
                 '   <div class="d-flex align-items-center mb-4pt">'+
                 '      <span class="material-icons icon-16pt text-50 mr-4pt">car_repair</span>'+
-                '       <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Street') }}: {{ $order->pickup->location->street }}</small></p>'+
+                '       <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Street') }}: {{ $order->pickup ? $order->pickup->location->street:'' }}</small></p>'+
                 '    </div>'+
                 '    <div class="d-flex align-items-center mb-4pt">'+
                 '        <span class="material-icons icon-16pt text-50 mr-4pt">landscape</span>'+
-                '       <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Landmarks') }}: {{ $order->pickup->location->landmarks }}</small></p>'+
+                '       <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Landmarks') }}: {{ $order->pickup ? $order->pickup->location->landmarks:'' }}</small></p>'+
                 ' </div>'+
                 ' </div>'+
                 ' <div class="col text-right"></div>'+
@@ -1211,7 +1211,7 @@
                 })
 
                 swalWithBootstrapButtons.fire({
-                    title: "{{ $order->pickup->location->name }}",
+                    title: "{{ $order->pickup ? $order->pickup->location->name:'' }}",
                     html: div,
                     imageUrl: '{{ asset('backend/images/icon/map.png') }}',
                     imageWidth: 64,
@@ -1227,7 +1227,7 @@
                     } else if (
                         result.dismiss === Swal.DismissReason.cancel
                     ) {
-                        window.location = '{{ route('dashboard.locations.show',$order->pickup->location->id).'?order='.$order->id }}';
+                        window.location = '{{ $order->pickup ? route('dashboard.locations.show',$order->pickup->location->id).'?order='.$order->id:'' }}';
                     }
                 })
 

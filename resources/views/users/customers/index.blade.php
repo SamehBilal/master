@@ -69,7 +69,7 @@
                                     </div>
                                     <span class="flex d-flex flex-column">
                                         <strong>{{ $category->name }}</strong>
-                                        <small class=" text-50">{{ $category->status }}</small>
+                                        <small class=" text-50">{{ __('dashboard.'.$category->status) }}</small>
                                         <span class="indicator-line rounded {{ $category->status == 'active' ? 'bg-success':'bg-danger' }}"></span>
                                     </span>
                                 </a>
@@ -122,7 +122,7 @@
                                 <th>{{ __('dashboard.Phone') }}</th>
 
                                 @hasrole('finance')
-                                    <th>Total COD</th>
+                                    <th>{{ __('dashboard.Total COD') }}</th>
                                 @else
 
                                 @endhasrole
@@ -183,7 +183,7 @@
                                             <div class="media-body">
                                                 <div class="d-flex flex-column">
                                                     <small class=""><strong>{{ $customer->UserCategory ? $customer->UserCategory->name:'' }}</strong></small>
-                                                    <small class=" text-50">{{ $customer->UserCategory ? $customer->UserCategory->status:'' }}</small>
+                                                    <small class=" text-50">{{ $customer->UserCategory ? __('dashboard.'.$customer->UserCategory->status):'' }}</small>
                                                     <span class="indicator-line rounded {{ ($customer->UserCategory) ? $customer->UserCategory->status == 'active' ? 'bg-success':'bg-danger':'' }}"></span>
                                                 </div>
                                             </div>
@@ -211,7 +211,7 @@
 
                                     <td>
                                         <div class="d-flex flex-column">
-                                            <button class="btn btn-sm {{ $customer->status == 'active' ? 'btn-success':'btn-danger' }}">{{ $customer->status }}</button>
+                                            <button class="btn btn-sm {{ $customer->status == 'active' ? 'btn-success':'btn-danger' }}">{{ __('dashboard.'.$customer->status) }}</button>
                                         </div>
                                     </td>
 
@@ -233,14 +233,14 @@
                                            class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             @can('show customers')
-                                            <a href="{{ route('dashboard.customers.show',$customer->id) }}" class="dropdown-item active"><i class="material-icons ">visibility</i> View</a>
+                                            <a href="{{ route('dashboard.customers.show',$customer->id) }}" class="dropdown-item active"><i class="material-icons ">visibility</i> {{ __('dashboard.View') }}</a>
                                             @endcan
                                             @can('edit customers')
-                                                <a href="{{ route('dashboard.customers.edit',$customer->id) }}" class="dropdown-item "><i class="material-icons ">edit</i> Edit</a>
+                                                <a href="{{ route('dashboard.customers.edit',$customer->id) }}" class="dropdown-item "><i class="material-icons ">edit</i> {{ __('dashboard.Edit') }}</a>
                                             @endcan
                                             @can('delete customers')
                                                 <div class="dropdown-divider"></div>
-                                                <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $customer->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
+                                                <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $customer->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> {{ __('dashboard.Delete') }}</a>
                                                 <form id="delete-form{{ $customer->id }}" action="{{ route('dashboard.customers.destroy',$customer->id) }}" method="POST" class="d-none">
                                                     @csrf
                                                     @method('DELETE')
@@ -274,7 +274,7 @@
                                 <th>{{ __('dashboard.Phone') }}</th>
 
                                 @hasrole('finance')
-                                    <th>Total COD</th>
+                                    <th>{{ __('dashboard.Total COD') }}</th>
                                 @else
 
                                 @endhasrole

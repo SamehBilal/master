@@ -1,7 +1,7 @@
 @extends('layouts.backend')
 @php $locale = session()->get('locale'); @endphp
 @section('title')
-    Pickup Logs
+    {{ __('dashboard.Pickup Logs') }}
 @endsection
 
 @section('links')
@@ -9,10 +9,10 @@
         <a href="{{ route('dashboard.pickups.show',$pickup->id) }}">#{{ $pickup->pickup_id }}</a>
     </li>
     <li class="breadcrumb-item active">
-        <a href="{{ route('dashboard.pickup-logs.index',$pickup->id) }}">Pickup Logs</a>
+        <a href="{{ route('dashboard.pickup-logs.index',$pickup->id) }}">{{ __('dashboard.Pickup Logs') }}</a>
     </li>
     <li class="breadcrumb-item active">
-        create
+        {{ __('dashboard.create') }}
     </li>
 @endsection
 
@@ -25,14 +25,14 @@
 @endsection
 
 @section('button-title')
-    All Pickup Logs
+    {{ __('dashboard.Pickup Logs') }}
 @endsection
 
 @section('main_content')
     <div class="container page__container page-section">
         <div class="page-separator">
             <div class="page-separator__text" >
-                Pickup Logs Information
+                {{ __('dashboard.Pickup Logs Information') }}
             </div>
         </div>
         <form method="POST" action="{{ route('dashboard.pickup-logs.store',$pickup->id) }}" enctype="multipart/form-data">
@@ -42,15 +42,15 @@
                     <div class="row">
                         <div class="col-lg-3 bg-light">
                             <div class="page-separator">
-                                <div class="page-separator__text">Basic Details</div>
+                                <div class="page-separator__text">{{ __('dashboard.Basic Details') }}</div>
                             </div>
-                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of the user pickup Logs listed.</p>
+                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.Basic details of the user pickup Logs listed.') }}</p>
                         </div>
                         <div class="col-lg-9 row p-2">
                             <div class="col-12">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="description">Notes:</label>
+                                           for="description">{{ __('dashboard.Notes') }}:</label>
                                     <textarea rows="3"
                                               id="notes"
                                               name="notes"
@@ -65,7 +65,7 @@
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select03">Status</label>
+                                           for="select03">{{ __('dashboard.Status') }}</label>
                                     <select id="select03"
                                             data-toggle="select"
                                             data-minimum-results-for-search="-1"
@@ -73,7 +73,7 @@
                                             name="status">
                                         @foreach($logs as $log)
                                             <option value="{{ $log['type'] }}" {{ old('status') == $log['type'] ? 'selected':'' }}>
-                                                {{ $log['type'] }}
+                                                {{ __('dashboard.'.$log['type']) }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -86,7 +86,7 @@
                             <div class="col-12 col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select02">Hub</label>
+                                           for="select02">{{ __('dashboard.hubs') }}</label>
                                     <select id="select02"
                                             data-toggle="select"
                                             class="form-control form-control-sm @error('hub_id') is-invalid @enderror"
@@ -109,7 +109,7 @@
             </div>
 
             <button type="submit"
-                    class="btn pull-right btn-primary">Submit</button>
+                    class="btn pull-right btn-primary">{{ __('dashboard.Submit') }}</button>
         </form>
     </div>
 @endsection

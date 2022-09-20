@@ -122,11 +122,11 @@
                                                    class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     @can('edit user categories')
-                                                        <a href="{{ route('dashboard.user-categories.edit',$category->id) }}" class="dropdown-item active"><i class="material-icons ">edit</i> Edit</a>
+                                                        <a href="{{ route('dashboard.user-categories.edit',$category->id) }}" class="dropdown-item active"><i class="material-icons ">edit</i> {{ __('dashboard.Edit') }}</a>
                                                     @endcan
                                                     @can('delete user categories')
                                                         <div class="dropdown-divider"></div>
-                                                        <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $category->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
+                                                        <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $category->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> {{ __('dashboard.Delete') }}</a>
                                                         <form id="delete-form{{ $category->id }}" action="{{ route('dashboard.user-categories.destroy',$category->id) }}" method="POST" class="d-none">
                                                             @csrf
                                                             @method('DELETE')

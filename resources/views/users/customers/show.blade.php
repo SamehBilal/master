@@ -6,7 +6,7 @@
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('dashboard.customers.index') }}">Customers</a>
+        <a href="{{ route('dashboard.customers.index') }}">{{ __('dashboard.Customers') }}</a>
     </li>
     <li class="breadcrumb-item active">
         {{ $customer->user->full_name }}
@@ -22,7 +22,7 @@
 @endsection
 
 @section('button-title')
-    All Csutomers
+    {{ __('dashboard.Customers') }}
 @endsection
 
 @section('main_content')
@@ -38,7 +38,7 @@
         </div>
         @can('edit customers')
             <a href="{{ route('dashboard.customers.edit',$customer->id) }}"
-                    class="btn btn-outline-white"><i class="material-icons icon-16pt mr-4pt">edit</i> Edit</a>
+                    class="btn btn-outline-white"><i class="material-icons icon-16pt mr-4pt">edit</i> {{ __('dashboard.Edit') }}</a>
         @endcan
     </div>
 </div>
@@ -69,7 +69,7 @@
     <div class="page-section">
 
         <div class="page-separator">
-            <div class="page-separator__text">Latest {{ __('dashboard.Orders') }}</div>
+            <div class="page-separator__text">{{ __('dashboard.Latest') }} {{ __('dashboard.Orders') }}</div>
         </div>
 
         <div class="row card-group-row mb-lg-8pt">
@@ -102,13 +102,13 @@
                                         </div>
                                         <div class="flex">
                                             <div class="card-title">#{{ $order->tracking_no }}</div>
-                                            <p class="flex text-50 lh-1 mb-0"><small>{{ $order->status }}</small></p>
+                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.'.$order->status) }}</small></p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <a href="#"
-                                class="ml-4pt btn btn-sm btn-link text-secondary border-1 border-secondary">Details</a>
+                                class="ml-4pt btn btn-sm btn-link text-secondary border-1 border-secondary">{{ __('dashboard.Details') }}</a>
 
                             </div>
 
@@ -126,7 +126,7 @@
                             </div>
                             <div class="media-body">
                                 <div class="card-title">#{{ $order->tracking_no }}</div>
-                                <p class="text-50 d-flex lh-1 mb-0 small">{{ $order->status }}</p>
+                                <p class="text-50 d-flex lh-1 mb-0 small">{{ __('dashboard.'.$order->status) }}</p>
                             </div>
                         </div>
 
@@ -145,9 +145,9 @@
                             </div>--}}
                             <div class="d-flex align-items-center justify-content-center">
                                 <a href="{{ route('dashboard.orders.show',$order->id) }}"
-                                class="btn btn-primary mr-8pt">View</a>
+                                class="btn btn-primary mr-8pt">{{ __('dashboard.View') }}</a>
                                 <a href="{{ route('dashboard.orders.edit',$order->id) }}"
-                                class="btn btn-outline-secondary ml-0">Edit</a>
+                                class="btn btn-outline-secondary ml-0">{{ __('dashboard.Edit') }}</a>
                             </div>
                         </div>
                     </div>

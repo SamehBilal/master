@@ -6,13 +6,13 @@
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('dashboard.pickups.index') }}">pickups</a>
+        <a href="{{ route('dashboard.pickups.index') }}">{{ __('dashboard.Pickups') }}</a>
     </li>
     <li class="breadcrumb-item ">
         <a href="{{ route('dashboard.pickups.show',$pickup->id) }}">{{ $pickup->pickup_id }}</a>
     </li>
     <li class="breadcrumb-item active">
-        Edit
+        {{ __('dashboard.Edit') }}
     </li>
 @endsection
 
@@ -25,7 +25,7 @@
 @endsection
 
 @section('button-title')
-    All Pickups
+    {{ __('dashboard.Pickups') }}
 @endsection
 
 @section('main_content')
@@ -50,7 +50,7 @@
                     <button type="button" class="btn btn-sm rounded-circle btn-dark">
                         &nbsp;  1 &nbsp;
                     </button>
-                    &nbsp; Location Information
+                    &nbsp; {{ __('dashboard.Location Information') }}
                 </div>
             </div>
             <div class="card">
@@ -58,25 +58,25 @@
                     <div class="row">
                         <div class="col-lg-3 bg-light">
                             <div class="page-separator">
-                                <div class="page-separator__text">Location Details</div>
+                                <div class="page-separator__text">{{ __('dashboard.Location Details') }}</div>
                             </div>
-                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of the Location of the pickup.</p>
+                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.Basic details of the Location of the pickup') }}</p>
                         </div>
                         <div class="col-lg-9 row ">
                             <div class="page-separator col-lg-12">
                                 <div class="page-separator__text" >
-                                    &nbsp; Pickup Location
+                                    &nbsp; {{ __('dashboard.Pickup location') }}
                                 </div>
                             </div>
                             <div class="col-lg-12 invert location">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="location_id">Pickup Locations:</label>
+                                           for="location_id">{{ __('dashboard.Pickup Locations') }}:</label>
                                     <select id="location_id"
                                             data-toggle="select"
                                             name="location_id"
                                             class="form-control select005 form-control-sm @error('location_id') is-invalid @enderror">
-                                        <option value="">Select location</option>
+                                        <option value="">{{ __('dashboard.Select location') }}</option>
                                         @foreach($locations as $location)
                                             <option value="{{ $location->id }}" @if(old('location_id')) {{ old('location_id') == $location->id ? 'selected':'' }} @else {{ $pickup->location_id == $location->id ? 'selected':'' }} @endif >{{ $location->name }}</option>
                                         @endforeach
@@ -89,12 +89,37 @@
                             </div>
                             <div class="col-lg-12 invert location">
                                 <a href="#" class="text-dark" onclick="event.preventDefault();
-                                                    display(module='location')">+ Create new Location</a>
+                                                    display(module='location')">+ {{ __('dashboard.Create new Location') }}</a>
                             </div>
                             <div class="col-12 hidden locations col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="country_id">Country</label>
+                                           for="name">{{ __('dashboard.Name') }}:</label>
+                                    <div class="input-group input-group-merge">
+                                        <input type="text"
+                                               class="form-control @error('name') is-invalid @enderror"
+                                               value="{{ old('name') }}"
+                                               autocomplete="name"
+                                               name="name"
+                                               id="name"
+                                               placeholder="{{ __('dashboard.Enter your name') }} .."
+                                               autofocus>
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="material-icons">home_work</span>
+                                            </div>
+                                        </div>
+                                        @error('name')
+                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                                        @enderror
+                                        <div class="valid-feedback">Looks good!</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 hidden locations col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label class="form-label"
+                                           for="country_id">{{ __('dashboard.Country') }}</label>
                                     <select id="country_id"
                                             data-toggle="select"
                                             class="form-control select05 select005 form-control-sm @error('country_id') is-invalid @enderror"
@@ -114,7 +139,7 @@
                             <div class="col-12 hidden locations col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="state_id">State</label>
+                                           for="state_id">{{ __('dashboard.State') }}</label>
                                     <select id="state_id"
                                             data-toggle="select"
                                             class="form-control select01 select005 form-control-sm @error('state_id') is-invalid @enderror"
@@ -134,7 +159,7 @@
                             <div class="col-12 hidden locations col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="city_id">City</label>
+                                           for="city_id">{{ __('dashboard.City') }}</label>
                                     <select id="city_id"
                                             data-toggle="select"
                                             disabled
@@ -152,7 +177,7 @@
                             <div class="col-12 hidden locations col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="street">Street:</label>
+                                           for="street">{{ __('dashboard.Street') }}:</label>
                                     <div class="input-group input-group-merge">
                                         <input type="text"
                                                class="form-control @error('street') is-invalid @enderror"
@@ -160,7 +185,7 @@
                                                autocomplete="street"
                                                name="street"
                                                id="street"
-                                               placeholder="Enter your street .."
+                                               placeholder="{{ __('dashboard.Enter your street') }} .."
                                                autofocus>
                                         <div class="input-group-append">
                                             <div class="input-group-text">
@@ -177,7 +202,7 @@
                             <div class="col-12 hidden locations col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="building">Building:</label>
+                                           for="building">{{ __('dashboard.Building') }}:</label>
                                     <div class="input-group input-group-merge">
                                         <input type="text"
                                                class="form-control @error('building') is-invalid @enderror"
@@ -185,7 +210,7 @@
                                                autocomplete="building"
                                                name="building"
                                                id="building"
-                                               placeholder="Enter your building .."
+                                               placeholder="{{ __('dashboard.Enter your building') }} .."
                                                autofocus>
                                         <div class="input-group-append">
                                             <div class="input-group-text">
@@ -204,7 +229,7 @@
                             <div class="col-12 hidden locations col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="floor">Floor:</label>
+                                           for="floor">{{ __('dashboard.Floor') }}:</label>
                                     <div class="input-group input-group-merge">
                                         <input type="text"
                                                class="form-control @error('floor') is-invalid @enderror"
@@ -212,7 +237,7 @@
                                                autocomplete="floor"
                                                name="floor"
                                                id="floor"
-                                               placeholder="Enter your floor .."
+                                               placeholder="{{ __('dashboard.Enter your floor') }} .."
                                                autofocus>
                                         <div class="input-group-append">
                                             <div class="input-group-text">
@@ -229,7 +254,7 @@
                             <div class="col-12 hidden locations col-md-6 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="apartment">Apartment:</label>
+                                           for="apartment">{{ __('dashboard.Apartment') }}:</label>
                                     <div class="input-group input-group-merge">
                                         <input type="text"
                                                class="form-control @error('apartment') is-invalid @enderror"
@@ -237,7 +262,7 @@
                                                autocomplete="apartment"
                                                name="apartment"
                                                id="apartment"
-                                               placeholder="Enter your apartment .."
+                                               placeholder="{{ __('dashboard.Enter your apartment') }} .."
                                                autofocus>
                                         <div class="input-group-append">
                                             <div class="input-group-text">
@@ -254,7 +279,7 @@
                             <div class="col-12 hidden locations col-md-12 mb-3">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="landmarks">Landmarks:</label>
+                                           for="landmarks">{{ __('dashboard.Landmarks') }}:</label>
                                     <div class="input-group input-group-merge">
                                         <input type="text"
                                                class="form-control @error('landmarks') is-invalid @enderror"
@@ -262,7 +287,7 @@
                                                autocomplete="landmarks"
                                                name="landmarks"
                                                id="landmarks"
-                                               placeholder="Enter your landmarks .."
+                                               placeholder="{{ __('dashboard.Enter your landmarks') }} .."
                                                autofocus>
                                         <div class="input-group-append">
                                             <div class="input-group-text">
@@ -285,14 +310,14 @@
                                                id="customCheck1"
                                             {{ old('working_hours') ?? 'checked="checked"' }}>
                                         <label class="custom-control-label"
-                                               for="customCheck1">This is a work address</label>
-                                        <small class="form-text text-muted">Mark it to deliver it within business days and working hours.</small>
+                                               for="customCheck1">{{ __('dashboard.This is a work address') }}</label>
+                                        <small class="form-text text-muted">{{ __('dashboard.Mark it to deliver it within business days and working hours') }}</small>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-12 hidden locations">
                                 <a href="#" class="text-dark" onclick="event.preventDefault();
-                                                    displayInvert(module='location')">- Select from existed locations</a>
+                                                    displayInvert(module='location')">- {{ __('dashboard.Select from existed locations') }}</a>
                             </div>
                         </div>
                     </div>
@@ -311,9 +336,9 @@
                     <div class="row">
                         <div class="col-lg-3 bg-light">
                             <div class="page-separator">
-                                <div class="page-separator__text">Date Details</div>
+                                <div class="page-separator__text">{{ __('dashboard.Date Details') }}</div>
                             </div>
-                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">Details of the date of the pickup.</p>
+                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.Details of the date of the pickup') }}</p>
                         </div>
                         <div class="col-lg-9 row ">
                             <div class="page-separator col-lg-12">
@@ -339,18 +364,18 @@
                             </div>
                             <div class="col-lg-12 invert date">
                                 <a href="#" class="text-dark" onclick="event.preventDefault();
-                                                    display(module='date')">Do you want to repeat the pickup?</a>
+                                                    display(module='date')">{{ __('dashboard.Do you want to repeat the pickup?') }}</a>
                             </div>
                             <div class="col-md-12 {{ $pickup->type == 'One Time' ? 'hidden dates':'' }}">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="start_date">Start Pickup Date:</label>
+                                           for="start_date">{{ __('dashboard.Start Pickup Date') }}:</label>
                                     <input type="hidden"
                                            class="form-control @error('scheduled_date') is-invalid @enderror flatpickr-input"
                                            value="{{ old('scheduled_date') ? old('scheduled_date'):$pickup->scheduled_date }}"
                                            id="start_date"
                                            name="scheduled_date"
-                                           placeholder="Pickup Date...">
+                                           placeholder="{{ __('dashboard.Pickup Date') }}...">
                                     @error('start_date')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
@@ -368,7 +393,7 @@
                                                    class="custom-control-input"
                                                    {{ $pickup->type == 'Daily' ? 'checked=""':'' }}>
                                             <label for="radioStacked1"
-                                                   class="custom-control-label">Daily</label>
+                                                   class="custom-control-label">{{ __('dashboard.Daily') }}</label>
                                         </div>
                                         <div class="custom-control custom-radio"  onclick="handleClick2();">
                                             <input id="radioStacked2"
@@ -378,7 +403,7 @@
                                                    class="custom-control-input"
                                                 {{ $pickup->type == 'Weekly' ? 'checked=""':'' }}>
                                             <label for="radioStacked2"
-                                                   class="custom-control-label">Weekly</label>
+                                                   class="custom-control-label">{{ __('dashboard.Weekly') }}</label>
                                         </div>
                                     </div>
                                 </div>
@@ -386,18 +411,18 @@
                             <div class="col-md-12 {{ $pickup->type == 'One Time' ? 'hidden dates':'' }} multiple-select ">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select03">Multiple</label>
+                                           for="select03">{{ __('dashboard.Multiple') }}</label>
                                     <select id="select03"
                                             data-toggle="select"
                                             name="repeat_days"
                                             multiple
                                             class="form-control">
-                                            <option value="Saturday"  @if($pickup->repeat_days){{ in_array('Saturday', $pickup->repeat_days)  ? 'selected':'' }}@endif>Saturday</option>
-                                            <option value="Sunday"    @if($pickup->repeat_days){{ in_array('Sunday', $pickup->repeat_days) == 'Sunday' ? 'selected':'' }}@endif>Sunday</option>
-                                            <option value="Monday"    @if($pickup->repeat_days){{ in_array('Monday', $pickup->repeat_days) == 'Monday' ? 'selected':'' }}@endif>Monday</option>
-                                            <option value="Tuesday"   @if($pickup->repeat_days){{ in_array('Tuesday', $pickup->repeat_days) == 'Tuesday' ? 'selected':'' }}@endif>Tuesday</option>
-                                            <option value="Wednesday" @if($pickup->repeat_days){{ in_array('Wednesday', $pickup->repeat_days) == 'Wednesday' ? 'selected':'' }}@endif>Wednesday</option>
-                                            <option value="Thursday"  @if($pickup->repeat_days){{ in_array('Thursday', $pickup->repeat_days) == 'Thursday' ? 'selected':'' }}@endif>Thursday</option>
+                                            <option value="Saturday"  @if($pickup->repeat_days){{ in_array('Saturday', $pickup->repeat_days)  ? 'selected':'' }}@endif>{{ __('dashboard.Saturday') }}</option>
+                                            <option value="Sunday"    @if($pickup->repeat_days){{ in_array('Sunday', $pickup->repeat_days) == 'Sunday' ? 'selected':'' }}@endif>{{ __('dashboard.Sunday') }}</option>
+                                            <option value="Monday"    @if($pickup->repeat_days){{ in_array('Monday', $pickup->repeat_days) == 'Monday' ? 'selected':'' }}@endif>{{ __('dashboard.Monday') }}</option>
+                                            <option value="Tuesday"   @if($pickup->repeat_days){{ in_array('Tuesday', $pickup->repeat_days) == 'Tuesday' ? 'selected':'' }}@endif>{{ __('dashboard.Tuesday') }}</option>
+                                            <option value="Wednesday" @if($pickup->repeat_days){{ in_array('Wednesday', $pickup->repeat_days) == 'Wednesday' ? 'selected':'' }}@endif>{{ __('dashboard.Wednesday') }}</option>
+                                            <option value="Thursday"  @if($pickup->repeat_days){{ in_array('Thursday', $pickup->repeat_days) == 'Thursday' ? 'selected':'' }}@endif>{{ __('dashboard.Thursday') }}</option>
                                     </select>
                                     @error('repeat_days')
                                         <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -407,13 +432,13 @@
                             <div class="col-md-12 {{ $pickup->type == 'One Time' ? 'hidden dates':'' }}">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="end_date">End At:</label>
+                                           for="end_date">{{ __('dashboard.End At') }}:</label>
                                     <input type="hidden"
                                            class="form-control @error('end_date') is-invalid @enderror flatpickr-input"
                                            value="{{ old('end_date') ? old('end_date'):$pickup->end_date }}"
                                            id="end_date"
                                            name="end_date"
-                                           placeholder="Pickup End Date...">
+                                           placeholder="{{ __('dashboard.Pickup End Date') }}...">
                                     @error('end_date')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
@@ -422,7 +447,7 @@
                             </div>
                             <div class="col-lg-12 {{ $pickup->type == 'One Time' ? 'hidden dates':'' }}">
                                 <a href="#" class="text-dark" onclick="event.preventDefault();
-                                                    displayInvert(module='date')">- Stop recurring pickup</a>
+                                                    displayInvert(module='date')">- {{ __('dashboard.Stop recurring pickup') }}</a>
                             </div>
                         </div>
                     </div>
@@ -433,29 +458,29 @@
                     <button type="button" class="btn btn-sm rounded-circle btn-dark">
                         &nbsp;  3 &nbsp;
                     </button>
-                    &nbsp; Contact Information
+                    &nbsp; {{ __('dashboard.Contact Information') }}
                 </div>
             </div>
             <div class="card ">
                 <div class="row card-body mb-32pt">
                     <div class="col-lg-3 bg-light">
                         <div class="page-separator">
-                            <div class="page-separator__text">Contact Information</div>
+                            <div class="page-separator__text">{{ __('dashboard.Contact Information') }}</div>
                         </div>
                         <p class="card-subtitle text-70 mb-16pt mb-lg-0">
-                            Add your pickup's contact information.
+                            {{ __('dashboard.Add your pickup\'s contact information') }}
                         </p>
                     </div>
                     <div class="col-lg-9 row ">
                         <div class="col-lg-12 invert contact">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="contact_id">Contacts:</label>
+                                       for="contact_id">{{ __('dashboard.Contacts') }}:</label>
                                 <select id="contact_id"
                                         data-toggle="select"
                                         name="contact_id"
                                         class="form-control select005 form-control-sm @error('contact_id') is-invalid @enderror">
-                                    <option value="">Select Contact</option>
+                                    <option value="">{{ __('dashboard.Select Contact') }}</option>
                                     @foreach($contacts as $contact)
                                         <option value="{{ $contact->id }}" @if(old('contact_id')) {{ old('contact_id') == $contact->id ? 'selected':'' }} @else {{ $pickup->contact_id == $contact->id ? 'selected':'' }} @endif>{{ $contact->contact_name }}</option>
                                     @endforeach
@@ -468,19 +493,19 @@
                         </div>
                         <div class="col-lg-12 invert contact">
                             <a href="#" class="text-dark" onclick="event.preventDefault();
-                                                    display(module='contact')">+ Create new Contact</a>
+                                                    display(module='contact')">+ {{ __('dashboard.Create new Contact') }}</a>
                         </div>
                         <div class="col-6 col-md-6 mb-3 hidden contacts">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="contact_name">Contact name:</label>
+                                       for="contact_name">{{ __('dashboard.Contact name') }}:</label>
                                 <input type="text"
                                        class="form-control @error('contact_name') is-invalid @enderror"
                                        value="{{ old('contact_name') }}"
                                        autocomplete="contact_name"
                                        name="contact_name"
                                        id="contact_name"
-                                       placeholder="Enter your contact name .."
+                                       placeholder="{{ __('dashboard.Enter your contact name') }} .."
                                        autofocus>
                                 @error('contact_name')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -491,14 +516,14 @@
                         <div class="col-6 col-md-6 mb-3 hidden contacts">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="contact_job_title">Job title:</label>
+                                       for="contact_job_title">{{ __('dashboard.Job title') }}:</label>
                                 <input type="text"
                                        class="form-control @error('contact_job_title') is-invalid @enderror"
                                        value="{{ old('contact_job_title') }}"
                                        autocomplete="contact_job_title"
                                        name="contact_job_title"
                                        id="contact_job_title"
-                                       placeholder="Enter your contact job title ..">
+                                       placeholder="{{ __('dashboard.Enter your contact job title') }} ..">
                                 @error('contact_job_title')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                 @enderror
@@ -508,7 +533,7 @@
                         <div class="col-6 col-md-6 mb-3 hidden contacts">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="contact_phone">Phone:</label>
+                                       for="contact_phone">{{ __('dashboard.Phone') }}:</label>
                                 <input type="tel"
                                        class="form-control @error('contact_phone') is-invalid @enderror"
                                        value="{{ old('contact_phone') }}"
@@ -527,14 +552,14 @@
                         <div class="col-6 col-md-6 mb-3 hidden contacts">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="contact_email">Email:</label>
+                                       for="contact_email">{{ __('dashboard.Email') }}:</label>
                                 <input type="email"
                                        class="form-control @error('contact_email') is-invalid @enderror"
                                        value="{{ old('contact_email') }}"
                                        autocomplete="contact_email"
                                        name="contact_email"
                                        id="contact_email"
-                                       placeholder="Enter your email address .."
+                                       placeholder="{{ __('dashboard.Enter your email address') }} .."
                                        autofocus>
                                 @error('contact_email')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -544,7 +569,7 @@
                         </div>
                         <div class="col-lg-12 hidden contacts">
                             <a href="#" class="text-dark" onclick="event.preventDefault();
-                                                    displayInvert(module='contact')">- Select from existed contacts</a>
+                                                    displayInvert(module='contact')">- {{ __('dashboard.Select from existed contacts') }}</a>
                         </div>
                     </div>
                 </div>
@@ -554,29 +579,29 @@
                     <button type="button" class="btn btn-sm rounded-circle btn-dark">
                         &nbsp;  4 &nbsp;
                     </button>
-                    &nbsp; Extra Information
+                    &nbsp; {{ __('dashboard.Extra Information') }}
                 </div>
             </div>
             <div class="card ">
                 <div class="row card-body mb-32pt">
                     <div class="col-lg-3 bg-light">
                         <div class="page-separator">
-                            <div class="page-separator__text">Extra Information</div>
+                            <div class="page-separator__text">{{ __('dashboard.Extra Information') }}</div>
                         </div>
                         <p class="card-subtitle text-70 mb-16pt mb-lg-0">
-                            Add your pickup's extra notes.
+                            {{ __('dashboard.Add your pickup\'s extra notes') }}
                         </p>
                     </div>
                     <div class="col-lg-9 row ">
                         <div class="col-lg-12 ">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="notes">Notes:</label>
+                                       for="notes">{{ __('dashboard.Notes') }}:</label>
                                 <textarea rows="3"
                                           id="notes"
                                           name="notes"
                                           class="form-control @error('notes') is-invalid @enderror"
-                                          placeholder="Notes ...">{{ old('notes') ? old('notes'):$pickup->notes }}</textarea>
+                                          placeholder="{{ __('dashboard.Notes') }} ...">{{ old('notes') ? old('notes'):$pickup->notes }}</textarea>
                                 @error('notes')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                 @enderror
@@ -591,32 +616,32 @@
                     <button type="button" class="btn btn-sm rounded-circle btn-dark">
                         &nbsp;  5 &nbsp;
                     </button>
-                    &nbsp; Pickup Status
+                    &nbsp; {{ __('dashboard.Pickup Status') }}
                 </div>
             </div>
             <div class="card ">
                 <div class="row card-body mb-32pt">
                     <div class="col-lg-3 bg-light">
                         <div class="page-separator">
-                            <div class="page-separator__text">Pickup Status</div>
+                            <div class="page-separator__text">{{ __('dashboard.Pickup Status') }}</div>
                         </div>
                         <p class="card-subtitle text-70 mb-16pt mb-lg-0">
-                            Update your pickup's status.
+                            {{ __('dashboard.Update your pickup\'s status.') }}
                         </p>
                     </div>
                     <div class="col-lg-9 row ">
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="status">Pickup Status:</label>
+                                       for="status">{{ __('dashboard.Pickup Status') }}:</label>
                                 <select id="status"
                                         data-toggle="select"
                                         name="status"
                                         class="form-control select005 form-control-sm @error('status') is-invalid @enderror">
-                                    <option value="">Select status</option>
-                                    <option value="Created" @if(old('status')) {{ old('status') == 'Created' ? 'selected':'' }} @else {{ $pickup->status == 'Created' ? 'selected':'' }} @endif >Created</option>
-                                    <option value="Out for pickup" @if(old('status')) {{ old('status') == 'Out for pickup' ? 'selected':'' }} @else {{ $pickup->status == 'Out for pickup' ? 'selected':'' }} @endif >Out for pickup</option>
-                                    <option value="Picked up" @if(old('status')) {{ old('status') == 'Picked up' ? 'selected':'' }} @else {{ $pickup->status == 'Picked up' ? 'selected':'' }} @endif >Picked up</option>
+                                    <option value="">{{ __('dashboard.Select status') }}</option>
+                                    <option value="Created" @if(old('status')) {{ old('status') == 'Created' ? 'selected':'' }} @else {{ $pickup->status == 'Created' ? 'selected':'' }} @endif >{{ __('dashboard.Created') }}</option>
+                                    <option value="Out for pickup" @if(old('status')) {{ old('status') == 'Out for pickup' ? 'selected':'' }} @else {{ $pickup->status == 'Out for pickup' ? 'selected':'' }} @endif >{{ __('dashboard.Out for pickup') }}</option>
+                                    <option value="Picked up" @if(old('status')) {{ old('status') == 'Picked up' ? 'selected':'' }} @else {{ $pickup->status == 'Picked up' ? 'selected':'' }} @endif >{{ __('dashboard.Picked up') }}</option>
 
                                 </select>
                                 @error('status')
@@ -631,7 +656,7 @@
             <input type="hidden" name="pickup_id" value="{{ $pickup->pickup_id }}">
             <input type="hidden" name="date_in" value="full">
             <button type="submit"
-                    class="btn pull-right btn-primary">Submit</button>
+                    class="btn pull-right btn-primary">{{ __('dashboard.Submit') }}</button>
         </form>
     </div>
 @endsection

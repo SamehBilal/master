@@ -9,7 +9,7 @@
         <a href="{{ route('dashboard.customers.index') }}">{{ __('dashboard.Customers') }}</a>
     </li>
     <li class="breadcrumb-item active">
-        {{ __('dashboard.Create') }}
+        {{ __('dashboard.create') }}
     </li>
 @endsection
 
@@ -209,7 +209,7 @@
                                 <div class="col-12 col-md-6 mb-3">
                                     <div class="form-group">
                                         <label class="form-label"
-                                               for="select04">{{ __('dashboard.Category') }}</label>
+                                               for="select04">{{ __('dashboard.Category') }}:</label>
                                         <select id="select04"
                                                 data-toggle="select"
                                                 data-minimum-results-for-search="-1"
@@ -230,7 +230,7 @@
                                 {{-- <div class="col-12 col-md-6 mb-3">
                                     <div class="form-group">
                                         <label class="form-label"
-                                               for="select03">{{ __('dashboard.Currency') }}</label>
+                                               for="select03">{{ __('dashboard.Currency') }}:</label>
                                         <select id="select03"
                                                 data-toggle="select"
                                                 data-minimum-results-for-search="-1"

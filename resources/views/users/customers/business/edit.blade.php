@@ -1,15 +1,15 @@
 @extends('layouts.backend')
 
 @section('title')
-    Business
+    {{ __('dashboard.Businesses') }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('dashboard.businesses.index') }}">Businesses</a>
+        <a href="{{ route('dashboard.businesses.index') }}">{{ __('dashboard.Businesses') }}</a>
     </li>
     <li class="breadcrumb-item active">
-        create
+        {{ __('dashboard.Edit') }}
     </li>
 @endsection
 
@@ -22,7 +22,7 @@
 @endsection
 
 @section('button-title')
-    All Businesses
+    {{ __('dashboard.All Businesses') }}
 @endsection
 
 @section('main_content')
@@ -35,7 +35,7 @@
                     <button type="button" class="btn btn-sm rounded-circle btn-dark">
                         &nbsp;  1 &nbsp;
                     </button>
-                    &nbsp; Business Information
+                    &nbsp; {{ __('dashboard.Business Information') }}
                 </div>
             </div>
             <div class="card">
@@ -43,9 +43,9 @@
                     <div class="row">
                         <div class="col-lg-3 bg-light">
                             <div class="page-separator">
-                                <div class="page-separator__text">Business Details</div>
+                                <div class="page-separator__text">{{ __('dashboard.Business Details') }}</div>
                             </div>
-                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of your business.</p>
+                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.Basic details of your business.') }}</p>
                         </div>
                         <div class="col-lg-9 p-4 row">
                             <div class="flex"
@@ -98,11 +98,10 @@
                                     <div class="col-12 col-md-6 mb-3">
                                         <div class="form-group">
                                             <label class="form-label"
-                                                   for="select01">{{ __('dashboard.Sales Channel') }}</label>
-                                            <select id="select01"
+                                                   for="select0100">{{ __('dashboard.Sales Channel') }}</label>
+                                            <select id="select0100"
                                                     data-toggle="select"
-                                                    data-minimum-results-for-search="-1"
-                                                    class="form-control form-control-sm @error('sales_channel') is-invalid @enderror"
+                                                    class="form-control select005 form-control-sm @error('sales_channel') is-invalid @enderror"
                                                     name="sales_channel">
                                                 <option value="Facebook" @if(old('sales_channel')) {{ old('sales_channel') == 'Facebook' ? 'selected':'' }} @else {{ $business->sales_channel == 'Facebook' ? 'selected':'' }} @endif data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
                                                     Facebook
@@ -126,11 +125,10 @@
                                     <div class="col-12 col-md-6 mb-3">
                                         <div class="form-group">
                                             <label class="form-label"
-                                                   for="select05">{{ __('dashboard.industry') }}</label>
-                                            <select id="select05"
+                                                   for="select0500">{{ __('dashboard.industry') }}</label>
+                                            <select id="select0500"
                                                     data-toggle="select"
-                                                    data-minimum-results-for-search="-1"
-                                                    class="form-control form-control-sm @error('industry') is-invalid @enderror"
+                                                    class="form-control select005 form-control-sm @error('industry') is-invalid @enderror"
                                                     name="industry">
                                                 @foreach($categories as $category)
                                                     <option value="{{ $category }}" @if(old('industry')) {{ old('industry') == $category ? 'selected':'' }} @else {{ $business->industry == $category ? 'selected':'' }} @endif data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -178,7 +176,7 @@
                     <button type="button" class="btn btn-sm rounded-circle btn-dark">
                         &nbsp;  2 &nbsp;
                     </button>
-                    &nbsp; Location Information
+                    &nbsp; {{ __('dashboard.Location Information') }}
                 </div>
             </div>
             <div class="card">
@@ -186,24 +184,24 @@
                     <div class="row">
                         <div class="col-lg-3 bg-light">
                             <div class="page-separator">
-                                <div class="page-separator__text">Location Details</div>
+                                <div class="page-separator__text">{{ __('dashboard.Location Details') }}</div>
                             </div>
-                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">Basic details of the Location of the pickup.</p>
+                            <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.Basic details of the Location of the business.') }}</p>
                         </div>
                         <div class="col-lg-9 row ">
                             <div class="page-separator col-lg-12">
                                 <div class="page-separator__text" >
-                                    &nbsp; {{ __('dashboard.Pickup location') }}
+                                    &nbsp; {{ __('dashboard.Location Details') }}
                                 </div>
                             </div>
                             <div class="col-lg-12 invert location">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="select02">{{ __('dashboard.Pickup Locations') }}:</label>
+                                           for="select02">{{ __('dashboard.Location Details') }}:</label>
                                     <select id="select02"
                                             data-toggle="select"
                                             name="location_id"
-                                            class="form-control form-control-sm @error('location_id') is-invalid @enderror">
+                                            class="form-control select005 form-control-sm @error('location_id') is-invalid @enderror">
                                         <option value="">{{ __('dashboard.Select location') }}</option>
                                         @foreach($locations as $location)
                                             <option value="{{ $location->id }}" @if(old('location_id')) {{ old('location_id') == $location->id ? 'selected':'' }} @else {{ $business->location_id == $location->id ? 'selected':'' }} @endif>{{ $location->name }}</option>
@@ -250,7 +248,7 @@
                                            for="select05">{{ __('dashboard.Country') }}</label>
                                     <select id="select05"
                                             data-toggle="select"
-                                            class="form-control select05 form-control-sm @error('country_id') is-invalid @enderror"
+                                            class="form-control select005 select05 form-control-sm @error('country_id') is-invalid @enderror"
                                             name="country_id">
                                         @foreach($countries as $country)
                                             <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -270,8 +268,7 @@
                                            for="select01">{{ __('dashboard.State') }}</label>
                                     <select id="select01"
                                             data-toggle="select"
-                                            data-minimum-results-for-search="-1"
-                                            class="form-control select01 form-control-sm @error('state_id') is-invalid @enderror"
+                                            class="form-control select005 select01 form-control-sm @error('state_id') is-invalid @enderror"
                                             name="state_id">
                                         @foreach($states as $state)
                                             <option value="{{ $state->id }}" {{ old('state_id') == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
@@ -292,14 +289,8 @@
                                     <select id="select03"
                                             data-toggle="select"
                                             disabled
-                                            data-minimum-results-for-search="-1"
-                                            class="form-control select03 form-control-sm @error('city_id') is-invalid @enderror"
+                                            class="form-control select005 select03 form-control-sm @error('city_id') is-invalid @enderror"
                                             name="city_id">
-                                        {{-- @foreach($cities as $city)
-                                            <option value="{{ $city->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
-                                                {{ $city->name }}
-                                            </option>
-                                        @endforeach --}}
                                     </select>
                                     @error('city_id')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -461,11 +452,17 @@
 
             <input type="hidden" name="location_in" value="full">
             <button type="submit"
-                    class="btn pull-right btn-primary">Submit</button>
+                    class="btn pull-right btn-primary">{{ __('dashboard.Edit') }}</button>
         </form>
     </div>
 @endsection
 
 @section('extra-scripts')
     @include('components.locations_ajax')
+
+    <script>
+        $(document).ready(function() {
+            $('.select005').select2();
+        });
+    </script>
 @endsection

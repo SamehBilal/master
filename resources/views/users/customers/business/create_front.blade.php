@@ -1,3 +1,4 @@
+@php $locale = session()->get('locale'); @endphp
 <x-guest-layout>
     <x-auth-card >
         <x-slot name="logo">
@@ -15,28 +16,28 @@
 
             <!-- Business Name -->
             <div>
-                <x-label for="ar_name" :value="__('dashboard.Business Name ')" />
+                <x-label for="ar_name" style="{{ $locale == 'ar' ? 'text-align: right;':'' }}" :value="__('dashboard.Business Name ')" />
 
                 <x-input id="ar_name" class="block mt-1 w-full" type="text" name="ar_name" :value="old('ar_name')" required autofocus />
             </div>
 
             <!-- Business Name -->
             <div class="mt-4">
-                <x-label for="en_name" :value="__('dashboard.Business Name ')" />
+                <x-label for="en_name" style="{{ $locale == 'ar' ? 'text-align: right;':'' }}" :value="__('dashboard.Business Name ')" />
 
                 <x-input id="en_name" class="block mt-1 w-full" type="text" name="en_name" :value="old('en_name')" required autofocus />
             </div>
 
              <!-- Store URL -->
              <div class="mt-4">
-                <x-label for="store_url" :value="__('dashboard.Store URL ')" />
+                <x-label for="store_url" style="{{ $locale == 'ar' ? 'text-align: right;':'' }}" :value="__('dashboard.Store URL ')" />
 
                 <x-input id="store_url" class="block mt-1 w-full" type="text" name="store_url" :value="old('store_url')" required />
             </div>
 
             <!-- Store URL -->
-            <div class="mt-4">
-                <x-label for="select05" :value=" __('dashboard.industry') " />
+            <div class="mt-4" style="{{ $locale == 'ar' ? 'text-align: right;':'' }}">
+                <x-label for="select05" style="{{ $locale == 'ar' ? 'text-align: right;':'' }}" :value=" __('dashboard.industry') " />
 
                     <select id="select05"
                             data-toggle="select"
@@ -54,8 +55,8 @@
             </div>
 
              <!-- Business Name -->
-             <div class="mt-4">
-                <x-label for="select01" :value=" __('dashboard.Sales Channel') " />
+             <div class="mt-4" style="{{ $locale == 'ar' ? 'text-align: right;':'' }}">
+                <x-label for="select01" style="{{ $locale == 'ar' ? 'text-align: right;':'' }}" :value=" __('dashboard.Sales Channel') " />
 
                     <select id="select01"
                             data-toggle="select"
@@ -80,42 +81,42 @@
 
             <!-- Business Name -->
             <div class="mt-4">
-                <x-label for="street" :value="__('dashboard.Street')" />
+                <x-label for="street" style="{{ $locale == 'ar' ? 'text-align: right;':'' }}" :value="__('dashboard.Street')" />
 
                 <x-input id="street" class="block mt-1 w-full" type="text" name="street" :value="old('street')" autofocus />
             </div>
 
              <!-- Business Name -->
              <div class="mt-4">
-                <x-label for="building" :value="__('dashboard.Building')" />
+                <x-label for="building" style="{{ $locale == 'ar' ? 'text-align: right;':'' }}" :value="__('dashboard.Building')" />
 
                 <x-input id="building" class="block mt-1 w-full" type="text" name="building" :value="old('building')" autofocus />
             </div>
 
             <!-- Business Name -->
             <div class="mt-4">
-                <x-label for="floor" :value="__('dashboard.Floor')" />
+                <x-label for="floor" style="{{ $locale == 'ar' ? 'text-align: right;':'' }}" :value="__('dashboard.Floor')" />
 
                 <x-input id="floor" class="block mt-1 w-full" type="text" name="floor" :value="old('floor')" autofocus />
             </div>
 
             <!-- Business Name -->
             <div class="mt-4">
-                <x-label for="apartment" :value="__('dashboard.Apartment')" />
+                <x-label for="apartment" style="{{ $locale == 'ar' ? 'text-align: right;':'' }}" :value="__('dashboard.Apartment')" />
 
                 <x-input id="apartment" class="block mt-1 w-full" type="text" name="apartment" :value="old('apartment')" autofocus />
             </div>
 
             <!-- Business Name -->
             <div class="mt-4">
-                <x-label for="landmarks" :value="__('dashboard.Landmarks')" />
+                <x-label for="landmarks" style="{{ $locale == 'ar' ? 'text-align: right;':'' }}" :value="__('dashboard.Landmarks')" />
 
                 <x-input id="landmarks" class="block mt-1 w-full" type="text" name="landmarks" :value="old('landmarks')" autofocus />
             </div>
 
             <!-- Store URL -->
-            <div class="mt-4">
-                <x-label for="select03" :value=" __('dashboard.State') " />
+            <div class="mt-4" style="{{ $locale == 'ar' ? 'text-align: right;':'' }}">
+                <x-label for="select03" style="{{ $locale == 'ar' ? 'text-align: right;':'' }}" :value=" __('dashboard.State') " />
 
                 <select id="select03"
                         data-toggle="select"
@@ -131,8 +132,8 @@
             </div>
 
             <!-- Store URL -->
-            <div class="mt-4">
-                <x-label for="select02" :value=" __('dashboard.City') " />
+            <div class="mt-4" style="{{ $locale == 'ar' ? 'text-align: right;':'' }}">
+                <x-label for="select02" style="{{ $locale == 'ar' ? 'text-align: right;':'' }}" :value=" __('dashboard.City') " />
 
                 <select id="select02"
                         data-toggle="select"

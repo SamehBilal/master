@@ -113,11 +113,11 @@
                                                    class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     @can('edit hubs')
-                                                        <a href="{{ route('dashboard.hubs.edit',$hub->id) }}" class="dropdown-item active"><i class="material-icons ">edit</i> Edit</a>
+                                                        <a href="{{ route('dashboard.hubs.edit',$hub->id) }}" class="dropdown-item active"><i class="material-icons ">edit</i> {{ __('dashboard.Edit') }}</a>
                                                     @endcan
                                                     @can('delete hubs')
                                                         <div class="dropdown-divider"></div>
-                                                        <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $hub->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
+                                                        <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $hub->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> {{ __('dashboard.Delete') }}</a>
                                                         <form id="delete-form{{ $hub->id }}" action="{{ route('dashboard.hubs.destroy',$hub->id) }}" method="POST" class="d-none">
                                                             @csrf
                                                             @method('DELETE')

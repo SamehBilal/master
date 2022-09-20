@@ -23,7 +23,7 @@ class CreatePickupLogsTable extends Migration
             $table->set('description',
                 [
                     'It is expected to pickup your order at pickup date.',
-                    'Your is out for pickup soon.',
+                    'Your order is out for pickup soon.',
                     'Your order has been picked up and is expected to be delivered to customer soon.',
                 ]
             )->nullable();

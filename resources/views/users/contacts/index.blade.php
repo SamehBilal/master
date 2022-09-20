@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-
+@php $locale = session()->get('locale'); @endphp
 @section('title')
 {{ __('dashboard.Contacts') }}
 @endsection
@@ -68,7 +68,7 @@
                                     </div>
                                     <span class="flex d-flex flex-column">
                                         <strong>{{ $category->name }}</strong>
-                                        <small class=" text-50">{{ $category->status }}</small>
+                                        <small class=" text-50">{{ __('dashboard.'.$category->status) }}</small>
                                         <span class="indicator-line rounded {{ $category->status == 'active' ? 'bg-success':'bg-danger' }}"></span>
                                     </span>
                                 </a>
@@ -165,11 +165,11 @@
                                     <div class="media flex-nowrap align-items-center"
                                          style="white-space: nowrap;">
                                         <div class="avatar avatar-sm mr-8pt">
-                                            <span class="avatar-title rounded bg-dark text-white-100">{{ $contact->UserCategory ? initials($contact->UserCategory->name):'No'  }}</span>
+                                            <span class="avatar-title rounded bg-dark text-white-100">{{ $contact->UserCategory ? initials($contact->UserCategory->name):($locale == 'ar' ? 'لا':'No')  }}</span>
                                         </div>
                                         <div class="media-body">
                                             <div class="d-flex flex-column">
-                                                <small class=""><strong>{{ $contact->UserCategory ? $contact->UserCategory->name:'No Category' }}</strong></small>
+                                                <small class=""><strong>{{ $contact->UserCategory ? $contact->UserCategory->name:($locale == 'ar' ? 'لا يوجد فئه':'No Category') }}</strong></small>
                                                 <small class=" text-50">{{ $contact->UserCategory ? $contact->UserCategory->status:'' }}</small>
                                                 <span class="indicator-line rounded {{ $contact->UserCategory ? ($contact->UserCategory->status == 'active' ? 'bg-success':'bg-danger'):'bg-success' }}"></span>
                                             </div>
@@ -193,11 +193,11 @@
                                        class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         @can('edit contacts')
-                                            <a href="{{ route('dashboard.contacts.edit',$contact->id) }}" class="dropdown-item active"><i class="material-icons ">edit</i> Edit</a>
+                                            <a href="{{ route('dashboard.contacts.edit',$contact->id) }}" class="dropdown-item active"><i class="material-icons ">edit</i> {{ __('dashboard.Edit') }}</a>
                                         @endcan
                                         @can('delete contacts')
                                             <div class="dropdown-divider"></div>
-                                            <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $contact->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
+                                            <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $contact->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> {{ __('dashboard.Delete') }}</a>
                                             <form id="delete-form{{ $contact->id }}" action="{{ route('dashboard.contacts.destroy',$contact->id) }}" method="POST" class="d-none">
                                                 @csrf
                                                 @method('DELETE')

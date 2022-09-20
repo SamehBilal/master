@@ -63,7 +63,7 @@
                             <div class="valid-feedback">Looks good!</div>
                         </div>
                         <button type="submit"
-                                class="btn pull-right btn-primary">Submit</button>
+                                class="btn pull-right btn-primary">{{ __('dashboard.Submit') }}</button>
                     </form>
                 </div>
             </div>

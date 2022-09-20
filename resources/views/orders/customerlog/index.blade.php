@@ -1,7 +1,7 @@
 @extends('layouts.backend')
 
 @section('title')
-    Customer Order Logs
+    {{ __('dashboard.Customer Order logs') }}
 @endsection
 
 @section('links')
@@ -9,7 +9,7 @@
         <a href="{{ route('dashboard.orders.show',$order->id) }}">#{{ $order->tracking_no }}</a>
     </li>
     <li class="breadcrumb-item active">
-        Customer Order Logs
+        {{ __('dashboard.Customer Order logs') }}
     </li>
 @endsection
 
@@ -22,14 +22,14 @@
 @endsection
 
 @section('button-title')
-    New Customer Order Log
+    {{ __('dashboard.New Customer Order Log') }}
 @endsection
 
 @section('main_content')
     <div class="container page__container">
         <div class="page-section">
             <div class="page-separator">
-                <div class="page-separator__text">Customer Order Logs</div>
+                <div class="page-separator__text">{{ __('dashboard.Customer Order logs') }}</div>
             </div>
 
 
@@ -44,7 +44,7 @@
                         <div class="search-form">
                             <input type="text"
                                    class="form-control search"
-                                   placeholder="Search ...">
+                                   placeholder="{{ __('dashboard.Search') }} ...">
                             <button class="btn"
                                     type="button"><i class="material-icons">search</i></button>
                         </div>
@@ -57,16 +57,16 @@
                             <th>
                                 <a href="javascript:void(0)"
                                    class="sort"
-                                   data-sort="js-lists-values-name">Notes</a>
+                                   data-sort="js-lists-values-name">{{ __('dashboard.Notes') }}</a>
                             </th>
 
                             <th style="width: 37px;"
-                                data-sort="js-lists-values-status">Status</th>
+                                data-sort="js-lists-values-status">{{ __('dashboard.Status') }}</th>
 
                             <th style="width: 120px;">
                                 <a href="javascript:void(0)"
                                    class="sort"
-                                   data-sort="js-lists-values-created">Created</a>
+                                   data-sort="js-lists-values-created">{{ __('dashboard.Created_Date') }}</a>
                             </th>
 
                             <th style="width: 24px;"
@@ -97,7 +97,7 @@
 
                                 <td class="js-lists-values-status small">
                                     <a href="#"
-                                       class="chip chip-outline-secondary">{{ $log->status }}</a>
+                                       class="chip chip-outline-secondary">{{ __('dashboard.'.$log->status) }}</a>
                                 </td>
 
 

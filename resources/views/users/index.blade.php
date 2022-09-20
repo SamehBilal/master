@@ -166,8 +166,8 @@
                             <th>{{ __('dashboard.Category') }}</th>
 
                             @hasrole('operation logistics')
-                                <th>Orders</th>
-                                <th>Pickups</th>
+                                <th>{{ __('dashboard.Orders') }}</th>
+                                <th>{{ __('dashboard.Pickups') }}</th>
                             @else
                                 <th>{{ __('dashboard.Role') }}</th>
                             @endhasrole
@@ -256,7 +256,7 @@
                                 </td>
                                 <td class="text-right">
                                     @can('edit users')
-                                        <a href="{{ route('dashboard.users.edit',$user->id) }}" title="Edit" {{--data-toggle="dropdown"--}}
+                                        <a href="{{ route('dashboard.users.edit',$user->id) }}" title="{{ __('dashboard.Edit') }}" {{--data-toggle="dropdown"--}}
                                             class="btn text-50  text-70" style="padding: 0!important;"><i class="material-icons ">edit</i> </a>
                                     @endcan
                                     @can('edit users')
@@ -288,8 +288,8 @@
                             <th>{{ __('dashboard.Category') }}</th>
 
                             @hasrole('operation logistics')
-                                <th>Orders</th>
-                                <th>Pickups</th>
+                                <th>{{ __('dashboard.Orders') }}</th>
+                                <th>{{ __('dashboard.Pickups') }}</th>
                             @else
                                 <th>{{ __('dashboard.Role') }}</th>
                             @endhasrole

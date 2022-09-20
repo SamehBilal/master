@@ -1,18 +1,18 @@
 @extends('layouts.backend')
 
 @section('title')
-    Customers
+    {{ __('dashboard.Customers') }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('dashboard.customers.index') }}">Customers</a>
+        <a href="{{ route('dashboard.customers.index') }}">{{ __('dashboard.Customers') }}</a>
     </li>
     <li class="breadcrumb-item ">
         <a href="{{ route('dashboard.customers.show',$customer->id) }}">{{ $customer->user->full_name }}</a>
     </li>
     <li class="breadcrumb-item active">
-        Create
+        {{ __('dashboard.create') }}
     </li>
 @endsection
 
@@ -25,7 +25,7 @@
 @endsection
 
 @section('button-title')
-    All Customers
+    {{ __('dashboard.Customers') }}
 @endsection
 
 @section('main_content')
@@ -37,10 +37,10 @@
                 <div class="row card-body mb-32pt">
                     <div class="col-lg-4 bg-light">
                         <div class="page-separator">
-                            <div class="page-separator__text">Basic Information</div>
+                            <div class="page-separator__text">{{ __('dashboard.Basic Information') }}</div>
                         </div>
                         <p class="card-subtitle text-70 mb-16pt mb-lg-0">
-                            Add your customer basic information.
+                            {{ __('dashboard.Add your customer basic information') }}
                         </p>
                     </div>
                     <div class="col-lg-8 d-flex align-items-center ">
@@ -50,7 +50,7 @@
                                 <div class="col-12 col-md-6 mb-3">
                                     <div class="form-group">
                                         <label class="form-label"
-                                               for="first_name">First name:</label>
+                                               for="first_name">{{ __('dashboard.First name') }}:</label>
                                         <div class="input-group input-group-merge">
                                             <input type="text"
                                                    class="form-control @error('first_name') is-invalid @enderror"
@@ -59,7 +59,7 @@
                                                    autocomplete="first_name"
                                                    name="first_name"
                                                    id="first_name"
-                                                   placeholder="Enter your first name .."
+                                                   placeholder="{{ __('dashboard.Enter your first name') }} .."
                                                    autofocus>
                                             <div class="input-group-append">
                                                 <div class="input-group-text">
@@ -76,7 +76,7 @@
                                 <div class="col-12 col-md-6 mb-3">
                                     <div class="form-group">
                                         <label class="form-label"
-                                               for="last_name">Last name:</label>
+                                               for="last_name">{{ __('dashboard.Last name') }}:</label>
                                         <div class="input-group input-group-merge">
                                             <input type="text"
                                                    class="form-control @error('last_name') is-invalid @enderror"
@@ -85,7 +85,7 @@
                                                    autocomplete="last_name"
                                                    name="last_name"
                                                    id="last_name"
-                                                   placeholder="Enter your last name .."
+                                                   placeholder="{{ __('dashboard.Enter your last name') }} .."
                                                    autofocus>
                                             <div class="input-group-append">
                                                 <div class="input-group-text">
@@ -104,7 +104,7 @@
                                 <div class="col-12 col-md-6 mb-3">
                                     <div class="form-group">
                                         <label class="form-label"
-                                               for="full_name">Full name:</label>
+                                               for="full_name">{{ __('dashboard.Full name') }}:</label>
                                         <div class="input-group input-group-merge">
                                             <input type="text"
                                                    class="form-control @error('full_name') is-invalid @enderror"
@@ -113,7 +113,7 @@
                                                    autocomplete="full_name"
                                                    name="full_name"
                                                    id="full_name"
-                                                   placeholder="Enter your full name .."
+                                                   placeholder="{{ __('dashboard.Enter your full name') }} .."
                                                    autofocus>
                                             <div class="input-group-append">
                                                 <div class="input-group-text">
@@ -130,7 +130,7 @@
                                 <div class="col-12 col-md-6 mb-3">
                                     <div class="form-group">
                                         <label class="form-label"
-                                               for="email">Email:</label>
+                                               for="email">{{ __('dashboard.Email') }}:</label>
                                         <div class="input-group input-group-merge">
                                             <input type="email"
                                                    class="form-control @error('email') is-invalid @enderror"
@@ -139,7 +139,7 @@
                                                    autocomplete="email"
                                                    name="email"
                                                    id="email"
-                                                   placeholder="Enter your email address .."
+                                                   placeholder="{{ __('dashboard.Enter your email address') }} .."
                                                    autofocus>
                                             <div class="input-group-append">
                                                 <div class="input-group-text">
@@ -158,7 +158,7 @@
                                 <div class="col-12 col-md-6 mb-3">
                                     <div class="form-group">
                                         <label class="form-label"
-                                               for="phone">Phone:</label>
+                                               for="phone">{{ __('dashboard.Phone') }}:</label>
                                         <div class="input-group input-group-merge">
                                             <input type="tel"
                                                    class="form-control @error('phone') is-invalid @enderror"
@@ -186,7 +186,7 @@
                                 <div class="col-12 col-md-6 mb-3">
                                     <div class="form-group">
                                         <label class="form-label"
-                                               for="fax">Fax:</label>
+                                               for="fax">{{ __('dashboard.Fax') }}:</label>
                                         <div class="input-group input-group-merge">
                                             <input type="text"
                                                    class="form-control @error('fax') is-invalid @enderror"
@@ -194,7 +194,7 @@
                                                    autocomplete="fax"
                                                    name="fax"
                                                    id="fax"
-                                                   placeholder="Enter your fax .."
+                                                   placeholder="{{ __('dashboard.Enter your fax') }} .."
                                             >
                                             <div class="input-group-append">
                                                 <div class="input-group-text">
@@ -213,7 +213,7 @@
                                 <div class="col-12 col-md-6 mb-3">
                                     <div class="form-group">
                                         <label class="form-label"
-                                               for="select04">Category</label>
+                                               for="select04">{{ __('dashboard.Category') }}:</label>
                                         <select id="select04"
                                                 data-toggle="select"
                                                 data-minimum-results-for-search="-1"
@@ -234,7 +234,7 @@
                                 {{-- <div class="col-12 col-md-6 mb-3">
                                     <div class="form-group">
                                         <label class="form-label"
-                                               for="select03">Currency</label>
+                                               for="select03">{{ __('dashboard.Currency') }}:</label>
                                         <select id="select03"
                                                 data-toggle="select"
                                                 data-minimum-results-for-search="-1"
@@ -258,14 +258,14 @@
                 </div>
             </div>
             @if($customer->location)
-                <h4>Customer Locations'</h4>
+                <h4>{{ __('dashboard.Customer Locations\'') }}</h4>
             @endif
             @foreach($customer->location as $location)
                 <div class="page-separator">
                     <div class="page-separator__text col-auto">
                         <a href="{{ route('dashboard.locations.edit',$location->id) }}"
                            class="btn btn-outline-secondary">
-                            <i class="material-icons icon--left">edit</i> {{ $location->name }} location
+                            <i class="material-icons icon--left">edit</i> {{ $location->name }}
                         </a>
                     </div>
                 </div>
@@ -274,10 +274,10 @@
                 <div class="row card-body mb-32pt">
                     <div class="col-lg-4 bg-light">
                         <div class="page-separator">
-                            <div class="page-separator__text">Location Information</div>
+                            <div class="page-separator__text">{{ __('dashboard.Location Information') }}</div>
                         </div>
                         <p class="card-subtitle text-70 mb-16pt mb-lg-0">
-                            Add your customer address information.
+                            {{ __('dashboard.Add your customer address information') }}
                         </p>
                     </div>
                     <div class="col-lg-8 d-flex align-items-center">
@@ -493,7 +493,7 @@
                 <div class="page-separator__text col-auto">
                     <a href="javascript:void(0)" onclick="doubling()"
                        class="btn btn-outline-secondary">
-                        <i class="material-icons icon--left">add</i> New contact
+                        <i class="material-icons icon--left">add</i> {{ __('dashboard.New contact') }}
                     </a>
                 </div>
             </div>
@@ -502,10 +502,10 @@
                     <div class="row card-body mb-32pt">
                         <div class="col-lg-4 bg-light">
                             <div class="page-separator">
-                                <div class="page-separator__text">Contact Information</div>
+                                <div class="page-separator__text">{{ __('dashboard.Contact Information') }}</div>
                             </div>
                             <p class="card-subtitle text-70 mb-16pt mb-lg-0">
-                                Add your customer's contact information.
+                                {{ __('dashboard.Add your customers contact information') }}
                             </p>
                         </div>
                         <div class="col-lg-8 d-flex align-items-center">
@@ -515,7 +515,7 @@
                                     <div class="col-12 col-md-6 mb-3">
                                         <div class="form-group">
                                             <label class="form-label"
-                                                   for="contact_name">Contact name:</label>
+                                                   for="contact_name">{{ __('dashboard.Contact name') }}:</label>
                                             <div class="input-group input-group-merge">
                                                 <input type="text"
                                                        class="form-control @error('contact_name') is-invalid @enderror"
@@ -523,7 +523,7 @@
                                                        autocomplete="contact_name"
                                                        name="contact_name[]"
                                                        id="contact_name"
-                                                       placeholder="Enter your contact name .."
+                                                       placeholder="{{ __('dashboard.Enter your contact name') }} .."
                                                        autofocus>
                                                 <div class="input-group-append">
                                                     <div class="input-group-text">
@@ -540,7 +540,7 @@
                                     <div class="col-12 col-md-6 mb-3">
                                         <div class="form-group">
                                             <label class="form-label"
-                                                   for="contact_job_title">Job title:</label>
+                                                   for="contact_job_title">{{ __('dashboard.Job title') }}:</label>
                                             <div class="input-group input-group-merge">
                                                 <input type="text"
                                                        class="form-control @error('contact_job_title') is-invalid @enderror"
@@ -548,7 +548,7 @@
                                                        autocomplete="contact_job_title"
                                                        name="contact_job_title[]"
                                                        id="contact_job_title"
-                                                       placeholder="Enter your contact job title .."
+                                                       placeholder="{{ __('dashboard.Enter your contact job title') }} .."
                                                 >
                                                 <div class="input-group-append">
                                                     <div class="input-group-text">
@@ -567,7 +567,7 @@
                                     <div class="col-12 col-md-6 mb-3">
                                         <div class="form-group">
                                             <label class="form-label"
-                                                   for="contact_phone">Phone:</label>
+                                                   for="contact_phone">{{ __('dashboard.Phone') }}:</label>
                                             <div class="input-group input-group-merge">
                                                 <input type="tel"
                                                        class="form-control @error('contact_phone') is-invalid @enderror"
@@ -594,7 +594,7 @@
                                     <div class="col-12 col-md-6 mb-3">
                                         <div class="form-group">
                                             <label class="form-label"
-                                                   for="contact_email">Email:</label>
+                                                   for="contact_email">{{ __('dashboard.Email') }}:</label>
                                             <div class="input-group input-group-merge">
                                                 <input type="email"
                                                        class="form-control @error('contact_email') is-invalid @enderror"
@@ -602,7 +602,7 @@
                                                        autocomplete="contact_email"
                                                        name="contact_email[]"
                                                        id="contact_email"
-                                                       placeholder="Enter your email address .."
+                                                       placeholder="{{ __('dashboard.Enter your email address') }} .."
                                                        autofocus>
                                                 <div class="input-group-append">
                                                     <div class="input-group-text">
@@ -626,10 +626,10 @@
                     <div class="row card-body mb-32pt">
                         <div class="col-lg-4 bg-light">
                             <div class="page-separator">
-                                <div class="page-separator__text">Contact Information</div>
+                                <div class="page-separator__text">{{ __('dashboard.Contact Information') }}</div>
                             </div>
                             <p class="card-subtitle text-70 mb-16pt mb-lg-0">
-                                Add your customer's contact information.
+                                {{ __('dashboard.Add your customers contact information') }}
                             </p>
                         </div>
                         <div class="col-lg-8 d-flex align-items-center">
@@ -639,7 +639,7 @@
                                     <div class="col-12 col-md-6 mb-3">
                                         <div class="form-group">
                                             <label class="form-label"
-                                                   for="contact_name">Contact name:</label>
+                                                   for="contact_name">{{ __('dashboard.Contact name') }}:</label>
                                             <div class="input-group input-group-merge">
                                                 <input type="text"
                                                        class="form-control @error('contact_name') is-invalid @enderror"
@@ -647,7 +647,7 @@
                                                        autocomplete="contact_name"
                                                        name="contact_name[]"
                                                        id="contact_name"
-                                                       placeholder="Enter your contact name .."
+                                                       placeholder="{{ __('dashboard.Enter your contact name') }} .."
                                                        autofocus>
                                                 <div class="input-group-append">
                                                     <div class="input-group-text">
@@ -664,7 +664,7 @@
                                     <div class="col-12 col-md-6 mb-3">
                                         <div class="form-group">
                                             <label class="form-label"
-                                                   for="contact_job_title">Job title:</label>
+                                                   for="contact_job_title">{{ __('dashboard.Job title') }}:</label>
                                             <div class="input-group input-group-merge">
                                                 <input type="text"
                                                        class="form-control @error('contact_job_title') is-invalid @enderror"
@@ -672,7 +672,7 @@
                                                        autocomplete="contact_job_title"
                                                        name="contact_job_title[]"
                                                        id="contact_job_title"
-                                                       placeholder="Enter your contact job title .."
+                                                       placeholder="{{ __('dashboard.Enter your contact job title') }} .."
                                                 >
                                                 <div class="input-group-append">
                                                     <div class="input-group-text">
@@ -691,7 +691,7 @@
                                     <div class="col-12 col-md-6 mb-3">
                                         <div class="form-group">
                                             <label class="form-label"
-                                                   for="contact_phone">Phone:</label>
+                                                   for="contact_phone">{{ __('dashboard.Phone') }}:</label>
                                             <div class="input-group input-group-merge">
                                                 <input type="tel"
                                                        class="form-control @error('contact_phone') is-invalid @enderror"
@@ -718,7 +718,7 @@
                                     <div class="col-12 col-md-6 mb-3">
                                         <div class="form-group">
                                             <label class="form-label"
-                                                   for="contact_email">Email:</label>
+                                                   for="contact_email">{{ __('dashboard.Email') }}:</label>
                                             <div class="input-group input-group-merge">
                                                 <input type="email"
                                                        class="form-control @error('contact_email') is-invalid @enderror"
@@ -726,7 +726,7 @@
                                                        autocomplete="contact_email"
                                                        name="contact_email[]"
                                                        id="contact_email"
-                                                       placeholder="Enter your email address .."
+                                                       placeholder="{{ __('dashboard.Enter your email address') }} .."
                                                        autofocus>
                                                 <div class="input-group-append">
                                                     <div class="input-group-text">
@@ -750,15 +750,15 @@
                 <div class="row card-body mb-32pt">
                     <div class="col-lg-4 bg-light">
                         <div class="page-separator">
-                            <div class="page-separator__text">Extra Settings</div>
+                            <div class="page-separator__text">{{ __('dashboard.Extra Settings') }}</div>
                         </div>
-                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">Replaces a standard checkbox input with a toggle button.</p>
+                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">{{ __('dashboard.Replaces a standard checkbox input with a toggle button') }}</p>
                     </div>
                     <div class="col-lg-8 d-flex align-items-center">
                         <div class="flex"
                              style="max-width: 100%">
                             <div class="form-group">
-                                <label class="form-label">Your photo:</label>
+                                <label class="form-label">{{ __('dashboard.Your photo') }}:</label>
                                 <div class="media align-items-center">
                                     <a href="#"
                                        class="media-left mr-16pt">
@@ -776,7 +776,7 @@
                                                    onchange="readURL(this);"
                                             >
                                             <label class="custom-file-label"
-                                                   for="avatar">Choose file</label>
+                                                   for="avatar">{{ __('dashboard.Choose file') }}</label>
                                             @error('avatar')
                                             <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                             @enderror
@@ -787,22 +787,22 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="username">Profile name:</label>
+                                       for="username">{{ __('dashboard.Profile name') }}:</label>
                                 <input type="text"
                                        id="username"
                                        class="form-control @error('username') is-invalid @enderror"
                                        value="{{ old('username') ? old('username'):$customer->user->username }}"
                                        name="username"
-                                       placeholder="Your profile name ...">
+                                       placeholder="{{ __('dashboard.Your profile name') }} ...">
                                 @error('username')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                 @enderror
                                 <div class="valid-feedback">Looks good!</div>
-                                <small class="form-text text-muted">Your profile name will be used as part of your public profile URL address.</small>
+                                <small class="form-text text-muted">{{ __('dashboard.Your profile name will be used as part of your public profile URL address') }}</small>
                             </div>
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="other_phone">Other Phone:</label><small>(Optional)</small>
+                                       for="other_phone">{{ __('dashboard.Other Phone') }}:</label><small>({{ __('dashboard.optional') }})</small>
                                 <input type="tel"
                                        class="form-control @error('other_phone') is-invalid @enderror"
                                        value="{{ old('other_phone') ? old('other_phone'):$customer->user->other_phone }}"
@@ -810,7 +810,7 @@
                                        name="other_phone"
                                        pattern="[0][1][1-5]{9}"
                                        data-mask="00000000000"
-                                       placeholder="Your other mobile phone ...">
+                                       placeholder="{{ __('dashboard.Your other mobile phone') }} ...">
                                 @error('other_phone')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                 @enderror
@@ -818,13 +818,13 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="select06">Gender:</label>
+                                       for="select06">{{ __('dashboard.Gender') }}:</label>
                                 <select id="select06"
                                         data-toggle="select"
                                         name="gender"
                                         class="form-control form-control-sm @error('gender') is-invalid @enderror">
-                                    <option value="Male" @if(old('gender') ==  'Male') selected @else {{   $customer->user->gender == 'Male'  ? 'selected':'' }} @endif >Male</option>
-                                    <option value="Female"  @if(old('gender') ==  'Female') selected @else{{ $customer->user->gender == 'Female'  ? 'selected':'' }} @endif >Female</option>
+                                    <option value="Male" @if(old('gender') ==  'Male') selected @else {{   $customer->user->gender == 'Male'  ? 'selected':'' }} @endif >{{ __('dashboard.Male') }}</option>
+                                    <option value="Female"  @if(old('gender') ==  'Female') selected @else{{ $customer->user->gender == 'Female'  ? 'selected':'' }} @endif >{{ __('dashboard.Female') }}</option>
                                 </select>
                                 @error('gender')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -833,14 +833,14 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="date_of_birth">Date of Birth:</label>
+                                       for="date_of_birth">{{ __('dashboard.Date of Birth') }}:</label>
                                 <input type="hidden"
                                        class="form-control @error('date_of_birth') is-invalid @enderror flatpickr-input"
                                        value="{{ old('date_of_birth') ? old('date_of_birth'):$customer->user->date_of_birth }}"
                                        id="date_of_birth"
                                        name="date_of_birth"
                                        data-toggle="flatpickr"
-                                       placeholder="Your Birth date ...">
+                                       placeholder="{{ __('dashboard.Your Birth date') }} ...">
                                 @error('date_of_birth')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                 @enderror
@@ -848,12 +848,12 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="bio">About you:</label>
+                                       for="bio">{{ __('dashboard.About you') }}:</label>
                                 <textarea rows="3"
                                           id="bio"
                                           name="bio"
                                           class="form-control @error('bio') is-invalid @enderror"
-                                          placeholder="About you ...">{{ old('bio') ? old('bio'):$customer->user->bio }}</textarea>
+                                          placeholder="{{ __('dashboard.About you') }} ...">{{ old('bio') ? old('bio'):$customer->user->bio }}</textarea>
                                 @error('bio')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                 @enderror
@@ -867,13 +867,13 @@
                                            checked
                                            id="customCheck1">
                                     <label class="custom-control-label"
-                                           for="customCheck1">Display your real name on your profile</label>
-                                    <small class="form-text text-muted">If unchecked, your profile name will be displayed instead of your full name.</small>
+                                           for="customCheck1">{{ __('dashboard.Display your real name on your profile') }}</label>
+                                    <small class="form-text text-muted">{{ __('dashboard.If unchecked, your profile name will be displayed instead of your full name') }}</small>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="status">Status:</label><br>
+                                       for="status">{{ __('dashboard.Status') }}:</label><br>
                                 <div class="custom-control custom-checkbox-toggle custom-control-inline mr-1">
                                     <input @if(is_array(old('status')) && in_array('on', old('status'))) checked @else {{ $customer->status == 'active' ?'checked':'' }} @endif
                                            type="checkbox"
@@ -881,10 +881,10 @@
                                            name="status"
                                            class="custom-control-input @error('status') is-invalid @enderror">
                                     <label class="custom-control-label"
-                                           for="status">Yes</label>
+                                           for="status">{{ __('dashboard.Yes') }}</label>
                                 </div>
                                 <label class="form-label mb-0"
-                                       for="subscribe">Yes</label>
+                                       for="subscribe">{{ __('dashboard.Yes') }}</label>
                                 @error('status')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                 @enderror
@@ -895,7 +895,7 @@
                 </div>
             </div>
             <button type="submit"
-                    class="btn pull-right btn-primary">Submit</button>
+                    class="btn pull-right btn-primary">{{ __('dashboard.Submit') }}</button>
         </form>
     </div>
 @endsection
@@ -910,10 +910,10 @@
                 '                <div class="row card-body mb-32pt">\n' +
                 '                    <div class="col-lg-4 bg-light">\n' +
                 '                        <div class="page-separator">\n' +
-                '                            <div class="page-separator__text">Contact Information</div>\n' +
+                '                            <div class="page-separator__text">{{ __("dashboard.Contact Information") }}</div>\n' +
                 '                        </div>\n' +
                 '                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">\n' +
-                '                            Add your customer\'s contact information.\n' +
+                '                            {{ __("dashboard.Add your customers contact information") }}\n' +
                 '                        </p>\n' +
                 '                    </div>\n' +
                 '                    <div class="col-lg-8 d-flex align-items-center">\n' +
@@ -923,7 +923,7 @@
                 '                                <div class="col-12 col-md-6 mb-3">\n' +
                 '                                    <div class="form-group">\n' +
                 '                                        <label class="form-label"\n' +
-                '                                               for="contact_name">Contact name:</label>\n' +
+                '                                               for="contact_name">{{ __("dashboard.Contact name") }}:</label>\n' +
                 '                                        <div class="input-group input-group-merge">\n' +
                 '                                            <input type="text"\n' +
                 '                                                   class="form-control @error('contact_name') is-invalid @enderror"\n' +
@@ -931,7 +931,7 @@
                 '                                                   autocomplete="contact_name"\n' +
                 '                                                   name="contact_name[]"\n' +
                 '                                                   id="contact_name"\n' +
-                '                                                   placeholder="Enter your contact name .."\n' +
+                '                                                   placeholder="{{ __("dashboard.Enter your contact name") }} .."\n' +
                 '                                                   autofocus>\n' +
                 '                                            <div class="input-group-append">\n' +
                 '                                                <div class="input-group-text">\n' +
@@ -948,7 +948,7 @@
                 '                                <div class="col-12 col-md-6 mb-3">\n' +
                 '                                    <div class="form-group">\n' +
                 '                                        <label class="form-label"\n' +
-                '                                               for="contact_job_title">Job title:</label>\n' +
+                '                                               for="contact_job_title">{{ __("dashboard.Job title") }}:</label>\n' +
                 '                                        <div class="input-group input-group-merge">\n' +
                 '                                            <input type="text"\n' +
                 '                                                   class="form-control @error('contact_job_title') is-invalid @enderror"\n' +
@@ -956,7 +956,7 @@
                 '                                                   autocomplete="contact_job_title"\n' +
                 '                                                   name="contact_job_title[]"\n' +
                 '                                                   id="contact_job_title"\n' +
-                '                                                   placeholder="Enter your contact job title .."\n' +
+                '                                                   placeholder="{{ __("dashboard.Enter your contact job title") }} .."\n' +
                 '                                                   >\n' +
                 '                                            <div class="input-group-append">\n' +
                 '                                                <div class="input-group-text">\n' +
@@ -975,7 +975,7 @@
                 '                                <div class="col-12 col-md-6 mb-3">\n' +
                 '                                    <div class="form-group">\n' +
                 '                                        <label class="form-label"\n' +
-                '                                               for="contact_phone">Phone:</label>\n' +
+                '                                               for="contact_phone">{{ __("dashboard.Phone") }}:</label>\n' +
                 '                                        <div class="input-group input-group-merge">\n' +
                 '                                            <input type="tel"\n' +
                 '                                                   class="form-control @error('contact_phone') is-invalid @enderror"\n' +
@@ -1002,7 +1002,7 @@
                 '                                <div class="col-12 col-md-6 mb-3">\n' +
                 '                                    <div class="form-group">\n' +
                 '                                        <label class="form-label"\n' +
-                '                                               for="contact_email">Email:</label>\n' +
+                '                                               for="contact_email">{{ __("dashboard.Email") }}:</label>\n' +
                 '                                        <div class="input-group input-group-merge">\n' +
                 '                                            <input type="email"\n' +
                 '                                                   class="form-control @error('contact_email') is-invalid @enderror"\n' +
@@ -1010,7 +1010,7 @@
                 '                                                   autocomplete="contact_email"\n' +
                 '                                                   name="contact_email[]"\n' +
                 '                                                   id="contact_email"\n' +
-                '                                                   placeholder="Enter your email address .."\n' +
+                '                                                   placeholder="{{ __("dashboard.Enter your email address") }} .."\n' +
                 '                                                   autofocus>\n' +
                 '                                            <div class="input-group-append">\n' +
                 '                                                <div class="input-group-text">\n' +
@@ -1037,10 +1037,10 @@
                 '                <div class="row card-body mb-32pt">\n' +
                 '                <div class="col-lg-4 bg-light">\n' +
                 '                    <div class="page-separator">\n' +
-                '                        <div class="page-separator__text">Location Information</div>\n' +
+                '                        <div class="page-separator__text">{{ __("dashboard.Location Information") }}</div>\n' +
                 '                    </div>\n' +
                 '                    <p class="card-subtitle text-70 mb-16pt mb-lg-0">\n' +
-                '                        Add your customer address information.\n' +
+                '                        {{ __("dashboard.Add your customer address information") }}\n' +
                 '                    </p>\n' +
                 '                </div>\n' +
                 '                <div class="col-lg-8 d-flex align-items-center">\n' +
@@ -1050,7 +1050,7 @@
                 '                            <div class="col-12 col-md-6 mb-3">\n' +
                 '                                <div class="form-group">\n' +
                 '                                    <label class="form-label"\n' +
-                '                                           for="select06">Country</label>\n' +
+                '                                           for="select06">{{ __("dashboard.Country") }}</label>\n' +
                 '                                    <select id="select06"\n' +
                 '                                            data-toggle="select"\n' +
                 '                                            data-minimum-results-for-search="-1"\n' +
@@ -1071,7 +1071,28 @@
                 '                            <div class="col-12 col-md-6 mb-3">\n' +
                 '                                <div class="form-group">\n' +
                 '                                    <label class="form-label"\n' +
-                '                                           for="select01">City</label>\n' +
+                '                                           for="select01">{{ __("dashboard.State") }}</label>\n' +
+                '                                    <select id="select01"\n' +
+                '                                            data-toggle="select"\n' +
+                '                                            data-minimum-results-for-search="-1"\n' +
+                '                                            class="form-control select03 form-control-sm @error('state_id') is-invalid @enderror"\n' +
+                '                                            name="state_id[]">\n' +
+                '                                        @foreach($states as $state)\n' +
+                '                                            <option value="{{ $state->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">\n' +
+                '                                                {{ $state->name }}\n' +
+                '                                            </option>\n' +
+                '                                        @endforeach\n' +
+                '                                    </select>\n' +
+                '                                    @error('state_id')\n' +
+                '                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>\n' +
+                '                                    @enderror\n' +
+                '                                    <div class="valid-feedback">Looks good!</div>\n' +
+                '                                </div>\n' +
+                '                            </div>\n' +
+                '                            <div class="col-12 col-md-6 mb-3">\n' +
+                '                                <div class="form-group">\n' +
+                '                                    <label class="form-label"\n' +
+                '                                           for="select01">{{ __("dashboard.City") }}</label>\n' +
                 '                                    <select id="select01"\n' +
                 '                                            data-toggle="select"\n' +
                 '                                            data-minimum-results-for-search="-1"\n' +
@@ -1089,7 +1110,7 @@
                 '                            <div class="col-12 col-md-6 mb-3">\n' +
                 '                                <div class="form-group">\n' +
                 '                                    <label class="form-label"\n' +
-                '                                           for="street">Street:</label>\n' +
+                '                                           for="street">{{ __("dashboard.Street") }}:</label>\n' +
                 '                                    <div class="input-group input-group-merge">\n' +
                 '                                        <input type="text"\n' +
                 '                                               class="form-control @error('street') is-invalid @enderror"\n' +
@@ -1097,7 +1118,7 @@
                 '                                               autocomplete="street"\n' +
                 '                                               name="street[]"\n' +
                 '                                               id="street"\n' +
-                '                                               placeholder="Enter your street .."\n' +
+                '                                               placeholder="{{ __("dashboard.Enter your street") }} .."\n' +
                 '                                               autofocus>\n' +
                 '                                        <div class="input-group-append">\n' +
                 '                                            <div class="input-group-text">\n' +
@@ -1114,7 +1135,7 @@
                 '                            <div class="col-12 col-md-6 mb-3">\n' +
                 '                                <div class="form-group">\n' +
                 '                                    <label class="form-label"\n' +
-                '                                           for="building">Building:</label>\n' +
+                '                                           for="building">{{ __("dashboard.Building") }}:</label>\n' +
                 '                                    <div class="input-group input-group-merge">\n' +
                 '                                        <input type="text"\n' +
                 '                                               class="form-control @error('building') is-invalid @enderror"\n' +
@@ -1122,7 +1143,7 @@
                 '                                               autocomplete="building"\n' +
                 '                                               name="building[]"\n' +
                 '                                               id="building"\n' +
-                '                                               placeholder="Enter your building .."\n' +
+                '                                               placeholder="{{ __("dashboard.Enter your building") }} .."\n' +
                 '                                               autofocus>\n' +
                 '                                        <div class="input-group-append">\n' +
                 '                                            <div class="input-group-text">\n' +
@@ -1141,7 +1162,7 @@
                 '                            <div class="col-12 col-md-6 mb-3">\n' +
                 '                                <div class="form-group">\n' +
                 '                                    <label class="form-label"\n' +
-                '                                           for="floor">Floor:</label>\n' +
+                '                                           for="floor">{{ __("dashboard.Floor") }}:</label>\n' +
                 '                                    <div class="input-group input-group-merge">\n' +
                 '                                        <input type="text"\n' +
                 '                                               class="form-control @error('floor') is-invalid @enderror"\n' +
@@ -1149,7 +1170,7 @@
                 '                                               autocomplete="floor"\n' +
                 '                                               name="floor[]"\n' +
                 '                                               id="floor"\n' +
-                '                                               placeholder="Enter your floor .."\n' +
+                '                                               placeholder="{{ __("dashboard.Enter your floor") }} .."\n' +
                 '                                               autofocus>\n' +
                 '                                        <div class="input-group-append">\n' +
                 '                                            <div class="input-group-text">\n' +
@@ -1166,7 +1187,7 @@
                 '                            <div class="col-12 col-md-6 mb-3">\n' +
                 '                                <div class="form-group">\n' +
                 '                                    <label class="form-label"\n' +
-                '                                           for="apartment">Apartment:</label>\n' +
+                '                                           for="apartment">{{ __("dashboard.Apartment") }}:</label>\n' +
                 '                                    <div class="input-group input-group-merge">\n' +
                 '                                        <input type="text"\n' +
                 '                                               class="form-control @error('apartment') is-invalid @enderror"\n' +
@@ -1174,7 +1195,7 @@
                 '                                               autocomplete="apartment"\n' +
                 '                                               name="apartment[]"\n' +
                 '                                               id="apartment"\n' +
-                '                                               placeholder="Enter your apartment .."\n' +
+                '                                               placeholder="{{ __("dashboard.Enter your apartment") }} .."\n' +
                 '                                               autofocus>\n' +
                 '                                        <div class="input-group-append">\n' +
                 '                                            <div class="input-group-text">\n' +

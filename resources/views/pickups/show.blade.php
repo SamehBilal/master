@@ -1,12 +1,12 @@
 @extends('layouts.backend')
 @php $locale = session()->get('locale'); @endphp
 @section('title')
-    Tracking No. {{ $pickup->pickup_id }}
+    {{ __('dashboard.Tracking_No') }} {{ $pickup->pickup_id }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('dashboard.pickups.index') }}">Pickups</a>
+        <a href="{{ route('dashboard.pickups.index') }}">{{ __('dashboard.Pickups') }}</a>
     </li>
     <li class="breadcrumb-item active">
         {{ $pickup->pickup_id }}
@@ -22,7 +22,7 @@
 @endsection
 
 @section('button-title')
-    All Pickups
+    {{ __('dashboard.Pickups') }}
 @endsection
 
 @section('main_content')
@@ -32,11 +32,11 @@
             <div class="row">
                 <div class="col-lg-5 mb-24pt mb-lg-0">
                     <div class="border-left-3 border-left-primary pl-24pt pl-md-32pt">
-                        <h4 class="mb-8pt">{{ $log ? $log->status:'' }} {{ $log->hub ? ($locale == 'ar' ? '('.$log->hub->ar_name.')':'('.$log->hub->en_name.')'):'' }}</h4>
-                        <p class="text-70 mb-24pt">{{ $log ? $log->description:'' }}</p>
+                        <h4 class="mb-8pt">{{ $log ? __('dashboard.'.$log->status):'' }} {{ $log->hub ? ($locale == 'ar' ? '('.$log->hub->ar_name.')':'('.$log->hub->en_name.')'):'' }}</h4>
+                        <p class="text-70 mb-24pt">{{ $log ? __('dashboard.'.$log->description):'' }}</p>
                         @can('edit log')
                             <a href="{{ route("dashboard.pickup-logs.index",$pickup->id) }}"
-                               class="btn btn-primary">Pickup Logs</a>
+                               class="btn btn-primary">{{ __('dashboard.Pickup Logs') }}</a>
                         @endcan
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                             <a href="#"
                                data-toggle="tooltip"
                                data-placement="top"
-                               data-title="{{ $icon['type'] }}"
+                               data-title="{{ __('dashboard.'.$icon['type']) }}"
                                class="page-num-timeline__item {{ $icon['type'] ==  ($log ? $log->status:'')  ? 'page-num-timeline__item-current':''}}">
                                 <span class="page-num-timeline__item-tip"></span>
                                 <span class="page-num"><i class="material-icons">{{ $icon['icon'] }}</i></span>
@@ -70,7 +70,7 @@
                         <div class="col-lg-7">
 
                             <div class="page-separator">
-                                <div class="page-separator__text">Couriers</div>
+                                <div class="page-separator__text">{{ __('dashboard.Couriers') }}</div>
                             </div>
 
                             <div class="">
@@ -93,7 +93,7 @@
                                             <div class="d-flex">
                                                 <div class="flex">
                                                     <a class="card-title mb-4pt"
-                                                       href="#">Couriers</a>
+                                                       href="#">{{ __('dashboard.Couriers') }}</a>
                                                 </div>
                                                 <a href="#"
                                                    class="ml-4pt material-icons text-20 card-course__icon-favorite">arrow_forward</a>
@@ -126,9 +126,9 @@
                                                                 <div class="flex">
                                                                     <div class="card-title">{{ $courier->courier->full_name }}</div>
                                                                     @if($courier->courier->phone)
-                                                                        <p class="flex text-50 lh-1 mb-0"><small>Phone: {{ $courier->courier->phone }}</small></p>
+                                                                        <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Phone') }}: {{ $courier->courier->phone }}</small></p>
                                                                     @endif
-                                                                    <p class="flex text-50 lh-1 mb-0"><small>Assigned: {{ date("F j, Y g:i A", strtotime($courier->updated_at)) }}</small></p>
+                                                                    <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Assigned') }}: {{ date("F j, Y g:i A", strtotime($courier->updated_at)) }}</small></p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -148,7 +148,7 @@
                                     @empty
                                         <div class=" mb-lg-16pt">
                                             <a href="{{ route('dashboard.pickups.courier',$pickup->id) }}"
-                                               class="btn btn-primary"><i class="material-icons icon--left">add</i> Add Courier</a>
+                                               class="btn btn-primary"><i class="material-icons icon--left">add</i> {{ __('dashboard.Add Courier') }}</a>
                                             <br>
                                         </div>
                                     @endforelse
@@ -158,7 +158,7 @@
 
                             <div class=" mb-lg-16pt">
                                 <a href="{{ route('dashboard.pickups.courier',$pickup->id) }}"
-                                   class="btn btn-primary"><i class="material-icons icon--left">add</i> Add Courier</a>
+                                   class="btn btn-primary"><i class="material-icons icon--left">add</i> {{ __('dashboard.Add Courier') }}</a>
                                 <br>
                             </div>
 
@@ -197,7 +197,7 @@
                                                         </canvas>
                                                     </div>
                                                     <div class="flex">
-                                                        <strong>Edit Pickup</strong>
+                                                        <strong>{{ __('dashboard.Edit Pickup') }}</strong>
                                                     </div>
                                                 </div>
                                             </div>
@@ -211,14 +211,14 @@
                         <div class=" @can('edit courier') col-lg-5 @else col-lg-12 @endcan">
 
                             <div class="page-separator">
-                                <div class="page-separator__text">Codes</div>
+                                <div class="page-separator__text">{{ __('dashboard.Codes') }}</div>
                             </div>
 
                             <div class="card">
                                 <div class="card-header">
                                     <div class="d-flex align-items-center">
                                         <div class="flex">
-                                            <strong class="card-title">Codes</strong>
+                                            <strong class="card-title">{{ __('dashboard.Codes') }}</strong>
                                         </div>
                                     </div>
                                 </div>
@@ -248,12 +248,12 @@
             <div class="row">
                 <div class="col-lg-5 mb-24pt mb-lg-0">
                     <div class="border-left-3 border-left-primary pl-24pt pl-md-32pt">
-                        <h4 class="mb-8pt text-secondary">Customer Pickup log</h4>
-                        <h4 class="mb-8pt">{{ $customerlog ? $customerlog->status:'' }} {{ $customerlog->hub ? ($locale == 'ar' ? '('.$customerlog->hub->ar_name.')':'('.$customerlog->hub->en_name.')'):'' }}</h4>
-                        <p class="text-70 mb-24pt">{{ $customerlog ? $customerlog->description:'' }}</p>
+                        <h4 class="mb-8pt text-secondary">{{ __('dashboard.Customer Pickup log') }}</h4>
+                        <h4 class="mb-8pt">{{ $customerlog ? __('dashboard.'.$customerlog->status):'' }} {{ $customerlog->hub ? ($locale == 'ar' ? '('.$customerlog->hub->ar_name.')':'('.$customerlog->hub->en_name.')'):'' }}</h4>
+                        <p class="text-70 mb-24pt">{{ $customerlog ? __('dashboard.'.$customerlog->description):'' }}</p>
                         @can('edit log')
                             <a href="{{ route("dashboard.pickup-customer-logs.index",$pickup->id) }}"
-                               class="btn btn-primary">Pickup Logs</a>
+                               class="btn btn-primary">{{ __('dashboard.Customer Pickup log') }}</a>
                         @endcan
                     </div>
                 </div>
@@ -263,7 +263,7 @@
                             <a href="#"
                                data-toggle="tooltip"
                                data-placement="top"
-                               data-title="{{ $icon['type'] }}"
+                               data-title="{{ __('dashboard.'.$icon['type']) }}"
                                class="page-num-timeline__item {{ $icon['type'] ==  ($customerlog ? $customerlog->status:'')  ? 'page-num-timeline__item-current':''}}">
                                 <span class="page-num-timeline__item-tip"></span>
                                 <span class="page-num"><i class="material-icons">{{ $icon['icon'] }}</i></span>
@@ -282,7 +282,7 @@
 
 
                 <div class="page-separator">
-                    <div class="page-separator__text">Pickup Details</div>
+                    <div class="page-separator__text">{{ __('dashboard.Pickup Details') }}</div>
                 </div>
 
                 <div class="row card-group-row mb-lg-8pt">
@@ -292,7 +292,7 @@
                             <div class="row no-gutters flex">
                                 <div class="col-lg-4 col-sm-4">
                                     <div class="card-body">
-                                        <h6 class="text-50">Pickup Id</h6>
+                                        <h6 class="text-50">{{ __('dashboard.Pickup Id') }}</h6>
 
                                         <div class="h2 mb-0">{{ $pickup->pickup_id }}</div>
                                         {{--<div class="d-flex flex-column">
@@ -303,16 +303,16 @@
                                     <div class="card-body">
                                         <div class="h2 mb-0"></div>
                                         <div class="d-flex flex-column">
-                                            <small class="text-50">Scheduled date</small>
+                                            <small class="text-50">{{ __('dashboard.Scheduled date') }}</small>
                                             <strong>{{  $pickup->scheduled_date }}</strong>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-sm-4 border-left">
                                     <div class="card-body">
-                                        <h6 class="text-50">Pickup type</h6>
+                                        <h6 class="text-50">{{ __('dashboard.Pickup type') }}</h6>
 
-                                        <div class="h2 mb-0">{{ $pickup->type }}</div>
+                                        <div class="h2 mb-0">{{ __('dashboard.'.$pickup->type) }}</div>
                                         {{--<div class="d-flex flex-column">
                                             <strong>Total Views</strong>
                                             <small class="text-50">1.3k today</small>
@@ -320,13 +320,13 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="h2 mb-0"></div>
-                                        <small class="text-50">Status</small>
-                                        <strong>{{ $pickup->status }}</strong>
+                                        <small class="text-50">{{ __('dashboard.Status') }}</small>
+                                        <strong>{{ __('dashboard.'.$pickup->status) }}</strong>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-sm-4 border-left">
                                     <div class="card-body">
-                                        <h6 class="text-50">Contact person</h6>
+                                        <h6 class="text-50">{{ __('dashboard.Contact person') }}</h6>
 
                                         <div class="h2 mb-0">{{ $pickup->contact->contact_name }} </div>
                                         <div class="d-flex flex-column">
@@ -423,21 +423,21 @@
                                         <div class="col-auto">
                                             <div class="d-flex align-items-center mb-4pt">
                                                 <span class="material-icons icon-16pt text-50 mr-4pt">apartment</span>
-                                                <p class="flex text-50 lh-1 mb-0"><small>Apartment: {{ $pickup->location->apartment }}</small></p>
+                                                <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Apartment') }}: {{ $pickup->location->apartment }}</small></p>
                                             </div>
                                             <div class="d-flex align-items-center mb-4pt">
                                                 <span class="material-icons icon-16pt text-50 mr-4pt">home_work</span>
-                                                <p class="flex text-50 lh-1 mb-0"><small>Home: {{ $pickup->location->building }}</small></p>
+                                                <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Home') }}: {{ $pickup->location->building }}</small></p>
                                             </div>
                                             <div class="d-flex align-items-center">
                                                 <span class="material-icons icon-16pt text-50 mr-4pt">local_convenience_store</span>
-                                                <p class="flex text-50 lh-1 mb-0"><small>Floor: {{ $pickup->location->floor }}</small></p>
+                                                <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Floor') }}: {{ $pickup->location->floor }}</small></p>
                                             </div>
                                         </div>
                                         <div class="col text-right">
                                             <!-- Button trigger modal -->
                                             <button type="button" id="view_location" class="btn view_modal btn-outline-secondary">
-                                                View Location
+                                                {{ __('dashboard.View Location') }}
                                             </button>
                                         </div>
                                     </div>
@@ -486,23 +486,23 @@
                 '   <div class="col-auto">'+
                 '      <div class="d-flex align-items-center mb-4pt">'+
                 '          <span class="material-icons icon-16pt text-50 mr-4pt">apartment</span>'+
-            '          <p class="flex text-50 lh-1 mb-0"><small>Apartment: {{ $pickup->location->apartment }}</small></p>'+
+            '          <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Apartment') }}: {{ $pickup->location->apartment }}</small></p>'+
                 '  </div>'+
                 '    <div class="d-flex align-items-center mb-4pt">'+
                 '      <span class="material-icons icon-16pt text-50 mr-4pt">home_work</span>'+
-                '       <p class="flex text-50 lh-1 mb-0"><small>Home: {{ $pickup->location->building }}</small></p>'+
+                '       <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Home') }}: {{ $pickup->location->building }}</small></p>'+
                 '    </div>'+
                 '    <div class="d-flex align-items-center mb-4pt">'+
                 '        <span class="material-icons icon-16pt text-50 mr-4pt">local_convenience_store</span>'+
-                '        <p class="flex text-50 lh-1 mb-0"><small>Floor: {{ $pickup->location->floor }}</small></p>'+
+                '        <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Floor') }}: {{ $pickup->location->floor }}</small></p>'+
                 '   </div>'+
                 '   <div class="d-flex align-items-center mb-4pt">'+
                 '      <span class="material-icons icon-16pt text-50 mr-4pt">car_repair</span>'+
-                '       <p class="flex text-50 lh-1 mb-0"><small>Street: {{ $pickup->location->street }}</small></p>'+
+                '       <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Street') }}: {{ $pickup->location->street }}</small></p>'+
                 '    </div>'+
                 '    <div class="d-flex align-items-center mb-4pt">'+
                 '        <span class="material-icons icon-16pt text-50 mr-4pt">landscape</span>'+
-                '       <p class="flex text-50 lh-1 mb-0"><small>landmarks: {{ $pickup->location->landmarks }}</small></p>'+
+                '       <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Landmarks') }}: {{ $pickup->location->landmarks }}</small></p>'+
                 ' </div>'+
             ' </div>'+
             ' <div class="col text-right"></div>'+
@@ -526,8 +526,8 @@
                     imageHeight: 64,
                     imageAlt: 'Custom image',
                     showCancelButton: true,
-                    confirmButtonText: '<i class="material-icons icon--left">edit</i> Change Location',
-                    cancelButtonText: '<i class="material-icons icon--left">edit</i> Edit Location',
+                    confirmButtonText: '<i class="material-icons icon--left">edit</i> {{ __('dashboard.Change Location') }}',
+                    cancelButtonText: '<i class="material-icons icon--left">edit</i> {{ __('dashboard.Edit Location') }}',
                     reverseButtons: true
                 }).then((result) => {
                     if (result.isConfirmed) {

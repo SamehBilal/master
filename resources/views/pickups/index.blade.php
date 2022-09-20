@@ -68,7 +68,7 @@
                                             style="width: 200px;">
                                         <option value="" {{ old('status') == '' ?'selected':'' }}>{{ __('dashboard.All_Status') }}</option>
                                         @foreach($status as $item)
-                                            <option value="{{ $item }}"  {{ isset($_GET['status']) &&  $_GET['status'] == $item ? 'selected':''}}>{{ $item }}</option>
+                                            <option value="{{ $item }}"  {{ isset($_GET['status']) &&  $_GET['status'] == $item ? 'selected':''}}>{{ __('dashboard.'.$item) }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -216,12 +216,12 @@
 
                                 <td>
                                     <div href="#"
-                                         class="chip chip-outline-secondary ">{{ $pickup->type }}</div>
+                                         class="chip chip-outline-secondary ">{{ __('dashboard.'.$pickup->type) }}</div>
                                 </td>
 
                                 <td>
                                     <div class="d-flex flex-column">
-                                        <small class="badge {{$pickup->status_color}}">{{ $pickup->status }}</small>
+                                        <small class="badge {{$pickup->status_color}}">{{ __('dashboard.'.$pickup->status) }}</small>
                                     </div>
                                 </td>
 

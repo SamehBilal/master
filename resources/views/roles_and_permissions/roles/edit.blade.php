@@ -29,7 +29,7 @@
     <div class="container page__container page-section">
         <div class="page-separator">
             <div class="page-separator__text" >
-                {{ __('dashboard.Roles Information') }}
+                {{ __('dashboard.Role Information') }}
             </div>
         </div>
         <form method="POST" action="{{ route('dashboard.roles.update',$role->id) }}" enctype="multipart/form-data">
