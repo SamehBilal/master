@@ -187,7 +187,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 card-group-row__col">
+                <div class="col-lg-8 col-md-6 card-group-row__col">
                     <div class="card card-group-row__card">
                         <div class="card-body d-flex flex-row align-items-center flex-0">
                             <div class="h2 mb-0 mr-3">78</div>
@@ -225,7 +225,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-12 card-group-row__col">
+                <div class="col-lg-4 col-md-12 card-group-row__col" style="display: none">
                     <div class="card card-group-row__card">
                         <div class="card-body d-flex flex-row align-items-center flex-0">
                             <div class="h2 mb-0 mr-3">5.43%</div>

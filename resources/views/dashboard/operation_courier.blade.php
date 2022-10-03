@@ -30,13 +30,13 @@
         <div class="row">
             <div class="col-lg-6 ">
                 <div class="page-separator">
-                    <div class="page-separator__text">Pickups</div>
+                    <div class="page-separator__text">{{ __('dashboard.Pickups') }}</div>
                 </div>
             </div>
 
             <div class="col-lg-6 ">
                 <div class="page-separator">
-                    <div class="page-separator__text">Orders</div>
+                    <div class="page-separator__text">{{ __('dashboard.Orders') }}</div>
                 </div>
             </div>
         </div>
@@ -47,35 +47,35 @@
                     <div class="row no-gutters flex">
                         <div class="col-6">
                             <div class="card-body">
-                                <h6 class="text-50">Overview</h6>
+                                <h6 class="text-50">{{ __('dashboard.Total_Pickups') }}</h6>
 
                                 <div class="h2 mb-0">{{ $pickups->count() }}</div>
                                 <div class="d-flex flex-column">
-                                    <strong>Total Pickups</strong>
+                                    <strong>{{ __('dashboard.Total_Pickups') }}</strong>
                                     <small class="text-50">{{--13 this week--}}</small>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="h2 mb-0">{{ $pickups->where('status','Created')->count() }}</div>
                                 <div class="d-flex flex-column">
-                                    <strong>New Pickups</strong>
+                                    <strong>{{ __('dashboard.New Pickups') }}</strong>
                                     <small class="text-50"></small>
                                 </div>
                             </div>
                         </div>
                         <div class="col-6 border-left">
                             <div class="card-body">
-                                <h6 class="text-50">Picked up</h6>
+                                <h6 class="text-50">{{ __('dashboard.Picked up') }}</h6>
 
                                 <div class="h2 mb-0">{{ $pickups->where('status','Picked up')->count() }}</div>
                                 <div class="d-flex flex-column">
-                                    <strong>Total Views</strong>
+                                    <strong>{{ __('dashboard.Picked up') }}</strong>
                                     <small class="text-50">{{--1.3k today--}}</small>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="h2 mb-0">{{ $pickups->where('status','Out for pickup')->count() }}</div>
-                                <strong>Out for pickup</strong>
+                                <strong>{{ __('dashboard.Out for pickup') }}</strong>
                             </div>
                         </div>
                     </div>
@@ -89,35 +89,35 @@
                     <div class="row no-gutters flex">
                         <div class="col-6">
                             <div class="card-body">
-                                <h6 class="text-50">Overview</h6>
+                                <h6 class="text-50">{{ __('dashboard.Total_orders_count') }}</h6>
 
                                 <div class="h2 mb-0">{{ $orders->count() }}</div>
                                 <div class="d-flex flex-column">
-                                    <strong>Total Orders</strong>
+                                    <strong>{{ __('dashboard.Total_orders_count') }}</strong>
                                     <small class="text-50">{{--13 this week--}}</small>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="h2 mb-0">{{ $orders->where('status','New')->count() }}</div>
                                 <div class="d-flex flex-column">
-                                    <strong>New Orders</strong>
+                                    <strong>{{ __('dashboard.New_Orders') }}</strong>
                                     <small class="text-50"></small>
                                 </div>
                             </div>
                         </div>
                         <div class="col-6 border-left">
                             <div class="card-body">
-                                <h6 class="text-50">Completed Orders</h6>
+                                <h6 class="text-50">{{ __('dashboard.Completed_Orders') }}</h6>
 
                                 <div class="h2 mb-0">{{ $orders->where('status','Completed')->count() }}</div>
                                 <div class="d-flex flex-column">
-                                    <strong>Total Views</strong>
+                                    <strong>{{ __('dashboard.Completed_Orders') }}</strong>
                                     <small class="text-50">{{--1.3k today--}}</small>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="h2 mb-0">{{ $orders->where('status','Out for delivery')->count() }}</div>
-                                <strong>Out for delivery Orders</strong>
+                                <strong>{{ __('dashboard.Out for delivery Orders') }}</strong>
                             </div>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
         </div>
 
         <div class="page-separator">
-            <div class="page-separator__text">Latest Pickups to be Picked up</div>
+            <div class="page-separator__text">{{ __('dashboard.Latest Pickups to be Picked up') }}</div>
         </div>
 
         <div class="posts-cards mb-24pt">
@@ -147,7 +147,7 @@
                         </div>
                         <div class="d-flex align-items-center flex-column flex-sm-row posts-card__meta" onclick="location.href='{{ route('dashboard.pickups.show',$pickup->id) }}'" style="cursor: pointer">
                             <div class="mr-3 text-50 text-uppercase posts-card__tag d-flex align-items-center">
-                                <i class="material-icons text-muted-light mr-1">folder_open</i> {{ $pickup->type }}
+                                <i class="material-icons text-muted-light mr-1">folder_open</i> {{ __('dashboard.'.$pickup->type) }}
                             </div>
                             <div class="mr-3 text-50 posts-card__date">
                                 <small>{{ date("F j, Y", strtotime($pickup->created_at)) }}</small>
@@ -176,14 +176,14 @@
                                class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 @can('show pickups')
-                                    <a href="{{ route('dashboard.pickups.show',$pickup->id) }}" class="dropdown-item"><i class="material-icons ">visibility</i> View</a>
+                                    <a href="{{ route('dashboard.pickups.show',$pickup->id) }}" class="dropdown-item"><i class="material-icons ">visibility</i> {{ __('dashboard.View') }}</a>
                                 @endcan
                                 @can('edit pickups')
-                                    <a href="{{ route('dashboard.pickups.edit',$pickup->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> Edit</a>
+                                    <a href="{{ route('dashboard.pickups.edit',$pickup->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> {{ __('dashboard.Edit') }}</a>
                                 @endcan
                                 @can('delete pickups')
                                     <div class="dropdown-divider"></div>
-                                    <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $pickup->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
+                                    <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $pickup->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> {{ __('dashboard.Delete') }}</a>
                                     <form id="delete-form{{ $pickup->id }}" action="{{ route('dashboard.pickups.destroy',$pickup->id) }}" method="POST" class="d-none">
                                         @csrf
                                         @method('DELETE')
@@ -202,7 +202,7 @@
         @endif
 
         <div class="page-separator">
-            <div class="page-separator__text">Latest Orders to be Delivered</div>
+            <div class="page-separator__text">{{ __('dashboard.Latest Orders to be Delivered') }}</div>
         </div>
 
         <div class="posts-cards mb-24pt">
@@ -221,7 +221,7 @@
                         </div>
                         <div class="d-flex align-items-center flex-column flex-sm-row posts-card__meta" onclick="location.href='{{ route('dashboard.orders.show',$order->id) }}'" style="cursor: pointer">
                             <div class="mr-3 text-50 text-uppercase posts-card__tag d-flex align-items-center">
-                                <i class="material-icons text-muted-light mr-1">folder_open</i> {{ $order->type }}
+                                <i class="material-icons text-muted-light mr-1">folder_open</i> {{ __('dashboard.'.$order->type) }}
                             </div>
                             <div class="mr-3 text-50 posts-card__date">
                                 <small>{{ date("F j, Y", strtotime($order->created_at)) }}</small>
@@ -249,16 +249,16 @@
                             <a href="#" data-toggle="dropdown"
                                class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a href="{{ route('dashboard.orders.create.airwaybell',$order->id) }}" class="dropdown-item active"><i class="material-icons ">receipt</i> Print Airwaybell</a>
+                                <a href="{{ route('dashboard.orders.create.airwaybell',$order->id) }}" class="dropdown-item active"><i class="material-icons ">receipt</i> {{ __('dashboard.Airwaybell') }} </a>
                                 @can('show orders')
-                                    <a href="{{ route('dashboard.orders.show',$order->id) }}" class="dropdown-item"><i class="material-icons ">visibility</i> View</a>
+                                    <a href="{{ route('dashboard.orders.show',$order->id) }}" class="dropdown-item"><i class="material-icons ">visibility</i> {{ __('dashboard.View') }}</a>
                                 @endcan
                                 @can('edit orders')
-                                    <a href="{{ route('dashboard.orders.edit',$order->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> Edit</a>
+                                    <a href="{{ route('dashboard.orders.edit',$order->id) }}" class="dropdown-item"><i class="material-icons ">edit</i> {{ __('dashboard.Edit') }}</a>
                                 @endcan
                                 @can('delete orders')
                                     <div class="dropdown-divider"></div>
-                                    <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $order->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> Delete</a>
+                                    <a onclick="event.preventDefault(); document.getElementById('delete-form{{ $order->id }}').submit();" class="dropdown-item"><i class="material-icons ">delete</i> {{ __('dashboard.Delete') }}</a>
                                     <form id="delete-form{{ $order->id }}" action="{{ route('dashboard.orders.destroy',$order->id) }}" method="POST" class="d-none">
                                         @csrf
                                         @method('DELETE')

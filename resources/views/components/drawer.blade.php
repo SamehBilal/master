@@ -181,7 +181,7 @@
                         <a class="sidebar-menu-button"
                            href="{{ route('dashboard.users.index') }}">
                             <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">group</span>
-                            Operation Admins
+                            {{ __('dashboard.Operation Admins') }}
                         </a>
                     </li>
                 @endcan
@@ -190,7 +190,7 @@
                         <a class="sidebar-menu-button"
                            href="{{ route('dashboard.users.index') }}">
                             <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">group</span>
-                            Operation Logistics
+                            {{ __('dashboard.Operation Logistics') }}
                         </a>
                     </li>
                 @endcan
@@ -199,7 +199,7 @@
                         <a class="sidebar-menu-button"
                            href="{{ route('dashboard.users.index') }}">
                             <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">group</span>
-                            Couriers
+                            {{ __('dashboard.Couriers') }}
                         </a>
                     </li>
                 @endcan
@@ -320,7 +320,7 @@
                         <li class="sidebar-menu-item {{ set_active(['dashboard/settings/business'])}}">
                             <a class="sidebar-menu-button"
                                href="{{ route('dashboard.settings.business') }}">
-                                <span class="sidebar-menu-text">Business</span>
+                                <span class="sidebar-menu-text">{{ __('dashboard.Business') }}</span>
                             </a>
                         </li>
                         @endhasanyrole

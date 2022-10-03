@@ -28,7 +28,7 @@
     <div class="container page__container page__container page-section">
 
         <div class="page-separator">
-            <div class="page-separator__text">Overview</div>
+            <div class="page-separator__text">{{ __('dashboard.overview') }}</div>
         </div>
 
         <div class="row card-group-row mb-lg-8pt">
@@ -37,7 +37,7 @@
                     <div class="card-body d-flex flex-row align-items-center">
                         <div class="flex">
                             <p class="card-title d-flex align-items-center">
-                                <strong>New Orders</strong>
+                                <strong>{{ __('dashboard.New_Orders') }}</strong>
                                 <span class="text-20 ml-8pt">{{ \Carbon\Carbon::now()->year }}</span>
                                 {{--<i class="material-icons text-accent ml-4pt icon-16pt">keyboard_arrow_up</i>--}}
                             </p>
@@ -52,7 +52,7 @@
                     <div class="card-body d-flex flex-row align-items-center">
                         <div class="flex">
                             <p class="card-title d-flex align-items-center">
-                                <strong>Canceled Orders</strong>
+                                <strong>{{ __('dashboard.Canceled_Orders') }}</strong>
                                 <span class="text-20 ml-8pt">{{ \Carbon\Carbon::now()->year }}</span>
                             </p>
                             <span class="h2 m-0">{{ $canceled_orders = \App\Models\Order::where('status','Canceled')->where('business_user_id', auth()->user()->id)->whereYear('created_at', \Carbon\Carbon::now()->year)->count() }}</span>
@@ -61,11 +61,12 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-4 col-md-6 card-group-row__col">
                 <div class="card card-group-row__card">
                     <div class="card-body d-flex flex-row align-items-center">
                         <div class="card-title flex">
-                            <strong>Completed Orders</strong>
+                            <strong>{{ __('dashboard.Completed_Orders') }}</strong>
                             <span class="text-20 ml-8pt">{{ \Carbon\Carbon::now()->year }}</span>
                             <div class="h2 m-0">{{ $count_orders = \App\Models\Order::where('status','Completed')->where('business_user_id', auth()->user()->id)->whereYear('created_at', \Carbon\Carbon::now()->year)->count() }}</div>
                         </div>
@@ -77,8 +78,8 @@
 
         <div class="card mb-lg-32pt">
             <div class="card-header d-flex align-items-center">
-                <strong class="card-title">Earnings</strong>
-                <div class="flatpickr-wrapper flatpickr-calendar-right d-flex ml-auto">
+                <strong class="card-title">{{ __('dashboard.Earnings') }}</strong>
+                {{--<div class="flatpickr-wrapper flatpickr-calendar-right d-flex ml-auto">
                     <div id="recent_orders_date"
                          data-toggle="flatpickr"
                          data-flatpickr-wrap="true"
@@ -94,7 +95,7 @@
                                value="13/03/2018 to 20/03/2018"
                                data-input>
                     </div>
-                </div>
+                </div>--}}
             </div>
             <div class="card-body">
                 <div class="chart-legend mt-0 mb-24pt justify-content-start"
@@ -111,7 +112,7 @@
         </div>
 
         <div class="page-separator">
-            <div class="page-separator__text">My Recent Orders</div>
+            <div class="page-separator__text">{{ __('dashboard.Recent_Orders') }}</div>
         </div>
 
         <div class="card dashboard-area-tabs p-relative o-hidden mb-32pt">
@@ -309,7 +310,7 @@
                                 <a href="#" data-toggle="dropdown"
                                    class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="{{ route('dashboard.orders.create.airwaybell',$order->id) }}" class="dropdown-item active"><i class="material-icons ">receipt</i> {{ __('dashboard.Print Airwaybell') }}</a>
+                                    <a href="{{ route('dashboard.orders.create.airwaybell',$order->id) }}" class="dropdown-item active"><i class="material-icons ">receipt</i> {{ __('dashboard.Airwaybell') }}</a>
                                     @can('show orders')
                                         <a href="{{ route('dashboard.orders.show',$order->id) }}" class="dropdown-item"><i class="material-icons ">visibility</i> {{ __('dashboard.View') }}</a>
                                     @endcan
@@ -374,4 +375,14 @@
     </div>
 
     <!-- // END Page Content -->
+@endsection
+
+@section('extra-scripts')
+    <script>
+        !function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,"a",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p="/",r(r.s=586)}({586:function(e,t,r){e.exports=r(587)},587:function(e,t,r){"use strict";r.r(t);r(588)},588:function(e,t){!function(){"use strict";!function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"roundedBar",r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{};/*r=Chart.helpers.merge({title:{display:!0,fontSize:12,fontColor:"rgba(54, 76, 102, 0.54)",position:"top",text:"{{ __('dashboard.Earnings') }}"}},r);*/var n={labels:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],datasets:[{label:"{{ __('dashboard.Earnings') }}",data:[
+            @foreach($sum as $s)
+                {{ $s }},
+            @endforeach
+                    ],barPercentage:.5,barThickness:20}]};Charts.create(e,t,r,n)}("#ordersChart")}()}});
+    </script>
 @endsection

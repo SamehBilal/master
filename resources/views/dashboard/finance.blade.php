@@ -29,7 +29,7 @@
         <div class="page-section">
 
             <div class="page-separator">
-                <div class="page-separator__text">Overview</div>
+                <div class="page-separator__text">{{ __('dashboard.overview') }}</div>
             </div>
 
             <div class="row card-group-row mb-lg-8pt">
@@ -40,11 +40,11 @@
                             <div class="flex row">
                                 <div class="col-auto d-flex flex-column">
                                     <div class="h2 mb-0">{{ $new_orders = \App\Models\Order::where('status','New')->whereYear('created_at', \Carbon\Carbon::now()->year)->count() }}</div>
-                                    <div class="card-title">New Orders</div>
+                                    <div class="card-title">{{ __('dashboard.New_Orders') }}</div>
                                 </div>
                                 <div class="col-auto d-flex flex-column">
                                     <div class="h2 mb-0">{{ $canceled_orders = \App\Models\Order::where('status','Completed')->whereYear('created_at', \Carbon\Carbon::now()->year)->count() }}</div>
-                                    <div class="card-title">Completed Orders</div>
+                                    <div class="card-title">{{ __('dashboard.Completed_Orders') }}</div>
                                 </div>
                             </div>
                             <a href="#"><i class="material-icons text-50">more_horiz</i></a>
@@ -53,7 +53,7 @@
 
                             <div class="mb-8pt">
                                 <p class="d-flex align-items-center mb-4pt">
-                                    <small class="flex lh-24pt"><strong>New Orders</strong></small>
+                                    <small class="flex lh-24pt"><strong>{{ __('dashboard.New_Orders') }}</strong></small>
                                     <small class="text-50 lh-24pt">due in 12 days</small>
                                 </p>
                                 <div class="progress"
@@ -69,7 +69,7 @@
 
                             <div>
                                 <p class="d-flex align-items-center mb-4pt">
-                                    <small class="flex lh-24pt"><strong>Completed Orders</strong></small>
+                                    <small class="flex lh-24pt"><strong>{{ __('dashboard.Completed_Orders') }}</strong></small>
                                     <small class="text-50 lh-24pt">due in 30 days</small>
                                 </p>
                                 <div class="progress"
@@ -100,7 +100,7 @@
                                         <div class="pr-12pt">
                                             <div class="h2 mb-0">{{ $orders->sum('cash_on_delivery') }} {{ __('content.EGP') }}</div>
                                             <div class="d-flex flex-column">
-                                                <p class="mb-0"><strong>Earnings</strong></p>
+                                                <p class="mb-0"><strong>{{ __('dashboard.Earnings') }}</strong></p>
                                                 <small class="text-50">This billing cycle</small>
                                             </div>
                                         </div>
@@ -318,7 +318,7 @@
                                     <a href="#" data-toggle="dropdown"
                                        class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="{{ route('dashboard.orders.create.airwaybell',$order->id) }}" class="dropdown-item active"><i class="material-icons ">receipt</i> {{ __('dashboard.Print Airwaybell') }}</a>
+                                        <a href="{{ route('dashboard.orders.create.airwaybell',$order->id) }}" class="dropdown-item active"><i class="material-icons ">receipt</i> {{ __('dashboard.Airwaybell') }}</a>
                                         @can('show orders')
                                             <a href="{{ route('dashboard.orders.show',$order->id) }}" class="dropdown-item"><i class="material-icons ">visibility</i> {{ __('dashboard.View') }}</a>
                                         @endcan

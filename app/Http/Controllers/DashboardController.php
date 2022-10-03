@@ -11,6 +11,7 @@ use App\Models\Order;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use mysql_xdevapi\Table;
 
 class DashboardController extends Controller
 {
@@ -205,7 +206,25 @@ class DashboardController extends Controller
                 'color'         => 'accent',
             ],
         ];
-        return view('dashboard.customer',compact('orders','types'));
+
+        $sum  = [
+            '01' => Order::whereMonth('created_at', '01')->sum('cash_on_delivery'),
+            '02' => Order::whereMonth('created_at', '02')->sum('cash_on_delivery'),
+            '03' => Order::whereMonth('created_at', '03')->sum('cash_on_delivery'),
+            '04' => Order::whereMonth('created_at', '04')->sum('cash_on_delivery'),
+            '05' => Order::whereMonth('created_at', '05')->sum('cash_on_delivery'),
+            '06' => Order::whereMonth('created_at', '06')->sum('cash_on_delivery'),
+            '07' => Order::whereMonth('created_at', '07')->sum('cash_on_delivery'),
+            '08' => Order::whereMonth('created_at', '08')->sum('cash_on_delivery'),
+            '09' => Order::whereMonth('created_at', '09')->sum('cash_on_delivery'),
+            '10' => Order::whereMonth('created_at', '10')->sum('cash_on_delivery'),
+            '11' => Order::whereMonth('created_at', '11')->sum('cash_on_delivery'),
+            '12' => Order::whereMonth('created_at', '12')->sum('cash_on_delivery'),
+        ];
+
+        $max_graph = max($sum);
+
+        return view('dashboard.customer',compact('orders','types','sum','max_graph'));
     }
 
     public function finance()

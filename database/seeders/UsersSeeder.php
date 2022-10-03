@@ -102,6 +102,6 @@ class UsersSeeder extends Seeder
         ]);
         $admin->assignRole('operation courier');
 
-        User::factory()->count(18)->create();
+        //User::factory()->count(18)->create();
     }
 }

@@ -19,17 +19,17 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             StateSeeder::class,
             CitySeeder::class,
-            UserCategorySeeder::class,
-            CustomerSeeder::class,
             TicketIssueSeeder::class,
-            LocationSeeder::class,
-            ContactSeeder::class,
-            PickupSeeder::class,
-            OrderSeeder::class,
-            OrderLogSeeder::class,
+            //UserCategorySeeder::class,
+            //CustomerSeeder::class,
+            //LocationSeeder::class,
+            //ContactSeeder::class,
+            //PickupSeeder::class,
+            //OrderSeeder::class,
+            //OrderLogSeeder::class,
         ]);
 
-        $business = [
+        /*$business = [
             [
                 'ar_name' => 'دروبلين',
                 'en_name' => 'Droplin',
@@ -41,6 +41,6 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
-        \Illuminate\Support\Facades\DB::table('businesses')->insert($business);
+        \Illuminate\Support\Facades\DB::table('businesses')->insert($business);*/
     }
 }

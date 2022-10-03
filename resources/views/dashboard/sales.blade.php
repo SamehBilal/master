@@ -30,7 +30,7 @@
         <div class="page-section">
 
             <div class="page-separator">
-                <div class="page-separator__text">Overview</div>
+                <div class="page-separator__text">{{ __('dashboard.overview') }}</div>
             </div>
 
             <div class="row card-group-row mb-lg-8pt">
@@ -39,7 +39,7 @@
                         <div class="card-body d-flex flex-row align-items-center">
                             <div class="flex">
                                 <p class="card-title d-flex align-items-center">
-                                    <strong>Orders</strong>
+                                    <strong>{{ __('dashboard.Orders') }}</strong>
                                     <span class="text-20 ml-8pt">{{ \Carbon\Carbon::now()->year }}</span>
                                     {{--<i class="material-icons text-accent ml-4pt icon-16pt">keyboard_arrow_up</i>--}}
                                 </p>
@@ -54,7 +54,7 @@
                         <div class="card-body d-flex flex-row align-items-center">
                             <div class="flex">
                                 <p class="card-title d-flex align-items-center">
-                                    <strong>Pickups</strong>
+                                    <strong>{{ __('dashboard.Pickups') }}</strong>
                                     <span class="text-20 ml-8pt">{{ \Carbon\Carbon::now()->year }}</span>
                                 </p>
                                 <span class="h2 m-0">{{ $count_pickups = \App\Models\Pickup::whereYear('created_at', \Carbon\Carbon::now()->year)->count() }}</span>
@@ -67,7 +67,7 @@
                     <div class="card card-group-row__card">
                         <div class="card-body d-flex flex-row align-items-center">
                             <div class="card-title flex">
-                                <strong>Completed Orders</strong>
+                                <strong>{{ __('dashboard.Completed_Orders') }}</strong>
                                 <span class="text-20 ml-8pt">{{ \Carbon\Carbon::now()->year }}</span>
                                 <div class="h2 m-0">{{ $count_orders = \App\Models\Order::where('status','completed')->whereYear('created_at', \Carbon\Carbon::now()->year)->count() }}</div>
                             </div>
@@ -276,7 +276,7 @@
                                     <a href="#" data-toggle="dropdown"
                                        class="btn text-50  text-70"><i class="material-icons">more_vert</i></a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="{{ route('dashboard.orders.create.airwaybell',$order->id) }}" class="dropdown-item active"><i class="material-icons ">receipt</i> {{ __('dashboard.Print Airwaybell') }}</a>
+                                        <a href="{{ route('dashboard.orders.create.airwaybell',$order->id) }}" class="dropdown-item active"><i class="material-icons ">receipt</i> {{ __('dashboard.Airwaybell') }}</a>
                                         @can('show orders')
                                             <a href="{{ route('dashboard.orders.show',$order->id) }}" class="dropdown-item"><i class="material-icons ">visibility</i> {{ __('dashboard.View') }}</a>
                                         @endcan
