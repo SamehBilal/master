@@ -51,7 +51,7 @@ class ContactFormController extends Controller
         $users = User::whereHas("roles", function($q){ $q->where("name", "Super Admin")->orWhere("name", "admin"); })->get();
         Notification::send($users, new NewContactForm($contactForm));
 
-        return redirect()->back()->with('success','Data created successfully');
+        return redirect()->back()->with('success','Message Sent successfully');
     }
 
     /**
@@ -62,7 +62,7 @@ class ContactFormController extends Controller
      */
     public function show(ContactForm $contactForm)
     {
-        //
+        return view('website.contact-forms.show',compact('contactForm'));
     }
 
     /**

@@ -129,8 +129,8 @@
                 <li class="sidebar-menu-item {{ set_active(['dashboard/contact-forms*'])}}">
                     <a class="sidebar-menu-button"
                        href="{{ route('dashboard.contact-forms.index') }}">
-                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">insert_drive_file</span>
-                        {{ __('dashboard.Contact_Forms') }}
+                        <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">message</span>
+                        {{ __('content.Website_messages') }}
                     </a>
                 </li>
                 @endcan

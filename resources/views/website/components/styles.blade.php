@@ -11,6 +11,10 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/vendor/owl-slider.css') }}"/>
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/vendor/settings.css') }}"/>
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assets/vendor/animate.css') }}"/>
+<!-- Material Design Icons -->
+<link type="text/css"
+      href="{{ asset('backend/css/material-icons.css') }}"
+      rel="stylesheet">
 <link href="http://fonts.cdnfonts.com/css/cairo" rel="stylesheet">
 <style>
     @if($locale == 'ar')

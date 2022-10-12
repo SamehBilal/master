@@ -295,7 +295,15 @@
                                  data-endspeed="300"
                                  data-endeasing="Power1.easeIn"
                                  data-captionhidden="on"
-                                 style="z-index: 8"><a href="#" title="Start Now">{{ __('content.Start Now') }}</a>
+                                 style="z-index: 8">
+                                @php
+                                    $user = \App\Models\User::find(auth()->user()->id);
+                                @endphp
+                                @if($user->hasRole('customer'))
+                                    <a href="{{ route('dashboard.orders.create') }}" title="Start Now">{{ __('content.Start Now') }}</a>
+                                @else
+                                    <a href="{{ route('dashboard.business.create_front') }}" title="Start Now">{{ __('content.Start Now') }}</a>
+                                @endif
                             </div>
 
                             <div class="tp-caption skewfromleft customout link-1 link-2 icons height-50"
@@ -372,7 +380,15 @@
                                  data-endspeed="300"
                                  data-endeasing="Power1.easeIn"
                                  data-captionhidden="on"
-                                 style="z-index: 8"><a href="#" title="Start Now">{{ __('content.Start Now') }}</a>
+                                 style="z-index: 8">
+                                @php
+                                    $user = \App\Models\User::find(auth()->user()->id);
+                                @endphp
+                                @if($user->hasRole('customer'))
+                                    <a href="{{ route('dashboard.orders.create') }}" title="Start Now">{{ __('content.Start Now') }}</a>
+                                @else
+                                    <a href="{{ route('dashboard.business.create_front') }}" title="Start Now">{{ __('content.Start Now') }}</a>
+                                @endif
                             </div>
 
                             <div class="tp-caption skewfromleft customout link-1 link-2 icons height-50"

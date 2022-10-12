@@ -38,6 +38,8 @@ return [
     'Customer Care'             => 'خدمة العملاء',
     'Quick link'                => 'روابط سريعة',
     'Privacy'                   => 'وثيقة الخصوصية',
+    'Destination'               => 'الوجهة',
+    'Website_messages'          => 'رسائل الموقع',
 
     /* Newsletter */
     'first shipping'            => 'واحصل على قسيمة خصم لأول شحنة',

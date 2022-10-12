@@ -488,7 +488,7 @@
                                             <td>{{ __('content.Type') }}</td>
                                             <td class="open-sans"><b>{{ $order->type }}</b></td>
                                         </tr>
-                                        <tr>
+                                       {{-- <tr>
                                             @switch($order->type)
                                                 @case('Deliver')
                                                     <td>{{ __('content.Cash on Delivery') }}</td>
@@ -515,50 +515,10 @@
                                                     </td>
                                                 @break
                                             @endswitch
-                                        </tr>
+                                        </tr>--}}
                                         <tr>
-                                            <td>{{ __('content.No of Items') }}</td>
-                                            <td class="open-sans"><b>{{ $order->no_of_items }}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('content.Customer') }}</td>
-                                            <td class="open-sans"><b>{{ $order->customer->user->full_name }}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('content.Customer Phone') }}</td>
-                                            <td class="open-sans"><b>{{ $order->customer->user->phone }}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('content.Customer Other Phone') }}</td>
-                                            <td class="open-sans"><b>{{ $order->customer->user->other_phone }}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('content.Location') }}</td>
-                                            <td class="open-sans"><b>{{ $order->location->name }}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('content.Street') }}</td>
-                                            <td class="open-sans"><b>{{ $order->location->street }}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('content.Building') }}</td>
-                                            <td class="open-sans"><b>{{ $order->location->building }}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('content.Floor') }}</td>
-                                            <td class="open-sans"><b>{{ $order->location->floor }}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('content.Apartment') }}</td>
-                                            <td class="open-sans"><b>{{ $order->location->apartment }}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('content.Open Package') }}</td>
-                                            <td class="open-sans"><b>{{ $order->open_package == 1 ? 'Allowed':'Not Allowed' }}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('content.Delivery Notes') }}</td>
-                                            <td class="open-sans"><b>{{ $order->delivery_notes }} </b></td>
+                                            <td>{{ __('content.Destination') }}</td>
+                                            <td class="open-sans"><b>{{ $order->location->state ? $order->location->state->name:'' }}, {{ $order->location->city ? $order->location->city->name:'' }}</b></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -611,7 +571,7 @@
                                             <td>{{ __('content.Type') }}</td>
                                             <td><b>{{ $order->type }}</b></td>
                                         </tr>
-                                        <tr>
+                                        {{--<tr>
                                             @switch($order->type)
                                                 @case('Deliver')
                                                 <td>{{ __('content.Cash on Delivery') }}</td>
@@ -638,50 +598,10 @@
                                                 </td>
                                                 @break
                                             @endswitch
-                                        </tr>
+                                        </tr>--}}
                                         <tr>
-                                            <td>{{ __('content.No of Items') }}</td>
-                                            <td><b>{{ $order->no_of_items }}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('content.Customer') }}</td>
-                                            <td><b>{{ $order->customer->user->full_name }}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('content.Customer Phone') }}</td>
-                                            <td><b>{{ $order->customer->user->phone }}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('content.Customer Other Phone') }}</td>
-                                            <td><b>{{ $order->customer->user->other_phone }}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('content.Location') }}</td>
-                                            <td><b>{{ $order->location->name }}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('content.Street') }}</td>
-                                            <td><b>{{ $order->location->street }}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('content.Building') }}</td>
-                                            <td><b>{{ $order->location->building }}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('content.Floor') }}</td>
-                                            <td><b>{{ $order->location->floor }}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('content.Apartment') }}</td>
-                                            <td><b>{{ $order->location->apartment }}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('content.Open Package') }}</td>
-                                            <td><b>{{ $order->open_package == 1 ? 'Allowed':'Not Allowed' }}</b></td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ __('content.Delivery Notes') }}</td>
-                                            <td><b>{{ $order->delivery_notes }} </b></td>
+                                            <td>{{ __('content.Destination') }}</td>
+                                            <td><b>{{ $order->location->state ? $order->location->state->name:'' }}, {{ $order->location->city ? $order->location->city->name:'' }}</b></td>
                                         </tr>
                                     </table>
                                 </div>

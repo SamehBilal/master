@@ -487,7 +487,7 @@ $(document).ready(function() {
         $(this).find('.dropdown-menu').stop(true, true).fadeIn().toggleClass("hover");
         $(this).toggleClass("active");
     }, function(e) {
-        if (!$(e.target).is('form')) {
+        if (!$(e.target).is('input') && !$(e.target).is('.form-control') && !$(e.target).is('form')) {
             $(this).find('.dropdown-menu').stop(true, true).fadeOut().toggleClass("hover");
             $(this).toggleClass("active");
         }

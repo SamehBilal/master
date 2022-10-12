@@ -38,6 +38,8 @@ return [
     'Customer Care'             => 'Customer Care',
     'Quick link'                => 'Quick link',
     'Privacy'                   => 'Privacy Policy',
+    'Destination'               => 'Destination',
+    'Website_messages'          => 'Website messages',
 
     /* Newsletter */
     'first shipping'            => 'and receive a coupon for first shipping',

@@ -1,12 +1,12 @@
 @extends('layouts.backend')
 
 @section('title')
-{{ __('dashboard.Contact_Forms') }}
+{{ __('content.Website_messages') }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item active">
-        {{ __('dashboard.Contact_Forms') }}
+        {{ __('content.Website_messages') }}
     </li>
 @endsection
 
@@ -27,7 +27,7 @@
         <div class="page-section">
 
             <div class="page-separator">
-                <div class="page-separator__text">{{ __('dashboard.Contact_Forms') }}</div>
+                <div class="page-separator__text">{{ __('content.Website_messages') }}</div>
             </div>
 
             <div class="card dashboard-area-tabs p-relative o-hidden mb-32pt">
@@ -80,7 +80,7 @@
 
                                 <td>
                                     <a href="#"
-                                       class="chip chip-outline-secondary">{{ $forms->message }}</a>
+                                       class="chip chip-outline-secondary">{{ strlen($forms->message) > 25 ? substr($forms->message, 0, 20).'....':$forms->message }}</a>
                                 </td>
 
                                 <td>

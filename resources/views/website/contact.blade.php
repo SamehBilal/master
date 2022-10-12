@@ -37,6 +37,30 @@
                 @endif
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto</p>
             </div>
+            @if (session('status'))
+                <div class="alert alert-success animated jellyIn in" role="alert" style="color: #155724;background-color: #d4edda;border-color: #c3e6cb;">
+                    {{ session('status') }}
+                </div>
+            @endif
+
+            @if($message = \Illuminate\Support\Facades\Session::get('success'))
+                <div class="alert alert-soft-success d-flex" role="alert" style="color: #155724;background-color: #d4edda;border-color: #c3e6cb;">
+                    <div class="text-body"> <i class="material-icons mr-3">check_circle</i> {{ $message }}</div>
+                </div>
+            @endif
+            @if($errors->any())
+                <div class="alert alert-soft-danger d-flex" role="alert" style="color: #721c24;background-color: #f8d7da;border-color: #f5c6cb;">
+                    <div class="text-body">
+                        <i class="material-icons mr-3">cancel</i>
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            @endif
+
             <div class="contact-content">
                 <div class="contact-form contact-form-bg">
                     <form class="form-horizontal" action="{{ route('contact-forms.store') }}" method="POST">
