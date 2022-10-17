@@ -120,6 +120,8 @@
 
                             <th>{{ __('dashboard.Category') }}</th>
 
+                            <th>{{ __('dashboard.Business') }}</th>
+
                             <th>{{ __('dashboard.Phone') }}</th>
 
                             <th>{{ __('dashboard.Created_At') }}</th>
@@ -175,6 +177,11 @@
                                             </div>
                                         </div>
                                     </div>
+                                </td>
+
+                                <td>
+                                    <a href="#"
+                                       class="chip chip-outline-secondary">{{ $contact->Customer ? dd($contact->Customer->user->business->en_name):'' }}</a>
                                 </td>
 
                                 <td>

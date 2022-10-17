@@ -30,25 +30,25 @@ class CreateOrdersTable extends Migration
             $table->string('package_type')->nullable();
             $table->string('light_bulky')->nullable();
             $table->longText('package_description')->nullable();
-            $table->unsignedBigInteger('no_of_items')->default(1);
+            $table->unsignedBigInteger('no_of_items')->nullable()->default(1);
             $table->string('order_reference')->nullable();
-            $table->boolean('working_hours')->default(0);
-            $table->boolean('open_package')->default(0);
+            $table->boolean('working_hours')->nullable()->default(0);
+            $table->boolean('open_package')->nullable()->default(0);
 
             /* Exchange */
             $table->unsignedFloat('cash_exchange_amount')->nullable();
             $table->string('with_cash_difference')->nullable();
-            $table->unsignedBigInteger('no_of_items_exchange')->default(1);
+            $table->unsignedBigInteger('no_of_items_exchange')->nullable()->default(1);
             $table->longText('package_description_exchange')->nullable();
             $table->string('order_reference_exchange')->nullable();
-            $table->boolean('allow_opening')->default(0);
-            $table->unsignedBigInteger('no_of_items_of_return_package_exchange')->default(1);
+            $table->boolean('allow_opening')->nullable()->default(0);
+            $table->unsignedBigInteger('no_of_items_of_return_package_exchange')->nullable()->default(1);
             $table->longText('package_description_return_package_exchange')->nullable();
 
             /* Return */
             $table->unsignedFloat('refund_amount')->nullable();
             $table->string('with_refund')->nullable();
-            $table->unsignedBigInteger('no_of_items_return')->default(1);
+            $table->unsignedBigInteger('no_of_items_return')->nullable()->default(1);
             $table->longText('package_description_return')->nullable();
             $table->string('order_reference_return')->nullable();
 

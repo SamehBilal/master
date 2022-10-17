@@ -26,10 +26,10 @@
                 </div>
             </div>
             <div class="wrap-sign-in cart dropdown">
-                <a class="sign-in" href="@auth{{ route('website.account') }} @else # @endauth" title="{{ __('content.my_account') }}"><i class="zmdi zmdi-account"></i>{{ __('content.my_account') }}</a>
+                <a class="sign-in" href="@auth{{ route('website.account') }} @else # @endauth" title="@auth {{ \Illuminate\Support\Facades\Auth::user()->first_name.' '.\Illuminate\Support\Facades\Auth::user()->last_name }} @else {{ __('content.my_account') }} @endauth"><i class="zmdi zmdi-account"></i>@auth {{ \Illuminate\Support\Facades\Auth::user()->first_name.' '.\Illuminate\Support\Facades\Auth::user()->last_name }} @else {{ __('content.my_account') }} @endauth</a>
                 @auth
                     <div class="register-list cart-list dropdown-menu ">
-                        <h3>{{ __('content.my_account') }}</h3>
+                        <h3>@auth {{ \Illuminate\Support\Facades\Auth::user()->first_name.' '.\Illuminate\Support\Facades\Auth::user()->last_name }} @else {{ __('content.my_account') }} @endauth</h3>
                         @foreach($orders = \App\Models\Order::all() as $order)
                             @if($order->customer->user->id == auth()->user()->id)
                                 <ul class="list">

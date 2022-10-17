@@ -15,6 +15,11 @@ class Business extends Model
         return $this->hasOne(Location::class  , "id" , "location_id");
     }
 
+    public function business()
+    {
+        return $this->hasOne(User::class,"id","business_user_id");
+    }
+
     public static function rules($update = false, $id = null)
     {
         $common = [

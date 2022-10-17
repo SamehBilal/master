@@ -69,7 +69,7 @@ class PickupController extends Controller
         }
         $pickups    = $pickups->get();
         $status     = ['Created','Out for pickup','Picked up'];
-        $locations  = $locations->get();
+        $locations  = $locations->where('customer_id',NULL)->get();
         return view('pickups.index',compact('pickups','status','locations'));
     }
 

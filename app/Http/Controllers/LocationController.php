@@ -28,6 +28,7 @@ class LocationController extends Controller
                 ->get();
         }else{
             $locations = Location::orderBy('updated_at','desc')
+                ->where('customer_id',NULL)
                 ->get();
         }
 

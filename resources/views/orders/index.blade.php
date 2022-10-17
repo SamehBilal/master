@@ -199,6 +199,8 @@
 
                             <th>{{ __('dashboard.Customer_Info') }}</th>
 
+                            <th>{{ __('dashboard.Business') }}</th>
+
                             <th>{{ __('dashboard.Type') }}</th>
 
                             <th>{{ __('dashboard.COD') }}</th>
@@ -256,6 +258,11 @@
                                             </div>
                                         </div>
 
+                                    </td>
+
+                                    <td>
+                                        <a href="#"
+                                           class="chip chip-outline-secondary">{{--{{ $order->Customer ? dd($contact->Customer->user->business->en_name):'' }}--}}</a>
                                     </td>
 
                                     <td>

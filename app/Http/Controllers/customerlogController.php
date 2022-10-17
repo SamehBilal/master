@@ -91,6 +91,20 @@ class customerlogController extends Controller
             'courier_id'             => $request->courier_id,
         ]);
 
+        $ordermodel = Order::find($order);
+
+        if($request->status == 'Picked up' || $request->status == 'In transit' || $request->status == 'Out for delivery')
+        {
+            $ordermodel->update([
+                'status'                                  => 'Out for delivery',
+            ]);
+        }elseif ($request->status == 'Delivered')
+        {
+            $ordermodel->update([
+                'status'                                  => 'Completed',
+            ]);
+        }
+
 
         $order = Order::find($order);
         $nuser = User::find($order->business_user_id);

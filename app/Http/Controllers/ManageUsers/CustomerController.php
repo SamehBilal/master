@@ -37,6 +37,12 @@ class CustomerController extends Controller
         }else{
             $customers = Customer::orderBy('updated_at','desc')
                 ->get();
+            /*$customers = User::where(function ($query) {
+                $query->whereHas('roles', function ($query) {
+                    $query->whereIn('name',['customer']);
+                });
+            });
+            dd($customers);*/
             $categories = UserCategory::orderBy('updated_at','desc')
                 ->get();
         }

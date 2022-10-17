@@ -48,18 +48,6 @@
                     <div class="text-body"> <i class="material-icons mr-3">check_circle</i> {{ $message }}</div>
                 </div>
             @endif
-            @if($errors->any())
-                <div class="alert alert-soft-danger d-flex" role="alert" style="color: #721c24;background-color: #f8d7da;border-color: #f5c6cb;">
-                    <div class="text-body">
-                        <i class="material-icons mr-3">cancel</i>
-                        <ul>
-                            @foreach($errors->all() as $error)
-                                <li>{{$error}}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            @endif
 
             <div class="contact-content">
                 <div class="contact-form contact-form-bg">

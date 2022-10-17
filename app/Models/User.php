@@ -69,6 +69,11 @@ class User extends Authenticatable
         return $this->hasOne(Contact::class);
     }
 
+    public function business()
+    {
+        return $this->hasOne(Business::class, "id" , "business_user_id");
+    }
+
     public function state()
     {
         return $this->hasOne(State::class  , "id" , "state_id");
@@ -102,6 +107,11 @@ class User extends Authenticatable
     public function order()
     {
         return $this->hasMany(CourierLog::class,'courier_id','id')->where('pickup_id','=',NULL);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class,'business_user_id','id');
     }
 
     public function pickup()

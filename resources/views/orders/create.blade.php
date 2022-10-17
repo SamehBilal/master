@@ -344,7 +344,7 @@
                                                             {{ old('open_package') ?? "checked='checked'" }}>
                                                         <label class="custom-control-label"
                                                                for="customCheck1">{{ __('dashboard.Allow customers to open packages ?') }}</label>
-                                                        <small class="form-text text-muted">{{ __('dashboard.Allowing customers to open package allows them to refuse taking it. In this case Bosta will return it back to you. Return fees will be applied') }}</small>
+                                                        <small class="form-text text-muted">{{ __('dashboard.Allowing customers to open package allows them to refuse taking it. In this case Droplin will return it back to you. Return fees will be applied') }}</small>
                                                     </div>
                                                 </div>
                                             </div>
@@ -483,7 +483,7 @@
                                                             {{ old('allow_opening') ?? 'checked="checked"' }}>
                                                         <label class="custom-control-label"
                                                                for="customCheck1_allow">{{ __('dashboard.Allow customers to open packages ?') }}</label>
-                                                        <small class="form-text text-muted">{{ __('dashboard.Allowing customers to open package allows them to refuse taking it. In this case Bosta will return it back to you. Return fees will be applied') }}</small>
+                                                        <small class="form-text text-muted">{{ __('dashboard.Allowing customers to open package allows them to refuse taking it. In this case Droplin will return it back to you. Return fees will be applied') }}</small>
                                                     </div>
                                                 </div>
                                             </div>

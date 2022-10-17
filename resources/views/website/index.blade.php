@@ -40,10 +40,10 @@
                         </div>
                     </div>
                     <div class="wrap-sign-in cart dropdown">
-                        <a class="sign-in" href="@auth{{ route('website.account') }} @else # @endauth" title="{{ __('content.my_account') }}"><i class="zmdi zmdi-account"></i>{{ __('content.my_account') }}</a>
+                        <a class="sign-in" href="@auth{{ route('website.account') }} @else # @endauth" title="@auth {{ \Illuminate\Support\Facades\Auth::user()->first_name.' '.\Illuminate\Support\Facades\Auth::user()->last_name }} @else {{ __('content.my_account') }} @endauth"><i class="zmdi zmdi-account"></i>@auth {{ \Illuminate\Support\Facades\Auth::user()->first_name.' '.\Illuminate\Support\Facades\Auth::user()->last_name }} @else {{ __('content.my_account') }} @endauth</a>
                         @auth
                             <div class="register-list cart-list dropdown-menu ">
-                                <h3>{{ __('content.my_account') }}</h3>
+                                <h3>@auth {{ \Illuminate\Support\Facades\Auth::user()->first_name.' '.\Illuminate\Support\Facades\Auth::user()->last_name }} @else {{ __('content.my_account') }} @endauth</h3>
                                 @foreach($orders = \App\Models\Order::all() as $order)
                                     @if($order->customer->user->id == auth()->user()->id)
                                         <ul class="list">
@@ -296,14 +296,18 @@
                                  data-endeasing="Power1.easeIn"
                                  data-captionhidden="on"
                                  style="z-index: 8">
-                                @php
-                                    $user = \App\Models\User::find(auth()->user()->id);
-                                @endphp
-                                @if($user->hasRole('customer'))
-                                    <a href="{{ route('dashboard.orders.create') }}" title="Start Now">{{ __('content.Start Now') }}</a>
+                                @auth
+                                    @php
+                                        $user = \App\Models\User::find(auth()->user()->id);
+                                    @endphp
+                                    @if($user->hasRole('customer'))
+                                        <a href="{{ route('dashboard.orders.create') }}" title="Start Now">{{ __('content.Start Now') }}</a>
+                                    @else
+                                        <a href="{{ route('dashboard.business.create_front') }}" title="Start Now">{{ __('content.Start Now') }}</a>
+                                    @endif
                                 @else
                                     <a href="{{ route('dashboard.business.create_front') }}" title="Start Now">{{ __('content.Start Now') }}</a>
-                                @endif
+                                @endauth
                             </div>
 
                             <div class="tp-caption skewfromleft customout link-1 link-2 icons height-50"
@@ -381,14 +385,18 @@
                                  data-endeasing="Power1.easeIn"
                                  data-captionhidden="on"
                                  style="z-index: 8">
-                                @php
-                                    $user = \App\Models\User::find(auth()->user()->id);
-                                @endphp
-                                @if($user->hasRole('customer'))
-                                    <a href="{{ route('dashboard.orders.create') }}" title="Start Now">{{ __('content.Start Now') }}</a>
+                                @auth
+                                    @php
+                                        $user = \App\Models\User::find(auth()->user()->id);
+                                    @endphp
+                                    @if($user->hasRole('customer'))
+                                        <a href="{{ route('dashboard.orders.create') }}" title="Start Now">{{ __('content.Start Now') }}</a>
+                                    @else
+                                        <a href="{{ route('dashboard.business.create_front') }}" title="Start Now">{{ __('content.Start Now') }}</a>
+                                    @endif
                                 @else
                                     <a href="{{ route('dashboard.business.create_front') }}" title="Start Now">{{ __('content.Start Now') }}</a>
-                                @endif
+                                @endauth
                             </div>
 
                             <div class="tp-caption skewfromleft customout link-1 link-2 icons height-50"

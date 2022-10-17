@@ -265,7 +265,11 @@
             </div>
 
             <div class="row card-group-row mb-lg-8pt">
+                @hasanyrole('customer')
+                <div class="col-lg-10 card-group-row__col">
+                @else
                 <div class="col-lg-12 card-group-row__col">
+                    @endhasanyrole
 
                     <div class="card card-group-row__card d-flex flex-column">
                         <div class="row no-gutters flex">
@@ -594,6 +598,17 @@
                     </div>
 
                 </div>
+                @hasanyrole('customer')
+                <div class="col-lg-2 card-group-row__col">
+                    <div class="card card-group-row__card d-flex flex-column" style="cursor: pointer" onclick="location.href='{{ route('dashboard.orders.create.airwaybell',$order->id) }}'">
+                        <div class="row no-gutters flex">
+                            <button type="button" class="btn  " >
+                                <i class="material-icons ">receipt</i>&nbsp; Airwaybell
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                @endhasanyrole
             </div>
         </div>
     </div>
