@@ -367,7 +367,7 @@
                                  style="height: 150px;">
                                 <div class="position-relative">
                                     <div class="text-center fullbleed d-flex align-items-center justify-content-center flex-column z-0">
-                                        <h3 class="mb-0">{{ round($openTicketsCount/($openTicketsCount+$closedTicketsCount),2)*100 }}%</h3>
+                                        <h3 class="mb-0">{{ ($openTicketsCount+$closedTicketsCount) != 0 ? round($openTicketsCount/($openTicketsCount+$closedTicketsCount),2)*100:0 }}%</h3>
                                         <small class="text-uppercase">{{ __('dashboard.Open') }}</small>
                                     </div>
                                     <canvas id="visitsByDeviceChart"
