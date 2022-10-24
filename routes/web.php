@@ -56,6 +56,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('get-location-data',[\App\Http\Controllers\AjaxController::class,'location'])->name('get.location');
 
             Route::resource('customers',\App\Http\Controllers\ManageUsers\CustomerController::class); //Customers
+            Route::resource('clients',\App\Http\Controllers\ClientController::class); //Clients
             Route::resource('users',\App\Http\Controllers\UserController::class); //Users
             Route::resource('pickups',\App\Http\Controllers\PickupController::class); //Pickups
             Route::resource('orders',\App\Http\Controllers\OrderController::class); //Orders

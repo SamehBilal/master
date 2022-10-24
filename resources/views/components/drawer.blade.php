@@ -167,6 +167,15 @@
                         </a>
                     </li>
                 @endcan
+                @can('view customers')
+                    <li class="sidebar-menu-item {{ set_active(['dashboard/clients*'])}}">
+                        <a class="sidebar-menu-button"
+                           href="{{ route('dashboard.clients.index') }}">
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">group</span>
+                            {{ __('dashboard.Clients') }}
+                        </a>
+                    </li>
+                @endcan
                 @can('view businesses')
                     <li class="sidebar-menu-item {{ set_active(['dashboard/businesses*'])}}">
                         <a class="sidebar-menu-button"
@@ -225,7 +234,7 @@
                     <li class="sidebar-menu-item {{ set_active(['dashboard/users*'])}}">
                         <a class="sidebar-menu-button"
                         href="{{ route('dashboard.users.index') }}">
-                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">group</span>
+                            <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">group_add</span>
                             {{ __('dashboard.All_Users') }}
                         </a>
                     </li>
