@@ -37,8 +37,8 @@ class Client extends Model
             'first_name'    => "nullable|min:3|max:20",
             'last_name'     => "nullable|min:3|max:20",
             'full_name'     => "nullable|max:40",
-            'email'         => "nullable|email|regex:/(.+)@(.+)\.(.+)/i|unique:users,email,$id",
-            'other_email'   => "nullable|email|regex:/(.+)@(.+)\.(.+)/i|unique:users,other_email,$id",
+            'email'         => "nullable|email|regex:/(.+)@(.+)\.(.+)/i|unique:clients,email,$id",
+            'other_email'   => "nullable|email|regex:/(.+)@(.+)\.(.+)/i|unique:clients,other_email,$id",
             'phone'         => "nullable|numeric|min:11",
             'other_phone'   => "nullable|numeric|min:11",
             'avatar'        => 'nullable|image|mimes:jpeg,jpg,png,gif|max:10000',
@@ -51,7 +51,7 @@ class Client extends Model
         }
 
         return array_merge($common, [
-            'email'         => 'nullable|email|regex:/(.+)@(.+)\.(.+)/i|max:255|unique:users',
+            'email'         => 'nullable|email|regex:/(.+)@(.+)\.(.+)/i|max:255|unique:clients',
         ]);
     }
 }

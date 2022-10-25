@@ -30,7 +30,7 @@ class ContactController extends Controller
         }else{
             $contacts = Contact::orderBy('updated_at','desc')
                 ->get();
-            $categories = UserCategory::orderBy('updated_at','desc')
+            $categories = UserCategory::where([['model','App\Models\Contact'],['status','active']])->orderBy('updated_at','desc')
                 ->get();
         }
 
@@ -57,29 +57,10 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $request->request->add(['password' => 123456789]);
-        $request->request->add(['password_confirmation' => 123456789]);
         $this->validate($request, Contact::rules());
-        $this->validate($request, User::rules());
-        $data                   = $request->all();
-        $data['first_name']     = $request->contact_name;
-        $data['last_name']      = '';
-        $data['full_name']      = $request->contact_name;
-        $data['email']          = $request->contact_email;
-        $data['username']       = null;
-        $data['password']       = Hash::make($request->password);
-        $data['other_email']    = null;
-        $data['date_of_birth']  = null;
-        $data['phone']          = $request->contact_phone;
-        $data['secondary_phone']= null;
-        $data['other_phone']    = null;
-        $data['religion']       = null;
-        $data['gender']         = null;
-        $data['bio']            = null;
+
         try {
-            \DB::transaction(function () use($data, $request) {
-                $userhelperController = new UserHelperController();
-                $user = $userhelperController->createuser($data);
+            \DB::transaction(function () use($request) {
 
                 Contact::create([
                     'contact_name'                  => $request->contact_name,
@@ -88,7 +69,6 @@ class ContactController extends Controller
                     'contact_phone'                 => $request->contact_phone,
                     'user_category_id'              => $request->user_category_id,
                     'business_user_id'              => auth()->user()->id,
-                    'user_id'                       => $user->id,
                 ]);
             });
         } catch (\Exception $ex) {
@@ -131,17 +111,9 @@ class ContactController extends Controller
     public function update(Request $request, Contact $contact)
     {
         $this->validate($request, Contact::rules($update = true, $contact->id));
-        $this->validate($request, User::rules($update = true, $contact->user_id));
-        $data                   = $request->all();
-        $data['first_name']     = $request->contact_name;
-        $data['full_name']      = $request->contact_name;
-        $data['email']          = $request->contact_email;
-        $data['phone']          = $request->contact_phone;
-
+    
         try {
-            \DB::transaction(function () use($data, $request,$contact) {
-                $userhelperController = new UserHelperController();
-                $user = $userhelperController->updateuser($data,$contact->user_id);
+            \DB::transaction(function () use($request,$contact) {
 
                 $contact->update([
                     'contact_name'                  => $request->contact_name,

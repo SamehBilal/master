@@ -163,7 +163,7 @@
                                                    autocomplete="phone"
                                                    name="phone"
                                                    id="phone"
-                                                   pattern="[0][1][1-5]{9}"
+                                                   {{-- pattern="[0][1][1-5]{9}" --}}
                                                    placeholder="EG phone: +(20)10 0000 0000)"
                                                    data-mask="01000000000"
                                                    autofocus>
@@ -179,33 +179,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 mb-3">
-                                    <div class="form-group">
-                                        <label class="form-label"
-                                               for="fax">{{ __('dashboard.Fax') }}:</label>
-                                        <div class="input-group input-group-merge">
-                                            <input type="text"
-                                                   class="form-control @error('fax') is-invalid @enderror"
-                                                   value="{{ old('fax') }}"
-                                                   autocomplete="fax"
-                                                   name="fax"
-                                                   id="fax"
-                                                   placeholder="{{ __('dashboard.Enter your fax') }} .."
-                                                   >
-                                            <div class="input-group-append">
-                                                <div class="input-group-text">
-                                                    <span class="material-icons">description</span>
-                                                </div>
-                                            </div>
-                                            @error('fax')
-                                            <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                            @enderror
-                                            <div class="valid-feedback">Looks good!</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
                                 <div class="col-12 col-md-6 mb-3">
                                     <div class="form-group">
                                         <label class="form-label"
@@ -227,28 +200,8 @@
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
                                 </div>
-                                {{-- <div class="col-12 col-md-6 mb-3">
-                                    <div class="form-group">
-                                        <label class="form-label"
-                                               for="select03">{{ __('dashboard.Currency') }}:</label>
-                                        <select id="select03"
-                                                data-toggle="select"
-                                                data-minimum-results-for-search="-1"
-                                                class="form-control form-control-sm @error('currency_id') is-invalid @enderror"
-                                                name="currency_id">
-                                            @foreach($currencies as $currency)
-                                                <option value="{{ $currency->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
-                                                    {{ $currency->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        @error('currency_id')
-                                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                        @enderror
-                                        <div class="valid-feedback">Looks good!</div>
-                                    </div>
-                                </div> --}}
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -479,137 +432,6 @@
                     </div>
                 </div>
             </div>
-            <div class="page-separator">
-                <div class="page-separator__text col-auto">
-                    <a href="javascript:void(0)" onclick="doubling()"
-                       class="btn btn-outline-secondary">
-                        <i class="material-icons icon--left">add</i> {{ __('dashboard.New contact') }}
-                    </a>
-                </div>
-            </div>
-            <div class="card contact_card">
-                <div class="row card-body mb-32pt">
-                    <div class="col-lg-4 bg-light">
-                        <div class="page-separator">
-                            <div class="page-separator__text">{{ __('dashboard.Contact Information') }}</div>
-                        </div>
-                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">
-                            {{ __('dashboard.Add your clients contact information') }}
-                        </p>
-                    </div>
-                    <div class="col-lg-8 d-flex align-items-center">
-                        <div class="flex"
-                             style="max-width: 100%">
-                            <div class="form-row">
-                                <div class="col-12 col-md-6 mb-3">
-                                    <div class="form-group">
-                                        <label class="form-label"
-                                               for="contact_name">{{ __('dashboard.Contact name') }}:</label>
-                                        <div class="input-group input-group-merge">
-                                            <input type="text"
-                                                   class="form-control @error('contact_name') is-invalid @enderror"
-                                                   value="{{ old('contact_name[]') }}"
-                                                   autocomplete="contact_name"
-                                                   name="contact_name[]"
-                                                   id="contact_name"
-                                                   placeholder="{{ __('dashboard.Enter your contact name') }} .."
-                                                   autofocus>
-                                            <div class="input-group-append">
-                                                <div class="input-group-text">
-                                                    <span class="material-icons">person</span>
-                                                </div>
-                                            </div>
-                                            @error('contact_name')
-                                            <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                            @enderror
-                                            <div class="valid-feedback">Looks good!</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 mb-3">
-                                    <div class="form-group">
-                                        <label class="form-label"
-                                               for="contact_job_title">{{ __('dashboard.Job title') }}:</label>
-                                        <div class="input-group input-group-merge">
-                                            <input type="text"
-                                                   class="form-control @error('contact_job_title') is-invalid @enderror"
-                                                   value="{{ old('contact_job_title[]') }}"
-                                                   autocomplete="contact_job_title"
-                                                   name="contact_job_title[]"
-                                                   id="contact_job_title"
-                                                   placeholder="{{ __('dashboard.Enter your contact job title') }} .."
-                                                   >
-                                            <div class="input-group-append">
-                                                <div class="input-group-text">
-                                                    <span class="material-icons">person</span>
-                                                </div>
-                                            </div>
-                                            @error('contact_job_title')
-                                            <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                            @enderror
-                                            <div class="valid-feedback">Looks good!</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-12 col-md-6 mb-3">
-                                    <div class="form-group">
-                                        <label class="form-label"
-                                               for="contact_phone">{{ __('dashboard.Phone') }}:</label>
-                                        <div class="input-group input-group-merge">
-                                            <input type="tel"
-                                                   class="form-control @error('contact_phone') is-invalid @enderror"
-                                                   value="{{ old('contact_phone[]') }}"
-                                                   autocomplete="contact_phone"
-                                                   name="contact_phone[]"
-                                                   id="contact_phone"
-                                                   pattern="[0][1][1-5]{9}"
-                                                   placeholder="EG phone: +(20)10 0000 0000)"
-                                                   data-mask="01000000000"
-                                                   >
-                                            <div class="input-group-append">
-                                                <div class="input-group-text">
-                                                    <span class="material-icons">phone</span>
-                                                </div>
-                                            </div>
-                                            @error('contact_phone')
-                                            <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                            @enderror
-                                            <div class="valid-feedback">Looks good!</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 mb-3">
-                                    <div class="form-group">
-                                        <label class="form-label"
-                                               for="contact_email">{{ __('dashboard.Email') }}:</label>
-                                        <div class="input-group input-group-merge">
-                                            <input type="email"
-                                                   class="form-control @error('contact_email') is-invalid @enderror"
-                                                   value="{{ old('contact_email[]') }}"
-                                                   autocomplete="contact_email"
-                                                   name="contact_email[]"
-                                                   id="contact_email"
-                                                   placeholder="{{ __('dashboard.Enter your email address') }} .."
-                                                   autofocus>
-                                            <div class="input-group-append">
-                                                <div class="input-group-text">
-                                                    <span class="material-icons">email</span>
-                                                </div>
-                                            </div>
-                                            @error('contact_email')
-                                            <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                            @enderror
-                                            <div class="valid-feedback">Looks good!</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="card">
                 <div class="row card-body mb-32pt">
                 <div class="col-lg-4 bg-light">
@@ -651,61 +473,16 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-label"
-                                       for="username">{{ __('dashboard.Profile name') }}:</label>
-                                <input type="text"
-                                       id="username"
-                                       class="form-control @error('username') is-invalid @enderror"
-                                       value="{{ old('username') }}"
-                                       name="username"
-                                       placeholder="{{ __('dashboard.Your profile name') }} ...">
-                                @error('username')
-                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                @enderror
-                                <div class="valid-feedback">Looks good!</div>
-                                <small class="form-text text-muted">{{ __('dashboard.Your profile name will be used as part of your public profile URL address') }}</small>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label"
                                        for="other_phone">{{ __('dashboard.Other Phone') }}:</label><small>({{ __('dashboard.optional') }})</small>
                                 <input type="tel"
                                        class="form-control @error('other_phone') is-invalid @enderror"
                                        value="{{ old('other_phone') }}"
                                        id="other_phone"
-                                       pattern="[0][1][1-5]{9}"
+                                       {{-- pattern="[0][1][1-5]{9}" --}}
                                        name="other_phone"
                                        data-mask="00000000000"
                                        placeholder="{{ __('dashboard.Your other mobile phone') }} ...">
                                 @error('other_phone')
-                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                @enderror
-                                <div class="valid-feedback">Looks good!</div>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label"
-                                       for="select06">{{ __('dashboard.Gender') }}:</label>
-                                <select id="select06"
-                                        data-toggle="select"
-                                        name="gender"
-                                        class="form-control form-control-sm @error('gender') is-invalid @enderror">
-                                    <option value="Male">{{ __('dashboard.Male') }}</option>
-                                    <option value="Female">{{ __('dashboard.Female') }}</option>
-                                </select>
-                                @error('gender')
-                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
-                                @enderror
-                                <div class="valid-feedback">Looks good!</div>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label"
-                                       for="date_of_birth">{{ __('dashboard.Date of Birth') }}:</label>
-                                <input type="hidden"
-                                       class="form-control @error('date_of_birth') is-invalid @enderror flatpickr-input"
-                                       value="{{ old('date_of_birth') }}"
-                                       id="date_of_birth"
-                                       name="date_of_birth"
-                                       data-toggle="flatpickr"
-                                       placeholder="{{ __('dashboard.Your Birth date') }} ...">
-                                @error('date_of_birth')
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                 @enderror
                                 <div class="valid-feedback">Looks good!</div>
@@ -722,18 +499,6 @@
                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                 @enderror
                                 <div class="valid-feedback">Looks good!</div>
-                            </div>
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox"
-                                           class="custom-control-input"
-                                           name="real_name"
-                                           checked
-                                           id="customCheck1">
-                                    <label class="custom-control-label"
-                                           for="customCheck1">{{ __('dashboard.Display your real name on your profile') }}</label>
-                                    <small class="form-text text-muted">{{ __('dashboard.If unchecked, your profile name will be displayed instead of your full name') }}</small>
-                                </div>
                             </div>
                             <div class="form-group">
                                 <label class="form-label"
@@ -768,133 +533,7 @@
     @include('components.locations_ajax')
 
     <script>
-        function doubling()
-        {
-            let html = '<div class="card contact_card">\n' +
-                '                <div class="row card-body mb-32pt">\n' +
-                '                    <div class="col-lg-4 bg-light">\n' +
-                '                        <div class="page-separator">\n' +
-                '                            <div class="page-separator__text">{{ __("dashboard.Contact Information") }}</div>\n' +
-                '                        </div>\n' +
-                '                        <p class="card-subtitle text-70 mb-16pt mb-lg-0">\n' +
-                '                            {{ __("dashboard.Add your clients contact information") }}\n' +
-                '                        </p>\n' +
-                '                    </div>\n' +
-                '                    <div class="col-lg-8 d-flex align-items-center">\n' +
-                '                        <div class="flex"\n' +
-                '                             style="max-width: 100%">\n' +
-                '                            <div class="form-row">\n' +
-                '                                <div class="col-12 col-md-6 mb-3">\n' +
-                '                                    <div class="form-group">\n' +
-                '                                        <label class="form-label"\n' +
-                '                                               for="contact_name">{{ __("dashboard.Contact name") }}:</label>\n' +
-                '                                        <div class="input-group input-group-merge">\n' +
-                '                                            <input type="text"\n' +
-                '                                                   class="form-control @error('contact_name') is-invalid @enderror"\n' +
-                '                                                   value="{{ old('contact_name') }}"\n' +
-                '                                                   autocomplete="contact_name"\n' +
-                '                                                   name="contact_name[]"\n' +
-                '                                                   id="contact_name"\n' +
-                '                                                   placeholder="{{ __("dashboard.Enter your contact name") }} .."\n' +
-                '                                                   autofocus>\n' +
-                '                                            <div class="input-group-append">\n' +
-                '                                                <div class="input-group-text">\n' +
-                '                                                    <span class="material-icons">person</span>\n' +
-                '                                                </div>\n' +
-                '                                            </div>\n' +
-                '                                            @error('contact_name')\n' +
-                '                                            <div class="invalid-feedback" role="alert">{{ $message }}</div>\n' +
-                '                                            @enderror\n' +
-                '                                            <div class="valid-feedback">Looks good!</div>\n' +
-                '                                        </div>\n' +
-                '                                    </div>\n' +
-                '                                </div>\n' +
-                '                                <div class="col-12 col-md-6 mb-3">\n' +
-                '                                    <div class="form-group">\n' +
-                '                                        <label class="form-label"\n' +
-                '                                               for="contact_job_title">{{ __("dashboard.Job title") }}:</label>\n' +
-                '                                        <div class="input-group input-group-merge">\n' +
-                '                                            <input type="text"\n' +
-                '                                                   class="form-control @error('contact_job_title') is-invalid @enderror"\n' +
-                '                                                   value="{{ old('contact_job_title') }}"\n' +
-                '                                                   autocomplete="contact_job_title"\n' +
-                '                                                   name="contact_job_title[]"\n' +
-                '                                                   id="contact_job_title"\n' +
-                '                                                   placeholder="{{ __("dashboard.Enter your contact job title") }} .."\n' +
-                '                                                   >\n' +
-                '                                            <div class="input-group-append">\n' +
-                '                                                <div class="input-group-text">\n' +
-                '                                                    <span class="material-icons">person</span>\n' +
-                '                                                </div>\n' +
-                '                                            </div>\n' +
-                '                                            @error('contact_job_title')\n' +
-                '                                            <div class="invalid-feedback" role="alert">{{ $message }}</div>\n' +
-                '                                            @enderror\n' +
-                '                                            <div class="valid-feedback">Looks good!</div>\n' +
-                '                                        </div>\n' +
-                '                                    </div>\n' +
-                '                                </div>\n' +
-                '                            </div>\n' +
-                '                            <div class="form-row">\n' +
-                '                                <div class="col-12 col-md-6 mb-3">\n' +
-                '                                    <div class="form-group">\n' +
-                '                                        <label class="form-label"\n' +
-                '                                               for="contact_phone">{{ __("dashboard.Phone") }}:</label>\n' +
-                '                                        <div class="input-group input-group-merge">\n' +
-                '                                            <input type="tel"\n' +
-                '                                                   class="form-control @error('contact_phone') is-invalid @enderror"\n' +
-                '                                                   value="{{ old('contact_phone') }}"\n' +
-                '                                                   autocomplete="contact_phone"\n' +
-                '                                                   name="contact_phone[]"\n' +
-                '                                                   id="contact_phone"\n' +
-                '                                                   pattern="[0][1][1-5]{9}"\n' +
-                '                                                   placeholder="EG phone: +(20)10 0000 0000)"\n' +
-                '                                                   data-mask="01000000000"\n' +
-                '                                                   >\n' +
-                '                                            <div class="input-group-append">\n' +
-                '                                                <div class="input-group-text">\n' +
-                '                                                    <span class="material-icons">phone</span>\n' +
-                '                                                </div>\n' +
-                '                                            </div>\n' +
-                '                                            @error('contact_phone')\n' +
-                '                                            <div class="invalid-feedback" role="alert">{{ $message }}</div>\n' +
-                '                                            @enderror\n' +
-                '                                            <div class="valid-feedback">Looks good!</div>\n' +
-                '                                        </div>\n' +
-                '                                    </div>\n' +
-                '                                </div>\n' +
-                '                                <div class="col-12 col-md-6 mb-3">\n' +
-                '                                    <div class="form-group">\n' +
-                '                                        <label class="form-label"\n' +
-                '                                               for="contact_email">{{ __("dashboard.Email") }}:</label>\n' +
-                '                                        <div class="input-group input-group-merge">\n' +
-                '                                            <input type="email"\n' +
-                '                                                   class="form-control @error('contact_email') is-invalid @enderror"\n' +
-                '                                                   value="{{ old('contact_email') }}"\n' +
-                '                                                   autocomplete="contact_email"\n' +
-                '                                                   name="contact_email[]"\n' +
-                '                                                   id="contact_email"\n' +
-                '                                                   placeholder="{{ __("dashboard.Enter your email address") }} .."\n' +
-                '                                                   autofocus>\n' +
-                '                                            <div class="input-group-append">\n' +
-                '                                                <div class="input-group-text">\n' +
-                '                                                    <span class="material-icons">email</span>\n' +
-                '                                                </div>\n' +
-                '                                            </div>\n' +
-                '                                            @error('contact_email')\n' +
-                '                                            <div class="invalid-feedback" role="alert">{{ $message }}</div>\n' +
-                '                                            @enderror\n' +
-                '                                            <div class="valid-feedback">Looks good!</div>\n' +
-                '                                        </div>\n' +
-                '                                    </div>\n' +
-                '                                </div>\n' +
-                '                            </div>\n' +
-                '                        </div>\n' +
-                '                    </div>\n' +
-                '                </div>\n' +
-                '            </div>'
-            $(html).insertAfter('.contact_card');
-        }
+
         function doubling_address()
         {
             let html = '<div class="card address_card">\n' +

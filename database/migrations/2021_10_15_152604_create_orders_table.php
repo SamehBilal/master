@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('tracking_no');
             $table->set('status', ['New','Awaiting your action','On hold','Canceled','Rescheduled','Out for delivery','Completed','Return to origin','Cannot be delivered'])->default('New');
             $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('pickup_id')->nullable();
             $table->unsignedBigInteger('business_user_id')->nullable();
             $table->unsignedBigInteger('location_id')->nullable();
@@ -61,6 +62,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('return_location')->nullable();
             $table->unsignedBigInteger('return_location_exchange')->nullable();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->foreign('pickup_id')->references('id')->on('pickups')->onDelete('SET NULL');
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('SET NULL');
             $table->foreign('return_location')->references('id')->on('locations')->onDelete('SET NULL');

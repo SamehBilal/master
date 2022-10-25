@@ -358,6 +358,10 @@ return [
 
     // customers
     'All Customers'         => 'كل العملاء',
+    'All Clients'           => 'كل العملاء',
+    'All clients'           => 'كل العملاء',
+    'clients'               => 'العملاء',
+    'New client'            => 'عميل جديد',
     'Category'              => 'فئة',
     'New Customer'          => 'عميل جديد',
     'Basic Information'     => 'المعلومات اساسية',

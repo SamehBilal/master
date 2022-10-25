@@ -82,6 +82,9 @@
                                         <option @if(old('model')) {{ old('model') == 'App\Models\Contact' ? 'selected':'' }} @else {{ $userCategory->model == 'App\Models\Contact' ? 'selected':'' }} @endif value="App\Models\Contact" data-avatar-src="{{ asset('backend/images/icon/contacts.png') }}">
                                             {{ __('dashboard.Contact') }}
                                         </option>
+                                        <option @if(old('model')) {{ old('model') == 'App\Models\Client' ? 'selected':'' }} @else {{ $userCategory->model == 'App\Models\Client' ? 'selected':'' }} @endif value="App\Models\Client" data-avatar-src="{{ asset('backend/images/icon/clients.png') }}">
+                                            {{ __('dashboard.Clients') }}
+                                        </option>
                                     </select>
                                     @error('model')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>

@@ -21,10 +21,8 @@ class CreateContactsTable extends Migration
             $table->bigInteger('contact_phone')->nullable();
             $table->unsignedBigInteger('user_category_id')->nullable();
             $table->unsignedBigInteger('customer_id')->nullable();
-            $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('business_user_id')->nullable();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');
             $table->foreign('business_user_id')->references('id')->on('users')->onDelete('SET NULL');
             $table->foreign('user_category_id')->references('id')->on('user_categories')->onDelete('cascade');
             $table->timestamps();

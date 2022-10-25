@@ -35,7 +35,7 @@ class ClientController extends Controller
         }else{
             $clients    = Client::orderBy('updated_at','desc')
                 ->get();
-            $categories = UserCategory::orderBy('updated_at','desc')
+            $categories = UserCategory::where([['model','App\Models\Client'],['status','active']])->orderBy('updated_at','desc')
                 ->get();
         }
 
@@ -67,7 +67,6 @@ class ClientController extends Controller
         $request->request->add(['payment' => 'cash']);
         $this->validate($request, Client::rules());
         $data                   = $request->all();
-        $data['other_email']    = null;
 
         if($request->status == 'on')
         {
@@ -90,23 +89,10 @@ class ClientController extends Controller
                     'other_phone'               => $request->other_phone,
                     'status'                    => $request->status,
                     'user_category_id'          => $request->user_category_id,
-                    'currency_id'               => $request->currency_id,
                     'note'                      => $request->note,
                     'payment'                   => $request->payment,
                     'business_user_id'          => auth()->user()->id,
                 ]);
-
-                if($request->contact_name){
-                    for($i=0;$i < count($request->contact_name);$i++){
-                        $client->contact()->create([
-                            'contact_name'          => $request->contact_name[$i],
-                            'contact_job_title'     => $request->contact_job_title[$i],
-                            'contact_email'         => $request->contact_email[$i],
-                            'contact_phone'         => $request->contact_phone[$i],
-                            'business_user_id'      => auth()->user()->id,
-                        ]);
-                    }
-                }
 
                 if($request->street){
                     for($j=0;$j < count($request->street);$j++){
@@ -128,7 +114,7 @@ class ClientController extends Controller
                 if(request()->hasFile('avatar'))
                 {
                     $avatar = request()->file('avatar')->getClientOriginalName();
-                    request()->file('avatar')->storeAs('/', "/users/{$user->id}/{$avatar}", '');
+                    request()->file('avatar')->storeAs('/', "/users/{$client->id}/{$avatar}", '');
                     $user->update(['avatar' =>  $avatar]);
                 }
                 $user->assignRole('client');
@@ -186,25 +172,19 @@ class ClientController extends Controller
             \DB::transaction(function () use($data, $request, $client) {
 
                 $client->update([
-                    'fax'                       => $request->fax,
+                    'first_name'                => $request->first_name,
+                    'last_name'                 => $request->last_name,
+                    'full_name'                 => $request->full_name,
+                    'email'                     => $request->email,
+                    'other_email'               => $request->other_email,
+                    'phone'                     => $request->phone,
+                    'other_phone'               => $request->other_phone,
                     'status'                    => $request->status,
                     'user_category_id'          => $request->user_category_id,
                     'note'                      => $request->note,
                     'payment'                   => $request->payment,
                     'business_user_id'          => auth()->user()->id,
                 ]);
-
-                if($request->contact_name){
-                    for($i=0;$i < $request->contact_name;$i++){
-                        $client->contact()->update([
-                            'contact_name'          => $request->contact_name[$i],
-                            'contact_job_title'     => $request->contact_job_title[$i],
-                            'contact_email'         => $request->contact_email[$i],
-                            'contact_phone'         => $request->contact_phone[$i],
-                            'business_user_id'      => auth()->user()->id,
-                        ]);
-                    }
-                }
 
                 if($request->street)
                 {
@@ -227,9 +207,9 @@ class ClientController extends Controller
 
                 if(request()->hasFile('avatar'))
                 {
-                    if(!empty($user->avatar))
+                    if(!empty($client->avatar))
                     {
-                        $avatar = "/storage/users/{$user->id}/{$user->avatar}";
+                        $avatar = "/storage/users/{$client->id}/{$client->avatar}";
                         $path = str_replace('\\','/',public_path());
 
                         if(file_exists($path . $avatar))
@@ -239,8 +219,8 @@ class ClientController extends Controller
                     }
 
                     $avatar = request()->file('avatar')->getClientOriginalName();
-                    request()->file('avatar')->storeAs('/', "/users/{$user->id}/{$avatar}", '');
-                    $user->update(['avatar' =>  $avatar]);
+                    request()->file('avatar')->storeAs('/', "/users/{$client->id}/{$avatar}", '');
+                    $client->update(['avatar' =>  $avatar]);
 
                 }
             });

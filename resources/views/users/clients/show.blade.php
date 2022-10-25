@@ -1,20 +1,20 @@
 @extends('layouts.backend')
 
 @section('title')
-    {{ $customer->user->full_name }}
+    {{ $client->full_name }}
 @endsection
 
 @section('links')
     <li class="breadcrumb-item ">
-        <a href="{{ route('dashboard.customers.index') }}">{{ __('dashboard.Customers') }}</a>
+        <a href="{{ route('dashboard.clients.index') }}">{{ __('dashboard.clients') }}</a>
     </li>
     <li class="breadcrumb-item active">
-        {{ $customer->user->full_name }}
+        {{ $client->full_name }}
     </li>
 @endsection
 
 @section('button-link')
-    {{ route('dashboard.customers.index') }}
+    {{ route('dashboard.clients.index') }}
 @endsection
 
 @section('button-icon')
@@ -22,22 +22,22 @@
 @endsection
 
 @section('button-title')
-    {{ __('dashboard.Customers') }}
+    {{ __('dashboard.clients') }}
 @endsection
 
 @section('main_content')
 <div class="page-section mt-2 bg-primary">
     <div class="container page__container d-flex flex-column flex-md-row align-items-center text-center text-md-left">
-        <img src="{{ $customer->user->gender == 'Female' ? asset('backend/images/illustration/teacher/128/woman.png'):asset('backend/images/illustration/teacher/128/man.png') }}"
+        <img src="{{ asset('backend/images/illustration/teacher/128/man.png') }}"
              width="104"
              class="mr-md-32pt mb-32pt mb-md-0"
              alt="instructor">
         <div class="flex mb-32pt mb-md-0">
-            <h2 class="text-white mb-0"> {{ $customer->user->full_name }}</h2>
-            <p class="lead text-white-50 d-flex align-items-center"> {{ $customer->UserCategory ? $customer->UserCategory->name:'' }} <span class="ml-16pt d-flex align-items-center"><i class="material-icons icon-16pt mr-4pt">phone</i> {{ $customer->user->phone }}</span> <span class="ml-16pt d-flex align-items-center"><i class="material-icons icon-16pt mr-4pt">email</i> {{ $customer->user->email }}</span></p>
+            <h2 class="text-white mb-0"> {{ $client->full_name }}</h2>
+            <p class="lead text-white-50 d-flex align-items-center"> {{ $client->UserCategory ? $client->UserCategory->name:'' }} <span class="ml-16pt d-flex align-items-center"><i class="material-icons icon-16pt mr-4pt">phone</i> {{ $client->phone }}</span> <span class="ml-16pt d-flex align-items-center"><i class="material-icons icon-16pt mr-4pt">email</i> {{ $client->email }}</span></p>
         </div>
-        @can('edit customers')
-            <a href="{{ route('dashboard.customers.edit',$customer->id) }}"
+        @can('edit clients')
+            <a href="{{ route('dashboard.clients.edit',$client->id) }}"
                     class="btn btn-outline-white"><i class="material-icons icon-16pt mr-4pt">edit</i> {{ __('dashboard.Edit') }}</a>
         @endcan
     </div>
@@ -74,7 +74,7 @@
 
         <div class="row card-group-row mb-lg-8pt">
 
-            @foreach ($customer->orders as $order)
+            @foreach ($client->orders as $order)
                 <div class="col-sm-4 card-group-row__col">
 
                     <div class="card js-overlay card-sm overlay--primary-dodger-blue stack stack--1 card-group-row__card"

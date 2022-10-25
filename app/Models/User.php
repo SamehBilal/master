@@ -64,11 +64,6 @@ class User extends Authenticatable
         return $this->hasOne(Customer::class);
     }
 
-    public function contact()
-    {
-        return $this->hasOne(Contact::class);
-    }
-
     public function business()
     {
         return $this->hasOne(Business::class, "id" , "business_user_id");

@@ -357,6 +357,10 @@ return [
 
     // customers
     'All Customers'         => 'All Customers',
+    'All Clients'           => 'All Clients',
+    'All clients'           => 'All Clients',
+    'clients'               => 'Clients',
+    'New client'            => 'New client',
     'Category'              => 'Category',
     'New Customer'          => 'New Customer',
     'Basic Information'     => 'Basic Information',
