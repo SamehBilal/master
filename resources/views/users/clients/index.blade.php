@@ -153,8 +153,8 @@
 
                                                 <div class="d-flex align-items-center">
                                                     <div class="flex d-flex flex-column">
-                                                        <p class="mb-0"><strong class="">{{ $client->user->full_name }}</strong></p>
-                                                        <small class="">{{ $client->user->email }}</small>
+                                                        <p class="mb-0"><strong class="">{{ $client->full_name }}</strong></p>
+                                                        <small class="">{{ $client->email }}</small>
                                                     </div>
                                                     {{--<div class="d-flex align-items-center ml-24pt">
                                                         <i class="material-icons text-20 icon-16pt">message</i>
@@ -188,7 +188,7 @@
                                     <td>
 
                                         <a href="#"
-                                           class="chip ">{{ $client->user->phone }}</a>
+                                           class="chip ">{{ $client->phone }}</a>
 
                                     </td>
 

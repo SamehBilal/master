@@ -22,9 +22,11 @@ class CreatePickupsTable extends Migration
             $table->string('repeat_days')->nullable();
             $table->longText('notes')->nullable();
             $table->unsignedBigInteger('contact_id');
+            $table->unsignedBigInteger('customer_id')->nullable();
             $table->unsignedBigInteger('location_id');
             $table->unsignedBigInteger('business_user_id')->nullable();
             $table->foreign('contact_id')->references('id')->on('contacts')->onDelete('cascade');
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
             $table->foreign('business_user_id')->references('id')->on('users')->onDelete('SET NULL');
             $table->timestamps();

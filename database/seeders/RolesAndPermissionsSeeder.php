@@ -125,6 +125,12 @@ class RolesAndPermissionsSeeder extends Seeder
         // courier
         Permission::create(['name' => 'edit courier', "order" => 18]);
         Permission::create(['name' => 'edit log', "order" => 18]);
+        // clients
+        Permission::create(['name' => 'view clients', "order" => 19]);
+        Permission::create(['name' => 'show clients', "order" => 19]);
+        Permission::create(['name' => 'create clients', "order" => 19]);
+        Permission::create(['name' => 'edit clients', "order" => 19]);
+        Permission::create(['name' => 'delete clients', "order" => 19]);
 
 
         $admin->givePermissionTo(
@@ -220,7 +226,13 @@ class RolesAndPermissionsSeeder extends Seeder
             'edit hubs',
             'delete hubs',
             'edit courier',
-            'edit log');
+            'edit log',
+            // clients permission
+            'view clients',
+            'show clients',
+            'create clients',
+            'edit clients',
+            'delete clients');
 
         $sales->givePermissionTo(
             // pickups permissions
@@ -251,12 +263,12 @@ class RolesAndPermissionsSeeder extends Seeder
             'create pickups',
             'edit pickups',
             'delete pickups',
-            // customers permissions
-            'view customers',
-            'show customers',
-            'create customers',
-            'edit customers',
-            'delete customers',
+            // clients permission
+            'view clients',
+            'show clients',
+            'create clients',
+            'edit clients',
+            'delete clients',
             // contacts permissions
             'view contacts',
             'show contacts',

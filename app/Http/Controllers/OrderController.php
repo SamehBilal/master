@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use App\Models\User;
 use App\Notifications\NewContactForm;
 use App\Notifications\NewOrder;
@@ -22,9 +23,7 @@ use App\Models\OrderLog;
 use App\Traits\Verified;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
-use App\Http\Controllers\Helpers\UserHelperController;
 
 class OrderController extends Controller
 {
@@ -37,7 +36,6 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::orderBy('updated_at','desc');
-        $user = User::find(auth()->user()->id);
         $customer = 0;
 
         $user = User::find(auth()->user()->id);
@@ -119,27 +117,27 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $user = User::find(auth()->user()->id);
+        $user       = User::find(auth()->user()->id);
         $pickups    = Pickup::orderBy('updated_at','desc');
         $states     = State::where('country_id',64)->get();
         $cities     = City::all();
         $countries  = Country::all();
         $locations  = Location::orderBy('updated_at','desc');
         $contacts   = Contact::orderBy('updated_at','desc');
-        $customers  = Customer::orderBy('updated_at','desc');
+        $clients    = Client::orderBy('updated_at','desc');
         if($user->hasRole('customer'))
         {
             $locations  = $locations->where('business_user_id',$user->id);
             $pickups    = $pickups->where('business_user_id',$user->id);
             $contacts   = $contacts->where('business_user_id',$user->id);
-            $customers  = $customers->where('business_user_id',$user->id);
+            $clients    = $clients->where('business_user_id',$user->id);
         }
         $locations  = $locations->get();
         $contacts   = $contacts->get();
         $pickups    = $pickups->get();
-        $customers  = $customers->get();
+        $clients    = $clients->get();
 
-        return view('orders.create',compact('pickups','cities', 'states','countries','locations','customers','contacts'));
+        return view('orders.create',compact('pickups','cities', 'states','countries','locations','clients','contacts'));
     }
 
     /**
@@ -154,21 +152,12 @@ class OrderController extends Controller
         $request['tracking_no'] = random_int(100000, 999999);
 
         try {
-            if($request->customer_id == null)
+            if($request->client_id == null)
             {
-                $request->request->add(['password' => 123456789]);
-                $request->request->add(['password_confirmation' => 123456789]);
-                $request->request->add(['payment' => 'cash']);
-
-                $data                           = $request->all();
-                $data['password']               = Hash::make(123456789);
-                $data['password_confirmation']  = $data['password'];
-                $data['other_email']            = null;
-                $data['religion']               = null;
-                $data['username']               = null;
-                $data['gender']                 = null;
-                $data['date_of_birth']          = null;
-                $data['bio']                    = null;
+                $request->request->add([
+                    'payment'       => 'cash',
+                    'other_email'   => null,
+                    ]);
                 $full_name= explode(" ",$request->name);
 
                 $first_name = $full_name[0];
@@ -177,31 +166,28 @@ class OrderController extends Controller
                 }else{
                     $last_name = '';
                 }
-                $data['first_name']             = $first_name;
-                $data['last_name']              = $last_name;
-                $data['full_name']              = $data['name'];
 
-                $user                           = null;
-                $userhelperController = new UserHelperController();
-                $user = $userhelperController->createuser($data);
-                $customer = Customer::create([
-                    'user_id'                   => $user->id,
-                    'fax'                       => $request->fax,
-                    'status'                    => $request->status,
+                $client = Client::create([
+                    'first_name'                => $first_name,
+                    'last_name'                 => $last_name,
+                    'full_name'                 => $first_name.' '.$last_name,
+                    'email'                     => $request->email,
+                    'other_email'               => $request->other_email,
                     'user_category_id'          => $request->user_category_id,
-                    'currency_id'               => $request->currency_id,
-                    'note'                      => $request->note,
                     'payment'                   => $request->payment,
+                    'status'                    => $request->status,
+                    'note'                      => $request->note,
+                    'other_phone'               => $request->secondary_phone,
+                    'phone'                     => $request->phone,
                     'business_user_id'          => auth()->user()->id,
                 ]);
             }else{
-                $customer = Customer::findOrFail($request->customer_id);
+                $client = Client::findOrFail($request->client_id);
             }
 
             if($request->location_id == null)
             {
-
-                $location = $customer->location()->create([
+                $location = $client->location()->create([
                     'name'                  => $request->apartment.', '.$request->building.', '.$request->street,
                     'street'                => $request->street,
                     'building'              => $request->building,
@@ -273,7 +259,8 @@ class OrderController extends Controller
                         'order_reference'                       => $request->order_reference,
                         'open_package'                          => $request->open_package,
                         'delivery_notes'                        => $request->delivery_notes,
-                        'customer_id'                           => $request->customer_id == null ? $customer->id:$request->customer_id,
+                        'customer_id'                           => $request->customer_id,
+                        'client_id'                             => $request->client_id == null ? $client->id:$request->client_id,
                         'location_id'                           => $request->location_id == null ? $location->id:$request->location_id,
                         'pickup_id'                             => ($request->pickup_id   == null && $request->contact_id != null) ? $pickup->id:$request->pickup_id,
                         'business_user_id'                      => auth()->user()->id,
@@ -323,7 +310,7 @@ class OrderController extends Controller
 
                     if($request->return_location == null)
                     {
-                        $return_location = $customer->location()->create([
+                        $return_location = $client->location()->create([
                             'name_exchange'                  => $request->apartment_exchange.', '.$request->building_exchange.', '.$request->street_exchange,
                             'street_exchange'                => $request->street_exchange,
                             'building_exchange'              => $request->building_exchange,
@@ -351,7 +338,8 @@ class OrderController extends Controller
                         'package_description_return_package_exchange'   => $request->package_description_return_package_exchange,
                         'return_location_exchange'                      => $request->return_location_exchange == null ? $return_location->id:$request->return_location_exchange,
                         'delivery_notes'                                => $request->delivery_notes,
-                        'customer_id'                                   => $request->customer_id == null ? $customer->id:$request->customer_id,
+                        'customer_id'                                   => $request->customer_id,
+                        'client_id'                                     => $request->client_id == null ? $client->id:$request->client_id,
                         'location_id'                                   => $request->location_id == null ? $location->id:$request->location_id,
                         'pickup_id'                                     => ($request->pickup_id   == null && $request->contact_id != null) ? $pickup->id:$request->pickup_id,
                         'business_user_id'                              => auth()->user()->id,
@@ -362,7 +350,7 @@ class OrderController extends Controller
 
                     if($request->return_location == null)
                     {
-                        $return_location = $customer->location()->create([
+                        $return_location = $client->location()->create([
                             'name_return'                  => $request->apartment_return.', '.$request->building_return.', '.$request->street_return,
                             'street_return'                => $request->street_return,
                             'building_return'              => $request->building_return,
@@ -387,7 +375,8 @@ class OrderController extends Controller
                         'order_reference_return'                => $request->order_reference_return,
                         'return_location'                       => $request->return_location == null ? $return_location->id:$request->return_location,
                         'delivery_notes'                        => $request->delivery_notes,
-                        'customer_id'                           => $request->customer_id == null ? $customer->id:$request->customer_id,
+                        'customer_id'                           => $request->customer_id,
+                        'client_id'                             => $request->client_id == null ? $client->id:$request->client_id,
                         'location_id'                           => $request->location_id == null ? $location->id:$request->location_id,
                         'business_user_id'                      => auth()->user()->id,
                     ]);
@@ -400,7 +389,8 @@ class OrderController extends Controller
                         'collect_cash'                          => $request->collect_cash,
                         'order_reference_cash_collection'       => $request->order_reference_cash_collection,
                         'delivery_notes'                        => $request->delivery_notes,
-                        'customer_id'                           => $request->customer_id == null ? $customer->id:$request->customer_id,
+                        'customer_id'                           => $request->customer_id,
+                        'client_id'                             => $request->client_id == null ? $client->id:$request->client_id,
                         'location_id'                           => $request->location_id == null ? $location->id:$request->location_id,
                         'business_user_id'                      => auth()->user()->id,
                     ]);
@@ -541,7 +531,7 @@ class OrderController extends Controller
         $pickups    = Pickup::orderBy('updated_at','desc');
         $locations  = Location::orderBy('updated_at','desc');
         $contacts   = Contact::orderBy('updated_at','desc');
-        $customers  = Customer::orderBy('updated_at','desc');
+        $clients    = Client::orderBy('updated_at','desc');
         if($user->hasRole('customer'))
         {
             $log        = $order->log()->orderByDesc('updated_at')->first();
@@ -552,7 +542,7 @@ class OrderController extends Controller
             $locations  = $locations->where('business_user_id',$user->id);
             $pickups    = $pickups->where('business_user_id',$user->id);
             $contacts   = $contacts->where('business_user_id',$user->id);
-            $customers  = $customers->where('business_user_id',$user->id);
+            $clients    = $clients->where('business_user_id',$user->id);
         }
         $states     = State::where('country_id',64)->get();
         $cities     = City::all();
@@ -560,9 +550,9 @@ class OrderController extends Controller
         $locations  = $locations->get();
         $contacts   = $contacts->get();
         $pickups    = $pickups->get();
-        $customers  = $customers->get();
+        $clients    = $clients->get();
 
-        return view('orders.edit',compact('order','pickups','cities','states','countries','locations','customers','contacts'));
+        return view('orders.edit',compact('order','pickups','cities','states','countries','locations','clients','contacts'));
     }
 
     /**
@@ -574,58 +564,46 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-
-
         DB::beginTransaction();
         $request['tracking_no'] = $order->tracking_no;
         $this->validate($request, Order::rules($update = true, $order->id),[],Order::attrs());
         try {
-            if($request->customer_id == null)
+            if($request->client_id == null)
             {
-                $request->request->add(['password' => 123456789]);
-                $request->request->add(['password_confirmation' => 123456789]);
-                $request->request->add(['payment' => 'cash']);
+                $request->request->add([
+                    'payment'       => 'cash',
+                    'other_email'   => null,
+                ]);
 
-                $data                           = $request->all();
-                $data['password']               = Hash::make(123456789);
-                $data['password_confirmation']  = $data['password'];
-                $data['other_email']            = null;
-                $data['religion']               = null;
-                $data['username']               = null;
-                $data['gender']                 = null;
-                $data['date_of_birth']          = null;
-                $data['bio']                    = null;
-                $full_name= explode(" ",$request->name);
+                $full_name = explode(" ",$request->name);
                 $first_name = $full_name[0];
                 if(count($full_name) > 1){
                     $last_name = $full_name[1];
                 }else{
                     $last_name = '';
                 }
-                $data['first_name']             = $first_name;
-                $data['last_name']              = $last_name;
-                $data['full_name']              = $data['name'];
-                $user                           = null;
 
-                $userhelperController = new UserHelperController();
-                $user = $userhelperController->createuser($data);
-                $customer = Customer::create([
-                    'user_id'                   => $user->id,
-                    'fax'                       => $request->fax,
-                    'status'                    => $request->status,
+                $client = Client::create([
+                    'first_name'                => $first_name,
+                    'last_name'                 => $last_name,
+                    'full_name'                 => $first_name.' '.$last_name,
+                    'email'                     => $request->email,
+                    'other_email'               => $request->other_email,
                     'user_category_id'          => $request->user_category_id,
-                    'currency_id'               => $request->currency_id,
-                    'note'                      => $request->note,
                     'payment'                   => $request->payment,
+                    'status'                    => $request->status,
+                    'note'                      => $request->note,
+                    'other_phone'               => $request->secondary_phone,
+                    'phone'                     => $request->phone,
                     'business_user_id'          => auth()->user()->id,
                 ]);
             }else{
-                $customer = Customer::findOrFail($request->customer_id);
+                $client = Client::findOrFail($request->client_id);
             }
 
             if($request->location_id == null)
             {
-                $location = $customer->location()->create([
+                $location = $client->location()->create([
                     'name'                  => $request->apartment.', '.$request->building.', '.$request->street,
                     'street'                => $request->street,
                     'building'              => $request->building,
@@ -693,7 +671,7 @@ class OrderController extends Controller
                         'order_reference'                       => $request->order_reference,
                         'open_package'                          => $request->open_package,
                         'delivery_notes'                        => $request->delivery_notes,
-                        'customer_id'                           => $request->customer_id == null ? $customer->id:$request->customer_id,
+                        'client_id'                             => $request->client_id == null ? $client->id:$request->client_id,
                         'location_id'                           => $request->location_id == null ? $location->id:$request->location_id,
                         'pickup_id'                             => $request->pickup_id   == null ? $pickup->id:$request->pickup_id,
                         'business_user_id'                      => auth()->user()->id,
@@ -743,7 +721,7 @@ class OrderController extends Controller
 
                     if($request->return_location == null)
                     {
-                        $return_location = $customer->location()->create([
+                        $return_location = $client->location()->create([
                             'name_exchange'                  => $request->apartment_exchange.', '.$request->building_exchange.', '.$request->street_exchange,
                             'street_exchange'                => $request->street_exchange,
                             'building_exchange'              => $request->building_exchange,
@@ -771,7 +749,7 @@ class OrderController extends Controller
                         'package_description_return_package_exchange'   => $request->package_description_return_package_exchange,
                         'return_location_exchange'                      => $request->return_location_exchange == null ? $return_location->id:$request->return_location_exchange,
                         'delivery_notes'                                => $request->delivery_notes,
-                        'customer_id'                                   => $request->customer_id == null ? $customer->id:$request->customer_id,
+                        'client_id'                                     => $request->client_id == null ? $client->id:$request->client_id,
                         'location_id'                                   => $request->location_id == null ? $location->id:$request->location_id,
                         'pickup_id'                                     => $request->pickup_id   == null ? $pickup->id:$request->pickup_id,
                         'business_user_id'                              => auth()->user()->id,
@@ -782,7 +760,7 @@ class OrderController extends Controller
 
                     if($request->return_location == null)
                     {
-                        $return_location = $customer->location()->create([
+                        $return_location = $client->location()->create([
                             'name_return'                  => $request->apartment_return.', '.$request->building_return.', '.$request->street_return,
                             'street_return'                => $request->street_return,
                             'building_return'              => $request->building_return,
@@ -807,7 +785,7 @@ class OrderController extends Controller
                         'order_reference_return'                => $request->order_reference_return,
                         'return_location'                       => $request->return_location == null ? $return_location->id:$request->return_location,
                         'delivery_notes'                        => $request->delivery_notes,
-                        'customer_id'                           => $request->customer_id == null ? $customer->id:$request->customer_id,
+                        'client_id'                             => $request->client_id == null ? $client->id:$request->client_id,
                         'location_id'                           => $request->location_id == null ? $location->id:$request->location_id,
                         'business_user_id'                      => auth()->user()->id,
                     ]);
@@ -820,7 +798,7 @@ class OrderController extends Controller
                         'collect_cash'                          => $request->collect_cash,
                         'order_reference_cash_collection'       => $request->order_reference_cash_collection,
                         'delivery_notes'                        => $request->delivery_notes,
-                        'customer_id'                           => $request->customer_id == null ? $customer->id:$request->customer_id,
+                        'client_id'                             => $request->client_id == null ? $client->id:$request->client_id,
                         'location_id'                           => $request->location_id == null ? $location->id:$request->location_id,
                         'business_user_id'                      => auth()->user()->id,
                     ]);

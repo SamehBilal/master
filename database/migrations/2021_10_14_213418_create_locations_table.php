@@ -26,6 +26,7 @@ class CreateLocationsTable extends Migration
             $table->unsignedBigInteger('city_id')->nullable();
             $table->unsignedBigInteger('zone_id')->nullable();
             $table->unsignedBigInteger('customer_id')->nullable();
+            $table->unsignedBigInteger('client_id')->nullable();
             $table->unsignedBigInteger('business_user_id')->nullable();
             $table->boolean('working_address')->default(0)->nullable();
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('SET NULL');
@@ -33,6 +34,7 @@ class CreateLocationsTable extends Migration
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('SET NULL');
             $table->foreign('zone_id')->references('id')->on('zones')->onDelete('SET NULL');
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('SET NULL');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('SET NULL');
             $table->foreign('business_user_id')->references('id')->on('users')->onDelete('SET NULL');
             $table->timestamps();
         });

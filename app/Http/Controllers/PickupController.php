@@ -69,7 +69,7 @@ class PickupController extends Controller
         }
         $pickups    = $pickups->get();
         $status     = ['Created','Out for pickup','Picked up'];
-        $locations  = $locations->where('customer_id',NULL)->get();
+        $locations  = $locations->where([['customer_id',NULL],['client_id',NULL]])->get();
         return view('pickups.index',compact('pickups','status','locations'));
     }
 
@@ -107,6 +107,7 @@ class PickupController extends Controller
         $request['pickup_id'] = random_int(100000, 999999);
         $request['status'] = 'Created';
         $this->validate($request, Pickup::rules());
+        $user = User::find(auth()->user()->id);
 
         if($request->location_in == null)
         {
@@ -133,7 +134,8 @@ class PickupController extends Controller
                 'contact_job_title'             => $request->contact_job_title,
                 'contact_email'                 => $request->contact_email,
                 'contact_phone'                 => $request->contact_phone,
-                'business_user_id'              => auth()->user()->id,
+                'customer_id'                   => $user->customer ? $user->customer->id:null,
+                'business_user_id'              => $user->id,
             ]);
         }
         $pickup = Pickup::create([
@@ -269,6 +271,7 @@ class PickupController extends Controller
      */
     public function update(Request $request, Pickup $pickup)
     {
+        $user = User::find(auth()->user()->id);
         $this->validate($request, Pickup::rules($update = true, $pickup->id));
 
         if($request->location_id == null)
@@ -296,7 +299,8 @@ class PickupController extends Controller
                 'contact_job_title'             => $request->contact_job_title,
                 'contact_email'                 => $request->contact_email,
                 'contact_phone'                 => $request->contact_phone,
-                'business_user_id'              => auth()->user()->id,
+                'customer_id'                   => $user->customer ? $user->customer->id:null,
+                'business_user_id'              => $user->id,
             ]);
         }
         $pickup->update([

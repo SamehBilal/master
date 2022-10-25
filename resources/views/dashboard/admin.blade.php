@@ -468,13 +468,13 @@
                                          style="white-space: nowrap;">
                                         <div class="avatar avatar-sm mr-8pt">
 
-                                            <span class="avatar-title rounded-circle">{{ initials($order->customer->user->full_name) }}</span>
+                                            <span class="avatar-title rounded-circle">{{ initials($order->client->full_name) }}</span>
 
                                         </div>
                                         <div class="media-body">
 
                                             <div class="d-flex flex-column">
-                                                <p class="mb-0"><strong class="js-lists-values-employee-name">{{ $order->customer->user->full_name }}</strong></p>
+                                                <p class="mb-0"><strong class="js-lists-values-employee-name">{{ $order->client->full_name }}</strong></p>
                                                 <small class="js-lists-values-employee-email text-50"></small>
                                             </div>
 

@@ -5,14 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Helpers\UserHelperController;
 use App\Models\City;
 use App\Models\Client;
-use App\Http\Requests\StoreClientRequest;
-use App\Http\Requests\UpdateClientRequest;
 use App\Models\Country;
 use App\Models\Customer;
 use App\Models\Location;
 use App\Models\State;
 use App\Models\User;
 use App\Models\UserCategory;
+use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
@@ -59,14 +58,13 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreClientRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreClientRequest $request)
+    public function store(Request $request)
     {
         $request->request->add(['payment' => 'cash']);
         $this->validate($request, Client::rules());
-        $data                   = $request->all();
 
         if($request->status == 'on')
         {
@@ -75,9 +73,7 @@ class ClientController extends Controller
             $request['status']            = 'inactive';
         }
         try {
-            \DB::transaction(function () use($data, $request) {
-                $userhelperController = new UserHelperController();
-                $user = $userhelperController->createuser($data);
+            \DB::transaction(function () use($request) {
 
                 $client = Client::create([
                     'first_name'                => $request->first_name,
@@ -115,9 +111,8 @@ class ClientController extends Controller
                 {
                     $avatar = request()->file('avatar')->getClientOriginalName();
                     request()->file('avatar')->storeAs('/', "/users/{$client->id}/{$avatar}", '');
-                    $user->update(['avatar' =>  $avatar]);
+                    $client->update(['avatar' =>  $avatar]);
                 }
-                $user->assignRole('client');
             });
         } catch (\Exception $ex) {
             return redirect()->back()->withErrors($ex->getMessage());
@@ -160,16 +155,15 @@ class ClientController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateClientRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateClientRequest $request, Client $client)
+    public function update(Request $request, Client $client)
     {
         $this->validate($request, Client::rules($update = true, $client->id));
-        $data                   = $request->all();
         try {
-            \DB::transaction(function () use($data, $request, $client) {
+            \DB::transaction(function () use($request, $client) {
 
                 $client->update([
                     'first_name'                => $request->first_name,

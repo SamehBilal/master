@@ -244,15 +244,15 @@
                                         <div class="media flex-nowrap align-items-center" style="white-space: nowrap;">
                                             <div class="avatar avatar-sm mr-8pt">
 
-                                                <span class="avatar-title rounded-circle">{{ initials($order->customer->user->full_name) }}</span>
+                                                <span class="avatar-title rounded-circle">{{ initials($order->client->full_name) }}</span>
 
                                             </div>
                                             <div class="media-body">
 
                                                 <div class="d-flex flex-column">
-                                                    <p class="mb-0"><strong class="js-lists-values-name">{{ $order->customer->user->full_name }}</strong></p>
-                                                    <small class="js-lists-values-email text-50">{{ $order->customer->user->phone }}</small>
-                                                    <span class="indicator-line rounded {{ $order->customer->status == 'active' ? 'bg-success':'bg-danger' }}"></span>
+                                                    <p class="mb-0"><strong class="js-lists-values-name">{{ $order->client->full_name }}</strong></p>
+                                                    <small class="js-lists-values-email text-50">{{ $order->client->phone }}</small>
+                                                    <span class="indicator-line rounded {{ $order->client->status == 'active' ? 'bg-success':'bg-danger' }}"></span>
                                                 </div>
 
                                             </div>
@@ -262,7 +262,7 @@
 
                                     <td>
                                         <a href="#"
-                                           class="chip chip-outline-secondary">{{--{{ $order->Customer ? dd($contact->Customer->user->business->en_name):'' }}--}}</a>
+                                           class="chip chip-outline-secondary">{{--{{ $order->client ? dd($contact->customer->business->en_name):'' }}--}}</a>
                                     </td>
 
                                     <td>

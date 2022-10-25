@@ -19,15 +19,17 @@ class CreateClientsTable extends Migration
             $table->string('last_name');
             $table->string('full_name');
             $table->string('email')->unique();
-            $table->string('other_email')->unique();
+            $table->string('other_email')->nullable()->unique();
             $table->bigInteger('phone')->nullable();
             $table->bigInteger('other_phone')->nullable();
             $table->string('avatar')->nullable();
             $table->longtext('note')->nullable();
             $table->set('status',['active','inactive'])->nullable();
             $table->set('payment',['cash','visa'])->nullable();
+            $table->unsignedBigInteger('customer_id')->nullable();
             $table->unsignedBigInteger('business_user_id')->nullable();
             $table->unsignedBigInteger('user_category_id')->nullable();
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->foreign('user_category_id')->references('id')->on('user_categories')->onDelete('cascade');
             $table->foreign('business_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

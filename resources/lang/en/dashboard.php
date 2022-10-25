@@ -360,6 +360,7 @@ return [
     'All Clients'           => 'All Clients',
     'All clients'           => 'All Clients',
     'clients'               => 'Clients',
+    'Client'                => 'Client',
     'New client'            => 'New client',
     'Category'              => 'Category',
     'New Customer'          => 'New Customer',

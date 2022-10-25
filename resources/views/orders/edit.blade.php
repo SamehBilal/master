@@ -1223,14 +1223,14 @@
                                            for="select04">{{ __('dashboard.Customer') }}:</label>
                                     <select id="select04"
                                             data-toggle="select"
-                                            name="customer_id"
-                                            class="form-control select005 form-control-sm @error('customer_id') is-invalid @enderror">
+                                            name="client_id"
+                                            class="form-control select005 form-control-sm @error('client_id') is-invalid @enderror">
                                         <option value="">{{ __('dashboard.Select customer') }}</option>
-                                        @foreach($customers as $customer)
-                                            <option value="{{ $customer->id }}" {{ $order->customer_id == $customer->id ? 'selected':'' }}>{{ $customer->user->full_name }}</option>
+                                        @foreach($clients as $client)
+                                            <option value="{{ $client->id }}" {{ $order->client_id == $client->id ? 'selected':'' }}>{{ $client->full_name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('customer_id')
+                                    @error('client_id')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
                                     <div class="valid-feedback">Looks good!</div>
@@ -1246,7 +1246,7 @@
                                            for="name">{{ __('dashboard.Name') }}:</label>
                                     <input type="text"
                                            class="form-control @error('name') is-invalid @enderror"
-                                           value="{{ old('customer_id') ? old('customer_id'): $order->customer->user->full_name }}"
+                                           value="{{ old('name') ? old('name'): $order->client->full_name }}"
                                            id="name"
                                            name="name"
                                            autocomplete="name"
@@ -1265,7 +1265,7 @@
                                     <input type="email"
                                            id="email"
                                            class="form-control @error('email') is-invalid @enderror"
-                                           value="{{ old('email') ? old('email'): $order->customer->user->email }}"
+                                           value="{{ old('email') ? old('email'): $order->client->email }}"
                                            name="email"
                                            autocomplete="email"
                                            placeholder="{{ __('dashboard.Your email address') }} ...">
@@ -1281,7 +1281,7 @@
                                            for="phone">{{ __('dashboard.Phone') }}:</label>
                                     <input type="tel"
                                            class="form-control @error('phone') is-invalid @enderror"
-                                           value="{{ old('phone') ? old('phone'): $order->customer->user->phone }}"
+                                           value="{{ old('phone') ? old('phone'): $order->client->phone }}"
                                            id="phone"
                                            name="phone"
                                            pattern="[0][1][1-5]{9}"
@@ -1299,7 +1299,7 @@
                                            for="secondary_phone">{{ __('dashboard.Secondary Phone') }}:</label>
                                     <input type="tel"
                                            class="form-control @error('secondary_phone') is-invalid @enderror"
-                                           value="{{ old('secondary_phone') ? old('secondary_phone'): $order->customer->user->other_phone }}"
+                                           value="{{ old('secondary_phone') ? old('secondary_phone'): $order->client->other_phone }}"
                                            id="secondary_phone"
                                            pattern="[0][1][1-5]{9}"
                                            name="secondary_phone"

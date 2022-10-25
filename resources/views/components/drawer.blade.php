@@ -167,7 +167,7 @@
                         </a>
                     </li>
                 @endcan
-                @can('view customers')
+                @can('view clients')
                     <li class="sidebar-menu-item {{ set_active(['dashboard/clients*'])}}">
                         <a class="sidebar-menu-button"
                            href="{{ route('dashboard.clients.index') }}">
@@ -212,7 +212,7 @@
                         </a>
                     </li>
                 @endcan
-                @can('view contacts')
+               {{-- @can('view contacts')
                     <li class="sidebar-menu-item {{ set_active(['dashboard/contacts*'])}}">
                         <a class="sidebar-menu-button"
                         href="{{ route('dashboard.contacts.index') }}">
@@ -220,7 +220,7 @@
                             {{ __('dashboard.Contacts') }}
                         </a>
                     </li>
-                @endcan
+                @endcan--}}
                 @can('view user categories')
                     <li class="sidebar-menu-item {{ set_active(['dashboard/user-categories*'])}}">
                         <a class="sidebar-menu-button"

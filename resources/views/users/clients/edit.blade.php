@@ -244,8 +244,7 @@
                                                class="form-control @error('name') is-invalid @enderror"
                                                value="{{ old('name') }}"
                                                id="name"
-                                               name="name[]"
-                                               required="required"
+                                               name="name"
                                                autocomplete="name"
                                                placeholder="{{ __('dashboard.Name') }} ..."
                                                autofocus>
@@ -262,7 +261,7 @@
                                         <select id="country_id"
                                                 data-toggle="select"
                                                 class="form-control select05 select005 form-control-sm @error('country_id') is-invalid @enderror"
-                                                name="country_id[]">
+                                                name="country_id">
                                             @foreach($countries as $country)
                                                 <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
                                                     {{ $country->name }}
@@ -282,7 +281,7 @@
                                         <select id="state_id"
                                                 data-toggle="select"
                                                 class="form-control select01 select005 form-control-sm @error('state_id') is-invalid @enderror"
-                                                name="state_id[]">
+                                                name="state_id">
                                             @foreach($states as $state)
                                                 <option value="{{ $state->id }}" {{ old('state_id') == $state->id ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">
                                                     {{ $state->name }}
@@ -303,7 +302,7 @@
                                                 data-toggle="select"
                                                 disabled
                                                 class="form-control select03 select005 form-control-sm @error('city_id') is-invalid @enderror"
-                                                name="city_id[]">
+                                                name="city_id">
                                         </select>
                                         @error('city_id')
                                         <div class="invalid-feedback" role="alert">{{ $message }}</div>
@@ -322,7 +321,7 @@
                                                    class="form-control @error('street') is-invalid @enderror"
                                                    value="{{ old('street') }}"
                                                    autocomplete="street"
-                                                   name="street[]"
+                                                   name="street"
                                                    id="street"
                                                    placeholder="{{ __('dashboard.Enter your street') }} .."
                                                    autofocus>
@@ -342,7 +341,7 @@
                                                    class="form-control @error('building') is-invalid @enderror"
                                                    value="{{ old('building') }}"
                                                    autocomplete="building"
-                                                   name="building[]"
+                                                   name="building"
                                                    id="building"
                                                    placeholder="{{ __('dashboard.Enter your building') }} .."
                                                    autofocus>
@@ -369,7 +368,7 @@
                                                    class="form-control @error('floor') is-invalid @enderror"
                                                    value="{{ old('floor') }}"
                                                    autocomplete="floor"
-                                                   name="floor[]"
+                                                   name="floor"
                                                    id="floor"
                                                    placeholder="{{ __('dashboard.Enter your floor') }} .."
                                                    autofocus>
@@ -394,7 +393,7 @@
                                                    class="form-control @error('apartment') is-invalid @enderror"
                                                    value="{{ old('apartment') }}"
                                                    autocomplete="apartment"
-                                                   name="apartment[]"
+                                                   name="apartment"
                                                    id="apartment"
                                                    placeholder="{{ __('dashboard.Enter your apartment') }} .."
                                                    autofocus>
@@ -419,7 +418,7 @@
                                                    class="form-control @error('landmarks') is-invalid @enderror"
                                                    value="{{ old('landmarks') }}"
                                                    autocomplete="landmarks"
-                                                   name="landmarks[]"
+                                                   name="landmarks"
                                                    id="landmarks"
                                                    placeholder="{{ __('dashboard.Enter your landmarks') }} .."
                                                    autofocus>
@@ -567,7 +566,7 @@
                 '                                            data-toggle="select"\n' +
                 '                                            data-minimum-results-for-search="-1"\n' +
                 '                                            class="form-control form-control-sm @error('country_id') is-invalid @enderror"\n' +
-                '                                            name="country_id[]">\n' +
+                '                                            name="country_id">\n' +
                 '                                        @foreach($countries as $country)\n' +
                 '                                            <option value="{{ $country->id }}" {{ $country->id == 64 ? 'selected':'' }} data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">\n' +
                 '                                                {{ $country->name }}\n' +
@@ -588,7 +587,7 @@
                 '                                            data-toggle="select"\n' +
                 '                                            data-minimum-results-for-search="-1"\n' +
                 '                                            class="form-control select03 form-control-sm @error('state_id') is-invalid @enderror"\n' +
-                '                                            name="state_id[]">\n' +
+                '                                            name="state_id">\n' +
                 '                                        @foreach($states as $state)\n' +
                 '                                            <option value="{{ $state->id }}" data-avatar-src="{{ asset('backend/images/icon/fast-delivery.png') }}">\n' +
                 '                                                {{ $state->name }}\n' +
@@ -609,7 +608,7 @@
                 '                                            data-toggle="select"\n' +
                 '                                            data-minimum-results-for-search="-1"\n' +
                 '                                            class="form-control form-control-sm @error('city_id') is-invalid @enderror"\n' +
-                '                                            name="city_id[]">\n' +
+                '                                            name="city_id">\n' +
                 '                                    </select>\n' +
                 '                                    @error('city_id')\n' +
                 '                                    <div class="invalid-feedback" role="alert">{{ $message }}</div>\n' +
@@ -626,9 +625,9 @@
                 '                                    <div class="input-group input-group-merge">\n' +
                 '                                        <input type="text"\n' +
                 '                                               class="form-control @error('street') is-invalid @enderror"\n' +
-                '                                               value="{{ old('street[]') }}"\n' +
+                '                                               value="{{ old('street') }}"\n' +
                 '                                               autocomplete="street"\n' +
-                '                                               name="street[]"\n' +
+                '                                               name="street"\n' +
                 '                                               id="street"\n' +
                 '                                               placeholder="{{ __("dashboard.Enter your street") }} .."\n' +
                 '                                               autofocus>\n' +
@@ -651,9 +650,9 @@
                 '                                    <div class="input-group input-group-merge">\n' +
                 '                                        <input type="text"\n' +
                 '                                               class="form-control @error('building') is-invalid @enderror"\n' +
-                '                                               value="{{ old('building[]') }}"\n' +
+                '                                               value="{{ old('building') }}"\n' +
                 '                                               autocomplete="building"\n' +
-                '                                               name="building[]"\n' +
+                '                                               name="building"\n' +
                 '                                               id="building"\n' +
                 '                                               placeholder="{{ __("dashboard.Enter your building") }} .."\n' +
                 '                                               autofocus>\n' +
@@ -678,9 +677,9 @@
                 '                                    <div class="input-group input-group-merge">\n' +
                 '                                        <input type="text"\n' +
                 '                                               class="form-control @error('floor') is-invalid @enderror"\n' +
-                '                                               value="{{ old('floor[]') }}"\n' +
+                '                                               value="{{ old('floor') }}"\n' +
                 '                                               autocomplete="floor"\n' +
-                '                                               name="floor[]"\n' +
+                '                                               name="floor"\n' +
                 '                                               id="floor"\n' +
                 '                                               placeholder="{{ __("dashboard.Enter your floor") }} .."\n' +
                 '                                               autofocus>\n' +
@@ -703,9 +702,9 @@
                 '                                    <div class="input-group input-group-merge">\n' +
                 '                                        <input type="text"\n' +
                 '                                               class="form-control @error('apartment') is-invalid @enderror"\n' +
-                '                                               value="{{ old('apartment[]') }}"\n' +
+                '                                               value="{{ old('apartment') }}"\n' +
                 '                                               autocomplete="apartment"\n' +
-                '                                               name="apartment[]"\n' +
+                '                                               name="apartment"\n' +
                 '                                               id="apartment"\n' +
                 '                                               placeholder="{{ __("dashboard.Enter your apartment") }} .."\n' +
                 '                                               autofocus>\n' +

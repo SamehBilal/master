@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Models\Client;
 use App\Models\Customer;
 use App\Models\Location;
 use App\Models\State;
@@ -15,8 +16,8 @@ class AjaxController extends Controller
     {
         if ($request->ajax()) {
             $id = $request->get('id');
-            $customer = Customer::find($id);
-            $name = $customer->user->full_name;
+            $client = Client::find($id);
+            $name = $client->full_name;
 
             $data = array(
                 'name' => $name,

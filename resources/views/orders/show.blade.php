@@ -676,7 +676,7 @@
                                                          class="rounded">--}}
                                                     <div class="avatar avatar-sm mr-8pt">
 
-                                                        <span class="avatar-title rounded-circle">{{ initials($order->customer->user->full_name) }}</span>
+                                                        <span class="avatar-title rounded-circle">{{ initials($order->client->full_name) }}</span>
 
                                                     </div>
                                                    {{-- <span class="overlay__content overlay__content-transparent">
@@ -688,9 +688,9 @@
                                                 </div>
                                             </div>
                                             <div class="flex">
-                                                <div class="card-title">{{ $order->customer->user->full_name }}</div>
-                                                <p class="flex text-50 lh-1 mb-0"><small>{{ $order->customer->status }}</small></p>
-                                                <span class="indicator-line rounded {{ $order->customer->status == 'active' ? 'bg-success':'bg-danger' }}"></span>
+                                                <div class="card-title">{{ $order->client->full_name }}</div>
+                                                <p class="flex text-50 lh-1 mb-0"><small>{{ $order->client->status }}</small></p>
+                                                <span class="indicator-line rounded {{ $order->client->status == 'active' ? 'bg-success':'bg-danger' }}"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -712,7 +712,7 @@
                                     <span class="rating__item"><span class="material-icons">star_border</span></span>
                                 </div>--}}
 
-                                <p class="mt-16pt text-70 flex">{{ $order->customer->user->email }}</p>
+                                <p class="mt-16pt text-70 flex">{{ $order->client->email }}</p>
 
                                 <div class="mb-16pt d-none">
                                     <div class="d-flex align-items-center">
@@ -741,19 +741,19 @@
                                     <div class="col-auto">
                                         <div class="d-flex align-items-center mb-4pt">
                                             <span class="material-icons icon-16pt text-50 mr-4pt">phone</span>
-                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Phone') }}: {{ $order->customer->user->phone }}</small></p>
+                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Phone') }}: {{ $order->client->phone }}</small></p>
                                         </div>
                                         <div class="d-flex align-items-center mb-4pt">
                                             <span class="material-icons icon-16pt text-50 mr-4pt">phone</span>
-                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Other Phone') }}: {{ $order->customer->user->other_phone }}</small></p>
+                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Other Phone') }}: {{ $order->client->other_phone }}</small></p>
                                         </div>
                                         <div class="d-flex align-items-center">
                                             <span class="material-icons icon-16pt text-50 mr-4pt">event</span>
-                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Joined') }}: {{ $order->customer->user->created_at }}</small></p>
+                                            <p class="flex text-50 lh-1 mb-0"><small>{{ __('dashboard.Joined') }}: {{ $order->client->created_at }}</small></p>
                                         </div>
                                     </div>
                                     <div class="col text-right">
-                                        <a href="{{ route('dashboard.customers.show',$order->customer->id) }}"
+                                        <a href="{{ route('dashboard.clients.show',$order->client->id) }}"
                                            class="btn btn-outline-secondary">{{ __('dashboard.View Customer') }}</a>
                                     </div>
                                 </div>

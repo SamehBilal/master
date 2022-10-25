@@ -361,6 +361,7 @@ return [
     'All Clients'           => 'كل العملاء',
     'All clients'           => 'كل العملاء',
     'clients'               => 'العملاء',
+    'Client'                => 'العميل',
     'New client'            => 'عميل جديد',
     'Category'              => 'فئة',
     'New Customer'          => 'عميل جديد',

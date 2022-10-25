@@ -42,6 +42,11 @@ class Order extends Model
         return $this->hasOne(Customer::class  , "id" , "customer_id");
     }
 
+    public function client()
+    {
+        return $this->hasOne(Client::class  , "id" , "client_id");
+    }
+
     public function business()
     {
         return $this->hasOne(User::class  , "id" , "business_user_id");

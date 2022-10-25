@@ -78,8 +78,8 @@
                                         <option {{ old('model') == 'App\Models\Contact' ? 'selected':'' }} value="App\Models\Contact" data-avatar-src="{{ asset('backend/images/icon/contacts.png') }}">
                                             {{ __('dashboard.Contact') }}
                                         </option>
-                                        <option {{ old('model') == 'App\Models\Client' ? 'selected':'' }} value="App\Models\Client" data-avatar-src="{{ asset('backend/images/icon/clients.png') }}">
-                                            {{ __('dashboard.Clients') }}
+                                        <option {{ old('model') == 'App\Models\Client' ? 'selected':'' }} value="App\Models\Client" data-avatar-src="{{ asset('backend/images/icon/client.png') }}">
+                                            {{ __('dashboard.Client') }}
                                         </option>
                                     </select>
                                     @error('model')

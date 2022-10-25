@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->longText('delivery_notes')->nullable();
             $table->unsignedBigInteger('tracking_no');
             $table->set('status', ['New','Awaiting your action','On hold','Canceled','Rescheduled','Out for delivery','Completed','Return to origin','Cannot be delivered'])->default('New');
-            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('customer_id')->nullable();
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('pickup_id')->nullable();
             $table->unsignedBigInteger('business_user_id')->nullable();

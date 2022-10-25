@@ -269,12 +269,12 @@
                                                             </div>
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>{{ $order->customer->user->full_name }}</strong>
+                                                                    <strong>{{ $order->client->full_name }}</strong>
                                                                 </div>
                                                             </div>
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>0{{ $order->customer->user->phone }}</strong>
+                                                                    <strong>0{{ $order->client->phone }}</strong>
                                                                 </div>
                                                             </div>
                                                         </div>

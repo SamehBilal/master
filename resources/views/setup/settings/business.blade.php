@@ -56,7 +56,7 @@
                                     <div class="col-12 col-md-6 mb-3">
                                         <div class="form-group">
                                             <label class="form-label"
-                                                   for="contact_name">{{ __('dashboard.Business Name ') }}:</label>
+                                                   for="ar_name">{{ __('dashboard.Business Name ') }}:</label>
                                             <div class="">
                                                 <input type="text"
                                                        class="form-control @error('ar_name') is-invalid @enderror"
@@ -77,7 +77,7 @@
                                     <div class="col-12 col-md-6 mb-3">
                                         <div class="form-group">
                                             <label class="form-label"
-                                                   for="contact_name">{{ __('dashboard.Business English Name ') }}:</label>
+                                                   for="en_name">{{ __('dashboard.Business English Name ') }}:</label>
                                             <div class="">
                                                 <input type="text"
                                                        class="form-control @error('en_name') is-invalid @enderror"

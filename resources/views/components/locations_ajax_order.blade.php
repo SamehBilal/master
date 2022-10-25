@@ -249,7 +249,7 @@
     })
 
 
-    $('#customer_id').on('change',function () {
+    $('#client_id').on('change',function () {
         var id = $(this).val();
         $.ajax({
             url:'{{ route('dashboard.get.customer') }}',

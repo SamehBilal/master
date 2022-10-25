@@ -44,24 +44,21 @@
                         @auth
                             <div class="register-list cart-list dropdown-menu ">
                                 <h3>@auth {{ \Illuminate\Support\Facades\Auth::user()->first_name.' '.\Illuminate\Support\Facades\Auth::user()->last_name }} @else {{ __('content.my_account') }} @endauth</h3>
-                                @foreach($orders = \App\Models\Order::all() as $order)
-                                    @if($order->customer->user->id == auth()->user()->id)
-                                        <ul class="list">
-                                            <li>
-                                                <a href="{{ route('website.track',$order->id) }}" title="" class="cart-product-image"><img src="{{ asset('frontend/assets/images/products/home4-slideshow.png') }}" alt="Product"></a>
-                                                <div class="text">
-                                                    <p class="product-name">#{{ $order->tracking_no }}</p>
-                                                    <p class="product-price">{{ $order->type }}</p>
-                                                </div>
-                                                <a href="{{ route('website.track',$order->id) }}" class="delete-item">
-                                                    <i class="zmdi zmdi-open-in-new"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <p class="total"><span>{{ __('content.Latest Package') }}</span> </p>
-                                    @endif
-                                    @break
-                                @endforeach
+                                @if($order = \App\Models\Order::where('business_user_id',auth()->user()->id)->orderByDesc('updated_at')->first())
+                                    <ul class="list">
+                                        <li>
+                                            <a href="{{ route('website.track',$order->id) }}" title="" class="cart-product-image"><img src="{{ asset('frontend/assets/images/products/home4-slideshow.png') }}" alt="Product"></a>
+                                            <div class="text">
+                                                <p class="product-name">#{{ $order->tracking_no }}</p>
+                                                <p class="product-price">{{ $order->type }}</p>
+                                            </div>
+                                            <a href="{{ route('website.track',$order->id) }}" class="delete-item">
+                                                <i class="zmdi zmdi-open-in-new"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <p class="total"><span>{{ __('content.Latest Package') }}</span> </p>
+                                @endif
                                 <a class="checkout" href="{{ route('dashboard') }}" title="{{ __('dashboard.Dashboard') }}">{{ __('dashboard.Dashboard') }}</a>
                                 <a class="checkout" href="{{ route('website.account') }}" title="{{ __('content.my_account') }}">{{ __('content.my_account') }}</a>
 

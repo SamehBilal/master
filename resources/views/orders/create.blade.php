@@ -1230,17 +1230,17 @@
                             <div class="col-lg-12 invert customer">
                                 <div class="form-group">
                                     <label class="form-label"
-                                           for="customer_id">{{ __('dashboard.Customer') }}:</label>
-                                    <select id="customer_id"
+                                           for="client_id">{{ __('dashboard.Customer') }}:</label>
+                                    <select id="client_id"
                                             data-toggle="select"
-                                            name="customer_id"
-                                            class="form-control select005 form-control-sm @error('customer_id') is-invalid @enderror">
+                                            name="client_id"
+                                            class="form-control select005 form-control-sm @error('client_id') is-invalid @enderror">
                                         <option value="">{{ __('dashboard.Select customer') }}</option>
-                                        @foreach($customers as $customer)
-                                            <option value="{{ $customer->id }}" {{ old('customer_id') == $customer->id ? 'selected':'' }}>{{ $customer->user->full_name }}</option>
+                                        @foreach($clients as $client)
+                                            <option value="{{ $client->id }}" {{ old('client_id') == $client->id ? 'selected':'' }}>{{ $client->full_name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('customer_id')
+                                    @error('client_id')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                     @enderror
                                     <div class="valid-feedback">Looks good!</div>
@@ -1894,6 +1894,8 @@
             </div>
             <div id="hidden_inputs">
                 <input type="hidden" name="type" value="{{ old('type','Deliver') }}">
+                @php $user = \App\Models\User::find(auth()->user()->id); @endphp
+                <input type="hidden" name="customer_id" value="{{ $user->customer ? $user->customer->id:null }}">
 
                 <input type="hidden" id="sweet_state" name="sweet_state">
                 <input type="hidden" id="sweet_city" name="sweet_city">
@@ -1952,7 +1954,7 @@
                 var type                                        = $("input[name='type']").val();
 
                 /* Customer */
-                var customer                                    = $('#customer_id').val();
+                var customer                                    = $('#client_id').val();
                 var customer_div                                = '';
 
                 var name                                        = $('#name').val();
@@ -2035,7 +2037,7 @@
 
 
                 var div = '';
-                var order_name = '{{ \Illuminate\Support\Facades\Auth::user()->full_name }}';
+                var order_name = '{{ $user->full_name }}';
                 switch(type) {
                     case 'Deliver':
 
