@@ -149,6 +149,7 @@
             </div>
 
             <input type="hidden" name="country_id" value="64">
+            <input type="hidden" name="customer_id" value="{{ $user->customer ? $user->customer->id:null }}">
 
             <div class="flex items-center justify-end mt-4">
 

@@ -451,6 +451,7 @@
 
 
             <input type="hidden" name="location_in" value="full">
+            <input type="hidden" name="customer_id" value="{{ $user->customer ? $user->customer->id:null }}">
             <button type="submit"
                     class="btn pull-right btn-primary">{{ __('dashboard.Edit') }}</button>
         </form>

@@ -181,7 +181,7 @@
 
                                 <td>
                                     <a href="#"
-                                       class="chip chip-outline-secondary">{{ $contact->Customer ? dd($contact->Customer->user->business->en_name):'' }}</a>
+                                       class="chip chip-outline-secondary">{{ $contact->Customer ? ($contact->Customer->business ? $contact->Customer->business->en_name:''):'' }}</a>
                                 </td>
 
                                 <td>

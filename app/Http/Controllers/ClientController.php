@@ -48,7 +48,14 @@ class ClientController extends Controller
      */
     public function create()
     {
-        $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Client'],['status','active']])->get();
+        $user = User::find(auth()->user()->id);
+        if($user->hasRole('customer'))
+        {
+            $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Client'],['status','active']])->get();
+        }else{
+            $categories = UserCategory::orderBy('updated_at','desc')
+                ->get();
+        }
         $states     = State::where('country_id',64)->get();
         $cities     = City::all();
         $countries  = Country::all();
@@ -63,6 +70,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
+        $user = User::find(auth()->user()->id);
         $request->request->add(['payment' => 'cash']);
         $this->validate($request, Client::rules());
 
@@ -73,7 +81,7 @@ class ClientController extends Controller
             $request['status']            = 'inactive';
         }
         try {
-            \DB::transaction(function () use($request) {
+            \DB::transaction(function () use($user,$request) {
 
                 $client = Client::create([
                     'first_name'                => $request->first_name,
@@ -87,7 +95,8 @@ class ClientController extends Controller
                     'user_category_id'          => $request->user_category_id,
                     'note'                      => $request->note,
                     'payment'                   => $request->payment,
-                    'business_user_id'          => auth()->user()->id,
+                    'customer_id'               => $user->customer ? $user->customer->id:null,
+                    'business_user_id'          => $user->id,
                 ]);
 
                 if($request->street){
@@ -102,7 +111,7 @@ class ClientController extends Controller
                             'country_id'            => $request->country_id[$j],
                             'state_id'              => $request->state_id[$j],
                             'city_id'               => $request->city_id[$j],
-                            'business_user_id'      => auth()->user()->id,
+                            'business_user_id'      => $user->id,
                         ]);
                     }
                 }
@@ -129,7 +138,14 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Client'],['status','active']])->get();
+        $user = User::find(auth()->user()->id);
+        if($user->hasRole('customer'))
+        {
+            $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Client'],['status','active']])->get();
+        }else{
+            $categories = UserCategory::orderBy('updated_at','desc')
+                ->get();
+        }
         $states     = State::where('country_id',64)->get();
         $cities     = City::all();
         $countries  = Country::all();
@@ -144,7 +160,14 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Client'],['status','active']])->get();
+        $user = User::find(auth()->user()->id);
+        if($user->hasRole('customer'))
+        {
+            $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Client'],['status','active']])->get();
+        }else{
+            $categories = UserCategory::orderBy('updated_at','desc')
+                ->get();
+        }
         $states     = State::where('country_id',64)->get();
         $cities     = City::all();
         $countries  = Country::all();
@@ -161,9 +184,10 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
+        $user = User::find(auth()->user()->id);
         $this->validate($request, Client::rules($update = true, $client->id));
         try {
-            \DB::transaction(function () use($request, $client) {
+            \DB::transaction(function () use($user,$request, $client) {
 
                 $client->update([
                     'first_name'                => $request->first_name,
@@ -177,7 +201,8 @@ class ClientController extends Controller
                     'user_category_id'          => $request->user_category_id,
                     'note'                      => $request->note,
                     'payment'                   => $request->payment,
-                    'business_user_id'          => auth()->user()->id,
+                    'customer_id'               => $user->customer ? $user->customer->id:null,
+                    'business_user_id'          => $user->id,
                 ]);
 
                 if($request->street)
@@ -193,7 +218,7 @@ class ClientController extends Controller
                             'country_id'            => $request->country_id[$j],
                             'state_id'              => $request->state_id[$j],
                             'city_id'               => $request->city_id[$j],
-                            'business_user_id'      => auth()->user()->id,
+                            'business_user_id'      => $user->id,
                         ]);
                     }
                 }

@@ -13,7 +13,7 @@ class Contact extends Model
 
     public function Customer()
     {
-        $this->belongsTo(Customer::class);
+        return $this->hasOne(Customer::class, "id" , "customer_id");
     }
 
     public function UserCategory()

@@ -20,6 +20,11 @@ class Business extends Model
         return $this->hasOne(User::class,"id","business_user_id");
     }
 
+    public function customer()
+    {
+        return $this->hasOne(Customer::class,"id","customer_id");
+    }
+
     public static function rules($update = false, $id = null)
     {
         $common = [

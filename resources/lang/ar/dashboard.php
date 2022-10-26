@@ -113,10 +113,12 @@ return [
     'Hubs Information'      => 'معلومات المستودعات',
     'Basic details of the hub'=> 'المعلومات الأساسية عن المستودع',
     'All the hubs listed in the app'=> 'كل المستودعات المدرجة في التطبيق',
+    'There are no contacts for this business yet.'=> 'لا توجد اتصالات لهذا العمل حتى الآن.',
 
     //orders
     'Tracking_No'           => 'رقم التتبع',
     'Add Courier'           => 'مرسول جديد',
+    'Staff'                 => 'العاملين',
     'Filter'                => 'فلتر',
     'Search_by_Tracking_No' => 'البحث بواسطه رقم التتبع.',
     'All_Status'            => 'جميع الحالات',

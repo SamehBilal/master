@@ -37,12 +37,6 @@ class CustomerController extends Controller
         }else{
             $customers = Customer::orderBy('updated_at','desc')
                 ->get();
-            /*$customers = User::where(function ($query) {
-                $query->whereHas('roles', function ($query) {
-                    $query->whereIn('name',['customer']);
-                });
-            });
-            dd($customers);*/
             $categories = UserCategory::orderBy('updated_at','desc')
                 ->get();
         }
@@ -57,7 +51,16 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Customer'],['status','active']])->get();
+        $user = User::find(auth()->user()->id);
+        if($user->hasRole('customer'))
+        {
+            $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Customer'],['status','active']])
+                ->orderBy('updated_at','desc')
+                ->get();
+        }else{
+            $categories = UserCategory::orderBy('updated_at','desc')
+                ->get();
+        }
         $currencies = Currency::where('business_user_id',auth()->user()->id)->get();
         $states     = State::where('country_id',64)->get();
         $cities     = City::all();
@@ -158,7 +161,16 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Customer'],['status','active']])->get();
+        $user = User::find(auth()->user()->id);
+        if($user->hasRole('customer'))
+        {
+            $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Customer'],['status','active']])
+                ->orderBy('updated_at','desc')
+                ->get();
+        }else{
+            $categories = UserCategory::orderBy('updated_at','desc')
+                ->get();
+        }
         $currencies = Currency::where('business_user_id',auth()->user()->id)->get();
         $states     = State::where('country_id',64)->get();
         $cities     = City::all();
@@ -174,7 +186,16 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Customer'],['status','active']])->get();
+        $user = User::find(auth()->user()->id);
+        if($user->hasRole('customer'))
+        {
+            $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Customer'],['status','active']])
+                ->orderBy('updated_at','desc')
+                ->get();
+        }else{
+            $categories = UserCategory::orderBy('updated_at','desc')
+                ->get();
+        }
         $currencies = Currency::where('business_user_id',auth()->user()->id)->get();
         $states     = State::where('country_id',64)->get();
         $cities     = City::all();

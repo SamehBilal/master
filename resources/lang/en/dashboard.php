@@ -255,9 +255,11 @@ return [
     'the mass upload template.'=> 'the mass upload template.',
     'Follow these steps to upload your orders'=> 'Follow these steps to upload your orders',
     'Learn how to fill-in the template with your orders.'=> 'Learn how to fill-in the template with your orders.',
+    'There are no contacts for this business yet.'=> 'There are no contacts for this business yet.',
 
     // orders table variables
     'Deliver'               => 'Deliver',
+    'Staff'                 => 'Staff',
     'Exchange'              => 'Exchange',
     'Return'                => 'Return',
     'Cash Collection'       => 'Cash Collection',

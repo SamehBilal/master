@@ -76,7 +76,7 @@
 
                             <th>{{ __('dashboard.Name') }} <small>({{ __('dashboard.English') }})</small></th>
 
-                            <th>{{ __('dashboard.Sales Channel') }}</th>
+                            <th>{{ __('dashboard.Customer') }}</th>
 
                             <th>{{ __('dashboard.industry') }}</th>
 
@@ -111,7 +111,7 @@
 
                                         <div class="media-body">
                                             <div class="d-flex flex-column">
-                                                <small class=""><strong>{{ $item->sales_channel }}</strong></small>
+                                                <small class=""><strong>{{ $item->customer ? $item->customer->user->full_name:'' }}</strong></small>
                                             </div>
                                         </div>
                                     </div>
@@ -192,7 +192,7 @@
 
                             <th>{{ __('dashboard.Name') }} <small>({{ __('dashboard.English') }})</small></th>
 
-                            <th>{{ __('dashboard.Sales Channel') }}</th>
+                            <th>{{ __('dashboard.Customer') }}</th>
 
                             <th>{{ __('dashboard.industry') }}</th>
 

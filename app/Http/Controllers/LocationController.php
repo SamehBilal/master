@@ -29,6 +29,7 @@ class LocationController extends Controller
         }else{
             $locations = Location::orderBy('updated_at','desc')
                 ->where('customer_id',NULL)
+                ->where('client_id',NULL)
                 ->get();
         }
 
@@ -71,6 +72,7 @@ class LocationController extends Controller
             'state_id'              => $request->state_id,
             'city_id'               => $request->city_id,
             'zone_id'               => $request->zone_id,
+            'client_id'             => $request->client_id,
             'customer_id'           => $request->customer_id,
             'working_address'       => $request->working_address,
             'business_user_id'      => $user_id,
@@ -131,6 +133,7 @@ class LocationController extends Controller
             'state_id'              => $request->state_id,
             'city_id'               => $request->city_id,
             'zone_id'               => $request->zone_id,
+            'client_id'             => $request->client_id,
             'customer_id'           => $request->customer_id,
             'working_address'       => $request->working_address,
             'business_user_id'      => $user_id,

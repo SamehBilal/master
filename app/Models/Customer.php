@@ -26,6 +26,11 @@ class Customer extends Model
         return $this->hasMany(Contact::class);
     }
 
+    public function Client()
+    {
+        return $this->hasMany(Client::class);
+    }
+
     public function location()
     {
         return $this->hasMany(Location::class);
@@ -39,6 +44,11 @@ class Customer extends Model
     public function business()
     {
         return $this->hasOne(User::class  , "id" , "business_user_id");
+    }
+
+    public function business_name()
+    {
+        return $this->hasOne(Business::class  , "customer_id" , "id");
     }
 
     public function orders()

@@ -121,6 +121,11 @@
 
                                 <th>{{ __('dashboard.Phone') }}</th>
 
+                                @hasrole('admin')
+                                <th>{{ __('dashboard.Business') }}</th>
+                                @else
+                                @endhasrole
+
                                 @hasrole('finance')
                                     <th>{{ __('dashboard.Total COD') }}</th>
                                 @else
@@ -198,11 +203,21 @@
 
                                     </td>
 
+                                    @hasrole('admin')
+                                        <td>
+
+                                            <a href="#"
+                                               class="chip ">{{ $customer->business_name ? $customer->business_name->en_name:'' }}</a>
+
+                                        </td>
+                                    @else
+                                    @endhasrole
+
                                     @hasrole('finance')
                                         <td>
 
                                             <a href="#"
-                                            class="chip ">{{ $customer->orders ? $customer->orders->sum('cash_on_delivery'):0 }} {{ __('dashboard.EGP') }}</a>
+                                            class="chip ">{{ $customer->orders ? $customer->orders->sum('cash_on_delivery'):0 }}</a>
 
                                         </td>
                                     @else
@@ -272,6 +287,11 @@
                                 <th>{{ __('dashboard.Category') }}</th>
 
                                 <th>{{ __('dashboard.Phone') }}</th>
+
+                                @hasrole('admin')
+                                <th>{{ __('dashboard.Business') }}</th>
+                                @else
+                                    @endhasrole
 
                                 @hasrole('finance')
                                     <th>{{ __('dashboard.Total COD') }}</th>

@@ -68,6 +68,7 @@ class BusinessController extends Controller
         $countries  = Country::all();
         $states     = State::where('country_id',64)->get();
         $cities     = City::all();
+        $user       = User::find(auth()->user()->id);
         $categories = [
             'Books, Arts and Media',
             'Electronics',
@@ -89,7 +90,7 @@ class BusinessController extends Controller
             'Food',
             'Shoes',
         ];
-        return view('users.customers.business.create',compact('locations','countries','states','cities','categories'));
+        return view('users.customers.business.create',compact('locations','countries','user','states','cities','categories'));
     }
 
     public function create_front()
@@ -123,7 +124,7 @@ class BusinessController extends Controller
             'Food',
             'Shoes',
         ];
-        return view('users.customers.business.create_front',compact('categories','states','cities'));
+        return view('users.customers.business.create_front',compact('categories','user','states','cities'));
     }
 
     /**
@@ -161,6 +162,7 @@ class BusinessController extends Controller
             'sales_channel'           => $request->sales_channel,
             'industry'                => $request->industry,
             'store_url'               => $request->store_url,
+            'customer_id'             => $request->customer_id,
             'location_id'             => ($request->location_in = null) ? $location:$request->location_id,
             'business_user_id'        => $user_id,
         ]);
@@ -200,6 +202,7 @@ class BusinessController extends Controller
      */
     public function edit(Business $business)
     {
+        $user = User::find(auth()->user()->id);
         $locations  = Location::all();
         $countries  = Country::all();
         $states     = State::where('country_id',64)->get();
@@ -225,7 +228,7 @@ class BusinessController extends Controller
             'Food',
             'Shoes',
         ];
-        return view('users.customers.business.edit',compact('locations','countries','states','cities','categories','business'));
+        return view('users.customers.business.edit',compact('locations','user','countries','states','cities','categories','business'));
     }
 
     /**
@@ -264,6 +267,7 @@ class BusinessController extends Controller
             'sales_channel'           => $request->sales_channel,
             'industry'                => $request->industry,
             'store_url'               => $request->store_url,
+            'customer_id'             => $request->customer_id,
             'location_id'             => ($request->location_in = null) ? $location:$request->location_id,
             'business_user_id'        => $user_id,
         ]);

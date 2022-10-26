@@ -45,7 +45,14 @@ class ContactController extends Controller
     public function create()
     {
         $customers = Customer::all();
-        $categories = UserCategory::where([['model','App\Models\Contact'],['status','active'],['business_user_id',auth()->user()->id]])->get();
+        $user = User::find(auth()->user()->id);
+        if($user->hasRole('customer'))
+        {
+            $categories = UserCategory::where([['model','App\Models\Contact'],['status','active'],['business_user_id',$user->id]])->get();
+        }else{
+            $categories = UserCategory::where([['model','App\Models\Contact'],['status','active']])->orderBy('updated_at','desc')
+                ->get();
+        }
         return view('users.contacts.create',compact('customers','categories'));
     }
 
@@ -57,10 +64,12 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
+        $user = User::find(auth()->user()->id);
+
         $this->validate($request, Contact::rules());
 
         try {
-            \DB::transaction(function () use($request) {
+            \DB::transaction(function () use($user,$request) {
 
                 Contact::create([
                     'contact_name'                  => $request->contact_name,
@@ -68,7 +77,8 @@ class ContactController extends Controller
                     'contact_email'                 => $request->contact_email,
                     'contact_phone'                 => $request->contact_phone,
                     'user_category_id'              => $request->user_category_id,
-                    'business_user_id'              => auth()->user()->id,
+                    'customer_id'                   => $user->customer ? $user->customer->id:null,
+                    'business_user_id'              => $user->id,
                 ]);
             });
         } catch (\Exception $ex) {
@@ -86,7 +96,15 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        return view('users.contacts.edit',compact('contact'));
+        $user = User::find(auth()->user()->id);
+        if($user->hasRole('customer'))
+        {
+            $categories = UserCategory::where([['model','App\Models\Contact'],['status','active'],['business_user_id',$user->id]])->get();
+        }else{
+            $categories = UserCategory::where([['model','App\Models\Contact'],['status','active']])->orderBy('updated_at','desc')
+                ->get();
+        }
+        return view('users.contacts.edit',compact('contact','categories'));
     }
 
     /**
@@ -97,7 +115,14 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        $categories = UserCategory::where([['model','App\Models\Contact'],['status','active'],['business_user_id',auth()->user()->id]])->get();
+        $user = User::find(auth()->user()->id);
+        if($user->hasRole('customer'))
+        {
+            $categories = UserCategory::where([['model','App\Models\Contact'],['status','active'],['business_user_id',$user->id]])->get();
+        }else{
+            $categories = UserCategory::where([['model','App\Models\Contact'],['status','active']])->orderBy('updated_at','desc')
+                ->get();
+        }
         return view('users.contacts.edit',compact('contact','categories'));
     }
 
@@ -110,10 +135,11 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
+        $user = User::find(auth()->user()->id);
         $this->validate($request, Contact::rules($update = true, $contact->id));
-    
+
         try {
-            \DB::transaction(function () use($request,$contact) {
+            \DB::transaction(function () use($user,$request,$contact) {
 
                 $contact->update([
                     'contact_name'                  => $request->contact_name,
@@ -121,7 +147,8 @@ class ContactController extends Controller
                     'contact_email'                 => $request->contact_email,
                     'contact_phone'                 => $request->contact_phone,
                     'user_category_id'              => $request->user_category_id,
-                    'business_user_id'              => auth()->user()->id,
+                    'customer_id'                   => $user->customer ? $user->customer->id:null,
+                    'business_user_id'              => $user->id,
                 ]);
             });
         } catch (\Exception $ex) {

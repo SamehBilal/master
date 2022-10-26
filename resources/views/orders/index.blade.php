@@ -262,7 +262,7 @@
 
                                     <td>
                                         <a href="#"
-                                           class="chip chip-outline-secondary">{{--{{ $order->client ? dd($contact->customer->business->en_name):'' }}--}}</a>
+                                           class="chip chip-outline-secondary">{{ $order->customer ? ($order->customer->business_name ? $order->customer->business_name->en_name:''):'' }}</a>
                                     </td>
 
                                     <td>

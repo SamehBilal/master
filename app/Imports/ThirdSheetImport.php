@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Http\Controllers\Helpers\UserHelperController;
+use App\Models\Client;
 use App\Models\Customer;
 use App\Models\Location;
 use App\Models\Order;
@@ -23,43 +24,41 @@ class ThirdSheetImport implements ToCollection
     */
     public function collection(Collection $collection)
     {
+        $user = User::find(auth()->user()->id);
         foreach ($collection->skip(2) as $row)
         {
             DB::beginTransaction();
             try {
-                $data                               = [];
                 $tracking_no                        = random_int(100000, 999999);
-                $password                           = Hash::make(123456789);
-                $data['password']                   = $password;
-                $data['password_confirmation']      = $password;
-                $data['phone']                      = $row[1];
-                $data['payment']                    = 'cash';
-                $data['other_email']                = null;
-                $data['religion']                   = null;
-                $data['username']                   = null;
-                $data['gender']                     = null;
-                $data['date_of_birth']              = null;
-                $data['secondary_phone']            = $row[2];
-                $data['bio']                        = null;
+                $phone                              = $row[1];
+                $payment                            = 'cash';
+                $other_phone                        = $row[2];
                 $full_name                          = explode(" ",$row[0]);
-                $data['first_name']                 = $full_name[0];
+                $first_name                         = $full_name[0];
                 if(count($full_name) > 1){
-                    $data['last_name'] = $full_name[1];
+                    $last_name = $full_name[1];
                 }else{
-                    $data['last_name'] = '';
+                    $last_name = '';
                 }
-                $data['email']                      = $full_name[0].$tracking_no.'@droplin.com';
-                $data['full_name']                  = $row[0];
-                $user                               = null;
+                $email                              = $full_name[0].$tracking_no.'@droplin.com';
+                $full_name                          = $row[0];
 
-                $userhelperController = new UserHelperController();
-                $user = $userhelperController->createuser($data);
-                $customer = Customer::create([
-                    'user_id'                   => $user->id,
-                    'business_user_id'          => auth()->user()->id,
+                $client = Client::create([
+                    'first_name'                => $first_name,
+                    'last_name'                 => $last_name,
+                    'full_name'                 => $first_name.' '.$last_name,
+                    'email'                     => $email,
+                    'other_email'               => null,
+                    'user_category_id'          => null,
+                    'payment'                   => $payment,
+                    'status'                    => 'active',
+                    'note'                      => null,
+                    'other_phone'               => $other_phone,
+                    'phone'                     => $phone,
+                    'business_user_id'          => $user->id,
                 ]);
 
-                $location = $customer->location()->create([
+                $location = $client->location()->create([
                     'name'                  => $row[8].', '.$row[6].', '.$row[5],
                     'street'                => $row[5],
                     'building'              => $row[6],
@@ -68,9 +67,9 @@ class ThirdSheetImport implements ToCollection
                     'country_id'            => 64,
                     'state_id'              => 1200,
                     'city_id'               => 1300,
-                    /*'state_id'              => $row[3],
+                    /*'state_id'            => $row[3],
                     'city_id'               => $row[4],*/
-                    'business_user_id'      => auth()->user()->id,
+                    'business_user_id'      => $user->id,
                 ]);
 
                 switch($row[12])
@@ -97,9 +96,10 @@ class ThirdSheetImport implements ToCollection
                             'order_reference'                       => $row[16],
                             'open_package'                          => $row[17],
                             'delivery_notes'                        => $row[10],
-                            'customer_id'                           => $customer->id,
+                            'client_id'                             => $client->id,
+                            'customer_id'                           => $user->customer ? $user->customer->id:null,
                             'location_id'                           => $location->id,
-                            'business_user_id'                      => auth()->user()->id,
+                            'business_user_id'                      => $user->id,
                         ]);
 
                         break;
@@ -118,9 +118,10 @@ class ThirdSheetImport implements ToCollection
                             'package_description_return_package_exchange'=> $row[20],
                             'return_location_exchange'              => $location->id,
                             'delivery_notes'                        => $row[10],
-                            'customer_id'                           => $customer->id,
+                            'client_id'                             => $client->id,
+                            'customer_id'                           => $user->customer ? $user->customer->id:null,
                             'location_id'                           => $location->id,
-                            'business_user_id'                      => auth()->user()->id,
+                            'business_user_id'                      => $user->id,
                         ]);
 
                         break;
@@ -136,9 +137,10 @@ class ThirdSheetImport implements ToCollection
                             'order_reference_return'                => $row[16],
                             'return_location'                       => $location->id,
                             'delivery_notes'                        => $row[10],
-                            'customer_id'                           => $customer->id,
+                            'client_id'                             => $client->id,
+                            'customer_id'                           => $user->customer ? $user->customer->id:null,
                             'location_id'                           => $location->id,
-                            'business_user_id'                      => auth()->user()->id,
+                            'business_user_id'                      => $user->id,
                         ]);
                         break;
                     case 'Cash Collection';
@@ -149,9 +151,10 @@ class ThirdSheetImport implements ToCollection
                             'collect_cash'                          => $row[13] ? 'collect cash':NULL,
                             'order_reference_cash_collection'       => $row[16],
                             'delivery_notes'                        => $row[10],
-                            'customer_id'                           => $customer->id,
+                            'client_id'                             => $client->id,
+                            'customer_id'                           => $user->customer ? $user->customer->id:null,
                             'location_id'                           => $location->id,
-                            'business_user_id'                      => auth()->user()->id,
+                            'business_user_id'                      => $user->id,
                         ]);
                         break;
                 }
@@ -170,7 +173,7 @@ class ThirdSheetImport implements ToCollection
 
                 DB::commit();
 
-                $users = User::whereHas("roles", function($q){ $q->where("name", "customer")->orWhere("name", "admin"); })->get();
+                $users = User::whereHas("roles", function($q){ $q->where("name")->orWhere("name", "admin"); })->get();
                 Notification::send($users, new NewOrder($order));
 
             } catch (\Exception $ex) {

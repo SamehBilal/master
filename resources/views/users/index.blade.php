@@ -62,18 +62,18 @@
                             <a href="#"
                                data-toggle="tab"
                                role="tab"
-                               data-name="Contacts"
+                               data-name="Staff"
                                aria-selected="false"
                                class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start ">
                                 <div class="avatar avatar-sm mr-8pt">
                                     <span class="avatar-title rounded bg-transparent text-black-100">
-                                         <img src="{{ asset('backend/images/icon/contacts.png') }}"
+                                         <img src="{{ asset('backend/images/icon/staff.png') }}"
                                               alt="Avatar"
                                               class="avatar-img ">
                                     </span>
                                 </div>
                                 <span class="flex d-flex flex-column">
-                                    <strong>{{ __('dashboard.Contacts') }}</strong>
+                                    <strong>{{ __('dashboard.Staff') }}</strong>
                                     <small class=" text-50">{{ __('dashboard.active') }}</small>
                                     <span class="indicator-line rounded bg-success"></span>
                                 </span>
@@ -95,27 +95,6 @@
                                 </div>
                                 <span class="flex d-flex flex-column">
                                     <strong>{{ __('dashboard.Customers') }}</strong>
-                                    <small class=" text-50">{{ __('dashboard.active') }}</small>
-                                    <span class="indicator-line rounded bg-success"></span>
-                                </span>
-                            </a>
-                        </div>
-                        <div class="col-auto border-left border-right">
-                            <a href="#"
-                               data-toggle="tab"
-                               role="tab"
-                               data-name="Clients"
-                               aria-selected="false"
-                               class="dashboard-area-tabs__tab card-body d-flex flex-row align-items-center justify-content-start ">
-                                <div class="avatar avatar-sm mr-8pt">
-                                    <span class="avatar-title rounded bg-transparent text-black-100">
-                                         <img src="{{ asset('backend/images/icon/client.png') }}"
-                                              alt="Avatar"
-                                              class="avatar-img ">
-                                    </span>
-                                </div>
-                                <span class="flex d-flex flex-column">
-                                    <strong>{{ __('dashboard.Clients') }}</strong>
                                     <small class=" text-50">{{ __('dashboard.active') }}</small>
                                     <span class="indicator-line rounded bg-success"></span>
                                 </span>
@@ -209,14 +188,14 @@
                                          style="white-space: nowrap;">
                                         <div class="avatar avatar-sm mr-8pt">
                                             <span class="avatar-title rounded bg-transparent text-black-100">
-                                                 <img src="{{ $user->customer ? asset('backend/images/icon/customer.png'): ($user->contact ? asset('backend/images/icon/contacts.png'):asset('backend/images/icon/client.png')) }}"
+                                                 <img src="{{ $user->hasRole(['Super Admin','admin','sales','finance','operation admin','operation logistics','operation courier']) ? asset('backend/images/icon/staff.png'): asset('backend/images/icon/customer.png') }}"
                                                       alt="Avatar"
                                                       class="avatar-img ">
                                             </span>
                                         </div>
                                         <div class="media-body">
                                             <div class="d-flex flex-column">
-                                                <small class=""><strong>{{ $user->customer ? __("dashboard.Customers") : ($user->contact ? __("dashboard.Contacts"):__("dashboard.Clients")) }}</strong></small>
+                                                <small class=""><strong>{{ $user->hasRole(['Super Admin','admin','sales','finance','operation admin','operation logistics','operation courier']) ? __("dashboard.Staff"): __("dashboard.Customers") }}</strong></small>
                                                 <small class=" text-50">{{ $user->status == 1 ? __("dashboard.active"):'' }}</small>
                                                 <span class="indicator-line rounded {{ $user->status == 1 ? 'bg-success':'bg-danger' }} "></span>
                                             </div>
