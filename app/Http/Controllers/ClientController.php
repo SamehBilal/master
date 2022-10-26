@@ -143,7 +143,8 @@ class ClientController extends Controller
         {
             $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Client'],['status','active']])->get();
         }else{
-            $categories = UserCategory::orderBy('updated_at','desc')
+            $categories = UserCategory::where([['model','App\Models\Client'],['status','active']])
+                ->orderBy('updated_at','desc')
                 ->get();
         }
         $states     = State::where('country_id',64)->get();
@@ -165,7 +166,8 @@ class ClientController extends Controller
         {
             $categories = UserCategory::where([['business_user_id',auth()->user()->id],['model','App\Models\Client'],['status','active']])->get();
         }else{
-            $categories = UserCategory::orderBy('updated_at','desc')
+            $categories = UserCategory::where([['model','App\Models\Client'],['status','active']])
+                ->orderBy('updated_at','desc')
                 ->get();
         }
         $states     = State::where('country_id',64)->get();

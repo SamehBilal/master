@@ -168,7 +168,8 @@ class CustomerController extends Controller
                 ->orderBy('updated_at','desc')
                 ->get();
         }else{
-            $categories = UserCategory::orderBy('updated_at','desc')
+            $categories = UserCategory::where([['model','App\Models\Customer'],['status','active']])
+                ->orderBy('updated_at','desc')
                 ->get();
         }
         $currencies = Currency::where('business_user_id',auth()->user()->id)->get();
@@ -193,7 +194,8 @@ class CustomerController extends Controller
                 ->orderBy('updated_at','desc')
                 ->get();
         }else{
-            $categories = UserCategory::orderBy('updated_at','desc')
+            $categories = UserCategory::where([['model','App\Models\Customer'],['status','active']])
+                ->orderBy('updated_at','desc')
                 ->get();
         }
         $currencies = Currency::where('business_user_id',auth()->user()->id)->get();
