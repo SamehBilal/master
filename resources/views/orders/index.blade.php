@@ -199,7 +199,9 @@
 
                             <th>{{ __('dashboard.Customer_Info') }}</th>
 
-                            <th>{{ __('dashboard.Business') }}</th>
+                            @hasrole('admin')
+                                <th>{{ __('dashboard.Business') }}</th>
+                            @endhasrole
 
                             <th>{{ __('dashboard.Type') }}</th>
 
@@ -260,10 +262,12 @@
 
                                     </td>
 
-                                    <td>
-                                        <a href="#"
-                                           class="chip chip-outline-secondary">{{ $order->customer ? ($order->customer->business_name ? $order->customer->business_name->en_name:''):'' }}</a>
-                                    </td>
+                                    @hasrole('admin')
+                                        <td>
+                                            <a href="#"
+                                               class="chip chip-outline-secondary">{{ $order->customer ? ($order->customer->business_name ? $order->customer->business_name->en_name:''):'' }}</a>
+                                        </td>
+                                    @endhasrole
 
                                     <td>
                                         <div class="media flex-nowrap align-items-center"
@@ -368,6 +372,10 @@
                             <th>{{ __('dashboard.Tracking_No') }}</th>
 
                             <th>{{ __('dashboard.Customer_Info') }}</th>
+
+                            @hasrole('admin')
+                                <th>{{ __('dashboard.Business') }}</th>
+                            @endhasrole
 
                             <th>{{ __('dashboard.Type') }}</th>
 

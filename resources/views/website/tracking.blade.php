@@ -429,15 +429,27 @@
                                 <h1>{{ __('content.Timeline') }}</h1>
 
                                 <ul class="timeline">
-                                    @foreach($order->customerlog as $log)
-                                        <li class="event {{ str_replace(' ', '-', $log->status ) }}" data-date="2005">
-                                            <h3>{{ date("F j, Y g:i A", strtotime($log->created_at)) }}</h3>
-                                            <p>"{{ $log->notes }}" 📣</p>
-                                            <p>{{ $log->hub ? $log->hub->ar_name.'🏪':'' }} </p>
-                                            <p><i class="zmdi zmdi-info"></i>
-                                                <a href="#" class="{{ str_replace(' ', '-', $log->status ) }}">{{ $log->status }}</a></p>
+                                    @forelse($order->customerlog as $log)
+                                        @if($log->status == 'New')
+                                            <li class="event asd" data-date="2005">
+                                                <h3>لا توجد سجلات لهذا الطلب حتى الآن.</h3>
+                                                <p>ابقوا متابعين 📣</p>
+                                            </li>
+                                        @else
+                                            <li class="event {{ str_replace(' ', '-', $log->status ) }}" data-date="2005">
+                                                <h3>{{ date("F j, Y g:i A", strtotime($log->created_at)) }}</h3>
+                                                <p>"{{ $log->notes }}" 📣</p>
+                                                <p>{{ $log->hub ? $log->hub->ar_name.'🏪':'' }} </p>
+                                                <p><i class="zmdi zmdi-info"></i>
+                                                    <a href="#" class="{{ str_replace(' ', '-', $log->status ) }}">{{ $log->status }}</a></p>
+                                            </li>
+                                        @endif
+                                    @empty
+                                        <li class="event asd" data-date="2005">
+                                            <h3>لا توجد سجلات لهذا الطلب حتى الآن.</h3>
+                                            <p>ابقوا متابعين 📣</p>
                                         </li>
-                                    @endforeach
+                                    @endforelse
                                 </ul>
                             </div>
                             <!-- End Options -->
@@ -615,15 +627,27 @@
                                 <h1>{{ __('content.Timeline') }}</h1>
 
                                 <ul class="timeline">
-                                    @foreach($order->customerlog as $log)
-                                        <li class="event {{ str_replace(' ', '-', $log->status ) }}" data-date="2005">
-                                            <h3>{{ date("F j, Y g:i A", strtotime($log->created_at)) }}</h3>
-                                            <p>"{{ $log->description }}" 📣</p>
-                                            <p>{{ $log->hub ? $log->hub->en_name.'🏪':'' }} </p>
-                                            <p><i class="zmdi zmdi-info"></i>
-                                                <a href="#" class="{{ str_replace(' ', '-', $log->status ) }}">{{ $log->status }}</a></p>
+                                    @forelse($order->customerlog as $log)
+                                        @if($log->status == 'New')
+                                            <li class="event asd" data-date="2005">
+                                                <h3>There are no logs for this order yet.</h3>
+                                                <p>Stay tuned 📣</p>
+                                            </li>
+                                        @else
+                                            <li class="event {{ str_replace(' ', '-', $log->status ) }}" data-date="2005">
+                                                <h3>{{ date("F j, Y g:i A", strtotime($log->created_at)) }}</h3>
+                                                <p>"{{ $log->description }}" 📣</p>
+                                                <p>{{ $log->hub ? $log->hub->ar_name.'🏪':'' }} </p>
+                                                <p><i class="zmdi zmdi-info"></i>
+                                                    <a href="#" class="{{ str_replace(' ', '-', $log->status ) }}">{{ $log->status }}</a></p>
+                                            </li>
+                                        @endif
+                                    @empty
+                                        <li class="event asd" data-date="2005">
+                                            <h3>There are no logs for this order yet.</h3>
+                                            <p>Stay tuned 📣</p>
                                         </li>
-                                    @endforeach
+                                    @endforelse
                                 </ul>
                             </div>
                             <!-- End Options -->
