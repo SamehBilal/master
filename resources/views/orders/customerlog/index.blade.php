@@ -101,7 +101,7 @@
                                 </td>
 
 
-                                <td class=" js-lists-values-created small">
+                                <td class=" js-lists-values-created small" data-sort="{{ $log->created_at }}">
                                     <div class="d-flex flex-column">
                                         <small class=""><strong>{{ date("F j, Y, g:i a", strtotime($log->created_at)) }}</strong></small>
                                     </div>

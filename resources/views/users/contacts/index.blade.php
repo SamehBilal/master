@@ -189,7 +189,7 @@
                                        class="chip chip-outline-secondary">{{ $contact->contact_phone }}</a>
                                 </td>
 
-                                <td>
+                                <td data-sort="{{ $contact->created_at }}">
                                     <div class="d-flex flex-column">
                                         <small class=""><strong>{{ date("F j, Y", strtotime($contact->created_at)) }}</strong></small>
                                         <small class="text-50">{{ $contact->created_at->diffForHumans() }}</small>

@@ -15,7 +15,7 @@
                 <a href="{{ route('dashboard') }}" title="{{ __('dashboard.Dashboard') }}"><i class="zmdi zmdi-view-dashboard"></i>{{ __('dashboard.Dashboard') }}</a>
             @else
             @endauth
-            <a href="{{ route('website.locations') }}" title="{{ __('content.locations') }}"><i class="zmdi zmdi-pin"></i>{{ __('content.locations') }}</a>
+            {{-- <a href="{{ route('website.locations') }}" title="{{ __('content.locations') }}"><i class="zmdi zmdi-pin"></i>{{ __('content.locations') }}</a> --}}
             <div class="wrap-dollar-box dropdown">
                 <a href="#" title="{{ __('content.Language') }}"><i class="zmdi zmdi-money-box"></i>{{ __('content.Language') }}<i class="zmdi zmdi-chevron-down"></i></a>
                 <div class="dollar-list dropdown-menu" style="background-color: white">

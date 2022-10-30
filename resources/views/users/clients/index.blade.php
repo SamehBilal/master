@@ -205,7 +205,7 @@
                                         </div>
                                     </td>--}}
 
-                                    <td>
+                                    <td data-sort="{{ $client->created_at }}">
                                         <div class="d-flex flex-column">
                                             <small class=""><strong>{{--{{ date("F j, Y, g:i a", strtotime($client->created_at)) }}--}}{{ date("F j, Y", strtotime($client->created_at)) }}</strong></small>
                                             <small class="text-50">{{ $client->created_at->diffForHumans() }}</small>

@@ -516,7 +516,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="text-50 js-lists-values-activity small">
+                                <td data-sort="{{ $order->created_at }}" class="text-50 js-lists-values-activity small">
                                     <div class="d-flex flex-column">
                                         <small class=""><strong>{{ date("F j, Y", strtotime($order->created_at)) }}</strong></small>
                                         <small class="text-50">{{ $order->created_at->diffForHumans() }}</small>

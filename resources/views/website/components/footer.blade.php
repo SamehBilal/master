@@ -8,7 +8,7 @@ $info = \App\Models\About::find(1); @endphp
                     <h3>{{ __('content.Customer Care') }}</h3>
                     <ul class="menu">
                         <li><a href="{{ route('website.account') }}" title="{{ __('content.my_account') }}">{{ __('content.my_account') }}</a></li>
-                        <li><a href="{{ route('website.locations') }}" title="{{ __('content.locations') }}">{{ __('content.locations') }}</a></li>
+                        {{-- <li><a href="{{ route('website.locations') }}" title="{{ __('content.locations') }}">{{ __('content.locations') }}</a></li> --}}
                         <li><a href="{{ route('website.terms') }}" title="{{ __('content.Terms and Conditions') }}">{{ __('content.Terms and Conditions') }}</a></li>
                         <li><a href="{{ route('website.privacy') }}" title="{{ __('content.Privacy') }}">{{ __('content.Privacy') }}</a></li>
                     </ul>
@@ -66,7 +66,7 @@ $info = \App\Models\About::find(1); @endphp
                     <h3>{{ __('content.Customer Care') }}</h3>
                     <ul class="menu">
                         <li><a href="{{ route('website.account') }}" title="{{ __('content.my_account') }}">{{ __('content.my_account') }}</a></li>
-                        <li><a href="{{ route('website.locations') }}" title="{{ __('content.locations') }}">{{ __('content.locations') }}</a></li>
+                        {{-- <li><a href="{{ route('website.locations') }}" title="{{ __('content.locations') }}">{{ __('content.locations') }}</a></li> --}}
                         <li><a href="{{ route('website.terms') }}" title="{{ __('content.Terms and Conditions') }}">{{ __('content.Terms and Conditions') }}</a></li>
                         <li><a href="{{ route('website.privacy') }}" title="{{ __('content.Privacy') }}">{{ __('content.Privacy') }}</a></li>
                     </ul>

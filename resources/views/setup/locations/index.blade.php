@@ -143,7 +143,7 @@
                                        class="chip chip-outline-secondary">{{ $location->city ? $location->city->name:'' }}</a>
                                 </td>
 
-                                <td>
+                                <td data-sort="{{ $location->created_at }}">
                                     <div class="d-flex flex-column">
                                         <small class=""><strong>{{ date("F j, Y", strtotime($location->created_at)) }}</strong></small>
                                         <small class="text-50">{{ $location->created_at->diffForHumans() }}</small>

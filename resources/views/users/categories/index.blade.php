@@ -111,7 +111,7 @@
                                             </td>
 
 
-                                            <td class=" js-lists-values-created small">
+                                            <td class=" js-lists-values-created small" data-sort="{{ $category->created_at }}">
                                                 <div class="d-flex flex-column">
                                                     <small class=""><strong>{{--{{ date("F j, Y, g:i a", strtotime($customer->created_at)) }}--}}{{ date("F j, Y", strtotime($category->created_at)) }}</strong></small>
                                                     <small class="text-50">{{ $category->created_at->diffForHumans() }}</small>

@@ -1238,7 +1238,7 @@
                     reverseButtons: true
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = '{{ route('dashboard.pickups.edit',$order->pickup->id) }}';
+                        window.location = '{{ $order->pickup ? route('dashboard.pickups.edit',$order->pickup->id):'' }}';
                     } else if (
                         result.dismiss === Swal.DismissReason.cancel
                     ) {

@@ -227,7 +227,7 @@
                                         <button class="btn btn-sm {{ $user->status == 1 ? 'btn-success':'btn-danger' }}">{{ $user->status == 1 ? __("dashboard.active"):__("dashboard.inctive") }}</button>
                                     </div>
                                 </td>
-                                <td>
+                                <td data-sort="{{ $user->created_at }}">
                                     <div class="d-flex flex-column">
                                         <small class=""><strong>{{--{{ date("F j, Y, g:i a", strtotime($user->created_at)) }}--}}{{ date("F j, Y", strtotime($user->created_at)) }}</strong></small>
                                         <small class="text-50">{{ $user->created_at->diffForHumans() }}</small>
