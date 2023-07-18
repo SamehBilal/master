@@ -100,20 +100,20 @@ class ClientController extends Controller
                 ]);
 
                 if($request->street){
-                    for($j=0;$j < count($request->street);$j++){
-                        $client->location()->create([
-                            'name'                  => $request->location_name[$j],
-                            'street'                => $request->street[$j],
-                            'building'              => $request->building[$j],
-                            'floor'                 => $request->floor[$j],
-                            'apartment'             => $request->apartment[$j],
-                            'landmarks'             => $request->landmarks[$j],
-                            'country_id'            => $request->country_id[$j],
-                            'state_id'              => $request->state_id[$j],
-                            'city_id'               => $request->city_id[$j],
-                            'business_user_id'      => $user->id,
-                        ]);
-                    }
+
+                    $client->location()->create([
+                        'name'                  => $request->location_name,
+                        'street'                => $request->street,
+                        'building'              => $request->building,
+                        'floor'                 => $request->floor,
+                        'apartment'             => $request->apartment,
+                        'landmarks'             => $request->landmarks,
+                        'country_id'            => $request->country_id,
+                        'state_id'              => $request->state_id,
+                        'city_id'               => $request->city_id,
+                        'business_user_id'      => $user->id,
+                    ]);
+
                 }
 
                 if(request()->hasFile('avatar'))
@@ -209,20 +209,20 @@ class ClientController extends Controller
 
                 if($request->street)
                 {
-                    for($j=0;$j < $request->street;$j++){
-                        $client->location()->update([
-                            'name'                  => $request->location_name[$j],
-                            'street'                => $request->street[$j],
-                            'building'              => $request->building[$j],
-                            'floor'                 => $request->floor[$j],
-                            'apartment'             => $request->apartment[$j],
-                            'landmarks'             => $request->landmarks[$j],
-                            'country_id'            => $request->country_id[$j],
-                            'state_id'              => $request->state_id[$j],
-                            'city_id'               => $request->city_id[$j],
-                            'business_user_id'      => $user->id,
-                        ]);
-                    }
+
+                    $client->location()->update([
+                        'name'                  => $request->location_name,
+                        'street'                => $request->street,
+                        'building'              => $request->building,
+                        'floor'                 => $request->floor,
+                        'apartment'             => $request->apartment,
+                        'landmarks'             => $request->landmarks,
+                        'country_id'            => $request->country_id,
+                        'state_id'              => $request->state_id,
+                        'city_id'               => $request->city_id,
+                        'business_user_id'      => $user->id,
+                    ]);
+
                 }
 
 

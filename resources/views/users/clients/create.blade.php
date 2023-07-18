@@ -317,7 +317,7 @@
                                                    id="street"
                                                    placeholder="{{ __('dashboard.Enter your street') }} .."
                                                    autofocus>
-                                            @error('location_name')
+                                            @error('street')
                                             <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                             @enderror
                                             <div class="valid-feedback">Looks good!</div>

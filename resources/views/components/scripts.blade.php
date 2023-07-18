@@ -43,11 +43,11 @@
 <script src="{{ asset('backend/js/chartjs-rounded-bar.js') }}"></script>
 
 <!-- Chart.js Samples -->
-<script src="{{ asset('backend/js/page.ecommerce.js') }}"></script>
+{{-- <script src="{{ asset('backend/js/page.ecommerce.js') }}"></script>
 <script src="{{ asset('backend/js/page.hr-dashboard.js') }}"></script>
 <script src="{{ asset('backend/js/page.employees.js') }}"></script>
 <script src="{{ asset('backend/js/page.staff.js') }}"></script>
-<script src="{{ asset('backend/js/page.projects.js') }}"></script>
+<script src="{{ asset('backend/js/page.projects.js') }}"></script> --}}
 
 
 <!-- List.js -->
@@ -88,12 +88,12 @@
 
 <!-- Highlight.js -->
 <script src="{{ asset('backend/js/hljs.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.js"></script>
 
 {{--<script src="{{ asset('backend/vendor/sweetalert.min.js') }}"></script>--}}
 {{--<script src="{{ asset('backend/js/sweetalert.js') }}"></script>--}}
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.17/sweetalert2.min.js"></script>
 <!-- custom -->
 <script src="{{ asset('backend/js/custom.js') }}"></script>
 

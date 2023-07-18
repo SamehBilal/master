@@ -239,16 +239,16 @@
                                 <div class="col-12 col-md-6 mb-3">
                                     <div class="form-group">
                                         <label class="form-label"
-                                               for="name">{{ __('dashboard.Name') }}:</label>
+                                               for="location_name">{{ __('dashboard.Name') }}:</label>
                                         <input type="text"
                                                class="form-control @error('name') is-invalid @enderror"
-                                               value="{{ old('name') }}"
-                                               id="name"
-                                               name="name"
-                                               autocomplete="name"
+                                               value="{{ old('location_name') }}"
+                                               id="location_name"
+                                               name="location_name"
+                                               autocomplete="location_name"
                                                placeholder="{{ __('dashboard.Name') }} ..."
                                                autofocus>
-                                        @error('name')
+                                        @error('location_name')
                                         <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                         @enderror
                                         <div class="valid-feedback">Looks good!</div>
@@ -426,7 +426,7 @@
                                                 <div class="input-group-text">
                                                     <span class="material-icons">apartment</span>
                                                 </div>
-                                                @error('street')
+                                                @error('landmarks')
                                                 <div class="invalid-feedback" role="alert">{{ $message }}</div>
                                                 @enderror
                                                 <div class="valid-feedback">Looks good!</div>

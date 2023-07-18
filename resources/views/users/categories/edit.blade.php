@@ -76,15 +76,22 @@
                                             data-minimum-results-for-search="-1"
                                             class="form-control form-control-sm @error('model') is-invalid @enderror"
                                             name="model">
-                                        <option @if(old('model')) {{ old('model') == 'App\Models\Customer' ? 'selected':'' }} @else {{ $userCategory->model == 'App\Models\Customer' ? 'selected':'' }} @endif value="App\Models\Customer" data-avatar-src="{{ asset('backend/images/icon/customer.png') }}">
-                                            {{ __('dashboard.Customer') }}
-                                        </option>
-                                        <option @if(old('model')) {{ old('model') == 'App\Models\Contact' ? 'selected':'' }} @else {{ $userCategory->model == 'App\Models\Contact' ? 'selected':'' }} @endif value="App\Models\Contact" data-avatar-src="{{ asset('backend/images/icon/contacts.png') }}">
-                                            {{ __('dashboard.Contact') }}
-                                        </option>
-                                        <option @if(old('model')) {{ old('model') == 'App\Models\Client' ? 'selected':'' }} @else {{ $userCategory->model == 'App\Models\Client' ? 'selected':'' }} @endif value="App\Models\Client" data-avatar-src="{{ asset('backend/images/icon/client.png') }}">
-                                            {{ __('dashboard.Client') }}
-                                        </option>
+                                            @if(auth()->user()->hasRole('customer'))
+                                                <option @if(old('model')) {{ old('model') == 'App\Models\Client' ? 'selected':'' }} @else {{ $userCategory->model == 'App\Models\Client' ? 'selected':'' }} @endif value="App\Models\Client" data-avatar-src="{{ asset('backend/images/icon/client.png') }}">
+                                                    {{ __('dashboard.Client') }}
+                                                </option>
+                                            @else
+                                                <option @if(old('model')) {{ old('model') == 'App\Models\Customer' ? 'selected':'' }} @else {{ $userCategory->model == 'App\Models\Customer' ? 'selected':'' }} @endif value="App\Models\Customer" data-avatar-src="{{ asset('backend/images/icon/customer.png') }}">
+                                                    {{ __('dashboard.Customer') }}
+                                                </option>
+                                                <option @if(old('model')) {{ old('model') == 'App\Models\Contact' ? 'selected':'' }} @else {{ $userCategory->model == 'App\Models\Contact' ? 'selected':'' }} @endif value="App\Models\Contact" data-avatar-src="{{ asset('backend/images/icon/contacts.png') }}">
+                                                    {{ __('dashboard.Contact') }}
+                                                </option>
+                                                <option @if(old('model')) {{ old('model') == 'App\Models\Client' ? 'selected':'' }} @else {{ $userCategory->model == 'App\Models\Client' ? 'selected':'' }} @endif value="App\Models\Client" data-avatar-src="{{ asset('backend/images/icon/client.png') }}">
+                                                    {{ __('dashboard.Client') }}
+                                                </option>
+                                            @endif
+
                                     </select>
                                     @error('model')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>

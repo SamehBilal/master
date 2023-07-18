@@ -1939,9 +1939,11 @@
 
 @section('extra-scripts')
     @include('components.locations_ajax_order')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.17/sweetalert2.min.js"></script>
+
 
     <script>
+
         $(document).ready(function() {
             $("#scheduled_date").flatpickr({
                 minDate: "today",

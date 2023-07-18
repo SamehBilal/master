@@ -490,11 +490,12 @@ class OrderController extends Controller
         $user = User::find(auth()->user()->id);
         if($user->hasRole('operation courier'))
         {
+
             $orderLog  = OrderLog::create([
                 'status'                 => 'Delivered',
                 'description'            => 'Your order has been delivered to customer.',
                 'order_id'               => $order->id,
-                'courier_id'             => $user,
+                'courier_id'             => $user->id,
                 'hub_id'                 => 1,
             ]);
         }

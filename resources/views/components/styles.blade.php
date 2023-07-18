@@ -6,7 +6,7 @@
       rel="stylesheet">
 
 <!-- include summernote css/js -->
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.css" rel="stylesheet">
 
 <!-- Datatables -->
 <link type="text/css"
@@ -101,6 +101,8 @@
 <link type="text/css"
       href="{{ asset('backend/css/sweetalert.css') }}"
       rel="stylesheet">
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.17/sweetalert2.min.css">
 
 <style>
     @if($locale == 'ar')

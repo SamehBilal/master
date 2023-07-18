@@ -208,18 +208,18 @@ class DashboardController extends Controller
         ];
 
         $sum  = [
-            '01' => Order::whereMonth('created_at', '01')->sum('cash_on_delivery'),
-            '02' => Order::whereMonth('created_at', '02')->sum('cash_on_delivery'),
-            '03' => Order::whereMonth('created_at', '03')->sum('cash_on_delivery'),
-            '04' => Order::whereMonth('created_at', '04')->sum('cash_on_delivery'),
-            '05' => Order::whereMonth('created_at', '05')->sum('cash_on_delivery'),
-            '06' => Order::whereMonth('created_at', '06')->sum('cash_on_delivery'),
-            '07' => Order::whereMonth('created_at', '07')->sum('cash_on_delivery'),
-            '08' => Order::whereMonth('created_at', '08')->sum('cash_on_delivery'),
-            '09' => Order::whereMonth('created_at', '09')->sum('cash_on_delivery'),
-            '10' => Order::whereMonth('created_at', '10')->sum('cash_on_delivery'),
-            '11' => Order::whereMonth('created_at', '11')->sum('cash_on_delivery'),
-            '12' => Order::whereMonth('created_at', '12')->sum('cash_on_delivery'),
+            '01' => Order::where('business_user_id', $user->id)->whereMonth('created_at', '01')->sum('cash_on_delivery'),
+            '02' => Order::where('business_user_id', $user->id)->whereMonth('created_at', '02')->sum('cash_on_delivery'),
+            '03' => Order::where('business_user_id', $user->id)->whereMonth('created_at', '03')->sum('cash_on_delivery'),
+            '04' => Order::where('business_user_id', $user->id)->whereMonth('created_at', '04')->sum('cash_on_delivery'),
+            '05' => Order::where('business_user_id', $user->id)->whereMonth('created_at', '05')->sum('cash_on_delivery'),
+            '06' => Order::where('business_user_id', $user->id)->whereMonth('created_at', '06')->sum('cash_on_delivery'),
+            '07' => Order::where('business_user_id', $user->id)->whereMonth('created_at', '07')->sum('cash_on_delivery'),
+            '08' => Order::where('business_user_id', $user->id)->whereMonth('created_at', '08')->sum('cash_on_delivery'),
+            '09' => Order::where('business_user_id', $user->id)->whereMonth('created_at', '09')->sum('cash_on_delivery'),
+            '10' => Order::where('business_user_id', $user->id)->whereMonth('created_at', '10')->sum('cash_on_delivery'),
+            '11' => Order::where('business_user_id', $user->id)->whereMonth('created_at', '11')->sum('cash_on_delivery'),
+            '12' => Order::where('business_user_id', $user->id)->whereMonth('created_at', '12')->sum('cash_on_delivery'),
         ];
 
         $max_graph = max($sum);

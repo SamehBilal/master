@@ -22,7 +22,7 @@
                     @foreach($user->unreadnotifications as $note)
                        @switch($note->type)
                             @case('App\Notifications\NewBusiness')
-                                <a href="{{ route('dashboard.business.index') }}"
+                                <a href="{{ route('dashboard.businesses.index') }}"
                                     class="list-group-item list-group-item-action unread notification">
                                     <input type="hidden" class="notificatin_id" value="{{ $note->id }}">
                                     <span class="d-flex align-items-center mb-1">

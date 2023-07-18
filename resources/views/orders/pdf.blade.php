@@ -427,12 +427,12 @@
                                                         <div class="col-lg-8 col-sm-4">
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>{{ $order->pickup->location->city->name }}</strong>
+                                                                    <strong>{{ $order->pickup?->location->city->name }}</strong>
                                                                 </div>
                                                             </div>
                                                             <div class="card-body">
                                                                 <div class="d-flex flex-column text-center">
-                                                                    <strong>{{ $order->pickup->location->state->name }}</strong>
+                                                                    <strong>{{ $order->pickup?->location->state->name }}</strong>
                                                                 </div>
                                                             </div>
                                                         </div>

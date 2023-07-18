@@ -43,34 +43,38 @@ class ThirdSheetImport implements ToCollection
                 $email                              = $full_name[0].$tracking_no.'@droplin.com';
                 $full_name                          = $row[0];
 
-                $client = Client::create([
-                    'first_name'                => $first_name,
-                    'last_name'                 => $last_name,
-                    'full_name'                 => $first_name.' '.$last_name,
-                    'email'                     => $email,
-                    'other_email'               => null,
-                    'user_category_id'          => null,
-                    'payment'                   => $payment,
-                    'status'                    => 'active',
-                    'note'                      => null,
-                    'other_phone'               => $other_phone,
-                    'phone'                     => $phone,
-                    'business_user_id'          => $user->id,
-                ]);
+                if($row[0] != ''){
+                    $client = Client::create([
+                        'first_name'                => $first_name,
+                        'last_name'                 => $last_name,
+                        'full_name'                 => $first_name.' '.$last_name,
+                        'email'                     => $email,
+                        'other_email'               => null,
+                        'user_category_id'          => null,
+                        'payment'                   => $payment,
+                        'status'                    => 'active',
+                        'note'                      => null,
+                        'other_phone'               => $other_phone,
+                        'phone'                     => $phone,
+                        'business_user_id'          => $user->id,
+                    ]);
+                }
 
-                $location = $client->location()->create([
-                    'name'                  => $row[8].', '.$row[6].', '.$row[5],
-                    'street'                => $row[5],
-                    'building'              => $row[6],
-                    'floor'                 => $row[7],
-                    'apartment'             => $row[8],
-                    'country_id'            => 64,
-                    'state_id'              => 1200,
-                    'city_id'               => 1300,
-                    /*'state_id'            => $row[3],
-                    'city_id'               => $row[4],*/
-                    'business_user_id'      => $user->id,
-                ]);
+                if($row[5] != ''){
+                    $location = $client->location()->create([
+                        'name'                  => $row[8].', '.$row[6].', '.$row[5],
+                        'street'                => $row[5],
+                        'building'              => $row[6],
+                        'floor'                 => $row[7],
+                        'apartment'             => $row[8],
+                        'country_id'            => 64,
+                        'state_id'              => 1200,
+                        'city_id'               => 1300,
+                        /*'state_id'            => $row[3],
+                        'city_id'               => $row[4],*/
+                        'business_user_id'      => $user->id,
+                    ]);
+                }
 
                 switch($row[12])
                 {

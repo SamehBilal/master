@@ -1284,8 +1284,8 @@
                                            value="{{ old('phone') ? old('phone'): $order->client->phone }}"
                                            id="phone"
                                            name="phone"
-                                           pattern="[0][1][1-5]{9}"
-                                           data-mask="00000000000"
+                                          {{-- pattern="[0][1][1-5]{9}" --}}
+                                            data-mask="00000000000"
                                            placeholder="{{ __('dashboard.Your mobile phone') }} ...">
                                     @error('phone')
                                     <div class="invalid-feedback" role="alert">{{ $message }}</div>

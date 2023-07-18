@@ -54,7 +54,7 @@ class DealController extends Controller
             $all = '';
             foreach ($request->images as $img){
                 $image = time() . '_' . $img->getClientOriginalName();
-                $img->storeAs('/', "/deals/{$deal->id}/{$image}", '');
+                $img->storeAs('/', "/public/deals/{$deal->id}/{$image}", '');
                 $all .= $image.'/';
             }
             $deal->update(['images' =>  $all]);
@@ -111,7 +111,7 @@ class DealController extends Controller
             $all = '';
             foreach ($request->images as $img){
                 $image = time() . '_' . $img->getClientOriginalName();
-                $img->storeAs('/', "/deals/{$deal->id}/{$image}", '');
+                $img->storeAs('/', "/public/deals/{$deal->id}/{$image}", '');
                 $all .= $image.'/';
             }
             $deal->update(['images' =>  $all]);

@@ -72,15 +72,21 @@
                                             data-minimum-results-for-search="-1"
                                             class="form-control form-control-sm @error('model') is-invalid @enderror"
                                             name="model">
-                                        <option {{ old('model') == 'App\Models\Customer' ? 'selected':'' }} value="App\Models\Customer" data-avatar-src="{{ asset('backend/images/icon/customer.png') }}">
-                                            {{ __('dashboard.Customer') }}
-                                        </option>
-                                        <option {{ old('model') == 'App\Models\Contact' ? 'selected':'' }} value="App\Models\Contact" data-avatar-src="{{ asset('backend/images/icon/contacts.png') }}">
-                                            {{ __('dashboard.Contact') }}
-                                        </option>
-                                        <option {{ old('model') == 'App\Models\Client' ? 'selected':'' }} value="App\Models\Client" data-avatar-src="{{ asset('backend/images/icon/client.png') }}">
-                                            {{ __('dashboard.Client') }}
-                                        </option>
+                                            @if(auth()->user()->hasRole('customer'))
+                                                <option {{ old('model') == 'App\Models\Client' ? 'selected':'' }} value="App\Models\Client" data-avatar-src="{{ asset('backend/images/icon/client.png') }}">
+                                                    {{ __('dashboard.Client') }}
+                                                </option>
+                                            @else
+                                                <option {{ old('model') == 'App\Models\Client' ? 'selected':'' }} value="App\Models\Client" data-avatar-src="{{ asset('backend/images/icon/client.png') }}">
+                                                    {{ __('dashboard.Client') }}
+                                                </option>
+                                                <option {{ old('model') == 'App\Models\Customer' ? 'selected':'' }} value="App\Models\Customer" data-avatar-src="{{ asset('backend/images/icon/customer.png') }}">
+                                                    {{ __('dashboard.Customer') }}
+                                                </option>
+                                                <option {{ old('model') == 'App\Models\Contact' ? 'selected':'' }} value="App\Models\Contact" data-avatar-src="{{ asset('backend/images/icon/contacts.png') }}">
+                                                    {{ __('dashboard.Contact') }}
+                                                </option>
+                                            @endif
                                     </select>
                                     @error('model')
                                         <div class="invalid-feedback" role="alert">{{ $message }}</div>
